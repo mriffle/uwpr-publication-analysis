@@ -1,8 +1,9 @@
 # Phase 3 — Retrieval Pipeline Specification
 
-**Status:** Draft 3 · 2026-09-19. Draft 2 was reviewed against the frozen Phase 1 and 2 specs on
-2026-09-19. The review's decisions are P10–P15 (§2); the matching Phase 2 changes are dated in
-that spec's header.
+**Status:** **Frozen** · 2026-09-19 · the input to implementation. Changes from here are made
+deliberately, dated, and noted in this header. Draft 2 was reviewed against the frozen Phase 1
+and 2 specs on 2026-09-19; the review's decisions are P10–P15 (§2), and the matching Phase 2
+changes are dated in that spec's header.
 **Purpose:** specify the code that finds publications, decides inclusion, and keeps the store and
 the app's data current, running unattended on GitHub Actions every week.
 **Depends on:**
@@ -629,7 +630,7 @@ metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
 
 ## 16. Exit criteria
 
-- [ ] Reviewed and agreed. **This is the only item left.**
+- [x] Reviewed and agreed (2026-09-19).
 - [x] Draft 2 reviewed against Phases 1–2; gaps resolved (P10–P15, Phase 2 changes dated
       2026-09-19).
 - [x] Config schemas (`schemas/config/`) drafted, with the real `config/*.yaml` validated

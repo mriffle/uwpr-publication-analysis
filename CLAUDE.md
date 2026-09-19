@@ -12,7 +12,7 @@ Resource (UWPR).
 - Each included publication also gets a markdown knowledge-base page, which the app opens when
   the publication is clicked.
 
-**Current state:** Phases 1-2 frozen, Phase 3 Draft 3. The code so far is the quality gate (an
+**Current state:** Phases 1-3 frozen; implementation starting. The code so far is the quality gate (an
 empty `uwpr_pubs` package, ruff/mypy/pytest, `check.yml`) plus `config/*.yaml` and
 `schemas/config/`. No pipeline code yet. Public repo: mriffle/uwpr-publication-analysis.
 
@@ -23,7 +23,7 @@ spec in `docs/`.
 |---|---|
 | 1 Discovery | **Frozen** |
 | 2 Data model | **Frozen** |
-| 3 Pipeline | **Draft 3** (awaiting sign-off; all other exit criteria met) |
+| 3 Pipeline | **Frozen** |
 | 4 Knowledge base | Not written |
 | 5 Metrics / app JSON | Unreviewed starting point |
 | 6 Web app | Unreviewed starting point |
@@ -102,7 +102,7 @@ uv run python samples/build_sample_store.py                    # rebuild sample 
 - Cross-file invariants (Phase 2 §14) are enforced in `tools/validate_store.py`, not in the
   schemas.
 
-**Pipeline (Phase 3 draft).**
+**Pipeline (Phase 3, frozen).**
 - Pure core (text extraction, rules, matching, status) and a thin impure shell (HTTP, cache,
   file writes).
 - Three modes: `live`, `replay` (tests; no network) and `record`.
