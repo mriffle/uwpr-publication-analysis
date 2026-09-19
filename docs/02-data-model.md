@@ -30,6 +30,9 @@ deliberately, dated, and noted in this header. The schemas (`schemas/`) and vali
 - *§5.1, §6 and §10, examples:* corrected against the schemas. `rule_version` needs its `.N`
   suffix, the candidates line needs `schema` and `fulltext.cache`, and the metrics line needs
   `schema`. The schemas and `samples/store/` were right; only the illustrations were wrong.
+- *§18, the validator:* `tools/validate_store.py` moved into the package as `uwpr_pubs.validate`
+  and the `uwpr-pubs validate` command, with the same checks (Phase 3 §14). It also now fails on a
+  missing or empty store, and reports malformed JSON instead of raising.
 - *§11 and `run.schema.json`, run manifest:* the incremental and full modes are gone, because
   Phase 3 searches everything on every run. `mode` is `live`, `replay`, `record` or `sample`, and
   the run ID ends with it. New required fields: `status`, `degradations` and
@@ -473,7 +476,7 @@ Building a real sample store exposed several gaps. All are now fixed in this spe
 | Path | What it is |
 |---|---|
 | `schemas/*.schema.json` | JSON Schemas (draft 2020-12) for every file type: work, candidate line, list entry, generated envelope, metrics line, run manifest, overrides and aliases. `common.schema.json` holds shared definitions. |
-| `tools/validate_store.py` | Checks a store against the schemas and the §14 invariants, plus cross-file references. Mutation-tested: 11 deliberately broken stores, all caught for the right reason. |
+| `uwpr_pubs.validate` (`uwpr-pubs validate`) | Checks a store against the schemas and the §14 invariants, plus cross-file references. Mutation-tested: 16 deliberately broken stores in `tests/test_validate.py`, all caught for the right reason. |
 | `samples/sample_works.yaml` | The sample definition: real papers and excerpts, plus synthetic scenarios marked SAMPLE |
 | `samples/build_sample_store.py` | Builds `samples/store/` from live sources |
 | `samples/store/`, `samples/overrides.yaml` | The sample store: 13 included works, 7 works not included, 4 official-list entries |
@@ -483,7 +486,7 @@ Commands (from the repository root, after `uv sync`; `requirements.txt` was repl
 
 ```
 uv run python samples/build_sample_store.py        # rebuild the sample
-uv run python tools/validate_store.py samples/store # validate it
+uv run uwpr-pubs validate samples/store            # validate it
 ```
 
 ## 19. Exit criteria

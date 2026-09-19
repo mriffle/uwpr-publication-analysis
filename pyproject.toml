@@ -31,9 +31,9 @@ build-backend = "uv_build"
 [tool.ruff]
 line-length = 110
 target-version = "py312"
-# Spec-phase scripts, kept as records (docs/03-retrieval-pipeline.md §14): not held to the
-# package's standards. tools/validate_store.py is replaced by uwpr_pubs.validate.
-extend-exclude = ["samples/build_sample_store.py", "tools/validate_store.py"]
+# A spec-phase script, kept as a record of how the sample store was built (docs/03 §14):
+# not held to the package's standards.
+extend-exclude = ["samples/build_sample_store.py"]
 
 [tool.ruff.format]
 # Code blocks in the specs and the handoff are illustrations, not code to reformat.

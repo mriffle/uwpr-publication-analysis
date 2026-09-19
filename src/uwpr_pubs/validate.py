@@ -1,0 +1,285 @@
+"""Validate a store against the schemas and the invariants of docs/02-data-model.md §14.
+
+Ported from the spec-phase `tools/validate_store.py` with the same checks, plus three fixes: a
+missing or empty store is an error rather than a silent pass, malformed JSON is reported instead
+of raising, and the invariant pass never assumes a field the schema might have rejected, so schema
+errors are always printed.
+"""
+
+import json
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any
+
+import yaml
+
+from uwpr_pubs.schemas import schema_errors
+from uwpr_pubs.store.ids import external_keys
+from uwpr_pubs.store.models import IncludedKind
+from uwpr_pubs.store.paths import StorePaths
+
+INCLUDED_KINDS: frozenset[str] = frozenset(IncludedKind.__args__)  # type: ignore[attr-defined]
+
+
+@dataclass
+class Report:
+    errors: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
+    counts: dict[str, int] = field(default_factory=dict)
+
+    def error(self, where: str, message: str) -> None:
+        self.errors.append(f"{where}: {message}")
+
+    def warn(self, where: str, message: str) -> None:
+        self.warnings.append(f"{where}: {message}")
+
+    @property
+    def ok(self) -> bool:
+        return not self.errors
+
+    def summary(self) -> str:
+        counts = "  ".join(f"{name}: {number}" for name, number in self.counts.items())
+        return f"{counts}\n{len(self.errors)} error(s), {len(self.warnings)} warning(s)"
+
+
+def _load_json(path: Path, where: str, report: Report) -> Any:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        report.error(where, f"invalid JSON: {exc}")
+        return None
+
+
+def _load_jsonl(path: Path, report: Report) -> list[tuple[int, Any]]:
+    rows: list[tuple[int, Any]] = []
+    if not path.exists():
+        return rows
+    for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            rows.append((number, json.loads(line)))
+        except json.JSONDecodeError as exc:
+            report.error(f"{path.name}:{number}", f"invalid JSON: {exc}")
+    return rows
+
+
+def _check(name: str, instance: object, where: str, report: Report) -> bool:
+    errors = schema_errors(name, instance)
+    for message in errors:
+        report.error(where, message)
+    return not errors
+
+
+def validate_store(store: Path, overrides_path: Path | None = None) -> Report:  # noqa: PLR0912, PLR0915
+    paths = StorePaths(store)
+    overrides_file = overrides_path if overrides_path else store.parent / "overrides.yaml"
+    report = Report()
+
+    if not store.is_dir():
+        report.error(str(store), "store directory does not exist")
+        return report
+
+    # --- load and schema-check every file (invariant 8)
+    works: dict[str, Any] = {}
+    for path in sorted(paths.works.glob("W-??????.json")):
+        work = _load_json(path, path.name, report)
+        if work is None:
+            continue
+        _check("work", work, path.name, report)
+        if work.get("id") != path.stem:
+            report.error(path.name, f"file name does not match id {work.get('id')}")
+        works[work.get("id")] = work
+
+    generated: dict[str, Any] = {}
+    for path in sorted(paths.works.glob("W-??????.generated.json")):
+        content = _load_json(path, path.name, report)
+        if content is None:
+            continue
+        _check("generated", content, path.name, report)
+        generated[content.get("work")] = content
+
+    candidates: dict[str, Any] = {}
+    for number, line in _load_jsonl(paths.candidates, report):
+        _check("candidate", line, f"candidates.jsonl:{number}", report)
+        candidates[line.get("id")] = line
+
+    entries: list[Any] = []
+    for number, line in _load_jsonl(paths.entries, report):
+        _check("list-entry", line, f"entries.jsonl:{number}", report)
+        entries.append(line)
+
+    metrics: list[tuple[str, Any]] = []
+    for path in sorted(paths.metrics.glob("*.jsonl")):
+        for number, line in _load_jsonl(path, report):
+            _check("metrics", line, f"{path.name}:{number}", report)
+            metrics.append((path.name, line))
+
+    for path in sorted(paths.runs.glob("*.json")):
+        manifest = _load_json(path, path.name, report)
+        if manifest is not None:
+            _check("run", manifest, path.name, report)
+
+    aliases: dict[str, str] = {}
+    if paths.aliases.exists():
+        content = _load_json(paths.aliases, "aliases.json", report)
+        if content is not None:
+            _check("aliases", content, "aliases.json", report)
+            aliases = content.get("aliases", {})
+    else:
+        report.error("aliases.json", "missing")
+
+    overrides: list[dict[str, Any]] = []
+    if overrides_file.exists():
+        # Hand-written YAML: an unquoted 2026-09-20 loads as a date object; treat it as the ISO string.
+        loaded = yaml.safe_load(overrides_file.read_text(encoding="utf-8")) or []
+        overrides = [
+            {k: (v.isoformat() if hasattr(v, "isoformat") else v) for k, v in item.items()} for item in loaded
+        ]
+        _check("overrides", overrides, overrides_file.name, report)
+
+    report.counts = {
+        "works": len(works),
+        "candidates": len(candidates),
+        "list entries": len(entries),
+        "metrics lines": len(metrics),
+        "overrides": len(overrides),
+    }
+    if not works and not candidates and not entries:
+        report.error(str(store), "store is empty")
+
+    # --- invariant 1: every work ID in exactly one place
+    for work_id in set(works) & set(candidates):
+        report.error(work_id, "present in both works/ and candidates.jsonl")
+    all_ids = set(works) | set(candidates)
+    retired = {k.split(":", 1)[1]: v for k, v in aliases.items() if k.startswith("work:")}
+    for old, new in retired.items():
+        if old in all_ids:
+            report.error(old, f"retired ID still in use (aliased to {new})")
+
+    # --- invariant 2: records unique; external IDs resolve to exactly one work
+    record_owner: dict[str, str] = {}
+    external_owner: dict[str, str] = {}
+
+    def own_ids(work_id: str, record: dict[str, Any]) -> None:
+        record_id = record.get("id")
+        if record_id is None:
+            return
+        if record_id in record_owner:
+            report.error(record_id, f"record in both {record_owner[record_id]} and {work_id}")
+        record_owner[record_id] = work_id
+        for key in external_keys(record.get("ids", {})):
+            if key in external_owner and external_owner[key] != work_id:
+                report.error(key, f"external ID claimed by {external_owner[key]} and {work_id}")
+            external_owner[key] = work_id
+            if aliases.get(key) != work_id:
+                report.error(work_id, f"aliases.json does not map {key} to {work_id} ({aliases.get(key)})")
+
+    for work_id, work in works.items():
+        for record in work.get("records", []):
+            own_ids(work_id, record)
+    for work_id, line in candidates.items():
+        for record in line.get("records", []):
+            own_ids(work_id, record)
+    for key, target in aliases.items():
+        if target not in all_ids:
+            report.error("aliases.json", f"{key} -> {target}, which is not a current work")
+
+    list_work_ids = {entry.get("work") for entry in entries}
+    include_overrides = {
+        o.get("target")
+        for o in overrides
+        if o.get("action") == "include" and isinstance(o.get("target"), str)
+    }
+
+    for work_id, work in works.items():
+        records = {r.get("id"): r for r in work.get("records", [])}
+        # invariant 3: canonical record exists and is an included kind
+        canonical = records.get(work.get("canonical"))
+        if not canonical:
+            report.error(work_id, "canonical record not among its records")
+        elif canonical.get("kind") not in INCLUDED_KINDS:
+            report.error(work_id, f"canonical record kind {canonical.get('kind')} is not included")
+        elif canonical.get("kind") == "preprint" and any(
+            r.get("kind") != "preprint" for r in records.values()
+        ):
+            report.error(work_id, "canonical is a preprint although a journal version exists")
+        # references inside the work
+        for evidence in work.get("evidence", []):
+            if evidence.get("record") and evidence["record"] not in records:
+                report.error(work_id, f"evidence {evidence.get('rule')} points to {evidence['record']}")
+        for discovery in work.get("discovery", []):
+            if discovery.get("record") not in records:
+                report.error(work_id, f"discovery points to unknown record {discovery.get('record')}")
+        for record in records.values():
+            link = record.get("version_link")
+            if link and link.get("to") not in records:
+                report.error(work_id, f"{record.get('id')} version_link to a record outside the work")
+            fulltext = record.get("fulltext") or {}
+            if fulltext.get("status") != "pmc_xml" and not fulltext.get("recheck_after"):
+                report.warn(work_id, f"{record.get('id')} has unreadable text but no recheck_after")
+        # invariant 4: active evidence, or listed, or include override
+        active = [e for e in work.get("evidence", []) if "superseded" not in e]
+        if not (active or work_id in list_work_ids or work_id in include_overrides):
+            report.error(work_id, "included without active evidence, list entry or include override")
+        if any(e.get("rule") == "R1" for e in active) and work_id not in list_work_ids:
+            report.error(work_id, "has R1 evidence but no official-list entry")
+        if work.get("status", {}).get("basis") == "override" and work_id not in include_overrides:
+            report.error(work_id, "status basis is override but no include override targets it")
+        if any(e.get("rule") == "override" for e in active) and work_id not in include_overrides:
+            report.error(work_id, "override evidence without a matching include override")
+
+    # invariant 5: every list entry maps to an included work, with R1 evidence for that entry
+    for entry in entries:
+        work = works.get(entry.get("work"))
+        if not work:
+            report.error(entry.get("key"), f"list entry maps to {entry.get('work')}, not an included work")
+        elif not any(
+            e.get("rule") == "R1" and (e.get("detail") or {}).get("list_key") == entry.get("key")
+            for e in work.get("evidence", [])
+        ):
+            report.error(entry.get("key"), f"{work.get('id')} lacks R1 evidence for this entry")
+
+    # candidates: reason-specific checks
+    for work_id, line in candidates.items():
+        if line.get("reason") == "override_exclude" and not any(
+            o.get("action") == "exclude" and o.get("target") == work_id for o in overrides
+        ):
+            report.error(work_id, "reason override_exclude but no exclude override targets it")
+        if work_id in list_work_ids:
+            report.error(work_id, "on the official list but not included (R1 always wins)")
+
+    # invariant 6: cache references (a warning; the cache is not part of the store)
+    cache_refs = sum(
+        1 for w in works.values() for r in w.get("records", []) if (r.get("fulltext") or {}).get("cache")
+    ) + sum(1 for w in works.values() for e in w.get("evidence", []) if (e.get("source") or {}).get("cache"))
+    if cache_refs and not (store.parent / "cache" / "index.jsonl").exists():
+        report.warn("cache", f"{cache_refs} cache references not checked: no cache/index.jsonl")
+
+    # invariant 7: override targets resolve
+    for override in overrides:
+        override_target = override.get("target")
+        targets = override_target if isinstance(override_target, list) else [override_target]
+        for item in targets:
+            if not isinstance(item, str):
+                continue
+            if item.startswith("W-"):
+                if item not in all_ids and item not in retired:
+                    report.error("overrides", f"{override.get('action')} target {item} does not resolve")
+                if override.get("action") == "merge" and item != targets[0] and item not in retired:
+                    report.error("overrides", f"merge: {item} should be retired and aliased to {targets[0]}")
+            elif f"doi:{item}" not in aliases and f"pmid:{item}" not in aliases:
+                report.warn("overrides", f"{override.get('action')} target {item} not yet in the store")
+
+    # metrics and generated content refer to included works and their records
+    for name, line in metrics:
+        work = works.get(line.get("work"))
+        if not work:
+            report.error(name, f"metrics for {line.get('work')}, which is not an included work")
+        elif line.get("record") not in {r.get("id") for r in work.get("records", [])}:
+            report.error(name, f"metrics record {line.get('record')} not in {line.get('work')}")
+    for work_id in generated:
+        if work_id not in works:
+            report.error(f"{work_id}.generated.json", "generated content for a work that is not included")
+
+    return report

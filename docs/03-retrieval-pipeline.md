@@ -518,8 +518,7 @@ steps:                       # after §11.1
 ```
 
 No secrets and no network access by tests (§12.1), so it runs identically on forks' pull
-requests. Until `uwpr-pubs validate` exists, the sample is validated with
-`tools/validate_store.py`.
+requests.
 
 ### 11.3 `update.yml` — weekly data update
 
@@ -639,8 +638,8 @@ metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
 ## 14. Migration from the spec-phase tools
 
 - `requirements.txt` is replaced by `pyproject.toml` + `uv.lock` (done 2026-09-19).
-- `tools/validate_store.py` moves into the package as `uwpr_pubs.validate` and the
-  `uwpr-pubs validate` command, with the same checks.
+- `tools/validate_store.py` moved into the package as `uwpr_pubs.validate` and the
+  `uwpr-pubs validate` command, with the same checks (done 2026-09-19).
 - `samples/build_sample_store.py` stays as the spec-phase record of how the sample was made. The
   replay test (§12.2) becomes the maintained way to produce the expected store.
 - Done 2026-09-19: the run manifest schema has the Phase 3 modes, `status`, `degradations` and

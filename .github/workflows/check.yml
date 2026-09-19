@@ -27,5 +27,5 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run mypy
       - run: uv run pytest --cov=uwpr_pubs --cov-report=term-missing
-      # Until `uwpr-pubs validate` exists (§14); `store/` is validated once the pipeline creates it.
-      - run: uv run python tools/validate_store.py samples/store
+      # `store/` is validated too, once the pipeline creates it (§11.2).
+      - run: uv run uwpr-pubs validate samples/store

@@ -48,15 +48,15 @@ its tools. `uv sync` creates `.venv` (Python 3.12, from `.python-version`):
 uv sync --locked --all-groups                                  # setup; fails if uv.lock is stale
 uv run ruff check . && uv run ruff format --check . && uv run mypy && uv run pytest   # = check.yml
 uv run pytest tests/test_skeleton.py::test_cli_version         # single test
-uv run python tools/validate_store.py samples/store            # schemas + invariants; exit 1 on error
+uv run uwpr-pubs validate samples/store                        # schemas + invariants; exit 1 on error
 uv run python samples/build_sample_store.py                    # rebuild sample store from live APIs
 ```
 
 - **Quality gate:** `.github/workflows/check.yml` runs exactly these checks. Tests are offline:
   `tests/conftest.py` blocks sockets. Actions are pinned to commit SHAs (Dependabot updates
   them).
-- **Spec-phase scripts** (`tools/validate_store.py`, `samples/build_sample_store.py`) are
-  excluded from ruff and mypy. The validator moves into the package later (Phase 3 §14).
+- **`samples/build_sample_store.py`** is a spec-phase record of how the sample was built and is
+  excluded from ruff and mypy. The validator now lives in the package as `uwpr_pubs.validate`.
 - **The sample build** needs `OPEN_ALEX_API_KEY` in `.env` (read automatically). It checks every
   PMC evidence excerpt against the paper's live text, and a rebuild must be byte-identical
   apart from `metrics/`.
@@ -99,8 +99,7 @@ uv run python samples/build_sample_store.py                    # rebuild sample 
 - `common.schema.json` holds the shared `$defs`; other schemas reference it by relative `$ref`.
   All `$id`s live under `https://uwpr-pubs.local/schemas/`.
 - The validator builds a `referencing.Registry` from every `*.schema.json`.
-- Cross-file invariants (Phase 2 §14) are enforced in `tools/validate_store.py`, not in the
-  schemas.
+- Cross-file invariants (Phase 2 §14) are enforced in `uwpr_pubs.validate`, not in the schemas.
 
 **Pipeline (Phase 3, frozen).**
 - Pure core (text extraction, rules, matching, status) and a thin impure shell (HTTP, cache,

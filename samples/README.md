@@ -49,7 +49,7 @@ From the repository root:
 ```
 uv sync --locked --all-groups   # once
 uv run python samples/build_sample_store.py
-uv run python tools/validate_store.py samples/store
+uv run uwpr-pubs validate samples/store
 ```
 
 - The build needs `OPEN_ALEX_API_KEY` in `.env`. It uses only free lookups.
