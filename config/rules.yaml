@@ -16,6 +16,7 @@ record_types:
   openalex_types:
     article: article
     review: review
+    data-paper: data-paper
     letter: letter
     preprint: preprint
     book-chapter: book-chapter

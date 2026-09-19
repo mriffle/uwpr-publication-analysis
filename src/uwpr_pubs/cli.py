@@ -4,12 +4,16 @@ The remaining subcommands (run, fixtures, smoke, explain, report) arrive with th
 """
 
 import argparse
+import os
 from collections.abc import Callable, Sequence
 from pathlib import Path
 
 from uwpr_pubs import __version__
+from uwpr_pubs.channels import IDENTIFIER_CHANNELS
 from uwpr_pubs.config import ConfigError, load_config
+from uwpr_pubs.context import RunContext
 from uwpr_pubs.http import Mode
+from uwpr_pubs.pipeline import RunOptions, run_pipeline
 from uwpr_pubs.runtime import api_keys, build_client
 from uwpr_pubs.smoke import run_smoke
 from uwpr_pubs.validate import validate_store
@@ -56,6 +60,33 @@ def _smoke(args: argparse.Namespace) -> int:
     return 0 if all(check.ok for check in checks) else 1
 
 
+def _run(args: argparse.Namespace) -> int:
+    try:
+        config = load_config()
+    except ConfigError as exc:
+        print(f"ERROR {exc}")
+        return 1
+    api_keys()  # local runs read .env; CI passes secrets as environment variables
+    mode = Mode(args.mode)
+    store = Path(args.store)
+    context = RunContext.now(mode=mode.value, store=store)
+    client = build_client(config, mode=mode, cache_root=Path(args.cache) if args.cache else None)
+    options = RunOptions(
+        store=store,
+        mode=mode,
+        dry_run=args.dry_run,
+        channels=tuple(args.channels.split(",")) if args.channels else IDENTIFIER_CHANNELS,
+        summary_out=Path(args.summary_out) if args.summary_out else None,
+    )
+    result = run_pipeline(config, client, context, options)
+    print(result.report)
+    output = os.environ.get("GITHUB_OUTPUT")
+    if output:
+        with open(output, "a", encoding="utf-8") as handle:
+            handle.write(f"status={result.status}\nrun_id={result.run_id}\n")
+    return 1 if result.status == "failed" else 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="uwpr-pubs", description="Find and track publications supported by UWPR."
@@ -73,10 +104,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     smoke = subcommands.add_parser("smoke", help="live check that each source answers as expected")
     smoke.add_argument("--cache", help="default: <project root>/cache")
 
+    run = subcommands.add_parser("run", help="find publications and update the store")
+    run.add_argument("--mode", choices=[m.value for m in Mode], default=Mode.LIVE.value)
+    run.add_argument("--store", default="store")
+    run.add_argument("--cache", help="default: <project root>/cache")
+    run.add_argument("--dry-run", action="store_true", help="run every stage but write nothing")
+    run.add_argument("--channels", help="comma-separated channel ids; implies no commit")
+    run.add_argument("--summary-out", help="where to write the report, even if the run fails")
+
     handlers: dict[str, Callable[[argparse.Namespace], int]] = {
         "validate": _validate,
         "config": _config,
         "smoke": _smoke,
+        "run": _run,
     }
     args = parser.parse_args(argv)
     handler = handlers.get(args.command or "")

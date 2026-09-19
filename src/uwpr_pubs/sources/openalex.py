@@ -77,6 +77,11 @@ class OpenAlex:
         for page in self.pages("/works", {"filter": filter_expr, "select": select}):
             yield from page
 
+    def search_by_title(self, title: str, limit: int = 25) -> list[dict[str, Any]]:
+        """One search page, for an official-list entry with no identifier of its own."""
+        payload = self._get("/works", {"search": title, "select": WORK_FIELDS, "per-page": str(limit)})
+        return cast(list[dict[str, Any]], payload.get("results") or [])
+
     def works_by_ids(self, ids: Sequence[str], key: str = "openalex_id") -> Iterator[dict[str, Any]]:
         """Batched lookup for the metadata refresh of stage 3 (about 50 per request)."""
         for start in range(0, len(ids), ID_BATCH):
