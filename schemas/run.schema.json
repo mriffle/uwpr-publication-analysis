@@ -4,16 +4,26 @@
   "title": "Run manifest: store/runs/<run-id>.json (docs/02-data-model.md §11)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema", "run_id", "mode", "started", "ended", "code_version", "config_fingerprint",
-               "rule_version", "channels", "rules", "official_list_recall", "fixtures", "changes", "api"],
+  "required": ["schema", "run_id", "mode", "status", "degradations", "started", "ended", "code_version",
+               "config_fingerprint", "rules_fingerprint", "rule_version", "channels", "rules",
+               "official_list_recall", "fixtures", "changes", "api"],
   "properties": {
     "schema": {"const": 1},
-    "run_id": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}-[0-9]{2}-(incremental|full|sample)$"},
-    "mode": {"enum": ["incremental", "full", "sample"]},
+    "run_id": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}-[0-9]{2}-(live|replay|record|sample)$"},
+    "mode": {"enum": ["live", "replay", "record", "sample"]},
+    "status": {"enum": ["ok", "degraded", "alert"]},
+    "degradations": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["source", "cause"],
+        "properties": {"source": {"type": "string", "minLength": 1}, "cause": {"type": "string", "minLength": 1}}
+      }
+    },
     "started": {"$ref": "common.schema.json#/$defs/datetime"},
     "ended": {"$ref": "common.schema.json#/$defs/datetime"},
     "code_version": {"type": "string"},
     "config_fingerprint": {"$ref": "common.schema.json#/$defs/cacheRef"},
+    "rules_fingerprint": {"$ref": "common.schema.json#/$defs/cacheRef"},
     "rule_version": {"$ref": "common.schema.json#/$defs/ruleVersion"},
     "note": {"type": "string"},
     "channels": {

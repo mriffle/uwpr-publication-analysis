@@ -3,6 +3,26 @@
 **Status:** **Frozen** · 2026-09-19 · the input to Phases 3–5. Changes from here are made
 deliberately, dated, and noted in this header. The schemas (`schemas/`) and validator
 (`tools/validate_store.py`) are part of the frozen spec.
+
+**Changes since freezing** (all made 2026-09-19, from the Phase 3 review):
+- *§13, active evidence:* "active" now means **not superseded**, which is what the validator
+  always checked. Evidence on a record whose text could not be re-read after a rule change
+  stays active until the record is re-evaluated (Phase 3 §6.2). The old wording ("produced by
+  the current rule version") would have removed such works during a source outage.
+- *§1, §12, §13, the cache:* the cache is an accelerator only. GitHub Actions runs often start
+  with an empty cache, so re-evaluation reads the cache when it can and otherwise downloads
+  again (Phase 3 §1).
+- *§3, §4, what triggers re-evaluation:* the **rules fingerprint** covers `rules.yaml` and
+  `staff.yaml`, because R7 depends on staff name forms and tenure. A change to either requires
+  a new `rule_version`. Other configuration changes do not re-evaluate works.
+- *§5.3, §6, §7, `last_seen`:* in work files and `candidates.jsonl`, `last_seen` is advanced only
+  once it is at least 28 days old. Advancing it every week would rewrite every work file every
+  week. `official_list/entries.jsonl` keeps exact dates.
+- *§11 and `run.schema.json`, run manifest:* the incremental and full modes are gone, because
+  Phase 3 searches everything on every run. `mode` is `live`, `replay`, `record` or `sample`, and
+  the run ID ends with it. New required fields: `status`, `degradations` and
+  `rules_fingerprint`.
+
 **Purpose:** define how the pipeline stores what it finds between runs, precisely enough to
 implement.
 **Depends on:** [01-discovery-strategy.md](01-discovery-strategy.md) (frozen). This spec uses its
@@ -20,8 +40,8 @@ evidence fields it hands on (§13).
 3. **Handle versions.** A preprint and its journal article form one work.
 4. **Feed the knowledge base.** The store holds everything a knowledge-base page (Phase 4)
    needs, or points to it in the cache.
-5. **Re-check without re-downloading.** When a rule changes or new text appears, the pipeline
-   can reassess from what it already holds.
+5. **Re-check cheaply.** When a rule changes or new text appears, the pipeline reassesses from
+   the cache when it has one, and otherwise downloads again (changed 2026-09-19).
 6. **No human review.** The only human inputs are configuration and a small overrides file.
 7. **Readable changes.** Every run's effect on the data is visible as a normal diff.
 
@@ -46,7 +66,7 @@ evidence fields it hands on (§13).
 ## 3. Repository layout
 
 ```
-config/                         human-maintained; changes trigger a full re-evaluation
+config/                         human-maintained; rules.yaml or staff.yaml changes re-evaluate every work
   settings.yaml                 contact address, API budgets, search window start (2006)
   staff.yaml                    staff: name forms, OpenAlex IDs, ORCID, tenure
   channels.yaml                 channel definitions (Phase 1 §5)
@@ -98,6 +118,8 @@ history is the audit trail.
   `"doi:10.1021/acs.jproteome.5c00706": "W-000006"`, `"work:W-000005": "W-000004"`.
 - **Rule version** format: `YYYY-MM-DD.N`, e.g. `2026-09-19.2`. The version is set in
   `rules.yaml`, and N increases for each change made on the same day.
+- **Rules fingerprint:** a hash of `rules.yaml` and `staff.yaml`. It may change only together
+  with the rule version (changed 2026-09-19; enforced as in Phase 3 §10.4).
 
 ## 5. Included work file (`store/works/W-000123.json`)
 
@@ -205,7 +227,7 @@ One entry per distinct reason, on any record of the work. The fields follow Phas
 | `excerpt` | The matching sentence, at most about 300 characters. For R1, none (see `detail`). For R6, none: the page says "phrase found in OpenAlex full-text index". |
 | `detail` | Rule-specific facts. **R1:** list page, first seen, last seen. **R6:** phrase and query date. **R7:** staff key. **R3d:** dataset accession. **R2:** metadata field. |
 | `rule_version` | The rule-set version that produced the entry (§13) |
-| `first_seen`, `last_seen` | `last_seen` stops advancing if the source stops showing the evidence; the entry is not deleted. |
+| `first_seen`, `last_seen` | `last_seen` stops advancing if the source stops showing the evidence; the entry is not deleted. It is advanced only once it is at least 28 days old (`settings.last_seen_refresh_days`), so weekly runs don't rewrite every work file (changed 2026-09-19). The same applies to discovery entries and to `candidates.jsonl`. |
 | `superseded` | Present only when a later rule version no longer produces this entry: `{"by_rule_version": …, "date": …}`. Superseded entries are inactive (§13). |
 
 **Override evidence.** An `include` override adds an entry with `rule: "override"`,
@@ -258,6 +280,9 @@ answer "why isn't paper X listed?" without re-running anything.
   still have a stable identity.
 - **Removed entries:** an entry that disappears from the site keeps its line; `last_seen`
   stops advancing, and the R1 evidence records both dates (Phase 1 §6.0).
+- **Exact dates:** unlike work files, `entries.jsonl` advances `last_seen` on every run, so a
+  disappearance is noticed in the run where it happens. The R1 evidence then takes the entry's
+  exact `last_seen` (changed 2026-09-19).
 - **Raw pages:** saved under `pages/<date>/` only when a page's content hash changes. They are
   small, and they are the primary source, so they are committed.
 
@@ -321,8 +346,11 @@ The only routine human input besides configuration. Used when someone reports a 
 ## 11. Run manifest (`store/runs/<run-id>.json`)
 
 Each manifest records:
-- the run ID (start time plus mode: incremental or full), start and end, code version, and the
-  config and rule-set fingerprints;
+- the run ID (start time plus mode: `live`, `replay`, `record` or `sample`), start and end, code
+  version, and the config and rules fingerprints (changed 2026-09-19);
+- the run status: `ok`, `degraded` or `alert` (Phase 3 §9). A failed run writes nothing, so it
+  has no manifest;
+- each degradation, with its source and cause;
 - per channel: queries run, records nominated, new records, and errors;
 - per rule: how many works it fired on, and how many new;
 - recall on the official list (Phase 1 §11), and the fixture results;
@@ -342,8 +370,9 @@ Each manifest records:
 - **The store refers to cached files by hash** (`"cache": "sha256:…"`).
 - **Loss is survivable:** if the cache is lost, refetching rebuilds it. Evidence excerpts already
   in the store keep inclusions explained even when text is no longer retrievable.
-- **Size:** about 120 MB for the current corpus, growing a few MB a year. It must persist on
-  whatever machine runs the pipeline (Phase 7).
+- **Size:** about 120 MB for the current corpus, growing a few MB a year.
+- **An accelerator only** (changed 2026-09-19). Runs must be correct with an empty cache, as on
+  a fresh GitHub Actions runner (Phase 3 §1). A warm cache only saves downloads.
 
 ## 13. Status, lifecycle and rule versions
 
@@ -355,13 +384,16 @@ included = override_include
         or (not override_exclude and any_active_evidence and passes_record_type_filter)
 ```
 
-**Active evidence** is evidence produced by the current rule version. Two things can change it,
-with different effects:
+**Active evidence** is evidence that is not superseded (changed 2026-09-19; this is what the
+validator checks). After a rule change, each record's evidence is re-derived, and entries the
+new version no longer produces are superseded. Evidence on a record whose text could not be
+re-read stays active, at its old rule version, until the record is re-evaluated (Phase 3 §6.2).
+Two things can change evidence, with different effects:
 
 | Change | Effect on evidence | Effect on the work |
 |---|---|---|
 | A source stops showing evidence (a page changes, an API drops a field) | Kept; `last_seen` stops advancing | Stays included (requirement 1) |
-| A rule changes (new `rule_version` in `rules.yaml`) | Every work is re-evaluated from the cache. Entries that the new version no longer produces are marked `superseded` and kept in the file | If a work has no active evidence left, it moves to `candidates.jsonl` with `reason: no_longer_meets_rules`, carrying its superseded entries as `former_evidence`, and the run report lists it |
+| A rule changes (new `rule_version` in `rules.yaml`) | Every work is re-evaluated, from the cache when present. Entries that the new version no longer produces are marked `superseded` and kept in the file | If a work has no active evidence left, it moves to `candidates.jsonl` with `reason: no_longer_meets_rules`, carrying its superseded entries as `former_evidence`, and the run report lists it |
 
 **Lifecycle of a new record:**
 1. Nominated by a channel.
@@ -397,6 +429,8 @@ A failed invariant stops the run before anything is exported (Phase 3).
   it and ship with a migration.
 - Result: running twice on unchanged inputs produces no diff. Verified on the sample store: a
   rebuild from live sources was byte-identical.
+- Weekly runs on unchanged sources change only `official_list/entries.jsonl`, `metrics/` and
+  `runs/`, plus a `last_seen` refresh about once a month (§5.3; changed 2026-09-19).
 
 ## 16. Left to later phases
 

@@ -422,9 +422,11 @@ def main():
         for r in {e["rule"] for e in json.loads(f.read_text())["evidence"] if "superseded" not in e}:
             rules_count[r] = rules_count.get(r, 0) + 1
     write_json(OUT / "runs" / f"{observed}T00-00-sample.json", {
-        "schema": 1, "run_id": f"{observed}T00-00-sample", "mode": "sample",
+        "schema": 1, "run_id": f"{observed}T00-00-sample", "mode": "sample", "status": "ok", "degradations": [],
         "started": f"{observed}T00:00:00Z", "ended": f"{observed}T00:00:00Z", "code_version": "samples/build_sample_store.py",
-        "config_fingerprint": sha((SAMPLES / "sample_works.yaml").read_bytes()), "rule_version": rule_version,
+        "config_fingerprint": sha((SAMPLES / "sample_works.yaml").read_bytes()),
+        # the sample has no rules.yaml/staff.yaml; its rules live in sample_works.yaml
+        "rules_fingerprint": sha((SAMPLES / "sample_works.yaml").read_bytes()), "rule_version": rule_version,
         "note": "Sample run manifest: counts describe the sample store, not a real pipeline run.",
         "channels": {}, "rules": {r: {"works": n, "new": n} for r, n in sorted(rules_count.items())},
         "official_list_recall": {"assessable": 0, "with_evidence": 0}, "fixtures": {},

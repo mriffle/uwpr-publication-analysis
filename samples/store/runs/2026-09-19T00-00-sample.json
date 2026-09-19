@@ -36,6 +36,7 @@
   "channels": {},
   "code_version": "samples/build_sample_store.py",
   "config_fingerprint": "sha256:b495ff9ba84b6aaf7c724ff54fb1e624e07999ea6b0db7c9bd3ddb266a4716a1",
+  "degradations": [],
   "ended": "2026-09-19T00:00:00Z",
   "fixtures": {},
   "mode": "sample",
@@ -83,7 +84,9 @@
       "works": 1
     }
   },
+  "rules_fingerprint": "sha256:b495ff9ba84b6aaf7c724ff54fb1e624e07999ea6b0db7c9bd3ddb266a4716a1",
   "run_id": "2026-09-19T00-00-sample",
   "schema": 1,
-  "started": "2026-09-19T00:00:00Z"
+  "started": "2026-09-19T00:00:00Z",
+  "status": "ok"
 }
