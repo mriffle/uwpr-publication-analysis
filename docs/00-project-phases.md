@@ -40,7 +40,7 @@ is shown, it is labelled as a preprint.
 |---|---|---|---|---|
 | 1 | Discovery strategy | How do we find every UWPR-supported publication despite inconsistent acknowledgement, and decide inclusion automatically? | [01-discovery-strategy.md](01-discovery-strategy.md), [01a-discovery-calibration.md](01a-discovery-calibration.md) | **Frozen** 2026-09-19 |
 | 2 | Data model & local storage | How are publications, versions, evidence and decisions represented on disk? | [02-data-model.md](02-data-model.md) | **Frozen** 2026-09-19 |
-| 3 | Retrieval pipeline | What does the code that discovers, fetches and updates the data do, and how does it re-run safely? | [03-retrieval-pipeline.md](03-retrieval-pipeline.md) | **In discussion** (draft predates Phases 1–2) |
+| 3 | Retrieval pipeline | What does the code that discovers, fetches and updates the data do, and how does it re-run safely? | [03-retrieval-pipeline.md](03-retrieval-pipeline.md) | **Draft 2** — decisions agreed; awaiting review |
 | 4 | Publication knowledge base *(added)* | What does each publication's markdown page contain (summary, subject vocabulary, category, authors, affiliations, UWPR evidence), how is it generated and kept current, and how does the app show it? | *not yet written* | Requirement captured; not yet discussed |
 | 5 | Metrics & app data contract *(added)* | Exactly what is in the JSON that drives the app, and how is each number defined? | [05-metrics-and-data-contract.md](05-metrics-and-data-contract.md) | Unreviewed starting point |
 | 6 | Web app | What does the single-page app show, how does it behave, and how does data get into it? | [06-web-app.md](06-web-app.md) | Unreviewed starting point |
@@ -83,7 +83,10 @@ Suggested implementation order once specs are agreed:
    it.
 4. **Work families, not records.** Preprint + final article count once.
 5. **One template, one input.** The app has no knowledge of UWPR beyond what the JSON tells it.
-6. **Reproducible and cheap to re-run.** Cached, incremental, idempotent, within API budgets.
+6. **Reproducible and cheap to re-run.** Cached, idempotent, within API budgets. Correct even with
+   an empty cache, as on a fresh CI runner.
+7. **Tested, type-checked and linted.** pytest, mypy (strict) and ruff on every push, via GitHub
+   Actions (Phase 3 §11–12).
 
 ## Decisions needed from UWPR (collected from all specs)
 
@@ -96,8 +99,8 @@ Suggested implementation order once specs are agreed:
 | D5 | Human review? | **Answered:** none in regular operation; rules are calibrated once | 01 §2 |
 | D6 | Who is the app's audience, and is it public? | Public; aimed at UW leadership, funders and prospective users | 06 |
 | D7 | ~~Show "probable" works?~~ | Obsolete — inclusion is now yes/no | — |
-| D8 | Hosting location and UW branding requirements | Static file on the existing UWPR web server; UW brand colours | 06, 07 |
-| D9 | Run cadence | Weekly incremental, monthly full | 07 |
+| D8 | Hosting location and UW branding requirements | **Answered (hosting):** public GitHub repository; pipeline on GitHub Actions; the app most likely on GitHub Pages. UW branding still to discuss. | 03 §11, 06, 07 |
+| D9 | Run cadence | **Answered:** weekly scheduled GitHub Actions run (full sweep every run), plus a manual trigger | 03 §2, §11 |
 | D10 | Should findings flow back to the official publications page? | Yes — a "missing from site" report each run | 07 |
 | D11 | Knowledge base: how are summaries and subject tags generated (e.g. an LLM over abstract + full text), and may abstracts be quoted? | To discuss in Phase 4 | 04 |
 | D12 | Knowledge base: build our own subject vocabulary, or reuse existing ones (OpenAlex topics, MeSH, NCBI Taxonomy for organisms, EDAM or PSI-MS for methods and instruments) with our own top-level categories? | To discuss in Phase 4 | 04 |
