@@ -251,7 +251,9 @@ Each evidence entry has an identity key, so repeated runs update it rather than 
 
 **Merging:**
 - **Same rule version:**
-  - a reproduced entry has its `last_seen` updated (subject to P11);
+  - a reproduced entry has its `last_seen` updated (subject to P11). R1 is the exception: its
+    dates are the official-list entry's own, kept exactly (Phase 2 §7), so "listed from X to Y"
+    stays true to the day;
   - a new entry is added;
   - an entry not reproduced keeps its `last_seen` (the source stopped showing it); it is not
     superseded.

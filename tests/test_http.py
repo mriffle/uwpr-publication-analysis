@@ -48,7 +48,7 @@ class FakeTransport:
         return reply
 
 
-def make_client(  # noqa: PLR0913 - a test helper mirroring the client's injection points
+def make_client(
     transport: FakeTransport,
     tmp_path: Path,
     *,
