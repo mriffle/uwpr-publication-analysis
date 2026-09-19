@@ -1,0 +1,61 @@
+[project]
+name = "uwpr-pubs"
+version = "0.1.0"
+description = "Finds publications supported by the UW Proteomics Resource and keeps their store current"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "defusedxml>=0.7.1",
+    "httpx>=0.28",
+    "jsonschema>=4.23",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+uwpr-pubs = "uwpr_pubs.cli:main"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.13",
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.8",
+    "types-defusedxml",
+    "types-jsonschema",
+    "types-PyYAML",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.30,<0.12"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+# Spec-phase scripts, kept as records (docs/03-retrieval-pipeline.md §14): not held to the
+# package's standards. tools/validate_store.py is replaced by uwpr_pubs.validate.
+extend-exclude = ["samples/build_sample_store.py", "tools/validate_store.py"]
+
+[tool.ruff.format]
+# Code blocks in the specs and the handoff are illustrations, not code to reformat.
+exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "PL", "N", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "PLR2004"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_ignores = true
+files = ["src", "tests"]
+
+[tool.pytest.ini_options]
+addopts = ["--strict-markers", "--strict-config", "-ra"]
+testpaths = ["tests"]
+xfail_strict = true
+
+[tool.coverage.run]
+branch = true
+source = ["uwpr_pubs"]

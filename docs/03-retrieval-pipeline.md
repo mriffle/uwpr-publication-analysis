@@ -137,7 +137,8 @@ tests/                           unit/, fixtures/, recordings/, test_*.py (§12)
 
 **Dependencies:**
 - runtime: `httpx`, `pyyaml`, `jsonschema`, `defusedxml` (P14);
-- dev group: `pytest`, `pytest-cov`, `mypy`, `ruff`, `types-PyYAML`, `types-defusedxml`.
+- dev group: `pytest`, `pytest-cov`, `mypy`, `ruff`, and type stubs for the runtime libraries
+  that lack their own (`types-PyYAML`, `types-defusedxml`, `types-jsonschema`).
 
 Nothing else without a reason recorded here. The official-list pages are parsed with the
 standard library's `html.parser`.
@@ -566,11 +567,16 @@ the push never see them.
 
 ### 12.4 Code quality settings (`pyproject.toml`)
 
-- **ruff:** line length 110; rule sets `E, F, W, I, B, UP, SIM, RUF, PL, N, S` (with `S` relaxed
-  in tests); `ruff format` for formatting.
-- **mypy:** `strict = true`; no untyped definitions; `warn_unused_ignores`.
-- **pytest:** `--strict-markers`. Coverage is reported every run; a threshold is enforced once
-  the code settles.
+- **ruff:** line length 110; rule sets `E, F, W, I, B, UP, SIM, RUF, PL, N, S`. In tests,
+  `S101` (assert) and `PLR2004` (literal values) are off. `ruff format` for formatting, not
+  applied to Markdown: the code blocks in the specs are illustrations.
+- **mypy:** `strict = true`; no untyped definitions; `warn_unused_ignores`; checks `src` and
+  `tests`.
+- **pytest:** `--strict-markers`, `--strict-config`, strict xfail. Coverage (with branches) is
+  reported every run; a threshold is enforced once the code settles.
+- **Not checked:** the spec-phase scripts `tools/validate_store.py` and
+  `samples/build_sample_store.py` (§14). They are records, and the validator is replaced by
+  `uwpr_pubs.validate`.
 
 ## 13. Run time and cost
 
@@ -585,7 +591,7 @@ metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
 
 ## 14. Migration from the spec-phase tools
 
-- `requirements.txt` is replaced by `pyproject.toml` + `uv.lock`.
+- `requirements.txt` is replaced by `pyproject.toml` + `uv.lock` (done 2026-09-19).
 - `tools/validate_store.py` moves into the package as `uwpr_pubs.validate` and the
   `uwpr-pubs validate` command, with the same checks.
 - `samples/build_sample_store.py` stays as the spec-phase record of how the sample was made. The
@@ -610,6 +616,6 @@ metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
 - [x] Draft 2 reviewed against Phases 1–2; gaps resolved (P10–P15, Phase 2 changes dated
       2026-09-19).
 - [ ] Config schemas (`schemas/config/`) drafted.
-- [ ] `pyproject.toml` with ruff/mypy/pytest settings and an empty package that passes all three
-      checks, and `check.yml` running green on GitHub, so the quality gate exists before any
-      pipeline code.
+- [x] `pyproject.toml` with ruff/mypy/pytest settings and an empty package that passes all three
+      checks (2026-09-19; also rehearsed on a clean copy of the repository).
+- [ ] `check.yml` running green on GitHub, so the quality gate exists before any pipeline code.

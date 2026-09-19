@@ -1,0 +1,7 @@
+# Keeps the SHA-pinned actions current (docs/03-retrieval-pipeline.md §11.1).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

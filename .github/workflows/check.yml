@@ -1,0 +1,31 @@
+# Quality gate on every push and pull request (docs/03-retrieval-pipeline.md §11.2).
+# No secrets and no network in tests, so it runs the same on forks' pull requests.
+name: check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: uv sync --locked --all-groups
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
+      - run: uv run pytest --cov=uwpr_pubs --cov-report=term-missing
+      # Until `uwpr-pubs validate` exists (§14); `store/` is validated once the pipeline creates it.
+      - run: uv run python tools/validate_store.py samples/store

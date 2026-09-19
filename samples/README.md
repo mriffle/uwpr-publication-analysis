@@ -47,9 +47,9 @@ export).
 From the repository root:
 
 ```
-uv venv .venv --python 3.12 && uv pip install --python .venv -r requirements.txt   # once
-.venv/bin/python samples/build_sample_store.py
-.venv/bin/python tools/validate_store.py samples/store
+uv sync --locked --all-groups   # once
+uv run python samples/build_sample_store.py
+uv run python tools/validate_store.py samples/store
 ```
 
 - The build needs `OPEN_ALEX_API_KEY` in `.env`. It uses only free lookups.

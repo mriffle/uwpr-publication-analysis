@@ -466,11 +466,12 @@ Building a real sample store exposed several gaps. All are now fixed in this spe
 | `samples/build_sample_store.py` | Builds `samples/store/` from live sources |
 | `samples/store/`, `samples/overrides.yaml` | The sample store: 13 included works, 7 works not included, 4 official-list entries |
 
-Commands (from the repository root, with `.venv` set up per `requirements.txt`):
+Commands (from the repository root, after `uv sync`; `requirements.txt` was replaced by
+`pyproject.toml` on 2026-09-19, Phase 3 §14):
 
 ```
-.venv/bin/python samples/build_sample_store.py        # rebuild the sample
-.venv/bin/python tools/validate_store.py samples/store # validate it
+uv run python samples/build_sample_store.py        # rebuild the sample
+uv run python tools/validate_store.py samples/store # validate it
 ```
 
 ## 19. Exit criteria

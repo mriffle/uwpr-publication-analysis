@@ -12,3 +12,11 @@ __pycache__/
 *.pyc
 .venv/
 .DS_Store
+
+# tool caches and coverage
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
