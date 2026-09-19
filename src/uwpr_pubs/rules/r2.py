@@ -2,14 +2,18 @@
 
 The code is matched as a substring after removing every non-alphanumeric character and
 uppercasing, which is what handles `UWPR 95794`, `UWPR-95794` and the observed `UWPR95794UWPR`.
-This module covers the metadata arm; the text arm arrives with `text.py`.
+Both arms live here: the metadata arm, which needs no text and is refreshed every run, and the
+text arm, which needs stage 4 to have read the paper.
 """
 
 import re
 from collections.abc import Iterator, Mapping, Sequence
 from typing import Any, cast
 
-from uwpr_pubs.store.models import Date, EvidenceR2, RecordId
+from uwpr_pubs.evidence import criterion_for
+from uwpr_pubs.rules.common import TextSource, text_evidence
+from uwpr_pubs.store.models import Date, Evidence, EvidenceR2, RecordId
+from uwpr_pubs.text import Document
 
 OPENALEX_FIELD = "awards[].funder_award_id"
 CROSSREF_FIELD = "funder[].award[]"
@@ -85,3 +89,39 @@ def award_code_in_metadata(  # noqa: PLR0913 - evidence needs its source and lab
             "last_seen": today,
         },
     )
+
+
+def award_code_in_text(  # noqa: PLR0913 - a rule needs its text, its record, its source and its config
+    document: Document,
+    *,
+    record: RecordId,
+    source: TextSource,
+    code: str,
+    label: str,
+    today: Date,
+) -> list[Evidence]:
+    """One entry per section that states the code, taking that section's first sentence.
+
+    A paper normally states the award once, in its funding or acknowledgements. Where it appears
+    in two sections both are worth showing; repeating it within a section is not.
+    """
+    found: list[Evidence] = []
+    seen: set[str] = set()
+    for sentence in document.sentences:
+        if sentence.section in seen or not contains_award_code(sentence.text, code):
+            continue
+        seen.add(sentence.section)
+        found.append(
+            text_evidence(
+                "R2",
+                criterion=criterion_for("R2"),
+                label=label,
+                record=record,
+                source=source,
+                section=sentence.section,
+                excerpt=sentence.text,
+                detail={"match": "text"},
+                today=today,
+            )
+        )
+    return found
