@@ -1,0 +1,14 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# download cache (full text, raw API responses) — never committed; see docs/02-data-model.md §12
+cache/
+
+# build output
+dist/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
