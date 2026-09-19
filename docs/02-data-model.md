@@ -18,6 +18,18 @@ deliberately, dated, and noted in this header. The schemas (`schemas/`) and vali
 - *§5.3, §6, §7, `last_seen`:* in work files and `candidates.jsonl`, `last_seen` is advanced only
   once it is at least 28 days old. Advancing it every week would rewrite every work file every
   week. `official_list/entries.jsonl` keeps exact dates.
+- *§4, §5.2 and `common.schema.json`, list-only works:* `ids` gains a `list` key (the
+  official-list entry key), accepted as a record's only identifier. Phase 1 §8 requires a
+  list-only work when an entry matches nothing — 8 of 306 entries have no PMID — and invariant 5
+  requires that work to be included, which the old `ids` rule made unrepresentable. The pipeline
+  tries a title match first, so this is a last resort.
+- *§6 and §11, excluded works:* `former_evidence` is written for `override_exclude` too, not only
+  for `no_longer_meets_rules`; otherwise a work excluded by override loses its evidence and, since
+  its line carries the current rule version, is never re-evaluated. `overrides.yaml` is part of the
+  config fingerprint, so changing it re-evaluates the works it touches.
+- *§5.1, §6 and §10, examples:* corrected against the schemas. `rule_version` needs its `.N`
+  suffix, the candidates line needs `schema` and `fulltext.cache`, and the metrics line needs
+  `schema`. The schemas and `samples/store/` were right; only the illustrations were wrong.
 - *§11 and `run.schema.json`, run manifest:* the incremental and full modes are gone, because
   Phase 3 searches everything on every run. `mode` is `live`, `replay`, `record` or `sample`, and
   the run ID ends with it. New required fields: `status`, `degradations` and
@@ -184,7 +196,7 @@ Illustrative example (values abbreviated):
       "section": "metadata",
       "excerpt": "UWPR95794",
       "detail": {"field": "awards[].funder_award_id"},
-      "rule_version": "2026-09-19",
+      "rule_version": "2026-09-19.1",
       "first_seen": "2026-09-19", "last_seen": "2026-09-19"
     }
   ],
@@ -192,7 +204,7 @@ Illustrative example (values abbreviated):
     {"channel": "B1", "record": "R-000321", "first_seen": "2026-09-19", "last_seen": "2026-09-19"},
     {"channel": "B1", "record": "R-000322", "first_seen": "2026-09-19", "last_seen": "2026-09-19"}
   ],
-  "rule_version": "2026-09-19",
+  "rule_version": "2026-09-19.1",
   "created": "2026-09-19",
   "updated": "2026-09-19"
 }
@@ -239,13 +251,13 @@ override's reason as its label.
 One JSON object per line, sorted by work ID:
 
 ```json
-{"id": "W-000789",
+{"schema": 1, "id": "W-000789",
  "records": [{"id": "R-001402", "kind": "article", "ids": {"doi": "…", "pmid": "…"}, "title": "…", "year": 2019}],
  "reason": "no_rule_fired",
  "signals": ["staff_coauthor:riffle", "core_named:drc"],
  "channels": ["G", "E"],
- "fulltext": {"status": "pmc_xml", "checked": "2026-09-19", "recheck_after": null},
- "rule_version": "2026-09-19",
+ "fulltext": {"status": "pmc_xml", "checked": "2026-09-19", "recheck_after": null, "cache": "sha256:…"},
+ "rule_version": "2026-09-19.1",
  "first_seen": "2026-09-19", "last_seen": "2026-09-19"}
 ```
 
@@ -335,7 +347,7 @@ The only routine human input besides configuration. Used when someone reports a 
 - **One line per record** of an included work:
 
 ```json
-{"work": "W-000123", "record": "R-000321", "date": "2026-09-19", "source": "OpenAlex",
+{"schema": 1, "work": "W-000123", "record": "R-000321", "date": "2026-09-19", "source": "OpenAlex",
  "cited_by": 4, "cites_by_year": {"2026": 4}, "fwci": 1.8, "citation_percentile": 0.91}
 ```
 

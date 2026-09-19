@@ -5,6 +5,9 @@
 # spacing and capitalisation variants seen in print ("P.D. von Haller", "Van Haller") and the
 # "von Haler" misspelling (Hal+er). A bare surname never counts.
 # openalex lists verified author IDs only; a same-name "Vagisha Sharma" (A5068604239) is not staff.
+#
+# Adding or removing someone also means editing the staffKey enum in schemas/common.schema.json,
+# which the store's authors[].staff field validates against.
 schema: 1
 staff:
   - key: eng

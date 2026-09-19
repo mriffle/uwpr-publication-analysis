@@ -18,6 +18,7 @@
     "orcid": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"},
     "ror": {"type": "string", "pattern": "^0[a-z0-9]{8}$"},
     "pride": {"type": "string", "pattern": "^PXD[0-9]{6}$"},
+    "listKey": {"type": "string", "pattern": "^list:[a-z0-9]+:[0-9a-f]{12}$"},
     "staffKey": {"enum": ["eng", "sharma", "riffle", "hoopmann", "vonhaller"]},
     "channel": {"enum": ["A", "B1", "B2", "C1", "C2", "D1", "D2", "D3", "E", "F", "G", "J"]},
 
@@ -29,12 +30,14 @@
         "pmid": {"oneOf": [{"$ref": "#/$defs/pmid"}, {"type": "null"}]},
         "pmcid": {"oneOf": [{"$ref": "#/$defs/pmcid"}, {"type": "null"}]},
         "openalex": {"oneOf": [{"$ref": "#/$defs/openalexWork"}, {"type": "null"}]},
-        "pride": {"type": "array", "items": {"$ref": "#/$defs/pride"}, "uniqueItems": true}
+        "pride": {"type": "array", "items": {"$ref": "#/$defs/pride"}, "uniqueItems": true},
+        "list": {"oneOf": [{"$ref": "#/$defs/listKey"}, {"type": "null"}]}
       },
       "anyOf": [
         {"required": ["doi"], "properties": {"doi": {"$ref": "#/$defs/doi"}}},
         {"required": ["pmid"], "properties": {"pmid": {"$ref": "#/$defs/pmid"}}},
-        {"required": ["openalex"], "properties": {"openalex": {"$ref": "#/$defs/openalexWork"}}}
+        {"required": ["openalex"], "properties": {"openalex": {"$ref": "#/$defs/openalexWork"}}},
+        {"required": ["list"], "properties": {"list": {"$ref": "#/$defs/listKey"}}}
       ]
     },
 

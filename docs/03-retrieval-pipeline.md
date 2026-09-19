@@ -15,6 +15,22 @@ the app's data current, running unattended on GitHub Actions every week.
 **Hands off to:** Phase 4 (knowledge-base pages) and Phase 5 (app JSON), each as a pipeline
 stage (§5, stages 10–11).
 
+**Changes since freezing** (all 2026-09-19, found while planning the implementation):
+- *§5 stage 13, owned paths:* the write step removes only work files whose works have left
+  `works/`. As written it would also have deleted page snapshots, monthly metrics, past run
+  manifests and `.generated.json` files, none of which a normal run regenerates.
+- *§5 stage 1:* the previous run's list total comes from `entries.jsonl`, since the manifest has
+  no field for it.
+- *§6.1 and §10.4:* a change to `overrides.yaml` also triggers re-evaluation. It is part of the
+  config fingerprint.
+- *§8:* `run` gains `--store DIR` (default `store/`) so development and tests never touch the real
+  store, and `--summary-out PATH` for the report of a run that fails before stage 13. It writes
+  its run id as well as its status to `$GITHUB_OUTPUT`.
+- *§9:* degradation sources use a controlled vocabulary, or the three-runs-in-a-row rule can never
+  match across manifests.
+- *§10.6:* the report is accumulated as the stages run, not built from the finished store, because
+  a failed run must still produce one.
+
 **What the review changed (Draft 2 → 3):**
 - Metadata for every record is refreshed each run, before the rules (stage 3). Draft 2 took it
   from stage 8, which runs after the rules and never touched works that weren't included.
@@ -165,7 +181,7 @@ their outputs to the staging directory. Only stage 13 touches the real `store/`,
 | # | Stage | What it does | Spec |
 |---|---|---|---|
 | 0 | **Pre-check** | Load config (schema-checked) and the committed store. Refuse to run if `store/`, `kb/` or `export/` has uncommitted changes (except with `--dry-run`); a half-finished earlier run is reset with `git checkout`. Run the validator; if the committed store is invalid, stop. Rules-fingerprint guard (§10.4). | Phase 2 §14 |
-| 1 | **Official list** | Fetch the index page and the year pages it links to (`settings.official_list`); parse the entries. The "year page" in an entry's key (Phase 2 §7) is the page's year heading ("2026"), or `older` for the page headed "2021 and Previous Years", not its URL. That keeps keys stable when the current year moves from `/publications/` to its own page. Save raw pages only when their hash changes. Update `entries.jsonl` first/last seen (exact dates). Parse check: every page must yield entries, and the total must not fall more than 10% from the last run; otherwise treat the list as a failed source (§9). | Phase 1 §5 A; Phase 2 §7 |
+| 1 | **Official list** | Fetch the index page and the year pages it links to (`settings.official_list`); parse the entries. The "year page" in an entry's key (Phase 2 §7) is the page's year heading ("2026"), or `older` for the page headed "2021 and Previous Years", not its URL. That keeps keys stable when the current year moves from `/publications/` to its own page. Save raw pages only when their hash changes. Update `entries.jsonl` first/last seen (exact dates). Parse check: every page must yield entries, and the total must not fall more than 10% from the last run — that total being the number of entries in `entries.jsonl` last seen on the previous run's date — otherwise treat the list as a failed source (§9). | Phase 1 §5 A; Phase 2 §7 |
 | 2 | **Discover** | Run every enabled channel (Phase 1 §5). Output: nominations (external IDs + channel). Kept for later stages: the B1 and B2 result records (R2 metadata), and the DOI sets of the three R6 phrase queries. Check the staff OpenAlex IDs against ORCID (§10.2). | Phase 1 §5, §5.1, §6.5 |
 | 3 | **Resolve and refresh** | Match each nomination to an existing record or work (Phase 2 §4), else create a record and work. Apply the record-type filter and the 2006 window. Update discovery first/last seen. Then **refresh OpenAlex metadata for every record** in the store, included or not, by batched ID filter (50 per request; about 22 requests, ≈ $0.002). This single fetch supplies R2 and R5 metadata and the citations for stage 8. | Phase 1 §8; Phase 2 §4, §6 |
 | 4 | **Fetch text** | For each record that needs evaluation (§6.1), get readable text in source order (Phase 1 §7). | Phase 1 §7 |
@@ -177,7 +193,7 @@ their outputs to the staging directory. Only stage 13 touches the real `store/`,
 | 10 | Knowledge base | Generate or refresh content and pages (Phase 4). No-op until Phase 4 is specified. | Phase 4 |
 | 11 | App export | Write `export/` (Phase 5). No-op until Phase 5 is specified. | Phase 5 |
 | 12 | Report | Build the run report and manifest (§10.6, Phase 2 §11), including the run status (§9). | |
-| 13 | Write and commit | Move the staged files into place, one atomic rename per file. Remove files the new store no longer has. `git commit` with a summary message (skipped with `--dry-run` or `--no-commit`). | Phase 2 §15 |
+| 13 | Write and commit | Move the staged files into place, one atomic rename per file. Delete only work files whose works have left `works/`; everything else the pipeline did not regenerate this run (page snapshots, monthly metrics, earlier run manifests, `.generated.json`) is carried forward untouched. `git commit` with a summary message (skipped with `--dry-run` or `--no-commit`). | Phase 2 §15 |
 
 **`last_seen` (P11).** Wherever a stage "updates `last_seen`" in a work file or
 `candidates.jsonl`, it advances the date only when the stored value is at least
@@ -192,7 +208,9 @@ A record is (re)evaluated in stages 4–5 when any of the following holds:
 1. it is new;
 2. its `fulltext.recheck_after` date has passed (90 days after an unreadable result);
 3. its evidence has a `rule_version` older than the current one. For a work that is not
-   included, the `rule_version` on its `candidates.jsonl` line plays this role.
+   included, the `rule_version` on its `candidates.jsonl` line plays this role;
+4. `overrides.yaml` changed since the last run (§10.4). Without this, a work excluded by an
+   override that is later removed would never be reconsidered.
 
 **Evidence that needs no text is refreshed every run for every record:**
 - R1, from the official list (stage 1);
@@ -303,6 +321,7 @@ that the rules deliberately don't count:
 
 ```
 uwpr-pubs run [--mode live|replay|record] [--dry-run] [--no-commit] [--channels A,B1,…]
+              [--store DIR] [--summary-out PATH]
 uwpr-pubs validate [STORE]            schemas + invariants (Phase 2 §14)
 uwpr-pubs fixtures                    evaluate the Phase 1 test papers; exit non-zero on regression
 uwpr-pubs smoke                       live check that each source still answers in the expected shape
@@ -313,7 +332,11 @@ uwpr-pubs report [RUN_ID]             print a run report
 `explain` is the tool for "why is (or isn't) this paper listed?"
 
 `run` exits 0 when it wrote a store (status `ok`, `degraded` or `alert`), and non-zero when it
-failed. It writes its status to `$GITHUB_OUTPUT` when that variable is set (§11.3).
+failed. It writes its status and run id to `$GITHUB_OUTPUT` when that variable is set (§11.3).
+`--store` (default `store/`) keeps development and tests away from the real store.
+`--summary-out` receives the report even when the run fails before stage 13, so the workflow can
+post it without guessing a filename. `--channels` implies `--no-commit`: a partial run must not
+mark the channels it skipped as failed, advance any `last_seen`, or remove anything.
 
 ## 9. Failure handling
 
@@ -342,7 +365,8 @@ Four outcomes:
 | An unexpected error | Stop before writing | **Failed** |
 
 - Consecutive degradations are counted from the `degradations` recorded in earlier run
-  manifests (Phase 2 §11).
+  manifests (Phase 2 §11). Their `source` field uses a controlled vocabulary — `channel:<id>`,
+  `source:<adapter>` or `stage:<name>` — so the same failure matches across runs.
 - Sharp changes in per-rule and per-channel counts (§10.6) are warnings in the report only. They
   are too noisy to email about.
 
@@ -422,6 +446,9 @@ the schemas are unchanged.
 **Rule changes (P15):**
 - The **rules fingerprint** is the SHA-256 of the canonical JSON of the parsed `rules.yaml`
   (without `rule_version`) and `staff.yaml`. Comments and formatting don't count.
+- The **config fingerprint** covers every `config/*.yaml` and `overrides.yaml`. A change to it
+  alone does not re-evaluate anything, except a change to `overrides.yaml`, which re-evaluates the
+  works the overrides name (§6.1).
 - Each run manifest records it (`rules_fingerprint`). Stage 0 compares it with the latest
   manifest: a changed fingerprint with an unchanged `rule_version` fails the run. An offline
   test runs the same check against the committed store, so the mistake is caught on push.
@@ -441,7 +468,9 @@ Lab guide (10.1016/j.mcpro.2024.100875). Otherwise the fixture is synthetic, off
 ### 10.6 Run report
 
 A markdown file committed as `store/runs/<run-id>.md`, beside the JSON manifest, and also posted
-to the workflow's job summary. It contains:
+to the workflow's job summary. The stages accumulate it as they run, rather than it being built
+from the finished store, so a run that fails at the gate still produces one (written to
+`--summary-out`, outside the store, since a failed run commits nothing). It contains:
 - **Headline:** run status (OK, degraded or alert), duration, and OpenAlex spend. Failed runs
   post their report to the job summary only.
 - **Alerts first,** each with what to do about it.
