@@ -21,6 +21,7 @@ from uwpr_pubs.store.models import Date, Evidence, RecordId, Section
 from uwpr_pubs.text import Document
 
 Span = tuple[int, int]
+AFFILIATION = "affiliation"
 
 
 @dataclass(frozen=True)
@@ -132,7 +133,9 @@ def resource_named(  # noqa: PLR0913 - a rule needs its text, its record, its so
     found: list[Evidence] = []
     seen: set[Section] = set()
     for sentence in document.sentences:
-        if sentence.section in seen:
+        # An author's address naming the resource is R5's case, with its own criterion. Letting
+        # R3 fire on it too would record one fact twice, and inflate R3 against Phase 1 §4.2.
+        if sentence.section == AFFILIATION or sentence.section in seen:
             continue
         if not any(mention.counts for mention in mentions(sentence.text, rules)):
             continue

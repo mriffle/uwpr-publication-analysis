@@ -17,10 +17,11 @@ from pathlib import Path
 from typing import Any, cast
 
 from uwpr_pubs import git
-from uwpr_pubs.channels import IDENTIFIER_CHANNELS, ChannelRunner, Nomination
+from uwpr_pubs.channels import ALL_CHANNELS, ChannelRunner, DiscoveryResult, Nomination
 from uwpr_pubs.config import Config
 from uwpr_pubs.context import RunContext
 from uwpr_pubs.evidence import MergeContext, merge_evidence
+from uwpr_pubs.fulltext import TextFetcher, TextResult, fulltext_field, needs_evaluation
 from uwpr_pubs.http import HttpClient, HttpError, Mode
 from uwpr_pubs.match import (
     TITLE_SIMILARITY,
@@ -36,46 +37,60 @@ from uwpr_pubs.records import (
     canonical_record,
     ids_from_openalex,
     kind_of,
+    merge_ids,
     record_from_list_entry,
     record_from_openalex,
     to_candidate_record,
     year_from_text,
 )
 from uwpr_pubs.report import NewWork, RunRecorder, adapter_source, channel_source, stage_source
+from uwpr_pubs.rules.common import TextSource
 from uwpr_pubs.rules.r1 import official_list_evidence
-from uwpr_pubs.rules.r2 import award_code_in_metadata
+from uwpr_pubs.rules.r2 import award_code_in_metadata, award_code_in_text
+from uwpr_pubs.rules.r3 import dataset_named, r3_rules, resource_named
+from uwpr_pubs.rules.r4 import facility_named, r4_rules
+from uwpr_pubs.rules.r5 import affiliation_is_resource, openalex_affiliations, r5_rules
+from uwpr_pubs.rules.r6 import phrase_found, r6_rules
+from uwpr_pubs.rules.r7 import r7_rules, staff_thanked
+from uwpr_pubs.rules.signals import signal_rules, signals_for, text_signals
+from uwpr_pubs.rules.staff import StaffMember, staff_members
 from uwpr_pubs.runtime import api_keys
 from uwpr_pubs.schemas import project_root
 from uwpr_pubs.secrets import scrub
 from uwpr_pubs.sources.crossref import Crossref
 from uwpr_pubs.sources.europepmc import EuropePmc
+from uwpr_pubs.sources.ncbi import Ncbi
 from uwpr_pubs.sources.openalex import OpenAlex
+from uwpr_pubs.sources.pride import Dataset, Pride
 from uwpr_pubs.sources.uwpr_site import UwprSite
 from uwpr_pubs.stages import export as export_stage
 from uwpr_pubs.stages import kb as kb_stage
 from uwpr_pubs.status import Status, StatusInput, decide
 from uwpr_pubs.store import io
-from uwpr_pubs.store.ids import Minter, external_keys, mint_order
+from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi
 from uwpr_pubs.store.models import (
     Candidate,
     CandidateRecord,
     ChannelRun,
     Discovery,
     Evidence,
+    FullText,
     Ids,
     IncludedKind,
     ListEntry,
     MetricsLine,
     Record,
     RecordId,
+    StaffKey,
     Work,
     WorkId,
 )
 from uwpr_pubs.store.paths import StorePaths
 from uwpr_pubs.store.read import StoreSnapshot, read_store
+from uwpr_pubs.text import split_sentences, text_rules
 from uwpr_pubs.validate import validate_store
 
-CODE_VERSION = "m2"
+CODE_VERSION = "m3"
 INCLUDED_RECORD_KINDS: frozenset[str] = frozenset(IncludedKind.__args__)  # type: ignore[attr-defined]
 
 
@@ -88,7 +103,7 @@ class RunOptions:
     store: Path
     mode: Mode = Mode.LIVE
     dry_run: bool = False
-    channels: tuple[str, ...] = IDENTIFIER_CHANNELS
+    channels: tuple[str, ...] = ALL_CHANNELS
     summary_out: Path | None = None
     check_clean: bool = True
 
@@ -114,11 +129,15 @@ class Draft:
     discovery: dict[tuple[str, str], Discovery] = field(default_factory=dict)
     payloads: dict[RecordId, Mapping[str, Any]] = field(default_factory=dict)
     candidate_records: list[CandidateRecord] = field(default_factory=list)
+    texts: dict[RecordId, TextResult] = field(default_factory=dict)
+    signals: set[str] = field(default_factory=set)
+    stored_signals: list[str] = field(default_factory=list)
     created: str = ""
     since: str | None = None
     first_seen: str = ""
     on_official_list: bool = False
     is_new: bool = False
+    evaluated: bool = False  # §6.4: a work not re-evaluated keeps the signals it had
 
     def record_for_ids(self, ids: Ids) -> RecordId | None:
         """The record these identifiers already belong to, if any.
@@ -156,9 +175,24 @@ class Pipeline:
             rules_fingerprint=config.rules_fingerprint,
             code_version=CODE_VERSION,
         )
-        self.openalex = OpenAlex(client, config.contact, api_keys()[0])
+        openalex_key, ncbi_key = api_keys()
+        self.openalex = OpenAlex(client, config.contact, openalex_key)
         self.crossref = Crossref(client, config.contact)
         self.europepmc = EuropePmc(client, config.contact)
+        self.ncbi = Ncbi(client, config.contact, ncbi_key)
+        self.pride = Pride(client, config.contact)
+        self.staff: tuple[StaffMember, ...] = staff_members(config.staff)
+        self.text_rules = text_rules(config.rules["text"])
+        self.fetcher = TextFetcher(self.ncbi, self.europepmc, self.text_rules)
+        self.r3 = r3_rules(config.rules["r3"])
+        self.r4 = r4_rules(config.rules["r4"])
+        self.r5 = r5_rules(config.rules["r5"])
+        self.r6 = r6_rules(config.rules["r6"])
+        self.r7 = r7_rules(config.rules["r7"])
+        self.signal_rules = signal_rules(config.rules)
+        self.discovered = DiscoveryResult()
+        self.unevaluated: set[RecordId] = set()
+        self._acknowledged: dict[WorkId, set[StaffKey]] = {}
         self.drafts: dict[WorkId, Draft] = {}
         self.aliases: dict[str, WorkId] = {}
         self.entries: dict[str, ListEntry] = {}
@@ -235,6 +269,7 @@ class Pipeline:
                 id=line["id"],
                 stored_evidence=list(line.get("former_evidence") or []),
                 candidate_records=list(line["records"]),
+                stored_signals=list(line.get("signals") or []),
                 created=line["first_seen"],
                 first_seen=line["first_seen"],
             )
@@ -330,9 +365,17 @@ class Pipeline:
     # --- stage 2 ---------------------------------------------------------------------------
 
     def discover(self) -> list[Nomination]:
-        runner = ChannelRunner(self.config, self.openalex, self.crossref, self.europepmc)
-        nominations: list[Nomination] = []
-        for result in runner.run(self.options.channels):
+        runner = ChannelRunner(
+            self.config,
+            self.openalex,
+            self.crossref,
+            self.europepmc,
+            pride=self.pride,
+            staff=self.staff,
+            r6=self.r6,
+        )
+        self.discovered = runner.run(self.options.channels)
+        for result in self.discovered.channels:
             self.recorder.channels[result.channel] = cast(
                 ChannelRun,
                 {
@@ -344,8 +387,32 @@ class Pipeline:
             )
             for message in result.errors:
                 self.recorder.degrade(channel_source(result.channel), message)
-            nominations.extend(result.nominations)
-        return nominations
+        self.check_staff_orcids()
+        return self.discovered.nominations
+
+    def check_staff_orcids(self) -> None:
+        """Phase 1 §5.1: a staff ORCID carrying an unknown OpenAlex ID is an alert, never a fix.
+
+        Same-name authors exist — a second "Vagisha Sharma" publishes in medicine — so the
+        pipeline never adds an ID itself; a person confirms each one.
+        """
+        orcids = [member.orcid for member in self.staff if member.orcid]
+        if not orcids:
+            return
+        known = {identifier for member in self.staff for identifier in member.openalex}
+        try:
+            authors = list(self.openalex.authors_by_orcid(orcids))
+        except HttpError as exc:
+            self.recorder.degrade(adapter_source("openalex"), f"ORCID check failed: {exc}")
+            return
+        for author in authors:
+            identifier = str(author.get("id") or "").rsplit("/", 1)[-1]
+            if identifier and identifier not in known:
+                self.recorder.alert(
+                    f"OpenAlex author {identifier} ({author.get('orcid')}) carries a staff ORCID "
+                    f"but is not in staff.yaml",
+                    "confirm it is the same person, then add the ID to staff.yaml and bump rule_version",
+                )
 
     # --- stage 3 ---------------------------------------------------------------------------
 
@@ -467,7 +534,9 @@ class Pipeline:
                 self.recorder.note(note)
         draft.kinds[record_id] = kind
         if existing in draft.records:
-            record["fulltext"] = draft.records[existing]["fulltext"]  # M3 owns the text
+            stored = draft.records[existing]
+            record["fulltext"] = stored["fulltext"]  # stage 4 owns the text
+            record["ids"] = merge_ids(stored["ids"], record["ids"])
         draft.records[record_id] = record
         for key in external_keys(record["ids"]):
             self.aliases[key] = draft.id
@@ -604,6 +673,286 @@ class Pipeline:
             self.aliases[alias] = draft.id
         return draft.id
 
+    # --- stage 4: text ---------------------------------------------------------------------
+
+    def fetch_text(self) -> None:
+        """Read the records that need evaluating (§6.1), resolving PMCIDs first.
+
+        A text fetch that fails leaves the record's stored evidence exactly as it was and degrades
+        the run (§6.2): a source going down must never remove a work.
+        """
+        wanted = self._records_needing_text()
+        if not wanted:
+            return
+        self._resolve_pmcids(wanted)
+        failures = 0
+        for draft, record_id in wanted:
+            record = draft.records[record_id]
+            try:
+                result = self.fetcher.fetch(record["ids"].get("pmcid"))
+            except HttpError as exc:
+                failures += 1
+                self.unevaluated.add(record_id)
+                if failures == 1:
+                    self.recorder.degrade(adapter_source("ncbi"), f"text fetch failed: {exc}")
+                continue
+            draft.texts[record_id] = result
+            draft.evaluated = True
+            draft.records[record_id] = cast(
+                Record,
+                {
+                    **record,
+                    "fulltext": fulltext_field(
+                        result,
+                        today=self.context.date,
+                        recheck_days=int(self.config.settings["recheck_days"]),
+                    ),
+                },
+            )
+        if failures:
+            self.recorder.note(f"{failures} records could not be read this run; their evidence is kept")
+
+    def _records_needing_text(self) -> list[tuple[Draft, RecordId]]:
+        overrides_changed = self._overrides_changed()
+        wanted: list[tuple[Draft, RecordId]] = []
+        for _, draft in sorted(self.drafts.items()):
+            versions = {e["rule_version"] for e in draft.stored_evidence if e.get("record")}
+            evidence_version = min(versions) if versions else None
+            for record_id in sorted(draft.records):
+                if overrides_changed or needs_evaluation(
+                    draft.records[record_id],
+                    today=self.context.date,
+                    rule_version=self.config.rule_version,
+                    evidence_version=evidence_version,
+                ):
+                    wanted.append((draft, record_id))
+        return wanted
+
+    def _overrides_changed(self) -> bool:
+        """A change to overrides.yaml re-evaluates the works it names (§6.1 item 4)."""
+        latest = self.snapshot.latest_run() if self.snapshot else None
+        if latest is None:
+            return False
+        return bool(latest["config_fingerprint"] != self.config.config_fingerprint)
+
+    def _resolve_pmcids(self, wanted: Sequence[tuple[Draft, RecordId]]) -> None:
+        """The ID converter found PMC copies for 139 candidates the search APIs missed (§7)."""
+        by_pmid: dict[str, tuple[Draft, RecordId]] = {}
+        by_doi: dict[str, tuple[Draft, RecordId]] = {}
+        for draft, record_id in wanted:
+            ids = draft.records[record_id]["ids"]
+            if ids.get("pmcid"):
+                continue
+            if ids.get("pmid"):
+                by_pmid[str(ids["pmid"])] = (draft, record_id)
+            elif ids.get("doi"):
+                by_doi[str(ids["doi"])] = (draft, record_id)
+        for idtype, wanted_ids in (("pmid", by_pmid), ("doi", by_doi)):
+            if not wanted_ids:
+                continue
+            try:  # mixed batches are rejected, so each type goes on its own (Phase 1 §7)
+                converted = list(self.ncbi.convert(sorted(wanted_ids), cast(Any, idtype)))
+            except HttpError as exc:
+                self.recorder.degrade(adapter_source("ncbi"), f"id conversion failed: {exc}")
+                continue
+            for entry in converted:
+                pmcid = entry.get("pmcid")
+                found = wanted_ids.get(str(entry.get(idtype, "")))
+                if not pmcid or not found:
+                    continue
+                draft, record_id = found
+                record = draft.records[record_id]
+                updated = cast(Record, {**record, "ids": {**record["ids"], "pmcid": str(pmcid)}})
+                draft.records[record_id] = updated
+                for key in external_keys(updated["ids"]):
+                    self.aliases[key] = draft.id  # a new identifier is a new alias (invariant 2)
+
+    # --- stage 5: rules --------------------------------------------------------------------
+
+    def apply_rules(self) -> None:
+        """R2 text, R3, R4, R5, R7 from our own text; R5 metadata, R6 and R3d without it."""
+        datasets = self._datasets_by_identifier()
+        for _, draft in sorted(self.drafts.items()):
+            for record_id in sorted(draft.records):
+                self._rules_for_record(draft, record_id, datasets)
+            draft.signals = set(
+                signals_for(
+                    text=draft.signals,
+                    staff_authors=self._staff_authors(draft),
+                    acknowledged=self._acknowledged.get(draft.id, set()),
+                )
+            )
+
+    def _rules_for_record(
+        self, draft: Draft, record_id: RecordId, datasets: Mapping[str, list[Dataset]]
+    ) -> None:
+        record = draft.records[record_id]
+        year = record["year"] or None
+        payload = draft.payloads.get(record_id)
+        if payload is not None:
+            self._openalex_affiliation_evidence(draft, record_id, payload)
+        result = draft.texts.get(record_id)
+        if result is not None and result.readable:
+            self._text_evidence(draft, record_id, result, year)
+        elif not self._has_readable_text(record, result):
+            # R6 stands in only where we have no text of our own — including text read on an
+            # earlier run and not re-fetched today, or P13 would re-add R6 to a readable record.
+            self._phrase_evidence(draft, record_id, record)
+        for dataset in datasets.get(record_id, []):
+            self._dataset_evidence(draft, record_id, dataset)
+
+    @staticmethod
+    def _has_readable_text(record: Record, result: TextResult | None) -> bool:
+        if result is not None:
+            return result.readable
+        return record["fulltext"]["status"] != "unavailable"
+
+    def _text_evidence(self, draft: Draft, record_id: RecordId, result: TextResult, year: int | None) -> None:
+        document = result.document
+        if document is None:  # pragma: no cover - `readable` already guarantees one
+            return
+        source = TextSource(name=result.source_name, url=result.url, cache=result.cache)
+        labels = self.config.rules["labels"]
+        authors = [*document.author_names, *self._openalex_author_names(draft, record_id)]
+        derived: list[Evidence] = [
+            *award_code_in_text(
+                document,
+                record=record_id,
+                source=source,
+                code=self.config.rules["r2"]["code"],
+                label=labels["R2.text"],
+                today=self.context.date,
+            ),
+            *resource_named(
+                document,
+                record=record_id,
+                source=source,
+                rules=self.r3,
+                label=labels["R3"],
+                staff=self.staff,
+                year=year,
+                today=self.context.date,
+            ),
+            *affiliation_is_resource(
+                document.affiliations,
+                record=record_id,
+                source=source,
+                rules=self.r5,
+                r3=self.r3,
+                label=labels["R5"],
+                today=self.context.date,
+            ),
+        ]
+        facility = facility_named(
+            document,
+            record=record_id,
+            source=source,
+            rules=self.r4,
+            label=labels["R4"],
+            staff=self.staff,
+            year=year,
+            today=self.context.date,
+        )
+        if facility:
+            derived.append(facility)
+        thanks = staff_thanked(
+            document,
+            record=record_id,
+            source=source,
+            rules=self.r7,
+            label=labels["R7"],
+            staff=self.staff,
+            authors=authors,
+            year=year,
+            today=self.context.date,
+        )
+        derived.extend(thanks.evidence)
+        self._acknowledged.setdefault(draft.id, set()).update(thanks.acknowledged)
+        draft.derived_evidence.extend(derived)
+        draft.signals.update(text_signals(document, rules=self.signal_rules, r3=self.r3))
+
+    def _phrase_evidence(self, draft: Draft, record_id: RecordId, record: Record) -> None:
+        """R6: only for a record with no readable text of our own (Phase 1 §6.5, P13)."""
+        doi = record["ids"].get("doi")
+        if not doi:
+            return
+        for phrase in self.r6.include_phrases:
+            if str(doi) in self.discovered.phrase_hits.get(phrase, set()):
+                draft.derived_evidence.append(
+                    phrase_found(
+                        record=record_id,
+                        doi=str(doi),
+                        phrase=phrase,
+                        label=self.config.rules["labels"]["R6"],
+                        today=self.context.date,
+                    )
+                )
+
+    def _openalex_affiliation_evidence(
+        self, draft: Draft, record_id: RecordId, payload: Mapping[str, Any]
+    ) -> None:
+        """R5 from raw affiliation strings needs no text, so it is refreshed every run (§6.1)."""
+        draft.derived_evidence.extend(
+            affiliation_is_resource(
+                openalex_affiliations(dict(payload)),
+                record=record_id,
+                source=TextSource(
+                    name="OpenAlex",
+                    url=f"https://api.openalex.org/works/{str(payload.get('id', '')).rsplit('/', 1)[-1]}",
+                    cache=None,
+                ),
+                rules=self.r5,
+                r3=self.r3,
+                label=self.config.rules["labels"]["R5"],
+                today=self.context.date,
+            )
+        )
+
+    def _dataset_evidence(self, draft: Draft, record_id: RecordId, dataset: Dataset) -> None:
+        sentences = [
+            sentence for block in dataset.sentences for sentence in split_sentences(block, self.text_rules)
+        ]
+        evidence = dataset_named(
+            sentences,
+            record=record_id,
+            source=TextSource(name="PRIDE", url=dataset.url, cache=None),
+            rules=self.r3,
+            label=self.config.rules["labels"]["R3d"],
+            dataset=dataset.accession,
+            today=self.context.date,
+        )
+        if evidence:
+            draft.derived_evidence.append(evidence)
+
+    def _datasets_by_identifier(self) -> dict[RecordId, list[Dataset]]:
+        """Channel J's datasets, attached to the records they name."""
+        found: dict[RecordId, list[Dataset]] = {}
+        for dataset in self.discovered.datasets:
+            keys = [f"pmid:{pmid}" for pmid in dataset.pmids]
+            keys += [f"doi:{normalise_doi(doi)}" for doi in dataset.dois]
+            for key in keys:
+                work_id = self.aliases.get(key)
+                if work_id is None or work_id not in self.drafts:
+                    continue
+                draft = self.drafts[work_id]
+                for record_id, record in draft.records.items():
+                    if key in external_keys(record["ids"]):
+                        found.setdefault(record_id, []).append(dataset)
+        return found
+
+    def _staff_authors(self, draft: Draft) -> list[StaffKey]:
+        keys = {
+            author["staff"]
+            for record in draft.records.values()
+            for author in record["authors"]
+            if author.get("staff")
+        }
+        return sorted(key for key in keys if key)
+
+    def _openalex_author_names(self, draft: Draft, record_id: RecordId) -> list[str]:
+        record = draft.records.get(record_id)
+        return [author["name"] for author in record["authors"]] if record else []
+
     # --- stages 7 and 8 --------------------------------------------------------------------
 
     def decide_status(self) -> tuple[list[Work], list[Candidate], list[MetricsLine]]:
@@ -614,6 +963,7 @@ class Pipeline:
             rule_version=self.config.rule_version,
             today=self.context.date,
             refresh_days=int(self.config.settings["last_seen_refresh_days"]),
+            unevaluated_records=frozenset(self.unevaluated),
         )
         works: list[Work] = []
         candidates: list[Candidate] = []
@@ -707,9 +1057,10 @@ class Pipeline:
             ]
             or draft.candidate_records,
             "reason": status.reason or "no_rule_fired",
-            "signals": [],
+            # §6.4: a work this run did not re-evaluate keeps the signals it already had.
+            "signals": sorted(draft.signals) if draft.evaluated else draft.stored_signals,
             "channels": sorted({channel for channel, _ in draft.discovery}),
-            "fulltext": None,
+            "fulltext": self._candidate_fulltext(draft),
             "rule_version": self.config.rule_version,
             "first_seen": draft.first_seen or self.context.date,
             "last_seen": self.context.date,
@@ -719,6 +1070,46 @@ class Pipeline:
         if status.keeps_former_evidence and evidence:
             line["former_evidence"] = io.sort_evidence(evidence)
         return cast(Candidate, line)
+
+    def measure_recall(self, works: Sequence[Work]) -> None:
+        """Phase 1 §4.2 and §11: the share of assessable list papers that R2-R7 reach.
+
+        "Assessable" means a list paper with a readable body or award metadata — the papers where
+        a rule could in principle fire. R1 is excluded from the numerator, because it is what the
+        list already tells us, and R6's hits sit outside the denominator by the same logic: they
+        are papers we cannot read (§4.2).
+        """
+        listed = {entry["work"] for entry in self.entries.values() if entry["work"]}
+        assessable = 0
+        with_evidence = 0
+        for work in works:
+            if work["id"] not in listed:
+                continue
+            readable = any(record["fulltext"]["status"] != "unavailable" for record in work["records"])
+            active = [e for e in work["evidence"] if "superseded" not in e]
+            metadata = any(e["rule"] == "R2" and e["section"] == "metadata" for e in active)
+            if not (readable or metadata):
+                continue
+            assessable += 1
+            if any(e["rule"] not in ("R1", "R6") for e in active):
+                with_evidence += 1
+        self.recorder.recall = {"assessable": assessable, "with_evidence": with_evidence}
+        baseline = self.config.settings["recall_baseline"]
+        if assessable and baseline["assessable"]:
+            now = 100 * with_evidence / assessable
+            was = 100 * int(baseline["with_evidence"]) / int(baseline["assessable"])
+            if was - now > float(self.config.settings["recall_alert_points"]):
+                self.recorder.alert(
+                    f"recall on the official list is {now:.0f}%, more than "
+                    f"{self.config.settings['recall_alert_points']} points below the {was:.0f}% baseline",
+                    "check the text extractor and the rules before trusting this run",
+                )
+
+    def _candidate_fulltext(self, draft: Draft) -> FullText | None:
+        """The canonical record's text status, so "no evidence" is distinct from "unreadable"."""
+        for record_id in sorted(draft.records):
+            return draft.records[record_id]["fulltext"]
+        return None
 
     def _metrics_for(self, draft: Draft) -> list[MetricsLine]:
         return [
@@ -809,7 +1200,10 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
         pipeline.resolve([*pipeline.list_nominations, *nominations])
         pipeline.refresh_stored_records()
         pipeline.attach_official_list()
+        pipeline.fetch_text()
+        pipeline.apply_rules()
         works, candidates, metrics = pipeline.decide_status()
+        pipeline.measure_recall(works)
         pipeline.stage_and_validate(works, candidates, metrics, staging)
         kb_stage.generate(works)  # Phase 4
         export_stage.write(works)  # Phase 5

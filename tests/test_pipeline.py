@@ -71,11 +71,31 @@ def openalex_work(index: int, *, award: bool = False, year: int = 2023) -> dict[
     return work
 
 
+# Each listed paper has a PMC copy; the ID converter is what links them (Phase 1 §7).
+PMCIDS = {LISTED_PMIDS[0]: "PMC1000001", LISTED_PMIDS[1]: "PMC1000002", LISTED_PMIDS[2]: "PMC1000003"}
+
+# Synthetic JATS (P10), one per listed paper, each exercising a different text rule. Every one
+# has a `<body>`: a record without one is what Phase 1 §6.5 means by "no readable text of our
+# own", and R6 rather than these rules would then apply.
+BODY = "<body><sec><title>Results</title><p>The experiment worked.</p></sec></body>"
+JATS = {
+    "PMC1000001": f"""<article>{BODY}<back><ack><p>This work was supported in part by the
+      University of Washington Proteomics Resource (UWPR95794).</p></ack></back></article>""",
+    "PMC1000002": f"""<article>{BODY}<back><ack><p>We also thank Michael Riffle for assistance
+      with data analysis and visualization.</p></ack></back></article>""",
+    "PMC1000003": f"""<article><front><article-meta><contrib-group><aff><label>1</label>
+      University of Washington Proteomics Resource, Seattle, WA 98109, USA</aff></contrib-group>
+      </article-meta></front>{BODY}</article>""",
+}
+
+STAFF_AUTHOR_IDS = ["A5011565192", "A5067746093", "A5134114528", "A5018903678", "A5101918119"]
+
+
 def page(name: str) -> str:
     return (FIXTURES / name).read_text(encoding="utf-8")
 
 
-def route(url: str, params: Mapping[str, str]) -> Response:
+def route(url: str, params: Mapping[str, str]) -> Response:  # noqa: PLR0911, PLR0912 - one branch per source
     """A stand-in for every source this milestone talks to."""
     body: Any
     if url.startswith(INDEX) and url.rstrip("/").endswith("publications"):
@@ -83,6 +103,17 @@ def route(url: str, params: Mapping[str, str]) -> Response:
         return Response(url, 200, body.encode(), {"content-type": "text/html"})
     if "publications/2023" in url:
         return Response(url, 200, page("uwpr_publications_2023.html").encode(), {"content-type": "text/html"})
+    if "api.openalex.org/authors" in url:
+        # The ORCID check (Phase 1 §5.1): every ID found is already in staff.yaml.
+        authors = [{"id": f"https://openalex.org/{i}", "orcid": None} for i in STAFF_AUTHOR_IDS]
+        return Response(url, 200, json.dumps({"results": authors, "meta": {}}).encode(), {})
+    if "idconv" in url:
+        wanted = params.get("ids", "").split(",")
+        records = [{"pmid": p, "pmcid": PMCIDS[p]} for p in wanted if p in PMCIDS]
+        return Response(url, 200, json.dumps({"records": records}).encode(), {})
+    if "efetch.fcgi" in url:
+        xml = JATS.get(f"PMC{params.get('id', '')}", "<article/>")
+        return Response(url, 200, xml.encode(), {"content-type": "application/xml"})
     if "api.openalex.org/works" in url:
         expression = params.get("filter", "")
         if "awards.funder_award_id" in expression:
@@ -90,8 +121,13 @@ def route(url: str, params: Mapping[str, str]) -> Response:
         elif expression.startswith("pmid:"):
             wanted = expression.removeprefix("pmid:").split("|")
             results = [openalex_work(i, award=(i == 1)) for i in (1, 2, 3) if LISTED_PMIDS[i - 1] in wanted]
+        elif "fulltext.search:UWPR95794" in expression:
+            # An R6 phrase, but work 1's own text is readable, so R6 must not fire for it (P13).
+            results = [openalex_work(1, award=True)]
+        elif '"Proteomics Resource" "University of Washington"' in expression:
+            results = [openalex_work(4)]  # the 93% query: nominates only, never includes
         elif "fulltext.search" in expression:
-            results = [openalex_work(4)]  # nominated, but nothing includes it
+            results = []
         elif expression.startswith("openalex_id:"):
             wanted = expression.removeprefix("openalex_id:").split("|")
             results = [openalex_work(i, award=(i == 1)) for i in (1, 2, 3, 4) if f"W{i}" in wanted]
@@ -163,16 +199,66 @@ def test_listed_works_carry_r1_and_the_award_carries_r2(client: HttpClient, tmp_
     works = [io.read_json(p) for p in sorted((store / "works").glob("W-*.json"))]
     rules = {work["id"]: sorted(e["rule"] for e in work["evidence"]) for work in works}
 
-    assert sorted(rules.values()) == [["R1"], ["R1"], ["R1", "R2"]]
+    # One paper states the award code and names the resource, one thanks a staff member, and one
+    # gives the resource as an author's address.
+    assert sorted(rules.values()) == [["R1", "R2", "R2", "R3"], ["R1", "R5"], ["R1", "R7"]]
+
     award_work = next(w for w in works if any(e["rule"] == "R2" for e in w["evidence"]))
-    r2 = next(e for e in award_work["evidence"] if e["rule"] == "R2")
+    r2 = next(e for e in award_work["evidence"] if e["section"] == "metadata")
     assert r2["criterion"] == 2
-    assert r2["section"] == "metadata"
+    assert r2["rule"] == "R2"
     assert r2["excerpt"] == "UWPR95794"
     assert r2["detail"]["field"] == "awards[].funder_award_id"
     r1 = next(e for e in award_work["evidence"] if e["rule"] == "R1")
     assert r1["excerpt"] is None
     assert r1["detail"]["page"] == "2023"
+
+
+def test_text_evidence_carries_its_excerpt_and_cache(client: HttpClient, tmp_path: Path) -> None:
+    """Evidence read from the paper quotes the sentence and points at the cached copy."""
+    store = tmp_path / "store"
+    do_run(client, store)
+    works = [io.read_json(p) for p in sorted((store / "works").glob("W-*.json"))]
+    evidence = [e for work in works for e in work["evidence"]]
+
+    text_r2 = next(e for e in evidence if e["rule"] == "R2" and e["section"] == "acknowledgements")
+    assert text_r2["detail"] == {"match": "text"}
+    assert text_r2["source"]["name"] == "PMC"
+    assert text_r2["source"]["cache"].startswith("sha256:")
+    assert "UWPR95794" in text_r2["excerpt"]
+
+    r7 = next(e for e in evidence if e["rule"] == "R7")
+    assert r7["criterion"] == 3
+    assert r7["detail"] == {"staff": "riffle"}
+    assert r7["excerpt"].startswith("We also thank Michael Riffle")
+
+    r5 = next(e for e in evidence if e["rule"] == "R5")
+    assert r5["section"] == "affiliation"
+    assert r5["excerpt"].startswith("University of Washington Proteomics Resource")
+
+
+def test_r6_does_not_fire_on_a_paper_we_can_read(client: HttpClient, tmp_path: Path) -> None:
+    """R6 stands in only for text we cannot read ourselves (Phase 1 §6.5, P13).
+
+    The award-code phrase query returns the one listed paper whose text we have, so R6 must stay
+    out of the store even though the phrase matched.
+    """
+    store = tmp_path / "store"
+    do_run(client, store)
+    works = [io.read_json(p) for p in sorted((store / "works").glob("W-*.json"))]
+    assert not [e for work in works for e in work["evidence"] if e["rule"] == "R6"]
+
+
+def test_a_resolved_pmcid_is_kept_and_aliased(client: HttpClient, tmp_path: Path) -> None:
+    """The ID converter's PMCID must survive the next run's OpenAlex refresh, which lacks it."""
+    store = tmp_path / "store"
+    do_run(client, store)
+    do_run(client, store, day="2026-09-22")
+    aliases = io.read_json(store / "aliases.json")["aliases"]
+    works = [io.read_json(p) for p in sorted((store / "works").glob("W-*.json"))]
+    pmcids = {r["ids"]["pmcid"] for work in works for r in work["records"] if r["ids"].get("pmcid")}
+    assert pmcids == set(PMCIDS.values())
+    assert all(f"pmcid:{pmcid}" in aliases for pmcid in pmcids)
 
 
 def test_every_list_entry_maps_to_an_included_work(client: HttpClient, tmp_path: Path) -> None:

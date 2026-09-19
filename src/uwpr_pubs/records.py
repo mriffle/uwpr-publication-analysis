@@ -49,6 +49,23 @@ def ids_from_openalex(work: Mapping[str, Any]) -> Ids:
     return ids
 
 
+def merge_ids(stored: Ids, fresh: Ids) -> Ids:
+    """Identifiers accumulate; a source that stops reporting one never takes it away.
+
+    The PMCID is the case that matters: the NCBI ID converter finds it in stage 4, and OpenAlex,
+    which knows nothing about it, would otherwise blank it on the next run's metadata refresh.
+    """
+    merged: dict[str, Any] = {**stored}
+    for key, value in cast(Mapping[str, Any], fresh).items():
+        if key == "pride":
+            combined = sorted({*(merged.get("pride") or []), *(value or [])})
+            if combined:
+                merged["pride"] = combined
+        elif value is not None or key not in merged:
+            merged[key] = value
+    return cast(Ids, merged)
+
+
 def kind_of(work: Mapping[str, Any], config: Config, source: str = "openalex") -> str:
     """The store's record kind, or an excluded kind, from the type maps in rules.yaml."""
     types = config.rules["record_types"]
