@@ -1,7 +1,8 @@
 # Phase 2 — Data Model & Local Storage Specification
 
-**Status:** Draft 3 · 2026-09-19. Built around the eight decisions agreed on 2026-09-19 (§2). The
-JSON Schemas and a validated sample store now exist (§18); awaiting final review.
+**Status:** **Frozen** · 2026-09-19 · the input to Phases 3–5. Changes from here are made
+deliberately, dated, and noted in this header. The schemas (`schemas/`) and validator
+(`tools/validate_store.py`) are part of the frozen spec.
 **Purpose:** define how the pipeline stores what it finds between runs, precisely enough to
 implement.
 **Depends on:** [01-discovery-strategy.md](01-discovery-strategy.md) (frozen). This spec uses its
@@ -440,7 +441,7 @@ Commands (from the repository root, with `.venv` set up per `requirements.txt`):
 
 ## 19. Exit criteria
 
-- [ ] Reviewed and agreed.
+- [x] Reviewed and agreed; frozen 2026-09-19.
 - [x] JSON Schemas written for the work file, candidates line, list entry, generated envelope,
       metrics line, run manifest, overrides and aliases.
 - [x] Sample store covering every rule, a preprint/article pair, a list-only work, a removed
