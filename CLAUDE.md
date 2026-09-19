@@ -14,7 +14,7 @@ Resource (UWPR).
 
 **Current state:** Phases 1-2 frozen, Phase 3 Draft 3. The code so far is the quality gate (an
 empty `uwpr_pubs` package, ruff/mypy/pytest, `check.yml`) plus `config/*.yaml` and
-`schemas/config/`. No pipeline code yet.
+`schemas/config/`. No pipeline code yet. Public repo: mriffle/uwpr-publication-analysis.
 
 Work proceeds phase by phase. `docs/00-project-phases.md` is the index; each phase has a numbered
 spec in `docs/`.
@@ -23,7 +23,7 @@ spec in `docs/`.
 |---|---|
 | 1 Discovery | **Frozen** |
 | 2 Data model | **Frozen** |
-| 3 Pipeline | **Draft 3** (needs `check.yml` green on GitHub, then sign-off) |
+| 3 Pipeline | **Draft 3** (awaiting sign-off; all other exit criteria met) |
 | 4 Knowledge base | Not written |
 | 5 Metrics / app JSON | Unreviewed starting point |
 | 6 Web app | Unreviewed starting point |

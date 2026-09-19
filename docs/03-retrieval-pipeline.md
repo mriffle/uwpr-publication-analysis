@@ -629,11 +629,12 @@ metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
 
 ## 16. Exit criteria
 
-- [ ] Reviewed and agreed.
+- [ ] Reviewed and agreed. **This is the only item left.**
 - [x] Draft 2 reviewed against Phases 1–2; gaps resolved (P10–P15, Phase 2 changes dated
       2026-09-19).
 - [x] Config schemas (`schemas/config/`) drafted, with the real `config/*.yaml` validated
       against them (2026-09-19, §10).
 - [x] `pyproject.toml` with ruff/mypy/pytest settings and an empty package that passes all three
       checks (2026-09-19; also rehearsed on a clean copy of the repository).
-- [ ] `check.yml` running green on GitHub, so the quality gate exists before any pipeline code.
+- [x] `check.yml` running green on GitHub (2026-09-19, run 35472415062), so the quality gate
+      exists before any pipeline code.
