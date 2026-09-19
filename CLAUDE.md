@@ -12,9 +12,10 @@ Resource (UWPR).
 - Each included publication also gets a markdown knowledge-base page, which the app opens when
   the publication is clicked.
 
-**Current state:** Phases 1-3 frozen; implementation starting. The code so far is the quality gate (an
-empty `uwpr_pubs` package, ruff/mypy/pytest, `check.yml`) plus `config/*.yaml` and
-`schemas/config/`. No pipeline code yet. Public repo: mriffle/uwpr-publication-analysis.
+**Current state:** Phases 1-3 frozen. Implementation is under way: milestones M0-M2 are done, so
+the pipeline already builds a validating store from the official list and the award code. M3 (text
+and rules R3-R7) is next. **`docs/08-implementation.md` is the handoff: status, decisions and the
+full plan.** Public repo: mriffle/uwpr-publication-analysis.
 
 Work proceeds phase by phase. `docs/00-project-phases.md` is the index; each phase has a numbered
 spec in `docs/`.
@@ -24,6 +25,7 @@ spec in `docs/`.
 | 1 Discovery | **Frozen** |
 | 2 Data model | **Frozen** |
 | 3 Pipeline | **Frozen** |
+| 8 Implementation | **In progress** (M0-M2 done; see `docs/08-implementation.md`) |
 | 4 Knowledge base | Not written |
 | 5 Metrics / app JSON | Unreviewed starting point |
 | 6 Web app | Unreviewed starting point |
@@ -47,8 +49,11 @@ its tools. `uv sync` creates `.venv` (Python 3.12, from `.python-version`):
 ```
 uv sync --locked --all-groups                                  # setup; fails if uv.lock is stale
 uv run ruff check . && uv run ruff format --check . && uv run mypy && uv run pytest   # = check.yml
-uv run pytest tests/test_skeleton.py::test_cli_version         # single test
+uv run pytest tests/test_evidence.py::test_the_28_day_rule     # single test
 uv run uwpr-pubs validate samples/store                        # schemas + invariants; exit 1 on error
+uv run uwpr-pubs config                                        # fingerprints and config summary
+uv run uwpr-pubs smoke                                         # live source check (~$0.001)
+uv run uwpr-pubs run --store /tmp/scratch-store                # live run (~$0.002, warm cache)
 uv run python samples/build_sample_store.py                    # rebuild sample store from live APIs
 ```
 

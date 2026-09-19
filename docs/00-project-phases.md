@@ -1,7 +1,7 @@
 # UWPR Publication Impact — Project Phases
 
 **Status:** specification stage. No production code is written until the specs below are agreed.
-**Last updated:** 2026-09-19
+**Last updated:** 2026-09-19 (implementation started; see 08)
 
 ## Goal
 
@@ -45,7 +45,7 @@ is shown, it is labelled as a preprint.
 | 5 | Metrics & app data contract *(added)* | Exactly what is in the JSON that drives the app, and how is each number defined? | [05-metrics-and-data-contract.md](05-metrics-and-data-contract.md) | Unreviewed starting point |
 | 6 | Web app | What does the single-page app show, how does it behave, and how does data get into it? | [06-web-app.md](06-web-app.md) | Unreviewed starting point |
 | 7 | Operations *(added)* | Where does it run, how often, where is it hosted, and how do we know it is still correct? | [07-operations.md](07-operations.md) | Unreviewed starting point |
-| 8 | Implementation | Build to the specs, in the order below. | — | Not started |
+| 8 | Implementation | Build to the specs, in the order below. | [08-implementation.md](08-implementation.md) | **In progress** — M0–M2 done; M3 next |
 
 ### Why the three added phases
 
