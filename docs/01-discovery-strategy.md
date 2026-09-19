@@ -2,6 +2,17 @@
 
 **Status:** **Frozen** · 2026-09-19 · the input to Phases 2–4. Changes from here are made
 deliberately, dated, and noted in this header.
+
+**Changes since freezing** (both found while building the Phase 2 sample store):
+- *2026-09-19, §6.1:* text is split into sentences structurally. XML block elements
+  (paragraphs, headings, affiliations, footnotes, table cells) always end a sentence, and
+  `<label>` numbers are dropped from affiliations. Flattening first had glued headings onto
+  sentences ("…−80°C. Mass spectrometry Mass spectrometry was carried out…") and produced
+  unusable excerpts.
+- *2026-09-19, §6.3:* `SEQUEST` and `search engine` were added to the software exclusions. A
+  listed paper credited "Sequest HT search engine (The University of Washington's Proteomics
+  Resource…)", which is a software credit (C6), not facility use. Effect: recall on the official
+  list 202 → 201 of 246 (still 82%); new works unchanged.
 **Purpose:** define, precisely enough to implement, how the pipeline finds publications supported
 by the UW Proteomics Resource and decides which to include, **without human review**.
 **Basis:** `UWPR_publication_discovery_handoff.md`, plus live measurements made on 2026-09-19
@@ -92,14 +103,14 @@ and R7.
 
 The official list is used as a set of known positives. Of the list papers that can be assessed
 automatically (246: a readable body or award metadata), the final rules in §6 find evidence for
-**202 (82%)**. R6 adds evidence for 2 of the 52 list papers we cannot read ourselves. In total,
-205 of the 298 list papers with a PMID (69%) carry automatic evidence.
+**201 (82%)**. R6 adds evidence for 2 of the 52 list papers we cannot read ourselves. In total,
+204 of the 298 list papers with a PMID (68%) carry automatic evidence.
 
 | Rule | Fires on list papers | Only rule that fires |
 |---|---:|---:|
 | R2 identifier in metadata | 111 | 12 |
 | R2 identifier in text | 144 | 0 |
-| R3 resource named | 160 | 15 |
+| R3 resource named | 159 | 11 |
 | R5 staff affiliation is the resource | 28 | 12 |
 | R6 OpenAlex full-text proxy | 18 | 1 |
 | R7 staff thanked for analysis or technical help | 18 | 0 |
@@ -351,7 +362,18 @@ two papers that only used UWPR's online fragmentation tool, §4.2).
    (`<table-wrap>`), and the author list (`<contrib-group>`).
 4. **Keep** these parts: the body, `<ack>`, `<funding-group>`, `<author-notes>`, `<fn-group>`,
    `<notes>`, and supplementary-material captions. Acknowledgement text appears in all of them.
-5. Split the text into sentences on `.` and `;` followed by whitespace, **except after an
+5. **Block boundaries end sentences** (changed 2026-09-19). Walk the XML tree. Each leaf block
+   element — `p`, `title`, `aff`, `fn`, `td`, `th`, `li`, `caption`, `funding-statement` — is
+   split into sentences on its own; text is never merged across blocks. `<label>` content (e.g.
+   affiliation numbers) is dropped. The block's position gives the evidence section:
+   - inside `ack`: acknowledgements;
+   - inside `funding-group`: funding;
+   - inside `author-notes` or `fn-group`: author notes;
+   - inside `aff`: affiliation;
+   - inside a `sec` whose title (or an ancestor section's title) names methods, materials,
+     experimental procedures or mass spectrometry: methods;
+   - otherwise: main text.
+6. Within a block, split the text into sentences on `.` and `;` followed by whitespace, **except after an
    initial or title**: a single capital letter, a run of initials like "P.D.", or `Dr`, `Prof`,
    `et al`, `e.g`, `i.e`, `Fig`, `Ref`. The first version split "P. D. von Haller" and
    "…, W. Conrad, P. von Haller", which hid 11 staff acknowledgements, one of them a new paper
@@ -385,8 +407,10 @@ following:
 - a URL or repository path: `github`, `/UWPR`, `proteomicsresource.washington.edu/`;
 - a hardware or protocol term: `nanospray`, `NSI source`, `nano-ESI`, `source`, `plans`,
   `manufactured`;
-- a software term: `Comet`, `Lorikeet`, `Kojak`, `Hardklor`, `Limelight`, `calculator`,
-  `tool(s)` (this covers UWPR's online peptide fragmentation tool; see §4.2);
+- a software term: `Comet`, `Lorikeet`, `Kojak`, `Hardklor`, `Limelight`, `SEQUEST`,
+  `search engine`, `calculator`, `tool(s)` (this covers UWPR's online peptide fragmentation tool,
+  §4.2, and software credited to UWPR, e.g. "Sequest HT search engine (The University of
+  Washington's Proteomics Resource)", added 2026-09-19);
 - another organisation: `Fred Hutch`, `FHCRC`, `Hutchinson`.
 
 The exclusion vocabulary lives in configuration and is covered by the regression fixtures (§12).
@@ -525,7 +549,7 @@ metadata (R2, R5) and R6.
 ## 11. Quality measurement (every run)
 
 - **Recall on the official list:** the share of assessable list papers on which R2–R7 fire.
-  Baseline 82%. A fall of more than 5 points signals a broken detector or a changed source.
+  Baseline 82% (201 of 246). A fall of more than 5 points signals a broken detector or a changed source.
 - **Per-rule and per-channel counts** against a trailing average; alert on sharp changes.
 - **Fixtures** (§12) must all produce their expected outcome.
 - **Excerpt log:** every new inclusion from R3–R6 is written to the run report with its

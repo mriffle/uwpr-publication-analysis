@@ -1,0 +1,13 @@
+# Sample overrides for the Phase 2 sample store (docs/02-data-model.md §9).
+- target: W-000014
+  action: include
+  reason: 'SAMPLE ONLY: illustrates an include override; not a real decision.'
+  by: sample
+  date: '2026-09-19'
+- target:
+  - W-000004
+  - W-000005
+  action: merge
+  reason: Preprint and article of the same study; titles differ too much to link automatically.
+  by: sample
+  date: '2026-09-19'

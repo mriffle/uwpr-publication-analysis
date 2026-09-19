@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/metrics.schema.json",
+  "title": "One line of store/metrics/latest.jsonl or store/metrics/YYYY-MM.jsonl (docs/02-data-model.md §10)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "work", "record", "date", "source", "cited_by", "cites_by_year", "fwci", "citation_percentile"],
+  "properties": {
+    "schema": {"const": 1},
+    "work": {"$ref": "common.schema.json#/$defs/workId"},
+    "record": {"$ref": "common.schema.json#/$defs/recordId"},
+    "date": {"$ref": "common.schema.json#/$defs/date"},
+    "source": {"const": "OpenAlex"},
+    "cited_by": {"type": "integer", "minimum": 0},
+    "cites_by_year": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[0-9]{4}$"},
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "fwci": {"type": ["number", "null"], "minimum": 0},
+    "citation_percentile": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+  }
+}

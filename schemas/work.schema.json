@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/work.schema.json",
+  "title": "Included work file: store/works/W-000000.json (docs/02-data-model.md §5)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "aliases", "status", "canonical", "records", "evidence", "discovery",
+               "rule_version", "created", "updated"],
+  "properties": {
+    "schema": {"const": 1},
+    "id": {"$ref": "common.schema.json#/$defs/workId"},
+    "aliases": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/workId"}, "uniqueItems": true},
+    "status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["included", "since", "basis"],
+      "properties": {
+        "included": {"const": true},
+        "since": {"$ref": "common.schema.json#/$defs/date"},
+        "basis": {"enum": ["rules", "override"]}
+      }
+    },
+    "canonical": {"$ref": "common.schema.json#/$defs/recordId"},
+    "records": {"type": "array", "minItems": 1, "items": {"$ref": "common.schema.json#/$defs/record"}},
+    "evidence": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/evidence"}},
+    "discovery": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/discovery"}},
+    "rule_version": {"$ref": "common.schema.json#/$defs/ruleVersion"},
+    "created": {"$ref": "common.schema.json#/$defs/date"},
+    "updated": {"$ref": "common.schema.json#/$defs/date"}
+  }
+}

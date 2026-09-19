@@ -1,0 +1,857 @@
+{
+  "aliases": [],
+  "canonical": "R-000006",
+  "created": "2026-09-19",
+  "discovery": [
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000006"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000007"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000006"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000007"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000006"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000007"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000007"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000006"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000007"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-19",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-19",
+      "record": "R-000006",
+      "rule": "R2",
+      "rule_version": "2026-09-19.2",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-19",
+        "url": "https://api.openalex.org/works/W7117537506"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-19",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-19",
+      "record": "R-000007",
+      "rule": "R2",
+      "rule_version": "2026-09-19.2",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-19",
+        "url": "https://api.openalex.org/works/W4412674037"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-19"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-19",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-19",
+      "record": "R-000007",
+      "rule": "R6",
+      "rule_version": "2026-09-19.2",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-19",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1101%2F2025.07.25.666826"
+      }
+    }
+  ],
+  "id": "W-000006",
+  "records": [
+    {
+      "abstract": {
+        "cache": "sha256:bd9a5134e4ffbc5c41477b221b7463db3c11e5639163ec6fb7dcd336bd98dad5"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gwenneth Straub",
+          "openalex": "A5118834155",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Paul G. Allen School of Computer Science and Engineering",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Varun Ananth",
+          "openalex": "A5121570839",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Talus Bioscience",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "William E. Fondrie",
+          "openalex": "A5008348714",
+          "orcid": "0000-0002-1554-3716",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chris Hsu",
+          "openalex": "A5071171458",
+          "orcid": "0000-0002-0846-6126",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "School of Computation, Information and Technology",
+              "ror": null
+            },
+            {
+              "country": "DE",
+              "name": "Technical University of Munich",
+              "raw": "Technical University of Munich",
+              "ror": "02kkvpp62"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniela Klaproth-Andrade",
+          "openalex": "A5090793116",
+          "orcid": "0009-0008-4223-2199",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Computer Science",
+              "ror": null
+            },
+            {
+              "country": "BE",
+              "name": "University of Antwerp",
+              "raw": "University of Antwerp",
+              "ror": "008x57b05"
+            }
+          ],
+          "corresponding": false,
+          "name": "Marina Pominova",
+          "openalex": "A5006378403",
+          "orcid": "0009-0002-5449-3069",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Paul G. Allen School of Computer Science and Engineering",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Justin J. Sanders",
+          "openalex": "A5063712330",
+          "orcid": "0000-0001-8928-4051",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Bo Wen",
+          "openalex": "A5121554610",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Electrical and Computer Engineering",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lingwen Xu",
+          "openalex": "A5121554896",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Paul G. Allen School of Computer Science and Engineering",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Melih Yilmaz",
+          "openalex": "A5073163733",
+          "orcid": "0000-0001-7473-4785",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Paul G. Allen School of Computer Science and Engineering",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sewoong Oh",
+          "openalex": "A5121526070",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Computer Science",
+              "ror": null
+            },
+            {
+              "country": "BE",
+              "name": "University of Antwerp",
+              "raw": "University of Antwerp",
+              "ror": "008x57b05"
+            }
+          ],
+          "corresponding": true,
+          "name": "Wout Bittremieux",
+          "openalex": "A5053271927",
+          "orcid": "0000-0002-3105-1359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Paul G. Allen School of Computer Science and Engineering",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933",
+          "orcid": "0000-0001-7283-4715",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-19",
+        "recheck_after": "2026-12-18",
+        "status": "unavailable"
+      },
+      "id": "R-000006",
+      "ids": {
+        "doi": "10.1021/acs.jproteome.5c00706",
+        "openalex": "W7117537506",
+        "pmcid": null,
+        "pmid": "41468557"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "closed",
+        "url": null
+      },
+      "published": "2025-12-30",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-19"
+      },
+      "title": "Improvements to Casanovo, a Deep Learning De Novo Peptide Sequencer",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.5241,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.1662,
+          "subfield": "Molecular Biology",
+          "topic": "Machine Learning in Bioinformatics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.144,
+          "subfield": "Molecular Biology",
+          "topic": "vaccines and immunoinformatics approaches"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2025
+    },
+    {
+      "abstract": {
+        "cache": "sha256:9719d6785d1e2dbc7237745c0ff253f14d2caaa27221d9a872f1ac59ae70c0cd"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gwenneth Straub",
+          "openalex": "A5118834155",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Paul G. Allen School of Computer Science and Engineering, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Varun Ananth",
+          "openalex": "A5002337314",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Bioscience Research",
+              "raw": "Talus Bioscience;",
+              "ror": "00bsjtn43"
+            },
+            {
+              "country": "US",
+              "name": "TRIA Bioscience (United States)",
+              "raw": "Talus Bioscience, Seattle, WA, USA",
+              "ror": "00dh4zq96"
+            }
+          ],
+          "corresponding": false,
+          "name": "William E. Fondrie",
+          "openalex": "A5008348714",
+          "orcid": "0000-0002-1554-3716",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chris Hsu",
+          "openalex": "A5071171458",
+          "orcid": "0000-0002-0846-6126",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DE",
+              "name": "Technical University of Munich",
+              "raw": "Technical University of Munich;",
+              "ror": "02kkvpp62"
+            },
+            {
+              "country": "DE",
+              "name": "Technical University of Munich",
+              "raw": "School of Computation, Information and Technology, Technical University of Munich, Munich, Germany",
+              "ror": "02kkvpp62"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniela Klaproth-Andrade",
+          "openalex": "A5090793116",
+          "orcid": "0009-0008-4223-2199",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Paul G. Allen School of Computer Science and Engineering, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Justin J. Sanders",
+          "openalex": "A5063712330",
+          "orcid": "0000-0001-8928-4051",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Bo Wen",
+          "openalex": "A5011332528",
+          "orcid": "0000-0003-2261-3150",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Electrical and Computer Engineering, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lingwen Xu",
+          "openalex": null,
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Paul G. Allen School of Computer Science and Engineering, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Melih Yilmaz",
+          "openalex": "A5073163733",
+          "orcid": "0000-0001-7473-4785",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences , University of Washington , Seattle , WA , USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": null,
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Paul G. Allen School of Computer Science and Engineering, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sewoong Oh",
+          "openalex": null,
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California San Diego",
+              "raw": "University of California San Diego",
+              "ror": "0168r3w48"
+            },
+            {
+              "country": "BE",
+              "name": "University of Antwerp",
+              "raw": "Department of Computer Science, University of Antwerp, Antwerp, Belgium",
+              "ror": "008x57b05"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wout Bittremieux",
+          "openalex": "A5053271927",
+          "orcid": "0000-0002-3105-1359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Paul G. Allen School of Computer Science and Engineering, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933",
+          "orcid": "0000-0001-7283-4715",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-19",
+        "recheck_after": "2026-12-18",
+        "status": "unavailable"
+      },
+      "id": "R-000007",
+      "ids": {
+        "doi": "10.1101/2025.07.25.666826",
+        "openalex": "W4412674037",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "https://www.biorxiv.org/content/biorxiv/early/2025/07/26/2025.07.25.666826.full.pdf"
+      },
+      "published": "2025-07-26",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-19"
+      },
+      "title": "Improvements to Casanovo, a deep learning de novo peptide sequencer",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9696,
+          "subfield": "Molecular Biology",
+          "topic": "Machine Learning in Bioinformatics"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000006"
+      },
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-19.2",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-19"
+  },
+  "updated": "2026-09-19"
+}

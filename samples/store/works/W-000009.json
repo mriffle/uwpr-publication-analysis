@@ -1,0 +1,295 @@
+{
+  "aliases": [],
+  "canonical": "R-000010",
+  "created": "2026-09-19",
+  "discovery": [
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000010"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000010"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "eng"
+      },
+      "excerpt": "We would like to thank the Schweppe and Villen labs at UW and Jimmy Eng of the UWPR for helpful advice and comments.",
+      "first_seen": "2026-09-19",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-19",
+      "record": "R-000010",
+      "rule": "R3",
+      "rule_version": "2026-09-19.2",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:3632902fc6625ab7464c24d026eac2e9fbe88dc0cfc444edf54656aed7216d09",
+        "name": "PMC",
+        "retrieved": "2026-09-19",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11554524/"
+      }
+    }
+  ],
+  "id": "W-000009",
+  "records": [
+    {
+      "abstract": {
+        "cache": "sha256:00a6460f45079f3bfc707d6c953499a4ee0f5d5d541f624435aeec65ec49dded"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Seattle, Washington 98105, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chris D McGann",
+          "openalex": "A5110699303",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "raw": "Thermo Fisher Scientific, San Jose, California 95134, United States",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "corresponding": false,
+          "name": "William D. Barshop",
+          "openalex": "A5012174669",
+          "orcid": "0000-0001-9517-2339",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "raw": "Thermo Fisher Scientific, San Jose, California 95134, United States",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jesse D. Canterbury",
+          "openalex": "A5016116051",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Seattle, Washington 98105, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chuwei Lin",
+          "openalex": "A5080168257",
+          "orcid": "0000-0002-8640-5695",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DE",
+              "name": "Technical University of Munich",
+              "raw": "Technical University of Munich, 85354 Freising, Germany",
+              "ror": "02kkvpp62"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wassim Gabriel",
+          "openalex": "A5076943145",
+          "orcid": "0000-0001-6440-9794",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "raw": "Thermo Fisher Scientific, San Jose, California 95134, United States",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jingjing Huang",
+          "openalex": "A5108270699",
+          "orcid": "0000-0002-3009-8681",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "raw": "Thermo Fisher Scientific, San Jose, California 95134, United States",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "corresponding": false,
+          "name": "David Bergen",
+          "openalex": "A5080841168",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "raw": "Thermo Fisher Scientific, San Jose, California 95134, United States",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Vlad Zabrouskov",
+          "openalex": "A5062806768",
+          "orcid": "0000-0003-3567-9407",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "raw": "Thermo Fisher Scientific, San Jose, California 95134, United States",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rafael D. Melani",
+          "openalex": "A5080143820",
+          "orcid": "0000-0002-0349-235X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DE",
+              "name": "Technical University of Munich",
+              "raw": "Technical University of Munich, 85354 Freising, Germany",
+              "ror": "02kkvpp62"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mathias Wilhelm",
+          "openalex": "A5031508585",
+          "orcid": "0000-0002-9224-3258",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "raw": "Thermo Fisher Scientific, San Jose, California 95134, United States",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Graeme C. McAlister",
+          "openalex": "A5024827021",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Seattle, Washington 98105, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:3632902fc6625ab7464c24d026eac2e9fbe88dc0cfc444edf54656aed7216d09",
+        "checked": "2026-09-19",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000010",
+      "ids": {
+        "doi": "10.1021/acs.jproteome.3c00085",
+        "openalex": "W4385688661",
+        "pmcid": "PMC11554524",
+        "pmid": "37557900"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11554524/pdf/nihms-2030407.pdf"
+      },
+      "published": "2023-08-09",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-19",
+        "pmc": "2026-09-19"
+      },
+      "title": "Real-Time Spectral Library Matching for Sample Multiplexed Quantitative Proteomics",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 1.0,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9987,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9972,
+          "subfield": "Molecular Biology",
+          "topic": "Advanced Biosensing Techniques and Applications"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2023
+    }
+  ],
+  "rule_version": "2026-09-19.2",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-19"
+  },
+  "updated": "2026-09-19"
+}

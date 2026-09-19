@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/list-entry.schema.json",
+  "title": "One line of store/official_list/entries.jsonl (docs/02-data-model.md §7)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "key", "page", "title", "authors_text", "venue_text", "pmid", "links", "work",
+               "first_seen", "last_seen"],
+  "properties": {
+    "schema": {"const": 1},
+    "key": {"type": "string", "pattern": "^list:[a-z0-9]+:[0-9a-f]{12}$"},
+    "page": {"type": "string", "pattern": "^(current|older|[0-9]{4})$"},
+    "title": {"type": "string", "minLength": 1},
+    "authors_text": {"type": "string"},
+    "venue_text": {"type": "string"},
+    "pmid": {"oneOf": [{"$ref": "common.schema.json#/$defs/pmid"}, {"type": "null"}]},
+    "links": {"type": "array", "items": {"type": "string"}},
+    "work": {"$ref": "common.schema.json#/$defs/workId"},
+    "first_seen": {"$ref": "common.schema.json#/$defs/date"},
+    "last_seen": {"$ref": "common.schema.json#/$defs/date"}
+  }
+}

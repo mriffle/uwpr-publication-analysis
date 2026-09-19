@@ -1,0 +1,89 @@
+{
+  "api": {},
+  "changes": {
+    "added": [
+      "W-000001",
+      "W-000002",
+      "W-000003",
+      "W-000004",
+      "W-000006",
+      "W-000007",
+      "W-000008",
+      "W-000009",
+      "W-000010",
+      "W-000011",
+      "W-000012",
+      "W-000013",
+      "W-000014"
+    ],
+    "list_appeared": [],
+    "list_disappeared": [
+      "list:current:f611dce9563d"
+    ],
+    "merged": [
+      {
+        "into": "W-000004",
+        "retired": "W-000005"
+      }
+    ],
+    "removed": [
+      {
+        "reason": "no_longer_meets_rules",
+        "work": "W-000015"
+      }
+    ]
+  },
+  "channels": {},
+  "code_version": "samples/build_sample_store.py",
+  "config_fingerprint": "sha256:b495ff9ba84b6aaf7c724ff54fb1e624e07999ea6b0db7c9bd3ddb266a4716a1",
+  "ended": "2026-09-19T00:00:00Z",
+  "fixtures": {},
+  "mode": "sample",
+  "note": "Sample run manifest: counts describe the sample store, not a real pipeline run.",
+  "official_list_recall": {
+    "assessable": 0,
+    "with_evidence": 0
+  },
+  "rule_version": "2026-09-19.2",
+  "rules": {
+    "R1": {
+      "new": 4,
+      "works": 4
+    },
+    "R2": {
+      "new": 3,
+      "works": 3
+    },
+    "R3": {
+      "new": 3,
+      "works": 3
+    },
+    "R3d": {
+      "new": 1,
+      "works": 1
+    },
+    "R4": {
+      "new": 1,
+      "works": 1
+    },
+    "R5": {
+      "new": 1,
+      "works": 1
+    },
+    "R6": {
+      "new": 3,
+      "works": 3
+    },
+    "R7": {
+      "new": 1,
+      "works": 1
+    },
+    "override": {
+      "new": 1,
+      "works": 1
+    }
+  },
+  "run_id": "2026-09-19T00-00-sample",
+  "schema": 1,
+  "started": "2026-09-19T00:00:00Z"
+}

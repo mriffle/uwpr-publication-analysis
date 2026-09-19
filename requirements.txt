@@ -1,0 +1,4 @@
+# Tools used during the spec phase (schema validation, sample store).
+# Setup: uv venv .venv --python 3.12 && uv pip install --python .venv -r requirements.txt
+jsonschema>=4.23
+pyyaml>=6.0

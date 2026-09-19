@@ -1,0 +1,203 @@
+{
+  "aliases": [],
+  "canonical": "R-000015",
+  "created": "2026-09-19",
+  "discovery": [
+    {
+      "channel": "G",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000015"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": null,
+      "detail": {},
+      "excerpt": null,
+      "first_seen": "2026-09-19",
+      "label": "SAMPLE ONLY: illustrates an include override; not a real decision.",
+      "last_seen": "2026-09-19",
+      "record": null,
+      "rule": "override",
+      "rule_version": "2026-09-19.2",
+      "section": "override",
+      "source": {
+        "cache": null,
+        "name": "overrides.yaml",
+        "retrieved": "2026-09-19",
+        "url": null
+      }
+    }
+  ],
+  "id": "W-000014",
+  "records": [
+    {
+      "abstract": {
+        "cache": "sha256:dbac73d6438866922d0d6fb74ff080500dd1d03271bf441e8e2e60043691d42d"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Bo Wen",
+          "openalex": "A5011332528",
+          "orcid": "0000-0003-2261-3150",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Michigan",
+              "raw": "Gilbert S. Omenn Department of Computational Medicine and Bioinformatics, University of Michigan",
+              "ror": "00jmfr291"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kai Li",
+          "openalex": "A5100399851",
+          "orcid": "0000-0002-0810-2437",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "BE",
+              "name": "University of Antwerp",
+              "raw": "Department of Computer Science, University of Antwerp, Antwerp, 2020, Belgium",
+              "ror": "008x57b05"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wout Bittremieux",
+          "openalex": "A5053271927",
+          "orcid": "0000-0002-3105-1359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Paul G. Allen School of Computer Science and Engineering, University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933",
+          "orcid": "0000-0001-7283-4715",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:7afd71de941f57c22e34365651b5683b69e7ad3f6acf9e597d5dd7ee72647118",
+        "checked": "2026-09-19",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000015",
+      "ids": {
+        "doi": "10.64898/2026.07.11.737889",
+        "openalex": "W7169511116",
+        "pmcid": "PMC13404742",
+        "pmid": "42523267"
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/16/2026.07.11.737889.full.pdf"
+      },
+      "published": "2026-07-16",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-19",
+        "pmc": "2026-09-19"
+      },
+      "title": "CasanovoGUI: a cross-platform desktop application for deep learning-based de novo peptide sequencing with Casanovo",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9122,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0319,
+          "subfield": "Molecular Biology",
+          "topic": "Machine Learning in Bioinformatics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.027,
+          "subfield": "Molecular Biology",
+          "topic": "vaccines and immunoinformatics approaches"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": null,
+      "year": 2026
+    }
+  ],
+  "rule_version": "2026-09-19.2",
+  "schema": 1,
+  "status": {
+    "basis": "override",
+    "included": true,
+    "since": "2026-09-19"
+  },
+  "updated": "2026-09-19"
+}

@@ -1,0 +1,17 @@
+{
+  "content": {},
+  "generator": {
+    "date": "2026-09-19",
+    "name": "placeholder (Phase 4 not yet specified)",
+    "version": "0"
+  },
+  "inputs": {
+    "fingerprint": "sha256:0c8735fb16b08468bf75b704ee6281cc40e333672903fb451f0c4a336a0fddde",
+    "parts": [
+      "canonical abstract",
+      "evidence"
+    ]
+  },
+  "schema": 1,
+  "work": "W-000006"
+}

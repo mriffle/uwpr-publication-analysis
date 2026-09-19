@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/generated.schema.json",
+  "title": "Generated knowledge-base content envelope: store/works/W-000000.generated.json (docs/02-data-model.md §8). The content object is defined in Phase 4.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "work", "inputs", "generator", "content"],
+  "properties": {
+    "schema": {"const": 1},
+    "work": {"$ref": "common.schema.json#/$defs/workId"},
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fingerprint", "parts"],
+      "properties": {
+        "fingerprint": {"$ref": "common.schema.json#/$defs/cacheRef"},
+        "parts": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+      }
+    },
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "date"],
+      "properties": {
+        "name": {"type": "string"},
+        "version": {"type": "string"},
+        "date": {"$ref": "common.schema.json#/$defs/date"}
+      }
+    },
+    "content": {"type": "object"}
+  }
+}

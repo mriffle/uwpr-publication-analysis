@@ -1,0 +1,349 @@
+note: Definition of the Phase 2 sample store. Real papers and evidence excerpts (measured 2026-09-19), except scenarios
+  marked SAMPLE, which are synthetic. Built by samples/build_sample_store.py.
+observed: '2026-09-19'
+rule_version: 2026-09-19.2
+works:
+- id: W-000001
+  scenario: Listed paper with several independent reasons; early era (2008)
+  records:
+  - ids:
+      doi: 10.1016/j.jasms.2008.10.025
+      pmid: '19070509'
+      pmcid: PMC3073872
+    channels:
+    - A
+    - B1
+    - C1
+    - D1
+    - D3
+    - E
+  evidence:
+  - rule: R1
+  - rule: R2
+    source: OpenAlex
+    section: metadata
+    excerpt: UWPR95794
+    detail: &id001
+      field: awards[].funder_award_id
+  - rule: R2
+    source: PMC
+    section: acknowledgements
+    excerpt: This work was supported in part by the University of Washington’s Proteomics Resource (UWPR95794).
+    detail:
+      match: text
+  - rule: R3
+    source: PMC
+    section: acknowledgements
+    excerpt: This work was supported in part by the University of Washington’s Proteomics Resource (UWPR95794).
+  - rule: R4
+    source: PMC
+    section: acknowledgements
+    excerpt: Additional thanks go to Dr. Alex Sherl for PERL script assistance, and Dr. Priska Van Haller at the
+      University of Washington South Lake Union Mass Spec Facility.
+    staff: vonhaller
+- id: W-000002
+  scenario: Listed paper with no other evidence (HDL cluster, Phase 1 §4.7)
+  records:
+  - ids:
+      doi: 10.1161/atvbaha.121.316278
+      pmid: '34134520'
+      pmcid: PMC8295224
+    channels:
+    - A
+  evidence:
+  - rule: R1
+- id: W-000003
+  scenario: 'SAMPLE: listed paper later removed from the UWPR site; stays included (Phase 1 §6.0). Its only UWPR
+    mention is the online fragmentation calculator (D6).'
+  records:
+  - ids:
+      doi: 10.1073/pnas.2529780123
+      pmid: '41849380'
+      pmcid: PMC13012085
+    channels:
+    - A
+  evidence:
+  - rule: R1
+    synthetic_removed:
+      first_seen: '2026-06-01'
+      last_seen: '2026-09-12'
+- id: W-000004
+  scenario: Listed article merged with its preprint by a merge override (titles differ); retired ID W-000005. Its
+    methods credit SEQUEST to UWPR, which is a software credit, not evidence.
+  retired:
+  - W-000005
+  records:
+  - ids:
+      doi: 10.1038/s41467-026-71449-1
+      pmid: '41951628'
+      pmcid: PMC13068965
+    channels:
+    - A
+    - D2
+  - ids:
+      doi: 10.21203/rs.3.rs-4693768/v2
+    channels:
+    - D2
+    version_link:
+      to_index: 0
+      method: override
+  evidence:
+  - rule: R1
+  - rule: R6
+    phrase: Washington's Proteomics Resource
+    record_index: 1
+- id: W-000006
+  scenario: Preprint and article linked automatically; award code in metadata (handoff fixture D)
+  records:
+  - ids:
+      doi: 10.1021/acs.jproteome.5c00706
+      pmid: '41468557'
+    channels:
+    - B1
+    - B2
+    - C1
+    - G
+  - ids:
+      doi: 10.1101/2025.07.25.666826
+    channels:
+    - B1
+    - B2
+    - C2
+    - D2
+    - G
+    version_link:
+      to_index: 0
+      method: auto
+  evidence:
+  - rule: R2
+    source: OpenAlex
+    section: metadata
+    excerpt: UWPR95794
+    detail: *id001
+  - rule: R2
+    source: OpenAlex
+    section: metadata
+    excerpt: UWPR95794
+    detail: *id001
+    record_index: 1
+  - rule: R6
+    phrase: Washington's Proteomics Resource
+    record_index: 1
+- id: W-000007
+  scenario: Award code in metadata and in the text (handoff fixture E)
+  records:
+  - ids:
+      doi: 10.1016/j.jlr.2026.101113
+      pmid: '42508573'
+      pmcid: PMC13505420
+    channels:
+    - B1
+    - C1
+    - C2
+    - D1
+    - D2
+  evidence:
+  - rule: R2
+    source: OpenAlex
+    section: metadata
+    excerpt: UWPR95794
+    detail: *id001
+  - rule: R2
+    source: PMC
+    section: acknowledgements
+    excerpt: We thank the Proteomics Resource (UWPR95794) and Diabetes Research Center cores (P30DK017047) at the
+      University of Washington for technical support.
+    detail:
+      match: text
+- id: W-000008
+  scenario: Resource named as the place the work was done (criterion 4)
+  records:
+  - ids:
+      doi: 10.1242/bio.059982
+      pmid: '37345480'
+      pmcid: PMC10339035
+    channels:
+    - D1
+    - E
+  evidence:
+  - rule: R3
+    source: PMC
+    section: methods
+    excerpt: Mass spectrometry was carried out at the University of Washington Proteomics Resource (Seattle, WA,
+      USA).
+- id: W-000009
+  scenario: Resource named together with a staff member (criterion 3)
+  records:
+  - ids:
+      doi: 10.1021/acs.jproteome.3c00085
+      pmid: '37557900'
+      pmcid: PMC11554524
+    channels:
+    - D1
+    - E
+  evidence:
+  - rule: R3
+    source: PMC
+    section: acknowledgements
+    excerpt: We would like to thank the Schweppe and Villen labs at UW and Jimmy Eng of the UWPR for helpful advice
+      and comments.
+    staff: eng
+- id: W-000010
+  scenario: Evidence only in OpenAlex's full-text index; not in PMC (handoff fixture C)
+  records:
+  - ids:
+      doi: 10.3389/fmars.2021.757245
+    channels:
+    - D2
+  evidence:
+  - rule: R6
+    phrase: Washington Proteomics Resource
+- id: W-000011
+  scenario: An author's affiliation is the resource (criterion 3); preprint with no journal version yet
+  records:
+  - ids:
+      doi: 10.64898/2026.08.03.742469
+      pmid: '42620099'
+      pmcid: PMC13484654
+    channels:
+    - F
+    - G
+  evidence:
+  - rule: R5
+    source: PMC
+    section: affiliation
+    excerpt: University of Washington Proteomics Resource, 850 Republican Street, Seattle, WA 98109, USA
+- id: W-000012
+  scenario: Staff member thanked for data-analysis help, UWPR not named (R7, calibration C2)
+  records:
+  - ids:
+      doi: 10.7554/elife.56582
+      pmid: '32406818'
+      pmcid: PMC7367685
+    channels:
+    - E
+  evidence:
+  - rule: R7
+    source: PMC
+    section: acknowledgements
+    excerpt: We also thank Michael Riffle for assistance with data analysis and visualization.
+    staff: riffle
+- id: W-000013
+  scenario: Evidence only in a public dataset description (R3 on PRIDE, channel J)
+  records:
+  - ids:
+      doi: 10.1111/1758-2229.12867
+      pmid: '32613749'
+      pride:
+      - PXD011642
+    channels:
+    - J
+  evidence:
+  - rule: R3d
+    source: PRIDE
+    section: dataset description
+    excerpt: The mass spectrometry analysis was performed on a QExactive at the University of Washington Proteomics
+      Resource (Seattle, WA).
+    dataset: PXD011642
+- id: W-000014
+  scenario: 'SAMPLE: included by an include override (staff co-author only, no rule fired)'
+  records:
+  - ids:
+      doi: 10.64898/2026.07.11.737889
+      pmid: '42523267'
+      pmcid: PMC13404742
+    channels:
+    - G
+  evidence:
+  - rule: override
+    reason: 'SAMPLE ONLY: illustrates an include override; not a real decision.'
+candidates:
+- id: W-000015
+  scenario: 'Dropped by a rule change: first-pass rules matched a hardware-plans mention; the refined exclusion
+    removed it'
+  records:
+  - ids:
+      doi: 10.1021/ac100372c
+      pmid: '20364823'
+      pmcid: PMC3073871
+    channels:
+    - D1
+  reason: no_longer_meets_rules
+  signals:
+  - uwpr_hardware_mention
+  former_evidence:
+  - rule: R3
+    source: PMC
+    section: methods
+    excerpt: …AWN device being in line with the capillary inlet of the MS using a stage manufactured according to
+      plans from University of Washington Proteome Resource (UWPR, Seattle, WA) the details of this can be found
+      at http://proteomicsresource.washington.edu/nsisource.php.…
+    rule_version: 2026-09-19.1
+    superseded_by: 2026-09-19.2
+- id: W-000016
+  scenario: UWPR appears only in a list of software tools (C6)
+  records:
+  - ids:
+      doi: 10.1016/j.mcpro.2024.100875
+      pmid: '39515468'
+      pmcid: PMC11665681
+    channels:
+    - D1
+    - D2
+  reason: no_rule_fired
+  signals:
+  - uwpr_tool_mention
+- id: W-000017
+  scenario: Staff thanked for advice on developing someone else's software (C3)
+  records:
+  - ids:
+      doi: 10.1021/acs.jproteome.3c00758
+      pmid: '38426863'
+      pmcid: PMC11296898
+    channels:
+    - E
+  reason: no_rule_fired
+  signals:
+  - staff_ack_other:eng
+- id: W-000018
+  scenario: Staff co-author only (D2)
+  records:
+  - ids:
+      doi: 10.64898/2026.04.17.719305
+      pmid: '42079143'
+      pmcid: PMC13131538
+    channels:
+    - G
+  reason: no_rule_fired
+  signals:
+  - staff_coauthor:riffle
+- id: W-000019
+  scenario: Credits only the Diabetes Research Center core and is not on the list (D1a)
+  records:
+  - ids:
+      pmid: '37150279'
+    channels:
+    - E
+  reason: no_rule_fired
+  signals:
+  - core_named:drc
+- id: W-000020
+  scenario: Carries the award code but is a peer-review report (record-type filter)
+  records:
+  - ids:
+      doi: 10.7287/peerj.14158v0.1/reviews/1
+    channels:
+    - B1
+    - C2
+    - D2
+  reason: excluded_record_type
+  reason_detail: peer-review
+- id: W-000021
+  scenario: Carries the award code but is a dissertation (record-type filter)
+  records:
+  - ids:
+      openalex: W2627077766
+    channels:
+    - B1
+  reason: excluded_record_type
+  reason_detail: dissertation

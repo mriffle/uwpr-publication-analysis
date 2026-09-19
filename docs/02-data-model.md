@@ -1,7 +1,7 @@
 # Phase 2 — Data Model & Local Storage Specification
 
-**Status:** Draft 2 · 2026-09-19. Rewritten around the eight decisions agreed on 2026-09-19 (§2);
-awaiting review. It replaces the pre-Phase-1 draft, which assumed tiers and human review.
+**Status:** Draft 3 · 2026-09-19. Built around the eight decisions agreed on 2026-09-19 (§2). The
+JSON Schemas and a validated sample store now exist (§18); awaiting final review.
 **Purpose:** define how the pipeline stores what it finds between runs, precisely enough to
 implement.
 **Depends on:** [01-discovery-strategy.md](01-discovery-strategy.md) (frozen). This spec uses its
@@ -92,6 +92,11 @@ history is the audit trail.
 - **Splits** (only via `overrides.yaml`) mint a new work ID for the part that leaves.
 - **Record matching** order: DOI → PMID → PMCID → OpenAlex ID → normalised title plus year ±1
   (Phase 1 §8).
+- **Alias keys** in `aliases.json` carry a type prefix: `doi:`, `pmid:`, `pmcid:`, `openalex:`,
+  `pride:`, `list:` (official-list entry key), and `work:` (retired work ID). Example:
+  `"doi:10.1021/acs.jproteome.5c00706": "W-000006"`, `"work:W-000005": "W-000004"`.
+- **Rule version** format: `YYYY-MM-DD.N`, e.g. `2026-09-19.2`. The version is set in
+  `rules.yaml`, and N increases for each change made on the same day.
 
 ## 5. Included work file (`store/works/W-000123.json`)
 
@@ -190,14 +195,21 @@ One entry per distinct reason, on any record of the work. The fields follow Phas
 
 | Field | Values |
 |---|---|
-| `rule` | `R1`–`R7`, or `R3d` (R3 applied to a dataset description) |
+| `rule` | `R1`–`R7`, `R3d` (R3 applied to a dataset description), or `override` |
 | `criterion` | 1 official list · 2 UWPR code as funding · 3 staff in their UWPR role · 4 facilities used. Mapping: R1→1; R2→2; R3→3 if the matched sentence names a staff member, else 4; R3d→4; R4→4; R5→3; R6→2 if the matched phrase is `UWPR95794`, else 4; R7→3. |
 | `label` | Plain-language text for the knowledge base and app, taken from `rules.yaml` |
-| `section` | `official list`, `metadata`, `acknowledgements`, `funding`, `methods`, `affiliation`, `author notes`, `dataset description` or `full-text index` |
+| `record` | The record the evidence was found on. `null` only for `override` evidence, which applies to the whole work. |
+| `source.name` | `UWPR website`, `OpenAlex`, `Crossref`, `PMC`, `Europe PMC`, `PRIDE` or `overrides.yaml` |
+| `section` | `official list`, `metadata`, `acknowledgements`, `funding`, `methods`, `main text`, `affiliation`, `author notes`, `dataset description`, `full-text index` or `override`. Located structurally (Phase 1 §6.1). |
 | `excerpt` | The matching sentence, at most about 300 characters. For R1, none (see `detail`). For R6, none: the page says "phrase found in OpenAlex full-text index". |
 | `detail` | Rule-specific facts. **R1:** list page, first seen, last seen. **R6:** phrase and query date. **R7:** staff key. **R3d:** dataset accession. **R2:** metadata field. |
 | `rule_version` | The rule-set version that produced the entry (§13) |
 | `first_seen`, `last_seen` | `last_seen` stops advancing if the source stops showing the evidence; the entry is not deleted. |
+| `superseded` | Present only when a later rule version no longer produces this entry: `{"by_rule_version": …, "date": …}`. Superseded entries are inactive (§13). |
+
+**Override evidence.** An `include` override adds an entry with `rule: "override"`,
+`criterion: null`, `record: null`, `section: "override"`, source `overrides.yaml`, and the
+override's reason as its label.
 
 ## 6. Works not included (`store/candidates.jsonl`)
 
@@ -213,6 +225,12 @@ One JSON object per line, sorted by work ID:
  "rule_version": "2026-09-19",
  "first_seen": "2026-09-19", "last_seen": "2026-09-19"}
 ```
+
+- `records` may be of any type, including excluded ones (`peer-review`, `dissertation`, …).
+- `reason_detail` is required when `reason` is `excluded_record_type` (it names the type).
+- `former_evidence` is required when `reason` is `no_longer_meets_rules`. It holds the work's
+  evidence entries, each marked `superseded`, so the page history of why the work was once
+  included is not lost when its work file is removed.
 
 `reason` is one of:
 - `no_rule_fired`
@@ -281,6 +299,9 @@ The only routine human input besides configuration. Used when someone reports a 
 - Overrides beat rules, except R1: a paper on the official list cannot be excluded by
   override (Phase 1 §6.0).
 - A target that no longer resolves is reported by validation (§14).
+- A `split` override lists the records that leave: `records: [R-000123]`.
+- Dates may be written quoted or unquoted; YAML reads an unquoted date as a date object, and the
+  validator treats it as the same ISO string.
 
 ## 10. Metrics (`store/metrics/`)
 
@@ -339,7 +360,7 @@ with different effects:
 | Change | Effect on evidence | Effect on the work |
 |---|---|---|
 | A source stops showing evidence (a page changes, an API drops a field) | Kept; `last_seen` stops advancing | Stays included (requirement 1) |
-| A rule changes (new `rule_version` in `rules.yaml`) | Every work is re-evaluated from the cache. Entries that the new version no longer produces are marked `superseded` (kept in the file; git holds the history) | If a work has no active evidence left, it moves to `candidates.jsonl` with `reason: no_longer_meets_rules`, and the run report lists it |
+| A rule changes (new `rule_version` in `rules.yaml`) | Every work is re-evaluated from the cache. Entries that the new version no longer produces are marked `superseded` and kept in the file | If a work has no active evidence left, it moves to `candidates.jsonl` with `reason: no_longer_meets_rules`, carrying its superseded entries as `former_evidence`, and the run report lists it |
 
 **Lifecycle of a new record:**
 1. Nominated by a channel.
@@ -373,7 +394,8 @@ A failed invariant stops the run before anything is exported (Phase 3).
 - Writes are atomic (write a temporary file, then rename).
 - Every file carries a `schema` version. Additive changes keep the number; breaking changes bump
   it and ship with a migration.
-- Result: running twice on unchanged inputs produces no diff.
+- Result: running twice on unchanged inputs produces no diff. Verified on the sample store: a
+  rebuild from live sources was byte-identical.
 
 ## 16. Left to later phases
 
@@ -385,10 +407,42 @@ A failed invariant stops the run before anything is exported (Phase 3).
   evidence excerpts are quotations with attribution; a public repository is not expected to be
   a problem, but it should be confirmed then.
 
-## 17. Exit criteria
+## 17. What building the sample taught us (2026-09-19)
+
+Building a real sample store exposed several gaps. All are now fixed in this spec or in Phase 1.
+
+| Finding | Fix |
+|---|---|
+| A work dropped by a rule change lost its history once its work file was removed | `former_evidence` on the candidates line (§6) |
+| Flattened text glued headings onto sentences and started excerpts inside journal front matter | Structural sentence splitting (Phase 1 §6.1, dated change) |
+| A listed paper's R3 match was a software credit ("Sequest HT search engine (…Proteomics Resource)") | `SEQUEST` and `search engine` added to the software exclusions (Phase 1 §6.3, dated change) |
+| Affiliation excerpts began with footnote numbers ("3University of Washington…") | `<label>` dropped from affiliations (Phase 1 §6.1) |
+| Affiliations can sit inside the author block, which text search skips | R5 searches `<aff>` elements separately |
+| Hand-written YAML dates broke validation | The validator accepts quoted or unquoted dates (§9) |
+| Section, source and rule vocabularies needed `main text`, `overrides.yaml` and `override` | Added to §5.3 |
+
+## 18. Artifacts
+
+| Path | What it is |
+|---|---|
+| `schemas/*.schema.json` | JSON Schemas (draft 2020-12) for every file type: work, candidate line, list entry, generated envelope, metrics line, run manifest, overrides and aliases. `common.schema.json` holds shared definitions. |
+| `tools/validate_store.py` | Checks a store against the schemas and the §14 invariants, plus cross-file references. Mutation-tested: 11 deliberately broken stores, all caught for the right reason. |
+| `samples/sample_works.yaml` | The sample definition: real papers and excerpts, plus synthetic scenarios marked SAMPLE |
+| `samples/build_sample_store.py` | Builds `samples/store/` from live sources |
+| `samples/store/`, `samples/overrides.yaml` | The sample store: 13 included works, 7 works not included, 4 official-list entries |
+
+Commands (from the repository root, with `.venv` set up per `requirements.txt`):
+
+```
+.venv/bin/python samples/build_sample_store.py        # rebuild the sample
+.venv/bin/python tools/validate_store.py samples/store # validate it
+```
+
+## 19. Exit criteria
 
 - [ ] Reviewed and agreed.
-- [ ] JSON Schemas written for the work file, candidates line, list entry, generated envelope,
-      metrics line, run manifest and overrides.
-- [ ] A hand-built sample store of about 10 works, covering every rule, a preprint/article pair,
-      a list-only work, a removed list entry, an override, and a work that fails a rule change.
+- [x] JSON Schemas written for the work file, candidates line, list entry, generated envelope,
+      metrics line, run manifest, overrides and aliases.
+- [x] Sample store covering every rule, a preprint/article pair, a list-only work, a removed
+      list entry, a merge and an include override, and a work that fails a rule change.
+      Validates with no errors (one expected warning: no cache beside the sample).

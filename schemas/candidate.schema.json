@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/candidate.schema.json",
+  "title": "One line of store/candidates.jsonl: a work that is not included (docs/02-data-model.md §6)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "records", "reason", "signals", "channels", "fulltext", "rule_version",
+               "first_seen", "last_seen"],
+  "properties": {
+    "schema": {"const": 1},
+    "id": {"$ref": "common.schema.json#/$defs/workId"},
+    "records": {"type": "array", "minItems": 1, "items": {"$ref": "common.schema.json#/$defs/candidateRecord"}},
+    "reason": {"enum": ["no_rule_fired", "excluded_record_type", "before_window", "override_exclude",
+                        "no_longer_meets_rules"]},
+    "reason_detail": {"type": "string"},
+    "signals": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^(staff_coauthor|staff_ack_other|core_named|uwpr_tool_mention|uwpr_hardware_mention|uwpr_software_mention|near_miss_identifier)(:[a-z0-9_]+)?$"
+      }
+    },
+    "channels": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/channel"}, "uniqueItems": true},
+    "fulltext": {
+      "oneOf": [{"type": "null"}, {"$ref": "common.schema.json#/$defs/fulltext"}]
+    },
+    "former_evidence": {
+      "type": "array",
+      "items": {"$ref": "common.schema.json#/$defs/evidence"}
+    },
+    "rule_version": {"$ref": "common.schema.json#/$defs/ruleVersion"},
+    "first_seen": {"$ref": "common.schema.json#/$defs/date"},
+    "last_seen": {"$ref": "common.schema.json#/$defs/date"}
+  },
+  "allOf": [
+    {"if": {"properties": {"reason": {"const": "excluded_record_type"}}}, "then": {"required": ["reason_detail"]}},
+    {"if": {"properties": {"reason": {"const": "no_longer_meets_rules"}}},
+     "then": {"required": ["former_evidence"], "properties": {"former_evidence": {"minItems": 1}}}}
+  ]
+}

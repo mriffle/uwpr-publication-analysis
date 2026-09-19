@@ -39,7 +39,7 @@ is shown, it is labelled as a preprint.
 | # | Phase | Question it answers | Spec | Status |
 |---|---|---|---|---|
 | 1 | Discovery strategy | How do we find every UWPR-supported publication despite inconsistent acknowledgement, and decide inclusion automatically? | [01-discovery-strategy.md](01-discovery-strategy.md), [01a-discovery-calibration.md](01a-discovery-calibration.md) | **Frozen** 2026-09-19 |
-| 2 | Data model & local storage | How are publications, versions, evidence and decisions represented on disk? | [02-data-model.md](02-data-model.md) | **Draft 2** — decisions S1–S8 agreed; awaiting review |
+| 2 | Data model & local storage | How are publications, versions, evidence and decisions represented on disk? | [02-data-model.md](02-data-model.md) | **Draft 3** — schemas and validated sample store done; awaiting review |
 | 3 | Retrieval pipeline | What does the code that discovers, fetches and updates the data do, and how does it re-run safely? | [03-retrieval-pipeline.md](03-retrieval-pipeline.md) | Unreviewed starting point |
 | 4 | Publication knowledge base *(added)* | What does each publication's markdown page contain (summary, subject vocabulary, category, authors, affiliations, UWPR evidence), how is it generated and kept current, and how does the app show it? | *not yet written* | Requirement captured; not yet discussed |
 | 5 | Metrics & app data contract *(added)* | Exactly what is in the JSON that drives the app, and how is each number defined? | [05-metrics-and-data-contract.md](05-metrics-and-data-contract.md) | Unreviewed starting point |

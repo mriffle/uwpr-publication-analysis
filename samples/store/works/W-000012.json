@@ -1,0 +1,199 @@
+{
+  "aliases": [],
+  "canonical": "R-000013",
+  "created": "2026-09-19",
+  "discovery": [
+    {
+      "channel": "E",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000013"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "riffle"
+      },
+      "excerpt": "We also thank Michael Riffle for assistance with data analysis and visualization.",
+      "first_seen": "2026-09-19",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-19",
+      "record": "R-000013",
+      "rule": "R7",
+      "rule_version": "2026-09-19.2",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:4c405dd9afd6e19522466b789714affc872050d04e43c7e02a60a6ca5725ee92",
+        "name": "PMC",
+        "retrieved": "2026-09-19",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7367685/"
+      }
+    }
+  ],
+  "id": "W-000012",
+  "records": [
+    {
+      "abstract": {
+        "cache": "sha256:6a0580b1bd111cfd07a243d6581619267c98e4b3d8900ad677f864d0dd154f30"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Grace E Hamilton",
+          "openalex": "A5059461353",
+          "orcid": "0000-0002-0522-0702",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Luke A. Helgeson",
+          "openalex": "A5061563381",
+          "orcid": "0000-0001-5112-2751",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Structural Biology, Genentech Inc, South San Francisco, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Cameron L. Noland",
+          "openalex": "A5065806766",
+          "orcid": "0000-0001-6364-3167",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Physiology and Biophysics, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Charles L. Asbury",
+          "openalex": "A5074569982",
+          "orcid": "0000-0002-0143-5394",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Structural Biology, Genentech Inc, South San Francisco, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Yoana N. Dimitrova",
+          "openalex": "A5010147592",
+          "orcid": "0000-0003-1547-5781",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Trisha N. Davis",
+          "openalex": "A5022826364",
+          "orcid": "0000-0003-4797-3152",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:4c405dd9afd6e19522466b789714affc872050d04e43c7e02a60a6ca5725ee92",
+        "checked": "2026-09-19",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000013",
+      "ids": {
+        "doi": "10.7554/elife.56582",
+        "openalex": "W3025330221",
+        "pmcid": "PMC7367685",
+        "pmid": "32406818"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.7554/elife.56582"
+      },
+      "published": "2020-05-14",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-19",
+        "pmc": "2026-09-19"
+      },
+      "title": "Reconstitution reveals two paths of force transmission through the kinetochore",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998,
+          "subfield": "Cell Biology",
+          "topic": "Microtubule and mitosis dynamics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9991,
+          "subfield": "Cell Biology",
+          "topic": "Cellular transport and secretion"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9983,
+          "subfield": "Cell Biology",
+          "topic": "Cellular Mechanics and Interactions"
+        }
+      ],
+      "venue": {
+        "issn_l": "2050-084X",
+        "name": "eLife",
+        "publisher": "eLife Sciences Publications Ltd"
+      },
+      "version_link": null,
+      "year": 2020
+    }
+  ],
+  "rule_version": "2026-09-19.2",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-19"
+  },
+  "updated": "2026-09-19"
+}

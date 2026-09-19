@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/common.schema.json",
+  "title": "Shared definitions for the UWPR publication store (docs/02-data-model.md)",
+  "$defs": {
+    "workId": {"type": "string", "pattern": "^W-[0-9]{6}$"},
+    "recordId": {"type": "string", "pattern": "^R-[0-9]{6}$"},
+    "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "datetime": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+    "ruleVersion": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}\\.[0-9]+$"},
+    "cacheRef": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nullableCacheRef": {"oneOf": [{"$ref": "#/$defs/cacheRef"}, {"type": "null"}]},
+    "doi": {"type": "string", "pattern": "^10\\.[^\\sA-Z]+$"},
+    "pmid": {"type": "string", "pattern": "^[0-9]+$"},
+    "pmcid": {"type": "string", "pattern": "^PMC[0-9]+$"},
+    "openalexWork": {"type": "string", "pattern": "^W[0-9]+$"},
+    "openalexAuthor": {"type": "string", "pattern": "^A[0-9]+$"},
+    "orcid": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"},
+    "ror": {"type": "string", "pattern": "^0[a-z0-9]{8}$"},
+    "pride": {"type": "string", "pattern": "^PXD[0-9]{6}$"},
+    "staffKey": {"enum": ["eng", "sharma", "riffle", "hoopmann", "vonhaller"]},
+    "channel": {"enum": ["A", "B1", "B2", "C1", "C2", "D1", "D2", "D3", "E", "F", "G", "J"]},
+
+    "ids": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "doi": {"oneOf": [{"$ref": "#/$defs/doi"}, {"type": "null"}]},
+        "pmid": {"oneOf": [{"$ref": "#/$defs/pmid"}, {"type": "null"}]},
+        "pmcid": {"oneOf": [{"$ref": "#/$defs/pmcid"}, {"type": "null"}]},
+        "openalex": {"oneOf": [{"$ref": "#/$defs/openalexWork"}, {"type": "null"}]},
+        "pride": {"type": "array", "items": {"$ref": "#/$defs/pride"}, "uniqueItems": true}
+      },
+      "anyOf": [
+        {"required": ["doi"], "properties": {"doi": {"$ref": "#/$defs/doi"}}},
+        {"required": ["pmid"], "properties": {"pmid": {"$ref": "#/$defs/pmid"}}},
+        {"required": ["openalex"], "properties": {"openalex": {"$ref": "#/$defs/openalexWork"}}}
+      ]
+    },
+
+    "affiliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw"],
+      "properties": {
+        "raw": {"type": "string"},
+        "ror": {"oneOf": [{"$ref": "#/$defs/ror"}, {"type": "null"}]},
+        "name": {"type": ["string", "null"]},
+        "country": {"oneOf": [{"type": "string", "pattern": "^[A-Z]{2}$"}, {"type": "null"}]}
+      }
+    },
+
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "orcid", "openalex", "staff", "corresponding", "affiliations"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "orcid": {"oneOf": [{"$ref": "#/$defs/orcid"}, {"type": "null"}]},
+        "openalex": {"oneOf": [{"$ref": "#/$defs/openalexAuthor"}, {"type": "null"}]},
+        "staff": {"oneOf": [{"$ref": "#/$defs/staffKey"}, {"type": "null"}]},
+        "corresponding": {"type": "boolean"},
+        "affiliations": {"type": "array", "items": {"$ref": "#/$defs/affiliation"}}
+      }
+    },
+
+    "topic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "field", "subfield", "topic", "score"],
+      "properties": {
+        "domain": {"type": "string"},
+        "field": {"type": "string"},
+        "subfield": {"type": "string"},
+        "topic": {"type": "string"},
+        "score": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+
+    "fulltext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "checked", "recheck_after", "cache"],
+      "properties": {
+        "status": {"enum": ["pmc_xml", "epmc_xml", "abstract_only", "unavailable"]},
+        "checked": {"$ref": "#/$defs/date"},
+        "recheck_after": {"oneOf": [{"$ref": "#/$defs/date"}, {"type": "null"}]},
+        "cache": {"$ref": "#/$defs/nullableCacheRef"}
+      }
+    },
+
+    "versionLink": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["to", "method"],
+          "properties": {
+            "to": {"$ref": "#/$defs/recordId"},
+            "method": {"enum": ["crossref_relation", "biorxiv_published", "openalex_locations", "title_author", "override"]}
+          }
+        }
+      ]
+    },
+
+    "includedKind": {"enum": ["article", "review", "letter", "data-paper", "book-chapter", "preprint"]},
+
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "ids", "title", "published", "year", "venue", "authors", "topics", "oa",
+                   "retracted", "fulltext", "abstract", "version_link", "sources"],
+      "properties": {
+        "id": {"$ref": "#/$defs/recordId"},
+        "kind": {"$ref": "#/$defs/includedKind"},
+        "ids": {"$ref": "#/$defs/ids"},
+        "title": {"type": "string", "minLength": 1},
+        "published": {"oneOf": [{"$ref": "#/$defs/date"}, {"type": "null"}]},
+        "year": {"type": "integer", "minimum": 1990, "maximum": 2100},
+        "venue": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "issn_l", "publisher"],
+              "properties": {
+                "name": {"type": "string"},
+                "issn_l": {"type": ["string", "null"]},
+                "publisher": {"type": ["string", "null"]}
+              }
+            }
+          ]
+        },
+        "authors": {"type": "array", "items": {"$ref": "#/$defs/author"}},
+        "topics": {"type": "array", "items": {"$ref": "#/$defs/topic"}},
+        "oa": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "url", "license"],
+          "properties": {
+            "status": {"enum": ["gold", "green", "hybrid", "bronze", "diamond", "closed", "unknown"]},
+            "url": {"type": ["string", "null"]},
+            "license": {"type": ["string", "null"]}
+          }
+        },
+        "retracted": {"type": "boolean"},
+        "fulltext": {"$ref": "#/$defs/fulltext"},
+        "abstract": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "object", "additionalProperties": false, "required": ["cache"], "properties": {"cache": {"$ref": "#/$defs/cacheRef"}}}
+          ]
+        },
+        "version_link": {"$ref": "#/$defs/versionLink"},
+        "sources": {
+          "type": "object",
+          "propertyNames": {"enum": ["openalex", "crossref", "epmc", "pubmed", "pmc", "pride", "uwpr_site"]},
+          "additionalProperties": {"$ref": "#/$defs/date"}
+        }
+      }
+    },
+
+    "candidateRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "ids", "title", "year"],
+      "properties": {
+        "id": {"$ref": "#/$defs/recordId"},
+        "kind": {"type": "string"},
+        "ids": {"$ref": "#/$defs/ids"},
+        "title": {"type": "string"},
+        "year": {"type": ["integer", "null"]}
+      }
+    },
+
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule", "criterion", "label", "record", "source", "section", "excerpt", "detail",
+                   "rule_version", "first_seen", "last_seen"],
+      "properties": {
+        "rule": {"enum": ["R1", "R2", "R3", "R3d", "R4", "R5", "R6", "R7", "override"]},
+        "criterion": {"oneOf": [{"type": "integer", "minimum": 1, "maximum": 4}, {"type": "null"}]},
+        "label": {"type": "string", "minLength": 1},
+        "record": {"oneOf": [{"$ref": "#/$defs/recordId"}, {"type": "null"}]},
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "url", "retrieved", "cache"],
+          "properties": {
+            "name": {"enum": ["UWPR website", "OpenAlex", "Crossref", "PMC", "Europe PMC", "PRIDE", "overrides.yaml"]},
+            "url": {"type": ["string", "null"]},
+            "retrieved": {"$ref": "#/$defs/date"},
+            "cache": {"$ref": "#/$defs/nullableCacheRef"}
+          }
+        },
+        "section": {"enum": ["official list", "metadata", "acknowledgements", "funding", "methods", "main text",
+                             "affiliation", "author notes", "dataset description", "full-text index", "override"]},
+        "excerpt": {"type": ["string", "null"], "maxLength": 400},
+        "detail": {"type": "object"},
+        "rule_version": {"$ref": "#/$defs/ruleVersion"},
+        "first_seen": {"$ref": "#/$defs/date"},
+        "last_seen": {"$ref": "#/$defs/date"},
+        "superseded": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["by_rule_version", "date"],
+          "properties": {
+            "by_rule_version": {"$ref": "#/$defs/ruleVersion"},
+            "date": {"$ref": "#/$defs/date"}
+          }
+        }
+      },
+      "allOf": [
+        {"if": {"properties": {"rule": {"const": "R1"}}},
+         "then": {"properties": {"criterion": {"const": 1}, "section": {"const": "official list"},
+                                 "detail": {"required": ["page", "list_key", "first_seen", "last_seen"]}}}},
+        {"if": {"properties": {"rule": {"const": "R2"}}}, "then": {"properties": {"criterion": {"const": 2}}}},
+        {"if": {"properties": {"rule": {"const": "R3d"}}},
+         "then": {"properties": {"criterion": {"const": 4}, "section": {"const": "dataset description"},
+                                 "detail": {"required": ["dataset"]}}}},
+        {"if": {"properties": {"rule": {"const": "R6"}}},
+         "then": {"properties": {"excerpt": {"const": null}, "section": {"const": "full-text index"},
+                                 "detail": {"required": ["phrase", "query_date"]}}}},
+        {"if": {"properties": {"rule": {"const": "R7"}}},
+         "then": {"properties": {"criterion": {"const": 3}, "detail": {"required": ["staff"]}}}},
+        {"if": {"properties": {"rule": {"const": "override"}}},
+         "then": {"properties": {"criterion": {"const": null}, "section": {"const": "override"}}}}
+      ]
+    },
+
+    "discovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channel", "record", "first_seen", "last_seen"],
+      "properties": {
+        "channel": {"$ref": "#/$defs/channel"},
+        "record": {"$ref": "#/$defs/recordId"},
+        "first_seen": {"$ref": "#/$defs/date"},
+        "last_seen": {"$ref": "#/$defs/date"}
+      }
+    }
+  }
+}

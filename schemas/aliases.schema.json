@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/aliases.schema.json",
+  "title": "store/aliases.json: every external ID and retired work ID mapped to its current work ID (docs/02-data-model.md §4)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "aliases"],
+  "properties": {
+    "schema": {"const": 1},
+    "aliases": {
+      "type": "object",
+      "propertyNames": {"pattern": "^(doi:10\\.[^\\sA-Z]+|pmid:[0-9]+|pmcid:PMC[0-9]+|openalex:W[0-9]+|pride:PXD[0-9]{6}|list:[a-z0-9]+:[0-9a-f]{12}|work:W-[0-9]{6})$"},
+      "additionalProperties": {"$ref": "common.schema.json#/$defs/workId"}
+    }
+  }
+}

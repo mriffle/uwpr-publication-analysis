@@ -1,0 +1,218 @@
+{
+  "aliases": [],
+  "canonical": "R-000009",
+  "created": "2026-09-19",
+  "discovery": [
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000009"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-19",
+      "last_seen": "2026-09-19",
+      "record": "R-000009"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Mass spectrometry was carried out at the University of Washington Proteomics Resource (Seattle, WA, USA).",
+      "first_seen": "2026-09-19",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-19",
+      "record": "R-000009",
+      "rule": "R3",
+      "rule_version": "2026-09-19.2",
+      "section": "methods",
+      "source": {
+        "cache": "sha256:c0ba7c36d931073625790aa87731d82f2245109277cb445b00706517e6fc0389",
+        "name": "PMC",
+        "retrieved": "2026-09-19",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10339035/"
+      }
+    }
+  ],
+  "id": "W-000008",
+  "records": [
+    {
+      "abstract": {
+        "cache": "sha256:828377eaf86f410f127caaa8bf7449796c11a2669ab2c23006d50f5a2fb39ff0"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "raw": "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA",
+              "ror": "01485tq96"
+            }
+          ],
+          "corresponding": false,
+          "name": "Boopathi Balasubramaniam",
+          "openalex": "A5024429508",
+          "orcid": "0000-0002-1230-7873",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington 2 Department of Biochemistry , , Seattle 98195-7350 , WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Irini Topalidou",
+          "openalex": "A5060179658",
+          "orcid": "0000-0003-1115-4251",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "raw": "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA",
+              "ror": "01485tq96"
+            }
+          ],
+          "corresponding": false,
+          "name": "Melissa L. Kelley",
+          "openalex": "A5054251605",
+          "orcid": "0000-0003-2207-8936",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "raw": "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA",
+              "ror": "01485tq96"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sarina M. Meadows",
+          "openalex": "A5010795079",
+          "orcid": "0000-0002-7342-6120",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "raw": "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA",
+              "ror": "01485tq96"
+            }
+          ],
+          "corresponding": false,
+          "name": "Owen H. Funk",
+          "openalex": "A5079584017",
+          "orcid": "0000-0001-6524-6958",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington 2 Department of Biochemistry , , Seattle 98195-7350 , WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Ailion",
+          "openalex": "A5090772669",
+          "orcid": "0000-0002-8070-1362",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "raw": "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA",
+              "ror": "01485tq96"
+            }
+          ],
+          "corresponding": false,
+          "name": "David S. Fay",
+          "openalex": "A5073102971",
+          "orcid": "0000-0002-7599-4017",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:c0ba7c36d931073625790aa87731d82f2245109277cb445b00706517e6fc0389",
+        "checked": "2026-09-19",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000009",
+      "ids": {
+        "doi": "10.1242/bio.059982",
+        "openalex": "W4381598604",
+        "pmcid": "PMC10339035",
+        "pmid": "37345480"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://journals.biologists.com/bio/article-pdf/doi/10.1242/bio.059982/2980287/bio059982.pdf"
+      },
+      "published": "2023-06-22",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-19",
+        "pmc": "2026-09-19"
+      },
+      "title": "Effectors of anterior morphogenesis in C. elegans embryos",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9999,
+          "subfield": "Aging",
+          "topic": "Genetics, Aging, and Longevity in Model Organisms"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Energy",
+          "score": 0.9628,
+          "subfield": "Renewable Energy, Sustainability and the Environment",
+          "topic": "Algal biology and biofuel production"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Materials Science",
+          "score": 0.9382,
+          "subfield": "Materials Chemistry",
+          "topic": "Nanoparticles: synthesis and applications"
+        }
+      ],
+      "venue": {
+        "issn_l": "2046-6390",
+        "name": "Biology Open",
+        "publisher": "The Company of Biologists"
+      },
+      "version_link": null,
+      "year": 2023
+    }
+  ],
+  "rule_version": "2026-09-19.2",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-19"
+  },
+  "updated": "2026-09-19"
+}

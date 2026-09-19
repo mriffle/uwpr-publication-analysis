@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/overrides.schema.json",
+  "title": "overrides.yaml (docs/02-data-model.md §9)",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["target", "action", "reason", "by", "date"],
+    "properties": {
+      "target": {
+        "oneOf": [
+          {"type": "string", "pattern": "^(W-[0-9]{6}|10\\.[^\\sA-Z]+|[0-9]+)$"},
+          {"type": "array", "minItems": 2, "items": {"$ref": "common.schema.json#/$defs/workId"}}
+        ]
+      },
+      "action": {"enum": ["include", "exclude", "merge", "split"]},
+      "reason": {"type": "string", "minLength": 1},
+      "by": {"type": "string", "minLength": 1},
+      "date": {"$ref": "common.schema.json#/$defs/date"},
+      "records": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/recordId"}, "minItems": 1}
+    },
+    "allOf": [
+      {"if": {"properties": {"action": {"const": "merge"}}}, "then": {"properties": {"target": {"type": "array"}}}},
+      {"if": {"properties": {"action": {"enum": ["include", "exclude", "split"]}}}, "then": {"properties": {"target": {"type": "string"}}}},
+      {"if": {"properties": {"action": {"const": "split"}}}, "then": {"required": ["records"]}}
+    ]
+  }
+}
