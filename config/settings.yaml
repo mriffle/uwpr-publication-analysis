@@ -1,0 +1,25 @@
+# Pipeline settings (docs/03-retrieval-pipeline.md §10.1). Schema: schemas/config/settings.schema.json
+schema: 1
+contact: mriffle@uw.edu              # sent to APIs as mailto/email (public); fixed by project rule
+window_start: 2006                   # Phase 1 D4
+official_list:
+  index_url: https://proteomicsresource.washington.edu/publications/
+  page_link_pattern: '^(?:https://proteomicsresource\.washington\.edu)?/publications/(?:[0-9]{4}|older)/$'
+openalex: {max_run_usd: 0.50, min_remaining_usd: 0.10}
+rate_limits:                         # requests per second (§7)
+  ncbi: 3
+  ncbi_with_key: 10
+  europepmc: 5
+  openalex: 5
+  crossref: 5
+  pride: 2
+  biorxiv: 2
+  uwpr_site: 1
+max_attempts: 4                      # per request, with backoff (§7)
+recheck_days: 90                     # unreadable text is looked for again after this (P9)
+last_seen_refresh_days: 28           # P11
+list_drop_tolerance: 0.10            # §5 stage 1
+recall_baseline: {with_evidence: 201, assessable: 246}   # 82%, Phase 1 §4.2
+recall_alert_points: 5               # §9
+degraded_to_alert_after: 3           # §9
+timezone_for_dates: UTC

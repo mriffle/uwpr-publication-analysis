@@ -164,7 +164,7 @@ their outputs to the staging directory. Only stage 13 touches the real `store/`,
 | # | Stage | What it does | Spec |
 |---|---|---|---|
 | 0 | **Pre-check** | Load config (schema-checked) and the committed store. Refuse to run if `store/`, `kb/` or `export/` has uncommitted changes (except with `--dry-run`); a half-finished earlier run is reset with `git checkout`. Run the validator; if the committed store is invalid, stop. Rules-fingerprint guard (§10.4). | Phase 2 §14 |
-| 1 | **Official list** | Fetch the UWPR publication pages; parse the entries. Save raw pages only when their hash changes. Update `entries.jsonl` first/last seen (exact dates). Parse check: every page must yield entries, and the total must not fall more than 10% from the last run; otherwise treat the list as a failed source (§9). | Phase 1 §5 A; Phase 2 §7 |
+| 1 | **Official list** | Fetch the index page and the year pages it links to (`settings.official_list`); parse the entries. The "year page" in an entry's key (Phase 2 §7) is the page's year heading ("2026"), or `older` for the page headed "2021 and Previous Years", not its URL. That keeps keys stable when the current year moves from `/publications/` to its own page. Save raw pages only when their hash changes. Update `entries.jsonl` first/last seen (exact dates). Parse check: every page must yield entries, and the total must not fall more than 10% from the last run; otherwise treat the list as a failed source (§9). | Phase 1 §5 A; Phase 2 §7 |
 | 2 | **Discover** | Run every enabled channel (Phase 1 §5). Output: nominations (external IDs + channel). Kept for later stages: the B1 and B2 result records (R2 metadata), and the DOI sets of the three R6 phrase queries. Check the staff OpenAlex IDs against ORCID (§10.2). | Phase 1 §5, §5.1, §6.5 |
 | 3 | **Resolve and refresh** | Match each nomination to an existing record or work (Phase 2 §4), else create a record and work. Apply the record-type filter and the 2006 window. Update discovery first/last seen. Then **refresh OpenAlex metadata for every record** in the store, included or not, by batched ID filter (50 per request; about 22 requests, ≈ $0.002). This single fetch supplies R2 and R5 metadata and the citations for stage 8. | Phase 1 §8; Phase 2 §4, §6 |
 | 4 | **Fetch text** | For each record that needs evaluation (§6.1), get readable text in source order (Phase 1 §7). | Phase 1 §7 |
@@ -347,7 +347,20 @@ Four outcomes:
 
 ## 10. Configuration (`config/`)
 
-All config files are validated against `schemas/config/*.schema.json` in stage 0.
+All config files are validated against `schemas/config/*.schema.json` in stage 0. Every file
+carries `schema: 1` (Phase 2 §15).
+
+**Drafted 2026-09-19:** the five schemas and the real `config/*.yaml`, transcribed from Phase 1.
+`tests/test_config.py` checks the following on every push:
+- each file against its schema;
+- every regex compiles;
+- each Phase 1 §6.6 name form matches exactly its own staff member, and bare surnames match
+  no one;
+- every Phase 1 channel is configured;
+- the R6 phrases are among the OpenAlex queries;
+- the evidence labels equal those in the sample store.
+
+It stands in for `uwpr_pubs.config` until that module exists.
 
 ### 10.1 `settings.yaml`
 
@@ -379,17 +392,21 @@ never adds IDs itself: same-name authors exist, so a person confirms each ID.
 
 ### 10.3 `channels.yaml`
 
-One entry per Phase 1 §5 channel:
+One entry per Phase 1 §5 channel and source. D3 and F each run on Europe PMC and OpenAlex, so
+each has two entries.
 
 ```yaml
 - id: C1
   source: europepmc
-  query: '"UWPR95794" OR "UWPR 95794" OR UWPR*'
+  description: UWPR award code or acronym in Europe PMC full text
   enabled: true
+  queries:
+    - '"UWPR95794" OR "UWPR 95794" OR UWPR*'
   max_results: 3000        # safety valve: more than this fails the channel loudly
 ```
 
-A channel may have several queries. The early-era misspelling searches of Phase 1 §9
+A channel may have several queries. Channel G has none. It sets `queries_from_staff: true`, and
+its queries are built from the staff OpenAlex IDs, each limited to that person's tenure. The early-era misspelling searches of Phase 1 §9
 (`"Van Haller"`, `"vonHaller"`) are extra queries in channels E and D3, so the channel IDs in
 the schemas are unchanged.
 
@@ -615,7 +632,8 @@ metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
 - [ ] Reviewed and agreed.
 - [x] Draft 2 reviewed against Phases 1–2; gaps resolved (P10–P15, Phase 2 changes dated
       2026-09-19).
-- [ ] Config schemas (`schemas/config/`) drafted.
+- [x] Config schemas (`schemas/config/`) drafted, with the real `config/*.yaml` validated
+      against them (2026-09-19, §10).
 - [x] `pyproject.toml` with ruff/mypy/pytest settings and an empty package that passes all three
       checks (2026-09-19; also rehearsed on a clean copy of the repository).
 - [ ] `check.yml` running green on GitHub, so the quality gate exists before any pipeline code.

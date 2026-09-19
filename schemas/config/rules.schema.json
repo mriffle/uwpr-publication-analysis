@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/config/rules.schema.json",
+  "title": "Inclusion rules: config/rules.yaml (docs/03-retrieval-pipeline.md §10.4; Phase 1 §1, §6, §8). Any change needs a new rule_version.",
+  "description": "Patterns are Python regular expressions. They are case-sensitive unless they start with (?i).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "rule_version", "record_types", "text", "r2", "r3", "r4", "r5", "r6", "r7", "signals",
+               "labels"],
+  "properties": {
+    "schema": {"const": 1},
+    "rule_version": {"$ref": "../common.schema.json#/$defs/ruleVersion"},
+    "record_types": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["openalex_types", "crossref_types", "exclude_doi_patterns", "exclude_title_pattern",
+                   "repository_copy_doi_prefixes"],
+      "properties": {
+        "openalex_types": {"$ref": "#/$defs/typeMap"},
+        "crossref_types": {"$ref": "#/$defs/typeMap"},
+        "exclude_doi_patterns": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["pattern", "kind"],
+            "properties": {"pattern": {"$ref": "#/$defs/pattern"}, "kind": {"$ref": "#/$defs/excludedKind"}}
+          }
+        },
+        "exclude_title_pattern": {
+          "type": "object", "additionalProperties": false, "required": ["pattern", "kind"],
+          "properties": {"pattern": {"$ref": "#/$defs/pattern"}, "kind": {"$ref": "#/$defs/excludedKind"}}
+        },
+        "repository_copy_doi_prefixes": {"type": "array", "items": {"type": "string", "pattern": "^10\\.[0-9]+/$"}}
+      }
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unicode_normalisation", "remove_elements", "keep_elements", "block_elements", "drop_elements",
+                   "sentence_end", "abbreviations", "sections", "methods_title_pattern", "ack_whole_block_fallback"],
+      "properties": {
+        "unicode_normalisation": {"const": "NFKC"},
+        "remove_elements": {"$ref": "#/$defs/elements"},
+        "keep_elements": {"$ref": "#/$defs/elements"},
+        "block_elements": {"$ref": "#/$defs/elements"},
+        "drop_elements": {"$ref": "#/$defs/elements"},
+        "sentence_end": {"$ref": "#/$defs/pattern"},
+        "abbreviations": {
+          "description": "Words after which a full stop never ends a sentence; single initials and runs of initials are handled in code (Phase 1 §6.1)",
+          "type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}
+        },
+        "sections": {
+          "description": "JATS element → evidence section, for text inside that element",
+          "type": "object",
+          "propertyNames": {"pattern": "^[a-z][a-z-]*$"},
+          "additionalProperties": {"enum": ["acknowledgements", "funding", "author notes", "affiliation"]}
+        },
+        "methods_title_pattern": {"$ref": "#/$defs/pattern"},
+        "ack_whole_block_fallback": {"type": "boolean"}
+      }
+    },
+    "r2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "near_miss_pattern"],
+      "properties": {
+        "code": {"type": "string", "pattern": "^[A-Z0-9]+$"},
+        "near_miss_pattern": {"$ref": "#/$defs/pattern"}
+      }
+    },
+    "r3": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uw", "resource", "max_gap", "acronym", "merge_within", "exclusion_window", "exclusions"],
+      "properties": {
+        "uw": {"$ref": "#/$defs/pattern"},
+        "resource": {"$ref": "#/$defs/pattern"},
+        "max_gap": {"$ref": "#/$defs/chars"},
+        "acronym": {"$ref": "#/$defs/pattern"},
+        "merge_within": {"$ref": "#/$defs/chars"},
+        "exclusion_window": {"$ref": "#/$defs/chars"},
+        "exclusions": {
+          "description": "Case-insensitive substrings; a mention with any of them within exclusion_window characters is discarded",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["url", "hardware", "software", "tool", "other_org"],
+          "properties": {
+            "url": {"$ref": "#/$defs/terms"},
+            "hardware": {"$ref": "#/$defs/terms"},
+            "software": {"$ref": "#/$defs/terms"},
+            "tool": {"$ref": "#/$defs/terms"},
+            "other_org": {"$ref": "#/$defs/terms"}
+          }
+        }
+      }
+    },
+    "r4": {
+      "type": "object", "additionalProperties": false, "required": ["pattern"],
+      "properties": {"pattern": {"$ref": "#/$defs/pattern"}}
+    },
+    "r5": {
+      "description": "An affiliation string matching r3.resource and university, without an r3 other_org term",
+      "type": "object", "additionalProperties": false, "required": ["university"],
+      "properties": {"university": {"$ref": "#/$defs/pattern"}}
+    },
+    "r6": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["include_phrases", "nominate_only"],
+      "properties": {
+        "include_phrases": {"$ref": "#/$defs/terms"},
+        "nominate_only": {"$ref": "#/$defs/terms"}
+      }
+    },
+    "r7": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["thanks", "thanks_scope", "purpose_max_chars", "work", "disqualifiers"],
+      "properties": {
+        "thanks": {"$ref": "#/$defs/pattern"},
+        "thanks_scope": {"const": "same_or_previous_sentence"},
+        "purpose_max_chars": {"$ref": "#/$defs/chars"},
+        "work": {
+          "description": "Help-with-work wording, tested on the purpose phrase. An item fires if its pattern matches, or if all of its patterns match.",
+          "type": "array", "minItems": 1,
+          "items": {
+            "oneOf": [
+              {"$ref": "#/$defs/pattern"},
+              {"type": "object", "additionalProperties": false, "required": ["all"],
+               "properties": {"all": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/pattern"}}}}
+            ]
+          }
+        },
+        "disqualifiers": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["discussion", "development", "deposition", "other_institution"],
+          "properties": {
+            "discussion": {"$ref": "#/$defs/pattern"},
+            "development": {"$ref": "#/$defs/pattern"},
+            "deposition": {"$ref": "#/$defs/pattern"},
+            "other_institution": {"$ref": "#/$defs/pattern"}
+          }
+        }
+      }
+    },
+    "signals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cores", "exclusion_signals"],
+      "properties": {
+        "cores": {
+          "description": "Excluded cores (Phase 1 D1a, D1b): key → pattern; recorded as core_named:<key>",
+          "type": "object",
+          "propertyNames": {"pattern": "^[a-z0-9_]+$"},
+          "additionalProperties": {"$ref": "#/$defs/pattern"}
+        },
+        "exclusion_signals": {
+          "description": "R3 exclusion category → the signal recorded when it discards a mention",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["url", "hardware", "software", "tool", "other_org"],
+          "properties": {
+            "url": {"$ref": "#/$defs/signalOrNull"},
+            "hardware": {"$ref": "#/$defs/signalOrNull"},
+            "software": {"$ref": "#/$defs/signalOrNull"},
+            "tool": {"$ref": "#/$defs/signalOrNull"},
+            "other_org": {"$ref": "#/$defs/signalOrNull"}
+          }
+        }
+      }
+    },
+    "labels": {
+      "description": "Plain-language evidence labels (Phase 2 §5.3)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["R1", "R2.metadata", "R2.text", "R3", "R3d", "R4", "R5", "R6", "R7"],
+      "properties": {
+        "R1": {"$ref": "#/$defs/label"},
+        "R2.metadata": {"$ref": "#/$defs/label"},
+        "R2.text": {"$ref": "#/$defs/label"},
+        "R3": {"$ref": "#/$defs/label"},
+        "R3d": {"$ref": "#/$defs/label"},
+        "R4": {"$ref": "#/$defs/label"},
+        "R5": {"$ref": "#/$defs/label"},
+        "R6": {"$ref": "#/$defs/label"},
+        "R7": {"$ref": "#/$defs/label"}
+      }
+    }
+  },
+  "$defs": {
+    "pattern": {"type": "string", "minLength": 1},
+    "terms": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "chars": {"type": "integer", "minimum": 1, "maximum": 1000},
+    "label": {"type": "string", "minLength": 1, "maxLength": 200},
+    "elements": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z][a-z-]*$"}},
+    "excludedKind": {
+      "enum": ["peer-review", "recommendation", "erratum", "paratext", "dataset", "conference-abstract",
+               "abstract-compilation", "dissertation", "other"]
+    },
+    "typeMap": {
+      "description": "Source record type → an included kind, an excluded kind, or 'repository-copy'",
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {"$ref": "../common.schema.json#/$defs/includedKind"},
+          {"$ref": "#/$defs/excludedKind"},
+          {"const": "repository-copy"}
+        ]
+      }
+    },
+    "signalOrNull": {
+      "oneOf": [
+        {"type": "null"},
+        {"enum": ["uwpr_tool_mention", "uwpr_hardware_mention", "uwpr_software_mention"]}
+      ]
+    }
+  }
+}

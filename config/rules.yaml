@@ -1,0 +1,155 @@
+# Inclusion rules (docs/03-retrieval-pipeline.md §10.4; Phase 1 §1, §6, §8). Schema: schemas/config/rules.schema.json
+#
+# ANY change to this file (or to staff.yaml) needs a new rule_version; the next run then
+# re-evaluates every work. Patterns are Python regexes, case-sensitive unless they start with (?i).
+#
+# This is the first encoding of the frozen Phase 1 rules. The rule unit tests (Phase 3 §12.2),
+# built from the Phase 1 and 01a example sentences, pin down each pattern's behaviour. Until the
+# first live run there is no stored evidence, so fixes made to pass those tests need no new version.
+schema: 1
+rule_version: "2026-09-19.2"          # the calibrated rules of Phase 1 (same as the sample store)
+
+# --- Record types (Phase 1 §1, §8) --------------------------------------------------------------
+# Types not in Phase 1 §1's included list are excluded ("other"). R1 still includes a listed work
+# whatever its type (Phase 2 §13).
+record_types:
+  openalex_types:
+    article: article
+    review: review
+    letter: letter
+    preprint: preprint
+    book-chapter: book-chapter
+    peer-review: peer-review
+    erratum: erratum
+    retraction: erratum
+    paratext: paratext
+    dataset: dataset
+    dissertation: dissertation
+    supplementary-materials: paratext
+    editorial: other
+    book: other
+    report: other
+    reference-entry: other
+    standard: other
+    grant: other
+    libguides: other
+    other: other
+  crossref_types:
+    journal-article: article
+    posted-content: preprint
+    book-chapter: book-chapter
+    peer-review: peer-review
+    dataset: dataset
+    dissertation: dissertation
+    component: paratext
+    proceedings-article: other
+    book: other
+    monograph: other
+    report: other
+    other: other
+  exclude_doi_patterns:
+    - {pattern: '^10\.7287/.+/reviews', kind: peer-review}     # PeerJ review records
+    - {pattern: '^10\.3410/f\.', kind: recommendation}         # Faculty Opinions
+  exclude_title_pattern: {pattern: '\bAbstracts\b', kind: abstract-compilation}
+  repository_copy_doi_prefixes: ['10.17615/']                  # become versions of the article
+
+# --- Text normalisation (Phase 1 §6.1) ----------------------------------------------------------
+text:
+  unicode_normalisation: NFKC
+  remove_elements: [ref-list, table-wrap, contrib-group]
+  keep_elements: [body, ack, funding-group, author-notes, fn-group, notes, supplementary-material]
+  block_elements: [p, title, aff, fn, td, th, li, caption, funding-statement]
+  drop_elements: [label]
+  sentence_end: '[.;](?=\s)'
+  abbreviations: [Dr, Prof, et al, e.g, i.e, Fig, Ref]
+  sections:
+    ack: acknowledgements
+    funding-group: funding
+    author-notes: author notes
+    fn-group: author notes
+    aff: affiliation
+  methods_title_pattern: '(?i)method|material|experimental procedure|mass spectrometr'
+  ack_whole_block_fallback: true
+
+# --- R2: award code (Phase 1 §6.2) --------------------------------------------------------------
+# Matched after removing non-alphanumerics and uppercasing, as a substring.
+r2:
+  code: UWPR95794
+  near_miss_pattern: 'UWPR[\s\-_:#]*\d{4,6}'   # logged as a signal only
+
+# --- R3: resource named (Phase 1 §6.3) ----------------------------------------------------------
+r3:
+  uw: 'University of Washington(?:''s|’s)?|\bUW(?:''s|’s)?\b'
+  resource: '(?i)Proteom(?:ics|e) Resources?(?: Cent(?:er|re)| Facility| Core)?'
+  max_gap: 40                        # UW then RES, or RES then UW, within this many characters
+  acronym: '(?<!/)\bUWPR\b'          # case-sensitive; not in a URL path
+  merge_within: 20                   # matches this close form one mention
+  exclusion_window: 40               # characters either side of a mention
+  exclusions:                        # case-insensitive substrings
+    url: [github, /UWPR, proteomicsresource.washington.edu/]
+    hardware: [nanospray, NSI source, nano-ESI, source, plans, manufactured]
+    software: [Comet, Lorikeet, Kojak, Hardklor, Limelight, SEQUEST, search engine]
+    tool: [calculator, tool]         # UWPR's online tools, e.g. the fragmentation calculator (D6)
+    other_org: [Fred Hutch, FHCRC, Hutchinson]
+
+# --- R4: early-era facility (Phase 1 §6.4) ------------------------------------------------------
+r4:
+  pattern: '(?i)South Lake Union.{0,40}?(?:Mass Spec\w*|Proteomics).{0,20}?(?:Facility|Resource|Core)'
+
+# --- R5: affiliation is the resource (Phase 1 §6.4) ---------------------------------------------
+r5:
+  university: 'University of Washington'
+
+# --- R6: OpenAlex full-text proxy (Phase 1 §6.5) ------------------------------------------------
+# Only for records with no readable text of our own. Criterion 2 for the code, else 4.
+r6:
+  include_phrases:
+    - '"Washington''s Proteomics Resource"'
+    - '"Washington Proteomics Resource"'
+    - UWPR95794
+  nominate_only:
+    - '"Proteomics Resource" "University of Washington"'   # 93% precise: nominates, never includes
+
+# --- R7: staff thanked for analysis or technical help (Phase 1 §6.6) ----------------------------
+# Name forms and tenure are in staff.yaml. The work wording and disqualifiers are tested on the
+# purpose phrase: the "for ..." phrase after the staff name.
+r7:
+  thanks: '(?i)thank|acknowledg|grateful|indebted|appreciat'
+  thanks_scope: same_or_previous_sentence
+  purpose_max_chars: 160
+  work:
+    - '(?i)data analysis'
+    - '(?i)analy[sz]\w*(?:\s+\S+){0,3}?\s+(?:samples?|data|spectra|proteins?|peptides?)\b'
+    - '(?i)technical (?:assistance|support|help)'
+    - all: ['(?i)mass spectromet', '(?i)analy|experiment|support|assist|help']
+    - '(?i)\b(?:instrument\w*|access|acqui\w*|perform\w*|carried out|ran|run)\b'
+    # "assistance with" / "help with" followed by any of the above is covered by the above.
+  disqualifiers:
+    discussion: '(?i)discussion|conversation|comment|correspondence|feedback|critical reading|manuscript'
+    development: '(?i)contribut\w* to|development of|design of|guidance in the development|advice (?:with|on) using|the use'
+    deposition: '(?i)Panorama|ProteomeXchange|PRIDE|deposit'          # C4
+    other_institution: 'Institute for Systems Biology|\bISB\b'        # C5
+
+# --- Signals for works not included (Phase 2 §6; Phase 3 §6.4) ----------------------------------
+signals:
+  cores:                             # D1a, D1b: never evidence
+    drc: '(?i)Quantitative (?:and|&) Functional Proteomics Core|P30 ?DK ?0?17047'
+    dom_msr: '(?i)(?:Department|Dept\.?) of Medicine(?:''s)? Mass Spectrometry (?:Resource|Facility|Core)'
+  exclusion_signals:
+    url: uwpr_software_mention
+    hardware: uwpr_hardware_mention
+    software: uwpr_software_mention
+    tool: uwpr_tool_mention
+    other_org: null
+
+# --- Evidence labels (Phase 2 §5.3) -------------------------------------------------------------
+labels:
+  R1: Listed on UWPR's publications page
+  R2.metadata: UWPR award code (UWPR95794) in the publication's funding metadata
+  R2.text: UWPR award code (UWPR95794) stated in the paper
+  R3: The paper names the UW Proteomics Resource
+  R3d: The paper's public dataset record says the work was done at the UW Proteomics Resource
+  R4: The paper names UWPR's early-era facility (South Lake Union Mass Spec Facility)
+  R5: An author's affiliation is the UW Proteomics Resource
+  R6: Phrase found in OpenAlex's full-text index of the paper
+  R7: A UWPR staff member is thanked for data-analysis or technical help

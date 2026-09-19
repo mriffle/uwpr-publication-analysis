@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/config/fixtures.schema.json",
+  "title": "Test papers: config/fixtures.yaml (docs/03-retrieval-pipeline.md §10.5; Phase 1 §12)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "fixtures"],
+  "properties": {
+    "schema": {"const": 1},
+    "fixtures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "description", "ids", "expected"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9]*$|^neg-[a-z0-9-]+$"},
+          "description": {"type": "string", "minLength": 1},
+          "ids": {
+            "description": "Real identifiers; empty for a synthetic-only negative fixture",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "doi": {"$ref": "../common.schema.json#/$defs/doi"},
+              "pmid": {"type": "string", "pattern": "^[0-9]+$"},
+              "pmcid": {"type": "string", "pattern": "^PMC[0-9]+$"},
+              "pride": {"type": "string", "pattern": "^PXD[0-9]+$"},
+              "family": {
+                "description": "DOIs of other versions expected in the same work",
+                "type": "array", "items": {"$ref": "../common.schema.json#/$defs/doi"}
+              }
+            }
+          },
+          "expected": {"enum": ["include", "exclude", "known_miss"]},
+          "rules": {
+            "description": "For include: rules that must fire (others may fire too)",
+            "type": "array", "uniqueItems": true, "minItems": 1,
+            "items": {"enum": ["R1", "R2", "R3", "R3d", "R4", "R5", "R6", "R7"]}
+          },
+          "rules_absent": {
+            "description": "Rules that must not fire",
+            "type": "array", "uniqueItems": true, "minItems": 1,
+            "items": {"enum": ["R1", "R2", "R3", "R3d", "R4", "R5", "R6", "R7"]}
+          },
+          "offline": {
+            "description": "What backs the offline test (§12.3); filled in when recordings are made",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "recordings": {"type": "array", "items": {"type": "string", "minLength": 1}},
+              "synthetic": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "allOf": [
+          {"if": {"properties": {"expected": {"const": "include"}}}, "then": {"required": ["rules"]}},
+          {"if": {"properties": {"expected": {"enum": ["include", "known_miss"]}}},
+           "then": {"properties": {"ids": {"minProperties": 1}}}}
+        ]
+      }
+    }
+  }
+}

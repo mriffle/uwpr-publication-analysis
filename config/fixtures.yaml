@@ -1,0 +1,101 @@
+# Test papers (docs/03-retrieval-pipeline.md §10.5; Phase 1 §12). Schema: schemas/config/fixtures.schema.json
+# For include, `rules` must fire (others may too). Negative fixtures without identifiers are
+# synthetic documents, offline only; the two with DOIs were confirmed off the official list in
+# calibration (01a Part 2, rows 1 and 15). `offline` is filled in when recordings are made (§12.3).
+schema: 1
+fixtures:
+  - id: A
+    description: ISME metaproteomics; award code in the text, with the transposed UWPR59794 absent
+    ids: {doi: 10.1038/ismej.2016.132}
+    expected: include
+    rules: [R2]
+  - id: B
+    description: IJMS aminoketyl (von Haller, LTQ XL); paywalled, not in PMC or OpenAlex full text
+    ids: {doi: 10.1016/j.ijms.2010.06.025}
+    expected: known_miss
+  - id: B2
+    description: IJMS histatin (von Haller); as B
+    ids: {doi: 10.1016/j.ijms.2010.08.021}
+    expected: known_miss
+  - id: C
+    description: Diatom protein in seawater; text not in PMC, found through OpenAlex full text
+    ids: {doi: 10.3389/fmars.2021.757245}
+    expected: include
+    rules: [R6]
+  - id: D
+    description: Casanovo article and preprint; award code in metadata; one work
+    ids: {doi: 10.1021/acs.jproteome.5c00706, family: [10.1101/2025.07.25.666826]}
+    expected: include
+    rules: [R2]
+  - id: E
+    description: APOA2 on HDL
+    ids: {doi: 10.1016/j.jlr.2026.101113}
+    expected: include
+    rules: [R2]
+  - id: F
+    description: Nettle preprint
+    ids: {doi: 10.1101/2025.05.27.656394}
+    expected: include
+    rules: [R2]
+  - id: G
+    description: Fragmentation-tool user on the official list (EpeE, 2026); R3 excluded by C6/D6
+    ids: {pmcid: PMC13012085}
+    expected: include
+    rules: [R1]
+    rules_absent: [R3]
+  - id: H
+    description: Initials in an acknowledgement ("P. von Haller ... for technical assistance")
+    ids: {pmid: "21875946"}
+    expected: include
+    rules: [R7]
+  - id: I
+    description: Misspelt staff name ("Dr. Priska von Haler"); also on the list and R3
+    ids: {pmid: "22669761"}
+    expected: include
+    rules: [R1, R3]
+  - id: J
+    description: Evidence only in a PRIDE dataset description (PXD011642)
+    ids: {pmid: "32613749", pride: PXD011642}
+    expected: include
+    rules: [R3d]
+
+  - id: neg-comet-url
+    description: Cites github.com/UWPR/Comet in a software table
+    ids: {}
+    expected: exclude
+  - id: neg-nanospray
+    description: Uses a "UWPR nanospray source" built from UWPR's posted design
+    ids: {}
+    expected: exclude
+  - id: neg-sawn
+    description: 2010 SAWN paper; stage built "according to plans from" UWPR
+    ids: {doi: 10.1021/ac100372c}
+    expected: exclude
+  - id: neg-hunt-lab-guide
+    description: Hunt Lab guide; UWPR in a list of software tools
+    ids: {doi: 10.1016/j.mcpro.2024.100875}
+    expected: exclude
+  - id: neg-fred-hutch
+    description: Fred Hutch "Proteomics Resource" affiliation
+    ids: {}
+    expected: exclude
+  - id: neg-panorama
+    description: Staff thanked for help depositing data in Panorama Public (C4)
+    ids: {}
+    expected: exclude
+  - id: neg-isb
+    description: Staff member thanked while at the Institute for Systems Biology (C5)
+    ids: {}
+    expected: exclude
+  - id: neg-peer-review
+    description: Peer-review record carrying the award code (C7)
+    ids: {}
+    expected: exclude
+  - id: neg-core-only
+    description: Credits only the DRC core or the Dept. of Medicine MS Resource; not on the list (D1)
+    ids: {}
+    expected: exclude
+  - id: neg-calculator
+    description: Only UWPR mention is the online fragmentation calculator; not on the list (D6)
+    ids: {}
+    expected: exclude

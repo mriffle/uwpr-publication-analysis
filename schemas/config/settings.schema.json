@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/config/settings.schema.json",
+  "title": "Pipeline settings: config/settings.yaml (docs/03-retrieval-pipeline.md §10.1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "contact", "window_start", "official_list", "openalex", "rate_limits", "max_attempts",
+               "recheck_days", "last_seen_refresh_days", "list_drop_tolerance", "recall_baseline",
+               "recall_alert_points", "degraded_to_alert_after", "timezone_for_dates"],
+  "properties": {
+    "schema": {"const": 1},
+    "contact": {
+      "description": "Sent to APIs as mailto/email/User-Agent contact. Fixed by project rule: no other personal address is ever sent (Phase 1 §7).",
+      "const": "mriffle@uw.edu"
+    },
+    "window_start": {"type": "integer", "minimum": 1990, "maximum": 2100},
+    "official_list": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index_url", "page_link_pattern"],
+      "properties": {
+        "index_url": {"type": "string", "pattern": "^https://proteomicsresource\\.washington\\.edu/"},
+        "page_link_pattern": {"description": "Regex for links from the index to the year and 'older' pages", "type": "string", "minLength": 1}
+      }
+    },
+    "openalex": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_run_usd", "min_remaining_usd"],
+      "properties": {
+        "max_run_usd": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "min_remaining_usd": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "rate_limits": {
+      "description": "Requests per second per source (§7)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ncbi", "ncbi_with_key", "europepmc", "openalex", "crossref", "pride", "biorxiv", "uwpr_site"],
+      "properties": {
+        "ncbi": {"$ref": "#/$defs/rate"},
+        "ncbi_with_key": {"$ref": "#/$defs/rate"},
+        "europepmc": {"$ref": "#/$defs/rate"},
+        "openalex": {"$ref": "#/$defs/rate"},
+        "crossref": {"$ref": "#/$defs/rate"},
+        "pride": {"$ref": "#/$defs/rate"},
+        "biorxiv": {"$ref": "#/$defs/rate"},
+        "uwpr_site": {"$ref": "#/$defs/rate"}
+      }
+    },
+    "max_attempts": {"type": "integer", "minimum": 1, "maximum": 10},
+    "recheck_days": {"type": "integer", "minimum": 1},
+    "last_seen_refresh_days": {"type": "integer", "minimum": 1},
+    "list_drop_tolerance": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+    "recall_baseline": {
+      "description": "Recall on the official list at calibration (Phase 1 §4.2)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["with_evidence", "assessable"],
+      "properties": {
+        "with_evidence": {"type": "integer", "minimum": 0},
+        "assessable": {"type": "integer", "minimum": 1}
+      }
+    },
+    "recall_alert_points": {"type": "number", "exclusiveMinimum": 0},
+    "degraded_to_alert_after": {"type": "integer", "minimum": 1},
+    "timezone_for_dates": {"const": "UTC"}
+  },
+  "$defs": {
+    "rate": {"type": "number", "exclusiveMinimum": 0, "maximum": 50}
+  }
+}

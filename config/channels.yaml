@@ -1,0 +1,131 @@
+# Discovery channels (docs/03-retrieval-pipeline.md §10.3; Phase 1 §5). Schema: schemas/config/channels.schema.json
+# Channels only nominate; the rules in rules.yaml decide inclusion. Queries are in each source's own
+# syntax; the adapters add the 2006 window (settings.window_start).
+schema: 1
+channels:
+  - id: A
+    source: uwpr_site
+    description: UWPR's own publications pages (settings.official_list)
+    enabled: true
+    queries: []
+    max_results: 3000
+
+  - id: B1
+    source: openalex
+    description: UWPR award code in OpenAlex funding metadata
+    enabled: true
+    queries:
+      - 'awards.funder_award_id:UWPR95794'
+    max_results: 3000
+
+  - id: B2
+    source: crossref
+    description: UWPR award code in Crossref funder metadata
+    enabled: true
+    queries:
+      - 'award.number:UWPR95794'
+    max_results: 3000
+
+  - id: C1
+    source: europepmc
+    description: UWPR award code or acronym in Europe PMC full text
+    enabled: true
+    queries:
+      - '"UWPR95794" OR "UWPR 95794" OR UWPR*'
+    max_results: 3000
+
+  - id: C2
+    source: openalex
+    description: UWPR award code in OpenAlex full text
+    enabled: true
+    queries:
+      - 'fulltext.search:UWPR95794'
+    max_results: 3000
+
+  - id: D1
+    source: europepmc
+    description: Resource name in Europe PMC full text and acknowledgements
+    enabled: true
+    queries:
+      - '("Proteomics Resource" OR "Proteome Resource" OR "Proteomics Resource Center" OR "Proteomics Resource at") AND "University of Washington"'
+      - 'ACK_FUND:"Proteomics Resource" AND ACK_FUND:"Washington"'
+    max_results: 3000
+
+  - id: D2
+    source: openalex
+    description: Resource name in OpenAlex full text; the first two phrases and C2's code are also R6 (rules.yaml r6)
+    enabled: true
+    queries:
+      - 'fulltext.search:"Washington''s Proteomics Resource"'
+      - 'fulltext.search:"Washington Proteomics Resource"'
+      - 'fulltext.search:"Proteomics Resource" "University of Washington"'
+    max_results: 3000
+
+  - id: D3
+    source: europepmc
+    description: Early-era facility name, and the staff-name misspellings of Phase 1 §9 (Europe PMC)
+    enabled: true
+    queries:
+      - '"South Lake Union" AND ("mass spec" OR "proteomics") AND "University of Washington"'
+      - '"Van Haller"'
+      - '"vonHaller"'
+    max_results: 3000
+
+  - id: D3
+    source: openalex
+    description: Early-era facility name, and the staff-name misspellings of Phase 1 §9 (OpenAlex full text)
+    enabled: true
+    queries:
+      - 'fulltext.search:"South Lake Union" AND ("mass spec" OR proteomics) AND "University of Washington"'
+      - 'fulltext.search:"Van Haller"'
+      - 'fulltext.search:vonHaller'
+    max_results: 3000
+
+  - id: E
+    source: europepmc
+    description: Staff named in acknowledgements; nominates candidates for R7
+    enabled: true
+    queries:
+      - 'ACK_FUND:"Jimmy Eng"'
+      - 'ACK_FUND:"Jimmy K. Eng"'
+      - 'ACK_FUND:"Michael Riffle"'
+      - 'ACK_FUND:"Mike Riffle"'
+      - 'ACK_FUND:"Michael Hoopmann"'
+      - 'ACK_FUND:"Vagisha Sharma"'
+      - 'ACK_FUND:"von Haller"'
+      - 'ACK_FUND:"Van Haller"'
+      - 'ACK_FUND:"von Haler"'
+    max_results: 3000
+
+  - id: F
+    source: europepmc
+    description: Author affiliation is the resource (Europe PMC)
+    enabled: true
+    queries:
+      - 'AFF:"Proteomics Resource" AND AFF:"University of Washington"'
+    max_results: 3000
+
+  - id: F
+    source: openalex
+    description: Author affiliation is the resource (OpenAlex raw affiliation strings)
+    enabled: true
+    queries:
+      - 'raw_affiliation_strings.search:"proteomics resource" washington'
+    max_results: 3000
+
+  - id: G
+    source: openalex
+    description: Papers by staff (verified OpenAlex IDs in staff.yaml), within each person's tenure
+    enabled: true
+    queries: []
+    queries_from_staff: true
+    max_results: 3000
+
+  - id: J
+    source: pride
+    description: PRIDE / ProteomeXchange dataset descriptions; their text is checked with R3 (R3d)
+    enabled: true
+    queries:
+      - '"Proteomics Resource"'
+      - 'UWPR'
+    max_results: 3000

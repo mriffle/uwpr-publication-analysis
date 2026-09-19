@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/config/staff.schema.json",
+  "title": "UWPR staff: config/staff.yaml (docs/03-retrieval-pipeline.md §10.2; Phase 1 §5.1, §6.6). Part of the rules fingerprint.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "staff"],
+  "properties": {
+    "schema": {"const": 1},
+    "staff": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "name", "name_patterns", "openalex", "orcid", "tenure"],
+        "properties": {
+          "key": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "name": {"type": "string", "minLength": 1},
+          "name_patterns": {
+            "description": "Case-sensitive regexes for the full-name forms R7 accepts; a bare surname never counts",
+            "type": "array", "minItems": 1, "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "openalex": {
+            "description": "Verified OpenAlex author IDs only; same-name authors exist",
+            "type": "array", "minItems": 1, "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^A[0-9]+$"}
+          },
+          "orcid": {
+            "oneOf": [{"type": "null"}, {"type": "string", "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"}]
+          },
+          "tenure": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["start", "end"],
+            "properties": {
+              "start": {"type": "integer", "minimum": 1990, "maximum": 2100},
+              "end": {"oneOf": [{"type": "null"}, {"type": "integer", "minimum": 1990, "maximum": 2100}]}
+            }
+          }
+        }
+      }
+    }
+  }
+}

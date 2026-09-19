@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/config/channels.schema.json",
+  "title": "Discovery channels: config/channels.yaml (docs/03-retrieval-pipeline.md §10.3; Phase 1 §5)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "channels"],
+  "properties": {
+    "schema": {"const": 1},
+    "channels": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source", "description", "enabled", "queries", "max_results"],
+        "properties": {
+          "id": {"$ref": "../common.schema.json#/$defs/channel"},
+          "source": {"enum": ["uwpr_site", "openalex", "crossref", "europepmc", "pride"]},
+          "description": {"type": "string", "minLength": 1},
+          "enabled": {"type": "boolean"},
+          "queries": {
+            "description": "In the source's own syntax: an OpenAlex or Crossref filter expression, a Europe PMC query, a PRIDE keyword. The 2006 window is added by the source adapter.",
+            "type": "array", "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "queries_from_staff": {
+            "description": "Build one query per staff OpenAlex ID from staff.yaml, limited to each person's tenure (channel G)",
+            "type": "boolean"
+          },
+          "max_results": {
+            "description": "Safety valve: a query returning more than this fails the channel loudly",
+            "type": "integer", "minimum": 1
+          }
+        },
+        "if": {"properties": {"queries_from_staff": {"const": true}}, "required": ["queries_from_staff"]},
+        "then": {"properties": {"queries": {"maxItems": 0}}},
+        "else": {"if": {"properties": {"source": {"const": "uwpr_site"}}},
+                 "then": {"properties": {"queries": {"maxItems": 0}}},
+                 "else": {"properties": {"queries": {"minItems": 1}}}}
+      }
+    }
+  }
+}
