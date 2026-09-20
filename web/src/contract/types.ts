@@ -21,6 +21,7 @@ export type {
   Summary,
   Method,
   Resource,
+  Exclusion,
   Ids,
 } from './generated/export';
 

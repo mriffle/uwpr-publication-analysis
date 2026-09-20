@@ -128,6 +128,34 @@ describe('how the corpus is assembled (docs/05 §10, §7.13)', () => {
       ),
     ).toBeInTheDocument();
   });
+
+  it('names every exclusion the contract carries, with its note (docs/05 §10)', () => {
+    show();
+    // Nothing is hard-coded: the page shows whatever the export names, which is the point of
+    // resource.exclusions — the app carries none of these names itself (§1.1 principle 5).
+    expect(doc.resource.exclusions.length).toBeGreaterThan(0);
+    for (const exclusion of doc.resource.exclusions) {
+      expect(document.body.textContent).toContain(exclusion.name);
+      expect(document.body.textContent).toContain(exclusion.note);
+    }
+  });
+
+  it('groups them by kind, and shows no heading for a kind the contract omits', () => {
+    show();
+    const kinds = new Set(doc.resource.exclusions.map((exclusion) => exclusion.kind));
+    for (const [kind, heading] of [
+      ['facility', 'Other facilities.'],
+      ['software', 'Software.'],
+      ['tool', 'Web tools.'],
+      ['hardware', 'Instrument designs.'],
+    ] as const) {
+      if (kinds.has(kind)) {
+        expect(screen.getByText(heading)).toBeInTheDocument();
+      } else {
+        expect(screen.queryByText(heading)).toBeNull();
+      }
+    }
+  });
 });
 
 describe('what is independently confirmed (docs/05 §10)', () => {

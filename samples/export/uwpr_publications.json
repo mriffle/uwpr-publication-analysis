@@ -33,6 +33,63 @@
   },
   "pipeline_version": "samples/build_sample_store.py",
   "resource": {
+    "exclusions": [
+      {
+        "kind": "facility",
+        "name": "Quantitative and Functional Proteomics Core, UW Diabetes Research Center",
+        "note": "At the University of Washington's Diabetes Research Center. Publications it supported are not counted here unless UWPR also supported them."
+      },
+      {
+        "kind": "facility",
+        "name": "Mass Spectrometry Resource, UW Department of Medicine",
+        "note": "In the University of Washington's Department of Medicine, in use since at least 1995 and often used by the same research groups. Publications it supported are not counted here unless UWPR also supported them."
+      },
+      {
+        "kind": "facility",
+        "name": "Proteomics Resource, Fred Hutchinson Cancer Center",
+        "note": "In Seattle, and named almost exactly as this project's searches are worded. A publication naming it and not UWPR is not counted here."
+      },
+      {
+        "kind": "software",
+        "name": "Comet",
+        "note": "An open-source sequence-database search engine that any group can download and run."
+      },
+      {
+        "kind": "software",
+        "name": "SEQUEST",
+        "note": "A sequence-database search engine distributed with commercial instrument software, and used far beyond this facility."
+      },
+      {
+        "kind": "software",
+        "name": "Kojak",
+        "note": "An open-source search engine for cross-linked peptides, downloaded and run by whoever needs it."
+      },
+      {
+        "kind": "software",
+        "name": "Hardklor",
+        "note": "An open-source program for finding peptide isotope distributions in mass spectra, downloaded and run by whoever needs it."
+      },
+      {
+        "kind": "software",
+        "name": "Limelight",
+        "note": "An open-source web application for analysing and sharing proteomics results, which any group can install on its own servers."
+      },
+      {
+        "kind": "software",
+        "name": "Lorikeet",
+        "note": "An open-source viewer for annotated peptide spectra, which any site can embed in its own pages."
+      },
+      {
+        "kind": "tool",
+        "name": "The online peptide fragmentation calculator",
+        "note": "A public web page that works out the fragment masses of a peptide sequence."
+      },
+      {
+        "kind": "hardware",
+        "name": "The nanospray source design",
+        "note": "Plans on the resource's website that any workshop can follow."
+      }
+    ],
     "home_country": "US",
     "home_institution": {
       "name": "University of Washington",

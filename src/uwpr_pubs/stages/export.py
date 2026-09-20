@@ -51,9 +51,11 @@ def resource_block(config: Config) -> ExportResource:
     """The facility's own names, from config rather than from anywhere in the code.
 
     `home_institution` and `home_country` are facts about *this* facility, which docs/05 §7.8
-    and §7.14 need and which the app must not infer (§1.1 principle 5). Each staff entry carries
-    its `key` as `id`, the same identifier `authors[].staff` and `staff_authors` use, which is
-    what lets the app name a staff member from an id.
+    and §7.14 need and which the app must not infer (§1.1 principle 5). `exclusions` is there for
+    the same reason: docs/05 §10's method page names what is deliberately not evidence, and it
+    can only do that from configuration. Each staff entry carries its `key` as `id`, the same
+    identifier `authors[].staff` and `staff_authors` use, which is what lets the app name a staff
+    member from an id.
     """
     resource = config.resource
     home = resource["home_institution"]
@@ -64,6 +66,14 @@ def resource_block(config: Config) -> ExportResource:
         "identifier": str(config.rules["r2"]["code"]),
         "home_institution": {"ror": str(home["ror"]), "name": str(home["name"])},
         "home_country": str(resource["home_country"]),
+        "exclusions": [
+            {
+                "kind": str(exclusion["kind"]),
+                "name": str(exclusion["name"]),
+                "note": str(exclusion["note"]),
+            }
+            for exclusion in resource["exclusions"]
+        ],
         "staff": [
             {
                 "id": cast(StaffKey, str(person["key"])),

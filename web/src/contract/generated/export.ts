@@ -81,7 +81,21 @@ export interface Resource {
    * The ISO 3166-1 alpha-2 country the resource sits in. docs/05 §7.14 counts works with an author outside it, and leaves it out of the country bar.
    */
   home_country: string;
+  /**
+   * What is deliberately not evidence, named (docs/05 §10). The method page groups these by `kind` and shows each with its note; it carries no such names of its own, because §1.1 principle 5 keeps everything resource-specific in this file.
+   *
+   * @minItems 1
+   */
+  exclusions: [Exclusion, ...Exclusion[]];
   staff: Person[];
+}
+/**
+ * One thing that looks like evidence and is deliberately not counted as any. `kind` groups it on the method page; `note` says why it does not count, factually and without judgement (docs/05 §10, §11).
+ */
+export interface Exclusion {
+  kind: 'facility' | 'software' | 'tool' | 'hardware';
+  name: string;
+  note: string;
 }
 /**
  * A member of the resource's staff. `id` is the join key: it is the same identifier that works[].authors[].staff and works[].staff_authors carry, so the app can turn one into a name (docs/05 §4.2).
