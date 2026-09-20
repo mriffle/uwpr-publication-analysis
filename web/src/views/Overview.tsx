@@ -82,6 +82,8 @@ export interface OverviewProps {
   /** The method page (docs/06 §4.1), which §4.2's figures also link into by fragment. */
   methodHref: string;
   onOpenMethod: () => void;
+  lookupHref: string;
+  onOpenLookup: () => void;
   /** Injected in tests so the staleness threshold is exercised without freezing the clock. */
   now?: Date;
   /** 0 in tests, so a keystroke in the search box does not need a timer to land. */
@@ -98,6 +100,8 @@ export function Overview({
   onOpenPublication,
   methodHref,
   onOpenMethod,
+  lookupHref,
+  onOpenLookup,
   now,
   searchDebounceMs,
 }: OverviewProps) {
@@ -179,6 +183,7 @@ export function Overview({
           as of {formatDate(doc.sources.citations.as_of)}.{' '}
           <a href={doc.resource.url}>{doc.resource.short_name}</a>
         </p>
+        {/* §4.1: the header links to the method page and to the lookup. */}
         <p>
           <a
             href={methodHref}
@@ -190,6 +195,18 @@ export function Overview({
             }}
           >
             How this was assembled
+          </a>
+          {' · '}
+          <a
+            href={lookupHref}
+            onClick={(event) => {
+              if (!event.metaKey && !event.ctrlKey && event.button === 0) {
+                event.preventDefault();
+                onOpenLookup();
+              }
+            }}
+          >
+            Why is a paper not here?
           </a>
         </p>
       </header>

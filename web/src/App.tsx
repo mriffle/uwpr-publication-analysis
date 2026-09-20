@@ -18,11 +18,12 @@ import { useExportDocument } from './contract/useExport';
 import { useLookupIndex } from './contract/useLookup';
 import type { ExportDocument, Work } from './contract/types';
 import type { Fetcher } from './contract/load';
-import { methodPath, overviewPath, parseRoute, publicationPath } from './routing/route';
+import { lookupPath, methodPath, overviewPath, parseRoute, publicationPath } from './routing/route';
 import { useLocation } from './routing/useLocation';
 import { decodeView, encodeViewToQuery } from './routing/view';
 import type { FilterState } from './filter/state';
 import { Method } from './views/Method';
+import { Lookup } from './views/Lookup';
 import { Overview } from './views/Overview';
 import { PublicationDetail } from './views/PublicationDetail';
 
@@ -170,6 +171,12 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
     navigate({ pathname: methodHref, search: '' });
   }, [navigate, methodHref]);
 
+  const lookupRoutePath = lookupPath(base);
+  const openLookup = useCallback(() => {
+    openedInApp.current = true;
+    navigate({ pathname: lookupRoutePath, search: '' });
+  }, [navigate, lookupRoutePath]);
+
   // docs/06 §7: the export's own aliases resolve retired work IDs and are already loaded; an
   // external identifier resolves only through the lookup index, which is fetched only when the
   // export could not answer. `needsLookup` is that condition, and nothing else triggers a fetch.
@@ -189,6 +196,8 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
         onOpenPublication={openPublication}
         methodHref={methodHref}
         onOpenMethod={openMethod}
+        lookupHref={lookupRoutePath}
+        onOpenLookup={openLookup}
         {...(now ? { now } : {})}
         {...(searchDebounceMs === undefined ? {} : { searchDebounceMs })}
       />
@@ -202,6 +211,21 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
         overviewHref={overviewPath(base)}
         {...(seenOverview ? { onClose: backToOverview } : {})}
         {...(now ? { now } : {})}
+      />
+    );
+  }
+
+  if (route.kind === 'lookup') {
+    return (
+      <Lookup
+        doc={doc}
+        index={index}
+        lookupHref={lookupHref}
+        fetcher={fetcher}
+        overviewHref={overviewPath(base)}
+        methodHref={methodHref}
+        publicationHref={publicationHref}
+        onOpenPublication={openPublication}
       />
     );
   }

@@ -935,3 +935,202 @@ button.chart-legend-item.is-selected {
   font-variant-numeric: tabular-nums;
   color: var(--text-muted);
 }
+
+/* --- the lookup view (docs/06 §3, docs/05 §8) -------------------------------------------- */
+
+/*
+ * The three outcomes are told apart by a label, a heading and the shape of what follows. The
+ * accents are three colours from the categorical chart palette, chosen because a categorical
+ * palette carries no valence: there is no tick against a cross and no green against red here.
+ * A paper that was considered and not included has to read as one ordinary outcome of three,
+ * and "not in the data" must not read as worse than either.
+ */
+
+.lookup-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem 1rem;
+  margin: 1.5rem 0;
+}
+
+.lookup-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1 1 26rem;
+}
+
+.lookup-field label {
+  font-weight: 600;
+}
+
+.lookup-field input {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+.lookup-hint,
+.lookup-problem {
+  margin: 0;
+  max-width: 44rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.lookup-problem {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.lookup-submit {
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  /* Aligned with the input rather than with the label above it. */
+  margin-top: 1.65rem;
+}
+
+.lookup-empty ul {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  max-width: 44rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.lookup-empty-description {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.lookup-answer {
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--lookup-accent, var(--border));
+  background: var(--panel-bg);
+  border-radius: 8px;
+  padding: 1rem 1.25rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* The same accent whether it carries a card or stands alone in the list of possible answers. */
+[data-outcome='included'] {
+  --lookup-accent: var(--chart-1);
+}
+
+[data-outcome='not-included'] {
+  --lookup-accent: var(--chart-4);
+}
+
+[data-outcome='unknown'] {
+  --lookup-accent: var(--chart-other);
+}
+
+.lookup-outcome {
+  display: inline-block;
+  margin: 0;
+  padding: 0.05rem 0.6rem;
+  border: 1px solid var(--lookup-accent);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.lookup-answer h2 {
+  font-size: 1.2rem;
+  margin: 0.6rem 0 0.4rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.lookup-answer h3 {
+  font-size: 1rem;
+  margin: 1.25rem 0 0.3rem;
+}
+
+.lookup-answer p {
+  max-width: 44rem;
+}
+
+.lookup-answer-title {
+  margin: 0.2rem 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.lookup-answer-meta,
+.lookup-answer-links,
+.lookup-note {
+  margin: 0.2rem 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.lookup-answer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
+}
+
+.lookup-note {
+  margin-top: 0.75rem;
+}
+
+.lookup-reason {
+  margin: 0.9rem 0 0.3rem;
+  font-weight: 600;
+}
+
+.lookup-answer-lede {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.lookup-signals {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.lookup-signals li {
+  border-left: 3px solid var(--lookup-accent);
+  padding-left: 0.6rem;
+}
+
+.lookup-signal-detail {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.lookup-more {
+  margin-top: 1rem;
+}
+
+/*
+ * The evidence section is the detail view's, reused unchanged. Inside an answer card it needs
+ * one step of contrast back, or the entries and the card they sit in are the same surface.
+ */
+.lookup-answer .evidence-item {
+  background: var(--page-bg);
+}
+
+.lookup-answer .evidence-excerpt {
+  background: var(--panel-bg);
+}
