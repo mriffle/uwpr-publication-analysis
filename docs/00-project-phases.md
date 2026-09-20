@@ -1,7 +1,8 @@
 # UWPR Publication Impact — Project Phases
 
 **Status:** the pipeline is built and running weekly; the app is not. See 08.
-**Last updated:** 2026-09-20 (Phase 4 retired; Phase 5 is next)
+**Last updated:** 2026-09-20 (Phase 4 retired; **Phase 5 agreed** — the data contract is settled
+and Phase 6 is next)
 
 ## Goal
 
@@ -41,7 +42,7 @@ is shown, it is labelled as a preprint.
 | 2 | Data model & local storage | How are publications, versions, evidence and decisions represented on disk? | [02-data-model.md](02-data-model.md) | **Frozen** 2026-09-19 |
 | 3 | Retrieval pipeline | What does the code that discovers, fetches and updates the data do, and how does it re-run safely? | [03-retrieval-pipeline.md](03-retrieval-pipeline.md) | **Frozen** 2026-09-19 |
 | 4 | ~~Publication knowledge base~~ | — | *never written* | **Retired 2026-09-20.** The store already carries everything it was to contain except a summary, which was not wanted. Publication detail moved into Phase 5. |
-| 5 | Metrics & app data contract *(added)* | Exactly what is in the JSON that drives the app, and how is each number defined? | [05-metrics-and-data-contract.md](05-metrics-and-data-contract.md) | Unreviewed starting point |
+| 5 | Metrics & app data contract *(added)* | Exactly what is in the JSON that drives the app, and how is each number defined? | [05-metrics-and-data-contract.md](05-metrics-and-data-contract.md) | **Agreed** 2026-09-20 |
 | 6 | Web app | What does the single-page app show, how does it behave, and how does data get into it? | [06-web-app.md](06-web-app.md) | Unreviewed starting point |
 | 7 | Operations *(added)* | Where does it run, how often, where is it hosted, and how do we know it is still correct? | [07-operations.md](07-operations.md) | Unreviewed starting point |
 | 8 | Implementation | Build to the specs, in the order below. | [08-implementation.md](08-implementation.md) | **In progress** — M0–M5 done; the store is seeded and the weekly run works |
@@ -84,9 +85,10 @@ wanted, it has a home, a regeneration trigger and an owned-paths rule already.
 
 ## Dependencies and order of work
 
-1 → 2 → 3 are done and frozen. **Phase 5 is next**, and it now carries the publication detail
-that Phase 4 was to hold. Phase 6 depends only on 5, so app design can proceed against a sample
-JSON. Phase 7 is settled last, but its hosting decision constrains 6 (see 06 §7).
+1 → 2 → 3 are done and frozen. **Phase 5 is agreed** (2026-09-20) and carries the publication
+detail that Phase 4 was to hold, plus the visualizations the app is built around. **Phase 6 is
+next**; it depends only on 5, so app design proceeds against the sample export. Phase 7 is settled
+last, but its hosting decision constrains 6 (see 06 §7).
 
 Suggested implementation order once specs are agreed:
 
@@ -119,9 +121,9 @@ Suggested implementation order once specs are agreed:
 | D3 | User/PI roster from UWPR records? | **Answered:** not used | 01 §3 |
 | D4 | Earliest year and staff list | **Answered:** 2006; only the five named staff | 01 §3 |
 | D5 | Human review? | **Answered:** none in regular operation; rules are calibrated once | 01 §2 |
-| D6 | Who is the app's audience, and is it public? | Public; aimed at UW leadership, funders and prospective users | 06 |
+| D6 | Who is the app's audience, and is it public? | **Answered:** public; aimed at UW leadership, funders and prospective users. The page reports rather than promotes (05 §11) | 05, 06 |
 | D7 | ~~Show "probable" works?~~ | Obsolete — inclusion is now yes/no | — |
-| D8 | Hosting location and UW branding requirements | **Answered (hosting):** public GitHub repository; pipeline on GitHub Actions; the app most likely on GitHub Pages. UW branding still to discuss. | 03 §11, 06, 07 |
+| D8 | Hosting location and UW branding requirements | **Answered:** public GitHub repository; pipeline on GitHub Actions; the app most likely on GitHub Pages. **No UW branding** (2026-09-20) — clean and modern, visually neutral; the resource is named and linked | 03 §11, 05, 06, 07 |
 | D9 | Run cadence | **Answered:** weekly scheduled GitHub Actions run (full sweep every run), plus a manual trigger | 03 §2, §11 |
 | D10 | Should findings flow back to the official publications page? | Yes — a "missing from site" report each run | 07 |
 | D11 | ~~How are summaries generated, and may abstracts be quoted?~~ | **Answered 2026-09-20: no summaries, and no abstracts.** A summary is the one thing on a publication page that could not be traced to a source, and abstracts are copyrighted, which is why they stay in the cache and out of the repository | — |

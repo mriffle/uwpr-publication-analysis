@@ -719,13 +719,26 @@ uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's r
 3. **`OPEN_ALEX_API_KEY` is set** as a repository secret (2026-09-20). An `NCBI_API_KEY` is still
    optional and would make cold-cache CI runs about three times faster.
 4. **Phase 4 is retired** (2026-09-20) and D11–D13 are answered: no summaries, no abstracts,
-   OpenAlex topics as reported. **Phase 5 — the app's data contract — is the next specification
-   conversation**, and it now carries the publication detail Phase 4 was to hold. Phases 6 and 7
-   follow it. The drafts of 05–07 predate almost every decision since and should be rewritten
-   rather than edited.
+   OpenAlex topics as reported. **Phase 5 is agreed** (2026-09-20, decisions A1–A8): the export is
+   two files, `uwpr_publications.json` and `lookup_index.json`, written by stage 11 and validated
+   at the gate. **Phase 6 — the web app — is the next specification conversation.** The drafts of
+   06–07 predate almost every decision since and should be rewritten rather than edited.
 5. **The NUP153 merge override is written** (`overrides.yaml`, §3.3) and verified against the
    rehearsal, but it asserts a judgement and is attributed to a person. It takes effect at the
    seed; until `store/` exists, the work IDs it names do not, which is why it is committed
    alongside the seed rather than before it.
 6. **An `NCBI_API_KEY`** would take cold-cache runs from 3 to 10 requests a second. Only CI
    starts cold, so this matters from M5 rather than now.
+7. **Two data defects found while specifying Phase 5** (2026-09-20). Neither affects inclusion;
+   both are visible in the committed store and would surface in the app.
+   - **`W-000746`'s title is a filename**, `1_manuscript_2020-04-14.pdf` — a ChemRxiv preprint
+     included on a full-text-index match. Phase 1 §8 already says to take the title from Crossref
+     or the preprint server when this happens; it is not happening for this record. One of ~390
+     records.
+   - **`W-000205` stores an undecoded XML entity** in two evidence excerpts:
+     `University of Washington&apos;s Proteomics Resource (UWPR95794).` **Fixing it needs a
+     `rule_version` bump.** An evidence entry's identity is partly a hash of its excerpt (§6.3), so
+     a corrected excerpt is a *new* entry, while the old one — not reproduced, but not superseded
+     under an unchanged rule version — would be kept alongside it, leaving duplicates. A version
+     bump supersedes the old entry properly. That bump is also the **cold-cache rule-change run
+     that Phase 3 §13 still carries as an estimate**, so the two should be done in one go.
