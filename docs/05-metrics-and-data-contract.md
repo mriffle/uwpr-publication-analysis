@@ -29,9 +29,10 @@ rest while implementing stage 11):
   predicate checking for the attribution rather than merely for the rule.
 - *§5, the precision of the field-weighted figures is part of their definition.* §1.2 asserts
   equality between two independent implementations, so an unstated rounding convention is a
-  latent failure: the sample's own median is 1.19675, which rounds to 1.1967 or 1.1968 depending
-  on the rule chosen. Four decimal places, rounding the exact binary value, with the mean summed
-  by compensated addition.
+  latent failure. A value of the form `x.xxxx5` rounds two different ways depending on whether the
+  decimal literal or the exact binary value is rounded — Python's `round` and a naive
+  `Math.round(x * 1e4) / 1e4` disagree — and the sample store has produced such a median. Four
+  decimal places, rounding the exact binary value, with the mean summed by compensated addition.
 - *§5, two definitions were narrower than what the pipeline computes.* **Research groups** and
   **distinct last authors** said "by OpenAlex ID"; the pipeline falls back to the author's name
   for the 2% of slots with no ID, which is why the figures are 215 and 155 rather than 210 and

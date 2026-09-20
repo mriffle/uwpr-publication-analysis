@@ -393,6 +393,20 @@ because they are the things a reader would otherwise have to rediscover.
 - **NCBI is fast (about 0.4 s a request); the slowness was ours.** Measure a real request before
   assuming a source is the bottleneck.
 
+**Found while building the app against the contract (2026-09-20):**
+- **The pipeline never constructed override evidence at all**, though Phase 2 §9 specifies it. It
+  went unnoticed because the only thing that exercised it was `samples/store/`, whose override
+  evidence is written by `samples/build_sample_store.py` rather than by the pipeline — a
+  hand-built sample can mask the absence of the code it is meant to stand in for. The consequence
+  was worse than a missing field: a work whose only reason for inclusion was an `include`
+  override reached the export with an empty evidence array, which the export schema rejects, so
+  **the whole run would have failed and written nothing**. Now built in stage 7, and covered by a
+  scenario test where a rule change supersedes the only rule evidence and the override alone
+  holds the work in.
+- **A work included by an override claimed the rules had included it.** `_work_file` hard-coded
+  `status.basis` to `"rules"`, contradicting Phase 2 §13 and the sample store's own contents. No
+  effect on the real store, where nothing is override-included.
+
 **Found during M4** — both by running twice and diffing, and neither by any unit test:
 - **A candidate's stored records were dropped whenever one of them was re-nominated.** The
   candidate line was rebuilt from this run's nominations, falling back to the stored list only
@@ -745,3 +759,12 @@ uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's r
      under an unchanged rule version — would be kept alongside it, leaving duplicates. A version
      bump supersedes the old entry properly. That bump is also the **cold-cache rule-change run
      that Phase 3 §13 still carries as an estimate**, so the two should be done in one go.
+8. **An override that names a DOI or PMID silently does nothing** (found 2026-09-20). Phase 2 §9
+   allows an `include` or `exclude` target to be "a DOI / PMID for a paper not yet in the store",
+   and `overrides.schema.json` accepts one, but the pipeline matches overrides only by work ID.
+   Such an entry is accepted, validated and ignored — the worst shape for a correction tool, since
+   the person who wrote it gets no signal that it did not take effect. Both of today's overrides
+   name work IDs, so nothing is currently wrong. **Needs a decision:** either resolve such a
+   target through `aliases.json` before matching, or reject it at config load so it fails loudly.
+   The second is cheaper and arguably better, since an override for a paper the pipeline has never
+   seen has nothing to attach to.
