@@ -271,8 +271,16 @@ class Pipeline:
         it and does not commit it would leave `main` advertising data the store no longer holds.
         It is listed only when it exists, because `git status` on a pathspec outside the
         repository is a fatal error rather than an empty answer.
+
+        **Absolute**, because both callers run git with the store as its working directory, and
+        the default `--store store` is a relative path: from inside `store/`, the pathspec
+        `store` means `store/store` and matches nothing. `git.commit` already resolved for that
+        reason — `git add` on a pathspec that matches nothing is an error, which is how it was
+        caught — but `git status` answers "nothing changed" instead, so stage 0's guard against
+        reading a half-finished run back as the record quietly never fired on the one store that
+        matters.
         """
-        store = self.options.store
+        store = self.options.store.resolve()
         export = export_stage.export_dir(store)
         return [store, export] if export.exists() else [store]
 

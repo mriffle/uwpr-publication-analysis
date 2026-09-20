@@ -436,6 +436,29 @@ def test_a_dirty_store_stops_the_run(client: HttpClient, tmp_path: Path) -> None
     assert (store / "works" / "W-000999.json").exists()  # nothing was touched
 
 
+def test_a_dirty_store_stops_the_run_when_it_is_named_by_a_relative_path(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """`--store store`, the default, and the only spelling CI and a local run ever use.
+
+    The check runs git with the store as its working directory, so the relative pathspec
+    `store` is read as `store/store` and matches nothing — and `git status` answers "nothing
+    changed" rather than failing, so the guard passed silently on the one store that matters.
+    Its sibling `test_the_store_commits_when_it_is_named_by_a_relative_path` covers stage 13,
+    where `git add` on a pathspec matching nothing is an error and so was caught long ago.
+    """
+    _git_repository(tmp_path)
+    monkeypatch.chdir(tmp_path)
+    do_run(client, Path("store"))
+    (Path("store") / "works" / "W-000999.json").write_text("{}", encoding="utf-8")
+
+    config = load_config()
+    result = run_pipeline(config, client, context_at(Path("store")), RunOptions(store=Path("store")))
+
+    assert result.status == "failed"
+    assert "uncommitted changes" in result.report
+
+
 def test_a_failing_gate_writes_nothing_but_still_reports(
     client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
