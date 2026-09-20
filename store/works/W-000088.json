@@ -1,0 +1,287 @@
+{
+  "aliases": [],
+  "canonical": "R-000088",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000088"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000088"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000088"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:c982de5277ef",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000088",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "Authors thank Dr. Priska von Haller (Proteomics Resource, University of Washington) for her assistance with mass spectrometry analysis.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000088",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:5961c36e07b471291a08501a2e7592cf7623430f75b7c9d02140e4d885079b85",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3517063/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "Authors thank Dr. Priska von Haller (Proteomics Resource, University of Washington) for her assistance with mass spectrometry analysis.",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000088",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:5961c36e07b471291a08501a2e7592cf7623430f75b7c9d02140e4d885079b85",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3517063/"
+      }
+    }
+  ],
+  "id": "W-000088",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "RS",
+              "name": "University of Belgrade",
+              "raw": "Department of Chemistry School of Medicine University of Belgrade Belgrade Serbia",
+              "ror": "02qsmb048"
+            },
+            {
+              "country": "RS",
+              "name": "University of Belgrade",
+              "raw": "Department of Chemistry, School of Medicine, University of Belgrade, Belgrade, Serbia",
+              "ror": "02qsmb048"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ivanka Karadžić",
+          "openalex": "A5086723837",
+          "orcid": "0000-0003-4694-7972",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Florida",
+              "raw": "Department of Microbiology and Cell Science University of Florida Gainesville FL USA",
+              "ror": "02y3ad647"
+            },
+            {
+              "country": "US",
+              "name": "University of Florida",
+              "raw": "Department of Microbiology and Cell Science, University of Florida, Gainesville, FL, USA",
+              "ror": "02y3ad647"
+            }
+          ],
+          "corresponding": true,
+          "name": "Julie A. Maupin‐Furlow",
+          "openalex": "A5024566457",
+          "orcid": "0000-0001-6105-0923",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Florida",
+              "raw": "Department of Microbiology and Cell Science University of Florida Gainesville FL USA",
+              "ror": "02y3ad647"
+            },
+            {
+              "country": "US",
+              "name": "University of Florida",
+              "raw": "Department of Microbiology and Cell Science, University of Florida, Gainesville, FL, USA",
+              "ror": "02y3ad647"
+            }
+          ],
+          "corresponding": false,
+          "name": "Matthew A. Humbard",
+          "openalex": "A5057493228",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Florida",
+              "raw": "Department of Microbiology and Cell Science University of Florida Gainesville FL USA",
+              "ror": "02y3ad647"
+            },
+            {
+              "country": "US",
+              "name": "University of Florida",
+              "raw": "Department of Microbiology and Cell Science, University of Florida, Gainesville, FL, USA",
+              "ror": "02y3ad647"
+            }
+          ],
+          "corresponding": false,
+          "name": "Laurence Prunetti",
+          "openalex": "A5027610060",
+          "orcid": "0000-0002-4588-1070",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Lawrence Berkeley National Laboratory",
+              "raw": "Lawrence Berkeley National Laboratory Berkeley CA USA",
+              "ror": "02jbv0t02"
+            },
+            {
+              "country": "US",
+              "name": "Lawrence Berkeley National Laboratory",
+              "raw": "Lawrence Berkeley National Laboratory, Berkeley, CA, USA",
+              "ror": "02jbv0t02"
+            }
+          ],
+          "corresponding": false,
+          "name": "Pragya Singh",
+          "openalex": "A5033752282",
+          "orcid": "0000-0002-0631-3871",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry School of Pharmacy University of Washington Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:5961c36e07b471291a08501a2e7592cf7623430f75b7c9d02140e4d885079b85",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000088",
+      "ids": {
+        "doi": "10.1002/pmic.201100260",
+        "openalex": "W2153238599",
+        "pmcid": "PMC3517063",
+        "pmid": "22623373"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3517063"
+      },
+      "published": "2012-05-23",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Chemical cross‐linking, mass spectrometry, and in silico modeling of proteasomal 20 S core particles of the haloarchaeon H aloferax volcanii",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998999834060669,
+          "subfield": "Molecular Biology",
+          "topic": "Ubiquitin and proteasome pathways"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9994999766349792,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Materials Science",
+          "score": 0.9983999729156494,
+          "subfield": "Materials Chemistry",
+          "topic": "Enzyme Structure and Function"
+        }
+      ],
+      "venue": {
+        "issn_l": "1615-9853",
+        "name": "PROTEOMICS",
+        "publisher": "Wiley"
+      },
+      "version_link": null,
+      "year": 2012
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

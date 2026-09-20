@@ -1,0 +1,382 @@
+{
+  "aliases": [],
+  "canonical": "R-000209",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000209"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000209"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000209"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000209"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000209"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000209"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:5ca73aa8254c",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000209",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "The research is supported by NIH grants R01HL110879, R01AI101307, U19AI107775, R01GM086688, and 7S10RR025107, P30 DK089507, and CF Foundation Research Development Program, and the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000209",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:3e129f47a604ecd15ddc258481ca7394e2a16c60f9bcb6e54dd1221d9d74838c",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6750005/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000209",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2944024125"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000209",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1021/acs.jproteome.9b00122"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "The research is supported by NIH grants R01HL110879, R01AI101307, U19AI107775, R01GM086688, and 7S10RR025107, P30 DK089507, and CF Foundation Research Development Program, and the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000209",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:3e129f47a604ecd15ddc258481ca7394e2a16c60f9bcb6e54dd1221d9d74838c",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6750005/"
+      }
+    }
+  ],
+  "id": "W-000209",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xia Wu",
+          "openalex": "A5021425965",
+          "orcid": "0000-0002-0024-4481",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard Siehnel",
+          "openalex": "A5015244359",
+          "orcid": "0000-0001-7078-5657",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jayanthi Garudathri",
+          "openalex": "A5071499276",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Benjamin J. Staudinger",
+          "openalex": "A5068179872",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Katherine B. Hisert",
+          "openalex": "A5005871186",
+          "orcid": "0000-0002-1605-1780",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Northwestern University",
+              "raw": "Department of Medicine, Northwestern University, Chicago, Illinois 60611, United States",
+              "ror": "000e0be47"
+            }
+          ],
+          "corresponding": false,
+          "name": "Egon A. Ozer",
+          "openalex": "A5009813502",
+          "orcid": "0000-0002-7131-3691",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Northwestern University",
+              "raw": "Department of Microbiology-Immunology  and  Department of Medicine, Northwestern University, Chicago, Illinois 60611, United States",
+              "ror": "000e0be47"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alan R. Hauser",
+          "openalex": "A5036755430",
+          "orcid": "0000-0003-4596-7939",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Colin Manoil",
+          "openalex": "A5014003771",
+          "orcid": "0000-0001-6773-3434",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology  and  Department of Medicine, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Pradeep K. Singh",
+          "openalex": "A5100780176",
+          "orcid": "0000-0001-9281-0219",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences  and  Department of Chemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "James E. Bruce",
+          "openalex": "A5024181058",
+          "orcid": "0000-0001-6441-6089",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:3e129f47a604ecd15ddc258481ca7394e2a16c60f9bcb6e54dd1221d9d74838c",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000209",
+      "ids": {
+        "doi": "10.1021/acs.jproteome.9b00122",
+        "openalex": "W2944024125",
+        "pmcid": "PMC6750005",
+        "pmid": "31060355"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6750005"
+      },
+      "published": "2019-05-07",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "In Vivo Proteome of Pseudomonas aeruginosa in Airways of Cystic Fibrosis Patients",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9998999834060669,
+          "subfield": "Pulmonary and Respiratory Medicine",
+          "topic": "Cystic Fibrosis Research Advances"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9986000061035156,
+          "subfield": "Molecular Biology",
+          "topic": "Bacterial biofilms and quorum sensing"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9803000092506409,
+          "subfield": "Genetics",
+          "topic": "Bacterial Genetics and Biotechnology"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,226 @@
+{
+  "aliases": [],
+  "canonical": "R-000225",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000225"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000225"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:4bf7a284c050",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000225",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000225",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Department of Psychiatry and Behavioral Sciences, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Dasha Krayushkina",
+          "openalex": "A5022275049",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Department of Genome Sciences, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Old Dominion University, Department of Ocean, Earth & Atmospheric Sciences, Norfolk, VA, 23529, USA",
+              "ror": "04zjtrb98"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jessica Faux",
+          "openalex": "A5085676273",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Department of Genome Sciences, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Damon May",
+          "openalex": "A5019063351",
+          "orcid": "0000-0001-6902-3153",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Department of Biochemistry, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Old Dominion University, Department of Ocean, Earth & Atmospheric Sciences, Norfolk, VA, 23529, USA",
+              "ror": "04zjtrb98"
+            }
+          ],
+          "corresponding": false,
+          "name": "H. Rodger Harvey",
+          "openalex": "A5015273553",
+          "orcid": "0000-0001-7746-7758",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Department of Genome Sciences, Seattle, WA, 98195, USA. brookh@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Department of Genome Sciences, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:24eb4583cfcf4989d2e1dcf4a8d747a08b48e1cea3b16e08885fd6f885714231",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000225",
+      "ids": {
+        "doi": "10.1038/s41597-019-0308-y",
+        "openalex": "W2993893776",
+        "pmcid": "PMC6890736",
+        "pmid": "31796751"
+      },
+      "kind": "data-paper",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1038/s41597-019-0308-y"
+      },
+      "published": "2019-12-03",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Growth phase proteomics of the heterotrophic marine bacterium Ruegeria pomeroyi",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9998000264167786,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9984999895095825,
+          "subfield": "Molecular Biology",
+          "topic": "Genomics and Phylogenetic Studies"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9984999895095825,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        }
+      ],
+      "venue": {
+        "issn_l": "2052-4463",
+        "name": "Scientific Data",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

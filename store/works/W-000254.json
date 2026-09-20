@@ -1,0 +1,626 @@
+{
+  "aliases": [
+    "W-000620"
+  ],
+  "canonical": "R-000254",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000254"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000620"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000620"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000620"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:d5fe4d85fdad",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000254",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000620",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3173118329"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000620",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1101%2F536078"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000620",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1101%2F536078"
+      }
+    }
+  ],
+  "id": "W-000254",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology  Atlanta GA USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jennifer B. Glass",
+          "openalex": "A5039593835",
+          "orcid": "0000-0003-0775-2486",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology  Atlanta GA USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "University of Michigan",
+              "raw": "Present address: Michigan Medicine, University of Michigan, Ann Arbor, MI, USA",
+              "ror": "00jmfr291"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Piyush Ranjan",
+          "openalex": "A5075582506",
+          "orcid": "0000-0001-8293-6889",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Association of Public Health Laboratories",
+              "raw": "Present address: Association of Public Health Laboratories, Manager of Emerging and Zoonotic Infectious Diseases, Silver Spring, MD, USA",
+              "ror": "04d0f7957"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cécilia B. Kretz",
+          "openalex": "A5029793074",
+          "orcid": "0000-0003-0630-8471",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology  Atlanta GA USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Abigail M. Johnson",
+          "openalex": "A5088753968",
+          "orcid": "0000-0002-6264-1108",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology  Atlanta GA USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Manlin Xu",
+          "openalex": "A5079451130",
+          "orcid": "0000-0002-6949-1181",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Bigelow Laboratory for Ocean Sciences",
+              "raw": "Bigelow Laboratory for Ocean Sciences  East Boothbay ME USA",
+              "ror": "03v2r6x37"
+            },
+            {
+              "country": "US",
+              "name": "Bigelow Laboratory for Ocean Sciences",
+              "raw": "Bigelow Laboratory for Ocean Sciences, East Boothbay, ME, USA",
+              "ror": "03v2r6x37"
+            }
+          ],
+          "corresponding": false,
+          "name": "James McManus",
+          "openalex": "A5067312975",
+          "orcid": "0000-0003-4697-0232",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Montana State University",
+              "raw": "Department of Microbiology and Immunology Montana State University  Bozeman MT USA",
+              "ror": "02w0trx84"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology  Atlanta GA USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Montana State University",
+              "raw": "Department of Microbiology and Immunology, Montana State University, Bozeman, MT, USA",
+              "ror": "02w0trx84"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Frank J. Stewart",
+          "openalex": "A5043222288",
+          "orcid": "0000-0002-8139-5176",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000254",
+      "ids": {
+        "doi": "10.1111/1462-2920.15656",
+        "openalex": "W3175657194",
+        "pmcid": null,
+        "pmid": "34190392"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "closed",
+        "url": null
+      },
+      "published": "2021-07-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Microbial metabolism and adaptations in Atribacteria ‐dominated methane hydrate sediments",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 1.0,
+          "subfield": "Environmental Chemistry",
+          "topic": "Methane Hydrates and Related Phenomena"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9926000237464905,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Engineering",
+          "score": 0.987500011920929,
+          "subfield": "Mechanics of Materials",
+          "topic": "Hydrocarbon exploration and reservoir analysis"
+        }
+      ],
+      "venue": {
+        "issn_l": "1462-2912",
+        "name": "Environmental Microbiology",
+        "publisher": "Wiley"
+      },
+      "version_link": null,
+      "year": 2021
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jennifer B. Glass",
+          "openalex": "A5039593835",
+          "orcid": "0000-0003-0775-2486",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Piyush Ranjan",
+          "openalex": "A5075582506",
+          "orcid": "0000-0001-8293-6889",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Michigan",
+              "raw": "Michigan Medicine , University of Michigan , Ann Arbor , Michigan , USA; Now at:",
+              "ror": "00jmfr291"
+            },
+            {
+              "country": "US",
+              "name": "Association of Public Health Laboratories",
+              "raw": "Now at: Association of Public Health Laboratories , Manager of Emerging and Zoonotic Infectious Diseases , Silver Spring , MD , USA",
+              "ror": "04d0f7957"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences , Georgia Institute of Technology , Atlanta , GA , USA;",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA;",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cécilia B. Kretz",
+          "openalex": "A5029793074",
+          "orcid": "0000-0003-0630-8471",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Abigail M. Johnson",
+          "openalex": "A5088753968",
+          "orcid": "0000-0002-6264-1108",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Manlin Xu",
+          "openalex": "A5079451130",
+          "orcid": "0000-0002-6949-1181",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Bigelow Laboratory for Ocean Sciences",
+              "raw": "Bigelow Laboratory for Ocean Sciences, East Boothbay, ME, USA",
+              "ror": "03v2r6x37"
+            },
+            {
+              "country": "US",
+              "name": "Bigelow Laboratory for Ocean Sciences",
+              "raw": "Bigelow Laboratory for Ocean Sciences",
+              "ror": "03v2r6x37"
+            }
+          ],
+          "corresponding": false,
+          "name": "James McManus",
+          "openalex": "A5067312975",
+          "orcid": "0000-0003-4697-0232",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Montana State University",
+              "raw": "Department of Microbiology & Immunology, Montana State University, Bozeman, MT, USA",
+              "ror": "02w0trx84"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Montana State University",
+              "raw": "Department of Microbiology & Immunology, Montana State University",
+              "ror": "02w0trx84"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Frank J. Stewart",
+          "openalex": "A5043222288",
+          "orcid": "0000-0002-8139-5176",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000620",
+      "ids": {
+        "doi": "10.1101/536078",
+        "openalex": "W3173118329",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "green",
+        "url": "https://doi.org/10.1101/536078"
+      },
+      "published": "2019-01-31",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Microbial metabolism and adaptations in Atribacteria -dominated methane hydrate sediments",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 1.0,
+          "subfield": "Environmental Chemistry",
+          "topic": "Methane Hydrates and Related Phenomena"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Engineering",
+          "score": 0.9936000108718872,
+          "subfield": "Mechanics of Materials",
+          "topic": "Hydrocarbon exploration and reservoir analysis"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9916999936103821,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000254"
+      },
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

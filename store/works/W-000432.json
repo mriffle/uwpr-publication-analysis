@@ -1,0 +1,276 @@
+{
+  "aliases": [],
+  "canonical": "R-000432",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000432"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000432"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000432",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W7127581504"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000432",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1016/j.xcrp.2025.103090"
+      }
+    }
+  ],
+  "id": "W-000432",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "KR",
+              "name": "Korea Advanced Institute of Science and Technology",
+              "raw": "Department of Materials Science and Engineering, Korea Advanced Institute of Science and Technology (KAIST), Daejeon, Republic of Korea",
+              "ror": "05apxxy63"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yonghan Jo",
+          "openalex": "A5124990668",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "KR",
+              "name": "Korea Advanced Institute of Science and Technology",
+              "raw": "Department of Nuclear and Quantum Engineering, Korea Advanced Institute of Science and Technology (KAIST), Daejeon, Republic of Korea",
+              "ror": "05apxxy63"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jin Hee Bae",
+          "openalex": "A5125053560",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "KR",
+              "name": "Korea Advanced Institute of Science and Technology",
+              "raw": "Department of Materials Science and Engineering, Korea Advanced Institute of Science and Technology (KAIST), Daejeon, Republic of Korea",
+              "ror": "05apxxy63"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jinhyeong Jang",
+          "openalex": "A5040037693",
+          "orcid": "0000-0001-6257-1229",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "KR",
+              "name": "Kwangwoon University",
+              "raw": "Department of Electrical and Biological Physics, Kwangwoon University, Seoul, Republic of Korea",
+              "ror": "02e9zc863"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hyungyu Lee",
+          "openalex": "A5125042241",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "KR",
+              "name": "Korea Basic Science Institute",
+              "raw": "Biopharmaceutical Research Center, Korea Basic Science Institute (KBSI), Chungbuk, Republic of Korea",
+              "ror": "0417sdw47"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yunseok Heo",
+          "openalex": "A5047086177",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Bio-Analytical Science, University of Science and Technology (UST), Daejeon, Republic of Korea",
+              "ror": null
+            },
+            {
+              "country": "KR",
+              "name": "Korea Basic Science Institute",
+              "raw": "Biopharmaceutical Research Center, Korea Basic Science Institute (KBSI), Chungbuk, Republic of Korea",
+              "ror": "0417sdw47"
+            },
+            {
+              "country": "KR",
+              "name": "Chung-Ang University",
+              "raw": "Department of Systems Biotechnology, Chung-Ang University (CAU), Gyeonggi, Republic of Korea",
+              "ror": "01r024a98"
+            },
+            {
+              "country": "JP",
+              "name": "Tohoku University",
+              "raw": "Frontier Research Institute for Interdisciplinary Sciences, Tohoku University, Sendai, Japan",
+              "ror": "01dq60k83"
+            },
+            {
+              "country": "KR",
+              "name": "Chungnam National University",
+              "raw": "Graduate School of Analytical Science and Technology, Chungnam National University, Daejeon, Republic of Korea",
+              "ror": "0227as991"
+            }
+          ],
+          "corresponding": false,
+          "name": "Young Ho Lee",
+          "openalex": "A5110555853",
+          "orcid": "0000-0001-6415-4912",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "KR",
+              "name": "Korea Advanced Institute of Science and Technology",
+              "raw": "Department of Materials Science and Engineering, Korea Advanced Institute of Science and Technology (KAIST), Daejeon, Republic of Korea",
+              "ror": "05apxxy63"
+            }
+          ],
+          "corresponding": true,
+          "name": "Chan Beum Park",
+          "openalex": "A5004655177",
+          "orcid": "0000-0002-0767-8629",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "KR",
+              "name": "Korea Advanced Institute of Science and Technology",
+              "raw": "Department of Nuclear and Quantum Engineering, Korea Advanced Institute of Science and Technology (KAIST), Daejeon, Republic of Korea",
+              "ror": "05apxxy63"
+            }
+          ],
+          "corresponding": true,
+          "name": "Sanghoo Park",
+          "openalex": "A5125097920",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000432",
+      "ids": {
+        "doi": "10.1016/j.xcrp.2025.103090",
+        "openalex": "W7127581504",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1016/j.xcrp.2025.103090"
+      },
+      "published": "2026-02-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Plasma-driven disassembly of amyloid-β aggregates by the interplay of physicochemical stimuli",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9240999817848206,
+          "subfield": "Physiology",
+          "topic": "Alzheimer's disease research and treatments"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.022600000724196434,
+          "subfield": "Molecular Biology",
+          "topic": "Amyloidosis: Diagnosis, Treatment, Outcomes"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Materials Science",
+          "score": 0.007199999876320362,
+          "subfield": "Biomaterials",
+          "topic": "Supramolecular Self-Assembly in Materials"
+        }
+      ],
+      "venue": {
+        "issn_l": "2666-3864",
+        "name": "Cell Reports Physical Science",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2026
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

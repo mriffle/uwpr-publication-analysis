@@ -1,0 +1,315 @@
+{
+  "aliases": [],
+  "canonical": "R-000227",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000227"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000227"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000227"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:1db5796c7446",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000227",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This was also supported in part by the UW Diabetes Research Center (P30-DK-017047) and in by the UW’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000227",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:b198c378d58594f4125faaccb64fb05b0870d6181dc4359dec6ec59d3b492af4",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7085425/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This was also supported in part by the UW Diabetes Research Center (P30-DK-017047) and in by the UW’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000227",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:b198c378d58594f4125faaccb64fb05b0870d6181dc4359dec6ec59d3b492af4",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7085425/"
+      }
+    }
+  ],
+  "id": "W-000227",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Nutritional Sciences Department, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michelle M. Averill",
+          "openalex": "A5049508469",
+          "orcid": "0000-0003-2453-5045",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology, and Nutrition, UW Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Katya B. Rubinow",
+          "openalex": "A5074929020",
+          "orcid": "0000-0002-6505-5657",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biostatistics, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kevin C. Cain",
+          "openalex": "A5101623794",
+          "orcid": "0000-0002-5665-6952",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology, and Nutrition, UW Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jake Wimberger",
+          "openalex": "A5036763558",
+          "orcid": "0000-0002-7417-9133",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology, and Nutrition, UW Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ilona Babenko",
+          "openalex": "A5112384425",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jessica O. Becker",
+          "openalex": "A5023836759",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karen E. Foster‐Schubert",
+          "openalex": "A5011038806",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David E. Cummings",
+          "openalex": "A5111653656",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew N. Hoofnagle",
+          "openalex": "A5031218554",
+          "orcid": "0000-0002-6449-0243",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology, and Nutrition, UW Medicine Diabetes Institute, University of Washington, Seattle, WA, USA. Electronic address: tvaisar@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology, and Nutrition, UW Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:b198c378d58594f4125faaccb64fb05b0870d6181dc4359dec6ec59d3b492af4",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000227",
+      "ids": {
+        "doi": "10.1016/j.jacl.2019.11.002",
+        "openalex": "W2991012236",
+        "pmcid": "PMC7085425",
+        "pmid": "31859127"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7085425"
+      },
+      "published": "2019-11-22",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Postprandial remodeling of high-density lipoprotein following high saturated fat and high carbohydrate meals",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.8029999732971191,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.040699999779462814,
+          "subfield": "Molecular Biology",
+          "topic": "Sphingolipid Metabolism and Signaling"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.03139999881386757,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diet, Metabolism, and Disease"
+        }
+      ],
+      "venue": {
+        "issn_l": "1876-4789",
+        "name": "Journal of clinical lipidology",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

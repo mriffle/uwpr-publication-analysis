@@ -1,0 +1,199 @@
+{
+  "aliases": [],
+  "canonical": "R-000062",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000062"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:463cb3d02f19",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000062",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000062",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, Bagley Hall, 98195-1700, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher L. Moss",
+          "openalex": "A5070915548",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, Bagley Hall, 98195-1700, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Thomas W. Chung",
+          "openalex": "A5050884849",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DK",
+              "name": "Aarhus University",
+              "raw": "Department of Physics and Astronomy, Aarhus University, Aarhus, Denmark",
+              "ror": "01aj84f44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jean Ann Wyer",
+          "openalex": "A5055269496",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DK",
+              "name": "Aarhus University",
+              "raw": "Department of Physics and Astronomy, Aarhus University, Aarhus, Denmark",
+              "ror": "01aj84f44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Steen Brøndsted Nielsen",
+          "openalex": "A5039934039",
+          "orcid": "0000-0001-9800-4744",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DK",
+              "name": "Aarhus University",
+              "raw": "Department of Physics and Astronomy, Aarhus University, Aarhus, Denmark",
+              "ror": "01aj84f44"
+            }
+          ],
+          "corresponding": false,
+          "name": "P. Hvelplund",
+          "openalex": "A5074418880",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, Bagley Hall, 98195-1700, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "František Tureček",
+          "openalex": "A5042952795",
+          "orcid": "0000-0001-7321-7858",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000062",
+      "ids": {
+        "doi": "10.1007/s13361-011-0083-2",
+        "openalex": "W2081411725",
+        "pmcid": null,
+        "pmid": "21472611"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "closed",
+        "url": null
+      },
+      "published": "2011-02-25",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Dipole-Guided Electron Capture Causes Abnormal Dissociations of Phosphorylated Pentapeptides",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 1.0,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9990000128746033,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9979000091552734,
+          "subfield": "Molecular Biology",
+          "topic": "RNA and protein synthesis mechanisms"
+        }
+      ],
+      "venue": {
+        "issn_l": "1044-0305",
+        "name": "Journal of the American Society for Mass Spectrometry",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2011
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

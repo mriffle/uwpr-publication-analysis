@@ -1,0 +1,360 @@
+{
+  "aliases": [],
+  "canonical": "R-000068",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000068"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000068"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000068"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000068"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000068"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000068"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:c687ed0959ef",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000068",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000068",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W1940178156"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000068",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1038%2Femboj.2011.181"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000068",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1038%2Femboj.2011.181"
+      }
+    }
+  ],
+  "id": "W-000068",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genetics, Harvard Medical School, Boston, MA, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genetics, Harvard Medical School; Boston MA USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Dominique Helmlinger",
+          "openalex": "A5030872396",
+          "orcid": "0000-0003-1501-0423",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genetics, Evolution and Environment and UCL Cancer Institute, University College of London London UK",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genetics, Evolution and Environment and UCL Cancer Institute, University College of London; London UK",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Samuel Marguerat",
+          "openalex": "A5066647656",
+          "orcid": "0000-0002-2402-3165",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Cell Biology, Harvard Medical School Boston MA USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Cell Biology, Harvard Medical School, Boston, MA, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington; Seattle WA USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Judit Villén",
+          "openalex": "A5005646080",
+          "orcid": "0000-0002-1005-1739",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington. Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Danielle L. Swaney",
+          "openalex": "A5087550248",
+          "orcid": "0000-0001-6119-6084",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Cell Biology, Harvard Medical School Boston MA USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Cell Biology, Harvard Medical School, Boston, MA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Steven P. Gygi",
+          "openalex": "A5079793809",
+          "orcid": "0000-0001-7626-0034",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genetics, Evolution and Environment and UCL Cancer Institute, University College of London London UK",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genetics, Evolution and Environment and UCL Cancer Institute, University College of London; London UK",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jürg Bähler",
+          "openalex": "A5039431331",
+          "orcid": "0000-0003-4036-1532",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genetics, Harvard Medical School Boston MA USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genetics, Harvard Medical School; Boston MA USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Fred Winston",
+          "openalex": "A5025993887",
+          "orcid": "0000-0002-4759-5537",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000068",
+      "ids": {
+        "doi": "10.1038/emboj.2011.181",
+        "openalex": "W1940178156",
+        "pmcid": "PMC3160243",
+        "pmid": "21642955"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1038/emboj.2011.181"
+      },
+      "published": "2011-06-03",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Tra1 has specific regulatory roles, rather than global functions, within the SAGA co‐activator complex",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998999834060669,
+          "subfield": "Molecular Biology",
+          "topic": "Genomics and Chromatin Dynamics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9990000128746033,
+          "subfield": "Molecular Biology",
+          "topic": "RNA Research and Splicing"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9984999895095825,
+          "subfield": "Molecular Biology",
+          "topic": "Ubiquitin and proteasome pathways"
+        }
+      ],
+      "venue": {
+        "issn_l": "0261-4189",
+        "name": "The EMBO Journal",
+        "publisher": "Springer Nature"
+      },
+      "version_link": null,
+      "year": 2011
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

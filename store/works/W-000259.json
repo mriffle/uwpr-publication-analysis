@@ -1,0 +1,272 @@
+{
+  "aliases": [],
+  "canonical": "R-000259",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000259"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000259"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000259"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000259"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:9db09f79421a",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000259",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000259",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:10b88064d9864619c3e034e0e4ac85fbd1c94a788e08d4bd709e669e5c6579d2",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8463592/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000259",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3199557855"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000259",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:10b88064d9864619c3e034e0e4ac85fbd1c94a788e08d4bd709e669e5c6579d2",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8463592/"
+      }
+    }
+  ],
+  "id": "W-000259",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "University of Technology Sydney",
+              "raw": "School of Life Sciences, University of Technology Sydney, Sydney, NSW, Australia. Katherina.Petrou@uts.edu.au",
+              "ror": "03f0f6041"
+            },
+            {
+              "country": "AU",
+              "name": "University of Technology Sydney",
+              "raw": "School of Life Sciences, University of Technology Sydney, Sydney, NSW, Australia",
+              "ror": "03f0f6041"
+            }
+          ],
+          "corresponding": true,
+          "name": "Katherina Petrou",
+          "openalex": "A5019173292",
+          "orcid": "0000-0002-2703-0694",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "University of Technology Sydney",
+              "raw": "School of Life Sciences, University of Technology Sydney, Sydney, NSW, Australia",
+              "ror": "03f0f6041"
+            }
+          ],
+          "corresponding": false,
+          "name": "Matthew P. Padula",
+          "openalex": "A5030916597",
+          "orcid": "0000-0002-8283-0643",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "ARC Centre of Excellence for Coral Reef Studies",
+              "raw": "ARC Centre of Excellence for Coral Reef Studies, James Cook University, Townsville, QLD, Australia",
+              "ror": "028cdc266"
+            },
+            {
+              "country": "AU",
+              "name": "James Cook University",
+              "raw": "Centre for Tropical Bioinformatics and Molecular Biology, James Cook University, Townsville, QLD, Australia",
+              "ror": "04gsp2c11"
+            }
+          ],
+          "corresponding": false,
+          "name": "David J. Miller",
+          "openalex": "A5029029931",
+          "orcid": "0000-0003-0291-9531",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "University of Technology Sydney",
+              "raw": "School of Life Sciences, University of Technology Sydney, Sydney, NSW, Australia",
+              "ror": "03f0f6041"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel A. Nielsen",
+          "openalex": "A5041458913",
+          "orcid": "0000-0001-6678-5937",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:10b88064d9864619c3e034e0e4ac85fbd1c94a788e08d4bd709e669e5c6579d2",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000259",
+      "ids": {
+        "doi": "10.1038/s41598-021-98548-x",
+        "openalex": "W3199557855",
+        "pmcid": "PMC8463592",
+        "pmid": "34561509"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1038/s41598-021-98548-x"
+      },
+      "published": "2021-09-24",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Broad scale proteomic analysis of heat-destabilised symbiosis in the hard coral Acropora millepora",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 1.0,
+          "subfield": "Ecology",
+          "topic": "Coral and Marine Ecosystems Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9965999722480774,
+          "subfield": "Biotechnology",
+          "topic": "Marine Sponges and Natural Products"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9843999743461609,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal plant biology"
+        }
+      ],
+      "venue": {
+        "issn_l": "2045-2322",
+        "name": "Scientific Reports",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2021
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

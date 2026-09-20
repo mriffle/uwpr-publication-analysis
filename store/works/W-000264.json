@@ -1,0 +1,616 @@
+{
+  "aliases": [
+    "W-000587"
+  ],
+  "canonical": "R-000264",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000264"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000587"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000264"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000587"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000264"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000587"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2022:f4f2dda22c44",
+        "page": "2022"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000264",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2022/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported by National Institutes of Health grants S10OD032290 and NIH NIGMS and NIAID grants R01GM099989 and R01AI140868 to K.K.L., T32GM008268 to M.A.B., R01AI143563 and the James B. Pendleton Charitable Trust to M.B.Z., and the University of Washington’s Proteomics Resource (UWPR957…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000264",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:38603a357e9bec867237b8888e1e15d567dc7f1d93d0e02cdaa3de9b93e5ed5f",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9000915/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000587",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3198350517"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported by National Institutes of Health grants S10OD032290 and NIH NIGMS and NIAID grants R01GM099989 and R01AI140868 to K.K.L., T32GM008268 to M.A.B., R01AI143563 and the James B. Pendleton Charitable Trust to M.B.Z., and the University of Washington’s Proteomics Resource (UWPR957…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000264",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:38603a357e9bec867237b8888e1e15d567dc7f1d93d0e02cdaa3de9b93e5ed5f",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9000915/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000587",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1101%2F2021.08.31.458345"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000587",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1101%2F2021.08.31.458345"
+      }
+    }
+  ],
+  "id": "W-000264",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Vidya Mangala Prasad",
+          "openalex": "A5084786754",
+          "orcid": "0000-0002-4215-5700",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Department of Immunology and Microbiology, The Scripps Research Institute, La Jolla, CA 92037, USA",
+              "ror": "02dxx6824"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel P. Leaman",
+          "openalex": "A5053031708",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Klaus N. Lovendahl",
+          "openalex": "A5050651038",
+          "orcid": "0000-0002-3871-3570",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jacob T. Croft",
+          "openalex": "A5082152001",
+          "orcid": "0000-0002-8964-3699",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mark A. Benhaim",
+          "openalex": "A5011445894",
+          "orcid": "0000-0003-2906-5599",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edgar A. Hodge",
+          "openalex": "A5002771098",
+          "orcid": "0000-0003-1606-5821",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Department of Immunology and Microbiology, The Scripps Research Institute, La Jolla, CA 92037, USA. Electronic address: zwick@scripps.edu",
+              "ror": "02dxx6824"
+            },
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Department of Immunology and Microbiology, The Scripps Research Institute, La Jolla, CA 92037, USA",
+              "ror": "02dxx6824"
+            }
+          ],
+          "corresponding": true,
+          "name": "Michael B. Zwick",
+          "openalex": "A5055747549",
+          "orcid": "0000-0002-0885-2502",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA; Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA 98195, USA; Department of Microbiology, University of Washington, Seattle, WA 98195, USA. Electronic address: kklee@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Kelly K. Lee",
+          "openalex": "A5049971572",
+          "orcid": "0000-0001-5577-9873",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:38603a357e9bec867237b8888e1e15d567dc7f1d93d0e02cdaa3de9b93e5ed5f",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000264",
+      "ids": {
+        "doi": "10.1016/j.cell.2022.01.013",
+        "openalex": "W4210661134",
+        "pmcid": "PMC9000915",
+        "pmid": "35123651"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1016/j.cell.2022.01.013"
+      },
+      "published": "2022-02-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Cryo-ET of Env on intact HIV virions reveals structural variation and positioning on the Gag lattice",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 1.0,
+          "subfield": "Virology",
+          "topic": "HIV Research and Treatment"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9921000003814697,
+          "subfield": "Epidemiology",
+          "topic": "Cytomegalovirus and herpesvirus research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9918000102043152,
+          "subfield": "Infectious Diseases",
+          "topic": "HIV/AIDS drug development and treatment"
+        }
+      ],
+      "venue": {
+        "issn_l": "0092-8674",
+        "name": "Cell",
+        "publisher": "Cell Press"
+      },
+      "version_link": null,
+      "year": 2022
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Vidya Mangala Prasad",
+          "openalex": "A5084786754",
+          "orcid": "0000-0002-4215-5700",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Department of Immunology and Microbiology, The Scripps Research Institute, La Jolla, CA 92037, USA",
+              "ror": "02dxx6824"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel P. Leaman",
+          "openalex": "A5053031708",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Klaus N. Lovendahl",
+          "openalex": "A5050651038",
+          "orcid": "0000-0002-3871-3570",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jacob T. Croft",
+          "openalex": "A5082152001",
+          "orcid": "0000-0002-8964-3699",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mark A. Benhaim",
+          "openalex": "A5011445894",
+          "orcid": "0000-0003-2906-5599",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edgar A. Hodge",
+          "openalex": "A5002771098",
+          "orcid": "0000-0003-1606-5821",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Department of Immunology and Microbiology, The Scripps Research Institute, La Jolla, CA 92037, USA",
+              "ror": "02dxx6824"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael B. Zwick",
+          "openalex": "A5055747549",
+          "orcid": "0000-0002-0885-2502",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Kelly K. Lee",
+          "openalex": "A5049971572",
+          "orcid": "0000-0001-5577-9873",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000587",
+      "ids": {
+        "doi": "10.1101/2021.08.31.458345",
+        "openalex": "W3198350517",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "green",
+        "url": "https://doi.org/10.1101/2021.08.31.458345"
+      },
+      "published": "2021-09-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Cryo-ET of HIV reveals Env positioning on Gag lattice and structural variation among Env trimers",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 1.0,
+          "subfield": "Virology",
+          "topic": "HIV Research and Treatment"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9944000244140625,
+          "subfield": "Ecology",
+          "topic": "Bacteriophages and microbial interactions"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9922999739646912,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000264"
+      },
+      "year": 2021
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

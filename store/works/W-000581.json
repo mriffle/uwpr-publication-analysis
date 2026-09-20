@@ -1,0 +1,272 @@
+{
+  "aliases": [],
+  "canonical": "R-000581",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000581"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000581",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1101%2F2020.05.09.086066"
+      }
+    }
+  ],
+  "id": "W-000581",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "BE",
+              "name": "University of Antwerp",
+              "raw": "Department of Computer Science, University of Antwerp, Middelheimlaan 1, 2020 Antwerpen, Belgium",
+              "ror": "008x57b05"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, UC San Diego, 9500 Gilman Dr., La Jolla CA 92093, USA",
+              "ror": null
+            },
+            {
+              "country": "BE",
+              "name": "University of Antwerp",
+              "raw": "Department of Computer Science, University of Antwerp, Middelheimlaan 1, 00 Antwerpen, Belgium",
+              "ror": "008x57b05"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wout Bittremieux",
+          "openalex": "A5053271927",
+          "orcid": "0000-0002-3105-1359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, UC San Diego, 9500 Gilman Dr., La Jolla CA 92093, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher S. Chen",
+          "openalex": "A5100609547",
+          "orcid": "0000-0003-2445-8449",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, UC San Diego, 9500 Gilman Dr., La Jolla CA 92093, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Pieter C. Dorrestein",
+          "openalex": "A5082720301",
+          "orcid": "0000-0002-3003-1030",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "LU",
+              "name": "University of Luxembourg",
+              "raw": "Luxembourg Centre for Systems Biomedicine (LCSB), University of Luxembourg, 6 Avenue du Swing, 4367 Belvaux, Luxembourg",
+              "ror": "036x5ad56"
+            },
+            {
+              "country": "LU",
+              "name": "University of Luxembourg",
+              "raw": "Luxembourg Centre for Systems Biomedicine (LCSB), University of Luxembourg, 6 Avenue du Swing, 467 Belvaux, Luxembourg",
+              "ror": "036x5ad56"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emma Schymanski",
+          "openalex": "A5016319274",
+          "orcid": "0000-0001-6868-8145",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DE",
+              "name": "Leibniz Institute of Plant Biochemistry",
+              "raw": "Leibniz Institute of Plant Biochemistry, Bioinformatics and Scientific Data, Weinberg 3, 06120 Halle, Germany",
+              "ror": "01mzk5576"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tobias Schulze",
+          "openalex": "A5043403539",
+          "orcid": "0000-0002-9744-8914",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DE",
+              "name": "German Centre for Integrative Biodiversity Research",
+              "raw": "German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig, Deutscher Platz 5e, 04103 Leipzig, Germany",
+              "ror": "01jty7g66"
+            },
+            {
+              "country": "DE",
+              "name": "Helmholtz Centre for Environmental Research",
+              "raw": "Helmholtz Centre for Environmental Research – UFZ, Department of Effect Directed Analysis, Permoserstrasse 15, 04318 Leipzig, Germany",
+              "ror": "000h6jb29"
+            },
+            {
+              "country": "DE",
+              "name": "German Centre for Integrative Biodiversity Research",
+              "raw": "German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig, Deutscher Platz e, 04103 Leipzig, Germany",
+              "ror": "01jty7g66"
+            }
+          ],
+          "corresponding": false,
+          "name": "Steffen Neumann",
+          "openalex": "A5038786156",
+          "orcid": "0000-0002-7899-7192",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DE",
+              "name": "Leibniz Institute of Plant Biochemistry",
+              "raw": "Leibniz Institute of Plant Biochemistry, Bioinformatics and Scientific Data, Weinberg 3, 06120 Halle, Germany",
+              "ror": "01mzk5576"
+            }
+          ],
+          "corresponding": false,
+          "name": "René Meier",
+          "openalex": "A5036790593",
+          "orcid": "0000-0002-1501-1349",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "University of Glasgow",
+              "raw": "School of Computing Science, University of Glasgow, Glasgow G12 8QQ, United Kingdom",
+              "ror": "00vtgdb53"
+            }
+          ],
+          "corresponding": false,
+          "name": "Simon Rogers",
+          "openalex": "A5060432668",
+          "orcid": "0000-0003-3578-4477",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, UC San Diego, 9500 Gilman Dr., La Jolla CA 92093, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Mingxun Wang",
+          "openalex": "A5058074901",
+          "orcid": "0000-0001-7647-6097",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000581",
+      "ids": {
+        "doi": "10.1101/2020.05.09.086066",
+        "openalex": "W3023444868",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc",
+        "status": "green",
+        "url": "https://doi.org/10.1101/2020.05.09.086066"
+      },
+      "published": "2020-05-10",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Universal MS/MS Visualization and Retrieval with the Metabolomics Spectrum Resolver Web Service",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 1.0,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9882000088691711,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9592999815940857,
+          "subfield": "Molecular Biology",
+          "topic": "Gut microbiota and health"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": null,
+      "year": 2020
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

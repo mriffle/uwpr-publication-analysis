@@ -1,0 +1,388 @@
+{
+  "aliases": [],
+  "canonical": "R-000049",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000049"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000049"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:adfe83381df8",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000049",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "PDvH: Proteomics Resources, University of Washington, Seattle, Washington, USA;",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000049",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "author notes",
+      "source": {
+        "cache": "sha256:920785692ef339b76e7c8fe0ba8c4734511f62c832c3c449be6e46b2b408808f",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2948633/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "11Current address: Proteomics Resources, University of Washington, Seattle, WA, USA.,",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000049",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W1990214118"
+      }
+    }
+  ],
+  "id": "W-000049",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA 98195-6100, USA. ltrue@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Lawrence D. True",
+          "openalex": "A5034997866",
+          "orcid": "0000-0002-8621-9569",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Johns Hopkins University",
+              "raw": "9Current address: Department of Pathology, Johns Hopkins University, Baltimore, MD, USA.,",
+              "ror": "00za53h95"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA, USA",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hui Zhang",
+          "openalex": "A5100323343",
+          "orcid": "0000-0001-6825-5649",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Dalian Institute of Chemical Physics",
+              "raw": "10Current address: Division of Biotechnology, Dalian Institute of Chemical Physics, Chinese Academy of Sciences, Dalian, China.,",
+              "ror": "00prkya54"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA, USA",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mingliang Ye",
+          "openalex": "A5008218058",
+          "orcid": "0000-0002-5872-9326",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chung-Ying Huang",
+          "openalex": "A5110138771",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Section of Human Biology, Fred Hutchinson Cancer Research Center, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Peter S. Nelson",
+          "openalex": "A5067800417",
+          "orcid": "0000-0002-5451-5726",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "11Current address: Proteomics Resources, University of Washington, Seattle, WA, USA.,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "MacroGenics, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Priska D. von Haller",
+          "openalex": "A5083225847",
+          "orcid": null,
+          "staff": "vonhaller"
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "12Current address: XORI, Seattle, WA, USA.,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "MacroGenics, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Larry W. Tjoelker",
+          "openalex": "A5069417396",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Biological Science Division and Environmental Molecular Sciences Laboratory, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jong‐Seo Kim",
+          "openalex": "A5082258548",
+          "orcid": "0000-0002-8909-8440",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Biological Science Division and Environmental Molecular Sciences Laboratory, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Weijun Qian",
+          "openalex": "A5075235007",
+          "orcid": "0000-0002-5393-2827",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Biological Science Division and Environmental Molecular Sciences Laboratory, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard Smith",
+          "openalex": "A5023982706",
+          "orcid": "0000-0002-2381-2349",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Urology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "William J. Ellis",
+          "openalex": "A5111764800",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Urology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emily S Liebeskind",
+          "openalex": "A5058745256",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Urology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alvin Y. Liu",
+          "openalex": "A5025193657",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:920785692ef339b76e7c8fe0ba8c4734511f62c832c3c449be6e46b2b408808f",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000049",
+      "ids": {
+        "doi": "10.1038/modpathol.2010.122",
+        "openalex": "W1990214118",
+        "pmcid": "PMC2948633",
+        "pmid": "20562849"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1038/modpathol.2010.122"
+      },
+      "published": "2010-06-18",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "CD90/THY1 is overexpressed in prostate cancer-associated fibroblasts and could serve as a cancer biomarker",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9976999759674072,
+          "subfield": "Pulmonary and Respiratory Medicine",
+          "topic": "Prostate Cancer Treatment and Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.993399977684021,
+          "subfield": "Immunology and Allergy",
+          "topic": "Cell Adhesion Molecules Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9926999807357788,
+          "subfield": "Oncology",
+          "topic": "Peptidase Inhibition and Analysis"
+        }
+      ],
+      "venue": {
+        "issn_l": "0893-3952",
+        "name": "Modern Pathology",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2010
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

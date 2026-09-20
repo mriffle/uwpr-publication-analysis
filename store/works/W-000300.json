@@ -1,0 +1,246 @@
+{
+  "aliases": [],
+  "canonical": "R-000300",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000300"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000300"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000300"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000300"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000300"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2024:4906027cf6b8",
+        "page": "2024"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000300",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2024/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "Proteomics analysis was performed at the University of Washington Proteomics Resource in part with the support of UWPR95794.",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000300",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:6d550fbffd9fd1e19563764966ef35aa1bffab708d5c1aefaf381066e2aed739",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11539851/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Proteomics analysis was performed at the University of Washington Proteomics Resource in part with the support of UWPR95794.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000300",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:6d550fbffd9fd1e19563764966ef35aa1bffab708d5c1aefaf381066e2aed739",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11539851/"
+      }
+    }
+  ],
+  "id": "W-000300",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Medicine Diabetes Institute, Department of Medicine, University of Washington, Seattle, WA, USA. Electronic address: tvaisar@uw.edu",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Medicine Diabetes Institute, Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ilona Babenko",
+          "openalex": "A5112384425",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Tufts University",
+              "raw": "Cardiovascular Nutrition Laboratory, Jean Mayer USDA Human Nutrition Research Center on Aging at Tufts University, Boston, MA, USA",
+              "ror": "05wvpxv85"
+            }
+          ],
+          "corresponding": false,
+          "name": "Katalin V. Horvath",
+          "openalex": "A5113452424",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Tufts University",
+              "raw": "Cardiovascular Nutrition Laboratory, Jean Mayer USDA Human Nutrition Research Center on Aging at Tufts University, Boston, MA, USA",
+              "ror": "05wvpxv85"
+            }
+          ],
+          "corresponding": false,
+          "name": "Katrin Niisuke",
+          "openalex": "A5018965000",
+          "orcid": "0000-0003-4838-9097",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Tufts University",
+              "raw": "Cardiovascular Nutrition Laboratory, Jean Mayer USDA Human Nutrition Research Center on Aging at Tufts University, Boston, MA, USA",
+              "ror": "05wvpxv85"
+            }
+          ],
+          "corresponding": false,
+          "name": "Bela F. Asztalos",
+          "openalex": "A5040349351",
+          "orcid": "0000-0002-7644-9133",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:6d550fbffd9fd1e19563764966ef35aa1bffab708d5c1aefaf381066e2aed739",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000300",
+      "ids": {
+        "doi": "10.1016/j.atherosclerosis.2024.118565",
+        "openalex": "W4401549716",
+        "pmcid": "PMC11539851",
+        "pmid": "39260003"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1016/j.atherosclerosis.2024.118565"
+      },
+      "published": "2024-08-13",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Relationships between HDL subpopulation proteome and HDL function in overweight/obese people with and without coronary heart disease",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.7476999759674072,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.05310000106692314,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.03970000147819519,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "0021-9150",
+        "name": "Atherosclerosis",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2024
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,364 @@
+{
+  "aliases": [],
+  "canonical": "R-000311",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000311"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2025:3aeead8bbd1e",
+        "page": "2025"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000311",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2025/"
+      }
+    }
+  ],
+  "id": "W-000311",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "CL",
+              "name": "Advanced Center for Chronic Diseases",
+              "raw": "Advanced Center for Chronic Diseases (ACCDiS), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "036mwh061"
+            },
+            {
+              "country": "CL",
+              "name": "University of Chile",
+              "raw": "Cellular Communication Laboratory, Center for Studies on Exercise, Metabolism and Cancer (CEMC), Institute of Biomedical Sciences (ICBM), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "047gc3g35"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Facultad de Ciencias de la Salud, Escuela de Tecnología Médica, Universidad Bernardo OHiggins, General Gana 1702, Santiago, 8370854, Chile",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Ricardo Huilcamán",
+          "openalex": "A5018751215",
+          "orcid": "0000-0001-5065-4027",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CL",
+              "name": "Advanced Center for Chronic Diseases",
+              "raw": "Advanced Center for Chronic Diseases (ACCDiS), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "036mwh061"
+            },
+            {
+              "country": "GB",
+              "name": "Cancer Research UK",
+              "raw": "Cancer Research UK Scotland Institute, Garscube Estate. Switchback Road, Bearsden, Glasgow, G61 1BD, UK",
+              "ror": "054225q67"
+            },
+            {
+              "country": "CL",
+              "name": "University of Chile",
+              "raw": "Cellular Communication Laboratory, Center for Studies on Exercise, Metabolism and Cancer (CEMC), Institute of Biomedical Sciences (ICBM), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "047gc3g35"
+            }
+          ],
+          "corresponding": false,
+          "name": "América Campos",
+          "openalex": "A5005660738",
+          "orcid": "0000-0002-7068-3391",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CL",
+              "name": "University of Chile",
+              "raw": "Cellular Communication Laboratory, Center for Studies on Exercise, Metabolism and Cancer (CEMC), Institute of Biomedical Sciences (ICBM), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "047gc3g35"
+            }
+          ],
+          "corresponding": false,
+          "name": "P Contreras",
+          "openalex": "A5009977048",
+          "orcid": "0000-0002-4258-2454",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CL",
+              "name": "Advanced Center for Chronic Diseases",
+              "raw": "Advanced Center for Chronic Diseases (ACCDiS), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "036mwh061"
+            },
+            {
+              "country": "CL",
+              "name": "University of Chile",
+              "raw": "Cellular Communication Laboratory, Center for Studies on Exercise, Metabolism and Cancer (CEMC), Institute of Biomedical Sciences (ICBM), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "047gc3g35"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Nutrition and Dietetic School, Universidad Finis Terrae, Santiago, Chile",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Layla Simón",
+          "openalex": "A5000718969",
+          "orcid": "0000-0002-0130-3519",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CL",
+              "name": "Advanced Center for Chronic Diseases",
+              "raw": "Advanced Center for Chronic Diseases (ACCDiS), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "036mwh061"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Centro Científico y Tecnológico de Excelencia Ciencia & Vida, Fundación Ciencia & Vida, Huechuraba, Santiago, 8580702, Chile",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Centro de Biología Celular y Biomedicina (CEBICEM), Facultad de Medicina y Ciencia, Universidad San Sebastián, Providencia, Santiago, 7510156, Chile",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Manuel Varas‐Godoy",
+          "openalex": "A5072131030",
+          "orcid": "0000-0001-5857-4793",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Laboratory of Reproductive Biology, Center for Biomedical Research, Faculty of Medicine, Universidad de Los Andes, Santiago, Chile",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Felipe Grünenwald",
+          "openalex": "A5072001336",
+          "orcid": "0000-0002-7182-618X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, University of Washington, Seattle, WA, 98195- 8055, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Baohai Shao",
+          "openalex": "A5026547402",
+          "orcid": "0000-0001-8832-2845",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, University of Washington, Seattle, WA, 98195- 8055, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CL",
+              "name": "Advanced Center for Chronic Diseases",
+              "raw": "Advanced Center for Chronic Diseases (ACCDiS), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "036mwh061"
+            },
+            {
+              "country": "CL",
+              "name": "University of Chile",
+              "raw": "Cellular Communication Laboratory, Center for Studies on Exercise, Metabolism and Cancer (CEMC), Institute of Biomedical Sciences (ICBM), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "047gc3g35"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lorena Lobos‐González",
+          "openalex": "A5066783048",
+          "orcid": "0000-0002-4957-9864",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CL",
+              "name": "Advanced Center for Chronic Diseases",
+              "raw": "Advanced Center for Chronic Diseases (ACCDiS), Faculty of Medicine, University of Chile, Santiago, Chile. lleyton@med.uchile.cl",
+              "ror": "036mwh061"
+            },
+            {
+              "country": "CL",
+              "name": "University of Chile",
+              "raw": "Cellular Communication Laboratory, Center for Studies on Exercise, Metabolism and Cancer (CEMC), Institute of Biomedical Sciences (ICBM), Faculty of Medicine, University of Chile, Santiago, Chile. lleyton@med.uchile.cl",
+              "ror": "047gc3g35"
+            },
+            {
+              "country": "CL",
+              "name": "Advanced Center for Chronic Diseases",
+              "raw": "Advanced Center for Chronic Diseases (ACCDiS), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "036mwh061"
+            },
+            {
+              "country": "CL",
+              "name": "University of Chile",
+              "raw": "Cellular Communication Laboratory, Center for Studies on Exercise, Metabolism and Cancer (CEMC), Institute of Biomedical Sciences (ICBM), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "047gc3g35"
+            }
+          ],
+          "corresponding": true,
+          "name": "Lisette Leyton",
+          "openalex": "A5029827243",
+          "orcid": "0000-0001-9690-9638",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CL",
+              "name": "Advanced Center for Chronic Diseases",
+              "raw": "Advanced Center for Chronic Diseases (ACCDiS), Faculty of Medicine, University of Chile, Santiago, Chile. aquest@med.uchile.cl",
+              "ror": "036mwh061"
+            },
+            {
+              "country": "CL",
+              "name": "University of Chile",
+              "raw": "Cellular Communication Laboratory, Center for Studies on Exercise, Metabolism and Cancer (CEMC), Institute of Biomedical Sciences (ICBM), Faculty of Medicine, University of Chile, Santiago, Chile. aquest@med.uchile.cl",
+              "ror": "047gc3g35"
+            },
+            {
+              "country": "CL",
+              "name": "Advanced Center for Chronic Diseases",
+              "raw": "Advanced Center for Chronic Diseases (ACCDiS), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "036mwh061"
+            },
+            {
+              "country": "CL",
+              "name": "University of Chile",
+              "raw": "Cellular Communication Laboratory, Center for Studies on Exercise, Metabolism and Cancer (CEMC), Institute of Biomedical Sciences (ICBM), Faculty of Medicine, University of Chile, Santiago, Chile",
+              "ror": "047gc3g35"
+            }
+          ],
+          "corresponding": true,
+          "name": "Andrew F. G. Quest",
+          "openalex": "A5039658579",
+          "orcid": "0000-0001-8755-1590",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:e104b7eeaed1c96b988e12c3ab2eb23e85ba910e20769348ef1f36e346218553",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000311",
+      "ids": {
+        "doi": "10.1186/s12964-025-02131-0",
+        "openalex": "W4408535361",
+        "pmcid": "PMC11912626",
+        "pmid": "40098186"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1186/s12964-025-02131-0"
+      },
+      "published": "2025-03-17",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Inclusion of ΑVβ3 integrin into extracellular vesicles in a caveolin-1 tyrosine-14- phosphorylation dependent manner and subsequent transfer to recipient melanoma cells promotes migration, invasion and metastasis",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998999834060669,
+          "subfield": "Molecular Biology",
+          "topic": "Extracellular vesicles in disease"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9998999834060669,
+          "subfield": "Immunology and Allergy",
+          "topic": "Cell Adhesion Molecules Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9991999864578247,
+          "subfield": "Cell Biology",
+          "topic": "Caveolin-1 and cellular processes"
+        }
+      ],
+      "venue": {
+        "issn_l": "1478-811X",
+        "name": "Cell Communication and Signaling",
+        "publisher": "BioMed Central"
+      },
+      "version_link": null,
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,1012 @@
+{
+  "aliases": [
+    "W-000666"
+  ],
+  "canonical": "R-000666",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000289"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000666"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000666"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000666"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000666"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000666"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2024:7afa4969a2fb",
+        "page": "2024"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000289",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2024/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "We thank Dr. Priska von Haller and the Proteomics Resource (UWPR95794, University of Washington) for technical support and Dr. Fabrizio Veglia for statistical advice.",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000289",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:7332023cc9d36334e4e2eef73073beee94a53c6785f5366732c5f0898d5f8d40",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10635269/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "We thank the Proteomics Resource (UWPR95794, University of Washington) for technical support and Dr Fabrizio Veglia for statistical advice.",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000666",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:90225d6455574dae6bd05554f2e048e96422319a5b6365c8652bd0fcc2f0f82c",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10913861/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000666",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4389143624"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "We thank Dr. Priska von Haller and the Proteomics Resource (UWPR95794, University of Washington) for technical support and Dr. Fabrizio Veglia for statistical advice.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000289",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:7332023cc9d36334e4e2eef73073beee94a53c6785f5366732c5f0898d5f8d40",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10635269/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "We thank the Proteomics Resource (UWPR95794, University of Washington) for technical support and Dr Fabrizio Veglia for statistical advice.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000666",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:90225d6455574dae6bd05554f2e048e96422319a5b6365c8652bd0fcc2f0f82c",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10913861/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "We thank Dr. Priska von Haller and the Proteomics Resource (UWPR95794, University of Washington) for technical support and Dr. Fabrizio Veglia for statistical advice.",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000289",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:7332023cc9d36334e4e2eef73073beee94a53c6785f5366732c5f0898d5f8d40",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10635269/"
+      }
+    }
+  ],
+  "id": "W-000289",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Yi He https://orcid.org/0000-0002-5565-5579 Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yi He",
+          "openalex": "A5054938728",
+          "orcid": "0000-0002-5565-5579",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Centro Grossi Paoletti, Dipartimento di Scienze Farmacologiche e Biomolecolari, Università degli Studi di Milano, Italy (C.P., L.C.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Chiara Pavanello",
+          "openalex": "A5033496320",
+          "orcid": "0000-0001-5892-9857",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Patrick M. Hutchins Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Patrick M. Hutchins",
+          "openalex": "A5080733868",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Chongren Tang Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chongren Tang",
+          "openalex": "A5110446029",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Laboratory of Computational Biology, National Heart, Lung, and Blood Institute (M.P., R.W.P.), National Institutes of Health, Bethesda, MD",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Mohsen Pourmousa https://orcid.org/0000-0002-6103-2976 Laboratory of Computational Biology, National Heart, Lung, and Blood Institute, National Institutes of Health, Bethesda, MD. (M.P., R.W.P.)",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mohsen Pourmousa",
+          "openalex": "A5071696963",
+          "orcid": "0000-0002-6103-2976",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Tomas Vaisar https://orcid.org/0000-0002-7406-6606 Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN (H.D.S., J.P.S.)",
+              "ror": "05dq2gs74"
+            },
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Hyun D. Song https://orcid.org/0000-0002-9768-5055 Department of Medicine, Vanderbilt University Medical Center, Nashville, TN (H.D.S., J.P.S.)",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hyun D. Song",
+          "openalex": "A5049572208",
+          "orcid": "0000-0002-9768-5055",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Laboratory of Computational Biology, National Heart, Lung, and Blood Institute (M.P., R.W.P.), National Institutes of Health, Bethesda, MD",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Richard W. Pastor https://orcid.org/0000-0002-2454-5131 Laboratory of Computational Biology, National Heart, Lung, and Blood Institute, National Institutes of Health, Bethesda, MD. (M.P., R.W.P.)",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard W. Pastor",
+          "openalex": "A5024128533",
+          "orcid": "0000-0002-2454-5131",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Department of Laboratory Medicine (A.T.R.), National Institutes of Health, Bethesda, MD",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Alan T. Remaley Department of Laboratory Medicine, National Institutes of Health, Bethesda, MD. (A.T.R.)",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alan T. Remaley",
+          "openalex": "A5101870315",
+          "orcid": "0000-0003-2473-5549",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "New York University",
+              "raw": "Department of Medicine, New York University, New York, NY (I.J.G.)",
+              "ror": "0190ak572"
+            },
+            {
+              "country": "US",
+              "name": "New York University",
+              "raw": "Ira J. Goldberg https://orcid.org/0000-0002-8701-2201 Department of Medicine, New York University, New York, NY (I.J.G.)",
+              "ror": "0190ak572"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ira J. Goldberg",
+          "openalex": "A5066507748",
+          "orcid": "0000-0002-8701-2201",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "Department of Epidemiology, University of Pittsburgh, PA (T.C.)",
+              "ror": "01an3r305"
+            },
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "Tina Costacou https://orcid.org/0000-0001-9303-3810 Department of Epidemiology, University of Pittsburgh, PA (T.C.)",
+              "ror": "01an3r305"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tina Costacou",
+          "openalex": "A5053959156",
+          "orcid": "0000-0001-9303-3810",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati College of Medicine, OH (W.S.D.)",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "W. Sean Davidson https://orcid.org/0000-0003-2756-2989 Department of Pathology and Laboratory Medicine, University of Cincinnati College of Medicine, OH (W.S.D.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "W. Sean Davidson",
+          "openalex": "A5008316828",
+          "orcid": "0000-0003-2756-2989",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Karin E. Bornfeldt https://orcid.org/0000-0001-9208-6523 Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Centro Grossi Paoletti, Dipartimento di Scienze Farmacologiche e Biomolecolari, Università degli Studi di Milano, Italy (C.P., L.C.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Laura Calabresi",
+          "openalex": "A5056606171",
+          "orcid": "0000-0001-5042-9532",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN (H.D.S., J.P.S.)",
+              "ror": "05dq2gs74"
+            },
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Jere P. Segrest Department of Medicine, Vanderbilt University Medical Center, Nashville, TN (H.D.S., J.P.S.)",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jere P. Segrest",
+          "openalex": "A5028220327",
+          "orcid": "0000-0002-0676-7996",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (Y.H., P.M.H., C.T., T.V., K.E.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "850 Republican St, Box 358055, UW Medicine, Seattle, WA 98109",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Department of Laboratory Medicine (A.T.R.), National Institutes of Health, Bethes-da, MD. Department of Medicine,",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "New York University",
+              "raw": "Department of Medicine, New York University, New York, NY (I.J.G.). Department of Epidemiology,",
+              "ror": "0190ak572"
+            },
+            {
+              "country": "US",
+              "name": "National Heart, Lung, and Blood Institute",
+              "raw": "Laboratory of Computational Biology, National Heart, Lung, and Blood Institute (M.P.,",
+              "ror": "012pb6c26"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Pittsburgh, PA (T.C.). Depart-ment of Pathology and Laboratory Medicine, University of Cincinnati College of Medicine, OH (W.S.D.)",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Vanderbilt University Medical Center, Nashville, TN",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:90225d6455574dae6bd05554f2e048e96422319a5b6365c8652bd0fcc2f0f82c",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000666",
+      "ids": {
+        "doi": "10.1161/circulationaha.123.065959",
+        "openalex": "W4389143624",
+        "pmcid": "PMC10913861",
+        "pmid": "38018436"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1161/circulationaha.123.065959"
+      },
+      "published": "2023-11-29",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Flipped C-Terminal Ends of APOA1 Promote ABCA1-Dependent Cholesterol Efflux by Small HDLs",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.935699999332428,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.04769999906420708,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0027000000700354576,
+          "subfield": "Cancer Research",
+          "topic": "Cancer, Lipids, and Metabolism"
+        }
+      ],
+      "venue": {
+        "issn_l": "0009-7322",
+        "name": "Circulation",
+        "publisher": "Lippincott Williams & Wilkins"
+      },
+      "version_link": null,
+      "year": 2023
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yi He",
+          "openalex": "A5054938728",
+          "orcid": "0000-0002-5565-5579",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Centro Grossi Paoletti, Dipartimento di Scienze Farmacologiche e Biomolecolari, Università degli Studi di Milano, Milano, Italy",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Universita degli Studi di Milano",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Chiara Pavanello",
+          "openalex": "A5033496320",
+          "orcid": "0000-0001-5892-9857",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Patrick M. Hutchins",
+          "openalex": "A5080733868",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chongren Tang",
+          "openalex": "A5110446029",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Laboratory of Computational Biology, National Heart, Lung, and Blood Institute, National Institutes of Health, Bethesda, MD 20892",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Laboratory of Computational Biology, National Heart, Lung, and Blood Institute, National Institutes of Health",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mohsen Pourmousa",
+          "openalex": "A5071696963",
+          "orcid": "0000-0002-6103-2976",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, 37240, USA",
+              "ror": "05dq2gs74"
+            },
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Vanderbilt University Medical Center",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hyun D. Song",
+          "openalex": "A5049572208",
+          "orcid": "0000-0002-9768-5055",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Laboratory of Computational Biology, National Heart, Lung, and Blood Institute, National Institutes of Health, Bethesda, MD 20892",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Laboratory of Computational Biology, National Heart, Lung, and Blood Institute, National Institutes of Health",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard W. Pastor",
+          "openalex": "A5024128533",
+          "orcid": "0000-0002-2454-5131",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Department of Laboratory Medicine, National Institutes of Health, Bethesda, MD 20892",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "National Institutes of Health",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alan T. Remaley",
+          "openalex": "A5068951391",
+          "orcid": "0000-0001-5839-7280",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "New York University",
+              "raw": "Department of Medicine, New York University, New York, NY, 10016, USA",
+              "ror": "0190ak572"
+            },
+            {
+              "country": "US",
+              "name": "New York University",
+              "raw": "New York University",
+              "ror": "0190ak572"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ira J. Goldberg",
+          "openalex": "A5066507748",
+          "orcid": "0000-0002-8701-2201",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "Department of Epidemiology, University of Pittsburgh, Pittsburgh, PA, 15261, USA",
+              "ror": "01an3r305"
+            },
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "University of Pittsburgh",
+              "ror": "01an3r305"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tina Costacou",
+          "openalex": "A5053959156",
+          "orcid": "0000-0001-9303-3810",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati College of Medicine, Cincinnati, OH, 45237, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Cincinnati College of Medicine",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "W. Sean Davidson",
+          "openalex": "A5008316828",
+          "orcid": "0000-0003-2756-2989",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Centro Grossi Paoletti, Dipartimento di Scienze Farmacologiche e Biomolecolari, Università degli Studi di Milano, Milano, Italy",
+              "ror": null
+            },
+            {
+              "country": "IT",
+              "name": "University of Milan",
+              "raw": "University of Milan",
+              "ror": "00wjc7c48"
+            }
+          ],
+          "corresponding": false,
+          "name": "Laura Calabresi",
+          "openalex": "A5056606171",
+          "orcid": "0000-0001-5042-9532",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, 37240, USA",
+              "ror": "05dq2gs74"
+            },
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Vanderbilt University Medical Center",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jere P. Segrest",
+          "openalex": "A5028220327",
+          "orcid": "0000-0002-0676-7996",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:7332023cc9d36334e4e2eef73073beee94a53c6785f5366732c5f0898d5f8d40",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000289",
+      "ids": {
+        "doi": "10.1101/2023.11.03.23297986",
+        "openalex": "W4388331396",
+        "pmcid": "PMC10635269",
+        "pmid": "37961344"
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "green",
+        "url": "http://dx.doi.org/10.1101/2023.11.03.23297986"
+      },
+      "published": "2023-11-04",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Flipped C-Terminal Ends of APOA1 Promote ABCA1-dependent Cholesterol Efflux by Small HDLs",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9369999766349792,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.04490000009536743,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0032999999821186066,
+          "subfield": "Molecular Biology",
+          "topic": "Peroxisome Proliferator-Activated Receptors"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "medRxiv",
+        "publisher": null
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000666"
+      },
+      "year": 2023
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

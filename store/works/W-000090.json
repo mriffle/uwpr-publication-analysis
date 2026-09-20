@@ -1,0 +1,190 @@
+{
+  "aliases": [],
+  "canonical": "R-000090",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000090"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:427a305c607a",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000090",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000090",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Chemistry, University of Wisconsin, 53706, Madison, WI, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Aaron R. Ledvina",
+          "openalex": "A5089056028",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, 98195, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Thomas W. Chung",
+          "openalex": "A5050884849",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "DCMR, Ecole Polytechnique, Palaiseau, Cedex, France",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Renjie Hui",
+          "openalex": "A5110364570",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Biomolecular Chemistry, University of Wisconsin, 53706, Madison, WI, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Chemistry, University of Wisconsin, 53706, Madison, WI, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Joshua J. Coon",
+          "openalex": "A5086840789",
+          "orcid": "0000-0002-0004-8253",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, 98195, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "František Tureček",
+          "openalex": "A5042952795",
+          "orcid": "0000-0001-7321-7858",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:bc3cfdd0be05fecf0863b1ab3eca504e6e540ac3e0979a2693e7af9c08eca4a5",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000090",
+      "ids": {
+        "doi": "10.1007/s13361-012-0409-8",
+        "openalex": "W2118886538",
+        "pmcid": "PMC3619414",
+        "pmid": "22669762"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3619414"
+      },
+      "published": "2012-06-05",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Cascade Dissociations of Peptide Cation-Radicals. Part 2. Infrared Multiphoton Dissociation and Mechanistic Studies of z-Ions from Pentapeptides",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 1.0,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9945999979972839,
+          "subfield": "Molecular Biology",
+          "topic": "Chemical Synthesis and Analysis"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9940999746322632,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        }
+      ],
+      "venue": {
+        "issn_l": "1044-0305",
+        "name": "Journal of the American Society for Mass Spectrometry",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2012
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

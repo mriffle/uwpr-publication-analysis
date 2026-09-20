@@ -1,0 +1,160 @@
+{
+  "aliases": [],
+  "canonical": "R-000140",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000140"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000140"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:095266df9823",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000140",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000140",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, 850 Republican Ave, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, 850 Republican Ave, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Juan D. Chavez",
+          "openalex": "A5016223830",
+          "orcid": "0000-0001-8849-0304",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, 850 Republican Ave, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "James E. Bruce",
+          "openalex": "A5024181058",
+          "orcid": "0000-0001-6441-6089",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000140",
+      "ids": {
+        "doi": "10.1093/bioinformatics/btv519",
+        "openalex": "W2264119444",
+        "pmcid": "PMC5013974",
+        "pmid": "26411867"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/5013974"
+      },
+      "published": "2015-09-26",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "XLmap: an R package to visualize and score protein structure models based on sites of protein cross-linking",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.5846999883651733,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.09870000183582306,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.07829999923706055,
+          "subfield": "Computational Theory and Mathematics",
+          "topic": "Computational Drug Discovery Methods"
+        }
+      ],
+      "venue": {
+        "issn_l": "1367-4803",
+        "name": "Bioinformatics",
+        "publisher": "Oxford University Press"
+      },
+      "version_link": null,
+      "year": 2015
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

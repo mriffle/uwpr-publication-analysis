@@ -1,0 +1,298 @@
+{
+  "aliases": [],
+  "canonical": "R-000808",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000808"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000808"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000808"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000808",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4387226865"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000808",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.59720%2F16-082"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000808",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.59720%2F16-082"
+      }
+    }
+  ],
+  "id": "W-000808",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Telluride High School ; 725 West Colorado Avenue , Telluride CO 81435 ",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , Department of Genome Sciences ; Seattle WA 98195 ",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Telluride High School; 725 West Colorado Avenue, Telluride CO 81435",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Department of Genome Sciences; Seattle WA 98195",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Skyler J Nunn",
+          "openalex": "A5092977740",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Old Dominion University , Ocean , Earth & Atmospheric Sciences ; Norfolk , VA 23529 ",
+              "ror": "04zjtrb98"
+            },
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Old Dominion University, Ocean, Earth & Atmospheric Sciences; Norfolk, VA 23529",
+              "ror": "04zjtrb98"
+            }
+          ],
+          "corresponding": false,
+          "name": "P. Dreux Chappell",
+          "openalex": "A5000251467",
+          "orcid": "0000-0001-5212-6228",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Rhode Island",
+              "raw": "University of Rhode Island , Department of Cell and Molecular Biology , Rhode Island 02881 ",
+              "ror": "013ckk937"
+            },
+            {
+              "country": "US",
+              "name": "University of Rhode Island",
+              "raw": "University of Rhode Island, Department of Cell and Molecular Biology, Rhode Island 02881",
+              "ror": "013ckk937"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kristofer Gomes",
+          "openalex": "A5023830247",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Newport High School , Newport , WA 99156 ",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , Department of Genome Sciences ; Seattle WA 98195 ",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Anasthasia Bonderenko",
+          "openalex": "A5092977741",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Rhode Island",
+              "raw": "University of Rhode Island , Department of Cell and Molecular Biology , Rhode Island 02881 ",
+              "ror": "013ckk937"
+            },
+            {
+              "country": "US",
+              "name": "University of Rhode Island",
+              "raw": "University of Rhode Island, Department of Cell and Molecular Biology, Rhode Island 02881",
+              "ror": "013ckk937"
+            }
+          ],
+          "corresponding": false,
+          "name": "Bethany D. Jenkins",
+          "openalex": "A5063671936",
+          "orcid": "0000-0003-2319-3098",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , Department of Genome Sciences ; Seattle WA 98195 ",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Department of Genome Sciences; Seattle WA 98195",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000808",
+      "ids": {
+        "doi": "10.59720/16-082",
+        "openalex": "W4387226865",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "hybrid",
+        "url": "http://dx.doi.org/10.59720/16-082"
+      },
+      "published": "2017-01-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Phytoplankton Plastid Proteomics: Cracking Open Diatoms to Understand Plastid Biochemistry Under Iron Limitation",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9955999851226807,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9902999997138977,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Energy",
+          "score": 0.979200005531311,
+          "subfield": "Renewable Energy, Sustainability and the Environment",
+          "topic": "Algal biology and biofuel production"
+        }
+      ],
+      "venue": {
+        "issn_l": "2638-0870",
+        "name": "Journal of Emerging Investigators",
+        "publisher": null
+      },
+      "version_link": null,
+      "year": 2017
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

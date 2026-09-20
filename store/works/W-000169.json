@@ -1,0 +1,531 @@
+{
+  "aliases": [],
+  "canonical": "R-000169",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000169"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000169"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000169"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:355025679ddd",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000169",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported by LEAPS grant from the Michael J. Fox Foundation, and partially by Parkinson’s Disease Foundation (PDF-FBS-1552), National Institute of Neurological Disorders and Stroke (5U01NS082137-04 and U01 NS091272-01A1), National Institutes of Health (P50 NS062684, R01 NS065070) and…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000169",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:ab6ae312682127f191cf59cf39c3658a20d854bb28fb615335736f50aa681f3e",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5540649/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported by LEAPS grant from the Michael J. Fox Foundation, and partially by Parkinson’s Disease Foundation (PDF-FBS-1552), National Institute of Neurological Disorders and Stroke (5U01NS082137-04 and U01 NS091272-01A1), National Institutes of Health (P50 NS062684, R01 NS065070) and…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000169",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:ab6ae312682127f191cf59cf39c3658a20d854bb28fb615335736f50aa681f3e",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5540649/"
+      }
+    }
+  ],
+  "id": "W-000169",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yang Li",
+          "openalex": "A5100602732",
+          "orcid": "0000-0001-7410-9111",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tessandra Stewart",
+          "openalex": "A5111781115",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Min Shi",
+          "openalex": "A5016122096",
+          "orcid": "0000-0002-6901-2558",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gwënaël Pottiez",
+          "openalex": "A5046748776",
+          "orcid": "0000-0001-8485-4510",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Romel Dator",
+          "openalex": "A5062925208",
+          "orcid": "0000-0002-3451-6932",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Pathology No. 3 Hospital of Beijing University  Beijing China",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Pathology, No. 3 Hospital of Beijing University, Beijing, China",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rui Wu",
+          "openalex": "A5090507091",
+          "orcid": "0000-0001-9658-1695",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Patrick Aro",
+          "openalex": "A5089163938",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Robert J. Schuster",
+          "openalex": "A5113803132",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Carmen Ginghină",
+          "openalex": "A5018299094",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Catherine Pan",
+          "openalex": "A5110273966",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Pacific Northwest National Laboratory  Richland WA USA",
+              "ror": "05h992307"
+            },
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yuqian Gao",
+          "openalex": "A5053873608",
+          "orcid": "0000-0003-1646-4515",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Pacific Northwest National Laboratory  Richland WA USA",
+              "ror": "05h992307"
+            },
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Weijun Qian",
+          "openalex": "A5075235007",
+          "orcid": "0000-0002-5393-2827",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Geriatric Research Education and Clinical Center",
+              "raw": "Parkinson's Disease Research and Geriatric Research Education and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
+              "ror": "01nh3sx96"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Parkinson's Disease Research and Geriatric Research, Education and Clinical Center, Veterans Affairs Puget Sound Health Care System, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Cyrus P. Zabetian",
+          "openalex": "A5004855604",
+          "orcid": "0000-0002-7739-4306",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Shu‐Ching Hu",
+          "openalex": "A5112256334",
+          "orcid": "0009-0003-6795-3463",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Neurology Oregon Health and Science University  Portland OR USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Neurology, Oregon Health and Science University, Portland, OR, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Joseph F. Quinn",
+          "openalex": "A5085009648",
+          "orcid": "0000-0001-7305-2256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Peking University",
+              "raw": "Department of Pathology Peking University Health Science Centre and Third Hospital  Beijing 100083 China",
+              "ror": "02v51f717"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "CN",
+              "name": "Peking University",
+              "raw": "Department of Pathology, Peking University Health Science Centre and Third Hospital, Beijing, 100083 China",
+              "ror": "02v51f717"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jing Zhang",
+          "openalex": null,
+          "orcid": "0000-0002-3656-1112",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:ab6ae312682127f191cf59cf39c3658a20d854bb28fb615335736f50aa681f3e",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000169",
+      "ids": {
+        "doi": "10.1002/prca.201700045",
+        "openalex": "W2599386410",
+        "pmcid": "PMC5540649",
+        "pmid": "28319654"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/5540649"
+      },
+      "published": "2017-03-20",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "An alpha‐synuclein MRM assay with diagnostic potential for Parkinson's disease and monitoring disease progression",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9714000225067139,
+          "subfield": "Neurology",
+          "topic": "Parkinson's Disease Mechanisms and Treatments"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.011300000362098217,
+          "subfield": "Neurology",
+          "topic": "Neurological disorders and treatments"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.00559999980032444,
+          "subfield": "Physiology",
+          "topic": "Voice and Speech Disorders"
+        }
+      ],
+      "venue": {
+        "issn_l": "1862-8346",
+        "name": "PROTEOMICS - CLINICAL APPLICATIONS",
+        "publisher": "Wiley"
+      },
+      "version_link": null,
+      "year": 2017
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

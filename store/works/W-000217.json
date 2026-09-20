@@ -1,0 +1,365 @@
+{
+  "aliases": [],
+  "canonical": "R-000217",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000217"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000217"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000217"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000217"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000217"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000217"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000217"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:b67b2b65126a",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000217",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "Mass spectrometry analyses were completed by BLN and MPM and supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000217",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:c645a07d4373508918023cf716c5ba9f25955c71525b1b45fa374412b1e02106",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6908719/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000217",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2972185270"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Mass spectrometry analyses were completed by BLN and MPM and supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000217",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:c645a07d4373508918023cf716c5ba9f25955c71525b1b45fa374412b1e02106",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6908719/"
+      }
+    }
+  ],
+  "id": "W-000217",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Ocean, Earth and Atmospheric Sciences, Old Dominion University, 406 Oceanography & Physical Sciences Building , Norfolk, VA 23529, USA",
+              "ror": "04zjtrb98"
+            },
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Ocean, Earth and Atmospheric Sciences, Old Dominion University, 406 Oceanography & Physical Sciences Building, Norfolk, VA, 23529, USA",
+              "ror": "04zjtrb98"
+            }
+          ],
+          "corresponding": false,
+          "name": "Molly P. Mikan",
+          "openalex": "A5072524833",
+          "orcid": "0000-0002-5923-9863",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Ocean, Earth and Atmospheric Sciences, Old Dominion University, 406 Oceanography & Physical Sciences Building , Norfolk, VA 23529, USA",
+              "ror": "04zjtrb98"
+            },
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Ocean, Earth and Atmospheric Sciences, Old Dominion University, 406 Oceanography & Physical Sciences Building, Norfolk, VA, 23529, USA",
+              "ror": "04zjtrb98"
+            }
+          ],
+          "corresponding": false,
+          "name": "H. Rodger Harvey",
+          "openalex": "A5015273553",
+          "orcid": "0000-0001-7746-7758",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington , William H. Foege Hall, 3720 15th Ave NE, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, William H. Foege Hall, 3720 15th Ave NE, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington , 1705 NE Pacific St., Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington , William H. Foege Hall, 3720 15th Ave NE, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, William H. Foege Hall, 3720 15th Ave NE, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Damon May",
+          "openalex": "A5019063351",
+          "orcid": "0000-0001-6902-3153",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Alfred Wegener Institute Helmholtz Center for Polar and Marine Research , Bremerhaven, Germany",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Faroese Marine Research Institute , Nóatún 1, FO-100 Tórshavn, Faroe Islands",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Ian Salter",
+          "openalex": "A5052003147",
+          "orcid": "0000-0002-4513-0314",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington , William H. Foege Hall, 3720 15th Ave NE, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, William H. Foege Hall, 3720 15th Ave NE, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933",
+          "orcid": "0000-0001-7283-4715",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington , William H. Foege Hall, 3720 15th Ave NE, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, William H. Foege Hall, 3720 15th Ave NE, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:c645a07d4373508918023cf716c5ba9f25955c71525b1b45fa374412b1e02106",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000217",
+      "ids": {
+        "doi": "10.1038/s41396-019-0503-z",
+        "openalex": "W2972185270",
+        "pmcid": "PMC6908719",
+        "pmid": "31492961"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1038/s41396-019-0503-z"
+      },
+      "published": "2019-09-06",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Metaproteomics reveal that rapid perturbations in organic matter prioritize functional restructuring over taxonomy in western Arctic Ocean microbiomes",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9998000264167786,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9926000237464905,
+          "subfield": "Environmental Chemistry",
+          "topic": "Methane Hydrates and Related Phenomena"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9884999990463257,
+          "subfield": "Molecular Biology",
+          "topic": "Genomics and Phylogenetic Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "1751-7362",
+        "name": "The ISME Journal",
+        "publisher": "Springer Nature"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

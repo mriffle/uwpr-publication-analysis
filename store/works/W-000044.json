@@ -1,0 +1,402 @@
+{
+  "aliases": [],
+  "canonical": "R-000044",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000044"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000044"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000044"
+    },
+    {
+      "channel": "F",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000044"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000044"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:7c4dab418041",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000044",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "N01-HV-28179, from the University of Washington’s Proteomics Resource (UWPR95794), and from PM50 GMO76547/Center for Systems Biology.",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000044",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:7cef7af30cc912118a1811d43d8df088147d70ff71c52d15c548fa8205247863",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3018683/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "N01-HV-28179, from the University of Washington’s Proteomics Resource (UWPR95794), and from PM50 GMO76547/Center for Systems Biology.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000044",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:7cef7af30cc912118a1811d43d8df088147d70ff71c52d15c548fa8205247863",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3018683/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "UW Proteomics Resource, University of Washington, 815 Mercer Street, Seattle, WA USA",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000044",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": "sha256:7cef7af30cc912118a1811d43d8df088147d70ff71c52d15c548fa8205247863",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3018683/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "UW Proteomics Resource, University of Washington, Seattle, WA, USA",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000044",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2129088169"
+      }
+    }
+  ],
+  "id": "W-000044",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA 98103, USA. edeutsch@systemsbiology.org",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA, USA",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": true,
+          "name": "Eric W. Deutsch",
+          "openalex": "A5070102563",
+          "orcid": "0000-0001-8732-0928",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA, USA",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "David Shteynberg",
+          "openalex": "A5016220289",
+          "orcid": "0000-0001-7982-0498",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "HK",
+              "name": "Hong Kong University of Science and Technology",
+              "raw": "Department of Chemical and Biomolecular Engineering, Hong Kong University of Science and Technology, Clear Water Bay, Hong Kong",
+              "ror": "00q4vv597"
+            }
+          ],
+          "corresponding": false,
+          "name": "Henry Lam",
+          "openalex": "A5010704175",
+          "orcid": "0000-0001-7928-0364",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA, USA",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zhi Sun",
+          "openalex": "A5080826559",
+          "orcid": "0000-0003-3324-6851",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Proteomics Resource, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Laboratoire de Spectrométrie de Masse Bio-Organique (LSMBO), IPHC-DSA, University of Strasbourg UDS, Strasbourg, France",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Laboratoire de Spectrométrie de Masse Bio-Organique (LSMBO), IPHC-DSA, University of Strasbourg UDS, Strasbourg, France",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Christine Carapito",
+          "openalex": "A5084679775",
+          "orcid": "0000-0002-0079-319X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Proteomics Resource, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Priska D. von Haller",
+          "openalex": "A5083225847",
+          "orcid": null,
+          "staff": "vonhaller"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA, USA",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Natalie Tasman",
+          "openalex": "A5020317064",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA, USA",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Luis Mendoza",
+          "openalex": "A5079842634",
+          "orcid": "0000-0003-0128-8643",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA, USA",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Terry Farrah",
+          "openalex": "A5010025009",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Systems Physiology and Metabolic Diseases, Zurich, Switzerland",
+              "ror": null
+            },
+            {
+              "country": "CH",
+              "name": "University of Zurich",
+              "raw": "Faculty of Science, University of Zurich, Zurich, Switzerland",
+              "ror": "02crff812"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, WA, USA",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "CH",
+              "name": "ETH Zurich",
+              "raw": "Institute of Molecular Systems Biology, ETH Zurich, Zurich, Switzerland",
+              "ror": "05a28rw58"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ruedi Aebersold",
+          "openalex": "A5053361384",
+          "orcid": "0000-0002-9576-3267",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:7cef7af30cc912118a1811d43d8df088147d70ff71c52d15c548fa8205247863",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000044",
+      "ids": {
+        "doi": "10.1002/pmic.200900567",
+        "openalex": "W2129088169",
+        "pmcid": "PMC3018683",
+        "pmid": "20082347"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3018683"
+      },
+      "published": "2010-01-15",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Trans‐Proteomic Pipeline supports and improves analysis of electron transfer dissociation data sets",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 1.0,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9998999834060669,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9955999851226807,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "1615-9853",
+        "name": "PROTEOMICS",
+        "publisher": "Wiley"
+      },
+      "version_link": null,
+      "year": 2010
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

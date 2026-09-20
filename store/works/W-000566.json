@@ -1,0 +1,225 @@
+{
+  "aliases": [],
+  "canonical": "R-000566",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000566"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000566"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:7b63829151ac",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000566",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Mass spectrometry was performed at the University of Washington Proteomics Resource (Seattle, WA, USA).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000566",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "methods",
+      "source": {
+        "cache": "sha256:55ab48fad688cdfd53db8ac1416c412d885a53f93e7496f455ec1165a3268797",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4732435/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "Priska von Haller helped with experimental design for the LC-MS/MS and provided technical assistance.",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000566",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:55ab48fad688cdfd53db8ac1416c412d885a53f93e7496f455ec1165a3268797",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4732435/"
+      }
+    }
+  ],
+  "id": "W-000566",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Box 355020, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Box 355020, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Genomic Sciences, University of Washington, Box 355065, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Medicinal Chemistry, University of Washington, Box 357610, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Box 355020, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "1School of Aquatic and Fishery Sciences, University of Washington, Box 355020, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Steven Roberts",
+          "openalex": "A5022496160",
+          "orcid": "0000-0001-8302-1138",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:55ab48fad688cdfd53db8ac1416c412d885a53f93e7496f455ec1165a3268797",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000566",
+      "ids": {
+        "doi": "10.1093/conphys/cot009",
+        "openalex": "W2113612054",
+        "pmcid": "PMC4732435",
+        "pmid": "27293593"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1093/conphys/cot009"
+      },
+      "published": "2013-05-17",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Shotgun proteomics as a viable approach for biological discovery in the Pacific oyster",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9939000010490417,
+          "subfield": "Global and Planetary Change",
+          "topic": "Marine Bivalve and Aquaculture Studies"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9926000237464905,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9890999794006348,
+          "subfield": "Ecology",
+          "topic": "Physiological and biochemical adaptations"
+        }
+      ],
+      "venue": {
+        "issn_l": "2051-1434",
+        "name": "Conservation Physiology",
+        "publisher": "Oxford University Press"
+      },
+      "version_link": null,
+      "year": 2013
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

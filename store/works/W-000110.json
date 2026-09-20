@@ -1,0 +1,354 @@
+{
+  "aliases": [],
+  "canonical": "R-000110",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000110"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000110"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000110"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000110"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:e8f0e3e20833",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000110",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "We are grateful to the University of Washington’s Proteomics Resource (UWPR95794) for supporting the preliminary investigation of this work and Fred Hutchinson Cancer Research Center Proteomics Shared Resource for mass spectrometric analysis.",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000110",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:fcac49f21fefa9494a198674dc646db00d427f3648dc8a02d303f0d04125a404",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3993895/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "We are grateful to the University of Washington’s Proteomics Resource (UWPR95794) for supporting the preliminary investigation of this work and Fred Hutchinson Cancer Research Center Proteomics Shared Resource for mass spectrometric analysis.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000110",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:fcac49f21fefa9494a198674dc646db00d427f3648dc8a02d303f0d04125a404",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3993895/"
+      }
+    }
+  ],
+  "id": "W-000110",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The\rDivision of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The Division of Gastroenterology, Department of Medicine, University of Washington , 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Sheng Pan",
+          "openalex": "A5006210822",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The\rDivision of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The#R#Division of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ru Chen",
+          "openalex": "A5100724602",
+          "orcid": "0000-0002-1823-0686",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The\rDivision of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The#R#Division of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yasuko Tamura",
+          "openalex": "A5110096955",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The\rDivision of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The#R#Division of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David A. Crispin",
+          "openalex": "A5110421043",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The\rDivision of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The#R#Division of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lisa A. Lai",
+          "openalex": "A5067799153",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fred\rHutchinson Cancer Research Center, 1100 Fairview Avenue North, Seattle, Washington 98109, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fred#R#Hutchinson Cancer Research Center, 1100 Fairview Avenue North, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Damon May",
+          "openalex": "A5019063351",
+          "orcid": "0000-0001-6902-3153",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fred\rHutchinson Cancer Research Center, 1100 Fairview Avenue North, Seattle, Washington 98109, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fred#R#Hutchinson Cancer Research Center, 1100 Fairview Avenue North, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Martin McIntosh",
+          "openalex": "A5109208118",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department\rof Pharmaceutical Science, School of Pharmacy, University of Maryland, 20 North Pine Street, Baltimore, Maryland 21201, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department#R#of Pharmaceutical Science, School of Pharmacy, University of Maryland, 20 North Pine Street, Baltimore, Maryland 21201, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The\rDivision of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "The#R#Division of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Teresa A. Brentnall",
+          "openalex": "A5043802158",
+          "orcid": "0000-0001-8758-5475",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:fcac49f21fefa9494a198674dc646db00d427f3648dc8a02d303f0d04125a404",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000110",
+      "ids": {
+        "doi": "10.1021/pr4010184",
+        "openalex": "W2023139178",
+        "pmcid": "PMC3993895",
+        "pmid": "24471499"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "other-oa",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1021/pr4010184"
+      },
+      "published": "2014-01-28",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Quantitative Glycoproteomics Analysis Reveals Changes in N-Glycosylation Level Associated with Pancreatic Ductal Adenocarcinoma",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998000264167786,
+          "subfield": "Molecular Biology",
+          "topic": "Glycosylation and Glycoproteins Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9994999766349792,
+          "subfield": "Immunology",
+          "topic": "Galectins and Cancer Biology"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9952999949455261,
+          "subfield": "Oncology",
+          "topic": "Pancreatic and Hepatic Oncology Research"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2014
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,385 @@
+{
+  "aliases": [],
+  "canonical": "R-000303",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000303"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2024:fad0fe4331ad",
+        "page": "2024"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000303",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2024/"
+      }
+    }
+  ],
+  "id": "W-000303",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Biological Sciences Division, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Snigdha Sarkar",
+          "openalex": "A5031275873",
+          "orcid": "0000-0003-4551-0314",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati, Cincinnati, OH, USA",
+              "ror": "01e3m7079"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jamie Morris",
+          "openalex": "A5083486805",
+          "orcid": "0000-0002-3887-9386",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Biological Sciences Division, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Youngki You",
+          "openalex": "A5069490814",
+          "orcid": "0000-0002-2189-9049",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cincinnati Children's Hospital Medical Center",
+              "raw": "Department of Pediatrics, Cincinnati Children's Hospital Medical Center and the University of Cincinnati, Cincinnati, OH, USA",
+              "ror": "01hcyya48"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hannah Sexmith",
+          "openalex": "A5046826846",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati, Cincinnati, OH, USA",
+              "ror": "01e3m7079"
+            }
+          ],
+          "corresponding": false,
+          "name": "Scott E Street",
+          "openalex": "A5027578450",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Environmental Molecular Sciences Laboratory, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Stephanie Thibert",
+          "openalex": "A5134873759",
+          "orcid": "0000-0002-9971-2301",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Biological Sciences Division, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Isaac Attah",
+          "openalex": "A5018160871",
+          "orcid": "0000-0002-9626-2069",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Biological Sciences Division, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chelsea M. Hutchinson Bunch",
+          "openalex": null,
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Environmental Molecular Sciences Laboratory, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Irina Novikova",
+          "openalex": "A5101877022",
+          "orcid": "0000-0001-5503-0213",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Environmental Molecular Sciences Laboratory, Pacific Northwest National Laboratory, Richland, WA, USA",
+              "ror": "05h992307"
+            },
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Environmental Molecular Sciences Laboratory, Pacific Northwest National Laboratory, Richland, Washington, USA",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "James E. Evans",
+          "openalex": null,
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cincinnati Children's Hospital Medical Center",
+              "raw": "Department of Pediatrics, Cincinnati Children's Hospital Medical Center and the University of Cincinnati, Cincinnati, OH, USA",
+              "ror": "01hcyya48"
+            }
+          ],
+          "corresponding": false,
+          "name": "Amy S. Shah",
+          "openalex": "A5047114937",
+          "orcid": "0000-0001-7297-139X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Kentucky",
+              "raw": "Department of Physiology and the Saha Cardiovascular Research Center, University of Kentucky College of Medicine, Lexington, KY, USA",
+              "ror": "02k3smh20"
+            }
+          ],
+          "corresponding": false,
+          "name": "Scott M. Gordon",
+          "openalex": "A5057389125",
+          "orcid": "0000-0001-9532-032X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jere P. Segrest",
+          "openalex": "A5028220327",
+          "orcid": "0000-0002-0676-7996",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati, Cincinnati, OH, USA. Electronic address: sean.davidson@uc.edu",
+              "ror": "01e3m7079"
+            }
+          ],
+          "corresponding": true,
+          "name": "W. Sean Davidson",
+          "openalex": "A5008316828",
+          "orcid": "0000-0003-2756-2989",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Biological Sciences Division, Pacific Northwest National Laboratory, Richland, WA, USA; Department of Pathology and Laboratory Medicine, University of Cincinnati, Cincinnati, OH, USA; Department of Neurology, Oregon Health and Science University, Portland, OR, USA. Electronic address: john.melchior@pnnl.gov",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": true,
+          "name": "John Melchior",
+          "openalex": "A5078143727",
+          "orcid": "0000-0003-3781-2566",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:cb7d86201f053d13b940337b7561c9bf021c6202fa91efd300b2a17fbe31c81c",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000303",
+      "ids": {
+        "doi": "10.1016/j.jlr.2024.100686",
+        "openalex": "W4403909356",
+        "pmcid": "PMC11617996",
+        "pmid": "39490930"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1016/j.jlr.2024.100686"
+      },
+      "published": "2024-10-30",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "APOA2 increases cholesterol efflux capacity to plasma HDL by displacing the C-terminus of resident APOA1",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9959999918937683,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9955999851226807,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9947999715805054,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Lipid metabolism and disorders"
+        }
+      ],
+      "venue": {
+        "issn_l": "0022-2275",
+        "name": "Journal of Lipid Research",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2024
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

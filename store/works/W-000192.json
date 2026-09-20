@@ -1,0 +1,337 @@
+{
+  "aliases": [],
+  "canonical": "R-000192",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000192"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:09bb41428a75",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000192",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000192",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Committee on Molecular Metabolism and Nutrition, The University of Chicago, Chicago, IL 60637, USA; Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            },
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            },
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Committee on Molecular Metabolism and Nutrition, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Catherine A. Reardon",
+          "openalex": "A5059544618",
+          "orcid": "0000-0003-3101-9612",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA; Committee on Molecular Pathogenesis and Molecular Medicine, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            },
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            },
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Committee on Molecular Pathogenesis and Molecular Medicine, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Amulya Lingaraju",
+          "openalex": "A5104013881",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kelly Q. Schoenfelt",
+          "openalex": "A5042815840",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Guolin Zhou",
+          "openalex": "A5102009171",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chang Cui",
+          "openalex": "A5085083529",
+          "orcid": "0000-0002-5349-6295",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hannah Jacobs-El",
+          "openalex": "A5056412699",
+          "orcid": "0000-0003-4564-673X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ilona Babenko",
+          "openalex": "A5112384425",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew N. Hoofnagle",
+          "openalex": "A5031218554",
+          "orcid": "0000-0002-6449-0243",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Department of Microbiology, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel M. Czyż",
+          "openalex": "A5068650337",
+          "orcid": "0000-0002-7491-5292",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Department of Microbiology, The University of Chicago, Chicago, IL 60637, USA; Committe on Microbiology, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            },
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Committe on Microbiology, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            },
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Department of Microbiology, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Howard A. Shuman",
+          "openalex": "A5046949754",
+          "orcid": "0000-0001-7955-8709",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Committee on Molecular Metabolism and Nutrition, The University of Chicago, Chicago, IL 60637, USA; Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA. Electronic address: levb@uchicago.edu",
+              "ror": "024mw5h28"
+            },
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Ben May Department for Cancer Research, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            },
+            {
+              "country": "US",
+              "name": "University of Chicago",
+              "raw": "Committee on Molecular Metabolism and Nutrition, The University of Chicago, Chicago, IL 60637, USA",
+              "ror": "024mw5h28"
+            }
+          ],
+          "corresponding": true,
+          "name": "Lev Becker",
+          "openalex": "A5060144400",
+          "orcid": "0000-0002-9663-8038",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:d8038b13c3acc0b12d2e2ae8e1919834f346e7e6b3dba0beb1b6c456f2aeddd8",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000192",
+      "ids": {
+        "doi": "10.1016/j.celrep.2018.05.010",
+        "openalex": "W2806511168",
+        "pmcid": "PMC6082182",
+        "pmid": "29874587"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1016/j.celrep.2018.05.010"
+      },
+      "published": "2018-06-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Obesity and Insulin Resistance Promote Atherosclerosis through an IFNγ-Regulated Macrophage Protein Network",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9987999796867371,
+          "subfield": "Immunology",
+          "topic": "Atherosclerosis and Cardiovascular Diseases"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9976999759674072,
+          "subfield": "Epidemiology",
+          "topic": "Adipokines, Inflammation, and Metabolic Diseases"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9965999722480774,
+          "subfield": "Immunology",
+          "topic": "Immune cells in cancer"
+        }
+      ],
+      "venue": {
+        "issn_l": "2211-1247",
+        "name": "Cell Reports",
+        "publisher": "Cell Press"
+      },
+      "version_link": null,
+      "year": 2018
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

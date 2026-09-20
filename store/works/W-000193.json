@@ -1,0 +1,448 @@
+{
+  "aliases": [],
+  "canonical": "R-000193",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000193"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000193"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000193"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000193"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000193"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:43241d59ee7c",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000193",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work is supported in part by the University of Washington's Proteomics Resource (UWPR95794) and NIH grants U01 HL100405 (C.E.M. and R.T.M.), P01 GM081619 (C.E.M. and R.T.M.), R01 HL084642 (C.E.M.), P01 HL094374 (C.E.M.) and an award from the Foundation Leducq Transatlantic Network of Excellenc…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000193",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:9f1ce9e3d4d52bdf0e36374b0cd5f86047d947e43903e4198030746e5683b794",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5993047/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000193",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2797504131"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000193",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1016/j.isci.2018.03.010"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work is supported in part by the University of Washington's Proteomics Resource (UWPR95794) and NIH grants U01 HL100405 (C.E.M. and R.T.M.), P01 GM081619 (C.E.M. and R.T.M.), R01 HL084642 (C.E.M.), P01 HL094374 (C.E.M.) and an award from the Foundation Leducq Transatlantic Network of Excellenc…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000193",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:9f1ce9e3d4d52bdf0e36374b0cd5f86047d947e43903e4198030746e5683b794",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5993047/"
+      }
+    }
+  ],
+  "id": "W-000193",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA; Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA; Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA. Electronic address: phofsteen@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Peter Hofsteen",
+          "openalex": "A5070848498",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmacology, School of Medicine, University of Washington, Seattle, WA 98109, USA; Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmacology, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aaron M. Robitaille",
+          "openalex": "A5051620732",
+          "orcid": "0000-0003-2774-2066",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA; Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA; Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nicholas Strash",
+          "openalex": "A5089993019",
+          "orcid": "0000-0003-1907-0925",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA; Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA; Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nathan J. Palpant",
+          "openalex": "A5087836581",
+          "orcid": "0000-0002-9334-8107",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Department of Pharmacology, School of Medicine, University of Washington, Seattle, WA 98109, USA; Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA; Howard Hughes Medical Institute, University of Washington, Seattle, WA 98109, USA",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmacology, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, University of Washington, Seattle, WA 98109, USA",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Randall T. Moon",
+          "openalex": "A5024528673",
+          "orcid": "0000-0002-9352-1408",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA; Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA; Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lil Pabon",
+          "openalex": "A5006294034",
+          "orcid": "0000-0003-3095-5011",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA; Department of Bioengineering, School of Medicine, University of Washington, Seattle, WA 98109, USA; Department of Medicine (Division of Cardiology), School of Medicine, University of Washington, Seattle, WA 98109, USA; Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA; Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA. Electronic address: murry@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Cardiovascular Biology, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Bioengineering, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine (Division of Cardiology), School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, School of Medicine, University of Washington, 850 Republican Street, Brotman Building Room 453, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, School of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Charles E. Murry",
+          "openalex": "A5077140689",
+          "orcid": "0000-0003-3862-6773",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:9f1ce9e3d4d52bdf0e36374b0cd5f86047d947e43903e4198030746e5683b794",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000193",
+      "ids": {
+        "doi": "10.1016/j.isci.2018.03.010",
+        "openalex": "W2797504131",
+        "pmcid": "PMC5993047",
+        "pmid": "29888752"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1016/j.isci.2018.03.010"
+      },
+      "published": "2018-04-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "ALPK2 Promotes Cardiogenesis in Zebrafish and Human Pluripotent Stem Cells",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9995999932289124,
+          "subfield": "Molecular Biology",
+          "topic": "Congenital heart defects research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9954000115394592,
+          "subfield": "Molecular Biology",
+          "topic": "Pluripotent Stem Cells Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9927999973297119,
+          "subfield": "Genetics",
+          "topic": "Genetics and Neurodevelopmental Disorders"
+        }
+      ],
+      "venue": {
+        "issn_l": "2589-0042",
+        "name": "iScience",
+        "publisher": "Cell Press"
+      },
+      "version_link": null,
+      "year": 2018
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

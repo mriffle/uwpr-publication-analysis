@@ -1,0 +1,302 @@
+{
+  "aliases": [],
+  "canonical": "R-000077",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000077"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000077"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000077"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000077"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000077"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:79076ee20e93",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000077",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported by NIH grant P41 RR11823, NRSA fellowship F32 GM801262 to L.S., and the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000077",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:db5adad85bd8ca66ba7868d05cac4519911248df2672ad3599dda70c75a4c9e8",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3337332/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000077",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1002/pmic.201100166"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported by NIH grant P41 RR11823, NRSA fellowship F32 GM801262 to L.S., and the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000077",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:db5adad85bd8ca66ba7868d05cac4519911248df2672ad3599dda70c75a4c9e8",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3337332/"
+      }
+    }
+  ],
+  "id": "W-000077",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, University of Washington, Seattle, WA, USA",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "These authors contributed equally in this work",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Lea M. Starita",
+          "openalex": "A5071126761",
+          "orcid": "0000-0003-2870-5099",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, University of Washington, Seattle, WA, USA",
+              "ror": "006w34k90"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "These authors contributed equally in this work",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Russell S. Lo",
+          "openalex": "A5078515980",
+          "orcid": "0000-0002-0369-7259",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Priska D. von Haller",
+          "openalex": "A5083225847",
+          "orcid": null,
+          "staff": "vonhaller"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, University of Washington, Seattle, WA, USA",
+              "ror": "006w34k90"
+            }
+          ],
+          "corresponding": true,
+          "name": "Stanley Fields",
+          "openalex": "A5023041153",
+          "orcid": "0000-0001-5504-5925",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:db5adad85bd8ca66ba7868d05cac4519911248df2672ad3599dda70c75a4c9e8",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000077",
+      "ids": {
+        "doi": "10.1002/pmic.201100166",
+        "openalex": "W1969773243",
+        "pmcid": "PMC3337332",
+        "pmid": "22106047"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3337332"
+      },
+      "published": "2011-11-22",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Sites of ubiquitin attachment in Saccharomyces cerevisiae",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 1.0,
+          "subfield": "Molecular Biology",
+          "topic": "Ubiquitin and proteasome pathways"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9975000023841858,
+          "subfield": "Molecular Biology",
+          "topic": "Glycosylation and Glycoproteins Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9965000152587891,
+          "subfield": "Oncology",
+          "topic": "Peptidase Inhibition and Analysis"
+        }
+      ],
+      "venue": {
+        "issn_l": "1615-9853",
+        "name": "PROTEOMICS",
+        "publisher": "Wiley"
+      },
+      "version_link": null,
+      "year": 2011
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

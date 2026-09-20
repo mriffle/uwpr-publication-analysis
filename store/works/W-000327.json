@@ -1,0 +1,910 @@
+{
+  "aliases": [
+    "W-000817"
+  ],
+  "canonical": "R-000327",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000327"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000327"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000817"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000327"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000327"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000817"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000327"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000327"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000817"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000327"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000817"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2026:f9ba0a1c226f",
+        "page": "2026"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000327",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported in part by National Institutes of Health Grants R01GM111772, R01DK143511, T32DK007247, T32GM007750, TL1TR002318, R24GM141156, U01DK137097 and R01DK143511, as well as by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000327",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:472107214eec6b82ea321deb1a8e6fa62c8efe765fcc90d901aefbc20ec9c014",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13079756/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000327",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W7133978235"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000817",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:f5d5a00edae772b73c965ad4ac699d75d1a90e2dacd2c4ed265495d3216e4a9a",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12871327/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000817",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:f5d5a00edae772b73c965ad4ac699d75d1a90e2dacd2c4ed265495d3216e4a9a",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12871327/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000817",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W7124445368"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported in part by National Institutes of Health Grants R01GM111772, R01DK143511, T32DK007247, T32GM007750, TL1TR002318, R24GM141156, U01DK137097 and R01DK143511, as well as by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000327",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:472107214eec6b82ea321deb1a8e6fa62c8efe765fcc90d901aefbc20ec9c014",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13079756/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000817",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:f5d5a00edae772b73c965ad4ac699d75d1a90e2dacd2c4ed265495d3216e4a9a",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12871327/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000817",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:f5d5a00edae772b73c965ad4ac699d75d1a90e2dacd2c4ed265495d3216e4a9a",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12871327/"
+      }
+    }
+  ],
+  "id": "W-000327",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alex Zelter",
+          "openalex": "A5061213874",
+          "orcid": "0000-0002-5331-0577",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yue Wen",
+          "openalex": "A5100570341",
+          "orcid": "0000-0002-2942-1226",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Kentucky",
+              "raw": "Department of Pharmaceutical Sciences, Collage of Pharmacy, University of Kentucky, Lexington, KY, USA",
+              "ror": "02k3smh20"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lindsay C. Czuba",
+          "openalex": "A5059571636",
+          "orcid": "0000-0001-9142-5706",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aprajita S. Yadav",
+          "openalex": "A5020308694",
+          "orcid": "0000-0002-4181-7522",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jerry Zhu",
+          "openalex": "A5123225147",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Comparative Medicine, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jessica M. Snyder",
+          "openalex": "A5079769413",
+          "orcid": "0000-0002-0470-0931",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aaron Maurais",
+          "openalex": "A5013806060",
+          "orcid": "0000-0003-3489-9117",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jeffrey LaFrance",
+          "openalex": "A5075164269",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of General Surgery, Department of Surgery, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Saurabh Khandelwal",
+          "openalex": "A5109444393",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of General Surgery, Department of Surgery, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Judy Y. Chen",
+          "openalex": "A5012452130",
+          "orcid": "0009-0001-2340-9752",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of General Surgery, Department of Surgery, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Estell Williams",
+          "openalex": "A5067079174",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of General Surgery, Department of Surgery, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zoe Parr",
+          "openalex": "A5011020801",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of General Surgery, Department of Surgery, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel Y. Kim",
+          "openalex": "A5054023726",
+          "orcid": "0000-0002-6273-7310",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Katya B. Rubinow",
+          "openalex": "A5074929020",
+          "orcid": "0000-0002-6505-5657",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA. ni2@uw.edu",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Nina Isoherranen",
+          "openalex": "A5128161333",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:472107214eec6b82ea321deb1a8e6fa62c8efe765fcc90d901aefbc20ec9c014",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000327",
+      "ids": {
+        "doi": "10.1038/s41597-026-06948-3",
+        "openalex": "W7133978235",
+        "pmcid": "PMC13079756",
+        "pmid": "41786761"
+      },
+      "kind": "data-paper",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1038/s41597-026-06948-3"
+      },
+      "published": "2026-03-05",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Proteomic profiling of human omental and subcutaneous adipose tissue in individuals with a broad range of BMI",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.7340999841690063,
+          "subfield": "Epidemiology",
+          "topic": "Adipokines, Inflammation, and Metabolic Diseases"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.09650000184774399,
+          "subfield": "Physiology",
+          "topic": "Adipose Tissue and Metabolism"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.056699998676776886,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiovascular Disease and Adiposity"
+        }
+      ],
+      "venue": {
+        "issn_l": "2052-4463",
+        "name": "Scientific Data",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2026
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alex Zelter",
+          "openalex": "A5061213874",
+          "orcid": "0000-0002-5331-0577",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yue Wen",
+          "openalex": "A5100570341",
+          "orcid": "0000-0002-2942-1226",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Kentucky",
+              "raw": "Department of Pharmaceutical Sciences, Collage of Pharmacy, University of Kentucky, Lexington, KY, USA",
+              "ror": "02k3smh20"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lindsay C. Czuba",
+          "openalex": "A5059571636",
+          "orcid": "0000-0001-9142-5706",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aprajita S. Yadav",
+          "openalex": "A5020308694",
+          "orcid": "0000-0002-4181-7522",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jerry Zhu",
+          "openalex": "A5123225147",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Comparative Medicine, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jessica M. Snyder",
+          "openalex": "A5079769413",
+          "orcid": "0000-0002-0470-0931",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aaron Maurais",
+          "openalex": "A5013806060",
+          "orcid": "0000-0003-3489-9117",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jeffrey LaFrance",
+          "openalex": "A5075164269",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of General Surgery, Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Saurabh Khandelwal",
+          "openalex": "A5109444393",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of General Surgery, Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Judy Y. Chen",
+          "openalex": "A5012452130",
+          "orcid": "0009-0001-2340-9752",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of General Surgery, Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "E. Allan Williams",
+          "openalex": "A5111869798",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of General Surgery, Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zoe Parr",
+          "openalex": "A5011020801",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of General Surgery, Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel Y. Kim",
+          "openalex": "A5054023726",
+          "orcid": "0000-0002-6273-7310",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Katya B. Rubinow",
+          "openalex": "A5074929020",
+          "orcid": "0000-0002-6505-5657",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmaceutics, School of Pharmacy, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Nina Isoherranen",
+          "openalex": "A5123198604",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:f5d5a00edae772b73c965ad4ac699d75d1a90e2dacd2c4ed265495d3216e4a9a",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000817",
+      "ids": {
+        "doi": "10.64898/2026.01.14.699533",
+        "openalex": "W7124445368",
+        "pmcid": "PMC12871327",
+        "pmid": "41648401"
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nd",
+        "status": "green",
+        "url": "https://doi.org/10.64898/2026.01.14.699533"
+      },
+      "published": "2026-01-15",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Proteomic Profiling of Human Omental and Subcutaneous Adipose Tissue in Individuals with a Broad Range of BMI",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.5120999813079834,
+          "subfield": "Epidemiology",
+          "topic": "Adipokines, Inflammation, and Metabolic Diseases"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.20180000364780426,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiovascular Disease and Adiposity"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.06750000268220901,
+          "subfield": "Physiology",
+          "topic": "Adipose Tissue and Metabolism"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000327"
+      },
+      "year": 2026
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,369 @@
+{
+  "aliases": [],
+  "canonical": "R-000305",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000305"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000305"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000305"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000305"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000305"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000305"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2025:781901ccad67",
+        "page": "2025"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000305",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2025/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000305",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4405201648"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000305",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1002%2Fpmic.202400311"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000305",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1002%2Fpmic.202400311"
+      }
+    }
+  ],
+  "id": "W-000305",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences University of Washington  Seattle Washington USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fullerton, Biological Sciences California State University  Fullterton California USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fullerton, Biological Sciences, California State University, Fullterton, California, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jennifer Telish",
+          "openalex": "A5028350588",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fullerton, Biological Sciences California State University  Fullterton California USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fullerton, Biological Sciences, California State University, Fullterton, California, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Chelsea Field",
+          "openalex": "A5114233864",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences University of Washington  Seattle Washington USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chris Monson",
+          "openalex": "A5036374220",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences University of Washington  Seattle Washington USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "José M. Guzmán",
+          "openalex": "A5102809011",
+          "orcid": "0000-0003-1193-8996",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences University of Washington  Seattle Washington USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences University of Washington  Seattle Washington USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Graham Young",
+          "openalex": "A5111758464",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fullerton, Biological Sciences California State University  Fullterton California USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fullerton, Biological Sciences, California State University, Fullterton, California, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Kristy L. Forsgren",
+          "openalex": "A5083615604",
+          "orcid": "0000-0001-5571-4295",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000305",
+      "ids": {
+        "doi": "10.1002/pmic.202400311",
+        "openalex": "W4405201648",
+        "pmcid": null,
+        "pmid": "39648474"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1002/pmic.202400311"
+      },
+      "published": "2024-12-08",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "An In‐Depth Coho Salmon (Oncorhynchus kisutch) Ovarian Follicle Proteome Reveals Coordinated Changes Across Diverse Cellular Processes during the Transition From Primary to Secondary Growth",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998000264167786,
+          "subfield": "Physiology",
+          "topic": "Reproductive biology and impacts on aquatic species"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9979000091552734,
+          "subfield": "Genetics",
+          "topic": "Genetic and Clinical Aspects of Sex Determination and Chromosomal Abnormalities"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.9961000084877014,
+          "subfield": "Aquatic Science",
+          "topic": "Aquaculture Nutrition and Growth"
+        }
+      ],
+      "venue": {
+        "issn_l": "1615-9853",
+        "name": "PROTEOMICS",
+        "publisher": "Wiley"
+      },
+      "version_link": null,
+      "year": 2024
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

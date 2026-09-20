@@ -1,0 +1,274 @@
+{
+  "aliases": [],
+  "canonical": "R-000057",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000057"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000057"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000057"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000057"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000057"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:2bff62635d06",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000057",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "We are grateful to Carly Holstein, Jimmy Eng, and Daniel Martin at the ISB for providing the standard protein mix sample and performing the TPP analyses, supported by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000057",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:f10e399bf749be154472eadae083c6a907f4d967cac36c0638f5e2b60d789337",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3049964/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000057",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1002/pmic.201000616"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "eng"
+      },
+      "excerpt": "We are grateful to Carly Holstein, Jimmy Eng, and Daniel Martin at the ISB for providing the standard protein mix sample and performing the TPP analyses, supported by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000057",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:f10e399bf749be154472eadae083c6a907f4d967cac36c0638f5e2b60d789337",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3049964/"
+      }
+    }
+  ],
+  "id": "W-000057",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Chemistry, University of Wisconsin, Madison, WI, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Craig D. Wenger",
+          "openalex": "A5083665081",
+          "orcid": "0000-0002-7361-8456",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Chemistry, University of Wisconsin, Madison, WI, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Douglas H. Phanstiel",
+          "openalex": "A5005038887",
+          "orcid": "0000-0003-2123-0051",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Chemistry, University of Wisconsin, Madison, WI, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "M. Violet Lee",
+          "openalex": "A5008624886",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Chemistry, University of Wisconsin, Madison, WI, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Derek J. Bailey",
+          "openalex": "A5088777514",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Biomolecular Chemistry, University of Wisconsin, Madison, WI, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Chemistry, University of Wisconsin, Madison, WI, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Joshua J. Coon",
+          "openalex": "A5086840789",
+          "orcid": "0000-0002-0004-8253",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:f10e399bf749be154472eadae083c6a907f4d967cac36c0638f5e2b60d789337",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000057",
+      "ids": {
+        "doi": "10.1002/pmic.201000616",
+        "openalex": "W2050357198",
+        "pmcid": "PMC3049964",
+        "pmid": "21298793"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3049964"
+      },
+      "published": "2011-01-07",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "COMPASS: A suite of pre‐ and post‐search proteomics software tools for OMSSA",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 1.0,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9995999932289124,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9984999895095825,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "1615-9853",
+        "name": "PROTEOMICS",
+        "publisher": "Wiley"
+      },
+      "version_link": null,
+      "year": 2011
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

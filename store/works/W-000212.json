@@ -1,0 +1,393 @@
+{
+  "aliases": [],
+  "canonical": "R-000212",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000212"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000212"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000212"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000212"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000212"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000212"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:e199ea6c9a34",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000212",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000212",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2948622157"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000212",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1038%2Fs41594-019-0233-y"
+      }
+    }
+  ],
+  "id": "W-000212",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "CNRS UMR 3569, Unité de Virologie Structurale, Paris, France",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "FR",
+              "name": "Institut Pasteur",
+              "raw": "Institut Pasteur, Unité de Virologie Structurale, Paris, France",
+              "ror": "0495fxg12"
+            }
+          ],
+          "corresponding": false,
+          "name": "M. Alejandra Tortorici",
+          "openalex": "A5006936042",
+          "orcid": "0000-0002-2260-2577",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexandra C. Walls",
+          "openalex": "A5021781776",
+          "orcid": "0000-0002-9636-8330",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Virology Division, Department of Infectious Diseases and Immunology, Faculty of Veterinary Medicine, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yifei Lang",
+          "openalex": "A5060303506",
+          "orcid": "0000-0002-8179-6471",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Virology Division, Department of Infectious Diseases and Immunology, Faculty of Veterinary Medicine, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chunyan Wang",
+          "openalex": "A5100451075",
+          "orcid": "0000-0002-4584-259X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Bijvoet Center for Biomolecular Research, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            },
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Department of Chemical Biology and Drug Discovery, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zeshi Li",
+          "openalex": "A5063651287",
+          "orcid": "0000-0002-8358-3162",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Virology Division, Department of Infectious Diseases and Immunology, Faculty of Veterinary Medicine, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            }
+          ],
+          "corresponding": false,
+          "name": "Danielle Koerhuis",
+          "openalex": "A5012164349",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Bijvoet Center for Biomolecular Research, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            },
+            {
+              "country": "US",
+              "name": "University of Georgia",
+              "raw": "Complex Carbohydrate Research Center, University of Georgia, Athens, GA, USA",
+              "ror": "00te3t702"
+            },
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Department of Chemical Biology and Drug Discovery, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            },
+            {
+              "country": "US",
+              "name": "University of Georgia",
+              "raw": "Department of Chemistry, University of Georgia, Athens, GA, USA",
+              "ror": "00te3t702"
+            }
+          ],
+          "corresponding": false,
+          "name": "Geert‐Jan Boons",
+          "openalex": "A5006418968",
+          "orcid": "0000-0003-3111-5954",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Virology Division, Department of Infectious Diseases and Immunology, Faculty of Veterinary Medicine, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            }
+          ],
+          "corresponding": false,
+          "name": "Berend‐Jan Bosch",
+          "openalex": "A5080132990",
+          "orcid": "0000-0002-3864-232X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "CNRS UMR 3569, Unité de Virologie Structurale, Paris, France",
+              "ror": null
+            },
+            {
+              "country": "FR",
+              "name": "Institut Pasteur",
+              "raw": "Institut Pasteur, Unité de Virologie Structurale, Paris, France",
+              "ror": "0495fxg12"
+            }
+          ],
+          "corresponding": false,
+          "name": "F.A. Rey",
+          "openalex": "A5028725593",
+          "orcid": "0000-0002-9953-7988",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Virology Division, Department of Infectious Diseases and Immunology, Faculty of Veterinary Medicine, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            }
+          ],
+          "corresponding": false,
+          "name": "Raoul J. de Groot",
+          "openalex": "A5053303084",
+          "orcid": "0000-0002-2207-9472",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA, USA. dveesler@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "David Veesler",
+          "openalex": "A5085406779",
+          "orcid": "0000-0002-6019-8675",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000212",
+      "ids": {
+        "doi": "10.1038/s41594-019-0233-y",
+        "openalex": "W2948622157",
+        "pmcid": "PMC6554059",
+        "pmid": "31160783"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1038/s41594-019-0233-y"
+      },
+      "published": "2019-06-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Structural basis for human coronavirus attachment to sialic acid receptors",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9994000196456909,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9990000128746033,
+          "subfield": "Infectious Diseases",
+          "topic": "Viral gastroenteritis research and epidemiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9987000226974487,
+          "subfield": "Ecology",
+          "topic": "Bacteriophages and microbial interactions"
+        }
+      ],
+      "venue": {
+        "issn_l": "1545-9985",
+        "name": "Nature Structural & Molecular Biology",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

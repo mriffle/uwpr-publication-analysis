@@ -1,0 +1,793 @@
+{
+  "aliases": [
+    "W-000593"
+  ],
+  "canonical": "R-000392",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000392"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000593"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000392"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000392"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000593"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000392"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000392"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000593"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported in part by the University of Washington’s Proteomics Resource (UWPR95794) and the UW Molecular Biophysics Training Program (T32GM008268).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000392",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:deb3bebf43daee2dd416718a13c50d5cab7a255620ab693c5a7d31ad5618c1a5",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10801708/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000392",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4389669646"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000593",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4378228892"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported in part by the University of Washington’s Proteomics Resource (UWPR95794) and the UW Molecular Biophysics Training Program (T32GM008268).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000392",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:deb3bebf43daee2dd416718a13c50d5cab7a255620ab693c5a7d31ad5618c1a5",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10801708/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000593",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1101%2F2023.05.23.541996"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000593",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1101%2F2023.05.23.541996"
+      }
+    }
+  ],
+  "id": "W-000392",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Annie Dosey",
+          "openalex": "A5058177720",
+          "orcid": "0000-0001-6858-4725",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel Ellis",
+          "openalex": "A5043923862",
+          "orcid": "0000-0001-6248-2867",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, MD 20892, USA",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Seyhan Boyoglu-Barnum",
+          "openalex": "A5055233309",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, MD 20892, USA",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hubza Syeda",
+          "openalex": "A5073521719",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mason Saunders",
+          "openalex": "A5109664332",
+          "orcid": "0009-0008-2170-7335",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Watson",
+          "openalex": "A5112826353",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "John C. Kraft",
+          "openalex": "A5036801059",
+          "orcid": "0000-0002-7931-7478",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Minh N. Pham",
+          "openalex": "A5057486559",
+          "orcid": "0000-0002-2357-7721",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Miklós Guttman",
+          "openalex": "A5026536762",
+          "orcid": "0000-0003-2419-1334",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kelly K. Lee",
+          "openalex": "A5049971572",
+          "orcid": "0000-0001-5577-9873",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, MD 20892, USA",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Masaru Kanekiyo",
+          "openalex": "A5052951174",
+          "orcid": "0000-0001-5767-1532",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA. Electronic address: neilking@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Neil P. King",
+          "openalex": "A5016851342",
+          "orcid": "0000-0002-2978-4692",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:deb3bebf43daee2dd416718a13c50d5cab7a255620ab693c5a7d31ad5618c1a5",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000392",
+      "ids": {
+        "doi": "10.1016/j.celrep.2023.113553",
+        "openalex": "W4389669646",
+        "pmcid": "PMC10801708",
+        "pmid": "38096052"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1016/j.celrep.2023.113553"
+      },
+      "published": "2023-12-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Combinatorial immune refocusing within the influenza hemagglutinin RBD improves cross-neutralizing antibody responses",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9983000159263611,
+          "subfield": "Immunology",
+          "topic": "Immune Cell Function and Interaction"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9975000023841858,
+          "subfield": "Epidemiology",
+          "topic": "Influenza Virus Research Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9847000241279602,
+          "subfield": "Genetics",
+          "topic": "Diabetes and associated disorders"
+        }
+      ],
+      "venue": {
+        "issn_l": "2211-1247",
+        "name": "Cell Reports",
+        "publisher": "Cell Press"
+      },
+      "version_link": null,
+      "year": 2023
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Annie Dosey",
+          "openalex": "A5058177720",
+          "orcid": "0000-0001-6858-4725",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel Ellis",
+          "openalex": "A5043923862",
+          "orcid": "0000-0001-6248-2867",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, MD 20892, USA",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Seyhan Boyoglu-Barnum",
+          "openalex": "A5055233309",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, MD 20892, USA",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hubza Syeda",
+          "openalex": "A5073521719",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mason Saunders",
+          "openalex": "A5109664332",
+          "orcid": "0009-0008-2170-7335",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Watson",
+          "openalex": "A5015411138",
+          "orcid": "0000-0003-3628-1919",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "John C. Kraft",
+          "openalex": "A5036801059",
+          "orcid": "0000-0002-7931-7478",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Minh N. Pham",
+          "openalex": "A5057486559",
+          "orcid": "0000-0002-2357-7721",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Miklós Guttman",
+          "openalex": "A5026536762",
+          "orcid": "0000-0003-2419-1334",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kelly K. Lee",
+          "openalex": "A5049971572",
+          "orcid": "0000-0001-5577-9873",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, MD 20892, USA",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Masaru Kanekiyo",
+          "openalex": "A5052951174",
+          "orcid": "0000-0001-5767-1532",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Neil P. King",
+          "openalex": "A5016851342",
+          "orcid": "0000-0002-2978-4692",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000593",
+      "ids": {
+        "doi": "10.1101/2023.05.23.541996",
+        "openalex": "W4378228892",
+        "pmcid": "PMC10245820",
+        "pmid": "37292967"
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://doi.org/10.1101/2023.05.23.541996"
+      },
+      "published": "2023-05-24",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Combinatorial immune refocusing within the influenza hemagglutinin head elicits cross-neutralizing antibody responses",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9959999918937683,
+          "subfield": "Epidemiology",
+          "topic": "Influenza Virus Research Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9908000230789185,
+          "subfield": "Immunology",
+          "topic": "Immune Cell Function and Interaction"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9889000058174133,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "title_author",
+        "to": "R-000392"
+      },
+      "year": 2023
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

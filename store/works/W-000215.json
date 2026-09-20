@@ -1,0 +1,370 @@
+{
+  "aliases": [],
+  "canonical": "R-000215",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000215"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:db61974af1f5",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000215",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000215",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jenny E. Kanter",
+          "openalex": "A5002224107",
+          "orcid": "0000-0003-3212-772X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Baohai Shao",
+          "openalex": "A5026547402",
+          "orcid": "0000-0001-8832-2845",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Farah Kramer",
+          "openalex": "A5062756168",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Shelley Barnhart",
+          "openalex": "A5006973755",
+          "orcid": "0000-0003-1829-9234",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Masami Shimizu‐Albergine",
+          "openalex": "A5036947726",
+          "orcid": "0000-0002-7989-6051",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Ionis Pharmaceuticals, Carlsbad, California, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Mark J. Graham",
+          "openalex": "A5103758244",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Ionis Pharmaceuticals, Carlsbad, California, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Rosanne M. Crooke",
+          "openalex": "A5041988426",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Columbia University",
+              "raw": "Department of Pathology and Cell Biology, Columbia University, New York, New York, USA",
+              "ror": "00hj8s172"
+            }
+          ],
+          "corresponding": false,
+          "name": "Clarence R. Manuel",
+          "openalex": "A5037613507",
+          "orcid": "0000-0003-1202-9030",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Columbia University",
+              "raw": "Department of Pathology and Cell Biology, Columbia University, New York, New York, USA",
+              "ror": "00hj8s172"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rebecca A. Haeusler",
+          "openalex": "A5077704681",
+          "orcid": "0000-0002-6973-9845",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, Division of Allergy and Infectious Disease, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel Mar",
+          "openalex": "A5054918166",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, Division of Allergy and Infectious Disease, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karol Bomsztyk",
+          "openalex": "A5039729447",
+          "orcid": "0000-0002-9169-7573",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Colorado School of Public Health",
+              "raw": "Department of Epidemiology, Colorado School of Public Health, University of Colorado Denver, Aurora, Colorado, USA",
+              "ror": "005x9g035"
+            }
+          ],
+          "corresponding": false,
+          "name": "John E. Hokanson",
+          "openalex": "A5053755396",
+          "orcid": "0000-0003-0500-6068",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Colorado School of Public Health",
+              "raw": "Department of Epidemiology, Colorado School of Public Health, University of Colorado Denver, Aurora, Colorado, USA",
+              "ror": "005x9g035"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gregory L. Kinney",
+          "openalex": "A5009938646",
+          "orcid": "0000-0002-5218-4986",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Colorado Denver",
+              "raw": "Barbara Davis Center for Diabetes, School of Medicine, University of Colorado Denver, Aurora, Colorado, USA",
+              "ror": "02hh7en24"
+            }
+          ],
+          "corresponding": false,
+          "name": "Janet K. Snell‐Bergeon",
+          "openalex": "A5061001113",
+          "orcid": "0000-0002-9337-3740",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, UW Medicine Diabetes Institute, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000215",
+      "ids": {
+        "doi": "10.1172/jci127308",
+        "openalex": "W2956270669",
+        "pmcid": "PMC6763229",
+        "pmid": "31295146"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1172/jci127308"
+      },
+      "published": "2019-07-11",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Increased apolipoprotein C3 drives cardiovascular risk in type 1 diabetes",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9972000122070312,
+          "subfield": "Pharmacology",
+          "topic": "Apelin-related biomedical research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.994700014591217,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9922999739646912,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes Management and Research"
+        }
+      ],
+      "venue": {
+        "issn_l": "0021-9738",
+        "name": "Journal of Clinical Investigation",
+        "publisher": "American Society for Clinical Investigation"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

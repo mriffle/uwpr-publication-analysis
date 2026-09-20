@@ -1,0 +1,211 @@
+{
+  "aliases": [],
+  "canonical": "R-000330",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000330"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000330"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2026:744870ae2e29",
+        "page": "2026"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000330",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/"
+      }
+    }
+  ],
+  "id": "W-000330",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "ES",
+              "name": "Instituto de Agroquímica y Tecnología de Alimentos",
+              "raw": "Instituto de Agroquímica y Tecnología de Alimentos (CSIC), Avenue Agustín Escardino 7, 46980 Paterna, Valencia, Spain",
+              "ror": "018m1s709"
+            },
+            {
+              "country": "NL",
+              "name": "Wageningen University & Research",
+              "raw": "Laboratory of Food Chemistry, Wageningen University & Research, Bornse Weilanden 9, 6708 WG Wageningen, The Netherlands",
+              "ror": "04qw24q55"
+            }
+          ],
+          "corresponding": false,
+          "name": "Manuel Ignacio López-Martínez",
+          "openalex": "A5010464456",
+          "orcid": "0000-0002-4712-6802",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Wageningen University & Research",
+              "raw": "Laboratory of Food Chemistry, Wageningen University & Research, Bornse Weilanden 9, 6708 WG Wageningen, The Netherlands",
+              "ror": "04qw24q55"
+            }
+          ],
+          "corresponding": false,
+          "name": "Angelina Hopf",
+          "openalex": "A5133540799",
+          "orcid": "0009-0007-7238-4508",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Wageningen University & Research",
+              "raw": "Laboratory of Food Chemistry, Wageningen University & Research, Bornse Weilanden 9, 6708 WG Wageningen, The Netherlands",
+              "ror": "04qw24q55"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gijs J.C. Vreeke",
+          "openalex": "A5065260262",
+          "orcid": "0000-0002-8088-500X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "ES",
+              "name": "Instituto de Agroquímica y Tecnología de Alimentos",
+              "raw": "Instituto de Agroquímica y Tecnología de Alimentos (CSIC), Avenue Agustín Escardino 7, 46980 Paterna, Valencia, Spain",
+              "ror": "018m1s709"
+            }
+          ],
+          "corresponding": false,
+          "name": "Fidel Toldrá",
+          "openalex": "A5046614305",
+          "orcid": "0000-0002-9843-0193",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Wageningen University & Research",
+              "raw": "Laboratory of Food Chemistry, Wageningen University & Research, Bornse Weilanden 9, 6708 WG Wageningen, The Netherlands",
+              "ror": "04qw24q55"
+            }
+          ],
+          "corresponding": false,
+          "name": "Roelant Hilgers",
+          "openalex": "A5042989760",
+          "orcid": "0000-0002-3410-8795",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "ES",
+              "name": "Instituto de Agroquímica y Tecnología de Alimentos",
+              "raw": "Instituto de Agroquímica y Tecnología de Alimentos (CSIC), Avenue Agustín Escardino 7, 46980 Paterna, Valencia, Spain",
+              "ror": "018m1s709"
+            }
+          ],
+          "corresponding": true,
+          "name": "Leticia Mora",
+          "openalex": "A5040070925",
+          "orcid": "0000-0003-1571-5781",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:9d990a8b807679f12447520a28010ff8b3a15997e5539bcf14bfe8d4f1435817",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000330",
+      "ids": {
+        "doi": "10.3390/ijms27083440",
+        "openalex": "W7154152434",
+        "pmcid": "PMC13115641",
+        "pmid": "42074086"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.3390/ijms27083440"
+      },
+      "published": "2026-04-11",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Generation of Koku-Related Peptides Using Gamma-Glutamyl Transpeptidase Post-Treatment in Porcine Liver Hydrolyzates",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9365000128746033,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Hydrolysis and Bioactive Peptides"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.02759999968111515,
+          "subfield": "Plant Science",
+          "topic": "GABA and Rice Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.006899999920278788,
+          "subfield": "Animal Science and Zoology",
+          "topic": "Meat and Animal Product Quality"
+        }
+      ],
+      "venue": {
+        "issn_l": "1422-0067",
+        "name": "International Journal of Molecular Sciences",
+        "publisher": "Multidisciplinary Digital Publishing Institute"
+      },
+      "version_link": null,
+      "year": 2026
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

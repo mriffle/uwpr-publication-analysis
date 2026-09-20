@@ -1,0 +1,235 @@
+{
+  "aliases": [],
+  "canonical": "R-000291",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000291"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2024:fd9002da59ae",
+        "page": "2024"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000291",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2024/"
+      }
+    }
+  ],
+  "id": "W-000291",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "Department of Epidemiology (Drs Costacou, Miller, Orchard), School of Public Health, University of Pittsburgh, Pittsburgh, PA 15213, United States. Electronic address: costacout@edc.pitt.edu",
+              "ror": "01an3r305"
+            },
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "Department of Epidemiology, School of Public Health, University of Pittsburgh, Pittsburgh, PA 15213",
+              "ror": "01an3r305"
+            }
+          ],
+          "corresponding": true,
+          "name": "Tina Costacou",
+          "openalex": "A5053959156",
+          "orcid": "0000-0001-9303-3810",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "Department of Epidemiology (Drs Costacou, Miller, Orchard), School of Public Health, University of Pittsburgh, Pittsburgh, PA 15213, United States",
+              "ror": "01an3r305"
+            },
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "Department of Epidemiology, School of Public Health, University of Pittsburgh, Pittsburgh, PA 15213",
+              "ror": "01an3r305"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rachel G. Miller",
+          "openalex": "A5105826957",
+          "orcid": "0000-0003-1845-8477",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine (Drs Bornfeldt, Heinecke, Vaisar), University of Washington, Seattle, WA 98102, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA 98102",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine (Drs Bornfeldt, Heinecke, Vaisar), University of Washington, Seattle, WA 98102, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA 98102",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "Department of Epidemiology (Drs Costacou, Miller, Orchard), School of Public Health, University of Pittsburgh, Pittsburgh, PA 15213, United States",
+              "ror": "01an3r305"
+            },
+            {
+              "country": "US",
+              "name": "University of Pittsburgh",
+              "raw": "Department of Epidemiology, School of Public Health, University of Pittsburgh, Pittsburgh, PA 15213",
+              "ror": "01an3r305"
+            }
+          ],
+          "corresponding": false,
+          "name": "Trevor J. Orchard",
+          "openalex": "A5005102981",
+          "orcid": "0000-0001-9552-3215",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine (Drs Bornfeldt, Heinecke, Vaisar), University of Washington, Seattle, WA 98102, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA 98102",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:45a61320838bb2403a51bf341918e8abf5b6bdd064c491947cead38f3444c599",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000291",
+      "ids": {
+        "doi": "10.1016/j.jacl.2024.01.004",
+        "openalex": "W4391309676",
+        "pmcid": "PMC11069450",
+        "pmid": "38320926"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1016/j.jacl.2024.01.004"
+      },
+      "published": "2024-01-29",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Sex differences in the associations of HDL particle concentration and cholesterol efflux capacity with incident coronary artery disease in type 1 diabetes: The RETRO HDLc cohort study",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9114999771118164,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.020099999383091927,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes Management and Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.007600000128149986,
+          "subfield": "Pulmonary and Respiratory Medicine",
+          "topic": "Blood properties and coagulation"
+        }
+      ],
+      "venue": {
+        "issn_l": "1876-4789",
+        "name": "Journal of clinical lipidology",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2024
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

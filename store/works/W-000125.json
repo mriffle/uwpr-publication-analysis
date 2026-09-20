@@ -1,0 +1,211 @@
+{
+  "aliases": [],
+  "canonical": "R-000125",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000125"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:386c70b54797",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000125",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000125",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Aarhus, DANDRITE-Danish Research Institute of Translational Neuroscience & Department of Biomedicine, Aarhus, Denmark",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Aarhus, DANDRITE—Danish Research Institute of Translational Neuroscience & Department of Biomedicine, Aarhus, Denmark",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Cristine Betzer",
+          "openalex": "A5008055701",
+          "orcid": "0000-0001-5429-3548",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "Flinders University",
+              "raw": "Flinders University School of Medicine, Department of Human Physiology and Centre for Neuroscience, Bedford Park, SA, Australia",
+              "ror": "01kpzv902"
+            }
+          ],
+          "corresponding": false,
+          "name": "A. James Movius",
+          "openalex": "A5030423060",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "Flinders University",
+              "raw": "Flinders University School of Medicine, Department of Human Physiology and Centre for Neuroscience, Bedford Park, SA, Australia",
+              "ror": "01kpzv902"
+            }
+          ],
+          "corresponding": false,
+          "name": "Min Shi",
+          "openalex": "A5016122096",
+          "orcid": "0000-0002-6901-2558",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington School of Medicine, Department of Pathology, Seattle, United States of America",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Wei‐Ping Gai",
+          "openalex": "A5108591654",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "Flinders University",
+              "raw": "Flinders University School of Medicine, Department of Human Physiology and Centre for Neuroscience, Bedford Park, SA, Australia",
+              "ror": "01kpzv902"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jing Zhang",
+          "openalex": "A5017340343",
+          "orcid": "0000-0003-1513-0695",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Aarhus, DANDRITE-Danish Research Institute of Translational Neuroscience & Department of Biomedicine, Aarhus, Denmark",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Aarhus, DANDRITE—Danish Research Institute of Translational Neuroscience & Department of Biomedicine, Aarhus, Denmark",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Poul Henning Jensen",
+          "openalex": "A5051399477",
+          "orcid": "0000-0002-4439-9020",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:3db208f11b2239a227181e0dd4ca09bca7ab2d30f43454bc132ffae179af8ec4",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000125",
+      "ids": {
+        "doi": "10.1371/journal.pone.0116473",
+        "openalex": "W2060102282",
+        "pmcid": "PMC4319895",
+        "pmid": "25659148"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1371/journal.pone.0116473"
+      },
+      "published": "2015-02-06",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Identification of Synaptosomal Proteins Binding to Monomeric and Oligomeric α-Synuclein",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9998999834060669,
+          "subfield": "Neurology",
+          "topic": "Parkinson's Disease Mechanisms and Treatments"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9984999895095825,
+          "subfield": "Physiology",
+          "topic": "Alzheimer's disease research and treatments"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9948999881744385,
+          "subfield": "Cell Biology",
+          "topic": "Cellular transport and secretion"
+        }
+      ],
+      "venue": {
+        "issn_l": "1932-6203",
+        "name": "PLoS ONE",
+        "publisher": "Public Library of Science"
+      },
+      "version_link": null,
+      "year": 2015
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

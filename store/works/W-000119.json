@@ -1,0 +1,252 @@
+{
+  "aliases": [],
+  "canonical": "R-000119",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000119"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000119"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000119"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:827ee6767a02",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000119",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "riffle"
+      },
+      "excerpt": "We thank Vagisha Sharma and Mike Riffle at the Proteomics Resource at the University of Washington for help with the yeast proteome analysis.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000119",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:7af2f170324bf4cbfbbb19a4c73c53a802ca09e34e822f0344fdee3a883b7d80",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4417682/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "The ESI voltage was applied via liquid junction electrode, in a source arrangement built in-house and available through the University of Washington’s Proteomics Resource (details found at http://proteomicsresource.washington.edu/nsisource.php).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000119",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "methods",
+      "source": {
+        "cache": "sha256:7af2f170324bf4cbfbbb19a4c73c53a802ca09e34e822f0344fdee3a883b7d80",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4417682/"
+      }
+    }
+  ],
+  "id": "W-000119",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, 98195, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Thermo Fisher Scientific, 355 River Oaks Parkway, 95134, San Jose, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jesse D. Canterbury",
+          "openalex": "A5016116051",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, 98195, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gennifer E. Merrihew",
+          "openalex": "A5003439643",
+          "orcid": "0000-0003-4903-0318",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, 98195, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, 98195, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Maryland School of Pharmacy, 20 North Pine Street, 21201, Baltimore, MD, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Biochemistry and Molecular Pharmacology, University of Massachusetts Medical School, 364 Plantation St, 01605, Worcester, MA, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, 98195, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Scott A. Shaffer",
+          "openalex": "A5013927284",
+          "orcid": "0000-0002-5264-3257",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:7af2f170324bf4cbfbbb19a4c73c53a802ca09e34e822f0344fdee3a883b7d80",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000119",
+      "ids": {
+        "doi": "10.1007/s13361-014-0981-1",
+        "openalex": "W1966552971",
+        "pmcid": "PMC4417682",
+        "pmid": "25261218"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4417682"
+      },
+      "published": "2014-09-26",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Comparison of Data Acquisition Strategies on Quadrupole Ion Trap Instrumentation for Shotgun Proteomics",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9998999834060669,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9990000128746033,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Engineering",
+          "score": 0.9815999865531921,
+          "subfield": "Computational Mechanics",
+          "topic": "Ion-surface interactions and analysis"
+        }
+      ],
+      "venue": {
+        "issn_l": "1044-0305",
+        "name": "Journal of the American Society for Mass Spectrometry",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2014
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

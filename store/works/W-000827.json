@@ -1,0 +1,155 @@
+{
+  "aliases": [],
+  "canonical": "R-000827",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "F",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000827"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000827"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "University of Washington Proteomics Resource, 850 Republican Street, Seattle, WA 98109, USA",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000827",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W7196960879"
+      }
+    }
+  ],
+  "id": "W-000827",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Proteomics Resource, 850 Republican Street, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Jewish Health",
+              "raw": "Department of Immunology and Genomic Medicine, National Jewish Health, 1400 Jackson Street, Denver, CO 80206, USA",
+              "ror": "016z2bp30"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lilliana Radoshevich",
+          "openalex": "A5145656791",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Iowa",
+              "raw": "Department of Molecular Physiology and Biophysics, Carver College of Medicine, University of Iowa, 51 Newton Road, Iowa City, IA 52242, USA",
+              "ror": "036jqmy94"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael E. Wright",
+          "openalex": "A5058458319",
+          "orcid": "0000-0002-4243-2931",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000827",
+      "ids": {
+        "doi": "10.64898/2026.08.06.743235",
+        "openalex": "W7196960879",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "green",
+        "url": "https://doi.org/10.64898/2026.08.06.743235"
+      },
+      "published": "2026-08-06",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Short Linear Motifs as a General Organizing Principle of the Nuclear-Receptor Proximal Interactome",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.5302000045776367,
+          "subfield": "Pulmonary and Respiratory Medicine",
+          "topic": "Prostate Cancer Treatment and Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.1581999957561493,
+          "subfield": "Molecular Biology",
+          "topic": "Nuclear Structure and Function"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.09350000321865082,
+          "subfield": "Cell Biology",
+          "topic": "Biotin and Related Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": null,
+      "year": 2026
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

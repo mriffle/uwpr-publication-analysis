@@ -1,0 +1,244 @@
+{
+  "aliases": [],
+  "canonical": "R-000276",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000276"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2022:fce31c89ad0d",
+        "page": "2022"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000276",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2022/"
+      }
+    }
+  ],
+  "id": "W-000276",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Facultad de Ciencias Químicas y Farmacéuticas, Universidad de Chile, Centro Avanzado para Estudios en Enfermedades Crónicas (ACCDIS), Santiago, Chile",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Laboratorio de Comunicaciones Celulares, Centro de Estudios en Ejercicio, Metabolismo y Cáncer (CEMC), Programa de Biología Celular y Molecular, Facultad de Medicina, Universidad de Chile, Santiago, Chile",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "María Fernanda González",
+          "openalex": "A5101584593",
+          "orcid": "0000-0001-7435-6497",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Facultad de Ciencias Químicas y Farmacéuticas, Universidad de Chile, Centro Avanzado para Estudios en Enfermedades Crónicas (ACCDIS), Santiago, Chile",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Laboratorio de Comunicaciones Celulares, Centro de Estudios en Ejercicio, Metabolismo y Cáncer (CEMC), Programa de Biología Celular y Molecular, Facultad de Medicina, Universidad de Chile, Santiago, Chile",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Renato Burgos-Ravanal",
+          "openalex": "A5010863470",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Baohai Shao",
+          "openalex": "A5026547402",
+          "orcid": "0000-0001-8832-2845",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Facultad de Ciencias Químicas y Farmacéuticas, Universidad de Chile, Centro Avanzado para Estudios en Enfermedades Crónicas (ACCDIS), Santiago, Chile",
+              "ror": null
+            },
+            {
+              "country": "CL",
+              "name": "Universidad Central de Chile",
+              "raw": "Laboratorio de Microbiología Celular, Instituto de Investigación y Postgrado, Universidad Central de Chile, Santiago, Chile",
+              "ror": "0577avk88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Manuel Valenzuela",
+          "openalex": "A5012560448",
+          "orcid": "0000-0002-8833-7382",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CL",
+              "name": "Pontificia Universidad Católica de Chile",
+              "raw": "Departamento de Hematología-Oncología, Facultad de Medicine, Pontificia Universidad Católica de Chile, Santiago, Chile",
+              "ror": "04teye511"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Facultad de Ciencias Químicas y Farmacéuticas, Universidad de Chile, Centro Avanzado para Estudios en Enfermedades Crónicas (ACCDIS), Santiago, Chile",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Alejandro H. Corvalán",
+          "openalex": "A5091457383",
+          "orcid": "0000-0001-5492-3853",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Facultad de Ciencias Químicas y Farmacéuticas, Universidad de Chile, Centro Avanzado para Estudios en Enfermedades Crónicas (ACCDIS), Santiago, Chile",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Laboratorio de Comunicaciones Celulares, Centro de Estudios en Ejercicio, Metabolismo y Cáncer (CEMC), Programa de Biología Celular y Molecular, Facultad de Medicina, Universidad de Chile, Santiago, Chile",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Andrew F. G. Quest",
+          "openalex": "A5039658579",
+          "orcid": "0000-0001-8755-1590",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:79edc72ee9b5747d06fc96960c0deef45dcd27a1c47fba61b95689710c3f2706",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000276",
+      "ids": {
+        "doi": "10.3389/fonc.2022.962920",
+        "openalex": "W4304620026",
+        "pmcid": "PMC9596800",
+        "pmid": "36313672"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.3389/fonc.2022.962920"
+      },
+      "published": "2022-10-12",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Extracellular vesicles from gastric epithelial GES-1 cells infected with Helicobacter pylori promote changes in recipient cells associated with malignancy",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9984999895095825,
+          "subfield": "Immunology",
+          "topic": "Galectins and Cancer Biology"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9969000220298767,
+          "subfield": "Surgery",
+          "topic": "Helicobacter pylori-related gastroenterology studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9958000183105469,
+          "subfield": "Molecular Biology",
+          "topic": "Extracellular vesicles in disease"
+        }
+      ],
+      "venue": {
+        "issn_l": "2234-943X",
+        "name": "Frontiers in Oncology",
+        "publisher": "Frontiers Media"
+      },
+      "version_link": null,
+      "year": 2022
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

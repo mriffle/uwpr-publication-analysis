@@ -1,0 +1,184 @@
+{
+  "aliases": [],
+  "canonical": "R-000257",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000257"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000257"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:6f87f8188c66",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000257",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000257",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mario Leutert",
+          "openalex": "A5037313718",
+          "orcid": "0000-0001-7921-4017",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA; Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Samuel Entwisle",
+          "openalex": "A5062896234",
+          "orcid": "0000-0001-8515-636X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA; Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington, USA. Electronic address: jvillen@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Judit Villén",
+          "openalex": "A5005646080",
+          "orcid": "0000-0002-1005-1739",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:f171bf601238bf4d1dd330a78591089caf1c538fa4cc9dec060a8f7a220b064b",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000257",
+      "ids": {
+        "doi": "10.1016/j.mcpro.2021.100129",
+        "openalex": "W3191137525",
+        "pmcid": "PMC8430371",
+        "pmid": "34339852"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1016/j.mcpro.2021.100129"
+      },
+      "published": "2021-01-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Decoding Post-Translational Modification Crosstalk With Proteomics",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9991000294685364,
+          "subfield": "Molecular Biology",
+          "topic": "Ubiquitin and proteasome pathways"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9991000294685364,
+          "subfield": "Oncology",
+          "topic": "Peptidase Inhibition and Analysis"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9937999844551086,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Degradation and Inhibitors"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-9476",
+        "name": "Molecular & Cellular Proteomics",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2021
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

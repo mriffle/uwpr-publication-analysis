@@ -1,0 +1,515 @@
+{
+  "aliases": [
+    "W-000605"
+  ],
+  "canonical": "R-000319",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000319"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000319"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000319"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000319"
+    },
+    {
+      "channel": "F",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000319"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000319"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000605"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2025:ba3edfe0d467",
+        "page": "2025"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000319",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2025/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "University of Washington Proteomics Resource",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000319",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4411370226"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "University of Washington Proteomics Resource, Seattle, Washington, USA",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000319",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": "sha256:9310c68b5edfd19d594f69357396efbbc75e4f9e50901f4d1f15c5f1427f01d5",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13232765/"
+      }
+    }
+  ],
+  "id": "W-000319",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher D. McGann",
+          "openalex": "A5023198924",
+          "orcid": "0000-0001-9379-1910",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Erik J. Bergstrom",
+          "openalex": "A5078590885",
+          "orcid": "0000-0002-9939-7831",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Proteomics Resource",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Vagisha Sharma",
+          "openalex": "A5101918119",
+          "orcid": "0000-0003-1922-439X",
+          "staff": "sharma"
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "ThermoFisher Scientific",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Lilian R. Heil",
+          "openalex": "A5081574417",
+          "orcid": "0000-0002-9462-7327",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Biochemistry and Molecular Biotechnology",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Qing Yu",
+          "openalex": "A5040242042",
+          "orcid": "0000-0003-0468-5353",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Proteomics Resource",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Brotman Baty Institute",
+              "raw": "Brotman Baty Institute for Precision Medicine",
+              "ror": "03jxvbk42"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Institute of Stem Cell and Regenerative Medicine",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:9310c68b5edfd19d594f69357396efbbc75e4f9e50901f4d1f15c5f1427f01d5",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000319",
+      "ids": {
+        "doi": "10.1021/acs.jproteome.4c01094",
+        "openalex": "W4411370226",
+        "pmcid": "PMC13232765",
+        "pmid": "40526826"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40526826/"
+      },
+      "published": "2025-06-17",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Comet Fragment-Ion Indexing for Enhanced Peptide Sequencing",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9994999766349792,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9976000189781189,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9643999934196472,
+          "subfield": "Spectroscopy",
+          "topic": "Analytical Chemistry and Chromatography"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2025
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher D. McGann",
+          "openalex": "A5023198924",
+          "orcid": "0000-0001-9379-1910",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Erik J. Bergstrom",
+          "openalex": "A5078590885",
+          "orcid": "0000-0002-9939-7831",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Vagisha Sharma",
+          "openalex": "A5101918119",
+          "orcid": "0000-0003-1922-439X",
+          "staff": "sharma"
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "ThermoFisher Scientific;",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "ThermoFisher Scientific",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Lilian R. Heil",
+          "openalex": "A5081574417",
+          "orcid": "0000-0002-9462-7327",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Massachusetts",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Qing Yu",
+          "openalex": "A5073113793",
+          "orcid": "0000-0003-2837-121X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000605",
+      "ids": {
+        "doi": "10.1101/2024.10.11.617953",
+        "openalex": "W4403422134",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc",
+        "status": "green",
+        "url": "https://doi.org/10.1101/2024.10.11.617953"
+      },
+      "published": "2024-10-15",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Comet fragment-ion indexing for enhanced peptide sequencing",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9922999739646912,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9599999785423279,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000319"
+      },
+      "year": 2024
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

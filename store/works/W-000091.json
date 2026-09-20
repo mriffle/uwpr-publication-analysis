@@ -1,0 +1,381 @@
+{
+  "aliases": [],
+  "canonical": "R-000091",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000091"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000091"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000091"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:a023e08a6e37",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000091",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "Additional thanks are due to the University of Washington, School of Pharmacy Mass Spectrometry Facility and University of Washington, School of Medicine Proteomics Resource (UWPR95794) as well as part of this work was conducted at the University of Washington NanoTech User Facility, a member of th…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000091",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:a544b81b1d220b30a12d8ad7916d66f9a6bf048292e20e53ab1cc7bc6acd97b0",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6037164/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Additional thanks are due to the University of Washington, School of Pharmacy Mass Spectrometry Facility and University of Washington, School of Medicine Proteomics Resource (UWPR95794) as well as part of this work was conducted at the University of Washington NanoTech User Facility, a member of th…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000091",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:a544b81b1d220b30a12d8ad7916d66f9a6bf048292e20e53ab1cc7bc6acd97b0",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6037164/"
+      }
+    }
+  ],
+  "id": "W-000091",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deurion LLC, Seattle, Washington, United States",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington 98195-7610, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sung Hwan Yoon",
+          "openalex": "A5039057632",
+          "orcid": "0000-0001-5794-3286",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United#R#States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yue Huang",
+          "openalex": "A5056326026",
+          "orcid": "0000-0003-2788-0856",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deurion LLC, Seattle, Washington, United States",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United#R#States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "J. Scott Edgar",
+          "openalex": "A5028499054",
+          "orcid": "0000-0002-3783-205X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United#R#States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ying S. Ting",
+          "openalex": "A5036254727",
+          "orcid": "0000-0003-2492-3718",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United#R#States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Scott R. Heron",
+          "openalex": "A5005776452",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United#R#States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yuchieh Kao",
+          "openalex": "A5109262024",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Maryland, Baltimore",
+              "raw": "Department of Microbial Pathogenesis, University of Maryland, Baltimore, Maryland, United\rStates",
+              "ror": "04rq5mt64"
+            },
+            {
+              "country": "US",
+              "name": "University of Maryland, Baltimore",
+              "raw": "Department of Microbial Pathogenesis, University of Maryland, Baltimore, Maryland, United#R#States",
+              "ror": "04rq5mt64"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yanyan Li",
+          "openalex": "A5100324139",
+          "orcid": "0000-0002-8109-7574",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "CEA, DSV, iRTSV,\rLaboratoire\rde Biologie à Grande Echelle, Grenoble, France",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "INSERM, Unite 1038,\rGrenoble, France",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Christophe Masselon",
+          "openalex": "A5019155111",
+          "orcid": "0000-0003-0117-2480",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Maryland, Baltimore",
+              "raw": "Department of Microbial Pathogenesis, University of Maryland, Baltimore, Maryland, United\rStates",
+              "ror": "04rq5mt64"
+            },
+            {
+              "country": "US",
+              "name": "University of Maryland, Baltimore",
+              "raw": "Department of Microbial Pathogenesis, University of Maryland, Baltimore, Maryland, United#R#States",
+              "ror": "04rq5mt64"
+            }
+          ],
+          "corresponding": false,
+          "name": "Robert K. Ernst",
+          "openalex": "A5043813423",
+          "orcid": "0000-0001-5016-8694",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United#R#States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:a544b81b1d220b30a12d8ad7916d66f9a6bf048292e20e53ab1cc7bc6acd97b0",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000091",
+      "ids": {
+        "doi": "10.1021/ac300807p",
+        "openalex": "W1976751693",
+        "pmcid": "PMC6037164",
+        "pmid": "22742654"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6037164"
+      },
+      "published": "2012-06-28",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Surface Acoustic Wave Nebulization Facilitating Lipid Mass Spectrometric Analysis",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9997000098228455,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Engineering",
+          "score": 0.9995999932289124,
+          "subfield": "Biomedical Engineering",
+          "topic": "Advanced Chemical Sensor Technologies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9975000023841858,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "0003-2700",
+        "name": "Analytical Chemistry",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2012
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

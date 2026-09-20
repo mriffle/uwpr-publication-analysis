@@ -1,0 +1,101 @@
+{
+  "aliases": [],
+  "canonical": "R-000738",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000738"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000738",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.21220%2Fs2-jfyf-3r27"
+      }
+    }
+  ],
+  "id": "W-000738",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [],
+          "corresponding": true,
+          "name": "Amy Schienschang",
+          "openalex": "A5012049120",
+          "orcid": "0000-0002-8709-8762",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000738",
+      "ids": {
+        "doi": "10.21220/s2-jfyf-3r27",
+        "openalex": "W2994359094",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "https://scholarworks.wm.edu/etd/1550154018"
+      },
+      "published": "2019-02-14",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Monitoring Infection Of E. Coli By Bacteriophage T7 Through Mass Spectrometry-Based Proteomics",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9905999898910522,
+          "subfield": "Ecology",
+          "topic": "Bacteriophages and microbial interactions"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "W&M Publish (College of William & Mary)",
+        "publisher": "William & Mary"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

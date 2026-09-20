@@ -1,0 +1,274 @@
+{
+  "aliases": [],
+  "canonical": "R-000187",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000187"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000187"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000187"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000187"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:2dc62b85d500",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000187",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000187",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the ‡University of Washington, Seattle, Washington 98195",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the University of Washington, Seattle, Washington 98195",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Vagisha Sharma",
+          "openalex": "A5101918119",
+          "orcid": "0000-0003-1922-439X",
+          "staff": "sharma"
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "§LabKey, San Diego, California 92101",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "LabKey, San Diego, California 92101",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Josh Eckels",
+          "openalex": "A5032682273",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "¶Buck Institute for Research on Aging, Novato, California 94945",
+              "ror": "050sv4x28"
+            },
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "Buck Institute for Research on Aging, Novato, California 94945",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Birgit Schilling",
+          "openalex": "A5003883020",
+          "orcid": "0000-0001-9907-2749",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "‖Bavarian Center for Biomolecular Mass Spectrometry (BayBioMS), Technical University Munich, Freising, Germany",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Bavarian Center for Biomolecular Mass Spectrometry (BayBioMS), Technical University Munich, Freising, Germany",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Christina Ludwig",
+          "openalex": "A5090320822",
+          "orcid": "0000-0002-6131-7322",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Broad Institute",
+              "raw": "**The Broad Institute, Cambridge, Massachusetts 02142",
+              "ror": "05a0ya142"
+            },
+            {
+              "country": "US",
+              "name": "Broad Institute",
+              "raw": "The Broad Institute, Cambridge, Massachusetts 02142",
+              "ror": "05a0ya142"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jacob D. Jaffe",
+          "openalex": "A5056665352",
+          "orcid": "0000-0001-9845-1210",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the ‡University of Washington, Seattle, Washington 98195",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the University of Washington, Seattle, Washington 98195",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the ‡University of Washington, Seattle, Washington 98195; brendanx@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the University of Washington, Seattle, Washington 98195",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Brendan MacLean",
+          "openalex": "A5031754851",
+          "orcid": "0000-0002-9575-0255",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000187",
+      "ids": {
+        "doi": "10.1074/mcp.ra117.000543",
+        "openalex": "W2793610094",
+        "pmcid": "PMC5986241",
+        "pmid": "29487113"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1074/mcp.ra117.000543"
+      },
+      "published": "2018-02-27",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Panorama Public: A Public Repository for Quantitative Data Sets Processed in Skyline",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.989300012588501,
+          "subfield": "Signal Processing",
+          "topic": "Data Management and Algorithms"
+        },
+        {
+          "domain": "Social Sciences",
+          "field": "Social Sciences",
+          "score": 0.9397000074386597,
+          "subfield": "Geography, Planning and Development",
+          "topic": "Geographic Information Systems Studies"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.9330999851226807,
+          "subfield": "Computer Vision and Pattern Recognition",
+          "topic": "Data Visualization and Analytics"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-9476",
+        "name": "Molecular & Cellular Proteomics",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2018
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

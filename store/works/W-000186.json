@@ -1,0 +1,270 @@
+{
+  "aliases": [],
+  "canonical": "R-000186",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000186"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000186"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000186"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000186"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000186"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:fc3e63bc23df",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000186",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000186",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1093/cercor/bhx333"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000186",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1093%2Fcercor%2Fbhx333"
+      }
+    }
+  ],
+  "id": "W-000186",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California, San Francisco",
+              "raw": "Department of Psychiatry, University of California, San Francisco (UCSF), San Francisco, CA, USA",
+              "ror": "043mz5j54"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xiao Yong Yang",
+          "openalex": "A5103790788",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California, San Francisco",
+              "raw": "Department of Psychiatry, University of California, San Francisco (UCSF), San Francisco, CA, USA",
+              "ror": "043mz5j54"
+            }
+          ],
+          "corresponding": false,
+          "name": "Robert Stanley",
+          "openalex": "A5081385800",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California, San Francisco",
+              "raw": "Department of Psychiatry, University of California, San Francisco (UCSF), San Francisco, CA, USA",
+              "ror": "043mz5j54"
+            }
+          ],
+          "corresponding": false,
+          "name": "Adam P. Ross",
+          "openalex": "A5089976448",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmacology, Institute for Stem Cell and Regenerative Medicine, University of Washington (UW), Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aaron M. Robitaille",
+          "openalex": "A5051620732",
+          "orcid": "0000-0003-2774-2066",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California, Davis",
+              "raw": "Department of Neurology, Center for Neuroscience, University of California, Davis, CA, USA",
+              "ror": "05rrcem69"
+            }
+          ],
+          "corresponding": false,
+          "name": "J.A. Gray",
+          "openalex": "A5102947423",
+          "orcid": "0000-0002-7287-0748",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California, San Francisco",
+              "raw": "Department of Psychiatry, University of California, San Francisco (UCSF), San Francisco, CA, USA",
+              "ror": "043mz5j54"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Graduate Programs in Neuroscience, Stem Cell & Developmental Biology, Biomedical Sciences, Tetrad, Pharmaceutical Sciences & Pharmacogenomics, UCSF, San Francisco, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Benjamin Cheyette",
+          "openalex": "A5042728620",
+          "orcid": "0000-0001-9934-7941",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000186",
+      "ids": {
+        "doi": "10.1093/cercor/bhx333",
+        "openalex": "W2776417897",
+        "pmcid": "PMC6319175",
+        "pmid": "29293918"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1093/cercor/bhx333"
+      },
+      "published": "2017-11-29",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Sestd1 Encodes a Developmentally Dynamic Synapse Protein That Complexes With BCR Rac1-GAP to Regulate Forebrain Dendrite, Spine and Synapse Formation",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.9998000264167786,
+          "subfield": "Cellular and Molecular Neuroscience",
+          "topic": "Neuroscience and Neuropharmacology Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9991000294685364,
+          "subfield": "Molecular Biology",
+          "topic": "Mitochondrial Function and Pathology"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9983000159263611,
+          "subfield": "Physiology",
+          "topic": "Erythrocyte Function and Pathophysiology"
+        }
+      ],
+      "venue": {
+        "issn_l": "1047-3211",
+        "name": "Cerebral Cortex",
+        "publisher": "Oxford University Press"
+      },
+      "version_link": null,
+      "year": 2017
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

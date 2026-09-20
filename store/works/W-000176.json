@@ -1,0 +1,259 @@
+{
+  "aliases": [],
+  "canonical": "R-000176",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000176"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:b274487eff8b",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000176",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000176",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Surgery, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xiuyun Jiang",
+          "openalex": "A5037321451",
+          "orcid": "0000-0001-6884-411X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Surgery, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yongwoo David Seo",
+          "openalex": "A5073658575",
+          "orcid": "0000-0001-6837-5018",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "KR",
+              "name": "Catholic University of Korea",
+              "raw": "Department of Internal Medicine, College of Medicine, The Catholic University of Korea, Seoul, Republic of Korea",
+              "ror": "01fpnj063"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jae Hyuck Chang",
+          "openalex": "A5009560826",
+          "orcid": "0000-0003-1180-2693",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew L. Coveler",
+          "openalex": "A5060994391",
+          "orcid": "0000-0003-1710-5637",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Eslam Nouri-Nigjeh",
+          "openalex": "A5089738080",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sheng Pan",
+          "openalex": "A5006210822",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Florencia G. Jalikis",
+          "openalex": "A5044545693",
+          "orcid": "0000-0003-3737-7170",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Surgery, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Raymond S. Yeung",
+          "openalex": "A5072866393",
+          "orcid": "0000-0001-5090-3046",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ian Nicholas Crispe",
+          "openalex": "A5018427690",
+          "orcid": "0000-0003-2375-5863",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Surgery, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Venu G. Pillarisetty",
+          "openalex": "A5025523782",
+          "orcid": "0000-0002-1162-9643",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:a3c4a7025a2613f9af5d571a0d0720cb82a2d3802930fd6c68e7dd356e269468",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000176",
+      "ids": {
+        "doi": "10.1080/2162402x.2017.1333210",
+        "openalex": "W2619705907",
+        "pmcid": "PMC5543820",
+        "pmid": "28811976"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1080/2162402x.2017.1333210"
+      },
+      "published": "2017-05-25",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Long-lived pancreatic ductal adenocarcinoma slice cultures enable precise study of the immune microenvironment",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9934999942779541,
+          "subfield": "Oncology",
+          "topic": "Pancreatic and Hepatic Oncology Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9930999875068665,
+          "subfield": "Oncology",
+          "topic": "CAR-T cell therapy research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9926999807357788,
+          "subfield": "Oncology",
+          "topic": "Cancer Cells and Metastasis"
+        }
+      ],
+      "venue": {
+        "issn_l": "2162-4011",
+        "name": "OncoImmunology",
+        "publisher": "Landes Bioscience"
+      },
+      "version_link": null,
+      "year": 2017
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

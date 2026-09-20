@@ -1,0 +1,352 @@
+{
+  "aliases": [],
+  "canonical": "R-000157",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000157"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000157"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000157"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000157"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000157"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000157"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000157"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:376ea7b8b43a",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000157",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was partly supported by the University of Washington's Proteomics Resource (UWPR95794), and the authors thank P.D. von Haller and J.K. Eng for their assistance and expertise.",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000157",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:3d61ae04749ea5ee566be663921ff5c9a6bbd4490855edf94ae5d7929c275618",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5515730/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000157",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2520033800"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "eng"
+      },
+      "excerpt": "This work was partly supported by the University of Washington's Proteomics Resource (UWPR95794), and the authors thank P.D. von Haller and J.K. Eng for their assistance and expertise.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000157",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:3d61ae04749ea5ee566be663921ff5c9a6bbd4490855edf94ae5d7929c275618",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5515730/"
+      }
+    }
+  ],
+  "id": "W-000157",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexandra C. Walls",
+          "openalex": "A5021781776",
+          "orcid": "0000-0002-9636-8330",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "CNRS UMR 3569 Virologie, Paris, France",
+              "ror": null
+            },
+            {
+              "country": "FR",
+              "name": "Institut Pasteur",
+              "raw": "Institut Pasteur, Unité de Virologie Structurale, Paris, France",
+              "ror": "0495fxg12"
+            }
+          ],
+          "corresponding": false,
+          "name": "M. Alejandra Tortorici",
+          "openalex": "A5006936042",
+          "orcid": "0000-0002-2260-2577",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brandon Frenz",
+          "openalex": "A5006919442",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Joost Snijder",
+          "openalex": "A5050510032",
+          "orcid": "0000-0002-9310-8226",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Virology Division, Department of Infectious Diseases and Immunology, Faculty of Veterinary Medicine, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wentao Li",
+          "openalex": "A5100451411",
+          "orcid": "0000-0002-7114-762X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "CNRS UMR 3569 Virologie, Paris, France",
+              "ror": null
+            },
+            {
+              "country": "FR",
+              "name": "Institut Pasteur",
+              "raw": "Institut Pasteur, Unité de Virologie Structurale, Paris, France",
+              "ror": "0495fxg12"
+            }
+          ],
+          "corresponding": false,
+          "name": "F.A. Rey",
+          "openalex": "A5028725593",
+          "orcid": "0000-0002-9953-7988",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Frank DiMaio",
+          "openalex": "A5105925656",
+          "orcid": "0000-0002-7524-8938",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NL",
+              "name": "Utrecht University",
+              "raw": "Virology Division, Department of Infectious Diseases and Immunology, Faculty of Veterinary Medicine, Utrecht University, Utrecht, the Netherlands",
+              "ror": "04pp8hn57"
+            }
+          ],
+          "corresponding": true,
+          "name": "Berend‐Jan Bosch",
+          "openalex": "A5080132990",
+          "orcid": "0000-0002-3864-232X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "David Veesler",
+          "openalex": "A5085406779",
+          "orcid": "0000-0002-6019-8675",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:3d61ae04749ea5ee566be663921ff5c9a6bbd4490855edf94ae5d7929c275618",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000157",
+      "ids": {
+        "doi": "10.1038/nsmb.3293",
+        "openalex": "W2520033800",
+        "pmcid": "PMC5515730",
+        "pmid": "27617430"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1038/nsmb.3293"
+      },
+      "published": "2016-09-12",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Glycan shield and epitope masking of a coronavirus spike protein observed by cryo-electron microscopy",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9998999834060669,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9991999864578247,
+          "subfield": "Infectious Diseases",
+          "topic": "Viral gastroenteritis research and epidemiology"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.9991000294685364,
+          "subfield": "Animal Science and Zoology",
+          "topic": "Animal Virus Infections Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "1545-9985",
+        "name": "Nature Structural & Molecular Biology",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2016
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

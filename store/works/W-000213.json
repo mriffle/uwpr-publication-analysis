@@ -1,0 +1,371 @@
+{
+  "aliases": [],
+  "canonical": "R-000213",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000213"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000213"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000213"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000213"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000213"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000213"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:b8b89cb42f05",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000213",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000213",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:3c8f8e59c1531b8e63711ae9388ca439009b541be0e0e012fdbaa56332325b76",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6794308/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000213",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2954295620"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000213",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:3c8f8e59c1531b8e63711ae9388ca439009b541be0e0e012fdbaa56332325b76",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6794308/"
+      }
+    }
+  ],
+  "id": "W-000213",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Horn Point Laboratory, University of Maryland , Cambridge, MD, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington , Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Clara A. Fuchsman",
+          "openalex": "A5069438213",
+          "orcid": "0000-0002-9151-4984",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Wellesley College",
+              "raw": "Geosciences Department, Wellesley College , Wellesley, MA, USA",
+              "ror": "01srpnj69"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington , Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hilary I. Palevsky",
+          "openalex": "A5059853998",
+          "orcid": "0000-0002-0488-4531",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Department of Ocean, Earth and Atmospheric Sciences, Old Dominion University , Norfolk, VA, USA",
+              "ror": "04zjtrb98"
+            },
+            {
+              "country": "US",
+              "name": "Woods Hole Oceanographic Institution",
+              "raw": "Marine Chemistry and Geochemistry, Woods Hole Oceanographic Institution , Woods Hole, MA, USA",
+              "ror": "03zbnzt98"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brittany Widner",
+          "openalex": "A5046776999",
+          "orcid": "0000-0002-1527-2717",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington , Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Megan Duffy",
+          "openalex": "A5039970247",
+          "orcid": "0000-0002-3212-4927",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Faculty of Biology, Technion—Israel Institute of Technology , Haifa, Israel",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington , Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Carlson",
+          "openalex": "A5091776919",
+          "orcid": "0000-0003-2881-0534",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington , Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jacquelyn Neibauer",
+          "openalex": "A5048627551",
+          "orcid": "0000-0001-9920-2558",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Woods Hole Oceanographic Institution",
+              "raw": "Marine Chemistry and Geochemistry, Woods Hole Oceanographic Institution , Woods Hole, MA, USA",
+              "ror": "03zbnzt98"
+            }
+          ],
+          "corresponding": false,
+          "name": "Margaret R. Mulholland",
+          "openalex": "A5040921892",
+          "orcid": "0000-0001-8819-189X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington , Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard G. Keil",
+          "openalex": "A5041929553",
+          "orcid": "0000-0001-7483-1606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington , Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Allan H. Devol",
+          "openalex": "A5069180442",
+          "orcid": "0000-0003-4016-9399",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington , Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Gabrielle Rocap",
+          "openalex": "A5077578486",
+          "orcid": "0000-0001-7253-611X",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:3c8f8e59c1531b8e63711ae9388ca439009b541be0e0e012fdbaa56332325b76",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000213",
+      "ids": {
+        "doi": "10.1038/s41396-019-0452-6",
+        "openalex": "W2954295620",
+        "pmcid": "PMC6794308",
+        "pmid": "31249393"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1038/s41396-019-0452-6"
+      },
+      "published": "2019-06-27",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Cyanobacteria and cyanophage contributions to carbon and nitrogen cycling in an oligotrophic oxygen-deficient zone",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9998000264167786,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9979000091552734,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9968000054359436,
+          "subfield": "Environmental Chemistry",
+          "topic": "Methane Hydrates and Related Phenomena"
+        }
+      ],
+      "venue": {
+        "issn_l": "1751-7362",
+        "name": "The ISME Journal",
+        "publisher": "Springer Nature"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

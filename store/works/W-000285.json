@@ -1,0 +1,262 @@
+{
+  "aliases": [],
+  "canonical": "R-000285",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000285"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000285"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000285"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000285"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2023:b57f6cf03403",
+        "page": "2023"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000285",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2023/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This study was supported by Bill and Melinda Gates Foundation grant OPP1126258 and NIH grant R01AI165808 to K.K.L. and by NIH grants R01GM143773 and R01AI174645 to J.B.M. The authors acknowledge the University of Washington’s Proteomics Resource (UWPR) and School of Pharmacy Mass Spectrometry facil…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000285",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:f2a8e4e6753def89317de4b2384058cbe3bcc9d1f8fa20dd4d173cf12118bb2a",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10228703/"
+      }
+    }
+  ],
+  "id": "W-000285",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics Structure and Design Program, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chengbo Chen",
+          "openalex": "A5077136733",
+          "orcid": "0000-0002-3459-3655",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard Zhu",
+          "openalex": "A5109191848",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edgar A. Hodge",
+          "openalex": "A5002771098",
+          "orcid": "0000-0003-1606-5821",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Massachusetts Chan Medical School",
+              "raw": "Department of Microbiology and Physiological Systems, University of Massachusetts Chan Medical School, Worcester, Massachusetts 01605, USA",
+              "ror": "0464eyp60"
+            }
+          ],
+          "corresponding": false,
+          "name": "Marco A. Díaz-Salinas",
+          "openalex": "A5087627009",
+          "orcid": "0000-0003-2983-0123",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics Structure and Design Program, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Adam Nguyen",
+          "openalex": "A5007748637",
+          "orcid": "0000-0002-2030-2861",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Massachusetts Chan Medical School",
+              "raw": "Department of Microbiology and Physiological Systems, University of Massachusetts Chan Medical School, Worcester, Massachusetts 01605, USA",
+              "ror": "0464eyp60"
+            }
+          ],
+          "corresponding": false,
+          "name": "James B. Munro",
+          "openalex": "A5040079259",
+          "orcid": "0000-0001-7634-4633",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics Structure and Design Program, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Kelly K. Lee",
+          "openalex": "A5049971572",
+          "orcid": "0000-0001-5577-9873",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:f2a8e4e6753def89317de4b2384058cbe3bcc9d1f8fa20dd4d173cf12118bb2a",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000285",
+      "ids": {
+        "doi": "10.1021/acsinfecdis.3c00010",
+        "openalex": "W4376131807",
+        "pmcid": "PMC10228703",
+        "pmid": "37166130"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1021/acsinfecdis.3c00010"
+      },
+      "published": "2023-05-11",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "hACE2-Induced Allosteric Activation in SARS-CoV versus SARS-CoV-2 Spike Assemblies Revealed by Structural Dynamics",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9998999834060669,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9882000088691711,
+          "subfield": "Infectious Diseases",
+          "topic": "COVID-19 Clinical Research Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.9836999773979187,
+          "subfield": "Animal Science and Zoology",
+          "topic": "Animal Virus Infections Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "2373-8227",
+        "name": "ACS Infectious Diseases",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2023
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

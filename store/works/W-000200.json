@@ -1,0 +1,381 @@
+{
+  "aliases": [],
+  "canonical": "R-000200",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000200"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000200"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000200"
+    },
+    {
+      "channel": "F",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000200"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000200"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:9a7469e8a024",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000200",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "Research reported in this publication was supported by the National Institutes of Health National Institute of Allergy and Infectious Disease under award number K25AI119229 (KES), by the University of Washington’s Proteomics Resource under award number UWPR95794 (JKE), by the National Institutes of…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000200",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d11ba8aa89bff2a4ca0f59bede20277c69e0eb5f91e8ca55f1e7585346f7464b",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6445572/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Research reported in this publication was supported by the National Institutes of Health National Institute of Allergy and Infectious Disease under award number K25AI119229 (KES), by the University of Washington’s Proteomics Resource under award number UWPR95794 (JKE), by the National Institutes of…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000200",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d11ba8aa89bff2a4ca0f59bede20277c69e0eb5f91e8ca55f1e7585346f7464b",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6445572/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "Proteomics Resource, University of Washington, Seattle, WA, USA",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000200",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": "sha256:d11ba8aa89bff2a4ca0f59bede20277c69e0eb5f91e8ca55f1e7585346f7464b",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6445572/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "Proteomics Resource, University of Washington, Seattle, Washington 98195, United States",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000200",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2904133061"
+      }
+    }
+  ],
+  "id": "W-000200",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": true,
+          "name": "Kristian E. Swearingen",
+          "openalex": "A5084635906",
+          "orcid": "0000-0002-6756-4471",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Proteomics Resource, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "David Shteynberg",
+          "openalex": "A5016220289",
+          "orcid": "0000-0001-7982-0498",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Global Infectious Disease Research, Seattle Children’s Research Institute, Seattle, Washington 98101, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Global Infectious Disease Research, Seattle Children's Research Institute, Seattle, Washington 98101, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Vladimir Vigdorovich",
+          "openalex": "A5013636673",
+          "orcid": "0000-0003-4195-4858",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Harvard Medical School and Boston Children’s Hospital, Boston, Massachusetts 02115, United States",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Boston Children's Hospital",
+              "raw": "Harvard Medical School and Boston Children's Hospital, Boston, Massachusetts 02115, United States",
+              "ror": "00dvg7y05"
+            }
+          ],
+          "corresponding": false,
+          "name": "Timothy A. Springer",
+          "openalex": "A5003615852",
+          "orcid": "0000-0001-6627-2904",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Luis Mendoza",
+          "openalex": "A5079842634",
+          "orcid": "0000-0003-0128-8643",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Global Infectious Disease Research, Seattle Children’s Research Institute, Seattle, Washington 98101, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Global Infectious Disease Research, Seattle Children's Research Institute, Seattle, Washington 98101, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "D. Noah Sather",
+          "openalex": "A5087526268",
+          "orcid": "0000-0002-9128-172X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Eric W. Deutsch",
+          "openalex": "A5070102563",
+          "orcid": "0000-0001-8732-0928",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Global Infectious Disease Research, Seattle Children’s Research Institute, Seattle, Washington 98101, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Global Infectious Disease Research, Seattle Children's Research Institute, Seattle, Washington 98101, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Stefan H. I. Kappe",
+          "openalex": "A5014639053",
+          "orcid": "0000-0003-1540-1731",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": true,
+          "name": "Robert L. Moritz",
+          "openalex": "A5036737482",
+          "orcid": "0000-0002-3216-9447",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:d11ba8aa89bff2a4ca0f59bede20277c69e0eb5f91e8ca55f1e7585346f7464b",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000200",
+      "ids": {
+        "doi": "10.1021/acs.jproteome.8b00638",
+        "openalex": "W2904133061",
+        "pmcid": "PMC6445572",
+        "pmid": "30523691"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6445572"
+      },
+      "published": "2018-12-07",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "A Tandem Mass Spectrometry Sequence Database Search Method for Identification of O-Fucosylated Proteins by Mass Spectrometry",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9990000128746033,
+          "subfield": "Molecular Biology",
+          "topic": "Glycosylation and Glycoproteins Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9940999746322632,
+          "subfield": "Molecular Biology",
+          "topic": "RNA and protein synthesis mechanisms"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.993399977684021,
+          "subfield": "Molecular Biology",
+          "topic": "Studies on Chitinases and Chitosanases"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2018
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

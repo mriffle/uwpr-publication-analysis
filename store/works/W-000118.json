@@ -1,0 +1,391 @@
+{
+  "aliases": [],
+  "canonical": "R-000118",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000118"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000118"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:5d22eeba0c37",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000118",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000118",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Wisconsin-Madison , , 1552 University Avenue , , ,",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Great Lakes Bioenergy Research Center",
+              "raw": "Great Lakes Bioenergy Research Center, University of Wisconsin-Madison, 1552 University Avenue, Madison, Wisconsin 53726, United States",
+              "ror": "01ca2by25"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sean J. McIlwain",
+          "openalex": "A5036323056",
+          "orcid": "0000-0002-3820-8400",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 1705 NE Pacific Street , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Genome Sciences, University of Washington, 1705 NE Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kaipo Tamura",
+          "openalex": "A5012275513",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 1705 NE Pacific Street , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Genome Sciences, University of Washington, 1705 NE Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Attila Kertész‐Farkas",
+          "openalex": "A5037717293",
+          "orcid": "0000-0001-8110-7253",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 1705 NE Pacific Street , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Genome Sciences, University of Washington, 1705 NE Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Charles E. Grant",
+          "openalex": "A5112711469",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 1705 NE Pacific Street , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Genome Sciences, University of Washington, 1705 NE Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Benjamin J. Diament",
+          "openalex": "A5069108161",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 1705 NE Pacific Street , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Genome Sciences, University of Washington, 1705 NE Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Barbara Frewen",
+          "openalex": "A5064153307",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 1705 NE Pacific Street , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Genome Sciences, University of Washington, 1705 NE Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "James Jeffry Howbert",
+          "openalex": "A5039831993",
+          "orcid": "0000-0002-4842-262X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology , 401 Terry Avenue North , , ,",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, 401 Terry Avenue North, Seattle, Washington 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael R. Hoopmann",
+          "openalex": "A5018903678",
+          "orcid": "0000-0001-7029-7792",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "KTH─Royal Institute of Technology , , ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "KTH─Royal Institute of Technology , , Tomtebodavägen 23A , ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Science\rfor Life Laboratory, School of Biotechnology, KTH—Royal Institute of Technology, Tomtebodavägen 23A, Solna 17165, Sweden",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Swedish\re-Science Research Centre, KTH—Royal Institute of Technology, 17121 Solna, Sweden",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Lukas Käll",
+          "openalex": "A5036241287",
+          "orcid": "0000-0001-5689-9797",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 1705 NE Pacific Street , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Genome Sciences, University of Washington, 1705 NE Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 1705 NE Pacific Street , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Genome Sciences, University of Washington, 1705 NE Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 1705 NE Pacific Street , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , 185 Stevens Way , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Computer Science and Engineering, University of Washington, 185 Stevens\rWay, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Genome Sciences, University of Washington, 1705 NE Pacific Street, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933",
+          "orcid": "0000-0001-7283-4715",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:8c82be44a20677287e1dabc24e75230bba2d58b34a1fc7c26407b5c62f67164f",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000118",
+      "ids": {
+        "doi": "10.1021/pr500741y",
+        "openalex": "W1973333402",
+        "pmcid": "PMC4184452",
+        "pmid": "25182276"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "other-oa",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1021/pr500741y"
+      },
+      "published": "2014-09-03",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Crux: Rapid Open Source Protein Tandem Mass Spectrometry Analysis",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9998999834060669,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9979000091552734,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9907000064849854,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2014
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

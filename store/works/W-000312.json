@@ -1,0 +1,364 @@
+{
+  "aliases": [],
+  "canonical": "R-000312",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000312"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2025:acde94037540",
+        "page": "2025"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000312",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2025/"
+      }
+    }
+  ],
+  "id": "W-000312",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "Department of Molecular and Cellular Biosciences, University of Cincinnati, Cincinnati, OH, USA",
+              "ror": "01e3m7079"
+            }
+          ],
+          "corresponding": false,
+          "name": "Bethany Coleman",
+          "openalex": "A5113200063",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati, Cincinnati, OH, USA",
+              "ror": "01e3m7079"
+            }
+          ],
+          "corresponding": false,
+          "name": "Shimpi Bedi",
+          "openalex": "A5043507269",
+          "orcid": "0000-0003-3277-7845",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Alabama at Birmingham",
+              "raw": "Department of Pharmacology and Toxicology, University of Alabama at Birmingham, Birmingham, AL, USA",
+              "ror": "008s83205"
+            }
+          ],
+          "corresponding": false,
+          "name": "John H. Hill",
+          "openalex": "A5109958175",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati, Cincinnati, OH, USA",
+              "ror": "01e3m7079"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jamie Morris",
+          "openalex": "A5025937616",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Michigan",
+              "raw": "Life Sciences Institute, University of Michigan, Ann Arbor, MI, USA",
+              "ror": "00jmfr291"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kelly A. Manthei",
+          "openalex": "A5074548114",
+          "orcid": "0000-0003-3874-8228",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University",
+              "raw": "Department of Pathology, Microbiology and Immunology, Vanderbilt University School of Medicine, Nashville, TN, USA",
+              "ror": "02vm5rt34"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rachel Hart",
+          "openalex": "A5037019470",
+          "orcid": "0009-0005-3454-7922",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ying He",
+          "openalex": "A5045687590",
+          "orcid": "0000-0002-0072-8566",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cincinnati Children's Hospital Medical Center",
+              "raw": "Department of Pediatrics, Cincinnati Children's Hospital Medical Center and the University of Cincinnati, Cincinnati, OH, USA",
+              "ror": "01hcyya48"
+            }
+          ],
+          "corresponding": false,
+          "name": "Amy S. Shah",
+          "openalex": "A5047114937",
+          "orcid": "0000-0001-7297-139X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University",
+              "raw": "Department of Pathology, Microbiology and Immunology, Vanderbilt University School of Medicine, Nashville, TN, USA",
+              "ror": "02vm5rt34"
+            }
+          ],
+          "corresponding": false,
+          "name": "W. Gray Jerome",
+          "openalex": "A5049038844",
+          "orcid": "0000-0002-9933-4558",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hyun Song",
+          "openalex": "A5037832288",
+          "orcid": "0000-0002-8261-0173",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jere P. Segrest",
+          "openalex": "A5028220327",
+          "orcid": "0000-0002-0676-7996",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Alabama at Birmingham",
+              "raw": "Department of Pharmacology and Toxicology, University of Alabama at Birmingham, Birmingham, AL, USA",
+              "ror": "008s83205"
+            }
+          ],
+          "corresponding": false,
+          "name": "Stephen G. Aller",
+          "openalex": "A5010436344",
+          "orcid": "0000-0003-0379-5534",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Departments of Biological Sciences and Medicinal Chemistry and Molecular Pharmacology, Purdue University, West Lafayette, IN, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "J.J.G. Tesmer",
+          "openalex": "A5037144273",
+          "orcid": "0000-0003-1125-3727",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati, Cincinnati, OH, USA. Electronic address: Sean.Davidson@UC.edu",
+              "ror": "01e3m7079"
+            }
+          ],
+          "corresponding": true,
+          "name": "W. Sean Davidson",
+          "openalex": "A5008316828",
+          "orcid": "0000-0003-2756-2989",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:471fb05a46b33897eff3818366016a65a9de21314ee5de6581e2abf9595ecdc0",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000312",
+      "ids": {
+        "doi": "10.1016/j.jlr.2025.100786",
+        "openalex": "W4408879549",
+        "pmcid": "PMC12049944",
+        "pmid": "40147634"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1016/j.jlr.2025.100786"
+      },
+      "published": "2025-03-27",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Lecithin:cholesterol acyltransferase binds a discontinuous binding site on adjacent apolipoprotein A-I belts in HDL",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.998199999332428,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9897000193595886,
+          "subfield": "Oncology",
+          "topic": "PARP inhibition in cancer therapy"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9896000027656555,
+          "subfield": "Cancer Research",
+          "topic": "Cancer, Lipids, and Metabolism"
+        }
+      ],
+      "venue": {
+        "issn_l": "0022-2275",
+        "name": "Journal of Lipid Research",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

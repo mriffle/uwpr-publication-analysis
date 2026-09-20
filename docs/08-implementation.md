@@ -19,12 +19,17 @@ records how they are being built and what implementing them taught us.
 | M2 Vertical slice (channels A/B1/B2/C1/C2, R1 + R2 metadata, gate, report) | **Done** |
 | M3 Text and rules core (R3–R7) | **Done** (§3.1 has the numbers) |
 | M4 Completeness and determinism | **Done** (§3.2 has the numbers) |
-| M4.5 Seed rehearsal | **Next** |
-| M5 Live automation (`update.yml`) | Not started |
+| M4.5 Seed rehearsal and seed | **Done** — `store/` seeded 2026-09-20 (§3.3) |
+| M5 Live automation (`update.yml`) | **Next** |
 
-389 tests, all offline; ruff, `ruff format`, mypy `--strict` and the store validator all clean, and
-`check.yml` green on every push. **Nothing is committed to `store/` yet** — the pipeline has only
-ever written to scratch stores, by design, until M4.5.
+391 tests, all offline; ruff, `ruff format`, mypy `--strict` and the store validator all clean, and
+`check.yml` green on every push — it now validates the committed `store/` and runs the Phase 1
+§12 test papers against it as well.
+
+**`store/` was seeded on 2026-09-20**: 339 works, 455 candidates, 306 list entries, 754 metrics
+lines, 0 errors and 0 warnings. The ~1,100 work and record IDs it minted are permanent from here.
+The seeded store is **byte-identical to the rehearsal that was reviewed** (§3.3), so what is
+committed is exactly what was read.
 
 ## 2. What exists
 

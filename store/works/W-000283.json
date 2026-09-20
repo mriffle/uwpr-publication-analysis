@@ -1,0 +1,295 @@
+{
+  "aliases": [],
+  "canonical": "R-000283",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000283"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2023:06e489be9f45",
+        "page": "2023"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000283",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2023/"
+      }
+    }
+  ],
+  "id": "W-000283",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, Department of Medicine, University of Washington Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cheng-Chieh Hsu",
+          "openalex": "A5051421168",
+          "orcid": "0000-0002-3423-7159",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, Department of Medicine, University of Washington Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Baohai Shao",
+          "openalex": "A5026547402",
+          "orcid": "0000-0001-8832-2845",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, Department of Medicine, University of Washington Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jenny E. Kanter",
+          "openalex": "A5002224107",
+          "orcid": "0000-0003-3212-772X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, Department of Medicine, University of Washington Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yi He",
+          "openalex": "A5054938728",
+          "orcid": "0000-0002-5565-5579",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, Department of Medicine, University of Washington Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California San Diego",
+              "raw": "Department of Medicine, University of California San Diego School of Medicine, La Jolla, CA, USA",
+              "ror": "0168r3w48"
+            }
+          ],
+          "corresponding": false,
+          "name": "Joseph L. Witztum",
+          "openalex": "A5037079092",
+          "orcid": "0000-0002-5195-6614",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Colorado Denver",
+              "raw": "Barbara Davis Center for Diabetes, University of Colorado Denver, Aurora, CO, USA",
+              "ror": "02hh7en24"
+            }
+          ],
+          "corresponding": false,
+          "name": "Janet K. Snell‐Bergeon",
+          "openalex": "A5061001113",
+          "orcid": "0000-0002-9337-3740",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Empirico Inc, San Diego, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Gregory McInnes",
+          "openalex": "A5072601014",
+          "orcid": "0000-0002-8033-2499",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Empirico Inc, San Diego, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Shannon Bruse",
+          "openalex": "A5066795605",
+          "orcid": "0000-0002-3037-6266",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Empirico Inc, San Diego, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Omri Gottesman",
+          "openalex": "A5065704891",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Ionis Pharmaceuticals, Carlsbad, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Adam E. Mullick",
+          "openalex": "A5031102353",
+          "orcid": "0000-0003-4600-961X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, Department of Medicine, University of Washington Medicine Diabetes Institute, University of Washington, Seattle, WA, USA. kbornfeldt@medicine.washington.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Metabolism, Endocrinology and Nutrition, Department of Medicine, University of Washington Medicine Diabetes Institute, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:f19f3ac6edcbb9d46f143ad3103bed77bacdc8b432d114560d3c1d30bc07fb11",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000283",
+      "ids": {
+        "doi": "10.1038/s41590-023-01423-2",
+        "openalex": "W4320484965",
+        "pmcid": "PMC9992333",
+        "pmid": "36781985"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "other-oa",
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/9992333"
+      },
+      "published": "2023-02-13",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Apolipoprotein C3 induces inflammasome activation only in its delipidated form",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998000264167786,
+          "subfield": "Molecular Biology",
+          "topic": "Inflammasome and immune disorders"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9944000244140625,
+          "subfield": "Immunology",
+          "topic": "Atherosclerosis and Cardiovascular Diseases"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9861999750137329,
+          "subfield": "Surgery",
+          "topic": "Kawasaki Disease and Coronary Complications"
+        }
+      ],
+      "venue": {
+        "issn_l": "1529-2908",
+        "name": "Nature Immunology",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2023
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

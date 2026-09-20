@@ -1,0 +1,395 @@
+{
+  "aliases": [],
+  "canonical": "R-000203",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000203"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000203"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000203"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000203"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:b9bff5aab67a",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000203",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This study was supported by the 10.13039/100000057National Institute of General Medical Sciences (R01GM120553, D.V.), the 10.13039/100000060National Institute of Allergy and Infectious Diseases (HHSN272201700059C, D.V.), a Pew Biomedical Scholars Award (D.V.), an Investigators in the Pathogenesis o…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000203",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:a10510c40bdf89201659cf15f11ffd61912449ef0b06195f9df9d20842717ec0",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6751136/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000203",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1016/j.cell.2018.12.028"
+      }
+    }
+  ],
+  "id": "W-000203",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexandra C. Walls",
+          "openalex": "A5021781776",
+          "orcid": "0000-0002-9636-8330",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xiaoli Xiong",
+          "openalex": "A5006351471",
+          "orcid": "0000-0002-4632-9122",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Young‐Jun Park",
+          "openalex": "A5043024602",
+          "orcid": "0000-0003-2901-6949",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA; Institute Pasteur & CNRS UMR 3569, Unité de Virologie Structurale, 75015, Paris, France",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Institute Pasteur & CNRS UMR 3569, Unité de Virologie Structurale, 75015, Paris, France",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "M. Alejandra Tortorici",
+          "openalex": "A5006936042",
+          "orcid": "0000-0002-2260-2577",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Joost Snijder",
+          "openalex": "A5050510032",
+          "orcid": "0000-0002-9310-8226",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Joel Quispe",
+          "openalex": "A5006987535",
+          "orcid": "0000-0002-3693-4935",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Humabs Biomed SA, Vir Biotechnology, 6500 Bellinzona, Switzerland",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Elisabetta Cameroni",
+          "openalex": "A5079585694",
+          "orcid": "0000-0002-9102-8943",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "Public Health England",
+              "raw": "National Infection Service, Public Health England, London NW9 5HT, UK",
+              "ror": "00vbvha87"
+            }
+          ],
+          "corresponding": false,
+          "name": "Robin Gopal",
+          "openalex": "A5049136341",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "The Francis Crick Institute",
+              "raw": "Crick Worldwide Influenza Centre, The Francis Crick Institute, 1 Midland Road, London NW1 1AT, UK",
+              "ror": "04tnbqb63"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mian Dai",
+          "openalex": "A5043510404",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CH",
+              "name": "Università della Svizzera italiana",
+              "raw": "Institute for Research in Biomedicine, Faculty of Biomedical Sciences, Università della Svizzera italiana, 6500 Bellinzona, Switzerland",
+              "ror": "03c4atk17"
+            }
+          ],
+          "corresponding": false,
+          "name": "Antonio Lanzavecchia",
+          "openalex": "A5059965999",
+          "orcid": "0000-0002-3041-7240",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "Public Health England",
+              "raw": "National Infection Service, Public Health England, London NW9 5HT, UK",
+              "ror": "00vbvha87"
+            }
+          ],
+          "corresponding": false,
+          "name": "Maria Zambon",
+          "openalex": "A5055194670",
+          "orcid": "0000-0002-8897-7881",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Institute Pasteur & CNRS UMR 3569, Unité de Virologie Structurale, 75015, Paris, France",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "F.A. Rey",
+          "openalex": "A5028725593",
+          "orcid": "0000-0002-9953-7988",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Humabs Biomed SA, Vir Biotechnology, 6500 Bellinzona, Switzerland",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Davide Corti",
+          "openalex": "A5002409017",
+          "orcid": "0000-0002-5797-1364",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA. Electronic address: dveesler@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "David Veesler",
+          "openalex": "A5085406779",
+          "orcid": "0000-0002-6019-8675",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:a10510c40bdf89201659cf15f11ffd61912449ef0b06195f9df9d20842717ec0",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000203",
+      "ids": {
+        "doi": "10.1016/j.cell.2018.12.028",
+        "openalex": "W2915009278",
+        "pmcid": "PMC6751136",
+        "pmid": "30712865"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1016/j.cell.2018.12.028"
+      },
+      "published": "2019-01-31",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Unexpected Receptor Functional Mimicry Elucidates Activation of Coronavirus Fusion",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9977999925613403,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.9925000071525574,
+          "subfield": "Computational Theory and Mathematics",
+          "topic": "Computational Drug Discovery Methods"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9886000156402588,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Viral Infections and Immunology Research"
+        }
+      ],
+      "venue": {
+        "issn_l": "0092-8674",
+        "name": "Cell",
+        "publisher": "Cell Press"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

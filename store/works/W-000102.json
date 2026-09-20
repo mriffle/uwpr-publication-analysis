@@ -1,0 +1,193 @@
+{
+  "aliases": [],
+  "canonical": "R-000102",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000102"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:2eee8d5327be",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000102",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000102",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington , Seattle, Washington, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "J. D. Chapman",
+          "openalex": "A5107345722",
+          "orcid": "0000-0002-2926-8962",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "CHUQ Research Center\r- Pavillon\rCHUL, Laval University, Québec,\rQC, Canada",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jean-Philippe Gagné",
+          "openalex": "A5091741786",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "CHUQ Research Center\r- Pavillon\rCHUL, Laval University, Québec,\rQC, Canada",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Guy G. Poirier",
+          "openalex": "A5069507613",
+          "orcid": "0000-0002-4869-1424",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of\rPharmaceutical Sciences, University of Maryland School of Pharmacy, Baltimore,\rMaryland, United States",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United#R#States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of#R#Pharmaceutical Sciences, University of Maryland School of Pharmacy, Baltimore,#R#Maryland, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000102",
+      "ids": {
+        "doi": "10.1021/pr301219h",
+        "openalex": "W2023165782",
+        "pmcid": null,
+        "pmid": "23438649"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "closed",
+        "url": null
+      },
+      "published": "2013-02-26",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Mapping PARP-1 Auto-ADP-ribosylation Sites by Liquid Chromatography–Tandem Mass Spectrometry",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9998000264167786,
+          "subfield": "Oncology",
+          "topic": "PARP inhibition in cancer therapy"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9660999774932861,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Engineering",
+          "score": 0.9544000029563904,
+          "subfield": "Electrical and Electronic Engineering",
+          "topic": "Integrated Circuits and Semiconductor Failure Analysis"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2013
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

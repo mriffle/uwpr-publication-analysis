@@ -1,0 +1,355 @@
+{
+  "aliases": [],
+  "canonical": "R-000188",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000188"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000188"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000188"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000188"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000188"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000188"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:76fa2b69686f",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000188",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "We acknowledge the support for the proteomics analysis by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000188",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d67b8c712315918fc0dc22b1ce9ee01e556cc6270d79df06af50e81a91bd4209",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5854245/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "The proteomics work was supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000188",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:d67b8c712315918fc0dc22b1ce9ee01e556cc6270d79df06af50e81a91bd4209",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5854245/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000188",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2793079430"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "We acknowledge the support for the proteomics analysis by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000188",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d67b8c712315918fc0dc22b1ce9ee01e556cc6270d79df06af50e81a91bd4209",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5854245/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "The proteomics work was supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000188",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:d67b8c712315918fc0dc22b1ce9ee01e556cc6270d79df06af50e81a91bd4209",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5854245/"
+      }
+    }
+  ],
+  "id": "W-000188",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Medicine Diabetes Institute, Department of Medicine, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Medicine Diabetes Institute, Department of Medicine, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Erica Couzens",
+          "openalex": "A5090218638",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Medicine Diabetes Institute, Department of Medicine, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Arnold Hwang",
+          "openalex": "A5042445667",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Medicine Diabetes Institute, Department of Medicine, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael W. Russell",
+          "openalex": "A5048948828",
+          "orcid": "0000-0002-1303-4061",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cooper Institute",
+              "raw": "The Cooper Institute, Dallas, Texas, United States of America",
+              "ror": "04d6b6d46"
+            }
+          ],
+          "corresponding": false,
+          "name": "Carolyn E. Barlow",
+          "openalex": "A5053753010",
+          "orcid": "0000-0002-7885-7405",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cooper Institute",
+              "raw": "The Cooper Institute, Dallas, Texas, United States of America",
+              "ror": "04d6b6d46"
+            }
+          ],
+          "corresponding": false,
+          "name": "Laura F. DeFina",
+          "openalex": "A5005365536",
+          "orcid": "0000-0002-5753-130X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew N. Hoofnagle",
+          "openalex": "A5031218554",
+          "orcid": "0000-0002-6449-0243",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Medicine Diabetes Institute, Department of Medicine, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Francis Kim",
+          "openalex": "A5067724612",
+          "orcid": "0000-0003-3941-8984",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:d67b8c712315918fc0dc22b1ce9ee01e556cc6270d79df06af50e81a91bd4209",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000188",
+      "ids": {
+        "doi": "10.1371/journal.pone.0192616",
+        "openalex": "W2793079430",
+        "pmcid": "PMC5854245",
+        "pmid": "29543843"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1371/journal.pone.0192616"
+      },
+      "published": "2018-03-15",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Type 2 diabetes is associated with loss of HDL endothelium protective functions",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.5690000057220459,
+          "subfield": "Molecular Biology",
+          "topic": "Sphingolipid Metabolism and Signaling"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.08129999786615372,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.04439999908208847,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiovascular Health and Disease Prevention"
+        }
+      ],
+      "venue": {
+        "issn_l": "1932-6203",
+        "name": "PLoS ONE",
+        "publisher": "Public Library of Science"
+      },
+      "version_link": null,
+      "year": 2018
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

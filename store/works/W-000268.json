@@ -1,0 +1,301 @@
+{
+  "aliases": [],
+  "canonical": "R-000268",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000268"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000268"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000268"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000268"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000268"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2022:cdb3d8a386f9",
+        "page": "2022"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000268",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2022/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported by the National Science Foundation Graduate Research Fellowship (awarded to R.L. Flores), the University of Washington’s Proteomics Resource (UWPR95794), and the National Institutes of Health (R01GM040506 and R35GM130293 to T.N. Davis and R01GM079373 and R35GM134842 to C.L.…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000268",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:bc807df7fca24fce0a1f6760b1663745127ae6008fd0699a9d66269d6aa7b0d1",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8972186/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "Washington’s Proteomics Resource UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000268",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:bc807df7fca24fce0a1f6760b1663745127ae6008fd0699a9d66269d6aa7b0d1",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8972186/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000268",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1083/jcb.202107016"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported by the National Science Foundation Graduate Research Fellowship (awarded to R.L. Flores), the University of Washington’s Proteomics Resource (UWPR95794), and the National Institutes of Health (R01GM040506 and R35GM130293 to T.N. Davis and R01GM079373 and R35GM134842 to C.L.…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000268",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:bc807df7fca24fce0a1f6760b1663745127ae6008fd0699a9d66269d6aa7b0d1",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8972186/"
+      }
+    }
+  ],
+  "id": "W-000268",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 1",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rachel L. Flores",
+          "openalex": "A5048247684",
+          "orcid": "0000-0002-3029-7226",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 1",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zachary E. Peterson",
+          "openalex": "A5080470816",
+          "orcid": "0000-0002-3167-2577",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 1",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alex Zelter",
+          "openalex": "A5061213874",
+          "orcid": "0000-0002-5331-0577",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 1",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Physiology and Biophysics, University of Washington, Seattle, WA 2",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Charles L. Asbury",
+          "openalex": "A5074569982",
+          "orcid": "0000-0002-0143-5394",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 1",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Trisha N. Davis",
+          "openalex": "A5022826364",
+          "orcid": "0000-0003-4797-3152",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:bc807df7fca24fce0a1f6760b1663745127ae6008fd0699a9d66269d6aa7b0d1",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000268",
+      "ids": {
+        "doi": "10.1083/jcb.202107016",
+        "openalex": "W4221116390",
+        "pmcid": "PMC8972186",
+        "pmid": "35353161"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-sa",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1083/jcb.202107016"
+      },
+      "published": "2022-03-30",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Three interacting regions of the Ndc80 and Dam1 complexes support microtubule tip-coupling under load",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 1.0,
+          "subfield": "Cell Biology",
+          "topic": "Microtubule and mitosis dynamics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9983999729156494,
+          "subfield": "Cell Biology",
+          "topic": "Cellular Mechanics and Interactions"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.998199999332428,
+          "subfield": "Cell Biology",
+          "topic": "Cellular transport and secretion"
+        }
+      ],
+      "venue": {
+        "issn_l": "0021-9525",
+        "name": "The Journal of Cell Biology",
+        "publisher": "Rockefeller University Press"
+      },
+      "version_link": null,
+      "year": 2022
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

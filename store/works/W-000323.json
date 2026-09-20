@@ -1,0 +1,440 @@
+{
+  "aliases": [],
+  "canonical": "R-000323",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000323"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2025:00529ed5e26c",
+        "page": "2025"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000323",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2025/"
+      }
+    }
+  ],
+  "id": "W-000323",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jenny E. Kanter",
+          "openalex": "A5002224107",
+          "orcid": "0000-0003-3212-772X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cheng-Chieh Hsu",
+          "openalex": "A5051421168",
+          "orcid": "0000-0002-3423-7159",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Farah Kramer",
+          "openalex": "A5062756168",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Baohai Shao",
+          "openalex": "A5026547402",
+          "orcid": "0000-0001-8832-2845",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Laura den Hartigh",
+          "openalex": "A5040858172",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Abigail Reed",
+          "openalex": null,
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jason Luo",
+          "openalex": "A5053091690",
+          "orcid": "0000-0002-7255-9298",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alan Tran",
+          "openalex": "A5088582043",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jingjing Tang",
+          "openalex": "A5019387297",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Henry Mangalapalli",
+          "openalex": "A5119001952",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jocelyn Cervantes",
+          "openalex": "A5045863256",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Masami Shimizu‐Albergine",
+          "openalex": "A5036947726",
+          "orcid": "0000-0002-7989-6051",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Phoenix VA Health Care System",
+              "raw": "Phoenix VA Health Care System",
+              "ror": "024b7e967"
+            }
+          ],
+          "corresponding": false,
+          "name": "Peter D. Reaven",
+          "openalex": "A5007571294",
+          "orcid": "0000-0001-8923-6690",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Phoenix VA Health Care System",
+              "raw": "Phoenix VA Health Care System",
+              "ror": "024b7e967"
+            }
+          ],
+          "corresponding": false,
+          "name": "Juraj Koška",
+          "openalex": "A5109148559",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DK",
+              "name": "University of Copenhagen",
+              "raw": "University of Copenhagen",
+              "ror": "035b05819"
+            }
+          ],
+          "corresponding": false,
+          "name": "Majken Linnemann Jensen",
+          "openalex": "A5014780004",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Iowa",
+              "raw": "University of Iowa",
+              "ror": "036jqmy94"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brandon S.J. Davies",
+          "openalex": "A5068135765",
+          "orcid": "0000-0002-7168-8522",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Grossman School of Medicine",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Edward A. Fisher",
+          "openalex": "A5088448170",
+          "orcid": "0000-0001-9802-143X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington University",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Nicholas Davidson",
+          "openalex": "A5102850777",
+          "orcid": "0000-0003-2375-8116",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington University School of Medicine",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Nathan O. Stitziel",
+          "openalex": "A5068755630",
+          "orcid": "0000-0002-4963-8211",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Ionis Pharmaceuticals",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Adam E. Mullick",
+          "openalex": "A5031102353",
+          "orcid": "0000-0003-4600-961X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "New York University",
+              "raw": "New York University Grossman School of Medicine",
+              "ror": "0190ak572"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ira J. Goldberg",
+          "openalex": "A5066507748",
+          "orcid": "0000-0002-8701-2201",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:ff171087987505038e87f060737888fb2f907613ac41108cc2f089c82ed2dc38",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000323",
+      "ids": {
+        "doi": "10.21203/rs.3.rs-6979508/v1",
+        "openalex": "W4412464349",
+        "pmcid": "PMC12288534",
+        "pmid": "40709279"
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "https://doi.org/10.21203/rs.3.rs-6979508/v1"
+      },
+      "published": "2025-07-16",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Elevated apolipoprotein C3 heightens atherosclerosis risk by mediating arterial accumulation of free cholesterol and local inflammation in diabetes",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9388999938964844,
+          "subfield": "Pharmacology",
+          "topic": "Apelin-related biomedical research"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "Research Square",
+        "publisher": null
+      },
+      "version_link": null,
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

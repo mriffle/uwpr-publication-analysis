@@ -1,0 +1,205 @@
+{
+  "aliases": [],
+  "canonical": "R-000221",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000221"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:8019970cff40",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000221",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000221",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, Seattle, Washington, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hannah C. Feldman",
+          "openalex": "A5005774279",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, Seattle, Washington, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Venkata Narayana Vidadala",
+          "openalex": null,
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, Seattle, Washington, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zachary E. Potter",
+          "openalex": "A5067945060",
+          "orcid": "0000-0002-9063-7923",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine,  Lung Biology Center,  Department of Pathology,  Diabetes Center  and  California Institute for Quantitative Biosciences, University of California—San Francisco, San Francisco, California,United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Feroz R. Papa",
+          "openalex": "A5086320327",
+          "orcid": "0000-0002-3684-9108",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine  and  Lung Biology Center, University of California—San Francisco, San Francisco, California,United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Bradley J. Backes",
+          "openalex": "A5026441235",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, Seattle, Washington, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Dustin J. Maly",
+          "openalex": "A5054397869",
+          "orcid": "0000-0003-0094-0177",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:3a73249f577300f0646f516fad654d0a652a1a629631312653124c1c3543d550",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000221",
+      "ids": {
+        "doi": "10.1021/acschembio.9b00482",
+        "openalex": "W2981240954",
+        "pmcid": "PMC6925334",
+        "pmid": "31609569"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6925334"
+      },
+      "published": "2019-10-14",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Development of a Chemical Toolset for Studying the Paralog-Specific Function of IRE1",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998999834060669,
+          "subfield": "Cell Biology",
+          "topic": "Endoplasmic Reticulum Stress and Disease"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9962999820709229,
+          "subfield": "Molecular Biology",
+          "topic": "CRISPR and Genetic Engineering"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9835000038146973,
+          "subfield": "Molecular Biology",
+          "topic": "RNA regulation and disease"
+        }
+      ],
+      "venue": {
+        "issn_l": "1554-8929",
+        "name": "ACS Chemical Biology",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

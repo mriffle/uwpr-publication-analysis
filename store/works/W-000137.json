@@ -1,0 +1,244 @@
+{
+  "aliases": [],
+  "canonical": "R-000137",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000137"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000137"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000137"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:37d8831b3195",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000137",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000137",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Microbial Pathogenesis, University of Maryland School of Dentistry, Baltimore, MD 21201, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Lauren Hittle",
+          "openalex": "A5037322264",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Microbial Pathogenesis, University of Maryland School of Dentistry, Baltimore, MD 21201, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel A. Powell",
+          "openalex": "A5009807217",
+          "orcid": "0000-0003-0503-3330",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, School of Pharmacy, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jace W. Jones",
+          "openalex": "A5015749452",
+          "orcid": "0000-0003-0460-0380",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Microbial Pathogenesis, University of Maryland School of Dentistry, Baltimore, MD 21201, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Majid Tofigh",
+          "openalex": "A5001993591",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, School of Pharmacy, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, School of Pharmacy, University of Washington, Seattle, WA 98195, USA Department of Pediatrics, Massachusetts General Hospital, Boston, MA 20114, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, School of Pharmacy, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Massachusetts General Hospital",
+              "raw": "Department of Pediatrics, Massachusetts General Hospital, Boston, MA 20114, USA",
+              "ror": "002pd6e78"
+            }
+          ],
+          "corresponding": false,
+          "name": "Samuel M. Moskowitz",
+          "openalex": "A5012122740",
+          "orcid": "0000-0001-6606-3117",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Microbial Pathogenesis, University of Maryland School of Dentistry, Baltimore, MD 21201, USA rkernst@umaryland.edu",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Microbial Pathogenesis, University of Maryland School of Dentistry, Baltimore, MD 21201, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Robert K. Ernst",
+          "openalex": "A5043813423",
+          "orcid": "0000-0001-5016-8694",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000137",
+      "ids": {
+        "doi": "10.1093/femspd/ftv053",
+        "openalex": "W1041222015",
+        "pmcid": "PMC4626592",
+        "pmid": "26223882"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4626592"
+      },
+      "published": "2015-07-29",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Site-specific activity of the acyltransferases HtrB1 and HtrB2 inPseudomonas aeruginosalipid A biosynthesis",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9986000061035156,
+          "subfield": "Genetics",
+          "topic": "Bacterial Genetics and Biotechnology"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9983000159263611,
+          "subfield": "Molecular Medicine",
+          "topic": "Antibiotic Resistance in Bacteria"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9965000152587891,
+          "subfield": "Molecular Biology",
+          "topic": "Genomics and Phylogenetic Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "2049-632X",
+        "name": "Pathogens and Disease",
+        "publisher": "Oxford University Press"
+      },
+      "version_link": null,
+      "year": 2015
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

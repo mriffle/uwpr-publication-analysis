@@ -1,0 +1,344 @@
+{
+  "aliases": [],
+  "canonical": "R-000315",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000315"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000315"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000315"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000315"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000315"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000315"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000315"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2025:62ebea10832c",
+        "page": "2025"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000315",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2025/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000315",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d084715f3e6ee28b9bcfe9ade432fe08034fd75968e9a94ab2f23b34afc5c710",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12037917/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000315",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4409879428"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000315",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d084715f3e6ee28b9bcfe9ade432fe08034fd75968e9a94ab2f23b34afc5c710",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12037917/"
+      }
+    }
+  ],
+  "id": "W-000315",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Miranda C. Mudge",
+          "openalex": "A5081583196",
+          "orcid": "0000-0003-3769-5937",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology, Parker H. Petit Institute for Bioengineering and Bioscience, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gabriella Chebli",
+          "openalex": "A5052461056",
+          "orcid": "0000-0002-4533-7470",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Deanna L. Plubell",
+          "openalex": "A5000236735",
+          "orcid": "0000-0002-6580-8073",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Rhode Island",
+              "raw": "Graduate School of Oceanography, University of Rhode Island, Kingston, RI, USA",
+              "ror": "013ckk937"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tatiana A. Rynearson",
+          "openalex": "A5073623148",
+          "orcid": "0000-0003-2951-0066",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933",
+          "orcid": "0000-0001-7283-4715",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biological Sciences, Georgia Institute of Technology, Parker H. Petit Institute for Bioengineering and Bioscience, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Chemistry & Biochemistry, Georgia Institute of Technology, Parker H. Petit Institute for Bioengineering and Bioscience, Atlanta, GA, USA",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Julia Kubanek",
+          "openalex": "A5072789874",
+          "orcid": "0000-0003-4482-1831",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA. brookh@uw.edu",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:d084715f3e6ee28b9bcfe9ade432fe08034fd75968e9a94ab2f23b34afc5c710",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000315",
+      "ids": {
+        "doi": "10.1038/s41467-025-59250-y",
+        "openalex": "W4409879428",
+        "pmcid": "PMC12037917",
+        "pmid": "40295559"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1038/s41467-025-59250-y"
+      },
+      "published": "2025-04-28",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Harmful algal blooms are preceded by a predictable and quantifiable shift in the oceanic microbiome",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9995999932289124,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9955999851226807,
+          "subfield": "Molecular Biology",
+          "topic": "Protist diversity and phylogeny"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9911999702453613,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
+        }
+      ],
+      "venue": {
+        "issn_l": "2041-1723",
+        "name": "Nature Communications",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,392 @@
+{
+  "aliases": [],
+  "canonical": "R-000517",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000517"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "We thank the University of Washington Proteomics Resource for advice and helpful discussions.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000517",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:2f487eb9bb8a8b4d32da9271f149e174c867c0857ebc0d26d59d22c608996f66",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9667921/"
+      }
+    }
+  ],
+  "id": "W-000517",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, Department of Anesthesiology & Pain Medicine, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "These authors contributed equally",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Arianne Caudal",
+          "openalex": "A5054507908",
+          "orcid": "0000-0001-9836-9436",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98105, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "These authors contributed equally",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xiaoting Tang",
+          "openalex": "A5086545566",
+          "orcid": "0000-0001-8971-3119",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98105, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Juan D. Chavez",
+          "openalex": "A5016223830",
+          "orcid": "0000-0001-8849-0304",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98105, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew Keller",
+          "openalex": "A5062059600",
+          "orcid": "0000-0003-3939-3692",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98105, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jared P. Mohr",
+          "openalex": "A5008424956",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98105, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Anna Bakhtina",
+          "openalex": "A5035689536",
+          "orcid": "0000-0003-4550-1135",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Outi Villet",
+          "openalex": "A5023354816",
+          "orcid": "0000-0003-4247-6755",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hongye Chen",
+          "openalex": "A5003559348",
+          "orcid": "0000-0003-1031-1008",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Bo Zhou",
+          "openalex": "A5044940134",
+          "orcid": "0000-0002-7388-8376",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Matthew Walker",
+          "openalex": "A5100621740",
+          "orcid": "0000-0003-4483-2258",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, Department of Anesthesiology & Pain Medicine, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "These authors jointly supervised this work",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Mitochondria and Metabolism Center, Department of Anesthesiology & Pain Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Rong Tian",
+          "openalex": "A5029700686",
+          "orcid": "0000-0002-3676-3830",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98105, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "These authors jointly supervised this work",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "James E. Bruce",
+          "openalex": "A5024181058",
+          "orcid": "0000-0001-6441-6089",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:2f487eb9bb8a8b4d32da9271f149e174c867c0857ebc0d26d59d22c608996f66",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000517",
+      "ids": {
+        "doi": "10.1038/s44161-022-00127-4",
+        "openalex": "W4295138518",
+        "pmcid": "PMC9667921",
+        "pmid": "36405497"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/9667921"
+      },
+      "published": "2022-09-09",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Mitochondrial interactome quantitation reveals structural changes in metabolic machinery in the failing murine heart",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998000264167786,
+          "subfield": "Molecular Biology",
+          "topic": "Mitochondrial Function and Pathology"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9991999864578247,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiovascular Function and Risk Factors"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9957000017166138,
+          "subfield": "Molecular Biology",
+          "topic": "Microbial Metabolic Engineering and Bioproduction"
+        }
+      ],
+      "venue": {
+        "issn_l": "2731-0590",
+        "name": "Nature Cardiovascular Research",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2022
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

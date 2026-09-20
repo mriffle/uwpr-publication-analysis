@@ -1,0 +1,289 @@
+{
+  "aliases": [],
+  "canonical": "R-000179",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000179"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000179"
+    },
+    {
+      "channel": "F",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000179"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000179"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:7c92f082eb50",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000179",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "Proteomics Resource, University of Washington, Seattle, WA, USA",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000179",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": "sha256:23824035bebf47b24db348a50a0cb79db01416aa8d46fec8f160ef6227f1497c",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6192206/"
+      }
+    }
+  ],
+  "id": "W-000179",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Oak Ridge National Laboratory",
+              "raw": "Computer Science and Mathematics Division, Oak Ridge National Laboratory, Oak Ridge, TN, USA",
+              "ror": "01qz5mb56"
+            },
+            {
+              "country": "US",
+              "name": "University of North Texas",
+              "raw": "Department of Computer Science and Engineering, University of North Texas, Denton, TX, USA",
+              "ror": "00v97ad02"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Graduate School of Genome Science and Technology, University of Tennessee, Knoxville, TN, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Xuan Guo",
+          "openalex": "A5075184660",
+          "orcid": "0000-0002-2777-4482",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Oak Ridge National Laboratory",
+              "raw": "Computer Science and Mathematics Division, Oak Ridge National Laboratory, Oak Ridge, TN, USA",
+              "ror": "01qz5mb56"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Graduate School of Genome Science and Technology, University of Tennessee, Knoxville, TN, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Zhou Li",
+          "openalex": "A5100452300",
+          "orcid": "0000-0002-4274-0977",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Oak Ridge National Laboratory",
+              "raw": "Computer Science and Mathematics Division, Oak Ridge National Laboratory, Oak Ridge, TN, USA",
+              "ror": "01qz5mb56"
+            }
+          ],
+          "corresponding": false,
+          "name": "Qiuming Yao",
+          "openalex": "A5103020638",
+          "orcid": "0000-0001-9974-8788",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Oregon State University",
+              "raw": "Department of Microbiology, Oregon State University, Corvallis, OR, USA",
+              "ror": "00ysfqy60"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ryan Mueller",
+          "openalex": "A5009743418",
+          "orcid": "0000-0001-9565-5912",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Proteomics Resource, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "ZA",
+              "name": "Stellenbosch University",
+              "raw": "DST/NRF Centre of Excellence for Biomedical Tuberculosis Research, SAMRC Centre for Tuberculosis Research, Division of Molecular Biology and Human Genetics, Faculty of Medicine and Health Sciences, Stellenbosch University, Cape Town, South Africa",
+              "ror": "05bk57929"
+            }
+          ],
+          "corresponding": false,
+          "name": "David L. Tabb",
+          "openalex": "A5062939937",
+          "orcid": "0000-0001-7223-578X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Naval Research Laboratory, Center for Bio/Molecular Science & Engineering (Code 6910), Washington, DC, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "W. Judson Hervey",
+          "openalex": "A5084421174",
+          "orcid": "0000-0003-3285-6754",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Oak Ridge National Laboratory",
+              "raw": "Computer Science and Mathematics Division, Oak Ridge National Laboratory, Oak Ridge, TN, USA",
+              "ror": "01qz5mb56"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Graduate School of Genome Science and Technology, University of Tennessee, Knoxville, TN, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Chongle Pan",
+          "openalex": "A5035236332",
+          "orcid": "0000-0003-2860-0334",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:23824035bebf47b24db348a50a0cb79db01416aa8d46fec8f160ef6227f1497c",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000179",
+      "ids": {
+        "doi": "10.1093/bioinformatics/btx601",
+        "openalex": "W2757936553",
+        "pmcid": "PMC6192206",
+        "pmid": "29028897"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1093/bioinformatics/btx601"
+      },
+      "published": "2017-09-19",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Sipros Ensemble improves database searching and filtering for complex metaproteomics",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.8040000200271606,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.11029999703168869,
+          "subfield": "Molecular Biology",
+          "topic": "vaccines and immunoinformatics approaches"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.03009999915957451,
+          "subfield": "Molecular Biology",
+          "topic": "Machine Learning in Bioinformatics"
+        }
+      ],
+      "venue": {
+        "issn_l": "1367-4803",
+        "name": "Bioinformatics",
+        "publisher": "Oxford University Press"
+      },
+      "version_link": null,
+      "year": 2017
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

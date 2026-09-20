@@ -1,0 +1,395 @@
+{
+  "aliases": [],
+  "canonical": "R-000093",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000093"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000093"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000093"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000093"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:6ffb675e78fa",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000093",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was funded by N.I.H. grants UL1RR025014, CA015704, CA129132 and CA164545 to A.B and 5R33CA099139-04 to D.R.G. This work was also supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000093",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:711deea5d66dd1bf059c5cffe59ebfa94ac9d7a3220cbfaedf115674cfd058f7",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3564549/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was funded by N.I.H. grants UL1RR025014, CA015704, CA129132 and CA164545 to A.B and 5R33CA099139-04 to D.R.G. This work was also supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000093",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:711deea5d66dd1bf059c5cffe59ebfa94ac9d7a3220cbfaedf115674cfd058f7",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3564549/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "We thank Priska Von Haller for help with mass spectrometry, Martin Morgan for computational advice, Phil Gafken for helpful discussions and Vid Leko for comments on the manuscript.",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000093",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:711deea5d66dd1bf059c5cffe59ebfa94ac9d7a3220cbfaedf115674cfd058f7",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3564549/"
+      }
+    }
+  ],
+  "id": "W-000093",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Eric J. Foss",
+          "openalex": "A5064275580",
+          "orcid": "0000-0002-5553-9412",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Florida Atlantic University",
+              "raw": "Department of Mathematical Sciences, Florida Atlantic University, Boca Raton, Florida 33431,\rUnited States",
+              "ror": "05p8w6387"
+            },
+            {
+              "country": "US",
+              "name": "Florida Atlantic University",
+              "raw": "Department of Mathematical Sciences, Florida Atlantic University, Boca Raton, Florida 33431,#R#United States",
+              "ror": "05p8w6387"
+            }
+          ],
+          "corresponding": true,
+          "name": "Dragan Radulović",
+          "openalex": "A5006783222",
+          "orcid": "0000-0001-8210-8100",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Derek L. Stirewalt",
+          "openalex": "A5058845981",
+          "orcid": "0000-0003-4151-3171",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jerald P. Radich",
+          "openalex": "A5089541690",
+          "orcid": "0000-0002-1618-230X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Olga Sala‐Torra",
+          "openalex": "A5059827356",
+          "orcid": "0000-0002-8067-2581",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Era L. Pogosova‐Agadjanyan",
+          "openalex": "A5088294011",
+          "orcid": "0000-0002-9060-358X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Medicinal Chemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Pacific Northwest National Laboratory, Richland, Washington\r99352, United States",
+              "ror": "05h992307"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Medicinal Chemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "raw": "Pacific Northwest National Laboratory, Richland, Washington#R#99352, United States",
+              "ror": "05h992307"
+            }
+          ],
+          "corresponding": false,
+          "name": "Shawna Hengel",
+          "openalex": "A5077830669",
+          "orcid": "0000-0002-7444-7687",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Keith R. Loeb",
+          "openalex": "A5065358447",
+          "orcid": "0000-0002-3305-0261",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "H. Joachim Deeg",
+          "openalex": "A5010962133",
+          "orcid": "0000-0002-4426-9023",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Soheil Meshinchi",
+          "openalex": "A5049490094",
+          "orcid": "0000-0002-6276-4423",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Medicinal Chemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Medicinal Chemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Antonio Bedalov",
+          "openalex": "A5062105620",
+          "orcid": "0000-0002-7373-8255",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:711deea5d66dd1bf059c5cffe59ebfa94ac9d7a3220cbfaedf115674cfd058f7",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000093",
+      "ids": {
+        "doi": "10.1021/pr300567r",
+        "openalex": "W1976838017",
+        "pmcid": "PMC3564549",
+        "pmid": "22900933"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3564549"
+      },
+      "published": "2012-08-17",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Proteomic Classification of Acute Leukemias by Alignment-Based Quantitation of LC–MS/MS Data Sets",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 1.0,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9997000098228455,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9957000017166138,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2012
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

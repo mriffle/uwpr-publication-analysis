@@ -1,0 +1,305 @@
+{
+  "aliases": [],
+  "canonical": "R-000109",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000109"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000109"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000109"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000109"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000109"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:9936de6b825a",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000109",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work is supported in part by the University of Washington's Proteomics Computer Resource Centre (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000109",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:845905ed8d5e22169a02c0bcb014cfb0b94b44efc25fd5763e3ab4050b1ffece",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3797725/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000109",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2153032135"
+      }
+    }
+  ],
+  "id": "W-000109",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, United States of America ; Medicinal Chemistry Department, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Medicinal Chemistry Department, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Maryland Center for Environmental Science",
+              "raw": "University of Maryland Center for Environmental Science, Chesapeake Biological Laboratory, Solomons, Maryland, United States of America",
+              "ror": "04dqdxm60"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jessica Faux",
+          "openalex": "A5085676273",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CA",
+              "name": "University of British Columbia",
+              "raw": "Department of Earth, Ocean and Atmospheric Sciences, University of British Columbia, Vancouver, British Columbia, Canada",
+              "ror": "03rmrcq20"
+            }
+          ],
+          "corresponding": true,
+          "name": "Anna A. Hippmann",
+          "openalex": "A5041020972",
+          "orcid": "0000-0002-9495-7414",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CA",
+              "name": "University of British Columbia",
+              "raw": "Department of Earth, Ocean and Atmospheric Sciences, University of British Columbia, Vancouver, British Columbia, Canada",
+              "ror": "03rmrcq20"
+            }
+          ],
+          "corresponding": true,
+          "name": "María T. Maldonado",
+          "openalex": "A5004585508",
+          "orcid": "0000-0001-8134-9375",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Old Dominion University",
+              "raw": "Department of Ocean, Earth and Atmospheric Science, Old Dominion University, Norfolk, Virginia, United States of America",
+              "ror": "04zjtrb98"
+            }
+          ],
+          "corresponding": true,
+          "name": "H. Rodger Harvey",
+          "openalex": "A5015273553",
+          "orcid": "0000-0001-7746-7758",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "NIWA Centre for Chemical and Physical Oceanography, Department of Chemistry, University of Otago, Dunedin, New Zealand",
+              "ror": "01jmxt844"
+            }
+          ],
+          "corresponding": true,
+          "name": "Philip W. Boyd",
+          "openalex": "A5091179334",
+          "orcid": "0000-0001-7850-1911",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "Australian National University",
+              "raw": "Research School of Earth Sciences, The Australian National University, Canberra, Australia",
+              "ror": "019wvm592"
+            }
+          ],
+          "corresponding": true,
+          "name": "Robert F. Strzepek",
+          "openalex": "A5087477436",
+          "orcid": "0000-0002-6442-7121",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:845905ed8d5e22169a02c0bcb014cfb0b94b44efc25fd5763e3ab4050b1ffece",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000109",
+      "ids": {
+        "doi": "10.1371/journal.pone.0075653",
+        "openalex": "W2153032135",
+        "pmcid": "PMC3797725",
+        "pmid": "24146769"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "public-domain",
+        "status": "gold",
+        "url": "https://doi.org/10.1371/journal.pone.0075653"
+      },
+      "published": "2013-10-16",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Diatom Proteomics Reveals Unique Acclimation Strategies to Mitigate Fe Limitation",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Materials Science",
+          "score": 0.9950000047683716,
+          "subfield": "Biomaterials",
+          "topic": "Diatoms and Algae Research"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9883999824523926,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.988099992275238,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
+        }
+      ],
+      "venue": {
+        "issn_l": "1932-6203",
+        "name": "PLoS ONE",
+        "publisher": "Public Library of Science"
+      },
+      "version_link": null,
+      "year": 2013
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

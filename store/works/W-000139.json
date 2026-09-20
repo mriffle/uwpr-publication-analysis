@@ -1,0 +1,219 @@
+{
+  "aliases": [],
+  "canonical": "R-000139",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000139"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000139"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000139"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:370ad41139ce",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000139",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794) and by the NIH (U01HL100395).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000139",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:ecb6f7acbce111196eab8ec5129e69169d35def7927e62f826447a565054ac53",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4618836/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work is supported in part by the University of Washington’s Proteomics Resource (UWPR95794) and by the NIH (U01HL100395).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000139",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:ecb6f7acbce111196eab8ec5129e69169d35def7927e62f826447a565054ac53",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4618836/"
+      }
+    }
+  ],
+  "id": "W-000139",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "CA",
+              "name": "University Health Network",
+              "raw": "McEwen Centre for Regenerative Medicine, University Health Network, Toronto, ON M5G 1L7, Canada",
+              "ror": "042xt5161"
+            }
+          ],
+          "corresponding": false,
+          "name": "Raedun Clarke",
+          "openalex": "A5036327927",
+          "orcid": "0000-0002-1626-1358",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine and Department of Pharmacology, University of Washington School of Medicine, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aaron M. Robitaille",
+          "openalex": "A5051620732",
+          "orcid": "0000-0003-2774-2066",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Institute for Stem Cell and Regenerative Medicine and Department of Pharmacology, University of Washington School of Medicine, Seattle, WA 98109, USA; Howard Hughes Medical Institute, Chevy Chase, MD 20815, USA. Electronic address: rtmoon@uw.edu",
+              "ror": "006w34k90"
+            }
+          ],
+          "corresponding": true,
+          "name": "Randall T. Moon",
+          "openalex": "A5024528673",
+          "orcid": "0000-0002-9352-1408",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CA",
+              "name": "University Health Network",
+              "raw": "McEwen Centre for Regenerative Medicine, University Health Network, Toronto, ON M5G 1L7, Canada. Electronic address: gkeller@uhnresearch.ca",
+              "ror": "042xt5161"
+            }
+          ],
+          "corresponding": true,
+          "name": "Gordon Keller",
+          "openalex": "A5036956529",
+          "orcid": "0000-0001-9309-9297",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:ecb6f7acbce111196eab8ec5129e69169d35def7927e62f826447a565054ac53",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000139",
+      "ids": {
+        "doi": "10.1016/j.stemcr.2015.07.008",
+        "openalex": "W1882165723",
+        "pmcid": "PMC4618836",
+        "pmid": "26267830"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1016/j.stemcr.2015.07.008"
+      },
+      "published": "2015-08-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "A Quantitative Proteomic Analysis of Hemogenic Endothelium Reveals Differential Regulation of Hematopoiesis by SOX17",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998000264167786,
+          "subfield": "Cell Biology",
+          "topic": "Zebrafish Biomedical Research Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9955999851226807,
+          "subfield": "Molecular Biology",
+          "topic": "Single-cell and spatial transcriptomics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9955000281333923,
+          "subfield": "Molecular Biology",
+          "topic": "Epigenetics and DNA Methylation"
+        }
+      ],
+      "venue": {
+        "issn_l": "2213-6711",
+        "name": "Stem Cell Reports",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2015
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

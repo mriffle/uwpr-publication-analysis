@@ -1,0 +1,623 @@
+{
+  "aliases": [
+    "W-000733"
+  ],
+  "canonical": "R-000304",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000304"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000304"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000733"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000304"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000304"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000304"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000733"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2024:01724d5db116",
+        "page": "2024"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000304",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2024/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "Additional support came from the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000304",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:ca87479308483b1032e507eb3fe58927befff930d88e65a7eb39e2ec2c7099cc",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11557575/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000304",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4404322025"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000733",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4400594235"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Additional support came from the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000304",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:ca87479308483b1032e507eb3fe58927befff930d88e65a7eb39e2ec2c7099cc",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11557575/"
+      }
+    }
+  ],
+  "id": "W-000304",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, 98195, USA. emmats@uw.edu",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Consolidated Safety Services, Inc., Fairfax, VA, 22031, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Genentech, South San Francisco, CA, 94080, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "E Duselis",
+          "openalex": "A5104428397",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Texas at Tyler, Tyler, TX, 75799, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Tony Brown",
+          "openalex": "A5027698582",
+          "orcid": "0000-0002-1411-9331",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "J B Axworthy",
+          "openalex": "A5114190660",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "C H Backstrom",
+          "openalex": "A5104428398",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Southern California",
+              "raw": "Department of Biological Sciences, University of Southern California, Los Angeles, CA, 90089, USA",
+              "ror": "03taz7m60"
+            }
+          ],
+          "corresponding": false,
+          "name": "J.R. Dilworth",
+          "openalex": "A5002065251",
+          "orcid": "0000-0001-6589-5990",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Southern California",
+              "raw": "Department of Biological Sciences, University of Southern California, Los Angeles, CA, 90089, USA",
+              "ror": "03taz7m60"
+            }
+          ],
+          "corresponding": false,
+          "name": "Carly D. Kenkel",
+          "openalex": "A5075848516",
+          "orcid": "0000-0003-1126-4311",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Villanova University",
+              "raw": "College of Liberal Arts and Sciences, Villanova University, Villanova, PA, 19085, USA",
+              "ror": "02g7kd627"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lisa J. Rodrigues",
+          "openalex": "A5059226796",
+          "orcid": "0000-0002-0973-0451",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jacqueline L. Padilla‐Gamiño",
+          "openalex": "A5022105512",
+          "orcid": "0000-0003-0478-9953",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:ca87479308483b1032e507eb3fe58927befff930d88e65a7eb39e2ec2c7099cc",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000304",
+      "ids": {
+        "doi": "10.1038/s41598-024-78768-7",
+        "openalex": "W4404322025",
+        "pmcid": "PMC11557575",
+        "pmid": "39532979"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1038/s41598-024-78768-7"
+      },
+      "published": "2024-11-12",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Reproductive resilience: pathways to gametogenic success in Montipora capitata after bleaching",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.98580002784729,
+          "subfield": "Insect Science",
+          "topic": "Biological Control of Invasive Species"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.9747999906539917,
+          "subfield": "Plant Science",
+          "topic": "Flowering Plant Growth and Cultivation"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.9657999873161316,
+          "subfield": "Plant Science",
+          "topic": "Weed Control and Herbicide Applications"
+        }
+      ],
+      "venue": {
+        "issn_l": "2045-2322",
+        "name": "Scientific Reports",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2024
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "NOAA NOS NCCOS",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "E Duselis",
+          "openalex": "A5104428397",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tony Brown",
+          "openalex": "A5027698582",
+          "orcid": "0000-0002-1411-9331",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "J B Axworthy",
+          "openalex": "A5114190660",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "C H Backstrom",
+          "openalex": "A5104428398",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Southern California",
+              "raw": "University of Southern California",
+              "ror": "03taz7m60"
+            }
+          ],
+          "corresponding": false,
+          "name": "F. Jeffrey Dilworth",
+          "openalex": "A5075623400",
+          "orcid": "0000-0002-6265-8102",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Southern California",
+              "raw": "University of Southern California",
+              "ror": "03taz7m60"
+            }
+          ],
+          "corresponding": false,
+          "name": "Carly D. Kenkel",
+          "openalex": "A5075848516",
+          "orcid": "0000-0003-1126-4311",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Villanova University",
+              "raw": "Villanova University",
+              "ror": "02g7kd627"
+            }
+          ],
+          "corresponding": false,
+          "name": "LF Rodrigues",
+          "openalex": "A5108148769",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "JL Padilla-Gamiño",
+          "openalex": "A5108919788",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000733",
+      "ids": {
+        "doi": "10.21203/rs.3.rs-4559943/v1",
+        "openalex": "W4400594235",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "http://dx.doi.org/10.21203/rs.3.rs-4559943/v1"
+      },
+      "published": "2024-07-12",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Reproductive Resilience: Pathways to Gametogenic Success in Montipora capitata after Bleaching",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.9549000263214111,
+          "subfield": "Insect Science",
+          "topic": "Biological Control of Invasive Species"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9079999923706055,
+          "subfield": "Environmental Chemistry",
+          "topic": "Aquatic Ecosystems and Phytoplankton Dynamics"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "Research Square",
+        "publisher": null
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000304"
+      },
+      "year": 2024
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

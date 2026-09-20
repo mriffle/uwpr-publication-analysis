@@ -1,0 +1,360 @@
+{
+  "aliases": [],
+  "canonical": "R-000114",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000114"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000114"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000114"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000114"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000114"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000114"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:7d9de696ec4e",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000114",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000114",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2073822589"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000114",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1073%2Fpnas.1402130111"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000114",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1073%2Fpnas.1402130111"
+      }
+    }
+  ],
+  "id": "W-000114",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "Institute of Bioengineering and Biosciences, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biology, Aquatic Chemical Ecology Center, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biology, Aquatic Chemical Ecology Center, Georgia Institute of Technology, Atlanta, GA 30332;Institute of Bioengineering and Biosciences, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kelsey L. Poulson‐Ellestad",
+          "openalex": "A5005595594",
+          "orcid": "0000-0002-1099-4219",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Chemistry and Biochemistry, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christina M. Jones",
+          "openalex": "A5101730046",
+          "orcid": "0000-0001-7571-3062",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "Institute of Bioengineering and Biosciences, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biology, Aquatic Chemical Ecology Center, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biology, Aquatic Chemical Ecology Center, Georgia Institute of Technology, Atlanta, GA 30332;Institute of Bioengineering and Biosciences, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jessie S. Roy",
+          "openalex": "A5009016223",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "University of Birmingham",
+              "raw": "School of Biosciences, University of Birmingham, Edgbaston, Birmingham B15 2TT, United Kingdom; and",
+              "ror": "03angcq70"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mark R. Viant",
+          "openalex": "A5055611974",
+          "orcid": "0000-0001-5898-4119",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "Institute of Bioengineering and Biosciences, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Chemistry and Biochemistry, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "Institute of Bioengineering and Biosciences, Georgia Institute of Technology, Atlanta, GA 30332;School of Chemistry and Biochemistry, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Facundo M. Fernández",
+          "openalex": "A5039977060",
+          "orcid": "0000-0002-0302-2534",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "Institute of Bioengineering and Biosciences, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Biology, Aquatic Chemical Ecology Center, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "raw": "School of Chemistry and Biochemistry, Georgia Institute of Technology, Atlanta, GA 30332;",
+              "ror": "01zkghx44"
+            }
+          ],
+          "corresponding": false,
+          "name": "Julia Kubanek",
+          "openalex": "A5072789874",
+          "orcid": "0000-0003-4482-1831",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98195",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "eDepartment of Genome Sciences, University of Washington, Seattle, WA 98195",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000114",
+      "ids": {
+        "doi": "10.1073/pnas.1402130111",
+        "openalex": "W2073822589",
+        "pmcid": "PMC4066504",
+        "pmid": "24889616"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1073/pnas.1402130111"
+      },
+      "published": "2014-06-02",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Metabolomics and proteomics reveal impacts of chemically mediated competition on marine plankton",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9997000098228455,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9991000294685364,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9962000250816345,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal plant biology"
+        }
+      ],
+      "venue": {
+        "issn_l": "0027-8424",
+        "name": "Proceedings of the National Academy of Sciences",
+        "publisher": "National Academy of Sciences"
+      },
+      "version_link": null,
+      "year": 2014
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

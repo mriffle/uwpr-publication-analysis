@@ -1,0 +1,203 @@
+{
+  "aliases": [],
+  "canonical": "R-000757",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000757"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000757",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.3389%2Ffmars.2021.757245"
+      }
+    }
+  ],
+  "id": "W-000757",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Megan Duffy",
+          "openalex": "A5039970247",
+          "orcid": "0000-0002-3212-4927",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Maine",
+              "raw": "Darling Marine Center, University of Maine, Walpole, ME, United States",
+              "ror": "01adr0w49"
+            },
+            {
+              "country": "US",
+              "name": "Maine Department of Marine Resources",
+              "raw": "Maine Department of Marine Resources, West Boothbay Harbor, ME, United States",
+              "ror": "00wkygr69"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cheyenne M. Adams",
+          "openalex": "A5038929782",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Khadijah Homolka",
+          "openalex": "A5014562769",
+          "orcid": "0000-0002-5208-8740",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jacquelyn Neibauer",
+          "openalex": "A5048627551",
+          "orcid": "0000-0001-9920-2558",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Maine",
+              "raw": "Darling Marine Center, University of Maine, Walpole, ME, United States",
+              "ror": "01adr0w49"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lawrence M. Mayer",
+          "openalex": "A5006302282",
+          "orcid": "0009-0002-4213-9652",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Oceanography, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard G. Keil",
+          "openalex": "A5041929553",
+          "orcid": "0000-0001-7483-1606",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000757",
+      "ids": {
+        "doi": "10.3389/fmars.2021.757245",
+        "openalex": "W4207003556",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.3389/fmars.2021.757245"
+      },
+      "published": "2022-01-21",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Degradation of Diatom Protein in Seawater: A Peptide-Level View",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9976000189781189,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9944000244140625,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.974399983882904,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        }
+      ],
+      "venue": {
+        "issn_l": "2296-7745",
+        "name": "Frontiers in Marine Science",
+        "publisher": "Frontiers Media"
+      },
+      "version_link": null,
+      "year": 2022
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,486 @@
+{
+  "aliases": [],
+  "canonical": "R-000113",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000113"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000113"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000113"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:52d862555450",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000113",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "It was also partially supported by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000113",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:b16e158e6b72f09bf626f1e30ca7402a6b7db785000d925c0505dadc9202cc03",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4224986/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "It was also partially supported by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000113",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:b16e158e6b72f09bf626f1e30ca7402a6b7db785000d925c0505dadc9202cc03",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4224986/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "All SRM analyses were performed on a TSQ Vantage triple quadrupole (QQQ) mass spectrometer (Thermo Scientific) at the University of Washington Proteomics Resource.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000113",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "methods",
+      "source": {
+        "cache": "sha256:b16e158e6b72f09bf626f1e30ca7402a6b7db785000d925c0505dadc9202cc03",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4224986/"
+      }
+    }
+  ],
+  "id": "W-000113",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Inarian-Neurodiagnostics , 7420 92nd Place SE , , ,",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine , 325 9th Avenue, HMC 359635, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Inarian-Neurodiagnostics, 7420 92nd Place SE, Mercer Island, Washington 98040, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Catherine Pan",
+          "openalex": "A5110273966",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology , 401 Terry Avenue North , , ,",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, 401 Terry Avenue North, Seattle, Washington 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yong Zhou",
+          "openalex": "A5102765163",
+          "orcid": "0000-0001-7643-5455",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, University of Washington School of Medicine, 325 9th\rAvenue, HMC 359635, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Romel Dator",
+          "openalex": "A5062925208",
+          "orcid": "0000-0002-3451-6932",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, University of Washington School of Medicine, 325 9th\rAvenue, HMC 359635, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Carmen Ginghină",
+          "openalex": "A5018299094",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, University of Washington School of Medicine, 325 9th\rAvenue, HMC 359635, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yanchun Zhao",
+          "openalex": "A5108302967",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, University of Washington School of Medicine, 325 9th\rAvenue, HMC 359635, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "James Movius",
+          "openalex": "A5059990301",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Mental Illness Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System , 1660 South Columbian Way , , ,",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 1959 NE Pacific Street, Box 356560 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Psychiatry and Behavioral Sciences, University of Washington School of Medicine, 1959 NE Pacific Street, Box 356560, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Mental Illness Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System, 1660 South Columbian Way, Seattle, Washington 98108, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Elaine R. Peskind",
+          "openalex": "A5016305380",
+          "orcid": "0000-0002-3667-9129",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System , 1660 South Columbian Way , , ,",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 1959 NE Pacific Street, Box 356465 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Neurology, University of Washington School of Medicine, 1959 NE\rPacific Street, Box 356465, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System, 1660\rSouth Columbian Way, Seattle, Washington 98108, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Cyrus P. Zabetian",
+          "openalex": "A5004855604",
+          "orcid": "0000-0002-7739-4306",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Oregon Health and Science University , , 3181 SW Sam Jackson Park Road, L226 , , ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department\rof Neurology, Oregon Health and Science University, 3181 SW Sam\rJackson Park Road, L226, Portland, Oregon 97239, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Joseph F. Quinn",
+          "openalex": "A5085009648",
+          "orcid": "0000-0001-7305-2256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California at San Diego , , 9500 Gilman Drive , , ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department\rof Neurosciences, University of California at San Diego, 9500 Gilman\rDrive, La Jolla, California 92093, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Douglas Galasko",
+          "openalex": "A5058792684",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, University of Washington School of Medicine, 325 9th\rAvenue, HMC 359635, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tessandra Stewart",
+          "openalex": "A5111781115",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, University of Washington School of Medicine, 325 9th\rAvenue, HMC 359635, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Min Shi",
+          "openalex": "A5016122096",
+          "orcid": "0000-0002-6901-2558",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, University of Washington School of Medicine, 325 9th\rAvenue, HMC 359635, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jing Zhang",
+          "openalex": "A5101826794",
+          "orcid": "0000-0002-6995-1686",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:b16e158e6b72f09bf626f1e30ca7402a6b7db785000d925c0505dadc9202cc03",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000113",
+      "ids": {
+        "doi": "10.1021/pr500421v",
+        "openalex": "W2320474879",
+        "pmcid": "PMC4224986",
+        "pmid": "24853996"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "other-oa",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1021/pr500421v"
+      },
+      "published": "2014-05-22",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Targeted Discovery and Validation of Plasma Biomarkers of Parkinson’s Disease",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9993000030517578,
+          "subfield": "Neurology",
+          "topic": "Parkinson's Disease Mechanisms and Treatments"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9873999953269958,
+          "subfield": "Neurology",
+          "topic": "Neurological disorders and treatments"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.9864000082015991,
+          "subfield": "Cellular and Molecular Neuroscience",
+          "topic": "Nuclear Receptors and Signaling"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2014
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

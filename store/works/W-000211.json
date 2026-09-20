@@ -1,0 +1,363 @@
+{
+  "aliases": [],
+  "canonical": "R-000211",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000211"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000211"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000211"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:a312774e20f2",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000211",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported by grants from the National Institutes of Health (DP3DK108209, P30DK017047, P01HL092969, R00HL091055, R01HL108897, R01HL112625, and P01HL128203), a Beginning Grant-in-Aid from the American Heart Association (13BGIA17290026), and the University of Washington’s Proteomics Reso…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000211",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:621d77ca6f481fe72713f7d4021188f86ee1eb1cb77cca87f43394d082d718b3",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6594860/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported by grants from the National Institutes of Health (DP3DK108209, P30DK017047, P01HL092969, R00HL091055, R01HL108897, R01HL112625, and P01HL128203), a Beginning Grant-in-Aid from the American Heart Association (13BGIA17290026), and the University of Washington’s Proteomics Reso…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000211",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:621d77ca6f481fe72713f7d4021188f86ee1eb1cb77cca87f43394d082d718b3",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6594860/"
+      }
+    }
+  ],
+  "id": "W-000211",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Baohai Shao",
+          "openalex": "A5026547402",
+          "orcid": "0000-0001-8832-2845",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Leila R. Zelnick From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Leila R. Zelnick",
+          "openalex": "A5027833140",
+          "orcid": "0000-0002-8461-5111",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Jake Wimberger From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jake Wimberger",
+          "openalex": "A5036763558",
+          "orcid": "0000-0002-7417-9133",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Jonathan Himmelfarb From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jonathan Himmelfarb",
+          "openalex": "A5068118468",
+          "orcid": "0000-0002-3319-1224",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "John Brunzell From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "John D. Brunzell",
+          "openalex": "A5103227617",
+          "orcid": "0000-0002-4299-8943",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati, OH (W.S.D.)",
+              "ror": "01e3m7079"
+            },
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "W. Sean Davidson Department of Pathology and Laboratory Medicine, University of Cincinnati, OH (W.S.D.)",
+              "ror": "01e3m7079"
+            }
+          ],
+          "corresponding": false,
+          "name": "W. Sean Davidson",
+          "openalex": "A5008316828",
+          "orcid": "0000-0003-2756-2989",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Colorado Anschutz",
+              "raw": "Barbara Davis Center for Diabetes, Department of Pediatrics, University of Colorado Anschutz Medical Campus, Aurora (J.K.S.-B.)",
+              "ror": "03wmf1y16"
+            },
+            {
+              "country": "US",
+              "name": "University of Colorado Anschutz",
+              "raw": "Janet K. Snell-Bergeon Barbara Davis Center for Diabetes, Department of Pediatrics, University of Colorado Anschutz Medical Campus, Aurora (J.K.S.-B.)",
+              "ror": "03wmf1y16"
+            }
+          ],
+          "corresponding": false,
+          "name": "Janet K. Snell‐Bergeon",
+          "openalex": "A5061001113",
+          "orcid": "0000-0002-9337-3740",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Karin E. Bornfeldt From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Ian H. de Boer From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ian H. de Boer",
+          "openalex": "A5032870005",
+          "orcid": "0000-0003-1571-7592",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Jay W. Heinecke From the Department of Medicine, University of Washington, Seattle (B.S., L.R.Z., J.W., J.H., J.B., K.E.B., I.H.d.B., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:621d77ca6f481fe72713f7d4021188f86ee1eb1cb77cca87f43394d082d718b3",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000211",
+      "ids": {
+        "doi": "10.1161/atvbaha.119.312556",
+        "openalex": "W2946063083",
+        "pmcid": "PMC6594860",
+        "pmid": "31092010"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6594860"
+      },
+      "published": "2019-05-16",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Albuminuria, the High-Density Lipoprotein Proteome, and Coronary Artery Calcification in Type 1 Diabetes Mellitus",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 1.0,
+          "subfield": "Clinical Biochemistry",
+          "topic": "Paraoxonase enzyme and polymorphisms"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9502000212669373,
+          "subfield": "Surgery",
+          "topic": "Pancreatitis Pathology and Treatment"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9430999755859375,
+          "subfield": "Pharmacology",
+          "topic": "Apelin-related biomedical research"
+        }
+      ],
+      "venue": {
+        "issn_l": "1079-5642",
+        "name": "Arteriosclerosis Thrombosis and Vascular Biology",
+        "publisher": "Lippincott Williams & Wilkins"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

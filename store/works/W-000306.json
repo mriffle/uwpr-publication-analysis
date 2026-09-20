@@ -1,0 +1,403 @@
+{
+  "aliases": [],
+  "canonical": "R-000306",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000306"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2025:4ebd80ebb0c0",
+        "page": "2025"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000306",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2025/"
+      }
+    }
+  ],
+  "id": "W-000306",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Sohail Zahid",
+          "openalex": "A5069497525",
+          "orcid": "0000-0002-9895-6478",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Florencia Schlamp",
+          "openalex": "A5077847735",
+          "orcid": "0000-0003-3319-6778",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Gildea",
+          "openalex": "A5025214568",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "BingXue Lin",
+          "openalex": "A5025436331",
+          "orcid": "0000-0002-6904-9684",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Zürich and University Hospital Zürich, Schlieren, Switzerland (A.H.)",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Andreas Hülsmeier",
+          "openalex": null,
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Ariya Chaloemtoem",
+          "openalex": "A5020140570",
+          "orcid": "0000-0003-0188-2431",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Surgery, New York University Langone Medical Center (M.P.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Marcin Falis",
+          "openalex": "A5032264205",
+          "orcid": "0000-0001-5202-5814",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Surgery, New York University Langone Medical Center (M.P.)",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.)",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.)",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Center for the Prevention of Cardiovascular Disease (E.A.F., S.P.H.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Manish Parikh",
+          "openalex": "A5082649090",
+          "orcid": "0000-0002-8612-5407",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Center for the Prevention of Cardiovascular Disease (E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Institute for Clinical Chemistry, University Zürich, Switzerland (T.H.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Edward A. Fisher",
+          "openalex": "A5088448170",
+          "orcid": "0000-0001-9802-143X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Institute for Clinical Chemistry, University Zürich, Switzerland (T.H.)",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology and Nutrition, University of Washington Medicine, Seattle (T.V.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Thorsten Hornemann",
+          "openalex": "A5038836636",
+          "orcid": "0000-0002-4218-1087",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology and Nutrition, University of Washington Medicine, Seattle (T.V.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.)",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.)",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Center for the Prevention of Cardiovascular Disease (E.A.F., S.P.H.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "NYU Center for the Prevention of Cardiovascular Disease (E.A.F., S.P.H.), New York University Langone Medical Center",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Sean Heffron",
+          "openalex": "A5062004597",
+          "orcid": "0000-0002-2692-5189",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:e0c8d0ee95e9c27b456c661def7c6d74ed5c1a4b7beaf8cbbf605b6da1a186f4",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000306",
+      "ids": {
+        "doi": "10.1161/atvbaha.124.321686",
+        "openalex": "W4405996671",
+        "pmcid": "PMC11808664",
+        "pmid": "39744840"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1161/atvbaha.124.321686"
+      },
+      "published": "2025-01-02",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "High-Density Lipoprotein Lipid and Protein Cargo and Cholesterol Efflux Capacity Before and After Bariatric Surgery",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9631999731063843,
+          "subfield": "Surgery",
+          "topic": "Bariatric Surgery and Outcomes"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.008100000210106373,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiovascular Function and Risk Factors"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.007699999958276749,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiovascular Disease and Adiposity"
+        }
+      ],
+      "venue": {
+        "issn_l": "1079-5642",
+        "name": "Arteriosclerosis Thrombosis and Vascular Biology",
+        "publisher": "Lippincott Williams & Wilkins"
+      },
+      "version_link": null,
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

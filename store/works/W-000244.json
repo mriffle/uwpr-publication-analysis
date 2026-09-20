@@ -1,0 +1,2117 @@
+{
+  "aliases": [
+    "W-000584"
+  ],
+  "canonical": "R-000244",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000244"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000244"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000584"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000244"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000584"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000244"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000244"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000584"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000244"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:84b0878cfac5",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000244",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This study was supported by the 10.13039/100000865Bill & Melinda Gates Foundation (OPP1156262 to D.V. and N.P.K., OPP1126258 to K.K.L. and H.Y.C., and OPP1159947 to Kymab Ltd.), a generous gift from the Audacious Project, a generous gift from Jodi Green and Mike Halperin, a generous gift from the H…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000244",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:c396362ab7c4ea215572df0374baf9651e8150c443cf1e2357647db0f8a7a493",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7604136/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000244",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3094860119"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "3U01AI42001-02S1 to M.P.), a Pew Biomedical Scholars Award (D.V.), Investigators in the Pathogenesis of Infectious Disease Awards from the Burroughs Wellcome Fund (D.V., M.P.), Fast Grants (D.V., M.P.) an Animal Models Contract HHSN272201700036I-75N93020F00001 (R.S.B), the University of Washington’…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000584",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:bbf4d2ff8c92c66205801dc33a9c61d14435ec6f3c19ebcb4b1a4548c3f34122",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7430571/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000584",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3048499980"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This study was supported by the 10.13039/100000865Bill & Melinda Gates Foundation (OPP1156262 to D.V. and N.P.K., OPP1126258 to K.K.L. and H.Y.C., and OPP1159947 to Kymab Ltd.), a generous gift from the Audacious Project, a generous gift from Jodi Green and Mike Halperin, a generous gift from the H…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000244",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:c396362ab7c4ea215572df0374baf9651e8150c443cf1e2357647db0f8a7a493",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7604136/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "3U01AI42001-02S1 to M.P.), a Pew Biomedical Scholars Award (D.V.), Investigators in the Pathogenesis of Infectious Disease Awards from the Burroughs Wellcome Fund (D.V., M.P.), Fast Grants (D.V., M.P.) an Animal Models Contract HHSN272201700036I-75N93020F00001 (R.S.B), the University of Washington’…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000584",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:bbf4d2ff8c92c66205801dc33a9c61d14435ec6f3c19ebcb4b1a4548c3f34122",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7430571/"
+      }
+    }
+  ],
+  "id": "W-000244",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexandra C. Walls",
+          "openalex": "A5021781776",
+          "orcid": "0000-0002-9636-8330",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brooke Fiala",
+          "openalex": "A5016759610",
+          "orcid": "0000-0003-0148-5268",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexandra Schäfer",
+          "openalex": "A5113264782",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Samuel Wrenn",
+          "openalex": "A5019060363",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Minh N. Pham",
+          "openalex": "A5057486559",
+          "orcid": "0000-0002-2357-7721",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Murphy",
+          "openalex": "A5015415874",
+          "orcid": "0000-0002-8438-2653",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Longping V. Tse",
+          "openalex": "A5012365482",
+          "orcid": "0000-0001-7582-8396",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Laila Shehata",
+          "openalex": "A5064373839",
+          "orcid": "0000-0001-5037-9731",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Megan A. O’Connor",
+          "openalex": "A5071313563",
+          "orcid": "0000-0003-2127-5073",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA; Biological Physics Structure and Design Program, University of Washington, Seattle, WA 91895, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics Structure and Design Program, University of Washington, Seattle, WA 91895, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chengbo Chen",
+          "openalex": "A5077136733",
+          "orcid": "0000-0002-3459-3655",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mary Jane Navarro",
+          "openalex": "A5103920494",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Marcos C. Miranda",
+          "openalex": "A5003066216",
+          "orcid": "0000-0002-2839-6997",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Deleah Pettie",
+          "openalex": "A5032533606",
+          "orcid": "0000-0002-5477-7195",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rashmi Ravichandran",
+          "openalex": "A5031303255",
+          "orcid": "0000-0002-2630-7487",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "John C. Kraft",
+          "openalex": "A5036801059",
+          "orcid": "0000-0002-7931-7478",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cassandra Ogohara",
+          "openalex": "A5064571575",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kymab Ltd., Babraham Research Campus, Cambridge, UK",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Anne Palser",
+          "openalex": "A5087828697",
+          "orcid": "0000-0002-9476-8808",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kymab Ltd., Babraham Research Campus, Cambridge, UK",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Sara Chalk",
+          "openalex": "A5063110705",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kymab Ltd., Babraham Research Campus, Cambridge, UK",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "E-Chiang Lee",
+          "openalex": "A5051013441",
+          "orcid": "0000-0002-7849-3648",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA; Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Kathryn A. Guerriero",
+          "openalex": "A5026542714",
+          "orcid": "0000-0001-9028-7102",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Elizabeth Kepl",
+          "openalex": "A5008114191",
+          "orcid": "0000-0003-2835-003X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cameron M. Chow",
+          "openalex": "A5058600365",
+          "orcid": "0000-0001-5351-6412",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Claire Sydeman",
+          "openalex": "A5075418102",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edgar A. Hodge",
+          "openalex": "A5002771098",
+          "orcid": "0000-0003-1606-5821",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA; Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Brieann Brown",
+          "openalex": "A5020370972",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jim Fuller",
+          "openalex": "A5072343759",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Microbiology and Immunology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kenneth H. Dinnon",
+          "openalex": "A5068803211",
+          "orcid": "0000-0002-8942-1551",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lisa E. Gralinski",
+          "openalex": "A5041059730",
+          "orcid": "0000-0003-1374-8002",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sarah R. Leist",
+          "openalex": "A5052239466",
+          "orcid": "0000-0002-4989-5381",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kendra L. Gully",
+          "openalex": "A5019163857",
+          "orcid": "0000-0001-5742-2341",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA; Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Thomas B. Lewis",
+          "openalex": "A5076123281",
+          "orcid": "0009-0003-8463-6718",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Miklós Guttman",
+          "openalex": "A5026536762",
+          "orcid": "0000-0003-2419-1334",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Helen Y. Chu",
+          "openalex": "A5004611421",
+          "orcid": "0000-0001-8502-9600",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA; Biological Physics Structure and Design Program, University of Washington, Seattle, WA 91895, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics Structure and Design Program, University of Washington, Seattle, WA 91895, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kelly K. Lee",
+          "openalex": "A5049971572",
+          "orcid": "0000-0001-5577-9873",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA; Washington National Primate Research Center, Seattle, WA 98121, USA; Center for Innate Immunity and Immune Disease, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Innate Immunity and Immune Disease, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Deborah H. Fuller",
+          "openalex": "A5072931108",
+          "orcid": "0000-0001-7315-2441",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA; Department of Microbiology and Immunology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            },
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            },
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Microbiology and Immunology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ralph S. Baric",
+          "openalex": "A5017501496",
+          "orcid": "0000-0001-6827-8701",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kymab Ltd., Babraham Research Campus, Cambridge, UK; Department of Infectious Disease, Imperial College, London, UK",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Infectious Disease, Imperial College, London, UK",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kymab Ltd., Babraham Research Campus, Cambridge, UK",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Paul Kellam",
+          "openalex": "A5067304304",
+          "orcid": "0000-0003-3166-4734",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lauren Carter",
+          "openalex": "A5019745674",
+          "orcid": "0000-0002-9837-9068",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Marion Pepper",
+          "openalex": "A5037604494",
+          "orcid": "0000-0001-7278-0147",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Timothy P. Sheahan",
+          "openalex": "A5001891655",
+          "orcid": "0000-0001-9181-2183",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA. Electronic address: dveesler@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "David Veesler",
+          "openalex": "A5085406779",
+          "orcid": "0000-0002-6019-8675",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA; Institute for Protein Design, University of Washington, Seattle, WA 98195, USA. Electronic address: neil@ipd.uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Neil P. King",
+          "openalex": "A5016851342",
+          "orcid": "0000-0002-2978-4692",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:c396362ab7c4ea215572df0374baf9651e8150c443cf1e2357647db0f8a7a493",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000244",
+      "ids": {
+        "doi": "10.1016/j.cell.2020.10.043",
+        "openalex": "W3094860119",
+        "pmcid": "PMC7604136",
+        "pmid": "33160446"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1016/j.cell.2020.10.043"
+      },
+      "published": "2020-10-31",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Elicitation of Potent Neutralizing Antibody Responses by Designed Protein Nanoparticle Vaccines for SARS-CoV-2",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 1.0,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9954000115394592,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 detection and testing"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9936000108718872,
+          "subfield": "Immunology",
+          "topic": "Immunotherapy and Immune Responses"
+        }
+      ],
+      "venue": {
+        "issn_l": "0092-8674",
+        "name": "Cell",
+        "publisher": "Cell Press"
+      },
+      "version_link": null,
+      "year": 2020
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexandra C. Walls",
+          "openalex": "A5021781776",
+          "orcid": "0000-0002-9636-8330",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brooke Fiala",
+          "openalex": "A5016759610",
+          "orcid": "0000-0003-0148-5268",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexandra Schäfer",
+          "openalex": "A5113264782",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Samuel Wrenn",
+          "openalex": "A5019060363",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Minh N. Pham",
+          "openalex": "A5057486559",
+          "orcid": "0000-0002-2357-7721",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Murphy",
+          "openalex": "A5015415874",
+          "orcid": "0000-0002-8438-2653",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Longping V. Tse",
+          "openalex": "A5012365482",
+          "orcid": "0000-0001-7582-8396",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Laila Shehata",
+          "openalex": "A5064373839",
+          "orcid": "0000-0001-5037-9731",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Megan A. O’Connor",
+          "openalex": "A5071313563",
+          "orcid": "0000-0003-2127-5073",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics Structure and Design Program, University of Washington, Seattle, WA 91895, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics Structure and Design Program, University of Washington, Seattle, WA 9195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chengbo Chen",
+          "openalex": "A5077136733",
+          "orcid": "0000-0002-3459-3655",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mary Jane Navarro",
+          "openalex": "A5103920494",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Marcos C. Miranda",
+          "openalex": "A5003066216",
+          "orcid": "0000-0002-2839-6997",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Deleah Pettie",
+          "openalex": "A5032533606",
+          "orcid": "0000-0002-5477-7195",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rashmi Ravichandran",
+          "openalex": "A5031303255",
+          "orcid": "0000-0002-2630-7487",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "John C. Kraft",
+          "openalex": "A5036801059",
+          "orcid": "0000-0002-7931-7478",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cassandra Ogohara",
+          "openalex": "A5064571575",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kymab Ltd, Babraham Research Campus, Cambridge, United Kingdom",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Anne Palser",
+          "openalex": "A5087828697",
+          "orcid": "0000-0002-9476-8808",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kymab Ltd, Babraham Research Campus, Cambridge, United Kingdom",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Sara Chalk",
+          "openalex": "A5063110705",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kymab Ltd, Babraham Research Campus, Cambridge, United Kingdom",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "E-Chiang Lee",
+          "openalex": "A5051013441",
+          "orcid": "0000-0002-7849-3648",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Elizabeth Kepl",
+          "openalex": "A5008114191",
+          "orcid": "0000-0003-2835-003X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cameron M. Chow",
+          "openalex": "A5058600365",
+          "orcid": "0000-0001-5351-6412",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Claire Sydeman",
+          "openalex": "A5075418102",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edgar A. Hodge",
+          "openalex": "A5002771098",
+          "orcid": "0000-0003-1606-5821",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Brieann Brown",
+          "openalex": "A5020370972",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jim Fuller",
+          "openalex": "A5072343759",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Microbiology and Immunology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kenneth H. Dinnon",
+          "openalex": "A5068803211",
+          "orcid": "0000-0002-8942-1551",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lisa E. Gralinski",
+          "openalex": "A5041059730",
+          "orcid": "0000-0003-1374-8002",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sarah R. Leist",
+          "openalex": "A5052239466",
+          "orcid": "0000-0002-4989-5381",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kendra L. Gully",
+          "openalex": "A5019163857",
+          "orcid": "0000-0001-5742-2341",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Thomas B. Lewis",
+          "openalex": "A5076123281",
+          "orcid": "0009-0003-8463-6718",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Miklós Guttman",
+          "openalex": "A5026536762",
+          "orcid": "0000-0003-2419-1334",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Helen Y. Chu",
+          "openalex": "A5004611421",
+          "orcid": "0000-0001-8502-9600",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics Structure and Design Program, University of Washington, Seattle, WA 91895, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics Structure and Design Program, University of Washington, Seattle, WA 9195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kelly K. Lee",
+          "openalex": "A5049971572",
+          "orcid": "0000-0001-5577-9873",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Innate Immunity and Immune Disease, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Washington National Primate Research Center, Seattle, WA 98121, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Deborah H. Fuller",
+          "openalex": "A5072931108",
+          "orcid": "0000-0001-7315-2441",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            },
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Microbiology and Immunology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ralph S. Baric",
+          "openalex": "A5017501496",
+          "orcid": "0000-0001-6827-8701",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "Imperial College London",
+              "raw": "Department of Infectious Disease, Imperial College London, United Kingdom",
+              "ror": "041kmwe10"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kymab Ltd, Babraham Research Campus, Cambridge, United Kingdom",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Paul Kellam",
+          "openalex": "A5067304304",
+          "orcid": "0000-0003-3166-4734",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lauren Carter",
+          "openalex": "A5019745674",
+          "orcid": "0000-0002-9837-9068",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, University of Washington, Seattle, WA 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Marion Pepper",
+          "openalex": "A5037604494",
+          "orcid": "0000-0001-7278-0147",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of North Carolina at Chapel Hill",
+              "raw": "Department of Epidemiology, University of North Carolina at Chapel Hill, Chapel Hill, NC 27514, USA",
+              "ror": "0130frc33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Timothy P. Sheahan",
+          "openalex": "A5001891655",
+          "orcid": "0000-0001-9181-2183",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 9895, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "David Veesler",
+          "openalex": "A5085406779",
+          "orcid": "0000-0002-6019-8675",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Protein Design, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Neil P. King",
+          "openalex": "A5016851342",
+          "orcid": "0000-0002-2978-4692",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:bbf4d2ff8c92c66205801dc33a9c61d14435ec6f3c19ebcb4b1a4548c3f34122",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000584",
+      "ids": {
+        "doi": "10.1101/2020.08.11.247395",
+        "openalex": "W3048499980",
+        "pmcid": "PMC7430571",
+        "pmid": "32817941"
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nd",
+        "status": "green",
+        "url": "https://doi.org/10.1101/2020.08.11.247395"
+      },
+      "published": "2020-08-12",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Elicitation of potent neutralizing antibody responses by designed protein nanoparticle vaccines for SARS-CoV-2",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 1.0,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9959999918937683,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 detection and testing"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9901999831199646,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000244"
+      },
+      "year": 2020
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

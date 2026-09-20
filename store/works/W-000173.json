@@ -1,0 +1,303 @@
+{
+  "aliases": [],
+  "canonical": "R-000173",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000173"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000173"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000173"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000173"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000173"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000173"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000173"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:5effaf4710f8",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000173",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "The authors are grateful to Priska von Haller and the University of Washington Proteomics Resource for their assistance with data acquisition (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000173",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:4406cb67a0f9d7526d6d52d0040c6fc476069dc5f288405edddd66ff14cac8bb",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5627587/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000173",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2735553184"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "The authors are grateful to Priska von Haller and the University of Washington Proteomics Resource for their assistance with data acquisition (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000173",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:4406cb67a0f9d7526d6d52d0040c6fc476069dc5f288405edddd66ff14cac8bb",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5627587/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Digests were analyzed at the University of Washington Proteomics Resource using nanoflow RP-HPLC on an Orbitrap Fusion.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000173",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "methods",
+      "source": {
+        "cache": "sha256:4406cb67a0f9d7526d6d52d0040c6fc476069dc5f288405edddd66ff14cac8bb",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5627587/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "The authors are grateful to Priska von Haller and the University of Washington Proteomics Resource for their assistance with data acquisition (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000173",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:4406cb67a0f9d7526d6d52d0040c6fc476069dc5f288405edddd66ff14cac8bb",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5627587/"
+      }
+    }
+  ],
+  "id": "W-000173",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Genetics, Inc., Bothell, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Scott M. Henry",
+          "openalex": "A5053512222",
+          "orcid": "0000-0002-8752-1743",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Genetics, Inc., Bothell, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Elissa Sutlief",
+          "openalex": "A5089899337",
+          "orcid": "0000-0001-5174-9060",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Genetics, Inc., Bothell, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Oscar Salas‐Solano",
+          "openalex": "A5078002121",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Genetics, Inc., Bothell, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "John Valliere‐Douglass",
+          "openalex": "A5039115341",
+          "orcid": "0000-0002-1278-7416",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:4406cb67a0f9d7526d6d52d0040c6fc476069dc5f288405edddd66ff14cac8bb",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000173",
+      "ids": {
+        "doi": "10.1080/19420862.2017.1349586",
+        "openalex": "W2735553184",
+        "pmcid": "PMC5627587",
+        "pmid": "28708446"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1080/19420862.2017.1349586"
+      },
+      "published": "2017-07-14",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "ELISA reagent coverage evaluation by affinity purification tandem mass spectrometry",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9995999932289124,
+          "subfield": "Molecular Biology",
+          "topic": "Protein purification and stability"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9983999729156494,
+          "subfield": "Molecular Biology",
+          "topic": "Viral Infectious Diseases and Gene Expression in Insects"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9983000159263611,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
+        }
+      ],
+      "venue": {
+        "issn_l": "1942-0862",
+        "name": "mAbs",
+        "publisher": "Landes Bioscience"
+      },
+      "version_link": null,
+      "year": 2017
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

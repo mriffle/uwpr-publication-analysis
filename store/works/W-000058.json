@@ -1,0 +1,225 @@
+{
+  "aliases": [],
+  "canonical": "R-000058",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000058"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000058"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000058"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000058"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:9d45515603f4",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000058",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported by the National Institutes of Health [grant numbers GM32165], University of Washington’s Proteomics Resource [grant number UWPR95794], University of Washington’s Center for Ecogenetics and Environmental Health [grant number P30ES07033] and University of Washington’s Environm…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000058",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:f21fe6b0cb013a1386ea4f1550c6202902dab79ed7ec4dff5b096e326bf69949",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3079806/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported by the National Institutes of Health [grant numbers GM32165], University of Washington’s Proteomics Resource [grant number UWPR95794], University of Washington’s Center for Ecogenetics and Environmental Health [grant number P30ES07033] and University of Washington’s Environm…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000058",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:f21fe6b0cb013a1386ea4f1550c6202902dab79ed7ec4dff5b096e326bf69949",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3079806/"
+      }
+    }
+  ],
+  "id": "W-000058",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicinal Chemistry and Environmental and Occupational Health Sciences, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brendan D. Stamper",
+          "openalex": "A5001078818",
+          "orcid": "0000-0002-0343-9436",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicinal Chemistry and Environmental and Occupational Health Sciences, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Isaac Mohar",
+          "openalex": "A5042110000",
+          "orcid": "0000-0003-2527-6524",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicinal Chemistry and Environmental and Occupational Health Sciences, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Terrance J. Kavanagh",
+          "openalex": "A5023996574",
+          "orcid": "0000-0002-7213-103X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicinal Chemistry and Environmental and Occupational Health Sciences, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Sidney D. Nelson",
+          "openalex": "A5110269316",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:f21fe6b0cb013a1386ea4f1550c6202902dab79ed7ec4dff5b096e326bf69949",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000058",
+      "ids": {
+        "doi": "10.1021/tx1004198",
+        "openalex": "W2071276901",
+        "pmcid": "PMC3079806",
+        "pmid": "21329376"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3079806"
+      },
+      "published": "2011-02-18",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Proteomic Analysis of Acetaminophen-Induced Changes in Mitochondrial Protein Expression Using Spectral Counting",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998000264167786,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Pharmacology, Toxicology and Pharmaceutics",
+          "score": 0.9994000196456909,
+          "subfield": "Pharmacology",
+          "topic": "Drug-Induced Hepatotoxicity and Protection"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Pharmacology, Toxicology and Pharmaceutics",
+          "score": 0.9976000189781189,
+          "subfield": "Pharmacology",
+          "topic": "Pharmacogenetics and Drug Metabolism"
+        }
+      ],
+      "venue": {
+        "issn_l": "0893-228X",
+        "name": "Chemical Research in Toxicology",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2011
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

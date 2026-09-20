@@ -1,0 +1,361 @@
+{
+  "aliases": [],
+  "canonical": "R-000124",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000124"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000124"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000124"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000124"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000124"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:9a4dc086e59e",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000124",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "It was also supported in part by the University of Washington’s Proteomics Resource (UWPR95794), a NIH infrastructure grant to the Yerkes National Primate Research Center (P51 OD011132), the Emory UDALL Center of Excellence for Parkinson’s Disease (P50 NS071669), and the National Natural Science Fo…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000124",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:861a7afc2749b9f14f970a290bc31dd87bd7d711e6455a7ae8e54465ca7e0cd1",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4760626/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000124",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W1972257840"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000124",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1016/j.bbapap.2015.01.007"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "It was also supported in part by the University of Washington’s Proteomics Resource (UWPR95794), a NIH infrastructure grant to the Yerkes National Primate Research Center (P51 OD011132), the Emory UDALL Center of Excellence for Parkinson’s Disease (P50 NS071669), and the National Natural Science Fo…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000124",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:861a7afc2749b9f14f970a290bc31dd87bd7d711e6455a7ae8e54465ca7e0cd1",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4760626/"
+      }
+    }
+  ],
+  "id": "W-000124",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA; School of Life Sciences, Fujian Agricultural and Forestry University, Fuzhou, Fujian, China",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "School of Life Sciences, Fujian Agricultural and Forestry University, Fuzhou, Fujian, China",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Xiangmin Lin",
+          "openalex": "A5091038165",
+          "orcid": "0000-0003-2216-0198",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Min Shi",
+          "openalex": "A5016122096",
+          "orcid": "0000-0002-6901-2558",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Emory University",
+              "raw": "Yerkes National Primate Research Center, Emory University, Atlanta, GA, USA",
+              "ror": "03czfpz43"
+            }
+          ],
+          "corresponding": false,
+          "name": "J. Gunasingh Masilamoni",
+          "openalex": "A5014847443",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Romel Dator",
+          "openalex": "A5062925208",
+          "orcid": "0000-0002-3451-6932",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "James Movius",
+          "openalex": "A5059990301",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Patrick Aro",
+          "openalex": "A5089163938",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Emory University",
+              "raw": "Yerkes National Primate Research Center, Emory University, Atlanta, GA, USA; Department of Neurology, Emory University, Atlanta, GA, USA",
+              "ror": "03czfpz43"
+            },
+            {
+              "country": "US",
+              "name": "Emory University",
+              "raw": "Department of Neurology, Emory University, Atlanta, GA, USA",
+              "ror": "03czfpz43"
+            },
+            {
+              "country": "US",
+              "name": "Emory University",
+              "raw": "Yerkes National Primate Research Center, Emory University, Atlanta, GA, USA",
+              "ror": "03czfpz43"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yoland Smith",
+          "openalex": "A5051289855",
+          "orcid": "0000-0002-8700-878X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA. Electronic address: zhangj@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jing Zhang",
+          "openalex": "A5100345450",
+          "orcid": "0000-0002-9224-6299",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:861a7afc2749b9f14f970a290bc31dd87bd7d711e6455a7ae8e54465ca7e0cd1",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000124",
+      "ids": {
+        "doi": "10.1016/j.bbapap.2015.01.007",
+        "openalex": "W1972257840",
+        "pmcid": "PMC4760626",
+        "pmid": "25617661"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4760626"
+      },
+      "published": "2015-01-22",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Proteomic profiling in MPTP monkey model for early Parkinson disease biomarker discovery",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9987000226974487,
+          "subfield": "Neurology",
+          "topic": "Parkinson's Disease Mechanisms and Treatments"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9944999814033508,
+          "subfield": "Cell Biology",
+          "topic": "Cellular transport and secretion"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9840999841690063,
+          "subfield": "Cell Biology",
+          "topic": "Biotin and Related Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "1570-9639",
+        "name": "Biochimica et Biophysica Acta (BBA) - Proteins and Proteomics",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2015
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,559 @@
+{
+  "aliases": [
+    "W-000735"
+  ],
+  "canonical": "R-000329",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000329"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000329"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000735"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2026:67f7c7feeec1",
+        "page": "2026"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000329",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000735",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.21203%2Frs.3.rs-4693768%2Fv2"
+      }
+    }
+  ],
+  "id": "W-000329",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Department of Clinical Microbiology, Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            },
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Marie B. A. Peters",
+          "openalex": "A5123397102",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Department of Clinical Microbiology, Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            },
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard Lindqvist",
+          "openalex": "A5072467906",
+          "orcid": "0000-0001-9798-0129",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Chemistry for Life Sciences, Uppsala University, Uppsala, Sweden",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Eszter Kassa",
+          "openalex": "A5042276205",
+          "orcid": "0000-0002-4086-6373",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Department of Medical and Translational Biology, SciLifeLab, Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            },
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wai‐Lok Yau",
+          "openalex": "A5091569935",
+          "orcid": "0009-0007-0386-3919",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Department of Medical Biochemistry and Biophysics, Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Pallabi Sengupta",
+          "openalex": "A5060364973",
+          "orcid": "0000-0002-1413-9412",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Institute of Virology, Medical University of Innsbruck, Innsbruck, Austria",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Isabell Niedermoser",
+          "openalex": "A5057687038",
+          "orcid": "0000-0002-5301-3361",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Institute of Virology, Medical University of Innsbruck, Innsbruck, Austria",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Gisa Gerold",
+          "openalex": "A5011303680",
+          "orcid": "0000-0002-1326-5038",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Department of Medical Biochemistry and Biophysics, Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            },
+            {
+              "country": "SE",
+              "name": "Science for Life Laboratory",
+              "raw": "Science for Life Laboratory, Umeå University, Umeå, Sweden",
+              "ror": "04ev03g22"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nasim Sabouri",
+          "openalex": "A5054275086",
+          "orcid": "0000-0002-4541-7702",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Chemistry for Life Sciences, Uppsala University, Uppsala, Sweden",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Ylva Ivarsson",
+          "openalex": "A5067140972",
+          "orcid": "0000-0002-7081-3846",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Department of Medical and Translational Biology, SciLifeLab, Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            },
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard Lundmark",
+          "openalex": "A5016734760",
+          "orcid": "0000-0001-9104-724X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Department of Clinical Microbiology, Umeå University, Umeå, Sweden. anna.overby@umu.se",
+              "ror": "05kb8h459"
+            },
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden. anna.overby@umu.se",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": true,
+          "name": "Anna K. Överby",
+          "openalex": "A5029709232",
+          "orcid": "0000-0001-6553-0940",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:ef8eeaa45cb0e1baa591b531c091c1882cc921c59aa14aeab3c0d39e40a8c7c3",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000329",
+      "ids": {
+        "doi": "10.1038/s41467-026-71449-1",
+        "openalex": "W7152076691",
+        "pmcid": "PMC13068965",
+        "pmid": "41951628"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1038/s41467-026-71449-1"
+      },
+      "published": "2026-04-08",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Proviral NUP153 binding to viral proteins and RNA regulates structural–nonstructural protein ratios in orthoflavivirus infection",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.7300999760627747,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Viral Infections and Immunology Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.04639999940991402,
+          "subfield": "Immunology",
+          "topic": "interferon and immune responses"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.0414000004529953,
+          "subfield": "Agronomy and Crop Science",
+          "topic": "Animal Disease Management and Epidemiology"
+        }
+      ],
+      "venue": {
+        "issn_l": "2041-1723",
+        "name": "Nature Communications",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2026
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Anna K. Överby",
+          "openalex": "A5029709232",
+          "orcid": "0000-0001-6553-0940",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Umeå university",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Marie Berit Akprioro Peters",
+          "openalex": "A5058662155",
+          "orcid": "0000-0001-8994-0864",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard Lindqvist",
+          "openalex": "A5064721733",
+          "orcid": "0000-0002-6103-8286",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Uppsala University",
+              "raw": "Uppsala University",
+              "ror": "048a87296"
+            }
+          ],
+          "corresponding": false,
+          "name": "Eszter Kassa",
+          "openalex": "A5042276205",
+          "orcid": "0000-0002-4086-6373",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wai‐Lok Yau",
+          "openalex": "A5091569935",
+          "orcid": "0009-0007-0386-3919",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Pallabi Sengupta",
+          "openalex": "A5060364973",
+          "orcid": "0000-0002-1413-9412",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Medical University Innsbruck",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Isabell Niedermoser",
+          "openalex": "A5057687038",
+          "orcid": "0000-0002-5301-3361",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Medical University Innsbruck",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Gisa Gerold",
+          "openalex": "A5011303680",
+          "orcid": "0000-0002-1326-5038",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nasim Sabouri",
+          "openalex": "A5054275086",
+          "orcid": "0000-0002-4541-7702",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Uppsala University",
+              "raw": "Uppsala University",
+              "ror": "048a87296"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ylva Ivarsson",
+          "openalex": "A5067140972",
+          "orcid": "0000-0002-7081-3846",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "raw": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "corresponding": false,
+          "name": "Richard Lundmark",
+          "openalex": "A5016734760",
+          "orcid": "0000-0001-9104-724X",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000735",
+      "ids": {
+        "doi": "10.21203/rs.3.rs-4693768/v2",
+        "openalex": "W4413812605",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "https://doi.org/10.21203/rs.3.rs-4693768/v2"
+      },
+      "published": "2025-08-29",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "The proviral factor NUP153 binds viral proteins and RNA to modulate protein translation at viral amplification site early in flavivirus infection",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9922999739646912,
+          "subfield": "Public Health, Environmental and Occupational Health",
+          "topic": "Mosquito-borne diseases and control"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "Research Square",
+        "publisher": null
+      },
+      "version_link": {
+        "method": "override",
+        "to": "R-000329"
+      },
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

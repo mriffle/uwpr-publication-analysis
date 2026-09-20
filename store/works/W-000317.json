@@ -1,0 +1,267 @@
+{
+  "aliases": [],
+  "canonical": "R-000317",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000317"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2025:1674235aea63",
+        "page": "2025"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000317",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2025/"
+      }
+    }
+  ],
+  "id": "W-000317",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Missouri",
+              "raw": "Center for Human Nutrition, Washington University, St. Louis, MO, USA; Departments of Medicine and Nutrition & Exercise Physiology, University of Missouri School of Medicine, Columbia, MO, USA",
+              "ror": "02ymw8z06"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alan Fappi",
+          "openalex": "A5028574382",
+          "orcid": "0000-0003-4015-9262",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Human Nutrition, Washington University, St. Louis, MO, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Bruce W. Patterson",
+          "openalex": "A5029941147",
+          "orcid": "0000-0001-9261-0233",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Cardiovascular Research, Washington University, St. Louis, MO, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Kendal H Burks",
+          "openalex": "A5111016118",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Division of Gastroenterology in the Department of Medicine, Washington University, St. Louis, MO, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Nicholas O. Davidson",
+          "openalex": "A5044242717",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Division of Metabolism, Endocrinology and Nutrition and Diabetes Institute at the University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Division of Metabolism, Endocrinology and Nutrition and Diabetes Institute at the University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jenny E. Kanter",
+          "openalex": "A5002224107",
+          "orcid": "0000-0003-3212-772X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Division of Metabolism, Endocrinology and Nutrition and Diabetes Institute at the University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "New York University",
+              "raw": "New York University School of Medicine, New York, NY, USA",
+              "ror": "0190ak572"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edward A Fisher",
+          "openalex": "A5110884822",
+          "orcid": "0000-0001-9928-9905",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "New York University",
+              "raw": "New York University School of Medicine, New York, NY, USA",
+              "ror": "0190ak572"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ira J. Goldberg",
+          "openalex": "A5066507748",
+          "orcid": "0000-0002-8701-2201",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Washington University in St. Louis",
+              "raw": "Center for Cardiovascular Research, Washington University, St. Louis, MO, USA; Department of Genetics at Washington University in St. Louis School of Medicine, Washington University, St. Louis, MO, USA. Electronic address: nstitziel@wustl.edu",
+              "ror": "01yc7t268"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nathan O. Stitziel",
+          "openalex": "A5068755630",
+          "orcid": "0000-0002-4963-8211",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Missouri",
+              "raw": "Center for Human Nutrition, Washington University, St. Louis, MO, USA; Departments of Medicine and Nutrition & Exercise Physiology, University of Missouri School of Medicine, Columbia, MO, USA. Electronic address: b.mittendorfer@missouri.edu",
+              "ror": "02ymw8z06"
+            }
+          ],
+          "corresponding": false,
+          "name": "Bettina Mittendorfer",
+          "openalex": "A5013729922",
+          "orcid": "0000-0003-0049-2677",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:032ed7288579c7e4b041829a12d9434f0845e5acd69aeba42dc1da7444f939f4",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000317",
+      "ids": {
+        "doi": "10.1016/j.xcrm.2025.102152",
+        "openalex": "W4410859262",
+        "pmcid": "PMC12208341",
+        "pmid": "40446802"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "gold",
+        "url": "https://doi.org/10.1016/j.xcrm.2025.102152"
+      },
+      "published": "2025-05-29",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Effect of complete, lifelong ANGPTL3 deficiency on triglyceride-rich lipoprotein kinetics",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 1.0,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Lipid metabolism and disorders"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9359999895095825,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        }
+      ],
+      "venue": {
+        "issn_l": "2666-3791",
+        "name": "Cell Reports Medicine",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

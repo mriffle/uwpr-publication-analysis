@@ -1,0 +1,684 @@
+{
+  "aliases": [
+    "W-000732"
+  ],
+  "canonical": "R-000294",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000294"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000294"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000732"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000294"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000294"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000732"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000294"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000294"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000732"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2023:7d713dced9d2",
+        "page": "2023"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000294",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2023/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "We thank Dr. Miklos Guttman and Rick Harkewicz for assistance with HDX-MS instrumentation, and the University of Washington’s Proteomics Resource for technical support (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000294",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:56d3d5336056767b919ac39761818dd70aa0ab94f4aa23b7a5ff92fbfa1f725b",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11041648/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000294",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4387372919"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000732",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4381167697"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "We thank Dr. Miklos Guttman and Rick Harkewicz for assistance with HDX-MS instrumentation, and the University of Washington’s Proteomics Resource for technical support (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000294",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:56d3d5336056767b919ac39761818dd70aa0ab94f4aa23b7a5ff92fbfa1f725b",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11041648/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000732",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.21203%2Frs.3.rs-3059858%2Fv1"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000732",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.21203%2Frs.3.rs-3059858%2Fv1"
+      }
+    }
+  ],
+  "id": "W-000294",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edgar A. Hodge",
+          "openalex": "A5002771098",
+          "orcid": "0000-0003-1606-5821",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Molecular Biophysics Unit, Indian Institute of Science, Bangalore, Karnataka 560012 India",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Molecular Biophysics Unit, Indian Institute of Science, Bangalore, Karnataka, 560012, India",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Ananya Chatterjee",
+          "openalex": "A5101634706",
+          "orcid": "0000-0001-5378-4193",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA 98195 USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chengbo Chen",
+          "openalex": "A5077136733",
+          "orcid": "0000-0002-3459-3655",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gajendra S. Naika",
+          "openalex": "A5037642013",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mint Laohajaratsang",
+          "openalex": "A5070955797",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Infectious Diseases Research, Indian Institute of Science, Bangalore, Karnataka 560012 India",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Molecular Biophysics Unit, Indian Institute of Science, Bangalore, Karnataka 560012 India",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Molecular Biophysics Unit, Indian Institute of Science, Bangalore, Karnataka, 560012, India",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Vidya Mangala Prasad",
+          "openalex": "A5084786754",
+          "orcid": "0000-0002-4215-5700",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA 98195 USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Kelly K. Lee",
+          "openalex": "A5049971572",
+          "orcid": "0000-0001-5577-9873",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:56d3d5336056767b919ac39761818dd70aa0ab94f4aa23b7a5ff92fbfa1f725b",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000294",
+      "ids": {
+        "doi": "10.1038/s44298-023-00002-4",
+        "openalex": "W4387372919",
+        "pmcid": "PMC11041648",
+        "pmid": "38665238"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1038/s44298-023-00002-4"
+      },
+      "published": "2023-10-05",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "An HIV-1 broadly neutralizing antibody overcomes structural and dynamic variation through highly focused epitope targeting",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 1.0,
+          "subfield": "Virology",
+          "topic": "HIV Research and Treatment"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9991000294685364,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9944999814033508,
+          "subfield": "Ecology",
+          "topic": "Bacteriophages and microbial interactions"
+        }
+      ],
+      "venue": {
+        "issn_l": "2948-1767",
+        "name": "npj Viruses",
+        "publisher": "Springer Science+Business Media"
+      },
+      "version_link": null,
+      "year": 2023
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": ". Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edgar A. Hodge",
+          "openalex": "A5002771098",
+          "orcid": "0000-0003-1606-5821",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Indian Institute of Science",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": ". Molecular Biophysics Unit, Indian Institute of Science, Bangalore, Karnataka 560012, India",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Ananya Chatterjee",
+          "openalex": "A5101634706",
+          "orcid": "0000-0001-5378-4193",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": ". Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": ". Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chengbo Chen",
+          "openalex": "A5077136733",
+          "orcid": "0000-0002-3459-3655",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": ". Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gajendra S. Naika",
+          "openalex": "A5037642013",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": ". Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mint Laohajaratsang",
+          "openalex": "A5070955797",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Indian Institute of Science",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": ". Center for Infectious Diseases Research, Indian Institute of Science, Bangalore, Karnataka 560012, India",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": ". Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": ". Molecular Biophysics Unit, Indian Institute of Science, Bangalore, Karnataka 560012, India",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Vidya Mangala Prasad",
+          "openalex": "A5084786754",
+          "orcid": "0000-0002-4215-5700",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": ". Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": ". Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kelly K. Lee",
+          "openalex": "A5049971572",
+          "orcid": "0000-0001-5577-9873",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000732",
+      "ids": {
+        "doi": "10.21203/rs.3.rs-3059858/v1",
+        "openalex": "W4381167697",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "http://dx.doi.org/10.21203/rs.3.rs-3059858/v1"
+      },
+      "published": "2023-06-19",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "An HIV-1 Broadly Neutralizing Antibody Overcomes Structural and Dynamic Variation through Highly Focused Epitope Targeting",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 1.0,
+          "subfield": "Virology",
+          "topic": "HIV Research and Treatment"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9959999918937683,
+          "subfield": "Epidemiology",
+          "topic": "Cytomegalovirus and herpesvirus research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9952999949455261,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "Research Square",
+        "publisher": null
+      },
+      "version_link": {
+        "method": "title_author",
+        "to": "R-000294"
+      },
+      "year": 2023
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

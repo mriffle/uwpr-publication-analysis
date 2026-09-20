@@ -1,0 +1,360 @@
+{
+  "aliases": [],
+  "canonical": "R-000064",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000064"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000064"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000064"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000064"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000064"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000064"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000064"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:5fa7246f0d79",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000064",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000064",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W1988749932"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000064",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1007%2Fs12307-010-0046-3"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000064",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1007%2Fs12307-010-0046-3"
+      }
+    }
+  ],
+  "id": "W-000064",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Cancer Biology, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            },
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Neurological Surgery, Vanderbilt University Medical Center, 1161 21st Ave South, T4224 Medical Center North, Nashville, TN, 37232-2380, USA",
+              "ror": "05dq2gs74"
+            },
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Vanderbilt-Ingram Cancer Center, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": true,
+          "name": "Baogang Xu",
+          "openalex": "A5109261405",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Cancer Biology, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wenwei Yan",
+          "openalex": "A5103661271",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Cancer Biology, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Bojana Jovanović",
+          "openalex": "A5031509981",
+          "orcid": "0000-0002-6971-4525",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Cancer Biology, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aubie Shaw",
+          "openalex": "A5061352936",
+          "orcid": "0000-0002-5298-801X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Biostatistics, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Qi An",
+          "openalex": "A5100774642",
+          "orcid": "0000-0002-6444-7157",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Cancer Biology, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Anna Chytil",
+          "openalex": "A5035885878",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Microbiology and Immunology, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew J. Link",
+          "openalex": "A5055555857",
+          "orcid": "0000-0003-0885-5786",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Department of Cancer Biology, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            },
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "raw": "Vanderbilt-Ingram Cancer Center, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "corresponding": false,
+          "name": "Harold L. Moses",
+          "openalex": "A5045030798",
+          "orcid": "0000-0002-0116-0140",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000064",
+      "ids": {
+        "doi": "10.1007/s12307-010-0046-3",
+        "openalex": "W1988749932",
+        "pmcid": "PMC3047629",
+        "pmid": "21505562"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1007/s12307-010-0046-3"
+      },
+      "published": "2010-04-12",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Microdialysis Combined with Proteomics for Protein Identification in Breast Tumor Microenvironment In Vivo",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.984499990940094,
+          "subfield": "Rheumatology",
+          "topic": "Bone and Dental Protein Studies"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.005400000140070915,
+          "subfield": "Oncology",
+          "topic": "Cancer Cells and Metastasis"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0013000000035390258,
+          "subfield": "Biotechnology",
+          "topic": "Cancer Research and Treatments"
+        }
+      ],
+      "venue": {
+        "issn_l": "1875-2284",
+        "name": "Cancer Microenvironment",
+        "publisher": "Springer Science+Business Media"
+      },
+      "version_link": null,
+      "year": 2010
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

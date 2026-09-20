@@ -1,0 +1,547 @@
+{
+  "aliases": [
+    "W-000745"
+  ],
+  "canonical": "R-000237",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000237"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000237"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000237"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000745"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000237"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:faf216d8a7bc",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000237",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "We thank P. von Haller at the University of Washington Proteomics Resource (UWPR) and M. Sadilek for mass spectrometry assistance.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000237",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:814c098770f6e1dab60fb6898339880912c298f109202860c8e11999597e8b8c",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7700871/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000745",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.26434%2Fchemrxiv.12148524"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "We thank P. von Haller at the University of Washington Proteomics Resource (UWPR) and M. Sadilek for mass spectrometry assistance.",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000237",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:814c098770f6e1dab60fb6898339880912c298f109202860c8e11999597e8b8c",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7700871/"
+      }
+    }
+  ],
+  "id": "W-000237",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Chemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Linglan Fang",
+          "openalex": "A5003432548",
+          "orcid": "0000-0003-2637-090X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stony Brook University",
+              "raw": "Stony Brook University , , , ,",
+              "ror": "05qghxh33"
+            },
+            {
+              "country": "US",
+              "name": "Stony Brook University",
+              "raw": "Department of Pharmacological Sciences, Stony Brook University, Stony Brook, New York 11794-8651, United States",
+              "ror": "05qghxh33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jessica Vilas-Boas",
+          "openalex": "A5007812813",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Chemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sujata Chakraborty",
+          "openalex": "A5032347056",
+          "orcid": "0000-0003-0080-3180",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Chemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zachary E. Potter",
+          "openalex": "A5067945060",
+          "orcid": "0000-0002-9063-7923",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Chemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ames C. Register",
+          "openalex": "A5060345055",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stony Brook University",
+              "raw": "Stony Brook University , , , ,",
+              "ror": "05qghxh33"
+            },
+            {
+              "country": "US",
+              "name": "Stony Brook University",
+              "raw": "Department of Pharmacological Sciences, Stony Brook University, Stony Brook, New York 11794-8651, United States",
+              "ror": "05qghxh33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Markus A. Seeliger",
+          "openalex": "A5008590226",
+          "orcid": "0000-0003-0990-1756",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Chemistry  and  Biochemistry, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Dustin J. Maly",
+          "openalex": "A5054397869",
+          "orcid": "0000-0003-0094-0177",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:814c098770f6e1dab60fb6898339880912c298f109202860c8e11999597e8b8c",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000237",
+      "ids": {
+        "doi": "10.1021/acschembio.0c00429",
+        "openalex": "W3029756893",
+        "pmcid": "PMC7700871",
+        "pmid": "32479050"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "other-oa",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1021/acschembio.0c00429"
+      },
+      "published": "2020-06-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "How ATP-Competitive Inhibitors Allosterically Modulate Tyrosine Kinases That Contain a Src-like Regulatory Architecture",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9997000098228455,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Kinase Regulation and GTPase Signaling"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.9909999966621399,
+          "subfield": "Computational Theory and Mathematics",
+          "topic": "Computational Drug Discovery Methods"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9909999966621399,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
+        }
+      ],
+      "venue": {
+        "issn_l": "1554-8929",
+        "name": "ACS Chemical Biology",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2020
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Linglan Fang",
+          "openalex": "A5003432548",
+          "orcid": "0000-0003-2637-090X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stony Brook University",
+              "raw": "Department of Pharmacological Sciences , Stony Brook University , Stony Brook , NY 11794-8651 , USA",
+              "ror": "05qghxh33"
+            },
+            {
+              "country": "US",
+              "name": "Stony Brook University",
+              "raw": "Department of Pharmacological Sciences, Stony Brook University, Stony Brook, NY 11794-8651, USA",
+              "ror": "05qghxh33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jessica Vilas-Boas",
+          "openalex": "A5007812813",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry and § Biochemistry , University of Washington , Seattle , Washington 98125 , USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry and § Biochemistry, University of Washington, Seattle, Washington 98125, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "sujata chakraborty",
+          "openalex": "A5014219228",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry and § Biochemistry , University of Washington , Seattle , Washington 98125 , USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry and § Biochemistry, University of Washington, Seattle, Washington 98125, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "zachary potter",
+          "openalex": "A5082101583",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry and § Biochemistry , University of Washington , Seattle , Washington 98125 , USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry and § Biochemistry, University of Washington, Seattle, Washington 98125, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ames C. Register",
+          "openalex": "A5060345055",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stony Brook University",
+              "raw": "Department of Pharmacological Sciences , Stony Brook University , Stony Brook , NY 11794-8651 , USA",
+              "ror": "05qghxh33"
+            },
+            {
+              "country": "US",
+              "name": "Stony Brook University",
+              "raw": "Department of Pharmacological Sciences, Stony Brook University, Stony Brook, NY 11794-8651, USA",
+              "ror": "05qghxh33"
+            }
+          ],
+          "corresponding": false,
+          "name": "Markus A. Seeliger",
+          "openalex": "A5008590226",
+          "orcid": "0000-0003-0990-1756",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry and § Biochemistry , University of Washington , Seattle , Washington 98125 , USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry and § Biochemistry, University of Washington, Seattle, Washington 98125, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Dustin J. Maly",
+          "openalex": "A5054397869",
+          "orcid": "0000-0003-0094-0177",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000745",
+      "ids": {
+        "doi": "10.26434/chemrxiv.12148524",
+        "openalex": "W4241010438",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "green",
+        "url": "https://doi.org/10.26434/chemrxiv.12148524"
+      },
+      "published": "2020-04-21",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "How ATP-Competitive Inhibitors Allosterically Modulate Tyrosine Kinases That Contain a Src-like Regulatory Architecture",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9900000095367432,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Kinase Regulation and GTPase Signaling"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.9667999744415283,
+          "subfield": "Computational Theory and Mathematics",
+          "topic": "Computational Drug Discovery Methods"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9147999882698059,
+          "subfield": "Molecular Biology",
+          "topic": "PI3K/AKT/mTOR signaling in cancer"
+        }
+      ],
+      "venue": {
+        "issn_l": "2573-2293",
+        "name": "ChemRxiv",
+        "publisher": null
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000237"
+      },
+      "year": 2020
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

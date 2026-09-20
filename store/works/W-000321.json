@@ -1,0 +1,443 @@
+{
+  "aliases": [
+    "W-000611"
+  ],
+  "canonical": "R-000321",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000321"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000321"
+    },
+    {
+      "channel": "F",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000321"
+    },
+    {
+      "channel": "F",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000611"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000321"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000611"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2025:e8f5543f2294",
+        "page": "2025"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000321",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2025/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "University of Washington Proteomics Resource",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000321",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4412531991"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "University of Washington Proteomics Resource, Seattle, Washington, USA, 98195",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000321",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": "sha256:9e72d4e421b351eed8054ccd15c05153f20865bc81f8ae82d7324db20db744f4",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13220766/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "University of Washington Proteomics Resource, Seattle, Washington, USA",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000611",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4410266701"
+      }
+    }
+  ],
+  "id": "W-000321",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Proteomics Resource",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Michael R. Hoopmann",
+          "openalex": "A5018903678",
+          "orcid": "0000-0001-7029-7792",
+          "staff": "hoopmann"
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher D. McGann",
+          "openalex": "A5023198924",
+          "orcid": "0000-0001-9379-1910",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Proteomic and Genomic Technologies",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Genentech, Inc",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Proteomic and Genomic Technologies, Genentech, Inc., South San Francisco, California 94080, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher M. Rose",
+          "openalex": "A5074420612",
+          "orcid": "0000-0002-7502-3368",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Brotman Baty Institute",
+              "raw": "Brotman Baty Institute for Precision Medicine",
+              "ror": "03jxvbk42"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Genome Sciences",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Institute of Stem Cell and Regenerative Medicine",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Brotman Baty Institute",
+              "raw": "Brotman Baty Institute for Precision Medicine, Seattle, Washington 98195, United States",
+              "ror": "03jxvbk42"
+            }
+          ],
+          "corresponding": true,
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:9e72d4e421b351eed8054ccd15c05153f20865bc81f8ae82d7324db20db744f4",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000321",
+      "ids": {
+        "doi": "10.1021/jasms.5c00141",
+        "openalex": "W4412531991",
+        "pmcid": "PMC13220766",
+        "pmid": "40690708"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40690708/"
+      },
+      "published": "2025-07-21",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Nova: A Library for Rapid Development of Mass Spectrometry Software Applications",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9991000294685364,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9986000061035156,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9918000102043152,
+          "subfield": "Ecology",
+          "topic": "Isotope Analysis in Ecology"
+        }
+      ],
+      "venue": {
+        "issn_l": "1044-0305",
+        "name": "Journal of the American Society for Mass Spectrometry",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2025
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Proteomics Resource, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael R. Hoopmann",
+          "openalex": "A5018903678",
+          "orcid": "0000-0001-7029-7792",
+          "staff": "hoopmann"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher D. McGann",
+          "openalex": "A5023198924",
+          "orcid": "0000-0001-9379-1910",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Proteomic and Genomic Technologies, Genentech, Inc., South San Francisco, California, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher M. Rose",
+          "openalex": "A5074420612",
+          "orcid": "0000-0002-7502-3368",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Brotman Baty Institute",
+              "raw": "Brotman Baty Institute for Precision Medicine, Seattle, Washington, USA",
+              "ror": "03jxvbk42"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute of Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000611",
+      "ids": {
+        "doi": "10.1101/2025.05.06.652494",
+        "openalex": "W4410266701",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc",
+        "status": "green",
+        "url": "https://doi.org/10.1101/2025.05.06.652494"
+      },
+      "published": "2025-05-10",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Nova: A library for rapid development of mass spectrometry software applications",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.6984000205993652,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.6502000093460083,
+          "subfield": "Ecology",
+          "topic": "Isotope Analysis in Ecology"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000321"
+      },
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

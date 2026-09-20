@@ -1,0 +1,271 @@
+{
+  "aliases": [],
+  "canonical": "R-000252",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000252"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:ab19c4e5173b",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000252",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000252",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Biochemistry, Sao Paulo University, Brazil (G.E.R.)",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Graziella E. Ronsein https://orcid.org/0000-0002-2340-6770 Department of Biochemistry, Sao Paulo University, Brazil (G.E.R.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Graziella E. Ronsein",
+          "openalex": "A5078844747",
+          "orcid": "0000-0002-2340-6770",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Tomas Vaisar Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati, OH (W.S.D.)",
+              "ror": "01e3m7079"
+            },
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "raw": "W. Sean Davidson Department of Pathology and Laboratory Medicine, University of Cincinnati, OH (W.S.D.)",
+              "ror": "01e3m7079"
+            }
+          ],
+          "corresponding": false,
+          "name": "W. Sean Davidson",
+          "openalex": "A5008316828",
+          "orcid": "0000-0003-2756-2989",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Karin E. Bornfeldt https://orcid.org/0000-0001-9208-6523 Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Jeffrey L. Probstfield https://orcid.org/0000-0002-4899-9971 Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jeffrey L. Probstfield",
+          "openalex": "A5080292021",
+          "orcid": "0000-0002-4899-9971",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Kevin D. O'Brien Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kevin D. O’Brien",
+          "openalex": "A5056023573",
+          "orcid": "0000-0002-2293-9196",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Xue-Qiao Zhao Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xue-Qiao Zhao",
+          "openalex": "A5034146558",
+          "orcid": "0000-0001-7713-6369",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:384b5eedf6de9a02c03735386b06ddce037ece21af2683c33a0b8139b88309e7",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000252",
+      "ids": {
+        "doi": "10.1161/atvbaha.121.316278",
+        "openalex": "W3173081558",
+        "pmcid": "PMC8295224",
+        "pmid": "34134520"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/8295224"
+      },
+      "published": "2021-06-17",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Niacin Increases Atherogenic Proteins in High-Density Lipoprotein of Statin-Treated Subjects",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9984999895095825,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9976999759674072,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9948999881744385,
+          "subfield": "Oncology",
+          "topic": "Clusterin in disease pathology"
+        }
+      ],
+      "venue": {
+        "issn_l": "1079-5642",
+        "name": "Arteriosclerosis Thrombosis and Vascular Biology",
+        "publisher": "Lippincott Williams & Wilkins"
+      },
+      "version_link": null,
+      "year": 2021
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

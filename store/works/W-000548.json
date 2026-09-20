@@ -1,0 +1,442 @@
+{
+  "aliases": [],
+  "canonical": "R-000548",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000548"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "eng"
+      },
+      "excerpt": "Yan Liu, Jimmy K. Eng, Ted Holzman, and Lynn Amon each provided technical help in various aspects during the data analysis.",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000548",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:ea87e45c5703179d8d93a42a9b1572562394b7fab868b6e2d38d4955d576caa7",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2649809/"
+      }
+    }
+  ],
+  "id": "W-000548",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Public Health Sciences Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Public Health Sciences Division, Seattle, Washington 98109",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Qiaojun Fang",
+          "openalex": "A5021061454",
+          "orcid": "0000-0002-2856-3281",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Clinical Research Division, Fred Hutchinson Cancer Research Center, Seattle, Washington 98109",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew D. Strand",
+          "openalex": "A5018759830",
+          "orcid": "0000-0001-9882-454X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Public Health Sciences Division, Seattle, Washington 98109",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Wendy Law",
+          "openalex": "A5083907546",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Public Health Sciences Division, Seattle, Washington 98109",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Vítor M. Faça",
+          "openalex": "A5048066768",
+          "orcid": "0000-0003-3205-7944",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Public Health Sciences Division, Seattle, Washington 98109",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Matthew Fitzgibbon",
+          "openalex": "A5091202321",
+          "orcid": "0009-0008-7557-0442",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CA",
+              "name": "McGill University",
+              "raw": "Department of Anatomy and Cell Biology, McGill University, Quebec H3A 1A4, Canada",
+              "ror": "01pxwe438"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nathalie Hamel",
+          "openalex": "A5059238094",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CA",
+              "name": "McGill University",
+              "raw": "Department of Anatomy and Cell Biology, McGill University, Quebec H3A 1A4, Canada",
+              "ror": "01pxwe438"
+            }
+          ],
+          "corresponding": false,
+          "name": "Benoit Houle",
+          "openalex": "A5111974247",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "State Key Laboratory of Proteomics, Beijing Proteome Research Center, Beijing 102206, China",
+              "ror": "05pp5b412"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xin Liu",
+          "openalex": "A5100352163",
+          "orcid": "0000-0001-8877-8420",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Public Health Sciences Division, Seattle, Washington 98109",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Damon May",
+          "openalex": "A5019063351",
+          "orcid": "0000-0001-6902-3153",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Medizinisches Proteom-Center, Ruhr-Universitaüt Bochum, D-447801 Bochum, Germany",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Gereon Poschmann",
+          "openalex": "A5085030806",
+          "orcid": "0000-0003-2448-0611",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CA",
+              "name": "McGill University",
+              "raw": "Department of Anatomy and Cell Biology, McGill University, Quebec H3A 1A4, Canada",
+              "ror": "01pxwe438"
+            }
+          ],
+          "corresponding": false,
+          "name": "Line Roy",
+          "openalex": "A5111838078",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Medizinisches Proteom-Center, Ruhr-Universitaüt Bochum, D-447801 Bochum, Germany",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Kai Stuühler",
+          "openalex": "A5097382080",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "State Key Laboratory of Proteomics, Beijing Proteome Research Center, Beijing 102206, China",
+              "ror": "05pp5b412"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wantao Ying",
+          "openalex": "A5014926288",
+          "orcid": "0000-0001-8309-2198",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "State Key Laboratory of Proteomics, Beijing Proteome Research Center, Beijing 102206, China",
+              "ror": "05pp5b412"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jiyang Zhang",
+          "openalex": "A5107247510",
+          "orcid": "0000-0001-8211-3321",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "State Key Laboratory of Proteomics, Beijing Proteome Research Center, Beijing 102206, China",
+              "ror": "05pp5b412"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zhaobin Zheng",
+          "openalex": "A5055724978",
+          "orcid": "0009-0007-2668-2977",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CA",
+              "name": "McGill University",
+              "raw": "Department of Anatomy and Cell Biology, McGill University, Quebec H3A 1A4, Canada",
+              "ror": "01pxwe438"
+            }
+          ],
+          "corresponding": false,
+          "name": "John Bergeron",
+          "openalex": "A5061780796",
+          "orcid": "0000-0003-0279-6041",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Public Health Sciences Division, Seattle, Washington 98109",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Samir Hanash",
+          "openalex": "A5040156444",
+          "orcid": "0000-0002-4210-1593",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "State Key Laboratory of Proteomics, Beijing Proteome Research Center, Beijing 102206, China",
+              "ror": "05pp5b412"
+            }
+          ],
+          "corresponding": false,
+          "name": "Fuchu He",
+          "openalex": "A5091436402",
+          "orcid": "0000-0002-8571-2351",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CA",
+              "name": "University of British Columbia",
+              "raw": "Department of Medical Genetics, University of British Columbia and Center for Molecular Medicine and Therapeutics, Child and Family Research Institute, Vancouver, British Columbia V5Z 4H4, Canada",
+              "ror": "03rmrcq20"
+            }
+          ],
+          "corresponding": false,
+          "name": "Blair R. Leavitt",
+          "openalex": "A5062884561",
+          "orcid": "0000-0002-4532-766X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Medizinisches Proteom-Center, Ruhr-Universitaüt Bochum, D-447801 Bochum, Germany",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Helmut E. Meyer",
+          "openalex": "A5076135264",
+          "orcid": "0000-0002-3262-8260",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "State Key Laboratory of Proteomics, Beijing Proteome Research Center, Beijing 102206, China",
+              "ror": "05pp5b412"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xiaohong Qian",
+          "openalex": "A5100522505",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Public Health Sciences Division, Seattle, Washington 98109",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Martin McIntosh",
+          "openalex": "A5109208118",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:ea87e45c5703179d8d93a42a9b1572562394b7fab868b6e2d38d4955d576caa7",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000548",
+      "ids": {
+        "doi": "10.1074/mcp.m800231-mcp200",
+        "openalex": "W2164524973",
+        "pmcid": "PMC2649809",
+        "pmid": "18984577"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1074/mcp.m800231-mcp200"
+      },
+      "published": "2008-11-04",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Brain-specific Proteins Decline in the Cerebrospinal Fluid of Humans with Huntington Disease",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 1.0,
+          "subfield": "Cellular and Molecular Neuroscience",
+          "topic": "Genetic Neurodegenerative Diseases"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9835000038146973,
+          "subfield": "Molecular Biology",
+          "topic": "Mitochondrial Function and Pathology"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9649999737739563,
+          "subfield": "Molecular Biology",
+          "topic": "Fungal and yeast genetics research"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-9476",
+        "name": "Molecular & Cellular Proteomics",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2008
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,708 @@
+{
+  "aliases": [],
+  "canonical": "R-000143",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000143"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000143"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000143"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:e27f4673cca1",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000143",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work is supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000143",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:a7d7f6080ae955f0fae6216e2a6553b502234d31e69de93149fb283ee1a04f69",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4662931/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work is supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000143",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:a7d7f6080ae955f0fae6216e2a6553b502234d31e69de93149fb283ee1a04f69",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4662931/"
+      }
+    }
+  ],
+  "id": "W-000143",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Henrik Sperber",
+          "openalex": "A5025971729",
+          "orcid": "0000-0002-3235-1396",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Julie Mathieu",
+          "openalex": "A5021769285",
+          "orcid": "0000-0002-3826-3549",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Computational Biology Program, School of Medicine, Oregon Health &Science University, Portland, Oregon 97239, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Biomedical Engineering, Portland, Oregon 97239, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Yuliang Wang",
+          "openalex": "A5100395189",
+          "orcid": "0000-0002-3788-5477",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Amy Ferreccio",
+          "openalex": "A5090358699",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Comparative Medicine, University ofWashington, Seattle, Washington 98195, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jennifer Hesson",
+          "openalex": "A5089854095",
+          "orcid": "0000-0001-5685-6279",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zhuojin Xu",
+          "openalex": "A5112220117",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Karin A. Fischer",
+          "openalex": "A5001226133",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "IN",
+              "name": "SRM University",
+              "raw": "Department of Genetic Engineering, SRM University, Kattankulathur 603203, India",
+              "ror": "037skf023"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Arikketh Devi",
+          "openalex": "A5084510223",
+          "orcid": "0000-0002-8542-3760",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Damien Detraux",
+          "openalex": "A5031406446",
+          "orcid": "0000-0002-9704-2076",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Northwest Metabolomics Research Center, Department of Anesthesiology and Pain Medicine, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Haiwei Gu",
+          "openalex": "A5013952168",
+          "orcid": "0000-0002-7598-5022",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, Division of Medical Genetics and Department of Genome Sciences, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Stephanie L. Battle",
+          "openalex": "A5020389437",
+          "orcid": "0000-0002-3131-0605",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California Davis Genome Center, California 95616, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Megan R. Showalter",
+          "openalex": "A5070091608",
+          "orcid": "0000-0002-3506-5483",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, Division of Medical Genetics and Department of Genome Sciences, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cristina Valensisi",
+          "openalex": "A5061141507",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jason H. Bielas",
+          "openalex": "A5011093088",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Nolan G. Ericson",
+          "openalex": "A5067109310",
+          "orcid": "0000-0002-2985-3221",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lilyana Margaretha",
+          "openalex": "A5066265751",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aaron M. Robitaille",
+          "openalex": "A5051620732",
+          "orcid": "0000-0003-2774-2066",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Daciana Margineantu",
+          "openalex": "A5002329262",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SA",
+              "name": "King Abdulaziz University",
+              "raw": "King Abdulaziz University, Faculty of Science, Biochemistry Department, Jeddah21589, Saudi Arabia",
+              "ror": "02ma4wv74"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California Davis Genome Center, California 95616, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Oliver Fiehn",
+          "openalex": "A5087349635",
+          "orcid": "0000-0002-6261-8928",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "David M. Hockenbery",
+          "openalex": "A5016626619",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, Division of Hematology, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "C. Anthony Blau",
+          "openalex": "A5044817889",
+          "orcid": "0000-0001-8667-6068",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Fred Hutchinson Cancer Research Center, Seattle, Washington 98109, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Northwest Metabolomics Research Center, Department of Anesthesiology and Pain Medicine, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel Raftery",
+          "openalex": "A5023366064",
+          "orcid": "0000-0003-2467-8118",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Computational Biology Program, School of Medicine, Oregon Health &Science University, Portland, Oregon 97239, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Biomedical Engineering, Portland, Oregon 97239, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Adam A. Margolin",
+          "openalex": null,
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, Division of Medical Genetics and Department of Genome Sciences, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "R. David Hawkins",
+          "openalex": "A5056162089",
+          "orcid": "0000-0002-2997-9457",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pharmacology, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Chevy Chase, Maryland 20815, USA",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Randall T. Moon",
+          "openalex": "A5024528673",
+          "orcid": "0000-0002-9352-1408",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Comparative Medicine, University ofWashington, Seattle, Washington 98195, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Carol B. Ware",
+          "openalex": "A5015601988",
+          "orcid": "0000-0002-7171-6685",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, Washington 98109, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Hannele Ruohola‐Baker",
+          "openalex": "A5021999547",
+          "orcid": "0000-0002-5588-4531",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:a7d7f6080ae955f0fae6216e2a6553b502234d31e69de93149fb283ee1a04f69",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000143",
+      "ids": {
+        "doi": "10.1038/ncb3264",
+        "openalex": "W2174991333",
+        "pmcid": "PMC4662931",
+        "pmid": "26571212"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4662931"
+      },
+      "published": "2015-11-16",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "The metabolome regulates the epigenetic landscape during naive-to-primed human embryonic stem cell transition",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998000264167786,
+          "subfield": "Molecular Biology",
+          "topic": "Epigenetics and DNA Methylation"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9972000122070312,
+          "subfield": "Molecular Biology",
+          "topic": "Cancer-related gene regulation"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.994700014591217,
+          "subfield": "Molecular Biology",
+          "topic": "RNA modifications and cancer"
+        }
+      ],
+      "venue": {
+        "issn_l": "1465-7392",
+        "name": "Nature Cell Biology",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2015
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

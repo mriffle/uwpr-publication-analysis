@@ -1,0 +1,1411 @@
+{
+  "aliases": [],
+  "canonical": "R-000208",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000208"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:c3d737810258",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000208",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000208",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Virginia",
+              "raw": "University of Virginia School of Medicine, Charlottesville, VA, USA",
+              "ror": "0153tk833"
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "University of Virginia School of Medicine, Charlottesville, VA, USA.; Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": true,
+          "name": "Francine E. Garrett-Bakelman",
+          "openalex": "A5079337017",
+          "orcid": "0000-0002-4771-628X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Renal Precision Medicine, University of Texas Health, San Antonio, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Manjula Darshi",
+          "openalex": "A5004926290",
+          "orcid": "0000-0002-1373-7488",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Illinois at Chicago, Chicago, IL, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Stefan J. Green",
+          "openalex": "A5043914301",
+          "orcid": "0000-0003-2781-359X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pennsylvania",
+              "raw": "University of Pennsylvania Perelman School of Medicine, Philadelphia, PA, USA",
+              "ror": "00b30xv10"
+            }
+          ],
+          "corresponding": true,
+          "name": "Ruben C. Gur",
+          "openalex": "A5058433895",
+          "orcid": "0000-0002-9657-1996",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": true,
+          "name": "Ling Lin",
+          "openalex": "A5100438682",
+          "orcid": "0000-0002-3146-8648",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "KBRwyle, Houston, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Brandon R. Macias",
+          "openalex": "A5022200003",
+          "orcid": "0000-0003-2527-5089",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Colorado State University",
+              "raw": "Colorado State University, Fort Collins, CO, USA",
+              "ror": "03k1gpj17"
+            }
+          ],
+          "corresponding": true,
+          "name": "Miles J. McKenna",
+          "openalex": "A5021251025",
+          "orcid": "0000-0001-6469-4353",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "The Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine, New York, NY, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "The Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine, New York, NY, USA.; Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": true,
+          "name": "Cem Meydan",
+          "openalex": "A5000870253",
+          "orcid": "0000-0002-0663-6216",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": true,
+          "name": "Tejaswini Mishra",
+          "openalex": "A5038723989",
+          "orcid": "0000-0001-9931-1260",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pennsylvania",
+              "raw": "University of Pennsylvania Perelman School of Medicine, Philadelphia, PA, USA",
+              "ror": "00b30xv10"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jad Nasrini",
+          "openalex": "A5091268176",
+          "orcid": "0000-0003-3769-1186",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": true,
+          "name": "Brian Piening",
+          "openalex": "A5082626235",
+          "orcid": "0000-0002-2683-8157",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Johns Hopkins University",
+              "raw": "Johns Hopkins University, Baltimore, MD, USA",
+              "ror": "00za53h95"
+            }
+          ],
+          "corresponding": true,
+          "name": "Lindsay F. Rizzardi",
+          "openalex": "A5081312266",
+          "orcid": "0000-0002-2866-9625",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Renal Precision Medicine, University of Texas Health, San Antonio, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Kumar Sharma",
+          "openalex": "A5088903449",
+          "orcid": "0000-0002-7550-8525",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Jamila H. Siamwala",
+          "openalex": "A5082373685",
+          "orcid": "0000-0001-9482-9183",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Colorado State University",
+              "raw": "Colorado State University, Fort Collins, CO, USA",
+              "ror": "03k1gpj17"
+            }
+          ],
+          "corresponding": true,
+          "name": "Lynn Taylor",
+          "openalex": "A5103230320",
+          "orcid": "0000-0002-2074-7262",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Northwestern University",
+              "raw": "Northwestern University, Evanston, IL, USA",
+              "ror": "000e0be47"
+            }
+          ],
+          "corresponding": true,
+          "name": "Martha Hotz Vitaterna",
+          "openalex": "A5003825512",
+          "orcid": "0000-0001-6243-2093",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California, Davis",
+              "raw": "University of California, Davis, Davis, CA, USA",
+              "ror": "05rrcem69"
+            }
+          ],
+          "corresponding": false,
+          "name": "Maryam Afkarian",
+          "openalex": "A5059747053",
+          "orcid": "0000-0001-8428-8264",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "The Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine, New York, NY, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "The Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine, New York, NY, USA.; Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ebrahim Afshinnekoo",
+          "openalex": "A5065143352",
+          "orcid": "0000-0002-2206-1205",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sara Ahadi",
+          "openalex": "A5027069769",
+          "orcid": "0000-0002-7849-2135",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Aditya Ambati",
+          "openalex": "A5056061995",
+          "orcid": "0000-0001-8462-3552",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "KBRwyle, Houston, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Maneesh Arya",
+          "openalex": "A5031643475",
+          "orcid": "0000-0002-2445-7975",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "The Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine, New York, NY, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "The Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine, New York, NY, USA.; Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniela Bezdan",
+          "openalex": "A5065381696",
+          "orcid": "0000-0002-1203-8239",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Johns Hopkins University",
+              "raw": "Johns Hopkins University, Baltimore, MD, USA",
+              "ror": "00za53h95"
+            }
+          ],
+          "corresponding": false,
+          "name": "Colin M. Callahan",
+          "openalex": "A5042469596",
+          "orcid": "0000-0002-0385-1121",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Songjie Chen",
+          "openalex": "A5083476935",
+          "orcid": "0000-0002-9568-5705",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": false,
+          "name": "Augustine M.K. Choi",
+          "openalex": "A5028298831",
+          "orcid": "0000-0002-4836-305X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Illinois at Chicago, Chicago, IL, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "George E. Chlipala",
+          "openalex": "A5003746188",
+          "orcid": "0000-0003-0203-3191",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kévin Contrepois",
+          "openalex": "A5062579994",
+          "orcid": "0000-0001-9678-5161",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Aeronautics and Space Administration",
+              "raw": "National Aeronautics and Space Administration (NASA), Houston, TX, USA",
+              "ror": "027ka1x80"
+            }
+          ],
+          "corresponding": false,
+          "name": "Marisa D. Covington",
+          "openalex": "A5035401835",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Aeronautics and Space Administration",
+              "raw": "National Aeronautics and Space Administration (NASA), Houston, TX, USA",
+              "ror": "027ka1x80"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brian Crucian",
+          "openalex": "A5045172445",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Harvard T.H. Chan School of Public Health, Boston, MA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Immaculata De Vivo",
+          "openalex": "A5058319850",
+          "orcid": "0000-0002-7185-7402",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pennsylvania",
+              "raw": "University of Pennsylvania Perelman School of Medicine, Philadelphia, PA, USA",
+              "ror": "00b30xv10"
+            }
+          ],
+          "corresponding": false,
+          "name": "David F. Dinges",
+          "openalex": "A5025442790",
+          "orcid": "0000-0003-2151-4492",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "KBRwyle, Houston, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Douglas Ebert",
+          "openalex": "A5041354061",
+          "orcid": "0000-0001-9489-9229",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Johns Hopkins University",
+              "raw": "Johns Hopkins University, Baltimore, MD, USA",
+              "ror": "00za53h95"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jason I. Feinberg",
+          "openalex": "A5088052154",
+          "orcid": "0000-0002-6556-3635",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jorge Gandara",
+          "openalex": "A5102765097",
+          "orcid": "0000-0002-7720-9676",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "KBRwyle, Houston, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "K. George",
+          "openalex": "A5022856162",
+          "orcid": "0000-0002-9318-9839",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Johns Hopkins University",
+              "raw": "Johns Hopkins University, Baltimore, MD, USA",
+              "ror": "00za53h95"
+            }
+          ],
+          "corresponding": false,
+          "name": "John Goutsias",
+          "openalex": "A5040506666",
+          "orcid": "0000-0002-0192-3857",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": false,
+          "name": "George S. Grills",
+          "openalex": "A5037752476",
+          "orcid": "0000-0003-1037-8616",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Alan R. Hargens",
+          "openalex": "A5053852050",
+          "orcid": "0000-0002-4722-1375",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "DE",
+              "name": "University of Bonn",
+              "raw": "University of Bonn, Bonn, Germany",
+              "ror": "041nas322"
+            }
+          ],
+          "corresponding": false,
+          "name": "Martina Heer",
+          "openalex": "A5087443620",
+          "orcid": "0000-0001-5534-911X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ryan P. Hillary",
+          "openalex": "A5041301787",
+          "orcid": "0000-0001-7284-4040",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew N. Hoofnagle",
+          "openalex": "A5031218554",
+          "orcid": "0000-0002-6449-0243",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Vivian Hook",
+          "openalex": "A5075467879",
+          "orcid": "0000-0001-6461-7024",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Johns Hopkins University",
+              "raw": "Johns Hopkins University, Baltimore, MD, USA",
+              "ror": "00za53h95"
+            }
+          ],
+          "corresponding": false,
+          "name": "Garrett Jenkinson",
+          "openalex": "A5039319315",
+          "orcid": "0000-0003-2548-098X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Northwestern University",
+              "raw": "Northwestern University, Evanston, IL, USA",
+              "ror": "000e0be47"
+            }
+          ],
+          "corresponding": false,
+          "name": "Peng Jiang",
+          "openalex": "A5040877927",
+          "orcid": "0000-0003-3647-8500",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Rush University Medical Center",
+              "raw": "Rush University Medical Center, Chicago, IL, USA",
+              "ror": "01j7c0b24"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ali Keshavarzian",
+          "openalex": "A5002619544",
+          "orcid": "0000-0002-7969-3369",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "KBRwyle, Houston, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Steven S. Laurie",
+          "openalex": "A5037131236",
+          "orcid": "0000-0002-8794-3583",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brittany Lee‐McMullen",
+          "openalex": "A5087005824",
+          "orcid": "0000-0002-8905-6021",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "MEI Technologies, Houston, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Sarah B. Lumpkins",
+          "openalex": "A5023113387",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": false,
+          "name": "Matthew MacKay",
+          "openalex": "A5070423571",
+          "orcid": "0000-0002-1848-0829",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Illinois at Chicago, Chicago, IL, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Mark Maienschein‐Cline",
+          "openalex": "A5051236191",
+          "orcid": "0000-0001-6619-6788",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ari Melnick",
+          "openalex": "A5019770989",
+          "orcid": "0000-0002-8074-2287",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pennsylvania",
+              "raw": "University of Pennsylvania Perelman School of Medicine, Philadelphia, PA, USA",
+              "ror": "00b30xv10"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tyler M. Moore",
+          "openalex": "A5024589723",
+          "orcid": "0000-0002-1384-0151",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kiichi Nakahira",
+          "openalex": "A5046990519",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Hemal H. Patel",
+          "openalex": "A5014165479",
+          "orcid": "0000-0001-6722-9625",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "KBRwyle, Houston, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Robert A. Pietrzyk",
+          "openalex": "A5032796033",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Varsha Rao",
+          "openalex": "A5020599739",
+          "orcid": "0000-0002-7348-526X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Rintaro Saito",
+          "openalex": "A5113565450",
+          "orcid": "0009-0009-3295-4961",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Denis Salins",
+          "openalex": "A5034779103",
+          "orcid": "0000-0002-3416-3487",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jan M. Schilling",
+          "openalex": "A5071630280",
+          "orcid": "0000-0002-8038-7473",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Dorothy D. Sears",
+          "openalex": "A5015139582",
+          "orcid": "0000-0002-9260-3540",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": false,
+          "name": "Caroline Sheridan",
+          "openalex": "A5045538361",
+          "orcid": "0000-0003-4621-7507",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Aeronautics and Space Administration",
+              "raw": "National Aeronautics and Space Administration (NASA), Houston, TX, USA",
+              "ror": "027ka1x80"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael B. Stenger",
+          "openalex": "A5052227490",
+          "orcid": "0000-0003-3089-1740",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Johns Hopkins University",
+              "raw": "Johns Hopkins University, Baltimore, MD, USA",
+              "ror": "00za53h95"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rakel Tryggvadóttir",
+          "openalex": "A5011818069",
+          "orcid": "0000-0003-0225-9086",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexander E. Urban",
+          "openalex": "A5003270170",
+          "orcid": "0000-0001-9772-933X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Benjamin Van Espen",
+          "openalex": "A5047150112",
+          "orcid": "0000-0003-1587-4942",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jing Zhang",
+          "openalex": "A5100345419",
+          "orcid": "0000-0002-6566-6693",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael G. Ziegler",
+          "openalex": "A5009889811",
+          "orcid": "0000-0002-0841-350X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Texas Medical Branch, Galveston, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Sara R. Zwart",
+          "openalex": "A5014977670",
+          "orcid": "0000-0001-8694-0180",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Aeronautics and Space Administration",
+              "raw": "National Aeronautics and Space Administration (NASA), Houston, TX, USA",
+              "ror": "027ka1x80"
+            }
+          ],
+          "corresponding": true,
+          "name": "John B. Charles",
+          "openalex": "A5085642171",
+          "orcid": "0000-0003-1345-4987",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Space Life and Physical Sciences Division, NASA Headquarters, Washington, DC, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Craig E. Kundrot",
+          "openalex": "A5068329745",
+          "orcid": "0000-0002-5445-3844",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Space Biomedical Research Institute",
+              "raw": "National Space Biomedical Research Institute, Baylor College of Medicine, Houston, TX, USA",
+              "ror": "04731xt44"
+            }
+          ],
+          "corresponding": true,
+          "name": "Graham Scott",
+          "openalex": "A5015214393",
+          "orcid": "0000-0003-3467-5957",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Colorado State University",
+              "raw": "Colorado State University, Fort Collins, CO, USA",
+              "ror": "03k1gpj17"
+            }
+          ],
+          "corresponding": true,
+          "name": "Susan M. Bailey",
+          "openalex": "A5041018139",
+          "orcid": "0000-0001-5595-9364",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Pennsylvania",
+              "raw": "University of Pennsylvania Perelman School of Medicine, Philadelphia, PA, USA",
+              "ror": "00b30xv10"
+            }
+          ],
+          "corresponding": true,
+          "name": "Mathias Basner",
+          "openalex": "A5053422960",
+          "orcid": "0000-0002-8453-0812",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Johns Hopkins University",
+              "raw": "Johns Hopkins University, Baltimore, MD, USA",
+              "ror": "00za53h95"
+            }
+          ],
+          "corresponding": true,
+          "name": "Andrew P. Feinberg",
+          "openalex": "A5074378026",
+          "orcid": "0000-0002-8364-1991",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "KBRwyle, Houston, TX, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Stuart M. C. Lee",
+          "openalex": "A5010445968",
+          "orcid": "0000-0001-7065-5182",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "The Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine, New York, NY, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "The Feil Family Brain and Mind Research Institute, New York, NY, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "The WorldQuant Initiative for Quantitative Prediction, New York, NY, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            },
+            {
+              "country": "US",
+              "name": "Weill Cornell Medicine",
+              "raw": "The Bin Talal Bin Abdulaziz Alsaud Institute for Computational Biomedicine, New York, NY, USA.; The Feil Family Brain and Mind Research Institute, New York, NY, USA.; The WorldQuant Initiative for Quantitative Prediction, New York, NY, USA.; Weill Cornell Medicine, New York, NY, USA",
+              "ror": "02r109517"
+            }
+          ],
+          "corresponding": true,
+          "name": "Christopher E. Mason",
+          "openalex": "A5085435765",
+          "orcid": "0000-0002-1850-1642",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": true,
+          "name": "Emmanuel Mignot",
+          "openalex": "A5073040042",
+          "orcid": "0000-0002-6928-5310",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Brinda K. Rana",
+          "openalex": "A5047981660",
+          "orcid": "0000-0002-9856-6728",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Aeronautics and Space Administration",
+              "raw": "National Aeronautics and Space Administration (NASA), Houston, TX, USA",
+              "ror": "027ka1x80"
+            }
+          ],
+          "corresponding": true,
+          "name": "Scott M. Smith",
+          "openalex": "A5075879804",
+          "orcid": "0000-0001-9313-7900",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Stanford University",
+              "raw": "Stanford University School of Medicine, Palo Alto, CA, USA",
+              "ror": "00f54p054"
+            }
+          ],
+          "corresponding": true,
+          "name": "M Snyder",
+          "openalex": "A5024120181",
+          "orcid": "0000-0003-0784-7987",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Northwestern University",
+              "raw": "Northwestern University, Evanston, IL, USA",
+              "ror": "000e0be47"
+            }
+          ],
+          "corresponding": true,
+          "name": "Fred W. Turek",
+          "openalex": "A5084820716",
+          "orcid": "0000-0002-4031-4229",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:a6df1981bc58b3b2bfd9d8320bd07f3f8bdd7068dd02dd465857c34661d5ac8c",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000208",
+      "ids": {
+        "doi": "10.1126/science.aau8650",
+        "openalex": "W2939018266",
+        "pmcid": "PMC7580864",
+        "pmid": "30975860"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7580864"
+      },
+      "published": "2019-04-12",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "The NASA Twins Study: A multidimensional analysis of a year-long human spaceflight",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9995999932289124,
+          "subfield": "Physiology",
+          "topic": "Spaceflight effects on biology"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9535999894142151,
+          "subfield": "Genetics",
+          "topic": "High Altitude and Hypoxia"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9502000212669373,
+          "subfield": "Health, Toxicology and Mutagenesis",
+          "topic": "Health, Environment, Cognitive Aging"
+        }
+      ],
+      "venue": {
+        "issn_l": "0036-8075",
+        "name": "Science",
+        "publisher": "American Association for the Advancement of Science"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

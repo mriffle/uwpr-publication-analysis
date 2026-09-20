@@ -1,0 +1,217 @@
+{
+  "aliases": [],
+  "canonical": "R-000042",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000042"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000042"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000042"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:5184d8741449",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000042",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000042",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Lung Biology, University of Washington, Seattle, Washington 98109",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Hyun-Jeong Ra",
+          "openalex": "A5085384509",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Lung Biology, University of Washington, Seattle, Washington 98109",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Susanna Harju-Baker",
+          "openalex": "A5108415813",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Rensselaer Polytechnic Institute",
+              "raw": "Department of Chemistry and Chemical Biology and Chemical and Biological Engineering, Center for Biotechnology and Interdisciplinary Studies, Rensselaer Polytechnic Institute, Troy, New York 12180",
+              "ror": "01rtyzb94"
+            }
+          ],
+          "corresponding": false,
+          "name": "Fuming Zhang",
+          "openalex": "A5069724772",
+          "orcid": "0000-0003-2803-3704",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Rensselaer Polytechnic Institute",
+              "raw": "Department of Chemistry and Chemical Biology and Chemical and Biological Engineering, Center for Biotechnology and Interdisciplinary Studies, Rensselaer Polytechnic Institute, Troy, New York 12180",
+              "ror": "01rtyzb94"
+            }
+          ],
+          "corresponding": false,
+          "name": "Robert J. Linhardt",
+          "openalex": "A5056210370",
+          "orcid": "0000-0003-2219-5833",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington, Seattle, Washington 98109",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Carole L. Wilson",
+          "openalex": "A5090275884",
+          "orcid": "0000-0001-6692-0430",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Lung Biology, University of Washington, Seattle, Washington 98109. Electronic address: parksw@u.washington.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Lung Biology, University of Washington, Seattle, Washington 98109",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "William C. Parks",
+          "openalex": "A5061477140",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000042",
+      "ids": {
+        "doi": "10.1074/jbc.m109.035147",
+        "openalex": "W2151322297",
+        "pmcid": "PMC2788844",
+        "pmid": "19654318"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1074/jbc.m109.035147"
+      },
+      "published": "2009-08-05",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Control of Promatrilysin (MMP7) Activation and Substrate-specific Activity by Sulfated Glycosaminoglycans",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9997000098228455,
+          "subfield": "Cancer Research",
+          "topic": "Protease and Inhibitor Mechanisms"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9986000061035156,
+          "subfield": "Oncology",
+          "topic": "Peptidase Inhibition and Analysis"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9975000023841858,
+          "subfield": "Microbiology",
+          "topic": "Antimicrobial Peptides and Activities"
+        }
+      ],
+      "venue": {
+        "issn_l": "0021-9258",
+        "name": "Journal of Biological Chemistry",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2009
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

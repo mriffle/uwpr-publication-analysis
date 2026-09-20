@@ -1,0 +1,208 @@
+{
+  "aliases": [],
+  "canonical": "R-000191",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000191"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:5039c8b85dd4",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000191",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000191",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Research in Reproduction and Contraception, Seattle, WA, USA; Diabetes Institute, Division of Metabolism, Endocrinology, and Nutrition, Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA. Electronic address: rubinow@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Research in Reproduction and Contraception, Seattle, WA, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Diabetes Institute, Division of Metabolism, Endocrinology, and Nutrition, Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Katya B. Rubinow",
+          "openalex": "A5074929020",
+          "orcid": "0000-0002-6505-5657",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Diabetes Institute, Division of Metabolism, Endocrinology, and Nutrition, Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Research in Reproduction and Contraception, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jing H. Chao",
+          "openalex": "A5002414635",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Diabetes Institute, Division of Metabolism, Endocrinology, and Nutrition, Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Research in Reproduction and Contraception, Seattle, WA, USA; Diabetes Institute, Division of Metabolism, Endocrinology, and Nutrition, Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Research in Reproduction and Contraception, Seattle, WA, USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Diabetes Institute, Division of Metabolism, Endocrinology, and Nutrition, Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Stephanie T. Page",
+          "openalex": "A5101630226",
+          "orcid": "0000-0002-6959-6389",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:0c98bfd3c9a5720994d04569736a1d4d125f8c4a7bb4d2be0018cd4969566dc8",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000191",
+      "ids": {
+        "doi": "10.1016/j.jacl.2018.04.013",
+        "openalex": "W2800493911",
+        "pmcid": "PMC6064653",
+        "pmid": "29793828"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6064653"
+      },
+      "published": "2018-04-30",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Sex steroids mediate discrete effects on HDL cholesterol efflux capacity and particle concentration in healthy men",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9979000091552734,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Hormonal and reproductive studies"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0003000000142492354,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Menopause: Health Impacts and Treatments"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.00019999999494757503,
+          "subfield": "Psychiatry and Mental health",
+          "topic": "Sexual function and dysfunction studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "1876-4789",
+        "name": "Journal of clinical lipidology",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2018
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,169 @@
+{
+  "aliases": [],
+  "canonical": "R-000092",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000092"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:6e537185fa31",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000092",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000092",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, Bagley Hall, Box\r351700, University of Washington, Seattle,\rWashington 98195-1700,\rUnited States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Magdalena Zimnicka",
+          "openalex": "A5044488957",
+          "orcid": "0000-0001-5078-4374",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, Bagley Hall, Box\r351700, University of Washington, Seattle,\rWashington 98195-1700,\rUnited States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Thomas W. Chung",
+          "openalex": "A5050884849",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, Bagley Hall, Box\r351700, University of Washington, Seattle,\rWashington 98195-1700,\rUnited States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher L. Moss",
+          "openalex": "A5070915548",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, Bagley Hall, Box\r351700, University of Washington, Seattle,\rWashington 98195-1700,\rUnited States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "František Tureček",
+          "openalex": "A5042952795",
+          "orcid": "0000-0001-7321-7858",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000092",
+      "ids": {
+        "doi": "10.1021/jp305865q",
+        "openalex": "W2332257789",
+        "pmcid": null,
+        "pmid": "22765351"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "closed",
+        "url": null
+      },
+      "published": "2012-07-06",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Perturbing Peptide Cation-Radical Electronic States by Thioxoamide Groups: Formation, Dissociations, and Energetics of Thioxopeptide Cation-Radicals",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.9986000061035156,
+          "subfield": "Cellular and Molecular Neuroscience",
+          "topic": "Photoreceptor and optogenetics research"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9983999729156494,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9959999918937683,
+          "subfield": "Organic Chemistry",
+          "topic": "Radical Photochemical Reactions"
+        }
+      ],
+      "venue": {
+        "issn_l": "1089-5639",
+        "name": "The Journal of Physical Chemistry A",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2012
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

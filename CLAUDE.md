@@ -12,11 +12,12 @@ Resource (UWPR).
 - Each included publication also gets a markdown knowledge-base page, which the app opens when
   the publication is clicked.
 
-**Current state:** Phases 1-3 frozen. Implementation is under way: milestones M0-M4 are done, so
-the pipeline runs every channel, reads PMC full text, applies all rules, links versions and
-produces a validating store that matches Phase 1's figures. M4.5 (seeding the real store, which
-mints ~1,100 permanent work IDs) is next. **`docs/08-implementation.md` is the handoff: status,
-measurements, decisions and the full plan.** Public repo: mriffle/uwpr-publication-analysis.
+**Current state:** Phases 1-3 frozen. Milestones M0-M4.5 are done. The pipeline runs every
+channel, reads PMC full text, applies all rules, links versions, and **`store/` is seeded and
+committed** (339 works, 2026-09-20) — its work and record IDs are now permanent and must never
+be renumbered. M5 (the weekly `update.yml` run) is next. **`docs/08-implementation.md` is the
+handoff: status, measurements, decisions and the full plan.** Public repo:
+mriffle/uwpr-publication-analysis.
 
 Work proceeds phase by phase. `docs/00-project-phases.md` is the index; each phase has a numbered
 spec in `docs/`.
@@ -26,7 +27,7 @@ spec in `docs/`.
 | 1 Discovery | **Frozen** |
 | 2 Data model | **Frozen** |
 | 3 Pipeline | **Frozen** |
-| 8 Implementation | **In progress** (M0-M4 done; see `docs/08-implementation.md`) |
+| 8 Implementation | **In progress** (M0-M4.5 done, store seeded; see `docs/08-implementation.md`) |
 | 4 Knowledge base | Not written |
 | 5 Metrics / app JSON | Unreviewed starting point |
 | 6 Web app | Unreviewed starting point |

@@ -1,0 +1,379 @@
+{
+  "aliases": [],
+  "canonical": "R-000144",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000144"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:045858856cf7",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000144",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000144",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Chang Yeop Han",
+          "openalex": "A5102942574",
+          "orcid": "0000-0001-9201-7982",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Chongren Tang",
+          "openalex": "A5110446029",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Division of Rheumatology, and",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Myriam Guevara",
+          "openalex": "A5016702904",
+          "orcid": "0000-0003-0078-950X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Wei Hao",
+          "openalex": "A5100448246",
+          "orcid": "0000-0002-1475-6488",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Cardiology, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomasz Wietecha",
+          "openalex": "A5074003444",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Baohai Shao",
+          "openalex": "A5026547402",
+          "orcid": "0000-0001-8832-2845",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Savitha Subramanian",
+          "openalex": "A5062614749",
+          "orcid": "0000-0002-4866-2009",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Mohamed Omer",
+          "openalex": "A5059075405",
+          "orcid": "0000-0002-5438-4105",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Shari Wang",
+          "openalex": "A5014231656",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Cardiology, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kevin D. O’Brien",
+          "openalex": "A5056023573",
+          "orcid": "0000-0002-2293-9196",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Santica M. Marcovina",
+          "openalex": "A5067464347",
+          "orcid": "0000-0002-9118-8488",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": "Benaroya Research Institute",
+              "raw": "Matrix Biology Program, Benaroya Research Institute, Seattle, Washington, USA",
+              "ror": "04j9rp686"
+            }
+          ],
+          "corresponding": false,
+          "name": "Thomas N. Wight",
+          "openalex": "A5035268339",
+          "orcid": "0000-0002-2794-4197",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Physiology and",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Maria C. de Beer",
+          "openalex": "A5113546599",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Kentucky",
+              "raw": "College of Medicine, University of Kentucky, Lexington, Kentucky, USA",
+              "ror": "02k3smh20"
+            }
+          ],
+          "corresponding": false,
+          "name": "Frederick C. de Beer",
+          "openalex": "A5090860934",
+          "orcid": "0000-0002-0403-8714",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pediatrics, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "William Osborne",
+          "openalex": "A5102798530",
+          "orcid": "0000-0003-3564-1441",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Division of Rheumatology, and",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Keith B. Elkon",
+          "openalex": "A5005493295",
+          "orcid": "0000-0002-7340-6146",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Medicine, Division of Metabolism, Endocrinology, and Nutrition, Diabetes and Obesity Center of Excellence,",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Alan Chait",
+          "openalex": "A5022745436",
+          "orcid": "0000-0002-5903-2205",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000144",
+      "ids": {
+        "doi": "10.1172/jci83475",
+        "openalex": "W2194982046",
+        "pmcid": "PMC4701569",
+        "pmid": "26642365"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "bronze",
+        "url": "https://doi.org/10.1172/jci83475"
+      },
+      "published": "2015-12-06",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Serum amyloid A impairs the antiinflammatory properties of HDL",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9995999932289124,
+          "subfield": "Surgery",
+          "topic": "Pancreatitis Pathology and Treatment"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9965999722480774,
+          "subfield": "Epidemiology",
+          "topic": "Liver Disease Diagnosis and Treatment"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9923999905586243,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        }
+      ],
+      "venue": {
+        "issn_l": "0021-9738",
+        "name": "Journal of Clinical Investigation",
+        "publisher": "American Society for Clinical Investigation"
+      },
+      "version_link": null,
+      "year": 2015
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

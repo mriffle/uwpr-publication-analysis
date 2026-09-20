@@ -1,0 +1,711 @@
+{
+  "aliases": [],
+  "canonical": "R-000152",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000152"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000152"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000152"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:471b712495b2",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000152",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "It was also supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000152",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:94f890daa98523f3f217517f4e585ea260d44cba4d3d71937481d8b6574bfaff",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5107127/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "It was also supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000152",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:94f890daa98523f3f217517f4e585ea260d44cba4d3d71937481d8b6574bfaff",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5107127/"
+      }
+    }
+  ],
+  "id": "W-000152",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Min Shi",
+          "openalex": "A5016122096",
+          "orcid": "0000-0002-6901-2558",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Gerontology and Geriatric Medicine, Department of Medicine University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
+              "ror": null
+            },
+            {
+              "country": "SK",
+              "name": "Slovak Academy of Sciences",
+              "raw": "Institute of Neuroimmunology Slovak Academy of Sciences  Bratislava Slovak Republic",
+              "ror": "03h7qq074"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Gerontology and Geriatric Medicine, Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System, Seattle, WA, USA",
+              "ror": null
+            },
+            {
+              "country": "SK",
+              "name": "Slovak Academy of Sciences",
+              "raw": "Institute of Neuroimmunology, Slovak Academy of Sciences, Bratislava, Slovak Republic",
+              "ror": "03h7qq074"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrej Kováč",
+          "openalex": "A5072459478",
+          "orcid": "0000-0002-3223-8705",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ané Korff",
+          "openalex": "A5017635876",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Travis J. Cook",
+          "openalex": "A5078057992",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Carmen Ginghină",
+          "openalex": "A5018299094",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Gerontology and Geriatric Medicine, Department of Medicine University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Gerontology and Geriatric Medicine, Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Kristin M. Bullock",
+          "openalex": "A5113860248",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yang Li",
+          "openalex": "A5100421591",
+          "orcid": "0000-0002-6515-4567",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tessandra Stewart",
+          "openalex": "A5111781115",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Peking University",
+              "raw": "Department of Pathology Peking University Health Science Center and Peking University Third Hospital  Beijing China",
+              "ror": "02v51f717"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "CN",
+              "name": "Peking University",
+              "raw": "Department of Pathology, Peking University Health Science Center and Peking University Third Hospital, Beijing, China",
+              "ror": "02v51f717"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Danfeng Zheng",
+          "openalex": "A5002024167",
+          "orcid": "0000-0002-0994-9867",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Patrick Aro",
+          "openalex": "A5089163938",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Anzari Atik",
+          "openalex": "A5049981949",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biostatistics University of Washington  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biostatistics, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kathleen F. Kerr",
+          "openalex": "A5018100435",
+          "orcid": "0000-0002-6438-9583",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Parkinson's Disease Research, Education and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System, Seattle, WA, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Parkinson's Disease Research, Education and Clinical Center, Veterans Affairs Puget Sound Health Care System, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Cyrus P. Zabetian",
+          "openalex": "A5004855604",
+          "orcid": "0000-0002-7739-4306",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Psychiatry and Behavioral Sciences University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Mental Illness Research, Education, and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Psychiatry and Behavioral Sciences, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Mental Illness Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Elaine R. Peskind",
+          "openalex": "A5016305380",
+          "orcid": "0000-0002-3667-9129",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Parkinson's Disease Research, Education and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System, Seattle, WA, USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Parkinson's Disease Research, Education and Clinical Center, Veterans Affairs Puget Sound Health Care System, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Shu‐Ching Hu",
+          "openalex": "A5112256334",
+          "orcid": "0009-0003-6795-3463",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Neurology Oregon Health and Science University  Portland OR USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Neurology, Oregon Health and Science University, Portland, OR, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Joseph F. Quinn",
+          "openalex": "A5085009648",
+          "orcid": "0000-0001-7305-2256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Neurosciences and Shiley‐Marcos Alzheimer's Disease Research Center University of California at San Diego  La Jolla CA USA",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Neurosciences and Shiley-Marcos Alzheimer's Disease Research Center, University of California at San Diego, La Jolla, CA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Douglas Galasko",
+          "openalex": "A5072592799",
+          "orcid": "0000-0001-6195-3241",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Thomas J. Montine",
+          "openalex": "A5067728043",
+          "orcid": "0000-0002-1346-2728",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Gerontology and Geriatric Medicine, Department of Medicine University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Division of Gerontology and Geriatric Medicine, Department of Medicine, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Geriatric Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System, Seattle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "William A. Banks",
+          "openalex": "A5054959155",
+          "orcid": "0000-0002-0496-3619",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Peking University",
+              "raw": "Department of Pathology Peking University Health Science Center and Peking University Third Hospital  Beijing China",
+              "ror": "02v51f717"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology University of Washington School of Medicine  Seattle WA USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "CN",
+              "name": "Peking University",
+              "raw": "Department of Pathology, Peking University Health Science Center and Peking University Third Hospital, Beijing, China",
+              "ror": "02v51f717"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology, University of Washington School of Medicine, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jing Zhang",
+          "openalex": "A5100345450",
+          "orcid": "0000-0002-9224-6299",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:94f890daa98523f3f217517f4e585ea260d44cba4d3d71937481d8b6574bfaff",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000152",
+      "ids": {
+        "doi": "10.1016/j.jalz.2016.04.003",
+        "openalex": "W2398356848",
+        "pmcid": "PMC5107127",
+        "pmid": "27234211"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/5107127"
+      },
+      "published": "2016-05-24",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "CNS tau efflux via exosomes is likely increased in Parkinson's disease but not in Alzheimer's disease",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.4307999908924103,
+          "subfield": "Physiology",
+          "topic": "Alzheimer's disease research and treatments"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.12120000272989273,
+          "subfield": "Neurology",
+          "topic": "Barrier Structure and Function Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.12030000239610672,
+          "subfield": "Molecular Biology",
+          "topic": "Extracellular vesicles in disease"
+        }
+      ],
+      "venue": {
+        "issn_l": "1552-5260",
+        "name": "Alzheimer s & Dementia",
+        "publisher": "Wiley"
+      },
+      "version_link": null,
+      "year": 2016
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

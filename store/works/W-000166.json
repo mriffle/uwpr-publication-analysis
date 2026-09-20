@@ -1,0 +1,327 @@
+{
+  "aliases": [],
+  "canonical": "R-000166",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000166"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000166"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000166"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:d184a54bb122",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000166",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "It was also supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000166",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d17aaa22ba456c18bfca361b9a90014449c91ca0c7f9afefd3cd4cbe1a1ad700",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5679294/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "It was also supported in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000166",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d17aaa22ba456c18bfca361b9a90014449c91ca0c7f9afefd3cd4cbe1a1ad700",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5679294/"
+      }
+    }
+  ],
+  "id": "W-000166",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, School of Medicine, University of Washington, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gwënaël Pottiez",
+          "openalex": "A5046748776",
+          "orcid": "0000-0001-8485-4510",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, School of Medicine, University of Washington, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yang Li",
+          "openalex": "A5100421591",
+          "orcid": "0000-0002-6515-4567",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, School of Medicine, University of Washington, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tessandra Stewart",
+          "openalex": "A5111781115",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, School of Medicine, University of Washington, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ning Song",
+          "openalex": "A5100758367",
+          "orcid": "0009-0000-9010-9269",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, School of Medicine, University of Washington, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Patrick Aro",
+          "openalex": "A5089163938",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department\rof Neurosciences, University of California at San Diego, San Diego, California 92093, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Douglas Galasko",
+          "openalex": "A5072592799",
+          "orcid": "0000-0001-6195-3241",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department\rof Neurology, Oregon Health and Science University, Portland, Oregon 97239, United States",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Portland VA Medical Center",
+              "raw": "Portland VA Medical Center, Portland, Oregon 97239, United States",
+              "ror": "02v3txv81"
+            }
+          ],
+          "corresponding": false,
+          "name": "Joseph F. Quinn",
+          "openalex": "A5085009648",
+          "orcid": "0000-0001-7305-2256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Psychiatry and Behavioral Sciences, University of Washington, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "VA Puget Sound Health Care System",
+              "raw": "Northwest\rNetwork VISN-20 Mental Illness Research, Education, and Clinical Center, VA Puget Sound Health Care System, Seattle, Washington 98108, United States",
+              "ror": "00ky3az31"
+            }
+          ],
+          "corresponding": false,
+          "name": "Elaine R. Peskind",
+          "openalex": "A5016305380",
+          "orcid": "0000-0002-3667-9129",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, School of Medicine, University of Washington, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Min Shi",
+          "openalex": "A5016122096",
+          "orcid": "0000-0002-6901-2558",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Peking University",
+              "raw": "Department\rof Pathology, Peking University Health Science Centre and Third Hospital, Beijing 100083, China",
+              "ror": "02v51f717"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Pathology, School of Medicine, University of Washington, Seattle, Washington 98104, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Jing Zhang",
+          "openalex": "A5100345450",
+          "orcid": "0000-0002-9224-6299",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:d17aaa22ba456c18bfca361b9a90014449c91ca0c7f9afefd3cd4cbe1a1ad700",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000166",
+      "ids": {
+        "doi": "10.1021/acs.jproteome.6b00829",
+        "openalex": "W2580679988",
+        "pmcid": "PMC5679294",
+        "pmid": "28112948"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/5679294"
+      },
+      "published": "2017-01-23",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Mass-Spectrometry-Based Method To Quantify in Parallel Tau and Amyloid β 1–42 in CSF for the Diagnosis of Alzheimer’s Disease",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9998999834060669,
+          "subfield": "Physiology",
+          "topic": "Alzheimer's disease research and treatments"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9958999752998352,
+          "subfield": "Psychiatry and Mental health",
+          "topic": "Dementia and Cognitive Impairment Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.9634000062942505,
+          "subfield": "Plant Science",
+          "topic": "Aluminum toxicity and tolerance in plants and animals"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2017
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

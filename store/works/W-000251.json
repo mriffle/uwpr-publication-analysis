@@ -1,0 +1,724 @@
+{
+  "aliases": [
+    "W-000583"
+  ],
+  "canonical": "R-000251",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000251"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000251"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000583"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000251"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000251"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000583"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000251"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000583"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:137040cbc4ea",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000251",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "Mass spectrometry was partially supported by the University of Washington Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000251",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:cab0d53f4462cd9732be76863a511e4fef8724de17257c2000da4c75ecb6d218",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8125044/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "National Science Foundation (NSF)https://doi.org/10.13039/100000001OCE1829761BoiteauReneSimons Foundation (SF)https://doi.org/10.13039/100000893329108RepetaDanielUniversity of Washington (UW)https://doi.org/10.13039/100007812UWPR95794NunnBrook L.Alfred P. Sloan Foundation (The Alfred P. Sloan Found…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000251",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:cab0d53f4462cd9732be76863a511e4fef8724de17257c2000da4c75ecb6d218",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8125044/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000251",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3160990164"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000251",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1128/msphere.00009-21"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000583",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3043256544"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Mass spectrometry was partially supported by the University of Washington Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000251",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:cab0d53f4462cd9732be76863a511e4fef8724de17257c2000da4c75ecb6d218",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8125044/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000583",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1101%2F2020.07.14.202937"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000583",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1101%2F2020.07.14.202937"
+      }
+    }
+  ],
+  "id": "W-000251",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, Pennsylvania, USA",
+              "ror": "04fnrxr62"
+            }
+          ],
+          "corresponding": false,
+          "name": "Scott B. Pollara",
+          "openalex": "A5026493073",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, Pennsylvania, USA",
+              "ror": "04fnrxr62"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jamie W. Becker",
+          "openalex": "A5041295573",
+          "orcid": "0000-0001-5308-1818",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Oregon State University",
+              "raw": "College of Earth, Ocean, and Atmospheric Sciences, Oregon State University, Corvallis, Oregon, USA",
+              "ror": "00ysfqy60"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rene Boiteau",
+          "openalex": "A5087968079",
+          "orcid": "0000-0002-4127-4417",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Woods Hole Oceanographic Institution",
+              "raw": "Marine Chemistry and Geochemistry, Woods Hole Oceanographic Institution, Woods Hole, Massachusetts, USA",
+              "ror": "03zbnzt98"
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel J. Repeta",
+          "openalex": "A5086775765",
+          "orcid": "0000-0003-1927-0599",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Miranda C. Mudge",
+          "openalex": "A5081583196",
+          "orcid": "0000-0003-3769-5937",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, Pennsylvania, USA",
+              "ror": "04fnrxr62"
+            }
+          ],
+          "corresponding": false,
+          "name": "Grayton Downing",
+          "openalex": "A5007985290",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, Pennsylvania, USA",
+              "ror": "04fnrxr62"
+            }
+          ],
+          "corresponding": false,
+          "name": "Davis Chase",
+          "openalex": "A5027056410",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of New Hampshire",
+              "raw": "Department of Biological Sciences, University of New Hampshire, Durham, New Hampshire, USA",
+              "ror": "01rmh9n78"
+            }
+          ],
+          "corresponding": true,
+          "name": "Elizabeth L. Harvey",
+          "openalex": "A5005327012",
+          "orcid": "0000-0002-3518-0035",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, Pennsylvania, USA",
+              "ror": "04fnrxr62"
+            }
+          ],
+          "corresponding": true,
+          "name": "Kristen E. Whalen",
+          "openalex": "A5054194316",
+          "orcid": "0000-0003-2116-0524",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:cab0d53f4462cd9732be76863a511e4fef8724de17257c2000da4c75ecb6d218",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000251",
+      "ids": {
+        "doi": "10.1128/msphere.00009-21",
+        "openalex": "W3160990164",
+        "pmcid": "PMC8125044",
+        "pmid": "33980670"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1128/msphere.00009-21"
+      },
+      "published": "2021-05-12",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Bacterial Quorum-Sensing Signal Arrests Phytoplankton Cell Division and Impacts Virus-Induced Mortality",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9976000189781189,
+          "subfield": "Ecology",
+          "topic": "Bacteriophages and microbial interactions"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.996999979019165,
+          "subfield": "Endocrinology",
+          "topic": "Vibrio bacteria research studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9914000034332275,
+          "subfield": "Molecular Biology",
+          "topic": "Bacterial biofilms and quorum sensing"
+        }
+      ],
+      "venue": {
+        "issn_l": "2379-5042",
+        "name": "mSphere",
+        "publisher": "American Society for Microbiology"
+      },
+      "version_link": null,
+      "year": 2021
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, PA",
+              "ror": "04fnrxr62"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Biology, Hverford College, Hverford, PA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Scott B. Pollara",
+          "openalex": "A5026493073",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, PA",
+              "ror": "04fnrxr62"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Biology, Hverford College, Hverford, PA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jamie W. Becker",
+          "openalex": "A5041295573",
+          "orcid": "0000-0001-5308-1818",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Oregon State University",
+              "raw": "College of Earth, Ocean, and Atmospheric Sciences, Oregon State University, Corvallis, OR",
+              "ror": "00ysfqy60"
+            },
+            {
+              "country": "US",
+              "name": "Oregon State University",
+              "raw": "College of Earth, Oean, and Atmospheri Sienes, Oregon State University, Corvallis, OR",
+              "ror": "00ysfqy60"
+            }
+          ],
+          "corresponding": false,
+          "name": "Rene Boiteau",
+          "openalex": "A5087968079",
+          "orcid": "0000-0002-4127-4417",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Woods Hole Oceanographic Institution",
+              "raw": "Marine Chemistry & Geochemistry, Woods Hole Oceanographic Institution, Woods Hole, MA",
+              "ror": "03zbnzt98"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Marine Chemistry & Geochemistry, Woos Hole Oceanographic Institution, Woos Hole, MA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Daniel J. Repeta",
+          "openalex": "A5086775765",
+          "orcid": "0000-0003-1927-0599",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Miranda C. Mudge",
+          "openalex": "A5081583196",
+          "orcid": "0000-0003-3769-5937",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, PA",
+              "ror": "04fnrxr62"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Biology, Hverford College, Hverford, PA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Grayton Downing",
+          "openalex": "A5007985290",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, PA",
+              "ror": "04fnrxr62"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Biology, Hverford College, Hverford, PA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Davis Chase",
+          "openalex": "A5027056410",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of New Hampshire",
+              "raw": "Department of Biological Sciences, University of New Hampshire, Durham, NH",
+              "ror": "01rmh9n78"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Dpartmnt of Biological Scincs, Univrsity of Nw Hampshir, Durham, NH",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Elizabeth L. Harvey",
+          "openalex": "A5005327012",
+          "orcid": "0000-0002-3518-0035",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Haverford College",
+              "raw": "Department of Biology, Haverford College, Haverford, PA",
+              "ror": "04fnrxr62"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Biology, Hverford College, Hverford, PA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Kristen E. Whalen",
+          "openalex": "A5054194316",
+          "orcid": "0000-0003-2116-0524",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000583",
+      "ids": {
+        "doi": "10.1101/2020.07.14.202937",
+        "openalex": "W3043256544",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://doi.org/10.1101/2020.07.14.202937"
+      },
+      "published": "2020-07-15",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Bacterial quorum sensing signal arrests phytoplankton cell division and protects against virus-induced mortality",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9994999766349792,
+          "subfield": "Ecology",
+          "topic": "Bacteriophages and microbial interactions"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9994999766349792,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9965999722480774,
+          "subfield": "Endocrinology",
+          "topic": "Vibrio bacteria research studies"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "title_author",
+        "to": "R-000251"
+      },
+      "year": 2020
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

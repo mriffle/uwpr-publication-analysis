@@ -1,0 +1,385 @@
+{
+  "aliases": [],
+  "canonical": "R-000156",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000156"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:8a6e77af4af8",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000156",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000156",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Immunology (School of Medicine, Seattle, WA 98101 - United States)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jie An",
+          "openalex": "A5070224744",
+          "orcid": "0000-0002-1402-8288",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "University of Manchester",
+              "raw": "University of Manchester and St. Mary's Hospital, Central Manchester Foundation Trust Manchester UK",
+              "ror": "027m9bs27"
+            }
+          ],
+          "corresponding": true,
+          "name": "Tracy A. Briggs",
+          "openalex": "A5070880517",
+          "orcid": "0000-0001-5208-2691",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "University of Manchester",
+              "raw": "University of Manchester Manchester UK",
+              "ror": "027m9bs27"
+            },
+            {
+              "country": "GB",
+              "name": "University of Manchester",
+              "raw": "University of Manchester [Manchester] (Oxford Rd, Manchester M13 9PL - United Kingdom)",
+              "ror": "027m9bs27"
+            }
+          ],
+          "corresponding": false,
+          "name": "Audrey F. Dumax-Vorzet",
+          "openalex": "A5049832496",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "ES",
+              "name": "Universidad de Granada",
+              "raw": "Universidad de Granada–Junta de Andalucía, Granada, Spain, and Oklahoma Medical Research Foundation Oklahoma City",
+              "ror": "04njjy449"
+            }
+          ],
+          "corresponding": false,
+          "name": "Marta E. Alarcón‐Riquelme",
+          "openalex": "A5052973247",
+          "orcid": "0000-0002-7632-4154",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "FR",
+              "name": "Hospices Civils de Lyon",
+              "raw": "Pediatric Rheumatology Unit, Femme Mère Enfant Hospital, Hospices Civils de Lyon, INSERM U1111, University of Lyon Lyon France",
+              "ror": "01502ca60"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexandre Bélot",
+          "openalex": "A5043853010",
+          "orcid": "0000-0003-4902-5332",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "University of Liverpool",
+              "raw": "Institute of Translational Medicine, University of Liverpool Liverpool UK",
+              "ror": "04xs57h96"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael W. Beresford",
+          "openalex": "A5041204910",
+          "orcid": "0000-0002-5400-9911",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Manchester and Central Manchester University Hospitals NHS Foundation Trust Manchester UK",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Ian N Bruce",
+          "openalex": "A5047807604",
+          "orcid": "0000-0003-3047-500X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "PT",
+              "name": "Universidade do Porto",
+              "raw": "Universidade do Porto, Abel Salazar Institute of Biomedical Sciences Porto Portugal",
+              "ror": "043pwc612"
+            }
+          ],
+          "corresponding": false,
+          "name": "Cláudia Carvalho",
+          "openalex": "A5011888166",
+          "orcid": "0000-0002-1937-6177",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "INSERM U823/UJF/EFS, UGA, INSERM U1209, CNRS 5309, Immunobiology and Immunotherapy of Cancers and Chronic Diseases Grenoble France",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Laurence Chaperot",
+          "openalex": "A5036770582",
+          "orcid": "0000-0002-1479-9410",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "SE",
+              "name": "Karolinska Institutet",
+              "raw": "Karolinska Institutet Stockholm Sweden",
+              "ror": "056d84691"
+            }
+          ],
+          "corresponding": false,
+          "name": "Johan Frostegård",
+          "openalex": "A5002237505",
+          "orcid": "0000-0002-3569-3367",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "INSERM U823/UJF/EFS, UGA, INSERM U1209, CNRS 5309, Immunobiology and Immunotherapy of Cancers and Chronic Diseases Grenoble France",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Joël Plumas",
+          "openalex": "A5013391545",
+          "orcid": "0000-0002-5005-4301",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "University of Manchester",
+              "raw": "University of Manchester Manchester UK",
+              "ror": "027m9bs27"
+            },
+            {
+              "country": "GB",
+              "name": "University of Manchester",
+              "raw": "University of Manchester [Manchester] (Oxford Rd, Manchester M13 9PL - United Kingdom)",
+              "ror": "027m9bs27"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gillian Rice",
+          "openalex": "A5073370746",
+          "orcid": "0000-0002-4223-0571",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "Guy's Hospital",
+              "raw": "King's College London, Guy's Hospital London UK",
+              "ror": "04r33pf22"
+            },
+            {
+              "country": "GB",
+              "name": "Guy's Hospital",
+              "raw": "Guy's Hospital [London] (Great Maze Pond London SE1 9RT - United Kingdom)",
+              "ror": "04r33pf22"
+            }
+          ],
+          "corresponding": false,
+          "name": "Timothy J. Vyse",
+          "openalex": "A5041270389",
+          "orcid": "0000-0003-1123-1464",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Immunology (School of Medicine, Seattle, WA 98101 - United States)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Alice Wiedeman",
+          "openalex": "A5076146919",
+          "orcid": "0000-0001-7329-7288",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "University of Manchester",
+              "raw": "University of Manchester, Manchester, UK, and Institut Imagine, Laboratory of Neurogenetics and Neuroinflammation Paris France",
+              "ror": "027m9bs27"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yanick J. Crow",
+          "openalex": "A5013758087",
+          "orcid": "0000-0001-7211-7564",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Immunology (School of Medicine, Seattle, WA 98101 - United States)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Keith B. Elkon",
+          "openalex": "A5005493295",
+          "orcid": "0000-0002-7340-6146",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000156",
+      "ids": {
+        "doi": "10.1002/art.39810",
+        "openalex": "W2474526806",
+        "pmcid": null,
+        "pmid": "27390188"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "other-oa",
+        "status": "green",
+        "url": "https://kclpure.kcl.ac.uk/portal/en/publications/0657dfe9-9a07-41f5-acfb-cb9ba877ea65"
+      },
+      "published": "2016-07-07",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Tartrate‐Resistant Acid Phosphatase Deficiency in the Predisposition to Systemic Lupus Erythematosus",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.28619998693466187,
+          "subfield": "Molecular Biology",
+          "topic": "Bone Metabolism and Diseases"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.2623000144958496,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Tyrosine Phosphatases"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.06629999727010727,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Alkaline Phosphatase Research Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "2326-5191",
+        "name": "Arthritis & Rheumatology",
+        "publisher": "Wiley"
+      },
+      "version_link": null,
+      "year": 2016
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

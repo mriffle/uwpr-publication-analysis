@@ -1,0 +1,394 @@
+{
+  "aliases": [],
+  "canonical": "R-000229",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000229"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:16b3cdd68510",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000229",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000229",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Qingxun Hu From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Qingxun Hu",
+          "openalex": "A5103233539",
+          "orcid": "0000-0001-9288-6491",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology (H.Z., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Huiliang Zhang From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle Department of Pathology (H.Z., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Huiliang Zhang",
+          "openalex": "A5000211876",
+          "orcid": "0000-0002-8967-1219",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nicolás Gutiérrez Cortés",
+          "openalex": "A5089651841",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Tongji University",
+              "raw": "Department of Pharmacy, Tongji Hospital, Tongji University School of Medicine, Shanghai, China (D.W.)",
+              "ror": "03rc6as71"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "CN",
+              "name": "Tongji University",
+              "raw": "Dan Wu From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle Department of Pharmacy, Tongji Hospital, Tongji University School of Medicine, Shanghai, China (D.W.)",
+              "ror": "03rc6as71"
+            }
+          ],
+          "corresponding": false,
+          "name": "Dan Wu",
+          "openalex": "A5052600624",
+          "orcid": "0000-0001-6117-5099",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Pei Wang From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Pei Wang",
+          "openalex": "A5051368106",
+          "orcid": "0000-0002-1650-3353",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Laboratory of Cardiovascular Sciences, National Institute on Aging, National Institutes of Health Biomedical Research Center (BRC), Baltimore, MD (J.Z., M.W., E.G.L.)",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Jing Zhang Laboratory of Cardiovascular Sciences, National Institute on Aging, National Institutes of Health Biomedical Research Center (BRC), Baltimore, MD (J.Z., M.W., E.G.L.)",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jing Zhang",
+          "openalex": "A5100345373",
+          "orcid": "0000-0002-2488-5021",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institute on Aging",
+              "raw": "Translational Gerontology Branch, National Institute on Aging, NIH Animal Center, Dickerson, MD (J.A.M.)",
+              "ror": "049v75w11"
+            },
+            {
+              "country": "US",
+              "name": "National Institute on Aging",
+              "raw": "Julie A. Mattison Translational Gerontology Branch, National Institute on Aging, NIH Animal Center, Dickerson, MD (J.A.M.)",
+              "ror": "049v75w11"
+            }
+          ],
+          "corresponding": false,
+          "name": "Julie A. Mattison",
+          "openalex": "A5071854848",
+          "orcid": "0000-0003-4104-8599",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Eric Smith From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Eric Alden Smith",
+          "openalex": "A5050258066",
+          "orcid": "0000-0002-9482-9666",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Northwest Metabolomics Research Center, Department of Anesthesiology and Pain Medicine (L.F.B.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Lisa F. Bettcher From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle Northwest Metabolomics Research Center, Department of Anesthesiology and Pain Medicine (L.F.B.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lisa Bettcher",
+          "openalex": "A5057374833",
+          "orcid": "0000-0001-6058-9337",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Laboratory of Cardiovascular Sciences, National Institute on Aging, National Institutes of Health Biomedical Research Center (BRC), Baltimore, MD (J.Z., M.W., E.G.L.)",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Mingyi Wang Laboratory of Cardiovascular Sciences, National Institute on Aging, National Institutes of Health Biomedical Research Center (BRC), Baltimore, MD (J.Z., M.W., E.G.L.)",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mingyi Wang",
+          "openalex": "A5077932215",
+          "orcid": "0000-0001-6412-369X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Laboratory of Cardiovascular Sciences, National Institute on Aging, National Institutes of Health Biomedical Research Center (BRC), Baltimore, MD (J.Z., M.W., E.G.L.)",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Edward G. Lakatta Laboratory of Cardiovascular Sciences, National Institute on Aging, National Institutes of Health Biomedical Research Center (BRC), Baltimore, MD (J.Z., M.W., E.G.L.)",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edward G. Lakatta",
+          "openalex": "A5060742163",
+          "orcid": "0000-0002-4772-0035",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Thomas Jefferson University",
+              "raw": "Center for Translational Medicine, Department of Medicine, Sidney Kimmel Medical College, Thomas Jefferson University, Philadelphia, PA (S.-S.S.)",
+              "ror": "00ysqcn41"
+            },
+            {
+              "country": "US",
+              "name": "Thomas Jefferson University",
+              "raw": "Shey-Shing Sheu Center for Translational Medicine, Department of Medicine, Sidney Kimmel Medical College, Thomas Jefferson University, Philadelphia, PA (S.-S.S.)",
+              "ror": "00ysqcn41"
+            }
+          ],
+          "corresponding": false,
+          "name": "Shey‐Shing Sheu",
+          "openalex": "A5084620328",
+          "orcid": "0000-0003-3838-3601",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Pathology (H.Z., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the Mitochondria and Metabolism Center, Department of Anesthesiology and Pain Medicine (Q.H., H.Z., N.G.C., D.W., P.W., E.S., L.F.B., W.W.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wang Wang",
+          "openalex": "A5100785737",
+          "orcid": "0000-0001-9093-412X",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:b639b3a76b65ee1048b101eb8b96a77d5a66f295e37b01fe705c0c476da1e3da",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000229",
+      "ids": {
+        "doi": "10.1161/circresaha.119.315252",
+        "openalex": "W2997555428",
+        "pmcid": "PMC7035202",
+        "pmid": "31896304"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7035202"
+      },
+      "published": "2020-01-03",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Increased Drp1 Acetylation by Lipid Overload Induces Cardiomyocyte Death and Heart Dysfunction",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9282000064849854,
+          "subfield": "Molecular Biology",
+          "topic": "Mitochondrial Function and Pathology"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.013000000268220901,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiovascular Function and Risk Factors"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.009800000116229057,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiac Fibrosis and Remodeling"
+        }
+      ],
+      "venue": {
+        "issn_l": "0009-7330",
+        "name": "Circulation Research",
+        "publisher": "Lippincott Williams & Wilkins"
+      },
+      "version_link": null,
+      "year": 2020
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,200 @@
+{
+  "aliases": [],
+  "canonical": "R-000396",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000396"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000396",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1016%2Fj.chroma.2022.463597"
+      }
+    }
+  ],
+  "id": "W-000396",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "HU",
+              "name": "Eötvös Loránd University",
+              "raw": "MS Proteomics Research Group, Research Centre for Natural Sciences, Magyar tudósok körútja 2, 1117 Budapest, Hungary; Hevesy György PhD School of Chemistry, Eötvös Loránd University, Pázmány Péter sétány 1/a, 1117 Budapest, Hungary",
+              "ror": "01jsq2704"
+            },
+            {
+              "country": "HU",
+              "name": "Eötvös Loránd University",
+              "raw": "Hevesy György PhD School of Chemistry, Eötvös Loránd University, Pázmány Péter sétány 1/a, 1117 Budapest, Hungary",
+              "ror": "01jsq2704"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "MS Proteomics Research Group, Research Centre for Natural Sciences, Magyar tudósok körútja 2, 1117 Budapest, Hungary",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Fanni Bugyi",
+          "openalex": "A5050832679",
+          "orcid": "0000-0002-4890-870X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "MS Proteomics Research Group, Research Centre for Natural Sciences, Magyar tudósok körútja 2, 1117 Budapest, Hungary",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Gábor Tóth",
+          "openalex": "A5100764203",
+          "orcid": "0000-0003-1428-7906",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "HU",
+              "name": "Semmelweis University",
+              "raw": "Department of Physiology, Semmelweis University, Tűzoltó utca 37-47, H-1094 Budapest, Hungary",
+              "ror": "01g9ty582"
+            }
+          ],
+          "corresponding": false,
+          "name": "K Kovács",
+          "openalex": "A5101736711",
+          "orcid": "0000-0003-0912-3843",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "MS Proteomics Research Group, Research Centre for Natural Sciences, Magyar tudósok körútja 2, 1117 Budapest, Hungary",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "László Drahos",
+          "openalex": "A5027183622",
+          "orcid": "0000-0001-9589-6652",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "MS Proteomics Research Group, Research Centre for Natural Sciences, Magyar tudósok körútja 2, 1117 Budapest, Hungary. Electronic address: turiak.lilla@ttk.hu",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "MS Proteomics Research Group, Research Centre for Natural Sciences, Magyar tudósok körútja 2, 1117 Budapest, Hungary",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Lilla Turiák",
+          "openalex": "A5009351305",
+          "orcid": "0000-0002-2139-8156",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000396",
+      "ids": {
+        "doi": "10.1016/j.chroma.2022.463597",
+        "openalex": "W4307112281",
+        "pmcid": null,
+        "pmid": "36371923"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1016/j.chroma.2022.463597"
+      },
+      "published": "2022-10-23",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Comparison of solid-phase extraction methods for efficient purification of phosphopeptides with low sample amounts",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 1.0,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9998999834060669,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9901999831199646,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "0021-9673",
+        "name": "Journal of Chromatography A",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2022
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

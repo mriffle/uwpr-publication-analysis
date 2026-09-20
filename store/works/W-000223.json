@@ -1,0 +1,425 @@
+{
+  "aliases": [],
+  "canonical": "R-000223",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000223"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000223"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000223"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000223"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:da9b86063fdd",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000223",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This project was funded by National Institutes of Health grants AI108765 and AI135437 (R.S.), AI119017 and GM133633 (M.D.D.), AI104002, AI118916, AI127463 (M.G.), the Pew Biomedical Scholars program (M.D.D.), a Research Fellowship from the German Research Foundation (DFG) to J.S. (SCHW 1881/1-1), T…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000223",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:920eb074b75abdd3f8aacb225dce4c97193c0a895eb41bcaa4245d68b2770e57",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7240801/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This project was funded by National Institutes of Health grants AI108765 and AI135437 (R.S.), AI119017 and GM133633 (M.D.D.), AI104002, AI118916, AI127463 (M.G.), the Pew Biomedical Scholars program (M.D.D.), a Research Fellowship from the German Research Foundation (DFG) to J.S. (SCHW 1881/1-1), T…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000223",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:920eb074b75abdd3f8aacb225dce4c97193c0a895eb41bcaa4245d68b2770e57",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7240801/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "We would like to acknowledge P. von Haller and J. Eng (UW Proteomics Resource) for expert technical assistance with mass spectrometry.",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000223",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:920eb074b75abdd3f8aacb225dce4c97193c0a895eb41bcaa4245d68b2770e57",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7240801/"
+      }
+    }
+  ],
+  "id": "W-000223",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Johannes Schwerk",
+          "openalex": "A5085163852",
+          "orcid": "0000-0002-5964-7162",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Frank Soveg",
+          "openalex": "A5021768841",
+          "orcid": "0000-0002-3403-0190",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California San Diego",
+              "raw": "Section of Molecular Biology, Division of Biological Sciences, University of California San Diego, La Jolla, CA, USA",
+              "ror": "0168r3w48"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew P. Ryan",
+          "openalex": "A5064100898",
+          "orcid": "0000-0002-2630-9837",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kerri R. Thomas",
+          "openalex": "A5085006118",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lauren D. Hatfield",
+          "openalex": "A5002594374",
+          "orcid": "0000-0003-0095-9863",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Snehal Ozarkar",
+          "openalex": "A5080180241",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Adriana Forero",
+          "openalex": "A5022895534",
+          "orcid": "0000-0002-2698-658X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alison M. Kell",
+          "openalex": "A5049643407",
+          "orcid": "0000-0001-5550-1038",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Justin A. Roby",
+          "openalex": "A5063382999",
+          "orcid": "0000-0003-2434-4273",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": "Benaroya Research Institute",
+              "raw": "Immunology Program, Benaroya Research Institute at Virginia Mason, Seattle, WA, USA",
+              "ror": "04j9rp686"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lomon So",
+          "openalex": "A5075024046",
+          "orcid": "0000-0001-7079-5580",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jennifer Hyde",
+          "openalex": "A5015967724",
+          "orcid": "0000-0001-8062-1672",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Innate Immunity and Immune Disease, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Gale",
+          "openalex": "A5031994519",
+          "orcid": "0000-0002-6332-7436",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California San Diego",
+              "raw": "Section of Molecular Biology, Division of Biological Sciences, University of California San Diego, La Jolla, CA, USA. mddaugherty@ucsd.edu",
+              "ror": "0168r3w48"
+            },
+            {
+              "country": "US",
+              "name": "University of California San Diego",
+              "raw": "Section of Molecular Biology, Division of Biological Sciences, University of California San Diego, La Jolla, CA, USA",
+              "ror": "0168r3w48"
+            }
+          ],
+          "corresponding": true,
+          "name": "Matthew D. Daugherty",
+          "openalex": "A5071307291",
+          "orcid": "0000-0002-4879-9603",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Innate Immunity and Immune Disease, University of Washington, Seattle, WA, USA. savanram@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Immunology, School of Medicine, University of Washington, Seattle, WA, USA. savanram@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Center for Innate Immunity and Immune Disease, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Ram Savan",
+          "openalex": "A5033518970",
+          "orcid": "0000-0002-3087-1355",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:920eb074b75abdd3f8aacb225dce4c97193c0a895eb41bcaa4245d68b2770e57",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000223",
+      "ids": {
+        "doi": "10.1038/s41590-019-0527-6",
+        "openalex": "W2986794069",
+        "pmcid": "PMC7240801",
+        "pmid": "31740798"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7240801"
+      },
+      "published": "2019-11-18",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "RNA-binding protein isoforms ZAP-S and ZAP-L have distinct antiviral and immune resolution functions",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9997000098228455,
+          "subfield": "Immunology",
+          "topic": "interferon and immune responses"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9993000030517578,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Viral Infections and Immunology Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9975000023841858,
+          "subfield": "Molecular Biology",
+          "topic": "RNA regulation and disease"
+        }
+      ],
+      "venue": {
+        "issn_l": "1529-2908",
+        "name": "Nature Immunology",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

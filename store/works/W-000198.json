@@ -1,0 +1,389 @@
+{
+  "aliases": [],
+  "canonical": "R-000198",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000198"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000198"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000198"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000198"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:fbb9a6e583ee",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000198",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was also partly supported by the University of Washington Arnold and Mabel Beckman cryoEM center and the Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000198",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:fa0eb534e7bc5927c6da263e0afc4f59bc6611bb097f9edf487c3efd229b723d",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6237438/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "We also thank Priska von Haller for her assistance in using the mass spectrometry instruments.",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000198",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:fa0eb534e7bc5927c6da263e0afc4f59bc6611bb097f9edf487c3efd229b723d",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6237438/"
+      }
+    }
+  ],
+  "id": "W-000198",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew J. Borst",
+          "openalex": "A5038946848",
+          "orcid": "0000-0003-4297-7824",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Connor Weidle",
+          "openalex": "A5012310621",
+          "orcid": "0000-0002-9354-2276",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Matthew D. Gray",
+          "openalex": "A5022673921",
+          "orcid": "0000-0002-4260-9784",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brandon Frenz",
+          "openalex": "A5006919442",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Joost Snijder",
+          "openalex": "A5050510032",
+          "orcid": "0000-0002-9310-8226",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, United States",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Joyce",
+          "openalex": "A5047909325",
+          "orcid": "0000-0002-6808-7232",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, United States",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ivelin S. Georgiev",
+          "openalex": "A5076958095",
+          "orcid": "0000-0002-6312-7696",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, United States",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Guillaume B. E. Stewart-Jones",
+          "openalex": "A5012439935",
+          "orcid": "0000-0002-2440-3790",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, United States",
+              "ror": "01cwqze88"
+            }
+          ],
+          "corresponding": false,
+          "name": "Peter D. Kwong",
+          "openalex": "A5043677118",
+          "orcid": "0000-0003-3560-232X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew T. McGuire",
+          "openalex": "A5034137050",
+          "orcid": "0000-0003-1841-6859",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Frank DiMaio",
+          "openalex": "A5105925656",
+          "orcid": "0000-0002-7524-8938",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Global Health, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Leonidas Stamatatos",
+          "openalex": "A5002836913",
+          "orcid": "0000-0002-1106-7097",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institutes of Health",
+              "raw": "Vaccine Research Center, National Institute of Allergy and Infectious Diseases, National Institutes of Health, Bethesda, United States",
+              "ror": "01cwqze88"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Marie Pancera",
+          "openalex": "A5033326746",
+          "orcid": "0000-0001-9217-6270",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Biochemistry, University of Washington, Seattle, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David Veesler",
+          "openalex": "A5085406779",
+          "orcid": "0000-0002-6019-8675",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:fa0eb534e7bc5927c6da263e0afc4f59bc6611bb097f9edf487c3efd229b723d",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000198",
+      "ids": {
+        "doi": "10.7554/elife.37688",
+        "openalex": "W2899687428",
+        "pmcid": "PMC6237438",
+        "pmid": "30403372"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.7554/elife.37688"
+      },
+      "published": "2018-11-07",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Germline VRC01 antibody recognition of a modified clade C HIV-1 envelope trimer and a glycosylated HIV-1 gp120 core",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9998999834060669,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9998000264167786,
+          "subfield": "Virology",
+          "topic": "HIV Research and Treatment"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9994000196456909,
+          "subfield": "Molecular Biology",
+          "topic": "Glycosylation and Glycoproteins Research"
+        }
+      ],
+      "venue": {
+        "issn_l": "2050-084X",
+        "name": "eLife",
+        "publisher": "eLife Sciences Publications Ltd"
+      },
+      "version_link": null,
+      "year": 2018
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

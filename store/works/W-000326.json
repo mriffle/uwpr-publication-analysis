@@ -1,0 +1,731 @@
+{
+  "aliases": [],
+  "canonical": "R-000326",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000326"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000326"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000326"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000326"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000326"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000326"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2026:faac6aaa0926",
+        "page": "2026"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000326",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "Panorama Public is funded by the National Institutes of Health [grant number R24 GM141156], the Panorama Partners Program (https://panoramaweb.org/partners.url), and by the University of Washington’s Proteomics Resource [grant number UWPR95794].",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000326",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:2f85637c386b6838b0a82d4de330853adf2b6a782886027eef0f1633ce88c3dc",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12807779/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "Wellcome Trust10.13039/100010269 223745/Z/21/Z National Key Research and Development Program of China10.13039/501100012166 2021YFA13016032024YFE0202700 Biotechnology and Biological Sciences Research Council10.13039/501100000268 BB/S01781X/1BB/T019670/1BB/V018779/1BB/X001911/1BB/Y513829/1 Japan Scie…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000326",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:2f85637c386b6838b0a82d4de330853adf2b6a782886027eef0f1633ce88c3dc",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12807779/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "University of Washington’s Proteomics Resource (UWPR95794);",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000326",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "main text",
+      "source": {
+        "cache": "sha256:2f85637c386b6838b0a82d4de330853adf2b6a782886027eef0f1633ce88c3dc",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12807779/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000326",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W4416059040"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000326",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1093/nar/gkaf1146"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "Panorama Public is funded by the National Institutes of Health [grant number R24 GM141156], the Panorama Partners Program (https://panoramaweb.org/partners.url), and by the University of Washington’s Proteomics Resource [grant number UWPR95794].",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000326",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:2f85637c386b6838b0a82d4de330853adf2b6a782886027eef0f1633ce88c3dc",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12807779/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "University of Washington’s Proteomics Resource (UWPR95794);",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000326",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "main text",
+      "source": {
+        "cache": "sha256:2f85637c386b6838b0a82d4de330853adf2b6a782886027eef0f1633ce88c3dc",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12807779/"
+      }
+    }
+  ],
+  "id": "W-000326",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology , Seattle WA 98109 ,",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle WA 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Eric W. Deutsch",
+          "openalex": "A5070102563",
+          "orcid": "0000-0001-8732-0928",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Computational Mass Spectrometry, University of California, San Diego (UCSD) , La Jolla, CA 92093 ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, University of California, San Diego (UCSD) , La Jolla, CA 92093 ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego (UCSD) Department of Computer Science and Engineering, , La Jolla, CA 92093 ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, University of California, San Diego (UCSD), La Jolla, CA 92093, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Nuno Bandeira",
+          "openalex": "A5087034314",
+          "orcid": "0000-0001-8385-3655",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
+              "ror": "02catss52"
+            },
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus, Hinxton, Cambridge, CB10 1SD, United Kingdom",
+              "ror": "02catss52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yasset Pérez‐Riverol",
+          "openalex": "A5055658645",
+          "orcid": "0000-0001-6579-6941",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195 ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle WA 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Vagisha Sharma",
+          "openalex": "A5101918119",
+          "orcid": "0000-0003-1922-439X",
+          "staff": "sharma"
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Center for Computational Mass Spectrometry, University of California, San Diego (UCSD) , La Jolla, CA 92093 ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, University of California, San Diego (UCSD) , La Jolla, CA 92093 ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego (UCSD) Department of Computer Science and Engineering, , La Jolla, CA 92093 ,",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, University of California, San Diego (UCSD), La Jolla, CA 92093, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jeremy Carver",
+          "openalex": "A5019398641",
+          "orcid": "0000-0003-0384-8130",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology , Seattle WA 98109 ,",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle WA 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Luis Mendoza",
+          "openalex": "A5079842634",
+          "orcid": "0000-0003-0128-8643",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
+              "ror": "02catss52"
+            },
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus, Hinxton, Cambridge, CB10 1SD, United Kingdom",
+              "ror": "02catss52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Deepti J Kundu",
+          "openalex": "A5029691314",
+          "orcid": "0000-0003-2989-5971",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
+              "ror": "02catss52"
+            },
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus, Hinxton, Cambridge, CB10 1SD, United Kingdom",
+              "ror": "02catss52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chakradhar Bandla",
+          "openalex": "A5035838235",
+          "orcid": "0000-0001-6392-3759",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
+              "ror": "02catss52"
+            },
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus, Hinxton, Cambridge, CB10 1SD, United Kingdom",
+              "ror": "02catss52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Selvakumar Kamatchinathan",
+          "openalex": "A5080017460",
+          "orcid": "0009-0001-3644-2586",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
+              "ror": "02catss52"
+            },
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus, Hinxton, Cambridge, CB10 1SD, United Kingdom",
+              "ror": "02catss52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Suresh Hewapathirana",
+          "openalex": "A5037446204",
+          "orcid": "0000-0002-7862-5022",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology , Seattle WA 98109 ,",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle WA 98109, United States",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zhi Sun",
+          "openalex": "A5080826559",
+          "orcid": "0000-0003-3324-6851",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "JP",
+              "name": "Research Organization of Information and Systems",
+              "raw": "Database Center for Life Science, Joint Support-Center for Data Science Research, Research Organization of Information and Systems , Chiba 277-0871 ,",
+              "ror": "04p4e8t29"
+            },
+            {
+              "country": "JP",
+              "name": "Kitasato University",
+              "raw": "School of Frontier Engineering, Kitasato University , Kanagawa 252-0373 ,",
+              "ror": "00f2txz25"
+            },
+            {
+              "country": "JP",
+              "name": "Research Organization of Information and Systems",
+              "raw": "Database Center for Life Science, Joint Support-Center for Data Science Research, Research Organization of Information and Systems, Chiba 277-0871, Japan",
+              "ror": "04p4e8t29"
+            },
+            {
+              "country": "JP",
+              "name": "Kitasato University",
+              "raw": "School of Frontier Engineering, Kitasato University, Kanagawa 252-0373, Japan",
+              "ror": "00f2txz25"
+            }
+          ],
+          "corresponding": false,
+          "name": "Shin Kawano",
+          "openalex": "A5042698098",
+          "orcid": "0000-0002-7969-2972",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "JP",
+              "name": "Niigata University",
+              "raw": "Niigata University Graduate School of Medical and Dental Sciences , Niigata 951-8510 ,",
+              "ror": "04ww21r56"
+            },
+            {
+              "country": "JP",
+              "name": "Niigata University",
+              "raw": "Niigata University Graduate School of Medical and Dental Sciences, Niigata 951-8510, Japan",
+              "ror": "04ww21r56"
+            }
+          ],
+          "corresponding": false,
+          "name": "Shujiro Okuda",
+          "openalex": "A5062655330",
+          "orcid": "0000-0002-7704-8104",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195 ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle WA 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brian Connolly",
+          "openalex": "A5010402322",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195 ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle WA 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brendan MacLean",
+          "openalex": "A5031754851",
+          "orcid": "0000-0002-9575-0255",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195 ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle WA 98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "Beijing Proteome Research Center, National Center for Protein Sciences, Beijing Institute of Lifeomics , Beijing 102206 ,",
+              "ror": "05pp5b412"
+            },
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "Beijing Proteome Research Center, National Center for Protein Sciences, Beijing Institute of Lifeomics, Beijing 102206, China",
+              "ror": "05pp5b412"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tao Chen",
+          "openalex": "A5100357813",
+          "orcid": "0000-0003-4110-0529",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "Beijing Proteome Research Center, National Center for Protein Sciences, Beijing Institute of Lifeomics , Beijing 102206 ,",
+              "ror": "05pp5b412"
+            },
+            {
+              "country": "CN",
+              "name": "Beijing Proteome Research Center",
+              "raw": "Beijing Proteome Research Center, National Center for Protein Sciences, Beijing Institute of Lifeomics, Beijing 102206, China",
+              "ror": "05pp5b412"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yunping Zhu",
+          "openalex": "A5100765277",
+          "orcid": "0000-0002-7320-7411",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "JP",
+              "name": "Kyoto University",
+              "raw": "Graduate School of Pharmaceutical Sciences, Kyoto University , Kyoto 606-8501 ,",
+              "ror": "02kpeqv85"
+            },
+            {
+              "country": "JP",
+              "name": "Kyoto University",
+              "raw": "Graduate School of Pharmaceutical Sciences, Kyoto University, Kyoto 606-8501, Japan",
+              "ror": "02kpeqv85"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yasushi Ishihama",
+          "openalex": "A5001763350",
+          "orcid": "0000-0001-7714-203X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
+              "ror": "02catss52"
+            },
+            {
+              "country": "GB",
+              "name": "European Bioinformatics Institute",
+              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus, Hinxton, Cambridge, CB10 1SD, United Kingdom",
+              "ror": "02catss52"
+            }
+          ],
+          "corresponding": false,
+          "name": "Juan Antonio Vizcaíno",
+          "openalex": "A5044603792",
+          "orcid": "0000-0002-3905-4335",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:2f85637c386b6838b0a82d4de330853adf2b6a782886027eef0f1633ce88c3dc",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000326",
+      "ids": {
+        "doi": "10.1093/nar/gkaf1146",
+        "openalex": "W4416059040",
+        "pmcid": "PMC12807779",
+        "pmid": "41206473"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1093/nar/gkaf1146"
+      },
+      "published": "2025-11-06",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "The ProteomeXchange consortium in 2026: making proteomics data FAIR",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9853000044822693,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.001500000013038516,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0012000000569969416,
+          "subfield": "Molecular Biology",
+          "topic": "Single-cell and spatial transcriptomics"
+        }
+      ],
+      "venue": {
+        "issn_l": "0305-1048",
+        "name": "Nucleic Acids Research",
+        "publisher": "Oxford University Press"
+      },
+      "version_link": null,
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

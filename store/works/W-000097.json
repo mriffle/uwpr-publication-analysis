@@ -1,0 +1,354 @@
+{
+  "aliases": [],
+  "canonical": "R-000097",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000097"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000097"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000097"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000097"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:d6cc2a55a6c0",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000097",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was also supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000097",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d025ee147077d080bc6750c37520bb4145a2be7c7501266a1a3b6b3e775ef925",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3568533/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was also supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000097",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:d025ee147077d080bc6750c37520bb4145a2be7c7501266a1a3b6b3e775ef925",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3568533/"
+      }
+    }
+  ],
+  "id": "W-000097",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department\rof Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington\r98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chunsheng Zhao",
+          "openalex": "A5038730139",
+          "orcid": "0000-0003-1951-379X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington#R#98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Qiuxia Gao",
+          "openalex": "A5033455481",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Georgia",
+              "raw": "Pharmaceutical and Biomedical Sciences, University of Georgia, Athens, Georgia 30605, United States",
+              "ror": "00te3t702"
+            },
+            {
+              "country": "US",
+              "name": "University of Georgia",
+              "raw": "Pharmaceutical and Biomedical#R#Sciences, University of Georgia, Athens,#R#Georgia 30605, United States",
+              "ror": "00te3t702"
+            }
+          ],
+          "corresponding": false,
+          "name": "Arthur G. Roberts",
+          "openalex": "A5050736930",
+          "orcid": "0000-0001-6045-458X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Biochemistry and Molecular Pharmacology, University of Massachusetts Medical School, Shrewsbury, Massachusetts 01545, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Biochemistry#R#and Molecular Pharmacology, University of Massachusetts Medical School, Shrewsbury,#R#Massachusetts 01545, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Scott A. Shaffer",
+          "openalex": "A5013927284",
+          "orcid": "0000-0002-5264-3257",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington#R#98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Catalin E. Doneanu",
+          "openalex": "A5061550152",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Microsoft Inc., 1 Microsoft Way, Redmond, Washington 98052, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Microsoft Inc., 1 Microsoft Way, Redmond,#R#Washington 98052, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Song Xue",
+          "openalex": "A5019758949",
+          "orcid": "0000-0003-3986-6197",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington#R#98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington#R#98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sidney D. Nelson",
+          "openalex": "A5110269316",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington 98195, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department#R#of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington#R#98195, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "William M. Atkins",
+          "openalex": "A5080008157",
+          "orcid": "0000-0002-2239-6419",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:d025ee147077d080bc6750c37520bb4145a2be7c7501266a1a3b6b3e775ef925",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000097",
+      "ids": {
+        "doi": "10.1021/bi301069r",
+        "openalex": "W2053816886",
+        "pmcid": "PMC3568533",
+        "pmid": "23150942"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3568533"
+      },
+      "published": "2012-11-14",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Cross-Linking Mass Spectrometry and Mutagenesis Confirm the Functional Importance of Surface Interactions between CYP3A4 and Holo/Apo Cytochromeb5",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Pharmacology, Toxicology and Pharmaceutics",
+          "score": 0.9998999834060669,
+          "subfield": "Pharmacology",
+          "topic": "Pharmacogenetics and Drug Metabolism"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.994700014591217,
+          "subfield": "Oncology",
+          "topic": "Drug Transport and Resistance Mechanisms"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.993399977684021,
+          "subfield": "Computational Theory and Mathematics",
+          "topic": "Computational Drug Discovery Methods"
+        }
+      ],
+      "venue": {
+        "issn_l": "0006-2960",
+        "name": "Biochemistry",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2012
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

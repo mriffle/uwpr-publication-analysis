@@ -1,0 +1,375 @@
+{
+  "aliases": [],
+  "canonical": "R-000247",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000247"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000247"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000247"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000247"
+    },
+    {
+      "channel": "F",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000247"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000247"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:978279710d24",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000247",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "We thank Priska von Haller from the University of Washington’s Proteomics Resource (UWPR) for her invaluable guidance and contributions to this mass spectrometry study.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000247",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:3f33de4e745c340f88ee8ab163e1bce04dd2ef3237343a8f338055808724d8ad",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8009864/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "Proteomics Resource, University of Washington, Seattle, WA",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000247",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": "sha256:3f33de4e745c340f88ee8ab163e1bce04dd2ef3237343a8f338055808724d8ad",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8009864/"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "Proteomics Resource, University of Washington, Seattle, WA, United States",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000247",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3126674487"
+      }
+    }
+  ],
+  "id": "W-000247",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology and Regional Epilepsy Center, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Francis A. Concepcion",
+          "openalex": "A5042355671",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology and Regional Epilepsy Center, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "M.N. Khan",
+          "openalex": "A5038559124",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Children's Research Institute, Center for Integrative Brain Research, Seattle, WA, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jia-Der Ju Wang",
+          "openalex": "A5042945299",
+          "orcid": "0000-0001-7465-6318",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Children's Research Institute, Center for Integrative Brain Research, Seattle, WA, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Aguan Wei",
+          "openalex": "A5049839497",
+          "orcid": "0000-0003-2596-9240",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Seattle Children's Research Institute, Center for Integrative Brain Research, Seattle, WA, United States; Department of Neurological Surgery, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurological Surgery, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Children's Research Institute, Center for Integrative Brain Research, Seattle, WA, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jeffrey G. Ojemann",
+          "openalex": "A5063843377",
+          "orcid": "0000-0001-7580-8934",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurological Surgery, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew L. Ko",
+          "openalex": "A5070970490",
+          "orcid": "0000-0002-6253-9891",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Electrical and Computer Engineering, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yi‐Wu Shi",
+          "openalex": "A5004869156",
+          "orcid": "0000-0002-7962-8874",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Proteomics Resource, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Seattle Children's Research Institute, Center for Integrative Brain Research, Seattle, WA, United States; Department of Neurological Surgery, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurological Surgery, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Children's Research Institute, Center for Integrative Brain Research, Seattle, WA, United States",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jan‐Marino Ramirez",
+          "openalex": "A5010756785",
+          "orcid": "0000-0002-5626-3999",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology and Regional Epilepsy Center, University of Washington, Seattle, WA, United States. Electronic address: npoolos@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Neurology and Regional Epilepsy Center, University of Washington, Seattle, WA, United States",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Nicholas P. Poolos",
+          "openalex": "A5023311802",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:3f33de4e745c340f88ee8ab163e1bce04dd2ef3237343a8f338055808724d8ad",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000247",
+      "ids": {
+        "doi": "10.1016/j.neuroscience.2021.01.038",
+        "openalex": "W3126674487",
+        "pmcid": "PMC8009864",
+        "pmid": "33571596"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/8009864"
+      },
+      "published": "2021-02-09",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "HCN Channel Phosphorylation Sites Mapped by Mass Spectrometry in Human Epilepsy Patients and in an Animal Model of Temporal Lobe Epilepsy",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.9998000264167786,
+          "subfield": "Cellular and Molecular Neuroscience",
+          "topic": "Neuroscience and Neuropharmacology Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9987000226974487,
+          "subfield": "Molecular Biology",
+          "topic": "Ion channel regulation and function"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9984999895095825,
+          "subfield": "Psychiatry and Mental health",
+          "topic": "Epilepsy research and treatment"
+        }
+      ],
+      "venue": {
+        "issn_l": "0306-4522",
+        "name": "Neuroscience",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2021
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

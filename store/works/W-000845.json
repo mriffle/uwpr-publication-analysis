@@ -1,0 +1,364 @@
+{
+  "aliases": [],
+  "canonical": "R-000845",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000845"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:cf7f09cb6ad4",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000845",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000845",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "University of Tasmania",
+              "raw": "Antarctic Climate and Ecosystems Cooperative Research Centre, University of Tasmania, Private Bag 80 Hobart, Tasmania 7001, Australia,",
+              "ror": "01nfmeh72"
+            },
+            {
+              "country": "AU",
+              "name": "University of Tasmania",
+              "raw": "Institute for Marine and Antarctic Studies, University of Tasmania, Hobart, 7005 Tasmania, Australia",
+              "ror": "01nfmeh72"
+            },
+            {
+              "country": "AU",
+              "name": "University of Tasmania",
+              "raw": "Institute for Marine and Antarctic Studies, University of Tasmania, Hobart, 7005 Tasmania, Australia",
+              "ror": "01nfmeh72"
+            }
+          ],
+          "corresponding": true,
+          "name": "Philip W. Boyd",
+          "openalex": "A5091179334",
+          "orcid": "0000-0001-7850-1911",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "AU",
+              "name": "University of New England",
+              "raw": "School of Science and Technology, University of New England, Armidale, 2351 New South Wales, Australia",
+              "ror": "04r659a56"
+            },
+            {
+              "country": "AU",
+              "name": "University of New England",
+              "raw": "School of Science and Technology, University of New England, Armidale, 2351 New South Wales, Australia",
+              "ror": "04r659a56"
+            }
+          ],
+          "corresponding": false,
+          "name": "Peter W. Dillingham",
+          "openalex": "A5000278616",
+          "orcid": "0000-0001-6302-3275",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Clark University",
+              "raw": "Gustaf H. Carlson School of Chemistry, Clark University, Worcester, Massachusetts 01610, USA",
+              "ror": "04123ky43"
+            },
+            {
+              "country": "AU",
+              "name": "University of New England",
+              "raw": "School of Science and Technology, University of New England, Armidale, 2351 New South Wales, Australia",
+              "ror": "04r659a56"
+            },
+            {
+              "country": "AU",
+              "name": "University of New England",
+              "raw": "School of Science and Technology, University of New England, Armidale, 2351 New South Wales, Australia",
+              "ror": "04r659a56"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christina M. McGraw",
+          "openalex": "A5074996115",
+          "orcid": "0000-0001-5841-0748",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Chemistry, NIWA/University of Otago Research Centre for Oceanography, University of Otago, Dunedin 9054, New Zealand",
+              "ror": "01jmxt844"
+            },
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Chemistry, NIWA/University of Otago Research Centre for Oceanography, University of Otago, Dunedin 9054, New Zealand",
+              "ror": "01jmxt844"
+            }
+          ],
+          "corresponding": false,
+          "name": "Edward A. Armstrong",
+          "openalex": "A5113595114",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Botany, University of Otago, PO Box 56 Dunedin 9054, New Zealand,",
+              "ror": "01jmxt844"
+            },
+            {
+              "country": "AU",
+              "name": "University of Tasmania",
+              "raw": "Institute for Marine and Antarctic Studies, University of Tasmania, Hobart, 7005 Tasmania, Australia",
+              "ror": "01nfmeh72"
+            },
+            {
+              "country": "AU",
+              "name": "University of Tasmania",
+              "raw": "Institute for Marine and Antarctic Studies, University of Tasmania, Hobart, 7005 Tasmania, Australia",
+              "ror": "01nfmeh72"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christopher E. Cornwall",
+          "openalex": "A5004849176",
+          "orcid": "0000-0002-6154-4082",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Botany, University of Otago, PO Box 56 Dunedin 9054, New Zealand,",
+              "ror": "01jmxt844"
+            },
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Botany, University of Otago, PO Box 56 Dunedin 9054, New Zealand,",
+              "ror": "01jmxt844"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yuanyuan Feng",
+          "openalex": "A5029657675",
+          "orcid": "0000-0002-4565-8717",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Botany, University of Otago, PO Box 56 Dunedin 9054, New Zealand,",
+              "ror": "01jmxt844"
+            },
+            {
+              "country": "AU",
+              "name": "University of Tasmania",
+              "raw": "Institute for Marine and Antarctic Studies, University of Tasmania, Hobart, 7005 Tasmania, Australia",
+              "ror": "01nfmeh72"
+            },
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Botany, University of Otago, PO Box 56 Dunedin 9054, New Zealand,",
+              "ror": "01jmxt844"
+            }
+          ],
+          "corresponding": false,
+          "name": "Catriona L. Hurd",
+          "openalex": "A5042866319",
+          "orcid": "0000-0001-9965-4917",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Chemistry, University of Otago, PO Box 56 Dunedin 9054, New Zealand,",
+              "ror": "01jmxt844"
+            },
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Chemistry, University of Otago, PO Box 56 Dunedin 9054, New Zealand,",
+              "ror": "01jmxt844"
+            }
+          ],
+          "corresponding": false,
+          "name": "Melanie Gault‐Ringold",
+          "openalex": "A5083285937",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Botany, University of Otago, PO Box 56 Dunedin 9054, New Zealand,",
+              "ror": "01jmxt844"
+            },
+            {
+              "country": "NZ",
+              "name": "University of Otago",
+              "raw": "Department of Botany, University of Otago, PO Box 56 Dunedin 9054, New Zealand,",
+              "ror": "01jmxt844"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael Y. Roleda",
+          "openalex": "A5052298850",
+          "orcid": "0000-0003-0568-9081",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, Box 355065, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, Box 355065, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, Box 355065, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, Box 355065, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000845",
+      "ids": {
+        "doi": "10.1038/nclimate2811",
+        "openalex": "W2256517354",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "https://figshare.com/articles/journal_contribution/Physiological_responses_of_a_Southern_Ocean_diatom_to_complex_future_ocean_conditions/22930070"
+      },
+      "published": "2015-10-05",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Physiological responses of a Southern Ocean diatom to complex future ocean conditions",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9980999827384949,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9940000176429749,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9937000274658203,
+          "subfield": "Oceanography",
+          "topic": "Marine Biology and Ecology Research"
+        }
+      ],
+      "venue": {
+        "issn_l": "1758-678X",
+        "name": "Nature Climate Change",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2015
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

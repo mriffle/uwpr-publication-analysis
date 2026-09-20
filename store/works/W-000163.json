@@ -1,0 +1,607 @@
+{
+  "aliases": [],
+  "canonical": "R-000163",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000163"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000163"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000163"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000163"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000163"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000163"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:6c72bcab3307",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000163",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported by the National Institutes of Health through grant numbers: 5R01RR023334, 1R01GM097112, 5R01GM086688, 7S10RR025107, 5U19AI107775, 4T15HD072999 1R01HL110879, and R01GM113237 and supported in part by the UW Proteome Resource UWPR95794.",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000163",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:1a99712648c3af6a7ed6b06629b3a2296ed76ec4afa37b1ed1d580b05b9629b3",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5172568/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported by the National Institutes of Health through grant numbers: 5R01RR023334, 1R01GM097112, 5R01GM086688, 7S10RR025107, 5U19AI107775, 4T15HD072999 and 1R01HL110879 and supported in part by the UW Proteome Resource UWPR95794.",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000163",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:1a99712648c3af6a7ed6b06629b3a2296ed76ec4afa37b1ed1d580b05b9629b3",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5172568/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000163",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1371/journal.pone.0167547"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "We thank all of the members of the Bruce Laboratory and the UWPR for their advice and helpful discussions.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000163",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:1a99712648c3af6a7ed6b06629b3a2296ed76ec4afa37b1ed1d580b05b9629b3",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5172568/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported by the National Institutes of Health through grant numbers: 5R01RR023334, 1R01GM097112, 5R01GM086688, 7S10RR025107, 5U19AI107775, 4T15HD072999 and 1R01HL110879 and supported in part by the UW Proteome Resource UWPR95794.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000163",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:1a99712648c3af6a7ed6b06629b3a2296ed76ec4afa37b1ed1d580b05b9629b3",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5172568/"
+      }
+    }
+  ],
+  "id": "W-000163",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington School of Medicine, Seattle, WA, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Juan D. Chavez",
+          "openalex": "A5016223830",
+          "orcid": "0000-0001-8849-0304",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington School of Medicine, Seattle, WA, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington School of Medicine, Seattle, WA, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Boyce Thompson Institute for Plant Research, Ithaca, NY, United States of America",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Cornell University",
+              "raw": "Department of Plant Pathology and Plant-Microbe Biology, Cornell University, Ithaca, NY, United States of America",
+              "ror": "05bnh6r87"
+            },
+            {
+              "country": "US",
+              "name": "Agricultural Research Service",
+              "raw": "USDA-Agricultural Research Service, Ithaca, NY, United States of America",
+              "ror": "02d2m2044"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michelle Cilia",
+          "openalex": "A5108391104",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Keith Rivera",
+          "openalex": "A5036658040",
+          "orcid": "0000-0003-2979-9576",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington School of Medicine, Seattle, WA, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xuefei Zhong",
+          "openalex": "A5102161653",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington School of Medicine, Seattle, WA, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Xia Wu",
+          "openalex": "A5021425965",
+          "orcid": "0000-0002-0024-4481",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Terrence Allen",
+          "openalex": "A5102251034",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Moshe Khurgel",
+          "openalex": "A5008511951",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Akhilesh Kumar",
+          "openalex": "A5069154356",
+          "orcid": "0000-0003-2757-5181",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Athanasios Lampropoulos",
+          "openalex": "A5036491397",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mårten Larsson",
+          "openalex": "A5001523743",
+          "orcid": "0000-0002-7855-9539",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Shuvadeep Maity",
+          "openalex": "A5026891406",
+          "orcid": "0000-0002-6031-4744",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yaroslav I. Morozov",
+          "openalex": "A5033453719",
+          "orcid": "0000-0002-5372-303X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wimal Pathmasiri",
+          "openalex": "A5058796422",
+          "orcid": "0000-0002-5199-5744",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mathew Perez‐Neut",
+          "openalex": "A5037438266",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Coriness Piñeyro-Ruiz",
+          "openalex": "A5060622053",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Elizabeth Polina",
+          "openalex": "A5039180690",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Stephanie Post",
+          "openalex": "A5029906144",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Mark H. Rider",
+          "openalex": "A5058042595",
+          "orcid": "0000-0002-2655-8921",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Dorota Tokmina‐Roszyk",
+          "openalex": "A5073126808",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Katherine Tyson",
+          "openalex": "A5082252863",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Cold Spring Harbor Laboratory",
+              "raw": "Cold Spring Harbor Laboratory Proteomics Course 2016, Cold Spring Harbor, NY, United States of America",
+              "ror": "02qz8b764"
+            }
+          ],
+          "corresponding": false,
+          "name": "Débora Parrine",
+          "openalex": "A5069474124",
+          "orcid": "0000-0003-1389-785X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington School of Medicine, Seattle, WA, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "James E. Bruce",
+          "openalex": "A5024181058",
+          "orcid": "0000-0001-6441-6089",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:1a99712648c3af6a7ed6b06629b3a2296ed76ec4afa37b1ed1d580b05b9629b3",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000163",
+      "ids": {
+        "doi": "10.1371/journal.pone.0167547",
+        "openalex": "W2560915386",
+        "pmcid": "PMC5172568",
+        "pmid": "27997545"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "public-domain",
+        "status": "gold",
+        "url": "https://doi.org/10.1371/journal.pone.0167547"
+      },
+      "published": "2016-12-20",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "A General Method for Targeted Quantitative Cross-Linking Mass Spectrometry",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 1.0,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9994999766349792,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Materials Science",
+          "score": 0.9957000017166138,
+          "subfield": "Materials Chemistry",
+          "topic": "Enzyme Structure and Function"
+        }
+      ],
+      "venue": {
+        "issn_l": "1932-6203",
+        "name": "PLoS ONE",
+        "publisher": "Public Library of Science"
+      },
+      "version_link": null,
+      "year": 2016
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

@@ -1,0 +1,202 @@
+{
+  "aliases": [],
+  "canonical": "R-000035",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000035"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000035"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000035"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:6a390738e77e",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000035",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000035",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "*Department of Chemistry, University of Washington, Bagley Hall, Box 351700, Seattle, WA 981915-1700;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Chemistry, University of Washington, Bagley Hall, Box 351700, Seattle, WA, 981915-1700, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jace W. Jones",
+          "openalex": "A5015749452",
+          "orcid": "0000-0003-0460-0380",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Box 357610, Seattle, WA 98195-7610; and",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Scott A. Shaffer",
+          "openalex": "A5013927284",
+          "orcid": "0000-0002-5264-3257",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Box 357710, Seattle, WA 98195-7710",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Robert K. Ernst",
+          "openalex": "A5043813423",
+          "orcid": "0000-0001-5016-8694",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Box 357610, Seattle, WA 98195-7610; and",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "*Department of Chemistry, University of Washington, Bagley Hall, Box 351700, Seattle, WA 981915-1700;",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "František Tureček",
+          "openalex": "A5042952795",
+          "orcid": "0000-0001-7321-7858",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000035",
+      "ids": {
+        "doi": "10.1073/pnas.0800445105",
+        "openalex": "W1983526490",
+        "pmcid": "PMC2529124",
+        "pmid": "18753624"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/2529124"
+      },
+      "published": "2008-08-27",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Determination of pyrophosphorylated forms of lipid A in Gram-negative bacteria using a multivaried mass spectrometric approach",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9973000288009644,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9853000044822693,
+          "subfield": "Genetics",
+          "topic": "Yersinia bacterium, plague, ectoparasites research"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Engineering",
+          "score": 0.9660999774932861,
+          "subfield": "Biomedical Engineering",
+          "topic": "Advanced Chemical Sensor Technologies"
+        }
+      ],
+      "venue": {
+        "issn_l": "0027-8424",
+        "name": "Proceedings of the National Academy of Sciences",
+        "publisher": "National Academy of Sciences"
+      },
+      "version_link": null,
+      "year": 2008
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

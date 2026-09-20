@@ -1,0 +1,360 @@
+{
+  "aliases": [],
+  "canonical": "R-000246",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000246"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000246"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000246"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000246"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000246"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000246"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000246"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:cad6041e13a5",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000246",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work is supported through the Nunn lab in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000246",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:287079bb50265977dc6746b565c5afe9f2a22c516b2a083aeb9648bcde17ce16",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7873073/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "University of Washington Proteomics ResourceUWPR95794UWPR95794Timmins-SchiffmanEmmaNunnBrook L.",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000246",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:287079bb50265977dc6746b565c5afe9f2a22c516b2a083aeb9648bcde17ce16",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7873073/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000246",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3127136793"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000246",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1038/s41598-021-82569-7"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work is supported through the Nunn lab in part by the University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000246",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:287079bb50265977dc6746b565c5afe9f2a22c516b2a083aeb9648bcde17ce16",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7873073/"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "University of Washington Proteomics ResourceUWPR95794UWPR95794Timmins-SchiffmanEmmaNunnBrook L.",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000246",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:287079bb50265977dc6746b565c5afe9f2a22c516b2a083aeb9648bcde17ce16",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7873073/"
+      }
+    }
+  ],
+  "id": "W-000246",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "San Francisco State University",
+              "raw": "Department of Biology, San Francisco State University, 1600 Holloway Avenue, San Francisco, CA, 94132, USA. kahot@hawaii.edu",
+              "ror": "05ykr0121"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kewalo Marine Laboratory, University of Hawaii At Manoa, 41 Ahui Street, Honolulu, HI, 96813, USA. kahot@hawaii.edu",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kewalo Marine Laboratory, University of Hawaii At Manoa, 41 Ahui Street, Honolulu, HI, 96813, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Kaho H. Tisthammer",
+          "openalex": "A5004090863",
+          "orcid": "0000-0002-4530-4572",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Centre Scientifique de Monaco, 8, Quai Antoine 1er, 2ième étage, 98000, Monaco City, Monaco",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kewalo Marine Laboratory, University of Hawaii At Manoa, 41 Ahui Street, Honolulu, HI, 96813, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "François Seneca",
+          "openalex": "A5013574264",
+          "orcid": "0000-0002-8908-1227",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, 98195, USA. brookh@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Kewalo Marine Laboratory, University of Hawaii At Manoa, 41 Ahui Street, Honolulu, HI, 96813, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Robert H. Richmond",
+          "openalex": "A5070191197",
+          "orcid": "0000-0002-0880-691X",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:287079bb50265977dc6746b565c5afe9f2a22c516b2a083aeb9648bcde17ce16",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000246",
+      "ids": {
+        "doi": "10.1038/s41598-021-82569-7",
+        "openalex": "W3127136793",
+        "pmcid": "PMC7873073",
+        "pmid": "33564085"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1038/s41598-021-82569-7"
+      },
+      "published": "2021-02-09",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Physiological and molecular responses of lobe coral indicate nearshore adaptations to anthropogenic stressors",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 1.0,
+          "subfield": "Ecology",
+          "topic": "Coral and Marine Ecosystems Studies"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9957000017166138,
+          "subfield": "Ecology",
+          "topic": "Physiological and biochemical adaptations"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9957000017166138,
+          "subfield": "Global and Planetary Change",
+          "topic": "Marine Bivalve and Aquaculture Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "2045-2322",
+        "name": "Scientific Reports",
+        "publisher": "Nature Portfolio"
+      },
+      "version_link": null,
+      "year": 2021
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

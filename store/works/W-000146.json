@@ -1,0 +1,253 @@
+{
+  "aliases": [],
+  "canonical": "R-000146",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000146"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000146"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000146"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000146"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:a417ce9b42e1",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000146",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000146",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the ‡Department of Medicine, University of Washington, Seattle, WA, 98109; ronsein@iq.usp.br",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, 98109",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Graziella E. Ronsein",
+          "openalex": "A5078844747",
+          "orcid": "0000-0002-2340-6770",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Columbia University",
+              "raw": "§ Columbia University College of Physicians and Surgeons, Department of Medicine, New York, NY 10032;",
+              "ror": "00hj8s172"
+            },
+            {
+              "country": "US",
+              "name": "Columbia University",
+              "raw": "Columbia University College of Physicians and Surgeons, Department of Medicine, New York, NY 10032",
+              "ror": "00hj8s172"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gissette Reyes‐Soffer",
+          "openalex": "A5012063139",
+          "orcid": "0000-0002-6746-4569",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the ‡Department of Medicine, University of Washington, Seattle, WA, 98109;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, 98109",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Yi He",
+          "openalex": "A5054938728",
+          "orcid": "0000-0002-5565-5579",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "¶Children's Hospital Oakland Research Institute, Oakland, CA 94609",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Children's Hospital Oakland Research Institute, Oakland, CA 94609",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael N. Oda",
+          "openalex": "A5079558596",
+          "orcid": "0000-0003-0330-3747",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Columbia University",
+              "raw": "§ Columbia University College of Physicians and Surgeons, Department of Medicine, New York, NY 10032;",
+              "ror": "00hj8s172"
+            },
+            {
+              "country": "US",
+              "name": "Columbia University",
+              "raw": "Columbia University College of Physicians and Surgeons, Department of Medicine, New York, NY 10032",
+              "ror": "00hj8s172"
+            }
+          ],
+          "corresponding": false,
+          "name": "Henry N. Ginsberg",
+          "openalex": "A5007048045",
+          "orcid": "0000-0002-4103-3592",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "From the ‡Department of Medicine, University of Washington, Seattle, WA, 98109;",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, 98109",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000146",
+      "ids": {
+        "doi": "10.1074/mcp.m115.054528",
+        "openalex": "W2297945512",
+        "pmcid": "PMC4813690",
+        "pmid": "26667175"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1074/mcp.m115.054528"
+      },
+      "published": "2015-12-14",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Targeted Proteomics Identifies Paraoxonase/Arylesterase 1 (PON1) and Apolipoprotein Cs as Potential Risk Factors for Hypoalphalipoproteinemia in Diabetic Subjects Treated with Fenofibrate and Rosiglitazone",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998999834060669,
+          "subfield": "Clinical Biochemistry",
+          "topic": "Paraoxonase enzyme and polymorphisms"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.989300012588501,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9757999777793884,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-9476",
+        "name": "Molecular & Cellular Proteomics",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2015
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

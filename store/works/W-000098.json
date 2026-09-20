@@ -1,0 +1,474 @@
+{
+  "aliases": [],
+  "canonical": "R-000098",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000098"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000098"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000098"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000098"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000098"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000098"
+    },
+    {
+      "channel": "F",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000098"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000098"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:9cb8a0da10c2",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000098",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000098",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2143493486"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "UW Proteomics Resource, University of Washington, Seattle, Washington, 98109",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000098",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2143493486"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "¶UW Proteomics Resource, University of Washington, Seattle, Washington, 98109;",
+      "first_seen": "2026-09-20",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000098",
+      "rule": "R5",
+      "rule_version": "2026-09-20.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2143493486"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000098",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1074%2Fmcp.o112.019166"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000098",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1074%2Fmcp.o112.019166"
+      }
+    }
+  ],
+  "id": "W-000098",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Program, University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Program, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sunhee Jung",
+          "openalex": "A5008018563",
+          "orcid": "0000-0001-5396-4813",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "§Institute for Systems Biology, Seattle, Washington;",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jennifer J. Smith",
+          "openalex": "A5102771689",
+          "orcid": "0000-0001-5780-7209",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "UW Proteomics Resource, University of Washington, Seattle, Washington, 98109",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "¶UW Proteomics Resource, University of Washington, Seattle, Washington, 98109;",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Priska D. von Haller",
+          "openalex": "A5083225847",
+          "orcid": null,
+          "staff": "vonhaller"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "§Institute for Systems Biology, Seattle, Washington;",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "David J. Dilworth",
+          "openalex": "A5103813425",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Biomedical Research Institute, Seattle, Washington 98109",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "**Seattle Biomedical Research Institute, Seattle, Washington 98109",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "§Institute for Systems Biology, Seattle, Washington;",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Katherine A. Sitko",
+          "openalex": "A5010823685",
+          "orcid": "0009-0008-5810-9590",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "§Institute for Systems Biology, Seattle, Washington;",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Leslie R. Miller",
+          "openalex": "A5040675957",
+          "orcid": "0000-0002-2555-2771",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Biomedical Research Institute, Seattle, Washington 98109",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "**Seattle Biomedical Research Institute, Seattle, Washington 98109",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "§Institute for Systems Biology, Seattle, Washington;",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ramsey A. Saleem",
+          "openalex": "A5109243590",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, 98195. Current address: University of Maryland, School of Pharmacy, Baltimore, MD 21201",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "Institute for Systems Biology, Seattle, Washington",
+              "ror": "02tpgw303"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Seattle Biomedical Research Institute, Seattle, Washington 98109",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "**Seattle Biomedical Research Institute, Seattle, Washington 98109",
+              "ror": null
+            },
+            {
+              "country": "US",
+              "name": "Institute for Systems Biology",
+              "raw": "§Institute for Systems Biology, Seattle, Washington;",
+              "ror": "02tpgw303"
+            }
+          ],
+          "corresponding": true,
+          "name": "John D. Aitchison",
+          "openalex": "A5003978275",
+          "orcid": "0000-0002-9153-6497",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000098",
+      "ids": {
+        "doi": "10.1074/mcp.o112.019166",
+        "openalex": "W2143493486",
+        "pmcid": "PMC3650349",
+        "pmid": "23349476"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1074/mcp.o112.019166"
+      },
+      "published": "2013-01-25",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Global Analysis of Condition-specific Subcellular Protein Distribution and Abundance",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9987999796867371,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9987999796867371,
+          "subfield": "Cell Biology",
+          "topic": "Biotin and Related Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9975000023841858,
+          "subfield": "Molecular Biology",
+          "topic": "Microbial Metabolic Engineering and Bioproduction"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-9476",
+        "name": "Molecular & Cellular Proteomics",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2013
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

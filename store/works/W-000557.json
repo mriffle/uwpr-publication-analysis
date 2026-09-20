@@ -1,0 +1,274 @@
+{
+  "aliases": [],
+  "canonical": "R-000557",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000557"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 3,
+      "detail": {
+        "staff": "vonhaller"
+      },
+      "excerpt": "We would like to thank T. Biechele, J. Boyd, W. Conrad, P. von Haller, M. B. Major, M. MacCoss, R. Seifert, and A. Zhou for technical assistance and advice.",
+      "first_seen": "2026-09-20",
+      "label": "A UWPR staff member is thanked for data-analysis or technical help",
+      "last_seen": "2026-09-20",
+      "record": "R-000557",
+      "rule": "R7",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:4e3c3b0d201c32b4de05e0f5debb0c26c8be45857995823b593e26bba9d4a7cd",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3171123/"
+      }
+    }
+  ],
+  "id": "W-000557",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology 1 , and 2",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109 1 , and 2",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology, and Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109",
+              "ror": "006w34k90"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jason D. Berndt",
+          "openalex": "A5057406411",
+          "orcid": "0000-0002-7388-6792",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology 1 , and 2",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109 1 , and 2",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology, and Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109",
+              "ror": "006w34k90"
+            }
+          ],
+          "corresponding": false,
+          "name": "Atsushi Aoyagi",
+          "openalex": "A5102928304",
+          "orcid": "0000-0002-8908-3855",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology 1 , and 2",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109 1 , and 2",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology, and Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109",
+              "ror": "006w34k90"
+            }
+          ],
+          "corresponding": false,
+          "name": "Pei‐Tzu Yang",
+          "openalex": "A5100888003",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology 1 , and 2",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109 1 , and 2",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology graduate program, University of Washington, Seattle, WA 98109 3",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology, and Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109",
+              "ror": "006w34k90"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jamie N. Anastas",
+          "openalex": "A5079320246",
+          "orcid": "0000-0002-5317-5352",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology 1 , and 2",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109 1 , and 2",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology, and Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109",
+              "ror": "006w34k90"
+            }
+          ],
+          "corresponding": false,
+          "name": "Lan Tang",
+          "openalex": "A5103028234",
+          "orcid": "0000-0001-9333-7574",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology 1 , and 2",
+              "ror": "006w34k90"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109 1 , and 2",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Howard Hughes Medical Institute",
+              "raw": "Howard Hughes Medical Institute, Department of Pharmacology, and Institute for Stem Cell and Regenerative Medicine, University of Washington School of Medicine, Seattle, WA 98109",
+              "ror": "006w34k90"
+            }
+          ],
+          "corresponding": true,
+          "name": "Randall T. Moon",
+          "openalex": "A5024528673",
+          "orcid": "0000-0002-9352-1408",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:4e3c3b0d201c32b4de05e0f5debb0c26c8be45857995823b593e26bba9d4a7cd",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000557",
+      "ids": {
+        "doi": "10.1083/jcb.201107021",
+        "openalex": "W2159202112",
+        "pmcid": "PMC3171123",
+        "pmid": "21875946"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-sa",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1083/jcb.201107021"
+      },
+      "published": "2011-08-29",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Mindbomb 1, an E3 ubiquitin ligase, forms a complex with RYK to activate Wnt/β-catenin signaling",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998000264167786,
+          "subfield": "Molecular Biology",
+          "topic": "Cancer-related gene regulation"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9997000098228455,
+          "subfield": "Molecular Biology",
+          "topic": "Wnt/β-catenin signaling in development and cancer"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9986000061035156,
+          "subfield": "Molecular Biology",
+          "topic": "Ubiquitin and proteasome pathways"
+        }
+      ],
+      "venue": {
+        "issn_l": "0021-9525",
+        "name": "The Journal of Cell Biology",
+        "publisher": "Rockefeller University Press"
+      },
+      "version_link": null,
+      "year": 2011
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

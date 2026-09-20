@@ -1,0 +1,340 @@
+{
+  "aliases": [],
+  "canonical": "R-000292",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000292"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:2024:09cedcbf4957",
+        "page": "2024"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000292",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/2024/"
+      }
+    }
+  ],
+  "id": "W-000292",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Medicine, University of Wshington, Settle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Kimberly A. Dill‐McFarland",
+          "openalex": "A5015540039",
+          "orcid": "0000-0003-1481-7065",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Medicine, University of Wshington, Settle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jason D. Simmons",
+          "openalex": "A5059528694",
+          "orcid": "0000-0002-7669-2803",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Medicine, University of Wshington, Settle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Glenna J. Peterson",
+          "openalex": "A5082612438",
+          "orcid": "0009-0005-6965-2626",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Medicine, University of Wshington, Settle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Felicia K. Nguyen",
+          "openalex": "A5001462147",
+          "orcid": "0000-0002-3279-2933",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Medicine, University of Wshington, Settle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Monica Campo",
+          "openalex": "A5021241634",
+          "orcid": "0000-0003-4336-0519",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Case Western Reserve University",
+              "raw": "Department of Population and Quantitative Health Sciences, Case Western Reserve University, Cleveland, Ohio, USA",
+              "ror": "051fd9666"
+            }
+          ],
+          "corresponding": false,
+          "name": "Penelope Benchek",
+          "openalex": "A5007254981",
+          "orcid": "0000-0002-7385-087X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Case Western Reserve University",
+              "raw": "Department of Medicine, Case Western Reserve University, Cleveland, Ohio, USA",
+              "ror": "051fd9666"
+            },
+            {
+              "country": "US",
+              "name": "Case Western Reserve University",
+              "raw": "Department of Population and Quantitative Health Sciences, Case Western Reserve University, Cleveland, Ohio, USA",
+              "ror": "051fd9666"
+            },
+            {
+              "country": "US",
+              "name": "Case Western Reserve University",
+              "raw": "Department of Mediine, Case Western Reserve University, Cleveland, Ohio, USA",
+              "ror": "051fd9666"
+            }
+          ],
+          "corresponding": false,
+          "name": "Catherine M. Stein",
+          "openalex": "A5049299671",
+          "orcid": "0000-0002-9763-5023",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Medicine, University of Wshington, Settle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "UG",
+              "name": "Makerere University",
+              "raw": "Department of Internal Medicine, Makerere University, Kampala, Uganda",
+              "ror": "03dmz0111"
+            },
+            {
+              "country": "UG",
+              "name": "Makerere University",
+              "raw": "Department of Internal Meicine, Makerere University, Kampala, Ugana",
+              "ror": "03dmz0111"
+            }
+          ],
+          "corresponding": false,
+          "name": "Harriet Mayanja‐Kizza",
+          "openalex": "A5046080862",
+          "orcid": "0000-0002-9297-6208",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Case Western Reserve University",
+              "raw": "Department of Medicine, Case Western Reserve University, Cleveland, Ohio, USA",
+              "ror": "051fd9666"
+            },
+            {
+              "country": "US",
+              "name": "Case Western Reserve University",
+              "raw": "Department of Mediine, Case Western Reserve University, Cleveland, Ohio, USA",
+              "ror": "051fd9666"
+            }
+          ],
+          "corresponding": false,
+          "name": "W. Henry Boom",
+          "openalex": "A5028956215",
+          "orcid": "0000-0001-5760-9595",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Deprtment of Medicine, University of Wshington, Settle, WA, USA",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Thomas R. Hawn",
+          "openalex": "A5078366736",
+          "orcid": "0000-0003-2368-3185",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:85909a6282255166f76b566f10c124a53590cdb780a88f6cbf02834a21866e4b",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000292",
+      "ids": {
+        "doi": "10.1101/2024.02.27.582348",
+        "openalex": "W4392364765",
+        "pmcid": "PMC10925331",
+        "pmid": "38464296"
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "green",
+        "url": "http://dx.doi.org/10.1101/2024.02.27.582348"
+      },
+      "published": "2024-03-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Epigenetic programming of host lipid metabolism associates with resistance to TST/IGRA conversion after exposure to Mycobacterium tuberculosis",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.995199978351593,
+          "subfield": "Infectious Diseases",
+          "topic": "Tuberculosis Research and Epidemiology"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9915000200271606,
+          "subfield": "Immunology",
+          "topic": "interferon and immune responses"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9911999702453613,
+          "subfield": "Immunology",
+          "topic": "Immune responses and vaccinations"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": null,
+      "year": 2024
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

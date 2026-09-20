@@ -1,0 +1,256 @@
+{
+  "aliases": [],
+  "canonical": "R-000235",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000235"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:d729f51fb361",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000235",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    }
+  ],
+  "id": "W-000235",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington; Department of Genome Sciences, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Samuel Entwisle",
+          "openalex": "A5062896234",
+          "orcid": "0000-0001-8515-636X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Massachusetts, Worcester, Massachusetts",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Camila Martínez Calejman",
+          "openalex": "A5054454895",
+          "orcid": "0009-0007-5471-1544",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Anthony S. Valente",
+          "openalex": "A5109283350",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington; Department of Genome Sciences, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Robert Lawrence",
+          "openalex": "A5010802039",
+          "orcid": "0000-0002-1031-7373",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Massachusetts, Worcester, Massachusetts",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Chien‐Min Hung",
+          "openalex": "A5101826074",
+          "orcid": "0000-0002-9218-7065",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Massachusetts, Worcester, Massachusetts. Electronic address: David.Guertin@umassmed.edu",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Massachusetts, Worcester, Massachusetts",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "David A. Guertin",
+          "openalex": "A5053515605",
+          "orcid": "0000-0003-3695-6007",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington; Department of Genome Sciences, University of Washington, Seattle, Washington. Electronic address: jvillen@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Molecular and Cellular Biology Graduate Program, University of Washington, Seattle, Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Judit Villén",
+          "openalex": "A5005646080",
+          "orcid": "0000-0002-1005-1739",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000235",
+      "ids": {
+        "doi": "10.1074/mcp.ra120.001946",
+        "openalex": "W3014718324",
+        "pmcid": "PMC7338085",
+        "pmid": "32234964"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1074/mcp.ra120.001946"
+      },
+      "published": "2020-03-31",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Proteome and Phosphoproteome Analysis of Brown Adipocytes Reveals That RICTOR Loss Dampens Global Insulin/AKT Signaling",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9998000264167786,
+          "subfield": "Biochemistry",
+          "topic": "Lipid metabolism and biosynthesis"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9993000030517578,
+          "subfield": "Physiology",
+          "topic": "Adipose Tissue and Metabolism"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9883999824523926,
+          "subfield": "Cancer Research",
+          "topic": "Cancer, Hypoxia, and Metabolism"
+        }
+      ],
+      "venue": {
+        "issn_l": "1535-9476",
+        "name": "Molecular & Cellular Proteomics",
+        "publisher": "Elsevier BV"
+      },
+      "version_link": null,
+      "year": 2020
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

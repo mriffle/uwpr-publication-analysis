@@ -1,0 +1,737 @@
+{
+  "aliases": [
+    "W-000621"
+  ],
+  "canonical": "R-000230",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000230"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000230"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000621"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000230"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000230"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000230"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000621"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000230"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000230"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000621"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000230"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000621"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:7c9335929def",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000230",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "VS was supported by the University of Washington, Seattle Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000230",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:9df977acbad61e82664974c09d26e369758093fc01c343c10fbf084d4a53e1a1",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6964821/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000230",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W3000364256"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000230",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1371/journal.pbio.3000599"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000621",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2937477596"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "VS was supported by the University of Washington, Seattle Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000230",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:9df977acbad61e82664974c09d26e369758093fc01c343c10fbf084d4a53e1a1",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6964821/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-09-20"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000621",
+      "rule": "R6",
+      "rule_version": "2026-09-20.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1101%2F604306"
+      }
+    }
+  ],
+  "id": "W-000230",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nathan Basisty",
+          "openalex": "A5031009488",
+          "orcid": "0000-0001-6173-1139",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Abhijit Kale",
+          "openalex": "A5002565932",
+          "orcid": "0000-0002-1105-6953",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ok Hee Jeon",
+          "openalex": "A5052623517",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chisaka Kuehnemann",
+          "openalex": "A5072645200",
+          "orcid": "0000-0001-7977-3257",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Therese Payne",
+          "openalex": "A5112602927",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chirag Rao",
+          "openalex": "A5012972614",
+          "orcid": "0000-0002-3786-6436",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Anja Holtz",
+          "openalex": "A5043190036",
+          "orcid": "0000-0001-9856-002X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Samah Shah",
+          "openalex": "A5021159285",
+          "orcid": "0000-0003-4688-1248",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Seattle, Washington, United States of America",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Vagisha Sharma",
+          "openalex": "A5101918119",
+          "orcid": "0000-0003-1922-439X",
+          "staff": "sharma"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institute on Aging",
+              "raw": "Intramural Research Program of the National Institute on Aging, NIH, Baltimore, Maryland, United States of America",
+              "ror": "049v75w11"
+            }
+          ],
+          "corresponding": false,
+          "name": "Luigi Ferrucci",
+          "openalex": "A5048196698",
+          "orcid": "0000-0002-6273-1613",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California, Berkeley",
+              "raw": "Lawrence Berkeley Laboratory, University of California, Berkeley, California, United States of America",
+              "ror": "01an7q238"
+            },
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Judith Campisi",
+          "openalex": "A5001970748",
+          "orcid": "0000-0001-6858-9462",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": true,
+          "name": "Birgit Schilling",
+          "openalex": "A5003883020",
+          "orcid": "0000-0001-9907-2749",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:9df977acbad61e82664974c09d26e369758093fc01c343c10fbf084d4a53e1a1",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000230",
+      "ids": {
+        "doi": "10.1371/journal.pbio.3000599",
+        "openalex": "W3000364256",
+        "pmcid": "PMC6964821",
+        "pmid": "31945054"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "public-domain",
+        "status": "gold",
+        "url": "https://doi.org/10.1371/journal.pbio.3000599"
+      },
+      "published": "2020-01-16",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "A proteomic atlas of senescence-associated secretomes for aging biomarker development",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9994999766349792,
+          "subfield": "Rheumatology",
+          "topic": "GDF15 and Related Biomarkers"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9984999895095825,
+          "subfield": "Physiology",
+          "topic": "Telomeres, Telomerase, and Senescence"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9894000291824341,
+          "subfield": "Aging",
+          "topic": "Genetics, Aging, and Longevity in Model Organisms"
+        }
+      ],
+      "venue": {
+        "issn_l": "1544-9173",
+        "name": "PLoS Biology",
+        "publisher": "Public Library of Science"
+      },
+      "version_link": null,
+      "year": 2020
+    },
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nathan Basisty",
+          "openalex": "A5031009488",
+          "orcid": "0000-0001-6173-1139",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Abhijit Kale",
+          "openalex": "A5002565932",
+          "orcid": "0000-0002-1105-6953",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ok‐Hee Jeon",
+          "openalex": "A5103037319",
+          "orcid": "0000-0002-5151-3653",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chisaka Kuehnemann",
+          "openalex": "A5072645200",
+          "orcid": "0000-0001-7977-3257",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Therese Payne",
+          "openalex": "A5112602927",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Chirag Rao",
+          "openalex": "A5012972614",
+          "orcid": "0000-0002-3786-6436",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Anja Holtz",
+          "openalex": "A5043190036",
+          "orcid": "0000-0001-9856-002X",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": false,
+          "name": "Samah Shah",
+          "openalex": "A5021159285",
+          "orcid": "0000-0003-4688-1248",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Vagisha Sharma",
+          "openalex": "A5101918119",
+          "orcid": "0000-0003-1922-439X",
+          "staff": "sharma"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "National Institute on Aging",
+              "raw": "National Institute on Aging, Bethesda, Maryland 20892, USA",
+              "ror": "049v75w11"
+            }
+          ],
+          "corresponding": false,
+          "name": "Luigi Ferrucci",
+          "openalex": "A5048196698",
+          "orcid": "0000-0002-6273-1613",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California, Berkeley",
+              "raw": "Lawrence Berkeley Laboratory, University of California, Berkeley, California 94720, USA",
+              "ror": "01an7q238"
+            },
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
+            {
+              "country": "US",
+              "name": "University of California, Berkeley",
+              "raw": "Lawrence Berkeley Laboratory, University of California, Berkeley, California 9470, USA",
+              "ror": "01an7q238"
+            }
+          ],
+          "corresponding": false,
+          "name": "Judith Campisi",
+          "openalex": "A5001970748",
+          "orcid": "0000-0001-6858-9462",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            }
+          ],
+          "corresponding": true,
+          "name": "Birgit Schilling",
+          "openalex": "A5003883020",
+          "orcid": "0000-0001-9907-2749",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-09-20",
+        "recheck_after": "2026-12-19",
+        "status": "unavailable"
+      },
+      "id": "R-000621",
+      "ids": {
+        "doi": "10.1101/604306",
+        "openalex": "W2937477596",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "green",
+        "url": "https://doi.org/10.1101/604306"
+      },
+      "published": "2019-04-10",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "A Proteomic Atlas of Senescence-Associated Secretomes for Aging Biomarker Development",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9991000294685364,
+          "subfield": "Physiology",
+          "topic": "Telomeres, Telomerase, and Senescence"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Materials Science",
+          "score": 0.9884999990463257,
+          "subfield": "Materials Chemistry",
+          "topic": "Advanced Nanomaterials in Catalysis"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9879000186920166,
+          "subfield": "Rheumatology",
+          "topic": "GDF15 and Related Biomarkers"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": {
+        "method": "crossref_relation",
+        "to": "R-000230"
+      },
+      "year": 2019
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

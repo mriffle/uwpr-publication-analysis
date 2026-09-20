@@ -1,0 +1,464 @@
+{
+  "aliases": [],
+  "canonical": "R-000241",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000241"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000241"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000241"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000241"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:3d055ea88e3a",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000241",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This work was supported by the National Heart Lung and Blood Institute grant (R21HL113405, to D.A. Dichek), by the National Institute of Diabetes, Digestive, and Kidney Disease (P30DK017047, supporting the Quantitative and Functional Proteomics Core and the Cellular and Molecular Imaging Core of th…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000241",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "main text",
+      "source": {
+        "cache": "sha256:4c7d209867a4bc413b971f6015ab896b227b773c054cc04cc83bb89d5e725bc3",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7508285/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000241",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-20",
+        "url": "https://api.crossref.org/works/10.1161/circresaha.120.317295"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "This work was supported by the National Heart Lung and Blood Institute grant (R21HL113405, to D.A. Dichek), by the National Institute of Diabetes, Digestive, and Kidney Disease (P30DK017047, supporting the Quantitative and Functional Proteomics Core and the Cellular and Molecular Imaging Core of th…",
+      "first_seen": "2026-09-20",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-20",
+      "record": "R-000241",
+      "rule": "R3",
+      "rule_version": "2026-09-20.1",
+      "section": "main text",
+      "source": {
+        "cache": "sha256:4c7d209867a4bc413b971f6015ab896b227b773c054cc04cc83bb89d5e725bc3",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7508285/"
+      }
+    }
+  ],
+  "id": "W-000241",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Jie H. Hu Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jie Hu",
+          "openalex": "A5013067279",
+          "orcid": "0000-0002-6137-9064",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Nathan Airhart Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Nathan Airhart",
+          "openalex": "A5076339178",
+          "orcid": "0000-0003-1218-7602",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Kate Fox Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kate Fox",
+          "openalex": "A5087601721",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Jay Heinecke Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Pathology and Laboratory Medicine (D.A.D., R.F.N.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "VA Puget Sound Health Care System",
+              "raw": "Departments of Pathology and Laboratory Medicine (R.F.N.), VA Puget Sound Health Care System, Seattle, WA",
+              "ror": "00ky3az31"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Roberto F. Nicosia Departments of Pathology and Laboratory Medicine (D.A.D., R.F.N.), University of Washington, Seattle. Departments of Pathology and Laboratory Medicine (R.F.N.), VA Puget Sound Health Care System, Seattle, WA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Roberto F. Nicosia",
+          "openalex": "A5066520318",
+          "orcid": "0000-0003-2937-1908",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Surgery (T.K.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "VA Puget Sound Health Care System",
+              "raw": "Departments of Surgery (T.K.), VA Puget Sound Health Care System, Seattle, WA",
+              "ror": "00ky3az31"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Ted Kohler Departments of Surgery (T.K.), University of Washington, Seattle. Departments of Surgery (T.K.), VA Puget Sound Health Care System, Seattle, WA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Ted R. Kohler",
+          "openalex": "A5047018613",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Department of Chemistry, The Scripps Research Institute, La Jolla, CA (Z.E.P., M.M.D., B.F.C.)",
+              "ror": "02dxx6824"
+            },
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Zachary E. Potter https://orcid.org/0000-0002-9063-7923 Department of Chemistry, The Scripps Research Institute, La Jolla, CA (Z.E.P., M.M.D., B.F.C.)",
+              "ror": "02dxx6824"
+            }
+          ],
+          "corresponding": false,
+          "name": "Zachary E. Potter",
+          "openalex": "A5067945060",
+          "orcid": "0000-0002-9063-7923",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Vividion Therapeutics (G.M.S.)",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Gabriel M. Simon Vividion Therapeutics (G.M.S.)",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Gabriel M. Simon",
+          "openalex": "A5103052004",
+          "orcid": "0009-0000-9403-7178",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Department of Chemistry, The Scripps Research Institute, La Jolla, CA (Z.E.P., M.M.D., B.F.C.)",
+              "ror": "02dxx6824"
+            },
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Melissa M. Dix Department of Chemistry, The Scripps Research Institute, La Jolla, CA (Z.E.P., M.M.D., B.F.C.)",
+              "ror": "02dxx6824"
+            }
+          ],
+          "corresponding": false,
+          "name": "Melissa M. Dix",
+          "openalex": "A5036951700",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Department of Chemistry, The Scripps Research Institute, La Jolla, CA (Z.E.P., M.M.D., B.F.C.)",
+              "ror": "02dxx6824"
+            },
+            {
+              "country": "US",
+              "name": "Scripps Research Institute",
+              "raw": "Benjamin F. Cravatt Department of Chemistry, The Scripps Research Institute, La Jolla, CA (Z.E.P., M.M.D., B.F.C.)",
+              "ror": "02dxx6824"
+            }
+          ],
+          "corresponding": false,
+          "name": "Benjamin F. Cravatt",
+          "openalex": "A5054637908",
+          "orcid": "0000-0001-5330-3492",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Sina A. Gharib https://orcid.org/0000-0002-2480-4367 Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Sina A. Gharib",
+          "openalex": "A5084644058",
+          "orcid": "0000-0002-2480-4367",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Medicine (T.V., J.H.H., N.A., K.F., J.H., S.A.G., D.A.D.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Departments of Pathology and Laboratory Medicine (D.A.D., R.F.N.), University of Washington, Seattle",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "David A. Dichek",
+          "openalex": "A5009396539",
+          "orcid": "0000-0002-5224-2736",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:4c7d209867a4bc413b971f6015ab896b227b773c054cc04cc83bb89d5e725bc3",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000241",
+      "ids": {
+        "doi": "10.1161/circresaha.120.317295",
+        "openalex": "W3045905919",
+        "pmcid": "PMC7508285",
+        "pmid": "32762496"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1161/circresaha.120.317295"
+      },
+      "published": "2020-07-30",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Parallel Murine and Human Plaque Proteomics Reveals Pathways of Plaque Rupture",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.29499998688697815,
+          "subfield": "Immunology",
+          "topic": "Atherosclerosis and Cardiovascular Diseases"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.2393999993801117,
+          "subfield": "Surgery",
+          "topic": "Coronary Interventions and Diagnostics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.10890000313520432,
+          "subfield": "Cancer Research",
+          "topic": "Protease and Inhibitor Mechanisms"
+        }
+      ],
+      "venue": {
+        "issn_l": "0009-7330",
+        "name": "Circulation Research",
+        "publisher": "Lippincott Williams & Wilkins"
+      },
+      "version_link": null,
+      "year": 2020
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}

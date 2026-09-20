@@ -1,0 +1,293 @@
+{
+  "aliases": [],
+  "canonical": "R-000120",
+  "created": "2026-09-20",
+  "discovery": [
+    {
+      "channel": "A",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000120"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000120"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000120"
+    },
+    {
+      "channel": "E",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-09-20",
+      "record": "R-000120"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 1,
+      "detail": {
+        "first_seen": "2026-09-20",
+        "last_seen": "2026-09-20",
+        "list_key": "list:older:6adf71111333",
+        "page": "older"
+      },
+      "excerpt": null,
+      "first_seen": "2026-09-20",
+      "label": "Listed on UWPR's publications page",
+      "last_seen": "2026-09-20",
+      "record": "R-000120",
+      "rule": "R1",
+      "rule_version": "2026-09-20.1",
+      "section": "official list",
+      "source": {
+        "cache": null,
+        "name": "UWPR website",
+        "retrieved": "2026-09-20",
+        "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "This research was funded in part by the National Oceanographic and Atmospheric Administration Saltonstall-Kennedy Program grant # NA09NMF4270093 to Dr. Steven Roberts, The College of New Jersey Mentored Undergraduate Summer Experience (MUSE) program, The University of Washington’s Proteomics Comput…",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-20",
+      "record": "R-000120",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "acknowledgements",
+      "source": {
+        "cache": "sha256:17e63c66af2d4d1f5803671bdc8a372ca53719c4f13ab73336666bf703185944",
+        "name": "PMC",
+        "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4531390/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-20",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-20",
+      "record": "R-000120",
+      "rule": "R2",
+      "rule_version": "2026-09-20.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-09-20",
+        "url": "https://api.openalex.org/works/W2030357303"
+      }
+    }
+  ],
+  "id": "W-000120",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Box 355020, Seattle, WA, 98195, USA. emmats@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, USA,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Emma Timmins‐Schiffman",
+          "openalex": "A5038885394",
+          "orcid": "0000-0002-2478-6541",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "The College of New Jersey",
+              "raw": "Department of Biology, The College of New Jersey, 2000 Pennington Road, Ewing, NJ, 08628, USA. coffeyw1@tcnj.edu",
+              "ror": "02nx5r318"
+            },
+            {
+              "country": "US",
+              "name": "The College of New Jersey",
+              "raw": "Dept of Biology, The College of New Jersey, Ewing, USA",
+              "ror": "02nx5r318"
+            }
+          ],
+          "corresponding": false,
+          "name": "William D Coffey",
+          "openalex": "A5050742219",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "The College of New Jersey",
+              "raw": "Department of Biology, The College of New Jersey, 2000 Pennington Road, Ewing, NJ, 08628, USA. huaw1@tcnj.edu",
+              "ror": "02nx5r318"
+            },
+            {
+              "country": "US",
+              "name": "The College of New Jersey",
+              "raw": "Dept of Biology, The College of New Jersey, Ewing, USA",
+              "ror": "02nx5r318"
+            }
+          ],
+          "corresponding": false,
+          "name": "Wilber Hua",
+          "openalex": "A5022479068",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Genome Sciences, University of Washington, Box 355065, Seattle, WA, 98195, USA. brookh@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Genome Sciences, Seattle, USA",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "The College of New Jersey",
+              "raw": "Department of Biology, The College of New Jersey, 2000 Pennington Road, Ewing, NJ, 08628, USA. dickinga@tcnj.edu",
+              "ror": "02nx5r318"
+            },
+            {
+              "country": "US",
+              "name": "The College of New Jersey",
+              "raw": "Dept of Biology, The College of New Jersey, Ewing, USA",
+              "ror": "02nx5r318"
+            }
+          ],
+          "corresponding": false,
+          "name": "Gary H. Dickinson",
+          "openalex": "A5063793793",
+          "orcid": "0000-0003-1073-1483",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Box 355020, Seattle, WA, 98195, USA. sr320@uw.edu",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, USA,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Steven Roberts",
+          "openalex": "A5022496160",
+          "orcid": "0000-0001-8302-1138",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": "sha256:17e63c66af2d4d1f5803671bdc8a372ca53719c4f13ab73336666bf703185944",
+        "checked": "2026-09-20",
+        "recheck_after": null,
+        "status": "pmc_xml"
+      },
+      "id": "R-000120",
+      "ids": {
+        "doi": "10.1186/1471-2164-15-951",
+        "openalex": "W2030357303",
+        "pmcid": "PMC4531390",
+        "pmid": "25362893"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1186/1471-2164-15-951"
+      },
+      "published": "2014-11-03",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-09-20"
+      },
+      "title": "Shotgun proteomics reveals physiological response to ocean acidification in Crassostrea gigas",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9994000196456909,
+          "subfield": "Oceanography",
+          "topic": "Ocean Acidification Effects and Responses"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 9.999999747378752e-05,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 9.999999747378752e-05,
+          "subfield": "Ecology",
+          "topic": "Physiological and biochemical adaptations"
+        }
+      ],
+      "venue": {
+        "issn_l": "1471-2164",
+        "name": "BMC Genomics",
+        "publisher": "BioMed Central"
+      },
+      "version_link": null,
+      "year": 2014
+    }
+  ],
+  "rule_version": "2026-09-20.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-09-20"
+  },
+  "updated": "2026-09-20"
+}
