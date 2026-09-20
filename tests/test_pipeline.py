@@ -527,6 +527,28 @@ def test_a_successful_run_commits_its_data(client: HttpClient, tmp_path: Path) -
     assert f"store/runs/{result.run_id}.json" in committed
     assert f"store/runs/{result.run_id}.md" in committed
 
+    # `export/` is a committed build product beside the store (docs/02 §3), and docs/07 §3 counts
+    # it among what a normal week changes. One commit carries both, so the workflow scans and
+    # pushes a single hash, and `main` never advertises data the store no longer holds.
+    assert "export/uwpr_publications.json" in committed
+    assert "export/lookup_index.json" in committed
+    assert not git_module.status([export_dir(store)], store), "the export should be clean too"
+
+
+def test_an_uncommitted_export_stops_the_run(client: HttpClient, tmp_path: Path) -> None:
+    """Stage 0 refuses on a dirty `store/` **or `export/`** (docs/03 §5 stage 0)."""
+    git = _git_repository(tmp_path)
+    store = tmp_path / "store"
+    do_run(client, store)
+    (export_dir(store) / "uwpr_publications.json").write_text("{}", encoding="utf-8")
+
+    config = load_config()
+    result = run_pipeline(config, client, context_at(store), RunOptions(store=store))
+
+    assert result.status == "failed"
+    assert "uncommitted changes" in result.report
+    assert _log(git, tmp_path)[0].startswith("Data update ")  # nothing new was committed
+
 
 def test_the_store_commits_when_it_is_named_by_a_relative_path(
     client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch

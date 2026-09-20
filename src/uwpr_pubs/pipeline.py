@@ -256,13 +256,25 @@ class Pipeline:
             return
         if not git.is_repository(store):
             return
-        dirty = git.status([store], store)
+        dirty = git.status(self._committed_paths(), store)
         if dirty:
             raise RunFailureError(
                 "the store has uncommitted changes, so an earlier run may have been interrupted. "
                 "Commit them, or discard them with `git checkout` and `git clean -fd`:\n  "
                 + "\n  ".join(dirty[:10])
             )
+
+    def _committed_paths(self) -> list[Path]:
+        """What stage 0 checks and stage 13 commits: the store, and `export/` beside it.
+
+        `export/` is a committed build product (docs/02 §3, docs/05 §4), so a run that rewrites
+        it and does not commit it would leave `main` advertising data the store no longer holds.
+        It is listed only when it exists, because `git status` on a pathspec outside the
+        repository is a fatal error rather than an empty answer.
+        """
+        store = self.options.store
+        export = export_stage.export_dir(store)
+        return [store, export] if export.exists() else [store]
 
     def _guard_rules_fingerprint(self) -> None:
         latest = self.snapshot.latest_run() if self.snapshot else None
@@ -1721,6 +1733,10 @@ class Pipeline:
     def commit(self) -> None:
         """The run's one bot commit (docs/03 §2 P3, C3). The update workflow pushes it.
 
+        It covers `export/` as well as `store/`, because the export is a committed build product
+        (docs/02 §3) and docs/07 §3 counts it among what a normal week changes. One commit, not
+        two: the workflow scans a single hash for a leaked key and pushes it.
+
         A store outside a git repository — every scratch store — is simply not committed. A
         commit that fails is an alert rather than a failure: the data is already written, and
         what needs a person is the repository, not the run.
@@ -1729,7 +1745,7 @@ class Pipeline:
         if not self.options.commits or not git.is_repository(store):
             return
         try:
-            self.recorder.commit = git.commit([store], self.recorder.commit_message(), store)
+            self.recorder.commit = git.commit(self._committed_paths(), self.recorder.commit_message(), store)
         except subprocess.CalledProcessError as exc:
             self.recorder.alert(
                 f"the data was written but could not be committed: {scrub(str(exc))}",
