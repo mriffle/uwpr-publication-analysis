@@ -106,6 +106,21 @@ jobs:
           git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
 
+      # O2 and §4.2: copy `export/*.json` onto `gh-pages`, and nothing else. **No npm**, by
+      # design — the weekly data publish must not depend on a JavaScript build succeeding, which
+      # is why the app is built by `pages.yml` and the two halves of the branch are disjoint.
+      #
+      # `continue-on-error`, because §4.2 is explicit that a failed copy must not take the data
+      # commit with it: the commit is already pushed and `main` is the record, `gh-pages` is a
+      # view of it, and `tools/publish-site.sh data export` rebuilds that view from any clone
+      # without a pipeline run. Failing here would also email the maintainer an alert saying the
+      # data needs attention when it does not. If it keeps failing, the page says so itself
+      # after fourteen days (O3), which is the layer that exists for exactly this.
+      - name: Publish the export to gh-pages
+        if: steps.run.outputs.commit != ''
+        continue-on-error: true
+        run: tools/publish-site.sh data export
+
       - name: Save the download cache
         if: steps.run.outcome == 'success'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0

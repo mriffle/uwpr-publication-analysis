@@ -1,0 +1,65 @@
+# Publish the app to GitHub Pages (docs/07-operations.md O1, §4).
+#
+# The built site lives on a `gh-pages` branch, and the two things that change that branch are
+# deliberately separate: this workflow, which runs npm and replaces the app files, and
+# `update.yml`, which copies the export and never runs npm. §4.1 gives the reason: a JavaScript
+# toolchain failure must not be able to stop the weekly *data* publish, which is the one thing
+# that has to keep working unattended for years.
+#
+# The branch is the deployed artifact, so what is live is inspectable and revertible with
+# ordinary git — see RUNBOOK.md, "Roll back an app deploy".
+#
+# GitHub Pages must be set to deploy from the `gh-pages` branch, `/ (root)`. This workflow
+# creates the branch on its first run, but it cannot set that repository setting.
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      # The app, and the two files that decide how it is published.
+      - "web/**"
+      - ".github/workflows/pages.yml"
+      - "tools/publish-site.sh"
+  workflow_dispatch:
+
+permissions:
+  contents: write # pushes the built site to gh-pages; nothing else is needed
+
+concurrency:
+  group: pages
+  cancel-in-progress: false # never interrupt a push part-way through
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Full depth: the publish pushes a commit onto gh-pages from this checkout, and a
+          # shallow repository can have its push refused ("shallow update not allowed").
+          fetch-depth: 0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: web/.nvmrc
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci # from the committed lockfile, exactly (docs/06 §11.1)
+        working-directory: web
+
+      - name: Build the app for the project site
+        working-directory: web
+        env:
+          # A project site is served under a sub-path (docs/07 §4.3, docs/06 §3), and the base
+          # path is build-time configuration. Derived from the repository name so that a rename
+          # or a fork needs no edit here; serving it from UWPR's own site later is this same
+          # build with a different value, and no code change.
+          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+        run: npm run build
+
+      # Replaces the app files and leaves `data/` alone, so a deploy never clobbers the weekly
+      # export (§4.2). The branch is created, as an orphan, if it does not exist yet.
+      - name: Publish the built site to gh-pages
+        run: tools/publish-site.sh app web/dist
