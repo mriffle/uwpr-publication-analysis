@@ -1675,7 +1675,7 @@ class Pipeline:
         commit that fails is an alert rather than a failure: the data is already written, and
         what needs a person is the repository, not the run.
         """
-        store = self.options.store
+        store = self.options.store.resolve()
         if not self.options.commits or not git.is_repository(store):
             return
         try:
@@ -1752,17 +1752,9 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
     duration = time.monotonic() - started
     spend = client.budget.spent_usd
     report = recorder.markdown(duration_seconds=duration, spend_usd=spend)
-    status = "failed" if recorder.failure else recorder.status
     if written:
-        api = {
-            host: cast(Any, {"calls": use.calls, "cost_usd": use.cost_usd})
-            for host, use in client.usage.items()
-        }
-        manifest = recorder.manifest(context.timestamp(dt.datetime.now(tz=dt.UTC)), api)
-        io.write_json(pipeline.paths.run_manifest(context.run_id), manifest)
-        io.write_text_atomic(pipeline.paths.run_report(context.run_id), report)
-        pipeline.commit()  # last, so the manifest and the report are in the same commit
-        status = recorder.status  # a commit that failed raises an alert
+        report = _record_run(pipeline, client, duration=duration, spend=spend)
+    status = "failed" if recorder.failure else recorder.status
     if options.summary_out:
         io.write_text_atomic(options.summary_out, report)
     return RunResult(
@@ -1773,3 +1765,27 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
         commit=recorder.commit,
         errors=[recorder.failure] if recorder.failure else [],
     )
+
+
+def _record_run(pipeline: Pipeline, client: HttpClient, *, duration: float, spend: float) -> str:
+    """Stage 12 and the commit half of 13: the manifest, the report, then one commit.
+
+    The commit goes last, because the manifest and the report are among the files it commits —
+    which is also why a failure there needs the report rendering a second time, or the alert it
+    raises would never reach the person reading it (§10.6).
+    """
+    recorder, context = pipeline.recorder, pipeline.context
+    api = {
+        host: cast(Any, {"calls": use.calls, "cost_usd": use.cost_usd}) for host, use in client.usage.items()
+    }
+    manifest = recorder.manifest(context.timestamp(dt.datetime.now(tz=dt.UTC)), api)
+    io.write_json(pipeline.paths.run_manifest(context.run_id), manifest)
+    report = recorder.markdown(duration_seconds=duration, spend_usd=spend)
+    io.write_text_atomic(pipeline.paths.run_report(context.run_id), report)
+
+    before = recorder.status
+    pipeline.commit()
+    if recorder.status != before:
+        report = recorder.markdown(duration_seconds=duration, spend_usd=spend)
+        io.write_text_atomic(pipeline.paths.run_report(context.run_id), report)
+    return report

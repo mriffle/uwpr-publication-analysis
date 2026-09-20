@@ -525,6 +525,43 @@ def test_a_successful_run_commits_its_data(client: HttpClient, tmp_path: Path) -
     assert f"store/runs/{result.run_id}.md" in committed
 
 
+def test_the_store_commits_when_it_is_named_by_a_relative_path(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """`--store store`, which is the default and what the weekly run uses.
+
+    The commit runs with the store as its working directory, so a relative "store" pathspec
+    would be read as `store/store` and match nothing. The first real seed run hit exactly this,
+    and reported OK, because the failure lands after the report has been rendered.
+    """
+    git = _git_repository(tmp_path)
+    monkeypatch.chdir(tmp_path)
+    result = do_run(client, Path("store"))
+
+    assert result.status == "ok", result.report
+    assert result.commit
+    assert _log(git, tmp_path)[0].startswith("Data update ")
+    assert not git_module.status([Path("store")], tmp_path)
+
+
+def test_a_commit_that_fails_says_so_in_the_report(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """The report is rendered before the commit, so an alert from it must re-render (§10.6)."""
+    _git_repository(tmp_path)
+    store = tmp_path / "store"
+
+    def refuse(*_args: Any, **_kwargs: Any) -> None:
+        raise subprocess.CalledProcessError(128, ["git", "commit"], stderr="nothing to commit")
+
+    monkeypatch.setattr(git_module, "commit", refuse)
+    result = do_run(client, store)
+
+    assert result.status == "alert"
+    assert "could not be committed" in result.report
+    assert "could not be committed" in (store / "runs" / f"{result.run_id}.md").read_text()
+
+
 def test_a_second_run_that_changes_nothing_makes_no_second_data_commit(
     client: HttpClient, tmp_path: Path
 ) -> None:

@@ -61,7 +61,11 @@ def commit(paths: Sequence[Path], message: str, cwd: Path) -> str | None:
     that happened to be staged. `git add` on a pathspec records deletions too, which matters
     because a merged work's file is removed rather than rewritten.
     """
-    existing = [str(path) for path in paths if path.exists()]
+    # Absolute, because `cwd` is usually the store itself: a relative "store" pathspec would be
+    # read as `store/store` and match nothing, which is how the first real seed run failed to
+    # commit — silently, because `git add` on a pathspec that matches nothing is an error, and
+    # the error arrived after the run report had already been written.
+    existing = [str(path.resolve()) for path in paths if path.exists()]
     if not existing:
         return None
     _git(["add", "--", *existing], cwd)
