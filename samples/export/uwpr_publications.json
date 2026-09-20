@@ -31,7 +31,7 @@
     "first_year": 2008,
     "last_year": 2026
   },
-  "pipeline_version": "sample",
+  "pipeline_version": "samples/build_sample_store.py",
   "resource": {
     "identifier": "UWPR95794",
     "name": "University of Washington Proteomics Resource",

@@ -14,6 +14,13 @@ model, the four inclusion criteria and retired work IDs, and which described tie
 incremental runs that no longer exist. It was rewritten rather than edited.
 
 **Changes since agreement** (all 2026-09-20, found while implementing stage 11):
+- *§13, `uwpr-pubs export` is general, not a sample builder:* the run metadata comes from the
+  store's own latest run manifest, and the §13 coverage guard applies only when `--cases` is
+  given. Keying the guard on nothing made the command fail permanently against the real store,
+  which can never satisfy "retracted" or "override with attribution". Deriving the run year from
+  the store rather than a sample constant also keeps a wrong `period.complete_through` out of a
+  real export, which is the trap §4.2 exists to prevent. The sample needed no constants of its
+  own in the end: its store's manifest already states all of them.
 - *§13, where the synthetic cases live:* the sample export is built from `samples/store/` **plus
   `samples/export_cases.json`**, a committed file of synthetic works that the same `build_export`
   consumes. Audited rather than assumed: the sample store covers **nine of the twelve** cases;
@@ -708,6 +715,14 @@ uv run uwpr-pubs export --store samples/store --out samples/export --cases sampl
 
 which refuses to write if any case below is missing, and a test asserts the committed sample
 still matches a fresh build.
+
+**The command itself is general** (corrected 2026-09-20): `uwpr-pubs export` builds an export from
+*any* store, taking the run id, generation time, code version, rule version and run year from that
+store's own latest run manifest. `--cases` is what makes it a *sample* build — it merges the
+synthetic works and turns on the coverage guard below. The guard cannot apply to a real store,
+which can never satisfy "retracted" or "override with attribution": the store holds no retraction,
+and its only override is an *exclude*, which by definition never reaches the export. A store no run
+has written is refused rather than stamped with an invented date.
 
 It must cover, because each of these is a case the app gets wrong if it never sees one: a
 preprint-only work; a merged preprint-and-article pair; a work whose only evidence is the site

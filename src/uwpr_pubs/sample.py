@@ -1,42 +1,30 @@
-"""The sample export, and the twelve cases it has to cover (docs/05-metrics-and-data-contract.md §13).
+"""The twelve cases the sample export has to cover (docs/05-metrics-and-data-contract.md §13).
 
 `samples/export/` is what the web app is developed and tested against, so it has to contain every
-shape the app can meet. Nine of the twelve cases are already in `samples/store/`. Three are not,
-and cannot be:
+shape the app can meet. Nine of the twelve are already in `samples/store/`. Three are not, and
+cannot be:
 
-- **a retracted work** — the real store has none (0 of 339), which §13 itself says, so the sample
-  must carry a synthetic one;
+- **a retracted work** — the real store has none (0 of 339), which §13 itself says;
 - **a single-author work** and **one with more than 50 authors** — `samples/store/` runs 4 to 15
   authors, and it is built from live APIs against real UWPR papers.
 
-They cannot come from `samples/store/` because that store is rebuilt from live sources by
+They cannot be added to `samples/store/` because it is rebuilt from live sources by
 `samples/build_sample_store.py`, must rebuild byte-identically, and holds *real* papers with
 *real* UWPR evidence. Inventing a UWPR acknowledgement for a real paper that does not have one
-would put a false claim into a committed, validated artifact — which is the one thing this
-project's traceability principle exists to prevent — and no real retracted UWPR paper exists to
-use instead.
+would put a false claim into a committed, validated artifact — the one thing this project's
+traceability principle exists to prevent — and no real retracted UWPR paper exists to use
+instead. So they arrive from `samples/export_cases.json` and are merged by
+`uwpr_pubs.stages.export.build_from_store`, which has one path for every store.
 
-So the three arrive from `samples/export_cases.json`: synthetic `Work` objects that validate
-against `work.schema.json` like any other, carrying SAMPLE in their titles so nobody mistakes
-them for real papers, merged with the sample store's works and passed through the **same**
-`build_export` the pipeline uses. The export code has one path; only its input is a union.
+**This coverage guard applies to the sample only.** A real store can never satisfy "retracted" or
+"override with attribution" — it has no retraction, and its only override is an *exclude*, which
+by definition never reaches the export — so applying it everywhere made the export command fail
+permanently against its most obvious target.
 """
 
-import json
 from collections.abc import Callable, Mapping, Sequence
-from pathlib import Path
-from typing import Any, cast
 
-from uwpr_pubs.export import ExportDoc, ExportMeta, ExportWork, LookupDoc, build_export, build_lookup
-from uwpr_pubs.store.models import MetricsLine, Work, WorkId
-from uwpr_pubs.store.read import read_store
-
-# The run this sample stands for. Fixed, because a sample that changed every time it was rebuilt
-# would show up as a diff in every unrelated commit.
-SAMPLE_RUN_ID = "2026-09-19T00-00-sample"
-SAMPLE_GENERATED_AT = "2026-09-19T00:00:00Z"
-SAMPLE_RUN_YEAR = 2026
-
+from uwpr_pubs.export import ExportDoc, ExportWork
 
 LONG_AUTHOR_LIST = 50
 
@@ -45,7 +33,7 @@ def _has_no_excerpt(work: ExportWork, rule: str) -> bool:
     return any(e["rule"] == rule and e["excerpt"] is None for e in work["evidence"])
 
 
-# docs/05 §13, one predicate per case, so "it must cover" is a test rather than a promise.
+# One predicate per case, so "it must cover" is a test rather than a promise.
 CASES: Mapping[str, Callable[[ExportWork], bool]] = {
     "preprint-only work": lambda w: w["is_preprint"],
     "merged preprint and article": lambda w: bool(w["versions"]),
@@ -71,61 +59,8 @@ def missing_cases(export: ExportDoc) -> list[str]:
     return [name for name, matches in CASES.items() if not any(matches(work) for work in works)]
 
 
-def load_cases(path: Path) -> tuple[list[Work], list[MetricsLine]]:
-    """The synthetic works and their citation lines."""
-    if not path.exists():
-        return [], []
-    document = json.loads(path.read_text(encoding="utf-8"))
-    return (
-        cast(list[Work], document.get("works", [])),
-        cast(list[MetricsLine], document.get("metrics", [])),
-    )
-
-
-def build_sample(
-    store: Path,
-    cases: Path | None,
-    resource: Any,
-    rule_version: str | None = None,
-) -> tuple[ExportDoc, LookupDoc]:
-    """The sample export: a real store, plus the shapes a real store cannot supply.
-
-    The rule version describes *the store*, not the config the command happens to be run with, so
-    it is read from the store's own run manifest unless a caller names one. Otherwise rebuilding
-    the sample after an unrelated rule change would rewrite it with a version its works never saw.
-    """
-    snapshot = read_store(store)
-    if rule_version is None:
-        latest = snapshot.latest_run()
-        rule_version = str(latest["rule_version"]) if latest else "0000-00-00.0"
-    extra_works, extra_metrics = load_cases(cases) if cases else ([], [])
-
-    works: list[Work] = [*snapshot.works.values(), *extra_works]
-    metrics: list[MetricsLine] = [*snapshot.latest_metrics, *extra_metrics]
-    aliases: dict[str, WorkId] = dict(snapshot.aliases)
-    for work in extra_works:
-        for alias in work["aliases"]:
-            aliases[f"work:{alias}"] = work["id"]
-        for record in work["records"]:
-            for kind in ("doi", "pmid", "pmcid", "openalex"):
-                value = record["ids"].get(kind)
-                if value:
-                    aliases[f"{kind}:{value}"] = work["id"]
-
-    meta = ExportMeta(
-        run_id=SAMPLE_RUN_ID,
-        generated_at=SAMPLE_GENERATED_AT,
-        pipeline_version="sample",
-        rule_version=cast(Any, rule_version),
-        run_year=SAMPLE_RUN_YEAR,
-        citations_as_of=SAMPLE_GENERATED_AT[:10],
-        resource=resource,
-    )
-    return build_export(works, metrics, meta), build_lookup(snapshot.candidates, aliases, meta)
-
-
 def case_report(export: ExportDoc) -> str:
-    """Which work covers each case, for the build script's output."""
+    """Which work covers each case, for the export command's output."""
     lines = []
     for name, matches in CASES.items():
         covered: Sequence[str] = [w["id"] for w in export["works"] if matches(w)]

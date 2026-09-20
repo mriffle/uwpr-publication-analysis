@@ -14,9 +14,9 @@ from uwpr_pubs.fixtures import evaluate
 from uwpr_pubs.http import Mode
 from uwpr_pubs.pipeline import RunOptions, run_pipeline
 from uwpr_pubs.runtime import api_keys, build_client
-from uwpr_pubs.sample import SAMPLE_RUN_YEAR, build_sample, case_report, missing_cases
+from uwpr_pubs.sample import case_report, missing_cases
 from uwpr_pubs.smoke import run_smoke
-from uwpr_pubs.stages.export import resource_block, schema_problems
+from uwpr_pubs.stages.export import NoRunError, build_from_store, resource_block, schema_problems
 from uwpr_pubs.stages.export import write as write_export
 from uwpr_pubs.store.paths import StorePaths
 from uwpr_pubs.store.read import read_store
@@ -152,10 +152,12 @@ def _fixtures(args: argparse.Namespace) -> int:
 
 
 def _export(args: argparse.Namespace) -> int:
-    """Build the app's two files from a store, without a run (docs/05 §4, §13).
+    """Build the app's two files from any store, without a run (docs/05 §4).
 
-    This is how `samples/export/` is regenerated, and it is the only way to produce an export
-    from a store the pipeline is not currently writing.
+    Works against the real store as well as the sample: the run metadata comes from the store's
+    own latest run manifest, so this reproduces what that run wrote. `--cases` adds the synthetic
+    works the sample needs and turns on the docs/05 §13 coverage guard, which applies to the
+    sample alone — a real store can never satisfy "retracted" or "override with attribution".
     """
     try:
         config = load_config()
@@ -163,13 +165,20 @@ def _export(args: argparse.Namespace) -> int:
         print(f"ERROR {exc}")
         return 1
     cases = Path(args.cases) if args.cases else None
-    document, lookup = build_sample(Path(args.store), cases, resource_block(config), args.rule_version)
+    try:
+        document, lookup = build_from_store(
+            Path(args.store), resource_block(config), extra=cases, rule_version=args.rule_version
+        )
+    except NoRunError as exc:
+        print(f"ERROR {exc}")
+        return 1
 
     problems = schema_problems(document, lookup)
-    problems.extend(validate_export(document, lookup, run_year=SAMPLE_RUN_YEAR).errors)
-    absent = missing_cases(document)
-    if absent:
-        problems.append(f"docs/05 §13 cases not covered: {', '.join(absent)}")
+    problems.extend(validate_export(document, lookup, run_year=int(document["run_id"][:4])).errors)
+    if cases:
+        absent = missing_cases(document)
+        if absent:
+            problems.append(f"docs/05 §13 cases not covered: {', '.join(absent)}")
     for problem in problems:
         print("ERROR", problem)
     if problems:
@@ -178,7 +187,9 @@ def _export(args: argparse.Namespace) -> int:
     out = Path(args.out)
     write_export(out, document, lookup)
     print(f"{out}: {len(document['works'])} works, {len(lookup['not_included'])} not included")
-    print(case_report(document))
+    print(f"  from run {document['run_id']}, complete through {document['period']['complete_through']}")
+    if cases:
+        print(case_report(document))
     return 0
 
 
@@ -222,8 +233,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     fixtures_command.add_argument("--store", default="store")
 
     export_command = subcommands.add_parser("export", help="build the app's JSON from a store")
-    export_command.add_argument("--store", default="samples/store")
-    export_command.add_argument("--out", default="samples/export")
+    export_command.add_argument("--store", default="store")
+    export_command.add_argument("--out", default="export")
     export_command.add_argument("--cases", help="synthetic works for shapes the store cannot hold")
     export_command.add_argument("--rule-version", help="default: the current rules.yaml version")
 

@@ -6,6 +6,7 @@ until a funder asks why two numbers disagree. Everything here is offline.
 """
 
 import json
+import shutil
 from pathlib import Path
 from typing import Any, cast
 
@@ -24,23 +25,22 @@ from uwpr_pubs.export import (
     signal_label,
 )
 from uwpr_pubs.rules.signals import NEAR_MISS_IDENTIFIER
-from uwpr_pubs.sample import (
-    CASES,
-    SAMPLE_RUN_YEAR,
-    build_sample,
-    missing_cases,
-)
+from uwpr_pubs.sample import CASES, missing_cases
 from uwpr_pubs.schemas import schema_errors
 from uwpr_pubs.stages.export import (
     EXPORT_FILE,
     LOOKUP_FILE,
+    NoRunError,
+    build_from_store,
     export_dir,
     read,
     resource_block,
     schema_problems,
+    store_identity,
 )
 from uwpr_pubs.stages.export import write as write_export
 from uwpr_pubs.store.models import Candidate, MetricsLine, Work
+from uwpr_pubs.store.read import read_store
 from uwpr_pubs.validate import validate_export
 
 SAMPLE_STORE = Path("samples/store")
@@ -51,7 +51,7 @@ SAMPLE_CASES = Path("samples/export_cases.json")
 @pytest.fixture(scope="module")
 def built() -> tuple[Any, Any]:
     config = load_config()
-    return build_sample(SAMPLE_STORE, SAMPLE_CASES, resource_block(config))
+    return build_from_store(SAMPLE_STORE, resource_block(config), extra=SAMPLE_CASES)
 
 
 @pytest.fixture(scope="module")
@@ -77,7 +77,7 @@ def test_the_sample_covers_every_case_docs_05_requires(built: tuple[Any, Any]) -
 def test_the_sample_validates(built: tuple[Any, Any]) -> None:
     document, lookup = built
     assert schema_problems(document, lookup) == []
-    report = validate_export(document, lookup, run_year=SAMPLE_RUN_YEAR)
+    report = validate_export(document, lookup, run_year=int(document["run_id"][:4]))
     assert report.errors == []
 
 
@@ -102,8 +102,8 @@ def test_the_synthetic_cases_cannot_be_mistaken_for_real_papers() -> None:
 def test_building_twice_is_byte_identical(tmp_path: Path) -> None:
     """docs/02 §15: two runs on unchanged input produce no diff in `export/`."""
     config = load_config()
-    first = build_sample(SAMPLE_STORE, SAMPLE_CASES, resource_block(config))
-    second = build_sample(SAMPLE_STORE, SAMPLE_CASES, resource_block(config))
+    first = build_from_store(SAMPLE_STORE, resource_block(config), extra=SAMPLE_CASES)
+    second = build_from_store(SAMPLE_STORE, resource_block(config), extra=SAMPLE_CASES)
     one, two = tmp_path / "one", tmp_path / "two"
     write_export(one, *first)
     write_export(two, *second)
@@ -538,3 +538,78 @@ def test_every_case_predicate_is_exercised_by_the_sample(built: tuple[Any, Any])
     works = built[0]["works"]
     for name, matches in CASES.items():
         assert any(matches(work) for work in works), name
+
+
+# --- exporting a store that is not the sample (docs/05 §4) ----------------------------------
+
+
+REAL_STORE = Path("store")
+
+
+def test_the_real_store_exports_without_the_sample_cases() -> None:
+    """The case this was missing: the committed store can never satisfy two of §13's cases.
+
+    It holds no retracted work (0 of 339) and its only override is an *exclude*, which by
+    definition never reaches the export. Applying the §13 guard here made `uwpr-pubs export`
+    fail permanently against its most obvious target.
+    """
+    config = load_config()
+    document, lookup = build_from_store(REAL_STORE, resource_block(config))
+
+    assert schema_problems(document, lookup) == []
+    report = validate_export(document, lookup, run_year=int(document["run_id"][:4]))
+    assert report.errors == []
+    assert missing_cases(document) == ["override with attribution", "retracted"]
+
+
+def test_a_real_export_takes_its_period_from_the_store_not_a_constant() -> None:
+    """A sample constant here would put a wrong `complete_through` in a real file (docs/05 §4.2)."""
+    config = load_config()
+    document, _ = build_from_store(REAL_STORE, resource_block(config))
+    manifest = json.loads(
+        max(Path(REAL_STORE, "runs").glob("*.json"), key=lambda p: p.stem).read_text(encoding="utf-8")
+    )
+
+    assert document["run_id"] == manifest["run_id"]
+    assert document["generated_at"] == manifest["started"]
+    assert document["rule_version"] == manifest["rule_version"]
+    assert document["pipeline_version"] == manifest["code_version"]
+    assert document["period"]["complete_through"] == int(manifest["run_id"][:4]) - 1
+
+
+def test_the_period_follows_a_store_whose_run_is_in_another_year(tmp_path: Path) -> None:
+    """The guard that matters: shift the store's run year and the export must move with it."""
+    config = load_config()
+    store = tmp_path / "store"
+    shutil.copytree(SAMPLE_STORE, store)
+    old = next(iter(Path(store, "runs").glob("*.json")))
+    manifest = json.loads(old.read_text(encoding="utf-8"))
+    manifest["run_id"] = "2031-04-02T00-00-sample"
+    manifest["started"] = "2031-04-02T00:00:00Z"
+    Path(store, "runs", "2031-04-02T00-00-sample.json").write_text(json.dumps(manifest), encoding="utf-8")
+    old.unlink()
+
+    document, _ = build_from_store(store, resource_block(config))
+    assert document["run_id"] == "2031-04-02T00-00-sample"
+    assert document["period"]["complete_through"] == 2030
+    assert document["period"]["current_year_partial"] is False
+
+
+def test_a_store_no_run_has_written_cannot_be_exported(tmp_path: Path) -> None:
+    """Inventing a generation date would be worse than refusing (docs/05 §1.1 principle 3)."""
+    config = load_config()
+    store = tmp_path / "store"
+    shutil.copytree(SAMPLE_STORE, store)
+    shutil.rmtree(store / "runs")
+
+    with pytest.raises(NoRunError):
+        build_from_store(store, resource_block(config))
+
+
+def test_the_sample_store_identity_comes_from_its_own_manifest() -> None:
+    """The sample needed no constants of its own; its manifest already said all of it."""
+    identity = store_identity(read_store(SAMPLE_STORE))
+    assert identity.run_id == "2026-09-19T00-00-sample"
+    assert identity.generated_at == "2026-09-19T00:00:00Z"
+    assert identity.run_year == 2026
+    assert identity.citations_as_of == "2026-09-19"
