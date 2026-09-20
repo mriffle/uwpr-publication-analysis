@@ -393,3 +393,18 @@ def test_a_candidate_keeps_its_metrics_and_metadata_refresh(client: HttpClient, 
     first = io.read_jsonl(store / "metrics" / "latest.jsonl")
     do_run(client, store, day="2026-09-22")
     assert len(io.read_jsonl(store / "metrics" / "latest.jsonl")) == len(first)
+
+
+def test_duplicate_openalex_records_for_one_doi_are_chosen_the_same_way(tmp_path: Path) -> None:
+    """OpenAlex holds two work records for some DOIs, and returns them in no fixed order.
+
+    One live DOI resolved to a `dissertation` on one run and an `article` on the next, which
+    changed both `aliases.json` and the candidate's reason. The choice is now the lowest id,
+    whatever order they arrive in.
+    """
+    high = {"id": "https://openalex.org/W4375844275", "doi": "https://doi.org/10.1/x", "type": "dissertation"}
+    low = {"id": "https://openalex.org/W2782300612", "doi": "https://doi.org/10.1/x", "type": "article"}
+
+    assert pipeline_module._preferred([high, low]) is low
+    assert pipeline_module._preferred([low, high]) is low
+    assert pipeline_module._preferred([]) is None

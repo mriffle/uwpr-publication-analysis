@@ -77,8 +77,10 @@ channels:
     enabled: true
     queries:
       - 'fulltext.search:"South Lake Union" AND ("mass spec" OR proteomics) AND "University of Washington"'
-      - 'fulltext.search:"Van Haller"'
-      - 'fulltext.search:vonHaller'
+      # Scoped to UW like the query above: "Van Haller" alone matches 13,612 works in OpenAlex's
+      # full-text index (72 with the university), which is a surname, not a UWPR signal.
+      - 'fulltext.search:"Van Haller" AND "University of Washington"'
+      - 'fulltext.search:"vonHaller" AND "University of Washington"'
     max_results: 3000
 
   - id: E

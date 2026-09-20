@@ -492,7 +492,8 @@ class Pipeline:
         wanted_dois: list[str] = []
         wanted_pmids: list[str] = []
         for identity, group in groups:
-            payload = next((n.payload for n in group if n.source == "openalex"), None)
+            nominated = [n.payload for n in group if n.source == "openalex" and n.payload]
+            payload = _preferred(nominated)
             if payload:
                 payloads[identity] = payload
                 continue
@@ -509,10 +510,36 @@ class Pipeline:
                 fetched.extend(self.openalex.works_by_ids(values, key=key))
             except HttpError as exc:
                 self.recorder.degrade(adapter_source("openalex"), f"metadata refresh failed: {exc}")
+        self._choose_payloads(fetched, payloads)
+        return payloads
+
+    def _choose_payloads(
+        self, fetched: Sequence[Mapping[str, Any]], payloads: dict[str, Mapping[str, Any]]
+    ) -> None:
+        by_identity: dict[str, list[Mapping[str, Any]]] = {}
         for work in fetched:
             for identity in external_keys(ids_from_openalex(work)):
-                payloads.setdefault(identity, work)
-        return payloads
+                by_identity.setdefault(identity, []).append(work)
+        for identity, works in by_identity.items():
+            if identity in payloads:
+                continue
+            if len(works) > 1:
+                self._note_duplicate(identity, works)
+            chosen = _preferred(works)
+            if chosen is not None:
+                payloads[identity] = chosen
+
+    def _note_duplicate(self, identity: str, works: Sequence[Mapping[str, Any]]) -> None:
+        """OpenAlex sometimes holds two work records for one DOI, with different types.
+
+        Whichever arrived first used to win, and the order is not stable between runs, so the
+        same paper could be an `article` one week and a `dissertation` the next. The choice is
+        now fixed; the duplicate is reported because M4's version linking should merge it.
+        """
+        ids = ", ".join(sorted(str(ids_from_openalex(w).get("openalex")) for w in works))
+        note = f"OpenAlex has {len(works)} records for {identity} ({ids}); taking the lowest id"
+        if note not in self.recorder.notes:
+            self.recorder.note(note)
 
     def _draft_for(self, work_id: WorkId | None) -> Draft:
         if work_id and work_id in self.drafts:
@@ -1180,6 +1207,22 @@ class Pipeline:
             destination = target.root / path.relative_to(staging)
             destination.parent.mkdir(parents=True, exist_ok=True)
             io.write_bytes_atomic(destination, path.read_bytes())
+
+
+def _openalex_order(work: Mapping[str, Any]) -> tuple[int, str]:
+    """A total order over OpenAlex works: the numeric id, which is stable across runs."""
+    identifier = str(ids_from_openalex(work).get("openalex") or "")
+    digits = "".join(character for character in identifier if character.isdigit())
+    return (int(digits) if digits else 0, identifier)
+
+
+def _preferred(works: Sequence[Mapping[str, Any]]) -> Mapping[str, Any] | None:
+    """The one record to use when a DOI or PMID resolves to more than one OpenAlex work.
+
+    Any stable rule would do; the lowest id is the record OpenAlex minted first. What matters is
+    that it is the same one every run — the API returns duplicates in no fixed order.
+    """
+    return min(works, key=_openalex_order) if works else None
 
 
 def _overrides_path(config: Config) -> Path | None:
