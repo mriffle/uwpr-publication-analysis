@@ -4,6 +4,15 @@
 deliberately, dated, and noted in this header.
 
 **Changes since agreement:**
+- *2026-09-20, §3, "opens over the overview":* under-specified, and the literal reading is an
+  accessibility hazard — an overview mounted behind a modal means two `h1`s or `inert` over a live
+  region. The requirement is that the reader does not lose their filter, which the URL already
+  guarantees, so §3 now states the requirement rather than a mechanism.
+- *2026-09-20, §6, what belongs in the URL:* B5 says "filter and view state", which did not settle
+  the explorer's sort or the per-chart toggles. The filters and the sort go in; per-chart view
+  state stays out, or a shared link carries parameters nobody chose.
+- *2026-09-20, §12.3, Playwright runs against the built app*, because the routing behaviours it
+  covers do not exist in the dev server.
 - *2026-09-20, §7, which alias map resolves a permalink:* "the export's alias map" was ambiguous,
   and the two maps have different reach. The export's `aliases` cover retired work IDs only; an
   external identifier resolves only through `lookup_index.json`, which §10 deliberately loads on
@@ -80,9 +89,15 @@ Four views. The overview is the page; the rest are routes reachable from it.
 | `/method` | **How this was assembled** | The method, its coverage and its limits, in numbers |
 | `/lookup` | **Why is a paper not here?** | Identifier lookup against the full candidate set |
 
-**The detail view opens over the overview** when reached from it, so the reader does not lose a
-filter they spent a minute building. Reached cold from a link, it stands alone with a route back
-to an unfiltered overview. Either way the URL is the same and is linkable.
+**The detail view must not cost the reader the filter they spent a minute building.** That is the
+requirement; a visual overlay is not. Keeping the overview mounted behind a modal means either two
+`h1`s or `inert` over a live region, which is an accessibility cost for no gain — **the URL already
+carries the filter**, so the detail route preserves the query string and returning restores the
+exact filtered view.
+
+So the detail renders in place of the overview, the query survives, and the way back differs by how
+the reader arrived: back to the filtered publications when they came from the overview, or to all
+publications when they arrived cold on a link. Either way the URL is the same and is linkable.
 
 **Routing** uses the History API with a build-time base path, and ships a `404.html` copy of
 `index.html` so a deep link resolves on static hosts that have no rewrite rules (GitHub Pages
@@ -231,7 +246,13 @@ on the resource's own list.
   mean either, a journal and a year mean both.
 - **An empty result is a designed state**, naming the filters responsible and offering to clear
   the last one. It is reachable in a few clicks and will be reached.
-- **State is in the URL** and survives reload, back and forward, and sharing.
+- **State is in the URL** and survives reload, back and forward, and sharing. **The boundary:** the
+  filter dimensions and the explorer's sort go in the URL, because they are what someone means by
+  "this view". Per-chart view state — which series a frame is showing, the bucket size, whether
+  staff are included — does not, because a shared link would then carry half a dozen parameters
+  nobody set deliberately.
+- **Closing a detail pops its history entry** rather than pushing another. Otherwise opening and
+  closing five publications leaves ten entries to press Back through.
 
 ## 7. Cross-cutting behaviour
 
@@ -419,9 +440,14 @@ of the generic ones.
 ### 12.3 CI
 
 A `web` job alongside the existing `check` job, on every push and pull request: pinned Node,
-`npm ci` from the committed lockfile, then lint, type-check, unit and component tests with
-coverage, build against the budget of §10, and Playwright. The job fails on a budget overrun, so
-the bundle cannot grow unnoticed.
+`npm ci` from the committed lockfile, then the generated-types freshness check, lint, format,
+type-check, unit and component tests with coverage, build against the budget of §10, and
+Playwright. The job fails on a budget overrun, so the bundle cannot grow unnoticed.
+
+**Playwright runs against the built app behind `vite preview`, not the dev server.** The two
+behaviours it exists to cover — the `404.html` fallback of §3 and the on-demand lookup fetch of §7
+— do not exist in dev, so a component test cannot reach them and a dev-server run would pass
+vacuously.
 
 The Python gate and the web gate are independent and both must pass. Actions stay pinned to commit
 SHAs, as the existing workflows are.

@@ -15,6 +15,27 @@ incremental runs that no longer exist. It was rewritten rather than edited.
 
 **Changes since agreement** (all 2026-09-20; the first group found while building the app, the
 rest while implementing stage 11):
+- *§4.2, §7.8 and §7.14, the resource block gains `home_institution` and `home_country`.* Two
+  charts were specified in terms of facts the export does not carry: "excluding the University of
+  Washington" and "an author outside the United States". §1.1 principle 5 forbids the app holding
+  either, so the app was left inferring them — taking the most frequent institution and country
+  when they cover more than half the corpus. That is correct on today's data and is a silent
+  failure waiting: a corpus where the home institution fell below the threshold would quietly
+  start charting it. The facts belong in `resource`, which exists precisely so the app carries no
+  knowledge of the facility.
+- *§4.2, the `resource.staff` shape.* The example showed `{"id": …, "name": …}`; the implemented
+  schema is `{name, openalex}` with **no `id`**, while `authors[].staff` and `staff_authors[]`
+  carry ids like `"riffle"`. So nothing could turn a staff id into a name. The example was wrong
+  about the shape and the schema was missing the join key: `person` now carries `id`, `name` and
+  `openalex`.
+- *§7, the two exceptions to click-to-filter.* §9 has no dimension for a citation count, so
+  §7.11's distribution has nothing to apply and §7.10's rows are links, not selections. Stated in
+  §7's preamble rather than left as a blanket rule with two silent exceptions.
+- *§6.5, the citation percentile's wording.* "Labelled with its source and date" produces
+  something that reads wrongly as a percentage and would need an invented ordinal. The specified
+  rendering is the plain-language one §11.7 asks for: "OpenAlex puts it above 90% of comparable
+  papers in its field and year." It is a paraphrase of a number rather than a quoted figure, which
+  is worth stating openly.
 - *§6 and §13, an override's attribution was promised but not carried.* §6 requires the app to
   show an override's reason "attributed to the person who decided it and dated", and §13 names the
   case "an override with its attribution". The reason does arrive — [02](02-data-model.md) §5.3
@@ -249,7 +270,9 @@ on unchanged sources produce no diff in `export/`.
     "short_name": "UWPR",
     "url": "https://proteomicsresource.washington.edu/",
     "identifier": "UWPR95794",
-    "staff": [{"id": "eng", "name": "Jimmy K. Eng"}]
+    "home_institution": {"ror": "00cvxb145", "name": "University of Washington"},
+    "home_country": "US",
+    "staff": [{"id": "eng", "name": "Jimmy K. Eng", "openalex": "A5011565192"}]
   },
   "sources": {
     "citations": {"name": "OpenAlex", "as_of": "2026-09-20"},
@@ -440,7 +463,10 @@ summarised or paraphrased (D11).
    Duplicate affiliations are collapsed (§4.2).
 4. **Research areas:** the OpenAlex topics as reported, at all four levels, primary first (D12).
    No vocabulary of our own.
-5. **Citations:** total, the by-year series, field-weighted impact and percentile where present,
+5. **Citations:** total, the by-year series, field-weighted impact and percentile where present.
+   The percentile is rendered in words — "OpenAlex puts it above 90% of comparable papers in its
+   field and year" — because "in the 90.1% percentile" reads wrongly and an ordinal is a format
+   the app would have to invent. Each figure is labelled with its source and date,
    each labelled with its source and date.
 6. **Why this is a UWPR publication:** every active evidence entry — the plain-language label, the
    section of the paper, the quoted sentence, the source with its URL, and the retrieval date.
@@ -463,6 +489,11 @@ false:
 Each entry states what the chart shows, what it needs from the contract, what the data measured
 today can actually support, and any honesty constraint. **Every chart recomputes under every
 filter** (§9) — none of them reads the summary block.
+
+**Clicking a mark applies the corresponding filter, with two exceptions**, because §9 has no
+dimension for them: §7.11's citation distribution buckets a count, and §7.10's most-cited rows are
+links to a publication rather than selections. Both are stated in the chart rather than left as
+silently inert marks.
 
 The measurements matter here: two of these would have been specified wrongly without them.
 
@@ -538,8 +569,11 @@ ranking conflates them. Top non-staff: 37, 36, 35, 32, 30, 30, 25 works.
 
 ### 7.8 Institutions
 
-Horizontal bar, **excluding the University of Washington**, which appears on 316 of 339 works and
-would flatten the chart to one bar and a fringe. Needs work-level `institutions`.
+Horizontal bar, **excluding the resource's own institution**, which appears on 316 of 339 works and
+would flatten the chart to one bar and a fringe. Needs work-level `institutions`, and
+`resource.home_institution` to know which one to exclude — the app must not carry that fact itself
+(§1.1 principle 5), and it must not infer it from frequency, which would silently start charting
+the home institution if it ever fell below the threshold chosen.
 Measured: 243 institutions in all; **excluding the University of Washington, 51 appear on three or
 more works and 19 on five or more**, led by the Institute for Systems Biology (26) and the Howard
 Hughes Medical Institute (18). The tail is long and thin, so the chart shows the top 15 and states
@@ -586,9 +620,10 @@ Measured: 34 countries, but the United States appears on 322 of 339 works. **A c
 recommended for v1** — it would be one saturated country and a scattering, which conveys less than
 a sentence does.
 
-What the data supports: the count of works with an author outside the United States — **82 of
-339** — and a short bar of the most frequent non-US countries (China 16, United Kingdom 16,
-Canada 10, Germany 7, Netherlands 7).
+What the data supports: the count of works with an author outside the resource's **home country**
+— **82 of 339** — and a short bar of the most frequent countries other than it (China 16, United
+Kingdom 16, Canada 10, Germany 7, Netherlands 7). As with §7.8, the home country comes from
+`resource.home_country`, not from the app and not from frequency.
 
 ### 7.15 Charts deliberately not specified
 

@@ -56,3 +56,8 @@ jobs:
       - run: npm run test:coverage     # unit and component tests, 80% floor (B7)
       - run: npm run build
       - run: npm run check:budget      # JS ≤ 250 KB gzipped; the job fails on an overrun (§10)
+      # End to end, against the built app behind `vite preview`. The routing behaviours these
+      # cover — the 404 fallback and the on-demand lookup fetch — do not exist in dev, so a
+      # component test cannot reach them (docs/06 §12.2).
+      - run: npm run e2e:install
+      - run: npm run e2e
