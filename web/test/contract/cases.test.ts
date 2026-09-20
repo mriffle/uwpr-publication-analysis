@@ -25,7 +25,7 @@ import { buildWorkIndex, resolveWork } from '../../src/contract/resolve';
 import type { Work } from '../../src/contract/types';
 import { applyFilter } from '../../src/filter/predicate';
 import { EMPTY_FILTER } from '../../src/filter/state';
-import { sampleExport } from '../support/fixture';
+import { isSampleExport, sampleExport } from '../support/fixture';
 
 const doc = sampleExport();
 const find = (predicate: (work: Work) => boolean): Work | undefined => doc.works.find(predicate);
@@ -50,7 +50,7 @@ const CASES: Record<string, (work: Work) => boolean> = {
   'a retired work ID in aliases': (work) => work.aliases.length > 0,
 };
 
-describe('the sample export covers every case of docs/05 §13', () => {
+describe.skipIf(!isSampleExport)('the sample export covers every case of docs/05 §13', () => {
   it.each(Object.keys(CASES))('has %s', (name) => {
     const predicate = CASES[name];
     expect(predicate).toBeDefined();
@@ -58,114 +58,117 @@ describe('the sample export covers every case of docs/05 §13', () => {
   });
 });
 
-describe('the layers this slice builds handle each case rather than assuming it away', () => {
-  it('counts a preprint-only work once, and labels it by the flag not the venue', () => {
-    const preprint = find(CASES['a preprint-only work'] as (work: Work) => boolean);
-    expect(preprint?.is_preprint).toBe(true);
-    expect(summarize([preprint as Work]).preprint_only).toBe(1);
-    // A preprint server is a venue and is counted as a journal (docs/05 §5, §7.9).
-    expect(summarize([preprint as Work]).journals).toBe(preprint?.venue === null ? 0 : 1);
-  });
+describe.skipIf(!isSampleExport)(
+  'the layers this slice builds handle each case rather than assuming it away',
+  () => {
+    it('counts a preprint-only work once, and labels it by the flag not the venue', () => {
+      const preprint = find(CASES['a preprint-only work'] as (work: Work) => boolean);
+      expect(preprint?.is_preprint).toBe(true);
+      expect(summarize([preprint as Work]).preprint_only).toBe(1);
+      // A preprint server is a venue and is counted as a journal (docs/05 §5, §7.9).
+      expect(summarize([preprint as Work]).journals).toBe(preprint?.venue === null ? 0 : 1);
+    });
 
-  it('counts a merged pair as one publication, not two', () => {
-    const merged = find(CASES['a merged preprint-and-article pair'] as (work: Work) => boolean);
-    expect(merged?.versions.length).toBeGreaterThan(0);
-    expect(summarize([merged as Work]).publications).toBe(1);
-  });
+    it('counts a merged pair as one publication, not two', () => {
+      const merged = find(CASES['a merged preprint-and-article pair'] as (work: Work) => boolean);
+      expect(merged?.versions.length).toBeGreaterThan(0);
+      expect(summarize([merged as Work]).publications).toBe(1);
+    });
 
-  it('keeps evidence with no excerpt, so the app can choose its wording per case', () => {
-    for (const name of [
-      'evidence that is the site listing, with no excerpt',
-      'a full-text-index match, with no excerpt',
-    ]) {
-      const work = find(CASES[name] as (work: Work) => boolean);
-      const entry = work?.evidence.find((item) => item.excerpt === null);
-      // Null, never an empty string: "the app must not render an empty quotation" (docs/06 §5).
+    it('keeps evidence with no excerpt, so the app can choose its wording per case', () => {
+      for (const name of [
+        'evidence that is the site listing, with no excerpt',
+        'a full-text-index match, with no excerpt',
+      ]) {
+        const work = find(CASES[name] as (work: Work) => boolean);
+        const entry = work?.evidence.find((item) => item.excerpt === null);
+        // Null, never an empty string: "the app must not render an empty quotation" (docs/06 §5).
+        expect(entry?.excerpt).toBeNull();
+        expect(entry?.label).not.toBe('');
+      }
+    });
+
+    it('carries an override as a judgement rather than a measurement', () => {
+      const work = find(CASES['an override with its attribution'] as (work: Work) => boolean);
+      const entry = work?.evidence.find((item) => item.rule === 'override');
+      expect(entry?.criterion).toBeNull();
+      expect(entry?.section).toBe('override');
+      expect(entry?.source.name).toBe('overrides.yaml');
+      // Override evidence belongs to the work, not a record, so it names no version.
+      expect(entry && 'found_on' in entry).toBe(false);
+    });
+
+    /**
+     * A recorded gap, deliberately asserted so that closing it fails here and points at the spec.
+     *
+     * docs/05 §13 and docs/06 §12.1 call this case "an override with its attribution", and
+     * docs/06 §5 requires the app to show "the recorded reason, attributed to the person who
+     * decided it and dated. It is a judgement, not a measurement, and must read as one."
+     *
+     * The export carries none of those three. `overrides.yaml` records `reason`, `by` and `date`
+     * on every entry, but no code path turns an include override into evidence carrying them:
+     * `evidence[].detail` is `{}`, and the schema requires nothing of it for `rule: "override"`.
+     * `uwpr_pubs.sample`'s coverage predicate only asks that some evidence has `rule == override`,
+     * so the §13 guard passes while the attribution is missing.
+     *
+     * Until that is decided, the app cannot render §5's override wording without inventing an
+     * attribution, which is the one thing docs/05 §11.6 forbids. **When the contract starts
+     * carrying the attribution, this test fails — delete it and implement §5's wording.**
+     */
+    it('RECORDED GAP: an override reaches the app with no reason, author or date', () => {
+      const work = find(CASES['an override with its attribution'] as (work: Work) => boolean);
+      const entry = work?.evidence.find((item) => item.rule === 'override');
+      const detail = entry?.detail as Record<string, unknown>;
+      expect(Object.keys(detail)).toEqual([]);
       expect(entry?.excerpt).toBeNull();
-      expect(entry?.label).not.toBe('');
-    }
-  });
+    });
 
-  it('carries an override as a judgement rather than a measurement', () => {
-    const work = find(CASES['an override with its attribution'] as (work: Work) => boolean);
-    const entry = work?.evidence.find((item) => item.rule === 'override');
-    expect(entry?.criterion).toBeNull();
-    expect(entry?.section).toBe('override');
-    expect(entry?.source.name).toBe('overrides.yaml');
-    // Override evidence belongs to the work, not a record, so it names no version.
-    expect(entry && 'found_on' in entry).toBe(false);
-  });
+    it('counts a work with no open-access link by its status, not by its link (docs/05 changelog)', () => {
+      const work = find(CASES['a work with no open-access link'] as (work: Work) => boolean);
+      expect(work?.oa.url).toBeNull();
+      expect(summarize([work as Work]).open_access).toBe(work?.oa.status === 'closed' ? 0 : 1);
+    });
 
-  /**
-   * A recorded gap, deliberately asserted so that closing it fails here and points at the spec.
-   *
-   * docs/05 §13 and docs/06 §12.1 call this case "an override with its attribution", and
-   * docs/06 §5 requires the app to show "the recorded reason, attributed to the person who
-   * decided it and dated. It is a judgement, not a measurement, and must read as one."
-   *
-   * The export carries none of those three. `overrides.yaml` records `reason`, `by` and `date`
-   * on every entry, but no code path turns an include override into evidence carrying them:
-   * `evidence[].detail` is `{}`, and the schema requires nothing of it for `rule: "override"`.
-   * `uwpr_pubs.sample`'s coverage predicate only asks that some evidence has `rule == override`,
-   * so the §13 guard passes while the attribution is missing.
-   *
-   * Until that is decided, the app cannot render §5's override wording without inventing an
-   * attribution, which is the one thing docs/05 §11.6 forbids. **When the contract starts
-   * carrying the attribution, this test fails — delete it and implement §5's wording.**
-   */
-  it('RECORDED GAP: an override reaches the app with no reason, author or date', () => {
-    const work = find(CASES['an override with its attribution'] as (work: Work) => boolean);
-    const entry = work?.evidence.find((item) => item.rule === 'override');
-    const detail = entry?.detail as Record<string, unknown>;
-    expect(Object.keys(detail)).toEqual([]);
-    expect(entry?.excerpt).toBeNull();
-  });
+    it('excludes a work with no field-weighted impact from the median rather than reading it as zero', () => {
+      const work = find(CASES['a work with no field-weighted impact'] as (work: Work) => boolean);
+      expect(summarize([work as Work]).fwci_median).toBeNull();
+    });
 
-  it('counts a work with no open-access link by its status, not by its link (docs/05 changelog)', () => {
-    const work = find(CASES['a work with no open-access link'] as (work: Work) => boolean);
-    expect(work?.oa.url).toBeNull();
-    expect(summarize([work as Work]).open_access).toBe(work?.oa.status === 'closed' ? 0 : 1);
-  });
+    it('treats a retracted work as an ordinary row in every aggregate', () => {
+      const work = find(CASES['a retracted work'] as (work: Work) => boolean);
+      expect(work?.retracted).toBe(true);
+      // The flag is for display (docs/05 §6.8); it never changes a count, because the paper was
+      // still published and still used the resource.
+      expect(summarize([work as Work]).publications).toBe(1);
+      expect(applyFilter(doc.works, EMPTY_FILTER)).toContain(work);
+    });
 
-  it('excludes a work with no field-weighted impact from the median rather than reading it as zero', () => {
-    const work = find(CASES['a work with no field-weighted impact'] as (work: Work) => boolean);
-    expect(summarize([work as Work]).fwci_median).toBeNull();
-  });
+    it('handles both ends of the author range without capping either (A8)', () => {
+      const one = find(CASES['a work with a single author'] as (work: Work) => boolean);
+      const many = find(CASES['a work with more than fifty authors'] as (work: Work) => boolean);
+      expect(one?.authors).toHaveLength(1);
+      expect(many?.authors.length).toBe(many?.author_count);
+      expect(summarize([one as Work, many as Work]).last_authors).toBe(2);
+    });
 
-  it('treats a retracted work as an ordinary row in every aggregate', () => {
-    const work = find(CASES['a retracted work'] as (work: Work) => boolean);
-    expect(work?.retracted).toBe(true);
-    // The flag is for display (docs/05 §6.8); it never changes a count, because the paper was
-    // still published and still used the resource.
-    expect(summarize([work as Work]).publications).toBe(1);
-    expect(applyFilter(doc.works, EMPTY_FILTER)).toContain(work);
-  });
+    it('counts an author with no ROR-resolved affiliation as no institution, not as a missing one', () => {
+      const work = find(
+        CASES['an author with no ROR-resolved affiliation'] as (work: Work) => boolean,
+      );
+      const unresolved = work?.authors.find((person) => person.institutions.length === 0);
+      expect(unresolved).toBeDefined();
+      // The raw string is kept even where no ROR matched — it is sometimes the only place the
+      // resource is named, which is how rule R5 works (docs/05 §4.3).
+      expect(summarize([work as Work]).institutions).toBe(work?.institutions.length);
+    });
 
-  it('handles both ends of the author range without capping either (A8)', () => {
-    const one = find(CASES['a work with a single author'] as (work: Work) => boolean);
-    const many = find(CASES['a work with more than fifty authors'] as (work: Work) => boolean);
-    expect(one?.authors).toHaveLength(1);
-    expect(many?.authors.length).toBe(many?.author_count);
-    expect(summarize([one as Work, many as Work]).last_authors).toBe(2);
-  });
-
-  it('counts an author with no ROR-resolved affiliation as no institution, not as a missing one', () => {
-    const work = find(
-      CASES['an author with no ROR-resolved affiliation'] as (work: Work) => boolean,
-    );
-    const unresolved = work?.authors.find((person) => person.institutions.length === 0);
-    expect(unresolved).toBeDefined();
-    // The raw string is kept even where no ROR matched — it is sometimes the only place the
-    // resource is named, which is how rule R5 works (docs/05 §4.3).
-    expect(summarize([work as Work]).institutions).toBe(work?.institutions.length);
-  });
-
-  it('opens a retired work ID on the work it merged into', () => {
-    const work = find(CASES['a retired work ID in aliases'] as (work: Work) => boolean);
-    const index = buildWorkIndex(doc);
-    expect(resolveWork(index, work?.aliases[0] ?? '')?.id).toBe(work?.id);
-  });
-});
+    it('opens a retired work ID on the work it merged into', () => {
+      const work = find(CASES['a retired work ID in aliases'] as (work: Work) => boolean);
+      const index = buildWorkIndex(doc);
+      expect(resolveWork(index, work?.aliases[0] ?? '')?.id).toBe(work?.id);
+    });
+  },
+);
 
 describe('the two pipeline defects docs/05 §3.2 records are shown as stored', () => {
   it('never decodes an entity or repairs a title in the app (docs/06 §5)', () => {

@@ -30,8 +30,32 @@ function repositoryRoot(): string {
 
 const root = repositoryRoot();
 
-export const SAMPLE_EXPORT_PATH = resolve(root, 'samples/export/uwpr_publications.json');
-export const SAMPLE_LOOKUP_PATH = resolve(root, 'samples/export/lookup_index.json');
+/**
+ * Point the fixture at another export directory — in practice the real one.
+ *
+ * docs/06 §15's last exit criterion is "The summary cross-check asserted against the real
+ * export", and the real export is not in the repository (only `samples/export/` is). Until it
+ * is, the check is run against a freshly built one:
+ *
+ *     uv run uwpr-pubs export --store store --out /tmp/real-export
+ *     UWPR_EXPORT_DIR=/tmp/real-export npm test
+ *
+ * Nothing in the suite hard-codes a figure, so the same assertions hold over 16 works or 339.
+ */
+const exportDir = process.env.UWPR_EXPORT_DIR ?? resolve(root, 'samples/export');
+
+/**
+ * False when the suite is pointed at some other export.
+ *
+ * docs/05 §13: the twelve-case coverage guard "cannot apply to a real store, which can never
+ * satisfy 'retracted' or 'override with attribution': the store holds no retraction, and its
+ * only override is an *exclude*, which by definition never reaches the export." The case tests
+ * are therefore sample-only; every other test in the suite holds against either.
+ */
+export const isSampleExport = process.env.UWPR_EXPORT_DIR === undefined;
+
+export const SAMPLE_EXPORT_PATH = resolve(exportDir, 'uwpr_publications.json');
+export const SAMPLE_LOOKUP_PATH = resolve(exportDir, 'lookup_index.json');
 export const SCHEMA_DIR = resolve(root, 'schemas');
 
 const read = <T>(path: string): T => JSON.parse(readFileSync(path, 'utf8')) as T;
