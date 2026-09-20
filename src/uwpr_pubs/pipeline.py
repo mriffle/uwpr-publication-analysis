@@ -75,7 +75,6 @@ from uwpr_pubs.sources.openalex import OpenAlex
 from uwpr_pubs.sources.pride import Dataset, Pride
 from uwpr_pubs.sources.uwpr_site import UwprSite
 from uwpr_pubs.stages import export as export_stage
-from uwpr_pubs.stages import kb as kb_stage
 from uwpr_pubs.status import Status, StatusInput, decide
 from uwpr_pubs.store import io
 from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi, retired_key
@@ -1733,8 +1732,7 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
         pipeline.measure_recall(works)
         pipeline.assess_run_quality()
         pipeline.stage_and_validate(works, candidates, metrics, staging)
-        kb_stage.generate(works)  # Phase 4
-        export_stage.write(works)  # Phase 5
+        export_stage.write(works)  # Phase 5; stage 10 retired with Phase 4 on 2026-09-20
         if not options.dry_run:
             pipeline.publish(staging)
             written = True

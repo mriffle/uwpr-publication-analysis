@@ -64,8 +64,9 @@ evidence fields it hands on (§13).
    - Each included work carries the evidence behind it: rule, source, date and excerpt.
    - Each paper that is not included carries the reason it isn't.
 3. **Handle versions.** A preprint and its journal article form one work.
-4. **Feed the knowledge base.** The store holds everything a knowledge-base page (Phase 4)
-   needs, or points to it in the cache.
+4. **Feed the app.** The store holds everything a publication's detail view needs, or points to
+   it in the cache. (Until 2026-09-20 this said "feed the knowledge base"; Phase 4 was retired
+   because the store already held all of it but a summary, which is not wanted.)
 5. **Re-check cheaply.** When a rule changes or new text appears, the pipeline reassesses from
    the cache when it has one, and otherwise downloads again (changed 2026-09-19).
 6. **No human review.** The only human inputs are configuration and a small overrides file.
@@ -81,10 +82,10 @@ evidence fields it hands on (§13).
 | # | Decision |
 |---|---|
 | S1 | **Plain JSON files, no database.** |
-| S2 | **One file per included work.** It holds the work's versions, identifiers, authors, evidence and inclusion status, and maps one-to-one onto its knowledge-base page. Works that are not included go in one table. |
+| S2 | **One file per included work.** It holds the work's versions, identifiers, authors, evidence and inclusion status, and maps one-to-one onto its entry in the app. Works that are not included go in one table. |
 | S3 | **Works that are not included are kept, with the reason.** |
 | S4 | **Full text lives in a download cache outside version control.** The store keeps only excerpts and a fingerprint of each cached file. |
-| S5 | **Generated knowledge-base content** (summary, subject tags) is stored alongside the work, together with a fingerprint of its inputs. It is regenerated only when those inputs change. Its content is defined in Phase 4. |
+| S5 | **Generated content**, if there is ever any, is stored alongside the work with a fingerprint of its inputs, and regenerated only when those inputs change (§8). Nothing writes it today: Phase 4 was retired on 2026-09-20 and no summaries are generated. The envelope stays because it costs nothing and is the door left open. |
 | S6 | **Permanent work IDs,** never reused. DOIs, PMIDs and similar are aliases. |
 | S7 | **An overrides file** to force a paper in or out, with a reason. It is a correction tool, not a routine step. |
 | S8 | **The project is a git repository** (initialised 2026-09-19, local). Each run's changes are committed. Hosting is decided in Phase 7. |
@@ -104,7 +105,7 @@ schemas/                        JSON Schemas for every file type below
 store/                          machine-written, committed
   works/
     W-000123.json               one file per included work (§5)
-    W-000123.generated.json     generated knowledge-base content for that work (§8)
+    W-000123.generated.json     generated content for that work, if ever any (§8)
   candidates.jsonl              one line per work not included (§6)
   aliases.json                  every external ID and retired work ID → current work ID
   official_list/
@@ -114,12 +115,11 @@ store/                          machine-written, committed
     latest.jsonl                citation figures from the most recent run (§10)
     <YYYY-MM>.jsonl             the first run of each month, kept as history
   runs/<run-id>.json            one manifest per run (§11)
-kb/                             generated knowledge-base pages, committed (Phase 4)
 export/                         generated app input, committed (Phase 5)
 cache/                          NOT committed: raw downloads and full text (§12)
 ```
 
-Anything under `store/`, `kb/` and `export/` can be regenerated from `config/`,
+Anything under `store/` and `export/` can be regenerated from `config/`,
 `overrides.yaml`, the official-list snapshots and the cache. It is committed anyway, so that git
 history is the audit trail.
 
@@ -135,7 +135,7 @@ history is the audit trail.
   (lower-case, no resolver prefix), PMIDs, PMCIDs, OpenAlex IDs, PRIDE accessions, official-list
   entry keys, and retired work IDs.
 - **Merges.** When two works turn out to be one, the lower ID survives and the other becomes an
-  alias. A knowledge-base page under the retired ID becomes a redirect.
+  alias. The app resolves a retired ID to the surviving work, so an old link still opens.
 - **Splits** (only via `overrides.yaml`) mint a new work ID for the part that leaves.
 - **Record matching** order: DOI → PMID → PMCID → OpenAlex ID → normalised title plus year ±1
   (Phase 1 §8).
@@ -234,7 +234,7 @@ Illustrative example (values abbreviated):
 | `topics` | From OpenAlex, stored with the record because they change rarely. |
 | `fulltext.status` | One of `pmc_xml`, `epmc_xml`, `abstract_only`, `unavailable`. Records how hard we looked, which distinguishes "no evidence" from "could not read". |
 | `fulltext.recheck_after` | When to look again for readable text (Phase 3 sets the interval). |
-| `abstract` | A pointer into the cache, not the text. Abstracts are often copyrighted and stay out of git; whether knowledge-base pages quote them is a Phase 4 question. |
+| `abstract` | A pointer into the cache, not the text. Abstracts are often copyrighted and stay out of git. **Decided 2026-09-20 (D11): they are never quoted.** The app links to the paper instead. |
 | `version_link` | How this record was linked to its sibling: `crossref_relation`, `biorxiv_published`, `openalex_locations`, `title_author` or `override`. |
 | `sources` | The date each source was last consulted for this record. |
 
@@ -246,7 +246,7 @@ One entry per distinct reason, on any record of the work. The fields follow Phas
 |---|---|
 | `rule` | `R1`–`R7`, `R3d` (R3 applied to a dataset description), or `override` |
 | `criterion` | 1 official list · 2 UWPR code as funding · 3 staff in their UWPR role · 4 facilities used. Mapping: R1→1; R2→2; R3→3 if the matched sentence names a staff member, else 4; R3d→4; R4→4; R5→3; R6→2 if the matched phrase is `UWPR95794`, else 4; R7→3. |
-| `label` | Plain-language text for the knowledge base and app, taken from `rules.yaml` |
+| `label` | Plain-language text for the app, taken from `rules.yaml` |
 | `record` | The record the evidence was found on. `null` only for `override` evidence, which applies to the whole work. |
 | `source.name` | `UWPR website`, `OpenAlex`, `Crossref`, `PMC`, `Europe PMC`, `PRIDE` or `overrides.yaml` |
 | `section` | `official list`, `metadata`, `acknowledgements`, `funding`, `methods`, `main text`, `affiliation`, `author notes`, `dataset description`, `full-text index` or `override`. Located structurally (Phase 1 §6.1). |
@@ -312,10 +312,16 @@ answer "why isn't paper X listed?" without re-running anything.
 - **Raw pages:** saved under `pages/<date>/` only when a page's content hash changes. They are
   small, and they are the primary source, so they are committed.
 
-## 8. Generated knowledge-base content (`store/works/W-000123.generated.json`)
+## 8. Generated content (`store/works/W-000123.generated.json`)
+
+**Nothing writes this today** (changed 2026-09-20). It was the home for Phase 4's summaries and
+subject tags; Phase 4 was retired because the store already held everything else it wanted, and
+summaries were not. The envelope is kept, validated and carried forward by stage 13, so that
+generated content has a defined home, a regeneration trigger and an owned-paths rule if it is
+ever wanted. Subjects come from `records[].topics` instead, as OpenAlex reports them.
 
 - **Why a separate file:** it keeps regenerated text out of the work file's diffs.
-- **Content:** defined in Phase 4. This spec fixes only the envelope:
+- **Content:** undefined. This spec fixes only the envelope:
 
 ```json
 {"schema": 1, "work": "W-000123",
@@ -325,7 +331,7 @@ answer "why isn't paper X listed?" without re-running anything.
 ```
 
 - **When it is regenerated:** only when the input fingerprint or the generator version changes.
-- **Knowledge-base pages** in `kb/` are rendered from the work file plus this file.
+- **The app** renders a publication from the work file, plus this file if it ever exists.
 
 ## 9. Overrides (`overrides.yaml`)
 
@@ -460,8 +466,8 @@ A failed invariant stops the run before anything is exported (Phase 3).
 
 ## 16. Left to later phases
 
-- **Phase 4:** the content of `generated.json` and the `kb/` pages, including whether abstracts
-  may be quoted.
+- ~~**Phase 4:** the content of `generated.json` and the `kb/` pages.~~ Retired 2026-09-20;
+  `generated.json` stays an empty envelope and abstracts are never quoted.
 - **Phase 5:** which metrics are exported, and the app JSON derived from `store/`.
 - **Phase 3:** refetch and recheck intervals, budgets, and the order in which stages run.
 - **Phase 7:** where the repository and cache live, and whether the repository is public. Short

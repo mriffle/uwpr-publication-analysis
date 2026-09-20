@@ -9,15 +9,15 @@ Resource (UWPR).
 - The pipeline finds publications supported by UWPR, decides inclusion **fully automatically**,
   and keeps a committed JSON store current via a weekly GitHub Actions run.
 - The web app is one fixed template driven by an exported JSON file.
-- Each included publication also gets a markdown knowledge-base page, which the app opens when
-  the publication is clicked.
+- Clicking a publication in the app shows its detail: subject, authors, affiliations, and the
+  evidence for why it counts as UWPR's. All of that is already in the store.
 
-**Current state:** Phases 1-3 frozen. Milestones M0-M4.5 are done. The pipeline runs every
-channel, reads PMC full text, applies all rules, links versions, and **`store/` is seeded and
-committed** (339 works, 2026-09-20) — its work and record IDs are now permanent and must never
-be renumbered. M5 (the weekly `update.yml` run) is next. **`docs/08-implementation.md` is the
-handoff: status, measurements, decisions and the full plan.** Public repo:
-mriffle/uwpr-publication-analysis.
+**Current state:** Phases 1-3 frozen; Phase 4 retired. **The pipeline is finished and running**
+(M0-M5): `store/` is seeded and committed (339 works, 2026-09-20), its work and record IDs are
+permanent and must never be renumbered, and `update.yml` runs it weekly, unattended, for about
+$0.01 and four minutes. **Phase 5, the app's data contract, is next** — nothing of the app
+exists yet. **`docs/08-implementation.md` is the handoff: status, measurements, decisions and
+the full plan.** Public repo: mriffle/uwpr-publication-analysis.
 
 Work proceeds phase by phase. `docs/00-project-phases.md` is the index; each phase has a numbered
 spec in `docs/`.
@@ -27,11 +27,11 @@ spec in `docs/`.
 | 1 Discovery | **Frozen** |
 | 2 Data model | **Frozen** |
 | 3 Pipeline | **Frozen** |
-| 8 Implementation | **In progress** (M0-M4.5 done, store seeded; see `docs/08-implementation.md`) |
-| 4 Knowledge base | Not written |
-| 5 Metrics / app JSON | Unreviewed starting point |
+| 4 Knowledge base | **Retired 2026-09-20** — the store already held all of it but a summary, which is not wanted |
+| 5 Metrics / app JSON | **Next to discuss.** Draft predates almost every decision since; rewrite rather than edit |
 | 6 Web app | Unreviewed starting point |
 | 7 Operations | Unreviewed starting point |
+| 8 Implementation | Pipeline done (M0-M5); see `docs/08-implementation.md` |
 
 ## How specs are handled
 
@@ -45,8 +45,7 @@ spec in `docs/`.
 
 ## Commands
 
-`pyproject.toml` + `uv.lock` define the `uwpr_pubs` package (in `src/`, currently a skeleton) and
-its tools. `uv sync` creates `.venv` (Python 3.12, from `.python-version`):
+`pyproject.toml` + `uv.lock` define the `uwpr_pubs` package (in `src/`) and its tools. `uv sync` creates `.venv` (Python 3.12, from `.python-version`):
 
 ```
 uv sync --locked --all-groups                                  # setup; fails if uv.lock is stale

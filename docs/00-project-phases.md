@@ -1,7 +1,7 @@
 # UWPR Publication Impact — Project Phases
 
-**Status:** specification stage. No production code is written until the specs below are agreed.
-**Last updated:** 2026-09-19 (implementation started; see 08)
+**Status:** the pipeline is built and running weekly; the app is not. See 08.
+**Last updated:** 2026-09-20 (Phase 4 retired; Phase 5 is next)
 
 ## Goal
 
@@ -10,26 +10,25 @@ University of Washington Proteomics Resource (UWPR) using publication data. The 
 fixed template**; only its input file changes. That input is produced by a pipeline that re-runs
 on a schedule so the publication record stays current.
 
-**Publication knowledge base (requirement added 2026-09-19).** The system also produces a
-reusable knowledge base: one markdown file per included publication, containing
-- a summary;
-- what the paper is about, described with a controlled vocabulary (ontology) we define;
-- a broad category (e.g. medical, environmental, technology development);
-- authors and affiliations;
-- **how it was determined to be a UWPR publication**: the evidence, its source and an excerpt.
+**Publication detail (requirement added 2026-09-19; reshaped 2026-09-20).** Clicking a
+publication shows its detail: what the paper is about, its authors and their affiliations, and
+**how it was determined to be a UWPR publication** — the evidence, its source and an excerpt.
 
-In the web app, clicking a publication displays its knowledge-base entry.
+This began as a separate "knowledge base" of one markdown page per publication (Phase 4). It was
+**retired on 2026-09-20**, because the store already holds all of it but the summary, and a
+summary is the one thing on such a page that could not be traced to a source. The detail is now
+part of the app's data contract (Phase 5). See "Why Phase 4 was retired" below.
 
 **Preprints (decided 2026-09-19).** Preprints are included when no journal version exists yet.
 They count as one work with their journal version once it appears. Wherever a preprint-only work
 is shown, it is labelled as a preprint.
 
 ```
- sources ──► retrieval pipeline ──► local store ──┬─► export ──► uwpr_publications.json ──► web app
- (APIs,        (Phase 3)            (Phase 2)     │   (Phase 5)                              (Phase 6)
-  UWPR site)        ▲                             │                                            │ click
-                    │                             └─► knowledge base: one .md per publication ◄┘
-            discovery strategy                         (Phase 4)
+ sources ──► retrieval pipeline ──► local store ──► export ──► uwpr_publications.json ──► web app
+ (APIs,        (Phase 3)            (Phase 2)       (Phase 5)                               (Phase 6)
+  UWPR site)        ▲                                   │                                      │ click
+                    │                                   └──► publication detail: subject,  ─────┘
+            discovery strategy                               authors, affiliations, evidence
            + calibrated rules (Phase 1)
                          scheduling / hosting / QA (Phase 7)
 ```
@@ -41,18 +40,42 @@ is shown, it is labelled as a preprint.
 | 1 | Discovery strategy | How do we find every UWPR-supported publication despite inconsistent acknowledgement, and decide inclusion automatically? | [01-discovery-strategy.md](01-discovery-strategy.md), [01a-discovery-calibration.md](01a-discovery-calibration.md) | **Frozen** 2026-09-19 |
 | 2 | Data model & local storage | How are publications, versions, evidence and decisions represented on disk? | [02-data-model.md](02-data-model.md) | **Frozen** 2026-09-19 |
 | 3 | Retrieval pipeline | What does the code that discovers, fetches and updates the data do, and how does it re-run safely? | [03-retrieval-pipeline.md](03-retrieval-pipeline.md) | **Frozen** 2026-09-19 |
-| 4 | Publication knowledge base *(added)* | What does each publication's markdown page contain (summary, subject vocabulary, category, authors, affiliations, UWPR evidence), how is it generated and kept current, and how does the app show it? | *not yet written* | Requirement captured; not yet discussed |
+| 4 | ~~Publication knowledge base~~ | — | *never written* | **Retired 2026-09-20.** The store already carries everything it was to contain except a summary, which was not wanted. Publication detail moved into Phase 5. |
 | 5 | Metrics & app data contract *(added)* | Exactly what is in the JSON that drives the app, and how is each number defined? | [05-metrics-and-data-contract.md](05-metrics-and-data-contract.md) | Unreviewed starting point |
 | 6 | Web app | What does the single-page app show, how does it behave, and how does data get into it? | [06-web-app.md](06-web-app.md) | Unreviewed starting point |
 | 7 | Operations *(added)* | Where does it run, how often, where is it hosted, and how do we know it is still correct? | [07-operations.md](07-operations.md) | Unreviewed starting point |
-| 8 | Implementation | Build to the specs, in the order below. | [08-implementation.md](08-implementation.md) | **In progress** — M0–M2 done; M3 next |
+| 8 | Implementation | Build to the specs, in the order below. | [08-implementation.md](08-implementation.md) | **In progress** — M0–M5 done; the store is seeded and the weekly run works |
 
-### Why the three added phases
+### Why Phase 4 was retired (2026-09-20)
 
-- **Knowledge base (4).** Your requirement: a reusable page per publication that the app can
-  open. It replaces the earlier "curation workflow" draft, which was superseded when inclusion
-  became fully automated. That draft is kept in `archive/`; the one-time calibration it
-  anticipated now lives in Phase 1a.
+It was to produce one markdown page per publication, holding a summary, a subject vocabulary we
+would define, a broad category, authors and affiliations, and the UWPR evidence. Measured against
+the seeded store, four of those five already exist and are better than a generated page:
+
+| Phase 4 was to provide | Where it already is |
+|---|---|
+| Authors and affiliations | `records[].authors[]`: 99% of works, with the raw string as published, a ROR-resolved institution and a `staff` key |
+| How we know it is a UWPR publication | `evidence[]`: rule, plain-language label, section, source name and URL, retrieval date, excerpt |
+| Subject vocabulary | `records[].topics[]`: OpenAlex topics, 100% of works, four levels (domain → field → subfield → topic) with scores |
+| A broad category | The topic's `domain` and `field` — decided 2026-09-20 to use these as reported rather than define our own |
+| A summary | Not held, and **not wanted** (decided 2026-09-20) |
+
+The summary was the only gap, and it is the one element of such a page that could not be traced
+to a source. This project's second principle is that every claim is traceable and therefore
+defensible; an unsourced paraphrase of someone else's paper sitting beside evidence that *is*
+sourced would be the weakest thing on the page. Generating one would also put an LLM key in CI
+and cost the pipeline its byte-identical determinism, which has caught six identity and date bugs
+so far.
+
+A separate `kb/` tree would also have duplicated the store as ~340 generated files regenerated
+from JSON the app already reads. Removing it dissolves D13 entirely.
+
+**What is kept:** `store/works/W-*.generated.json` (Phase 2 §8) stays as a documented, validated
+envelope that nothing currently writes. It is the door left open: if generated content is ever
+wanted, it has a home, a regeneration trigger and an owned-paths rule already.
+
+### Why the other added phases
+
 - **Data contract (5).** The JSON file is the only interface between the pipeline and the app.
   Specifying it on its own lets the two be built and tested independently, and makes "only the
   input changes" a checkable promise (schema version + validation).
@@ -61,10 +84,9 @@ is shown, it is labelled as a preprint.
 
 ## Dependencies and order of work
 
-1 → 2 → 3, with 4 and 5 specified alongside 2 because they share its vocabulary. Phase 4 depends
-on Phase 1's evidence records, which become each page's "how we know" section. Phase 6 depends
-only on 5, so app design can proceed in parallel with pipeline work using a hand-made sample
-JSON. Phase 7 is settled last but its hosting decision constrains 6 (see 06 §7).
+1 → 2 → 3 are done and frozen. **Phase 5 is next**, and it now carries the publication detail
+that Phase 4 was to hold. Phase 6 depends only on 5, so app design can proceed against a sample
+JSON. Phase 7 is settled last, but its hosting decision constrains 6 (see 06 §7).
 
 Suggested implementation order once specs are agreed:
 
@@ -102,9 +124,9 @@ Suggested implementation order once specs are agreed:
 | D8 | Hosting location and UW branding requirements | **Answered (hosting):** public GitHub repository; pipeline on GitHub Actions; the app most likely on GitHub Pages. UW branding still to discuss. | 03 §11, 06, 07 |
 | D9 | Run cadence | **Answered:** weekly scheduled GitHub Actions run (full sweep every run), plus a manual trigger | 03 §2, §11 |
 | D10 | Should findings flow back to the official publications page? | Yes — a "missing from site" report each run | 07 |
-| D11 | Knowledge base: how are summaries and subject tags generated (e.g. an LLM over abstract + full text), and may abstracts be quoted? | To discuss in Phase 4 | 04 |
-| D12 | Knowledge base: build our own subject vocabulary, or reuse existing ones (OpenAlex topics, MeSH, NCBI Taxonomy for organisms, EDAM or PSI-MS for methods and instruments) with our own top-level categories? | To discuss in Phase 4 | 04 |
-| D13 | Does the app embed knowledge-base content in its single file, or load pages on click? | To discuss in Phases 4–6 | 05, 06 |
+| D11 | ~~How are summaries generated, and may abstracts be quoted?~~ | **Answered 2026-09-20: no summaries, and no abstracts.** A summary is the one thing on a publication page that could not be traced to a source, and abstracts are copyrighted, which is why they stay in the cache and out of the repository | — |
+| D12 | ~~Own subject vocabulary, or reuse an existing one?~~ | **Answered 2026-09-20:** use OpenAlex topics as reported — domain, field, subfield, topic — which cover 100% of included works. No vocabulary of our own | 05 |
+| D13 | ~~Embed knowledge-base content, or load pages on click?~~ | **Obsolete** — there is no separate knowledge base to embed or load. Publication detail is part of the app's data contract | 05 |
 
 ## Glossary
 

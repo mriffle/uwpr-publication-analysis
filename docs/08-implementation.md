@@ -718,9 +718,11 @@ uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's r
    and the University of Washington**, jointly (confirmed 2026-09-20). Settled.
 3. **`OPEN_ALEX_API_KEY` is set** as a repository secret (2026-09-20). An `NCBI_API_KEY` is still
    optional and would make cold-cache CI runs about three times faster.
-4. **Phases 4 to 7 have not been discussed.** Phase 4 (knowledge base) is the next specification
-   conversation, and its decisions — an LLM for summaries, the subject vocabulary, whether
-   abstracts may be quoted — are the ones that most affect later work.
+4. **Phase 4 is retired** (2026-09-20) and D11–D13 are answered: no summaries, no abstracts,
+   OpenAlex topics as reported. **Phase 5 — the app's data contract — is the next specification
+   conversation**, and it now carries the publication detail Phase 4 was to hold. Phases 6 and 7
+   follow it. The drafts of 05–07 predate almost every decision since and should be rewritten
+   rather than edited.
 5. **The NUP153 merge override is written** (`overrides.yaml`, §3.3) and verified against the
    rehearsal, but it asserts a judgement and is attributed to a person. It takes effect at the
    seed; until `store/` exists, the work IDs it names do not, which is why it is committed

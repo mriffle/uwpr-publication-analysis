@@ -1,8 +1,9 @@
 """Where things live in a store, and which of them a run owns (docs/03 §5 stage 13).
 
 A run regenerates only some of the store. Page snapshots are written when a page changes, monthly
-metrics when a month turns over, run manifests accumulate, and generated knowledge-base files come
-from Phase 4. So stage 13 may delete only the work files of works that have left `works/`;
+metrics when a month turns over, run manifests accumulate, and a `.generated.json` is written
+only if something ever generates one. So stage 13 may delete only the work files of works that
+have left `works/`;
 everything else is carried forward. Getting this wrong would delete the audit trail.
 """
 

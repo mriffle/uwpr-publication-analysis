@@ -12,8 +12,8 @@ the app's data current, running unattended on GitHub Actions every week.
 - [02-data-model.md](02-data-model.md) (frozen): every file the pipeline writes, with schemas
   and a validator.
 
-**Hands off to:** Phase 4 (knowledge-base pages) and Phase 5 (app JSON), each as a pipeline
-stage (§5, stages 10–11).
+**Hands off to:** Phase 5 (the app's JSON), as pipeline stage 11. Stage 10 was Phase 4's, and
+was retired with it on 2026-09-20.
 
 **Changes since freezing** (all 2026-09-19, found while planning the implementation):
 - *§5 stage 13, owned paths:* the write step removes only work files whose works have left
@@ -162,7 +162,7 @@ src/uwpr_pubs/
   match.py, versions.py, status.py, metrics.py, overrides.py
   validate.py                    replaces tools/validate_store.py (same checks)
   report.py                      markdown report and run manifest
-  stages/kb.py, stages/export.py hooks for Phases 4 and 5 (no-ops until specified)
+  stages/export.py               hook for Phase 5 (a no-op until specified)
   git.py                         commit step
 config/                          settings, staff, channels, rules, fixtures (§10)
 schemas/                         Phase 2 schemas, plus schemas/config/ for config files
@@ -194,12 +194,11 @@ part of the run ID (Phase 2 §11).
 
 `uwpr-pubs run` executes these in order. Stages 0–8 work on the in-memory store. Stage 9
 serialises the new store to a staging directory and validates the files there. Stages 10–12 add
-their outputs to the staging directory. Only stage 13 touches the real `store/`, `kb/` and
-`export/`.
+their outputs to the staging directory. Only stage 13 touches the real `store/` and `export/`.
 
 | # | Stage | What it does | Spec |
 |---|---|---|---|
-| 0 | **Pre-check** | Load config (schema-checked) and the committed store. Refuse to run if `store/`, `kb/` or `export/` has uncommitted changes (except with `--dry-run`); a half-finished earlier run is reset with `git checkout`. Run the validator; if the committed store is invalid, stop. Rules-fingerprint guard (§10.4). | Phase 2 §14 |
+| 0 | **Pre-check** | Load config (schema-checked) and the committed store. Refuse to run if `store/` or `export/` has uncommitted changes (except with `--dry-run`); a half-finished earlier run is reset with `git checkout`. Run the validator; if the committed store is invalid, stop. Rules-fingerprint guard (§10.4). | Phase 2 §14 |
 | 1 | **Official list** | Fetch the index page and the year pages it links to (`settings.official_list`); parse the entries. The "year page" in an entry's key (Phase 2 §7) is the page's year heading ("2026"), or `older` for the page headed "2021 and Previous Years", not its URL. That keeps keys stable when the current year moves from `/publications/` to its own page. Save raw pages only when their hash changes. Update `entries.jsonl` first/last seen (exact dates). Parse check: every page must yield entries, and the total must not fall more than 10% from the last run — that total being the number of entries in `entries.jsonl` last seen on the previous run's date — otherwise treat the list as a failed source (§9). | Phase 1 §5 A; Phase 2 §7 |
 | 2 | **Discover** | Run every enabled channel (Phase 1 §5). Output: nominations (external IDs + channel). Kept for later stages: the B1 and B2 result records (R2 metadata), and the DOI sets of the three R6 phrase queries. Check the staff OpenAlex IDs against ORCID (§10.2). | Phase 1 §5, §5.1, §6.5 |
 | 3 | **Resolve and refresh** | Match each nomination to an existing record or work (Phase 2 §4), else create a record and work. Apply the record-type filter and the 2006 window. Update discovery first/last seen. Then **refresh OpenAlex metadata for every record** in the store, included or not, by batched ID filter (50 per request; about 22 requests, ≈ $0.002). This single fetch supplies R2 and R5 metadata and the citations for stage 8. | Phase 1 §8; Phase 2 §4, §6 |
@@ -209,7 +208,7 @@ their outputs to the staging directory. Only stage 13 touches the real `store/`,
 | 7 | **Status** | Compute inclusion (Phase 2 §13). Move works between `works/` and `candidates.jsonl`. Record reasons and signals. | Phase 2 §6, §13 |
 | 8 | **Citations** | Build the metrics for every record of every included work from the stage 3 refresh. Write `latest.jsonl`; copy it to `<YYYY-MM>.jsonl` on the month's first run. | Phase 2 §10 |
 | 9 | **Validate (gate)** | Write the new store to a staging directory and run the same validator as stage 0 on it (schemas and invariants). The positive test papers present in the store must still be included (§12.2). **Failure ⇒ stop; nothing is written.** | Phase 2 §14 |
-| 10 | Knowledge base | Generate or refresh content and pages (Phase 4). No-op until Phase 4 is specified. | Phase 4 |
+| 10 | ~~Knowledge base~~ | **Retired 2026-09-20** with Phase 4. The number is not reused, so stages 11–13 keep their identities in every manifest written before then. | — |
 | 11 | App export | Write `export/` (Phase 5). No-op until Phase 5 is specified. | Phase 5 |
 | 12 | Report | Build the run report and manifest (§10.6, Phase 2 §11), including the run status (§9). | |
 | 13 | Write and commit | Move the staged files into place, one atomic rename per file. Delete only work files whose works have left `works/`; everything else the pipeline did not regenerate this run (page snapshots, monthly metrics, earlier run manifests, `.generated.json`) is carried forward untouched. `git commit` with a summary message (skipped with `--dry-run` or `--no-commit`). | Phase 2 §15 |
@@ -592,7 +591,7 @@ the push never see them.
   when branch protection is enabled.
 - **Later additions (Phases 4, 6 and 7):**
   - deploying the web app, e.g. to GitHub Pages, becomes a final job in `update.yml`;
-  - knowledge-base generation may need a further secret, e.g. an LLM API key.
+  - no further secret is expected: with Phase 4 retired, nothing in the pipeline calls an LLM.
 
 ## 12. Testing
 
@@ -671,8 +670,8 @@ metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
 
 ## 15. Open items
 
-1. **Knowledge-base generation (Phase 4):** its inputs, cost, and whether it needs an LLM API
-   secret.
+1. ~~Knowledge-base generation (Phase 4).~~ **Retired 2026-09-20:** no generation, no LLM, no
+   extra secret.
 2. **App export (Phase 5) and deployment (Phases 6/7):** GitHub Pages from `update.yml`.
 3. **Confirm the scheduled workflow stays enabled** after 60 days on bot commits alone
    (§11.4). If it doesn't, add a keep-alive.
