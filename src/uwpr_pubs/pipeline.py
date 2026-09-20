@@ -66,7 +66,6 @@ from uwpr_pubs.rules.r7 import r7_rules, staff_thanked
 from uwpr_pubs.rules.signals import signal_rules, signals_for, text_signals
 from uwpr_pubs.rules.staff import StaffMember, staff_members
 from uwpr_pubs.runtime import api_keys
-from uwpr_pubs.schemas import project_root
 from uwpr_pubs.secrets import scrub
 from uwpr_pubs.sources.biorxiv import Biorxiv
 from uwpr_pubs.sources.crossref import Crossref
@@ -1705,11 +1704,13 @@ def _preferred(works: Sequence[Mapping[str, Any]]) -> Mapping[str, Any] | None:
 
 
 def _overrides_path(config: Config) -> Path | None:
-    """The overrides the run actually loaded, so the gate validates against the same file."""
-    if config.overrides_path is not None:
-        return config.overrides_path
-    path = project_root() / "overrides.yaml"
-    return path if path.exists() else None
+    """The overrides the run actually loaded, so the gate validates against the same file.
+
+    There is deliberately no second fallback here. Looking the file up again meant the gate could
+    validate against a different one from the run — which is exactly what happened the first time
+    the project had a real `overrides.yaml`.
+    """
+    return config.overrides_path
 
 
 def run_pipeline(config: Config, client: HttpClient, context: RunContext, options: RunOptions) -> RunResult:

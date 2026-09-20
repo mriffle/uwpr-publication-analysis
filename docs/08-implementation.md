@@ -171,6 +171,50 @@ behaviour was altered in M4.
   merge override, which belongs to M4.5**, because overrides name work IDs and those are not
   permanent until the store is seeded.
 
+### 3.3 M4.5 seed rehearsal, 2026-09-20 (UTC)
+
+The seed run is the one irreversible step, so it was rehearsed into scratch stores first.
+
+**The minting order is reproducible.** Two independent builds from an empty store, run half an
+hour apart, produced **byte-identical stores** — the same ~1,100 work IDs against the same
+papers. So a rehearsal says exactly what the seed will mint, and the review below is a review of
+the real thing rather than of something close to it.
+
+**The NUP153 merge override was written against the rehearsal's IDs** (`W-000329` the listed
+article, `W-000735` the preprint) and verified: the preprint joins the article with
+`version_link.method: override`, `W-000735` is retired and aliased, and **every other work ID is
+unchanged** — an override merges after minting, so it cannot shift the order. Two runs with the
+override in place are byte-identical, and the store validates.
+
+| | without the override | with it | Phase 1 §4.3 |
+|---|---:|---:|---:|
+| Works | 342 | 341 | |
+| Off the official list | 36 | 35 | ~37, of which 2 are probable duplicates |
+| Of those, preprint-only | 12 | 11 | 12 |
+
+**The off-list works, by the evidence behind them**, against §4.3's table. All 36 were read; the
+groups agree, and every one is consistent with a decision already recorded in
+[01a](01a-discovery-calibration.md):
+
+| Evidence | Works | Phase 1 §4.3 |
+|---|---:|---:|
+| More than one rule | 9 | 13 |
+| R6 only (text we cannot read) | 8 | 8 |
+| R7 only (staff thanked) | 6 | 5 |
+| R3 only (resource named) | 5 | 7 |
+| R5 only (affiliation) | 4 | 1 |
+| R2 metadata only | 3 | 2 |
+| R3d only (dataset description) | 1 | 1 |
+
+Fixture J's paper is the R3d one — PMID 32613749, via PXD011642, which no other channel finds.
+
+**One case remains genuinely uncertain, and it is the same one calibration flagged.** `W-000664`
+(*Low Clusterin Levels in High-Density Lipoprotein…*, 2010) is [01a](01a-discovery-calibration.md)
+Part 2 row 2, marked "?" there and never resolved. Its R3 match sits inside a long funding list
+that names several centres. The frozen rules include it, and the spot-check was approved with it
+left uncertain rather than rejected, so it stays — but it is the one work to look at first if a
+precision question is ever raised.
+
 ## 4. Decisions taken during implementation
 
 Each is already reflected in the code, the config or a dated spec note. They are listed here
@@ -599,9 +643,9 @@ uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's r
 4. **Phases 4 to 7 have not been discussed.** Phase 4 (knowledge base) is the next specification
    conversation, and its decisions — an LLM for summaries, the subject vocabulary, whether
    abstracts may be quoted — are the ones that most affect later work.
-5. **The NUP153 merge override, at M4.5.** The preprint `10.21203/rs.3.rs-4693768/v2` and the
-   article `10.1038/s41467-026-71449-1` are one piece of research that no source links (§3.2).
-   The override asserts that as a fact and is attributed to a person, so it is written once the
-   seed run has minted the two work IDs it must name.
+5. **The NUP153 merge override is written** (`overrides.yaml`, §3.3) and verified against the
+   rehearsal, but it asserts a judgement and is attributed to a person. It takes effect at the
+   seed; until `store/` exists, the work IDs it names do not, which is why it is committed
+   alongside the seed rather than before it.
 6. **An `NCBI_API_KEY`** would take cold-cache runs from 3 to 10 requests a second. Only CI
    starts cold, so this matters from M5 rather than now.

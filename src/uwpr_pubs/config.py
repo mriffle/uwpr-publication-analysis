@@ -49,6 +49,16 @@ def _load_yaml(path: Path) -> Any:
     return _iso_dates(yaml.safe_load(path.read_text(encoding="utf-8")))
 
 
+def default_overrides_path() -> Path:
+    """Where `overrides.yaml` lives when a caller does not name one.
+
+    A function rather than a constant so tests can point it elsewhere: the project's real
+    overrides name work IDs from the real store, and letting those reach a test store makes
+    every validating run fail on a target that cannot resolve.
+    """
+    return project_root() / "overrides.yaml"
+
+
 @dataclass(frozen=True)
 class Config:
     settings: dict[str, Any]
@@ -86,7 +96,7 @@ class Config:
 def load_config(config_dir: Path | None = None, overrides_path: Path | None = None) -> Config:
     root = project_root()
     directory = config_dir if config_dir is not None else root / "config"
-    overrides_file = overrides_path if overrides_path is not None else root / "overrides.yaml"
+    overrides_file = overrides_path if overrides_path is not None else default_overrides_path()
 
     documents: dict[str, Any] = {}
     problems: list[str] = []

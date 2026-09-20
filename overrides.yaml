@@ -1,0 +1,16 @@
+# Forced include/exclude, merge/split (docs/02-data-model.md §9).
+#
+# The only routine human input besides configuration. Overrides beat the rules, except R1: a
+# paper on UWPR's publications page cannot be excluded (Phase 1 §6.0). Each entry names the
+# person who decided and the date, because an override is a judgement, not a measurement.
+- target: [W-000329, W-000735]
+  action: merge
+  reason: >-
+    Preprint and article of one piece of research, which no source links. Crossref gives the
+    preprint only `is-version-of` pointing at its own v1 and the article's relation is empty;
+    neither record's OpenAlex locations names the other; the titles score 0.645 against the 0.85
+    threshold and the first authors differ, because the author order changed between versions.
+    Same group at Umea, same finding. This is the pair docs/02 §9 was written around, and
+    samples/store/ has linked it by override since Phase 2.
+  by: mriffle
+  date: 2026-09-20
