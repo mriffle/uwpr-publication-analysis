@@ -12,18 +12,25 @@ Resource (UWPR).
 - Clicking a publication in the app shows its detail: subject, authors, affiliations, and the
   evidence for why it counts as UWPR's. All of that is already in the store.
 
-**Current state:** Phases 1-3 frozen; Phase 4 retired; **Phases 5, 6 and 7 agreed 2026-09-20 —
-every phase is now specified and what remains is implementation.** **The pipeline is finished and
-running** (M0-M5): `store/` is seeded and committed (339 works, 2026-09-20), its work and record
-IDs are permanent and must never be renumbered, and `update.yml` runs it weekly, unattended, for
-about $0.01 and four minutes. **Nothing of the app exists yet**, stage 11 does not yet write
-`export/`, `web/` does not exist and there is no `gh-pages` branch. Start with the sample export,
-which the app cannot be developed or tested without (05 §13). **`docs/08-implementation.md` is the
-handoff: status, measurements, decisions and the full plan.** Public repo:
+**Current state: every phase is specified and built, and the whole thing is live.** Phases 1-3
+frozen, Phase 4 retired, 5-7 agreed 2026-09-20 with dated changelogs.
+- **The pipeline runs itself** weekly via `update.yml` — about $0.01 a run. `store/` is seeded and
+  committed (339 works); its work and record IDs are **permanent and must never be renumbered**.
+- **The app is built and deployed** at https://mriffle.github.io/uwpr-publication-analysis/, from
+  the `gh-pages` branch. `web/` is React + TypeScript + Vite; `export/` holds the two JSON files
+  it reads, rebuilt and committed by every run.
+- **What is left** is small and listed in `docs/07` §16 and `docs/08` §8: a named fallback
+  maintainer, visual-regression tests (`docs/06` §12.2), one `schema_version` minor bump, and two
+  cosmetic data defects that need a `rule_version` bump to fix cleanly.
+
+**`docs/08-implementation.md` is the record**: status, measurements, decisions taken while
+building, and the gotchas — read §4 and §5 before changing pipeline code. Public repo:
 mriffle/uwpr-publication-analysis.
 
-Work proceeds phase by phase. `docs/00-project-phases.md` is the index; each phase has a numbered
-spec in `docs/`.
+Work proceeds phase by phase. **`docs/README.md` is the manifest** — what each spec is, its
+status, and the order to read them in; `docs/00-project-phases.md` is the index of the phases
+themselves. `README.md` at the root is the project's own description. Superseded documents live
+in `docs/archive/`.
 
 | Phase | Status |
 |---|---|
@@ -34,7 +41,7 @@ spec in `docs/`.
 | 5 Metrics / app JSON | **Agreed 2026-09-20.** Decisions A1-A8; every figure measured against the real store |
 | 6 Web app | **Agreed 2026-09-20.** Decisions B1-B11: React + TypeScript + Vite, visx charts, in `web/` |
 | 7 Operations | **Agreed 2026-09-20.** Decisions O1-O8: Pages from `gh-pages`, data publish decoupled from the app build |
-| 8 Implementation | Pipeline done (M0-M5); see `docs/08-implementation.md` |
+| 8 Implementation | Done: pipeline, export, app and publishing all built and live |
 
 ## How specs are handled
 
@@ -42,7 +49,9 @@ spec in `docs/`.
   (see the "Changes since freezing" note in `docs/01-discovery-strategy.md`).
 - **Discuss a phase before drafting its spec.** Don't write substantive specs for phases not yet
   discussed.
-- **Unreviewed specs are provisional.** 05–07 predate most decisions; expect to rewrite them.
+- **Agreed specs (05-07) change the same way**, via a "Changes since agreement" note in the
+  header. Building the app corrected the contract repeatedly; each entry says what was wrong and
+  how it was found.
 - **Measure before deciding.** Claims in specs come from live API measurements. When changing a
   rule, re-measure its effect (recall on the official list, and new works found).
 
@@ -54,7 +63,8 @@ spec in `docs/`.
 uv sync --locked --all-groups                                  # setup; fails if uv.lock is stale
 uv run ruff check . && uv run ruff format --check . && uv run mypy && uv run pytest   # = check.yml
 uv run pytest tests/test_evidence.py::test_the_28_day_rule     # single test
-uv run uwpr-pubs validate samples/store                        # schemas + invariants; exit 1 on error
+uv run uwpr-pubs validate store                                # schemas + invariants; exit 1 on error
+uv run uwpr-pubs export --store store --out DIR                # build the app's JSON (export/ is a store sibling)
 uv run uwpr-pubs config                                        # fingerprints and config summary
 uv run uwpr-pubs smoke                                         # live source check (~$0.001)
 uv run uwpr-pubs run --store /tmp/scratch-store                # live run (~$0.010, ~110 s, warm cache)
@@ -63,6 +73,25 @@ uv run uwpr-pubs fixtures --store DIR                          # the Phase 1 §1
 uv run uwpr-pubs report [RUN_ID] --store DIR                   # a run report (default: the latest)
 uv run python samples/build_sample_store.py                    # rebuild sample store from live APIs
 ```
+
+The web app (`web/`, Node 24 from `.nvmrc`):
+
+```
+cd web && npm ci                                               # from the committed lockfile
+npm run dev                                                    # serves samples/export/ by default
+UWPR_EXPORT_DIR=/tmp/real-export npm run dev                   # ...or a real export, for 339 works
+npm run check:types-fresh && npm run lint && npm run format:check && npm run typecheck
+npm test -- --run && npm run build && npm run check:budget && npm run e2e
+```
+
+- **Types are generated from `schemas/`**, not hand-written, so contract drift is a build failure.
+  `check:types-fresh` regenerates and fails on any difference.
+- **`aggregate/` and `filter/` import no React** — a lint rule enforces it. Metric definitions are
+  tested as arithmetic.
+- **The summary cross-check is the highest-value test**: the app's unfiltered figures must equal
+  the `summary` block the pipeline computed independently.
+- **Playwright runs against the built app** behind `vite preview`; the 404 fallback and the
+  on-demand lookup fetch do not exist in the dev server.
 
 - **Quality gate:** `.github/workflows/check.yml` runs exactly these checks. Tests are offline:
   `tests/conftest.py` blocks sockets. Actions are pinned to commit SHAs (Dependabot updates

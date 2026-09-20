@@ -62,7 +62,7 @@ confirmed. The two that were not split into a rule change and an override:
 
 **Purpose:** define, precisely enough to implement, how the pipeline finds publications supported
 by the UW Proteomics Resource and decides which to include, **without human review**.
-**Basis:** `UWPR_publication_discovery_handoff.md`, plus live measurements made on 2026-09-19
+**Basis:** [`archive/00-original-handoff.md`](archive/00-original-handoff.md), plus live measurements made on 2026-09-19
 against OpenAlex, Europe PMC, NCBI/PMC and Crossref (§4).
 
 ---
