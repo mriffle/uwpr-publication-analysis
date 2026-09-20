@@ -22,6 +22,7 @@ import { overviewPath, parseRoute, publicationPath } from './routing/route';
 import { useLocation } from './routing/useLocation';
 import { decodeView, encodeViewToQuery } from './routing/view';
 import type { FilterState } from './filter/state';
+import { Lookup } from './views/Lookup';
 import { Overview } from './views/Overview';
 import { PublicationDetail } from './views/PublicationDetail';
 
@@ -174,6 +175,21 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
         onOpenPublication={openPublication}
         {...(now ? { now } : {})}
         {...(searchDebounceMs === undefined ? {} : { searchDebounceMs })}
+      />
+    );
+  }
+
+  if (route.kind === 'lookup') {
+    return (
+      <Lookup
+        doc={doc}
+        index={index}
+        lookupHref={lookupHref}
+        fetcher={fetcher}
+        overviewHref={overviewPath(base)}
+        methodHref={`${overviewPath(base)}method`}
+        publicationHref={publicationHref}
+        onOpenPublication={openPublication}
       />
     );
   }

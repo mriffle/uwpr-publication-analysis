@@ -56,7 +56,9 @@ import { FilterBar } from '../components/FilterBar';
 import { HeadlineFigures } from '../components/HeadlineFigures';
 import { PublicationExplorer } from '../components/PublicationExplorer';
 import { StalenessNotice } from '../components/StalenessNotice';
+import { basePath } from '../contract/config';
 import type { ExportDocument, Work } from '../contract/types';
+import { lookupPath } from '../routing/route';
 import { CRITERION_LABELS, buildLabels, describeFilter, filterSentence } from '../filter/describe';
 import { applyFilter } from '../filter/predicate';
 import {
@@ -175,6 +177,10 @@ export function Overview({
           Data generated {formatDate(doc.generated_at)}. Citations from {doc.sources.citations.name}{' '}
           as of {formatDate(doc.sources.citations.as_of)}.{' '}
           <a href={doc.resource.url}>{doc.resource.short_name}</a>
+        </p>
+        {/* §4.1: the header links to the lookup, which answers "why is a paper not here?". */}
+        <p>
+          <a href={lookupPath(basePath())}>Why is a paper not here?</a>
         </p>
       </header>
 

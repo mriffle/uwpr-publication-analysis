@@ -3,6 +3,7 @@
  *
  * | `/` | Overview |
  * | `/publication/<work id>` | Publication detail |
+ * | `/lookup` | "Why is a paper not here?" |
  *
  * "Routing uses the History API with a build-time base path, and ships a `404.html` copy of
  * `index.html` so a deep link resolves on static hosts that have no rewrite rules." The base
@@ -15,9 +16,13 @@
  */
 
 export type Route =
-  { kind: 'overview' } | { kind: 'publication'; id: string } | { kind: 'unknown'; path: string };
+  | { kind: 'overview' }
+  | { kind: 'publication'; id: string }
+  | { kind: 'lookup' }
+  | { kind: 'unknown'; path: string };
 
 const PUBLICATION = 'publication/';
+const LOOKUP = 'lookup';
 
 /** A hand-edited or double-encoded URL is a normal thing to receive; it is never an exception. */
 function safeDecode(value: string): string {
@@ -44,6 +49,7 @@ export function stripBase(pathname: string, base: string): string {
 export function parseRoute(pathname: string, base = '/'): Route {
   const rest = stripBase(pathname, base);
   if (rest === '') return { kind: 'overview' };
+  if (rest === LOOKUP) return { kind: 'lookup' };
   if (rest.startsWith(PUBLICATION)) {
     const id = safeDecode(rest.slice(PUBLICATION.length));
     return id === '' ? { kind: 'unknown', path: rest } : { kind: 'publication', id };
@@ -65,12 +71,16 @@ export const overviewPath = (base = '/'): string => withBase(base, '');
 export const publicationPath = (id: string, base = '/'): string =>
   withBase(base, `${PUBLICATION}${encodeURIComponent(id)}`);
 
+export const lookupPath = (base = '/'): string => withBase(base, LOOKUP);
+
 export function routePath(route: Route, base = '/'): string {
   switch (route.kind) {
     case 'overview':
       return overviewPath(base);
     case 'publication':
       return publicationPath(route.id, base);
+    case 'lookup':
+      return lookupPath(base);
     case 'unknown':
       return withBase(base, route.path);
   }
