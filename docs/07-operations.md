@@ -2,6 +2,18 @@
 
 **Status:** Agreed · 2026-09-20 · the last specification. Changes from here are made deliberately,
 dated, and noted in this header.
+
+**Changes since agreement** (2026-09-20, all found while implementing it):
+- *§8, rolling back the app also rolls back the data.* The row said "no data is involved and
+  nothing is at risk", which is wrong: both halves live on one branch, so rewinding `gh-pages`
+  rewinds `data/` with it. The rollback is two steps, and the runbook gives the second.
+- *§4.2, honouring "the data commit still stands" costs the alert.* A persistently failing publish
+  is silent until O3's staleness notice fires on the page. Stated rather than left to be
+  discovered.
+- *§3, `export/` is committed by the run.* It was not: the commit named only `store/`. Fixed in
+  code, with a CI check that the committed export matches the committed store.
+- *§16, §9.1's missing-from-site list has nowhere to appear.* The run report has no such section;
+  only the count exists, and only in the export.
 **Purpose:** define where this runs, how the app is published, how a failure becomes visible, and
 who is responsible when it does.
 **Depends on:** [03](03-retrieval-pipeline.md) (frozen), which already specifies the run, its
@@ -56,9 +68,15 @@ the push rebases; a git identity because a runner has none; the report posted wi
 so a run that stopped at the gate still explains itself; and the alert check last, so the data
 lands before the job fails.
 
-**What a normal week changes:** `official_list/entries.jsonl`, `metrics/`, `runs/`, and a
-`last_seen` refresh about once a month ([02](02-data-model.md) §15). Once stage 11 lands, also
-`export/`.
+**What a normal week changes:** `official_list/entries.jsonl`, `metrics/`, `runs/`, `export/`, and
+a `last_seen` refresh about once a month ([02](02-data-model.md) §15).
+
+**`export/` is committed by the run itself** — which is not what the code did. Stage 11 wrote it
+and the commit named only `store/`, so every weekly run built the export on the runner and threw
+it away, leaving `main` advertising whichever export a person last committed. Three specs already
+said otherwise ([02](02-data-model.md) §3, [03](03-retrieval-pipeline.md) §5 stage 0, and this
+section), so this was code catching up with them rather than a decision. `check.yml` now also
+rebuilds the export and diffs it against the committed one, so the two cannot drift again.
 
 **The download cache is an accelerator only.** GitHub evicts caches that go unused, and a weekly
 run sits near that boundary, so the cache may or may not survive from one week to the next.
@@ -102,6 +120,11 @@ kilobytes — and it buys the ability to see and revert exactly what is being se
   A run that wrote nothing publishes nothing.
 - **If the copy fails, the data commit still stands.** Publishing is downstream of the record;
   the store on `main` is the record, and `gh-pages` is a view of it that can be rebuilt.
+- **The cost of that is the alert.** Letting the publish fail without failing the job is the only
+  way to honour the line above, so a *persistently* failing publish is silent until O3's 14-day
+  staleness notice fires on the page itself. That is the designed net rather than an oversight,
+  and it is the reason O3 exists — but it means the page, not the workflow, is what reports a
+  broken publish.
 
 ### 4.3 Address and base path
 
@@ -182,7 +205,7 @@ So:
 | A work should not have been included, or should have been | An override, attributed and dated, then a manual run. The store records the change and why |
 | A rule produced a wrong result generally | A rule change with a `rule_version` bump, which re-evaluates every work and supersedes what no longer holds |
 | The store is genuinely corrupted | Revert, and **treat re-minting as expected**: check `aliases.json` afterwards and verify that no previously published ID now points elsewhere |
-| A bad app deploy | Revert `gh-pages` to the previous commit. No data is involved and nothing is at risk |
+| A bad app deploy | Rewind `gh-pages` to the previous commit, **then republish the data**. Both halves live on one branch, so rewinding the app also rewinds `data/` to whatever that commit held — the second step is not optional, and `RUNBOOK.md` gives it |
 
 ## 9. Corrections
 
@@ -295,6 +318,13 @@ keeping the thing running.
 
 ## 16. Open items
 
+0. **§9.1's report section does not exist.** The run report has no missing-from-site list: it
+   renders failure, alerts, store, quality, channels, rules, new works, changes, degradations and
+   notes, and none of them is D10's. The count is in the export as `summary.beyond_official_list`
+   (33 today), and [05](05-metrics-and-data-contract.md) A5 keeps it off the public page, so the
+   figure exists and the *list* does not reach anyone. It is a small addition to `report.py`, and
+   it is deliberately not made yet, because §9.1 also records that nobody owns acting on it —
+   producing a list no one reads is not an improvement.
 1. **The named fallback maintainer** (§7). The only decision in this spec that needs a person
    rather than a change.
 2. **The inactivity rule** (§12) cannot be verified for at least 60 days. Until then it is a known
