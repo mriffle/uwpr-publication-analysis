@@ -1134,3 +1134,41 @@ button.chart-legend-item.is-selected {
 .lookup-answer .evidence-excerpt {
   background: var(--panel-bg);
 }
+
+/* --- a rejection reached by permalink (docs/06 §5, §7) ------------------------------------ */
+
+/*
+ * `/publication/<identifier>` renders the same card as the lookup, but there the card is the
+ * page: it carries the h1, and its signals heading is the h2 the lookup renders as an h3. The
+ * levels differ because the surrounding document does; the type does not, because it is the same
+ * answer and must not read as a different one depending on how the reader arrived.
+ */
+.lookup-answer .lookup-answer-heading {
+  font-size: 1.2rem;
+  margin: 0.6rem 0 0.4rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* The page's own heading, which is a step larger than the same card's heading inside a page. */
+.lookup-answer h1.lookup-answer-heading {
+  font-size: 1.35rem;
+}
+
+.lookup-answer .lookup-answer-subheading {
+  font-size: 1rem;
+  margin: 1.25rem 0 0.3rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/*
+ * Reached cold there is no form above and no overview behind, so the card owes the reader both:
+ * the list it is not on, and the form that answers for any other paper.
+ */
+.answer-ways-on {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+

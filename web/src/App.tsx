@@ -11,7 +11,9 @@
  */
 import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react';
 import { toggleSort, type SortKey } from './aggregate/explorer';
+import { NotIncludedAnswer } from './components/NotIncludedAnswer';
 import { basePath, exportUrl, lookupUrl } from './contract/config';
+import { parseIdentifier } from './contract/identifier';
 import { describeFailure } from './contract/load';
 import { buildWorkIndex, resolveFromExport, resolveFromLookup } from './contract/resolve';
 import { useExportDocument } from './contract/useExport';
@@ -271,24 +273,39 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
     const resolution = resolveFromLookup(index, lookup.data, route.id);
     if (resolution.status === 'found') return detail(resolution.work, resolution.retiredId);
     if (resolution.status === 'not-included') {
-      const { row } = resolution;
+      // The same card `/lookup` renders (docs/05 §8, docs/06 §5). This is the likelier way to
+      // reach a rejection — it is the URL a colleague pastes into an email — so it gets the
+      // fuller answer, not the barer one: the reason, what it does not mean, each near miss with
+      // why it is deliberately not evidence, and how to report a correction.
+      //
+      // It carries the `h1` here, because the card is the page; there is no overview above it to
+      // put a heading of its own in front. And it offers the form, which the reader has not seen.
       return (
-        <Shell>
-          <div className="notice" role="status">
-            <p>
-              <strong>{row.title}</strong> was considered and is not included.
+        <main className="page">
+          <NotIncludedAnswer
+            row={resolution.row}
+            resource={doc.resource}
+            methodHref={methodHref}
+            query={parseIdentifier(route.id)}
+            headingLevel={1}
+            arrival="followed"
+          >
+            <p className="lookup-more answer-ways-on">
+              <a href={`${overviewPath(base)}${search}`}>See all publications</a>
+              <a
+                href={lookupRoutePath}
+                onClick={(event) => {
+                  if (!event.metaKey && !event.ctrlKey && event.button === 0) {
+                    event.preventDefault();
+                    openLookup();
+                  }
+                }}
+              >
+                Look up another publication
+              </a>
             </p>
-            <p>{row.reason_label}.</p>
-            {row.signal_labels.length > 0 ? (
-              <ul>
-                {row.signal_labels.map((label) => (
-                  <li key={label}>{label}</li>
-                ))}
-              </ul>
-            ) : null}
-            <a href={`${overviewPath(base)}${search}`}>See all publications</a>
-          </div>
-        </Shell>
+          </NotIncludedAnswer>
+        </main>
       );
     }
   }
