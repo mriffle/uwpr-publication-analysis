@@ -111,6 +111,7 @@
     "doi:10.1016/j.cmet.2023.04.003": "W-000398",
     "doi:10.1016/j.crmeth.2025.101104": "W-000399",
     "doi:10.1016/j.cub.2023.01.012": "W-000400",
+    "doi:10.1016/j.cub.2025.08.064": "W-000846",
     "doi:10.1016/j.ejpn.2015.09.008": "W-000401",
     "doi:10.1016/j.febslet.2014.01.065": "W-000402",
     "doi:10.1016/j.freeradbiomed.2018.12.031": "W-000403",
@@ -1583,6 +1584,7 @@
     "openalex:W4413812605": "W-000329",
     "openalex:W4413961649": "W-000765",
     "openalex:W4414162313": "W-000324",
+    "openalex:W4414382074": "W-000846",
     "openalex:W4414659169": "W-000689",
     "openalex:W4415050467": "W-000667",
     "openalex:W4415627464": "W-000615",
@@ -1779,6 +1781,7 @@
     "pmcid:PMC12486725": "W-000689",
     "pmcid:PMC12592563": "W-000498",
     "pmcid:PMC12597595": "W-000424",
+    "pmcid:PMC12629138": "W-000846",
     "pmcid:PMC12636291": "W-000615",
     "pmcid:PMC12660040": "W-000455",
     "pmcid:PMC12695630": "W-000501",
@@ -2887,6 +2890,7 @@
     "pmid:40840013": "W-000424",
     "pmid:40939636": "W-000324",
     "pmid:40969648": "W-000765",
+    "pmid:40975050": "W-000846",
     "pmid:41029739": "W-000689",
     "pmid:41072037": "W-000667",
     "pmid:41162698": "W-000500",
@@ -2991,7 +2995,7 @@
     "work:W-000837": "W-000608",
     "work:W-000839": "W-000608"
   },
-  "generated_at": "2026-09-20T17:07:57Z",
+  "generated_at": "2026-09-20T22:15:18Z",
   "not_included": [
     {
       "id": "W-000001",
@@ -3929,8 +3933,8 @@
         "pmcid": "PMC3517139",
         "pmid": "21656683"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -5289,8 +5293,8 @@
         "pmcid": "PMC10243106",
         "pmid": "37093777"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6250,8 +6254,8 @@
         "pmcid": "PMC8831450",
         "pmid": "34862502"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6394,8 +6398,8 @@
         "pmcid": "PMC7244511",
         "pmid": "32444788"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6515,8 +6519,8 @@
         "pmcid": "PMC151416",
         "pmid": "12601166"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Quantitative proteomic analysis indicates increased synthesis of a quinolone by Pseudomonas aeruginosa isolates from cystic fibrosis airways",
@@ -6632,8 +6636,8 @@
         "pmcid": "PMC3083184",
         "pmid": "21372125"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Lipoxygenase-mediated Oxidation of Polyunsaturated N-Acylethanolamines in Arabidopsis",
@@ -6775,8 +6779,8 @@
         "pmcid": "PMC4563719",
         "pmid": "26100116"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Using Data Independent Acquisition (DIA) to Model High-responding Peptides for Targeted Proteomics Experiments",
@@ -7594,8 +7598,8 @@
         "pmcid": "PMC515325",
         "pmid": "15342561"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "De Novo Repeat Classification and Fragment Assembly",
@@ -8262,8 +8266,8 @@
         "pmcid": "PMC4168248",
         "pmid": "25220473"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Medical and non-medical complications among children and adolescents with excessive body weight",
@@ -8332,8 +8336,8 @@
         "pmcid": "PMC549070",
         "pmid": "15642101"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -9345,8 +9349,8 @@
         "pmcid": "PMC10185886",
         "pmid": "37205196"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -9398,8 +9402,8 @@
         "pmcid": "PMC11772424",
         "pmid": "39877741"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Phytolith assemblages from palm leaves and palm-leaf manuscripts: what is the difference and what it could mean?",
@@ -9642,8 +9646,8 @@
         "pmcid": "PMC5088702",
         "pmid": "27829797"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Oenanthe millefolia (Umbelliferae), a new species record for the Turkish and Greek Flora",
@@ -10051,8 +10055,8 @@
         "pmcid": "PMC4677742",
         "pmid": "26672472"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Systemic Infection of Maize, Sorghum, Rice, and Beet Seedlings with Fumonisin-Producing and Nonproducing Fusarium verticillioides Strains",
@@ -10567,6 +10571,21 @@
       "signals": [],
       "title": "Adjusted effect size, area under the curve, and c-statistic for evaluating the association between uric acid and mortality in US adults using unweighted and survey-weighted regression, propensity, and prognostic score",
       "year": 2026
+    },
+    {
+      "id": "W-000846",
+      "ids": {
+        "doi": "10.1016/j.cub.2025.08.064",
+        "openalex": "W4414382074",
+        "pmcid": "PMC12629138",
+        "pmid": "40975050"
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [],
+      "signals": [],
+      "title": "The kinesin motor Kif9 regulates centriolar satellite positioning during interphase",
+      "year": 2025
     }
   ],
   "schema_version": "1.0"

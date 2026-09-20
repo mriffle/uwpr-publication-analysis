@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T17:07:57Z",
+  "generated_at": "2026-09-20T22:15:18Z",
   "method": {
     "beyond_official_list": 33,
     "criteria": {
@@ -31,7 +31,7 @@
     "first_year": 2008,
     "last_year": 2026
   },
-  "pipeline_version": "m4",
+  "pipeline_version": "0.1.0",
   "resource": {
     "exclusions": [
       {
@@ -128,7 +128,7 @@
     "url": "https://proteomicsresource.washington.edu/"
   },
   "rule_version": "2026-09-20.1",
-  "run_id": "2026-09-20T17-07-live",
+  "run_id": "2026-09-20T22-15-live",
   "schema_version": "1.0",
   "sources": {
     "citations": {

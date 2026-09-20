@@ -840,7 +840,7 @@
         }
       ],
       "fulltext": {
-        "cache": "sha256:f5d5a00edae772b73c965ad4ac699d75d1a90e2dacd2c4ed265495d3216e4a9a",
+        "cache": "sha256:296e2b0970d6dc258282f66c70348e07ac68677468fcd259caa0f214a7f46f2f",
         "checked": "2026-09-20",
         "recheck_after": null,
         "status": "pmc_xml"
