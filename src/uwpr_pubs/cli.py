@@ -1,7 +1,4 @@
-"""The `uwpr-pubs` command (docs/03-retrieval-pipeline.md §8).
-
-The remaining subcommands (run, fixtures, smoke, explain, report) arrive with the pipeline.
-"""
+"""The `uwpr-pubs` command (docs/03-retrieval-pipeline.md §8)."""
 
 import argparse
 import os
@@ -12,10 +9,14 @@ from uwpr_pubs import __version__
 from uwpr_pubs.channels import ALL_CHANNELS
 from uwpr_pubs.config import ConfigError, load_config
 from uwpr_pubs.context import RunContext
+from uwpr_pubs.explain import explain
+from uwpr_pubs.fixtures import evaluate
 from uwpr_pubs.http import Mode
 from uwpr_pubs.pipeline import RunOptions, run_pipeline
 from uwpr_pubs.runtime import api_keys, build_client
 from uwpr_pubs.smoke import run_smoke
+from uwpr_pubs.store.paths import StorePaths
+from uwpr_pubs.store.read import read_store
 from uwpr_pubs.validate import validate_store
 
 
@@ -75,16 +76,74 @@ def _run(args: argparse.Namespace) -> int:
         store=store,
         mode=mode,
         dry_run=args.dry_run,
+        # A partial run must not commit, advance any last_seen or remove anything (§8), which
+        # RunOptions enforces: naming channels is enough to make the run read-only for git.
         channels=tuple(args.channels.split(",")) if args.channels else ALL_CHANNELS,
         summary_out=Path(args.summary_out) if args.summary_out else None,
+        no_commit=args.no_commit,
     )
     result = run_pipeline(config, client, context, options)
     print(result.report)
+    if result.commit:
+        print(f"committed {result.commit}")
     output = os.environ.get("GITHUB_OUTPUT")
     if output:
         with open(output, "a", encoding="utf-8") as handle:
             handle.write(f"status={result.status}\nrun_id={result.run_id}\n")
     return 1 if result.status == "failed" else 0
+
+
+def _explain(args: argparse.Namespace) -> int:
+    store = Path(args.store)
+    if not store.is_dir():
+        print(f"ERROR no store at {store}")
+        return 1
+    found, text = explain(read_store(store), args.identifier)
+    print(text)
+    return 0 if found else 1
+
+
+def _report(args: argparse.Namespace) -> int:
+    paths = StorePaths(Path(args.store))
+    reports = sorted(paths.runs.glob("*.md")) if paths.runs.is_dir() else []
+    if args.run_id:
+        wanted = paths.run_report(args.run_id)
+        if not wanted.is_file():
+            print(f"ERROR no report for run {args.run_id} in {paths.runs}")
+            return 1
+        print(wanted.read_text(encoding="utf-8"))
+        return 0
+    if not reports:
+        print(f"ERROR no run reports in {paths.runs}")
+        return 1
+    print(reports[-1].read_text(encoding="utf-8"))  # run ids start with the time, so last is latest
+    return 0
+
+
+def _fixtures(args: argparse.Namespace) -> int:
+    try:
+        config = load_config()
+    except ConfigError as exc:
+        print(f"ERROR {exc}")
+        return 1
+    store = Path(args.store)
+    if not store.is_dir():
+        print(f"ERROR no store at {store}")
+        return 1
+    results = evaluate(config.fixtures, read_store(store))
+    for result in results:
+        print(result.line())
+    regressions = [result for result in results if result.regressed]
+    absent = [result for result in results if result.outcome == "fail" and not result.present]
+    print(
+        f"\n{sum(1 for r in results if r.outcome == 'pass')} as expected, "
+        f"{sum(1 for r in results if r.outcome == 'known_miss')} known misses, "
+        f"{len(regressions)} regressed, {len(absent)} not in this store"
+    )
+    for result in results:
+        if result.good_news:
+            print(f"GOOD NEWS {result.id}: {result.detail}")
+    return 1 if regressions else 0
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -110,13 +169,30 @@ def main(argv: Sequence[str] | None = None) -> int:
     run.add_argument("--cache", help="default: <project root>/cache")
     run.add_argument("--dry-run", action="store_true", help="run every stage but write nothing")
     run.add_argument("--channels", help="comma-separated channel ids; implies no commit")
+    run.add_argument("--no-commit", action="store_true", help="write the store but do not commit it")
     run.add_argument("--summary-out", help="where to write the report, even if the run fails")
+
+    explain_command = subcommands.add_parser("explain", help="why one paper is, or is not, included")
+    explain_command.add_argument("identifier", help="a work ID, DOI, PMID, PMCID or OpenAlex ID")
+    explain_command.add_argument("--store", default="store")
+
+    report_command = subcommands.add_parser("report", help="print a run report (default: the latest)")
+    report_command.add_argument("run_id", nargs="?")
+    report_command.add_argument("--store", default="store")
+
+    fixtures_command = subcommands.add_parser(
+        "fixtures", help="evaluate the Phase 1 test papers against a store"
+    )
+    fixtures_command.add_argument("--store", default="store")
 
     handlers: dict[str, Callable[[argparse.Namespace], int]] = {
         "validate": _validate,
         "config": _config,
         "smoke": _smoke,
         "run": _run,
+        "explain": _explain,
+        "report": _report,
+        "fixtures": _fixtures,
     }
     args = parser.parse_args(argv)
     handler = handlers.get(args.command or "")

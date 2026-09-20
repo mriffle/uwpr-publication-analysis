@@ -267,17 +267,27 @@ def validate_store(store: Path, overrides_path: Path | None = None) -> Report:  
                 if item not in all_ids and item not in retired:
                     report.error("overrides", f"{override.get('action')} target {item} does not resolve")
                 if override.get("action") == "merge" and item != targets[0] and item not in retired:
-                    report.error("overrides", f"merge: {item} should be retired and aliased to {targets[0]}")
+                    # A merge that has not happened yet is the normal state between someone
+                    # editing overrides.yaml and the next run applying it. Treating it as an
+                    # error made stage 0 reject the very store the run was about to fix
+                    # (changed 2026-09-20); after the run, the warning is gone.
+                    report.warn("overrides", f"merge: {item} is not yet retired into {targets[0]}")
             elif f"doi:{item}" not in aliases and f"pmid:{item}" not in aliases:
                 report.warn("overrides", f"{override.get('action')} target {item} not yet in the store")
 
     # metrics and generated content refer to included works and their records
     for name, line in metrics:
-        work = works.get(line.get("work"))
+        historical = name != "latest.jsonl"
+        named = line.get("work")
+        work = works.get(named) or works.get(retired.get(named, ""))
+        complain = report.warn if historical else report.error
         if not work:
-            report.error(name, f"metrics for {line.get('work')}, which is not an included work")
+            # A month's file is a record of what was true then. A work can leave afterwards, by a
+            # rule change or an exclude override, and rewriting history to hide that would be
+            # wrong — so for past months this is a warning (docs/02 §10, changed 2026-09-20).
+            complain(name, f"metrics for {named}, which is not an included work")
         elif line.get("record") not in {r.get("id") for r in work.get("records", [])}:
-            report.error(name, f"metrics record {line.get('record')} not in {line.get('work')}")
+            complain(name, f"metrics record {line.get('record')} not in {named}")
     for work_id in generated:
         if work_id not in works:
             report.error(f"{work_id}.generated.json", "generated content for a work that is not included")

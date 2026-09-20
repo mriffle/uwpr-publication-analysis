@@ -9,6 +9,7 @@ Nothing reaches the real store until stage 9 has validated a complete copy of it
 
 import datetime as dt
 import shutil
+import subprocess
 import time
 import traceback
 from collections.abc import Mapping, Sequence
@@ -21,6 +22,7 @@ from uwpr_pubs.channels import ALL_CHANNELS, ChannelRunner, DiscoveryResult, Nom
 from uwpr_pubs.config import Config
 from uwpr_pubs.context import RunContext
 from uwpr_pubs.evidence import MergeContext, merge_evidence
+from uwpr_pubs.fixtures import evaluate
 from uwpr_pubs.fulltext import TextFetcher, TextResult, fulltext_field, needs_evaluation
 from uwpr_pubs.http import HttpClient, HttpError, Mode
 from uwpr_pubs.match import (
@@ -44,7 +46,15 @@ from uwpr_pubs.records import (
     to_candidate_record,
     year_from_text,
 )
-from uwpr_pubs.report import NewWork, RunRecorder, adapter_source, channel_source, stage_source
+from uwpr_pubs.report import (
+    NewWork,
+    RunRecorder,
+    adapter_source,
+    channel_source,
+    stage_source,
+    trailing_average,
+    trends,
+)
 from uwpr_pubs.rules.common import TextSource
 from uwpr_pubs.rules.r1 import official_list_evidence
 from uwpr_pubs.rules.r2 import award_code_in_metadata, award_code_in_text
@@ -99,6 +109,7 @@ INCLUDED_RECORD_KINDS: frozenset[str] = frozenset(IncludedKind.__args__)  # type
 # though it is not a publication we count on its own.
 VERSION_KINDS: frozenset[str] = INCLUDED_RECORD_KINDS | {"repository-copy"}
 PREPRINT_DOI_PREFIXES = ("10.1101/",)  # bioRxiv and medRxiv; asking about others wastes requests
+MIN_RUNS_FOR_ALERT = 2  # "degraded in N runs running" needs at least this run and one before it
 
 
 class RunFailureError(Exception):
@@ -113,6 +124,16 @@ class RunOptions:
     channels: tuple[str, ...] = ALL_CHANNELS
     summary_out: Path | None = None
     check_clean: bool = True
+    no_commit: bool = False
+
+    @property
+    def partial(self) -> bool:
+        """A run of selected channels only. It must not commit, and says so in the report."""
+        return tuple(self.channels) != tuple(ALL_CHANNELS)
+
+    @property
+    def commits(self) -> bool:
+        return not (self.dry_run or self.no_commit or self.partial)
 
 
 @dataclass
@@ -121,6 +142,7 @@ class RunResult:
     run_id: str
     report: str
     written: bool
+    commit: str | None = None
     errors: list[str] = field(default_factory=list)
 
 
@@ -209,6 +231,7 @@ class Pipeline:
         self.minter = Minter()
         self.list_nominations: list[Nomination] = []
         self._unreachable: set[str] = set()  # sources that failed once; stage 6 stops asking
+        self.crossref_payloads: dict[str, Mapping[str, Any]] = {}  # kept for stage 6's relations
 
     # --- stage 0 ---------------------------------------------------------------------------
 
@@ -464,6 +487,9 @@ class Pipeline:
                 )
                 if nomination.source == "crossref":
                     self._crossref_evidence(draft, record_id, nomination.payload)
+                    crossref_doi = nomination.payload.get("DOI")
+                    if crossref_doi:
+                        self.crossref_payloads[normalise_doi(str(crossref_doi))] = nomination.payload
             self._openalex_evidence(draft, record_id, payload)
 
     def refresh_stored_records(self) -> None:
@@ -1008,6 +1034,96 @@ class Pipeline:
         for merge in versions.merges(links, index):
             self._merge_drafts(merge.into, merge.retired)
         self._apply_links(links)
+        self._apply_override_merges()
+        self._apply_override_splits()
+
+    def _current_work(self, target: str) -> WorkId | None:
+        """Where a work ID points now: itself, or whatever it was merged into."""
+        found = target if target in self.drafts else self.aliases.get(retired_key(target))
+        return found if found in self.drafts else None
+
+    def _apply_override_merges(self) -> None:
+        """Works that only a person can join (docs/02 §9, docs/03 §5 stage 6).
+
+        The NUP153 preprint and its article are the worked example, and the reason this exists:
+        their titles differ, their first authors differ, and neither Crossref nor OpenAlex states
+        a relation, so none of Phase 1 §8's four signals reaches them.
+        """
+        for override in self.config.overrides:
+            targets = override["target"]
+            if override["action"] != "merge" or not isinstance(targets, list):
+                continue
+            resolved = sorted({found for found in map(self._current_work, targets) if found})
+            if len(resolved) < 2:  # noqa: PLR2004 - a merge of fewer than two works is a no-op
+                continue
+            survivor = resolved[0]
+            for retired in resolved[1:]:
+                self._merge_drafts(survivor, retired)
+            self._link_within(survivor, "override")
+
+    def _link_within(self, work_id: WorkId, method: VersionMethod) -> None:
+        """Point a work's unlinked preprints at its article, once a person has said they are one."""
+        draft = self.drafts[work_id]
+        articles = [r for r in sorted(draft.records) if draft.kinds.get(r) not in (None, "preprint")]
+        if not articles:
+            return
+        article = canonical_record([draft.records[r] for r in articles])
+        for record_id in sorted(draft.records):
+            record = draft.records[record_id]
+            if draft.kinds.get(record_id) == "preprint" and record["version_link"] is None:
+                draft.records[record_id] = cast(
+                    Record, {**record, "version_link": {"to": article, "method": method}}
+                )
+
+    def _apply_override_splits(self) -> None:
+        """Move the named records out into a work of their own (docs/02 §4, §9).
+
+        A split mints a new ID rather than reusing one, and the records take their evidence and
+        discovery with them, since both are keyed by record.
+        """
+        for override in self.config.overrides:
+            target = override["target"]
+            leaving = set(override.get("records") or [])
+            if override["action"] != "split" or not isinstance(target, str) or not leaving:
+                continue
+            source_id = self._current_work(target)
+            if source_id is None:
+                continue
+            source = self.drafts[source_id]
+            moving = sorted(leaving & set(source.records))
+            if not moving or len(moving) == len(source.records):
+                continue
+            self._split_out(source, moving)
+
+    def _split_out(self, source: Draft, moving: Sequence[RecordId]) -> None:
+        minted = self.minter.mint_work()
+        draft = Draft(id=minted, created=source.created, first_seen=source.first_seen, is_new=True)
+        self.drafts[minted] = draft
+        for record_id in moving:
+            record = source.records.pop(record_id)
+            draft.records[record_id] = cast(Record, {**record, "version_link": None})
+            draft.kinds[record_id] = source.kinds.pop(record_id, record["kind"])
+            if record_id in source.payloads:
+                draft.payloads[record_id] = source.payloads.pop(record_id)
+            if record_id in source.texts:
+                draft.texts[record_id] = source.texts.pop(record_id)
+            for alias in external_keys(record["ids"]):
+                self.aliases[alias] = minted
+        moved = set(moving)
+
+        draft.stored_evidence = [e for e in source.stored_evidence if e.get("record") in moved]
+        source.stored_evidence = [e for e in source.stored_evidence if e.get("record") not in moved]
+        draft.derived_evidence = [e for e in source.derived_evidence if e.get("record") in moved]
+        source.derived_evidence = [e for e in source.derived_evidence if e.get("record") not in moved]
+        for key in [k for k in sorted(source.discovery) if k[1] in moved]:
+            draft.discovery[key] = source.discovery.pop(key)
+        # A record that stays behind may have pointed at one that left, and a version_link must
+        # stay inside its own work or the gate rejects the store.
+        for record_id, record in sorted(source.records.items()):
+            link = record["version_link"]
+            if link and link["to"] in moved:
+                source.records[record_id] = cast(Record, {**record, "version_link": None})
+        self.recorder.note(f"{source.id}: {', '.join(moving)} split out into {minted} by override")
 
     def _published_versions(self) -> list[tuple[VersionMethod, dict[str, str]]]:
         """Ask each preprint-only work whether its journal version has appeared (stage 6).
@@ -1015,10 +1131,12 @@ class Pipeline:
         A work that already holds both versions needs no request: its records are in one file and
         its `version_link` is carried forward, so a normal week asks about a handful of preprints.
         """
-        relations: dict[str, str] = {}
+        relations = self._stated_relations()
         published: dict[str, str] = {}
         for draft in self._preprint_only_drafts():
             for doi in self._preprint_dois(draft):
+                if doi in relations:
+                    continue  # a channel's own metadata already said so; no request needed
                 article = self._crossref_relation(doi)
                 if article:
                     relations[doi] = normalise_doi(article)
@@ -1027,6 +1145,22 @@ class Pipeline:
                 if article:
                     published[doi] = normalise_doi(article)
         return [("crossref_relation", relations), ("biorxiv_published", published)]
+
+    def _stated_relations(self) -> dict[str, str]:
+        """Relations from Crossref records a channel already fetched, in both directions (§8).
+
+        Publishers state the relation from the article's side far more often than preprint
+        servers state it from theirs — 13 of the 63 award-filter works carry `has-preprint`
+        against one carrying `is-preprint-of` — and reading it costs no request at all.
+        """
+        found: dict[str, str] = {}
+        for doi, payload in sorted(self.crossref_payloads.items()):
+            stated = Crossref.preprint_of(payload)
+            if stated:
+                found.setdefault(doi, normalise_doi(stated))
+            for preprint_doi in Crossref.has_preprint(payload):
+                found.setdefault(normalise_doi(preprint_doi), doi)
+        return found
 
     def _crossref_relation(self, doi: str) -> str | None:
         if "crossref" in self._unreachable:
@@ -1419,6 +1553,65 @@ class Pipeline:
                 + "\n  ".join(report.errors[:20])
             )
         self.recorder.counts = dict(report.counts)
+        self.check_fixtures(staging)
+
+    def check_fixtures(self, staging: Path) -> None:
+        """The second half of the gate: the Phase 1 §12 papers must still behave (§12.2).
+
+        This runs on the staged store, before anything is written, because a rule change that
+        breaks a settled case should stop the run rather than be committed and reported.
+        """
+        results = evaluate(self.config.fixtures, read_store(staging))
+        self.recorder.fixtures = {result.id: result.outcome for result in results}
+        self.recorder.fixture_detail = [result.line() for result in results]
+        self.recorder.good_news = [
+            f"{result.id} was a known miss and now passes — {result.detail}"
+            for result in results
+            if result.good_news
+        ]
+        regressions = [result for result in results if result.regressed]
+        if regressions:
+            raise RunFailureError(
+                "test papers regressed, so nothing was written:\n  "
+                + "\n  ".join(result.line() for result in regressions)
+            )
+
+    def assess_run_quality(self) -> None:
+        """The §9 checks that need the previous runs: trends, and a source failing repeatedly."""
+        runs = self.snapshot.runs if self.snapshot else []
+        if runs:
+            channel_counts = {
+                name: {"nominated": run["nominated"]} for name, run in self.recorder.channels.items()
+            }
+            self.recorder.trends = [
+                *trends(self.recorder.rules, trailing_average(runs, "rules", "works"), "works"),
+                *trends(channel_counts, trailing_average(runs, "channels", "nominated"), "nominated"),
+            ]
+        self._alert_on_repeated_degradation(runs)
+
+    def _alert_on_repeated_degradation(self, runs: Sequence[Any]) -> None:
+        """A source that has failed in three runs running needs a person, not another retry (§9).
+
+        The `source` field comes from a controlled vocabulary precisely so that the same failure
+        can be recognised across manifests.
+        """
+        limit = int(self.config.settings["degraded_to_alert_after"])
+        if limit < MIN_RUNS_FOR_ALERT:
+            return
+        previous = sorted(runs, key=lambda run: str(run["run_id"]))[-(limit - 1) :]
+        if len(previous) < limit - 1:
+            return
+        seen: set[str] = set()
+        for degradation in self.recorder.degradations:
+            source = degradation["source"]
+            if source in seen:
+                continue
+            seen.add(source)
+            if all(any(d["source"] == source for d in run["degradations"]) for run in previous):
+                self.recorder.alert(
+                    f"{source} has now failed in {limit} runs in a row",
+                    "check the source: nothing has been removed, but its data is going stale",
+                )
 
     def publish(self, staging: Path) -> None:
         """Stage 13: only work files that left are deleted; everything else is carried forward."""
@@ -1435,6 +1628,24 @@ class Pipeline:
             destination = target.root / path.relative_to(staging)
             destination.parent.mkdir(parents=True, exist_ok=True)
             io.write_bytes_atomic(destination, path.read_bytes())
+
+    def commit(self) -> None:
+        """The run's one bot commit (docs/03 §2 P3, C3). The update workflow pushes it.
+
+        A store outside a git repository — every scratch store — is simply not committed. A
+        commit that fails is an alert rather than a failure: the data is already written, and
+        what needs a person is the repository, not the run.
+        """
+        store = self.options.store
+        if not self.options.commits or not git.is_repository(store):
+            return
+        try:
+            self.recorder.commit = git.commit([store], self.recorder.commit_message(), store)
+        except subprocess.CalledProcessError as exc:
+            self.recorder.alert(
+                f"the data was written but could not be committed: {scrub(str(exc))}",
+                "commit store/ by hand, then check the repository's state",
+            )
 
 
 def _openalex_order(work: Mapping[str, Any]) -> tuple[int, str]:
@@ -1454,6 +1665,9 @@ def _preferred(works: Sequence[Mapping[str, Any]]) -> Mapping[str, Any] | None:
 
 
 def _overrides_path(config: Config) -> Path | None:
+    """The overrides the run actually loaded, so the gate validates against the same file."""
+    if config.overrides_path is not None:
+        return config.overrides_path
     path = project_root() / "overrides.yaml"
     return path if path.exists() else None
 
@@ -1476,6 +1690,7 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
         pipeline.link_versions()
         works, candidates, metrics = pipeline.decide_status()
         pipeline.measure_recall(works)
+        pipeline.assess_run_quality()
         pipeline.stage_and_validate(works, candidates, metrics, staging)
         kb_stage.generate(works)  # Phase 4
         export_stage.write(works)  # Phase 5
@@ -1505,6 +1720,8 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
         manifest = recorder.manifest(context.timestamp(dt.datetime.now(tz=dt.UTC)), api)
         io.write_json(pipeline.paths.run_manifest(context.run_id), manifest)
         io.write_text_atomic(pipeline.paths.run_report(context.run_id), report)
+        pipeline.commit()  # last, so the manifest and the report are in the same commit
+        status = recorder.status  # a commit that failed raises an alert
     if options.summary_out:
         io.write_text_atomic(options.summary_out, report)
     return RunResult(
@@ -1512,5 +1729,6 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
         run_id=context.run_id,
         report=report,
         written=written,
+        commit=recorder.commit,
         errors=[recorder.failure] if recorder.failure else [],
     )

@@ -59,6 +59,7 @@ class Config:
     overrides: list[Override]
     config_fingerprint: CacheRef
     rules_fingerprint: CacheRef
+    overrides_path: Path | None = None  # the file the overrides came from, for the validator
 
     @property
     def rule_version(self) -> RuleVersion:
@@ -114,4 +115,5 @@ def load_config(config_dir: Path | None = None, overrides_path: Path | None = No
         overrides=overrides,
         config_fingerprint=fingerprint({**documents, "overrides": overrides}),
         rules_fingerprint=fingerprint({"rules": rules_without_version, "staff": documents["staff"]}),
+        overrides_path=overrides_file if overrides_file.is_file() else None,
     )

@@ -10,6 +10,7 @@ from typing import Any
 
 import pytest
 
+from uwpr_pubs import git as git_module
 from uwpr_pubs import pipeline as pipeline_module
 from uwpr_pubs.cache import Cache
 from uwpr_pubs.config import load_config
@@ -211,8 +212,10 @@ def context_at(store: Path, day: str = TODAY) -> RunContext:
     return RunContext(today=started.date(), started=started, mode="live", store=store)
 
 
-def do_run(client: HttpClient, store: Path, day: str = TODAY, **kwargs: Any) -> Any:
-    config = load_config()
+def do_run(
+    client: HttpClient, store: Path, day: str = TODAY, overrides: Path | None = None, **kwargs: Any
+) -> Any:
+    config = load_config(overrides_path=overrides)
     options = RunOptions(store=store, check_clean=False, **kwargs)
     return run_pipeline(config, client, context_at(store, day), options)
 
@@ -480,6 +483,122 @@ def test_a_candidate_keeps_its_metrics_and_metadata_refresh(client: HttpClient, 
     first = io.read_jsonl(store / "metrics" / "latest.jsonl")
     do_run(client, store, day="2026-09-22")
     assert len(io.read_jsonl(store / "metrics" / "latest.jsonl")) == len(first)
+
+
+def _git_repository(tmp_path: Path) -> str:
+    git = shutil.which("git") or "git"
+    subprocess.run([git, "init", "-q"], cwd=tmp_path, check=True)  # noqa: S603
+    subprocess.run([git, "config", "user.email", "t@e.st"], cwd=tmp_path, check=True)  # noqa: S603
+    subprocess.run([git, "config", "user.name", "t"], cwd=tmp_path, check=True)  # noqa: S603
+    (tmp_path / "README").write_text("seed", encoding="utf-8")
+    subprocess.run([git, "add", "-A"], cwd=tmp_path, check=True)  # noqa: S603
+    subprocess.run([git, "commit", "-qm", "seed"], cwd=tmp_path, check=True)  # noqa: S603
+    return git
+
+
+def _log(git: str, cwd: Path) -> list[str]:
+    done = subprocess.run(  # noqa: S603
+        [git, "log", "--format=%s"], cwd=cwd, capture_output=True, text=True, check=True
+    )
+    return done.stdout.splitlines()
+
+
+def test_a_successful_run_commits_its_data(client: HttpClient, tmp_path: Path) -> None:
+    """The pipeline makes one bot commit per run; the update workflow pushes it (P3, C3)."""
+    git = _git_repository(tmp_path)
+    store = tmp_path / "store"
+    result = do_run(client, store)
+
+    assert result.commit
+    assert _log(git, tmp_path)[0].startswith("Data update ")
+    assert not git_module.status([store], store), "the store should be clean after committing"
+
+    # The manifest and the report are committed with the data they describe.
+    committed = subprocess.run(  # noqa: S603
+        [git, "show", "--name-only", "--format=", "HEAD"],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout
+    assert f"store/runs/{result.run_id}.json" in committed
+    assert f"store/runs/{result.run_id}.md" in committed
+
+
+def test_a_second_run_that_changes_nothing_makes_no_second_data_commit(
+    client: HttpClient, tmp_path: Path
+) -> None:
+    """Only `runs/` differs, so there is something to commit — but it must be one commit, not two."""
+    git = _git_repository(tmp_path)
+    store = tmp_path / "store"
+    do_run(client, store)
+    do_run(client, store, day="2026-09-22")
+    assert len([line for line in _log(git, tmp_path) if line.startswith("Data update")]) == 2
+
+
+def test_no_commit_writes_the_store_and_leaves_git_alone(client: HttpClient, tmp_path: Path) -> None:
+    git = _git_repository(tmp_path)
+    store = tmp_path / "store"
+    result = do_run(client, store, no_commit=True)
+    assert result.written
+    assert result.commit is None
+    assert _log(git, tmp_path) == ["seed"]
+
+
+def test_naming_channels_implies_no_commit(client: HttpClient, tmp_path: Path) -> None:
+    """§8: a partial run must not commit, advance any last_seen or remove anything."""
+    git = _git_repository(tmp_path)
+    store = tmp_path / "store"
+    result = do_run(client, store, channels=("B1",))
+    assert result.written
+    assert result.commit is None
+    assert _log(git, tmp_path) == ["seed"]
+
+
+def test_a_source_failing_three_runs_running_raises_an_alert(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """§9: one failure degrades, three in a row need a person. Nothing is ever removed."""
+    store = tmp_path / "store"
+    do_run(client, store)
+    before = len(list((store / "works").glob("W-*.json")))
+
+    def failing(self: Any) -> None:
+        self.recorder.degrade("source:openalex", "pretend outage")
+
+    monkeypatch.setattr(pipeline_module.Pipeline, "check_staff_orcids", failing)
+    first = do_run(client, store, day="2026-09-22")
+    second = do_run(client, store, day="2026-09-23")
+    third = do_run(client, store, day="2026-09-24")
+
+    assert [first.status, second.status, third.status] == ["degraded", "degraded", "alert"]
+    assert "has now failed in 3 runs in a row" in third.report
+    assert len(list((store / "works").glob("W-*.json"))) == before
+
+
+def test_an_override_merges_two_works_that_nothing_else_can_join(client: HttpClient, tmp_path: Path) -> None:
+    """docs/02 §9's worked example: titles too different to link automatically."""
+    store = tmp_path / "store"
+    do_run(client, store)
+    works = sorted(p.stem for p in (store / "works").glob("W-*.json"))
+    overrides = tmp_path / "overrides.yaml"
+    overrides.write_text(
+        f"- target: [{works[1]}, {works[2]}]\n"
+        "  action: merge\n"
+        '  reason: "Preprint and article; titles differ too much to link automatically."\n'
+        "  by: mriffle\n"
+        "  date: 2026-09-22\n",
+        encoding="utf-8",
+    )
+
+    result = do_run(client, store, day="2026-09-22", overrides=overrides)
+
+    assert result.status == "ok", result.errors
+    assert not (store / "works" / f"{works[2]}.json").exists()
+    survivor = io.read_json(store / "works" / f"{works[1]}.json")
+    assert works[2] in survivor["aliases"]
+    assert io.read_json(store / "aliases.json")["aliases"][f"work:{works[2]}"] == works[1]
+    assert validate_store(store, overrides).errors == []
 
 
 def test_duplicate_openalex_records_for_one_doi_are_chosen_the_same_way(tmp_path: Path) -> None:

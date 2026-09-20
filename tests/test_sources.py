@@ -233,6 +233,14 @@ def test_crossref_award_numbers_and_preprint_relation() -> None:
     assert Crossref.preprint_of({}) is None
 
 
+def test_crossref_states_the_relation_from_the_article_side_too() -> None:
+    """Most publishers declare `has-preprint` rather than the preprint declaring the article."""
+    article = {"relation": {"has-preprint": [{"id": "10.1101/2024.04.09.588743"}], "has-review": []}}
+    assert Crossref.has_preprint(article) == ["10.1101/2024.04.09.588743"]
+    assert Crossref.has_preprint({}) == []
+    assert Crossref.has_preprint({"relation": {"is-preprint-of": [{"id": "10.1/x"}]}}) == []
+
+
 def test_crossref_pages_with_a_cursor(tmp_path: Path) -> None:
     pages = [
         {"message": {"items": [{"DOI": "10.1/a"}], "next-cursor": "next"}},

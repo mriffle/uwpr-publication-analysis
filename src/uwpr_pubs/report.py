@@ -4,6 +4,7 @@ The stages append to a recorder as they go, rather than the report being built f
 store, because a run that fails at the validation gate must still produce a report (§10.6).
 """
 
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any, cast
 
@@ -36,6 +37,51 @@ def stage_source(stage: str) -> str:
 
 
 MAX_LISTED_WORKS = 50
+TRAILING_RUNS = 8  # the average per-rule and per-channel counts are compared with (§10.6)
+SHARP_CHANGE = 0.25  # a quarter either way, and at least MIN_CHANGE, is worth a line in the report
+MIN_CHANGE = 3
+
+
+@dataclass(frozen=True)
+class Trend:
+    """One count against its trailing average. A warning in the report only, never an alert (§9)."""
+
+    name: str
+    now: int
+    average: float
+
+    @property
+    def sharp(self) -> bool:
+        difference = abs(self.now - self.average)
+        return difference >= MIN_CHANGE and difference > SHARP_CHANGE * max(self.average, 1.0)
+
+    def line(self) -> str:
+        direction = "up from" if self.now > self.average else "down from"
+        return f"- {self.name}: {self.now}, {direction} a trailing average of {self.average:.1f}"
+
+
+def trailing_average(runs: Sequence[Mapping[str, Any]], section: str, field: str) -> dict[str, float]:
+    """The mean of one count across the last few runs, per rule or per channel (§10.6).
+
+    Runs are ordered by their IDs, which begin with the start time, so "the last eight" needs no
+    other bookkeeping. A name that appears in only some of them averages over those.
+    """
+    recent = sorted(runs, key=lambda run: str(run.get("run_id", "")))[-TRAILING_RUNS:]
+    totals: dict[str, list[int]] = {}
+    for run in recent:
+        for name, counts in (run.get(section) or {}).items():
+            totals.setdefault(str(name), []).append(int(counts.get(field, 0)))
+    return {name: sum(values) / len(values) for name, values in totals.items() if values}
+
+
+def trends(now: Mapping[str, Mapping[str, int]], averages: Mapping[str, float], field: str) -> list[Trend]:
+    found = [
+        Trend(name, int(counts.get(field, 0)), averages[name])
+        for name, counts in now.items()
+        if name in averages
+    ]
+    found += [Trend(name, 0, average) for name, average in averages.items() if name not in now]
+    return sorted((trend for trend in found if trend.sharp), key=lambda trend: trend.name)
 
 
 @dataclass
@@ -65,8 +111,12 @@ class RunRecorder:
     new_works: list[NewWork] = field(default_factory=list)
     recall: dict[str, int] = field(default_factory=lambda: {"assessable": 0, "with_evidence": 0})
     fixtures: dict[str, str] = field(default_factory=dict)
+    fixture_detail: list[str] = field(default_factory=list)
+    good_news: list[str] = field(default_factory=list)
+    trends: list[Trend] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
     counts: dict[str, int] = field(default_factory=dict)
+    commit: str | None = None
     failure: str | None = None
 
     def degrade(self, source: str, cause: str) -> None:
@@ -89,6 +139,24 @@ class RunRecorder:
         if self.alerts:
             return "alert"
         return "degraded" if self.degradations else "ok"
+
+    def commit_message(self) -> str:
+        """The one bot commit a successful run makes (docs/03 §5 stage 13, C3)."""
+        counts = ", ".join(f"{number} {name}" for name, number in self.counts.items())
+        changed = [
+            f"{len(self.added)} added" if self.added else "",
+            f"{len(self.removed)} removed" if self.removed else "",
+            f"{len(self.merged)} merged" if self.merged else "",
+            f"{len(self.list_appeared)} list entries appeared" if self.list_appeared else "",
+            f"{len(self.list_disappeared)} list entries disappeared" if self.list_disappeared else "",
+        ]
+        summary = "; ".join(part for part in changed if part) or "no change to the works"
+        return (
+            f"Data update {self.context.run_id}\n\n"
+            f"{counts}\n"
+            f"{summary}\n"
+            f"status {self.status}, rules {self.rule_version}\n"
+        )
 
     def manifest(self, ended: str, api: dict[str, ApiUse]) -> RunManifest:
         changes: Changes = {
@@ -123,6 +191,8 @@ class RunRecorder:
 
     def markdown(self, *, duration_seconds: float, spend_usd: float) -> str:
         status = "FAILED" if self.failure else self.status.upper()
+        # The commit is deliberately not named here: it is made *after* this report, because the
+        # report is one of the files it commits.
         lines = [
             f"# Run {self.context.run_id}",
             "",
@@ -158,16 +228,24 @@ class RunRecorder:
         return ["## Store", "", *[f"- {name}: {number}" for name, number in self.counts.items()], ""]
 
     def _quality_section(self) -> list[str]:
-        if not self.recall["assessable"]:
-            return []
-        share = 100 * self.recall["with_evidence"] / self.recall["assessable"]
-        return [
-            "## Quality",
-            "",
-            f"- recall on the official list: {self.recall['with_evidence']}/"
-            f"{self.recall['assessable']} ({share:.0f}%)",
-            "",
-        ]
+        lines: list[str] = []
+        if self.recall["assessable"]:
+            share = 100 * self.recall["with_evidence"] / self.recall["assessable"]
+            lines.append(
+                f"- recall on the official list: {self.recall['with_evidence']}/"
+                f"{self.recall['assessable']} ({share:.0f}%)"
+            )
+        if self.fixtures:
+            failed = sorted(name for name, outcome in self.fixtures.items() if outcome == "fail")
+            passed = sum(1 for outcome in self.fixtures.values() if outcome == "pass")
+            missed = sum(1 for outcome in self.fixtures.values() if outcome == "known_miss")
+            lines.append(
+                f"- test papers: {passed} as expected, {missed} known misses, {len(failed)} failing"
+                + (f" ({', '.join(failed)})" if failed else "")
+            )
+        lines += [f"- good news: {item}" for item in self.good_news]
+        lines += [trend.line() for trend in self.trends]
+        return ["## Quality", "", *lines, ""] if lines else []
 
     def _channel_section(self) -> list[str]:
         if not self.channels:
@@ -209,6 +287,14 @@ class RunRecorder:
         lines: list[str] = []
         if self.removed:
             lines += ["## Works removed", "", *[f"- {i['work']} — {i['reason']}" for i in self.removed], ""]
+        if self.merged:
+            rows = [
+                f"- {m['retired']} → {m['into']}" for m in sorted(self.merged, key=lambda m: m["retired"])
+            ]
+            lines += [f"## Works merged ({len(self.merged)})", "", *rows[:MAX_LISTED_WORKS]]
+            if len(rows) > MAX_LISTED_WORKS:
+                lines.append(f"- …and {len(rows) - MAX_LISTED_WORKS} more")
+            lines += [""]
         if self.list_appeared or self.list_disappeared:
             lines += ["## Official list", ""]
             lines += [f"- appeared: {key}" for key in sorted(self.list_appeared)]

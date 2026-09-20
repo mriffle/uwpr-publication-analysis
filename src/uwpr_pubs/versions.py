@@ -14,6 +14,7 @@ Pure: records and link signals in, links and a merge plan out. The requests that
 signals belong to the pipeline, which knows about the network.
 """
 
+import re
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 
@@ -22,6 +23,9 @@ from uwpr_pubs.store.ids import normalise_doi
 from uwpr_pubs.store.models import RecordId, VersionMethod, WorkId
 
 YEAR_TOLERANCE = 2  # Phase 1 §8, wider than record matching because a paper can sit in review
+# Preprint servers mint one DOI per revision: Research Square appends "/v2" and ChemRxiv "-v2".
+# A relation may name a revision we do not hold, so the version is stripped as a second chance.
+DOI_REVISION = re.compile(r"[/-]v\d+$")
 
 
 @dataclass(frozen=True)
@@ -64,6 +68,11 @@ def _surname(name: str) -> str:
     return parts[-1] if parts else ""
 
 
+def versionless(doi: str) -> str:
+    """A preprint DOI without its revision number, e.g. `…-33v24-v2` → `…-33v24`."""
+    return DOI_REVISION.sub("", normalise_doi(doi))
+
+
 def index_by_doi(records: Iterable[VersionRecord]) -> dict[str, VersionRecord]:
     """DOI → record. A DOI belongs to one record, so later duplicates are ignored."""
     found: dict[str, VersionRecord] = {}
@@ -71,6 +80,16 @@ def index_by_doi(records: Iterable[VersionRecord]) -> dict[str, VersionRecord]:
         if record.doi:
             found.setdefault(normalise_doi(record.doi), record)
     return found
+
+
+def _lookup(by_doi: Mapping[str, VersionRecord], doi: str) -> VersionRecord | None:
+    """The record for a DOI, trying the revision it names and then the work behind it."""
+    exact = by_doi.get(normalise_doi(doi))
+    if exact is not None:
+        return exact
+    stripped = versionless(doi)
+    matches = [record for key, record in sorted(by_doi.items()) if versionless(key) == stripped]
+    return matches[0] if len(matches) == 1 else None
 
 
 def _pair(left: VersionRecord, right: VersionRecord, method: VersionMethod) -> Link | None:
@@ -88,8 +107,8 @@ def links_from_published(
     by_doi = index_by_doi(records)
     links: list[Link] = []
     for preprint_doi, article_doi in sorted(published.items()):
-        preprint = by_doi.get(normalise_doi(preprint_doi))
-        article = by_doi.get(normalise_doi(article_doi))
+        preprint = _lookup(by_doi, preprint_doi)
+        article = _lookup(by_doi, article_doi)
         if preprint is None or article is None:
             continue
         link = _pair(preprint, article, method)

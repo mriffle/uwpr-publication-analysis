@@ -57,6 +57,28 @@ def test_the_published_doi_is_normalised_before_it_is_matched() -> None:
     ]
 
 
+def test_a_relation_naming_another_revision_of_the_preprint_still_links_it() -> None:
+    """ChemRxiv and Research Square mint a DOI per revision, and the article names one of them.
+
+    The store holds `…-33v24`; the article's `has-preprint` names `…-33v24-v2`. Stripping the
+    revision is a second chance, not the first, so an exact DOI always wins.
+    """
+    stored = preprint(doi="10.26434/chemrxiv-2024-33v24")
+    records = [stored, article()]
+    stated = {"10.26434/chemrxiv-2024-33v24-v2": ARTICLE_DOI}
+    assert links_from_published(records, stated, "crossref_relation") == [
+        Link("R-000002", "R-000001", "crossref_relation")
+    ]
+
+
+def test_an_ambiguous_revision_links_nothing() -> None:
+    """Two records differing only by revision cannot say which the relation meant."""
+    first = preprint(record="R-000002", work="W-000002", doi="10.26434/x-v1")
+    second = preprint(record="R-000003", work="W-000003", doi="10.26434/x-v2")
+    records = [first, second, article()]
+    assert links_from_published(records, {"10.26434/x-v3": ARTICLE_DOI}, "crossref_relation") == []
+
+
 def test_a_published_doi_we_do_not_hold_links_nothing() -> None:
     assert links_from_published([preprint()], {PREPRINT_DOI: ARTICLE_DOI}, "crossref_relation") == []
 

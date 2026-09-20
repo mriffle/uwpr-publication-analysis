@@ -173,6 +173,33 @@ def test_broken_store_is_caught(
     assert any(expected in error for error in report.errors), f"{name}: got {report.errors}"
 
 
+def test_a_past_month_may_name_a_work_that_has_since_left(store: Path) -> None:
+    """A month's metrics are a record of what was true then (docs/02 §10, changed 2026-09-20).
+
+    A work can leave afterwards — a rule change, an exclude override, or a merge into another
+    work — and rewriting the history to hide that would be worse than carrying it.
+    """
+    lines = io.read_jsonl(store / "metrics" / "latest.jsonl")
+    lines[0]["work"] = "W-000016"  # a work that is not included
+    io.write_jsonl(store / "metrics" / "2026-08.jsonl", lines)
+    report = validate_store(store)
+    assert report.ok, report.errors
+    assert any("W-000016" in warning for warning in report.warnings)
+
+
+def test_a_past_month_naming_a_merged_work_resolves_through_the_aliases(store: Path) -> None:
+    """A retired work ID still resolves, so a merge leaves no dangling metrics behind."""
+    lines = io.read_jsonl(store / "metrics" / "latest.jsonl")
+    retired = "W-000404"
+    aliases = io.read_json(store / "aliases.json")
+    aliases["aliases"][f"work:{retired}"] = lines[0]["work"]
+    io.write_json(store / "aliases.json", aliases)
+    io.write_jsonl(store / "metrics" / "2026-08.jsonl", [{**lines[0], "work": retired}])
+    report = validate_store(store)
+    assert report.ok, report.errors
+    assert not [warning for warning in report.warnings if retired in warning]
+
+
 def test_unreadable_text_without_a_recheck_date_is_only_a_warning(store: Path) -> None:
     path = store / "works" / "W-000010.json"
     work = json.loads(path.read_text(encoding="utf-8"))

@@ -52,3 +52,20 @@ def reset(paths: Sequence[Path], cwd: Path) -> None:
     if existing:
         _git(["checkout", "--", *existing], cwd)
         _git(["clean", "-fd", "--", *existing], cwd)
+
+
+def commit(paths: Sequence[Path], message: str, cwd: Path) -> str | None:
+    """Commit the run's data, or return None when it changed nothing (docs/03 §5 stage 13).
+
+    Only the given paths are staged and committed, so a run can never sweep up unrelated work
+    that happened to be staged. `git add` on a pathspec records deletions too, which matters
+    because a merged work's file is removed rather than rewritten.
+    """
+    existing = [str(path) for path in paths if path.exists()]
+    if not existing:
+        return None
+    _git(["add", "--", *existing], cwd)
+    if not _git(["diff", "--cached", "--name-only", "--", *existing], cwd).split():
+        return None
+    _git(["commit", "-m", message, "--", *existing], cwd)
+    return _git(["rev-parse", "HEAD"], cwd).strip()
