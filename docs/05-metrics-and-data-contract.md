@@ -290,6 +290,10 @@ on unchanged sources produce no diff in `export/`.
     "identifier": "UWPR95794",
     "home_institution": {"ror": "00cvxb145", "name": "University of Washington"},
     "home_country": "US",
+    "exclusions": [
+      {"kind": "facility", "name": "…", "note": "A separate facility; its work is not this resource's."},
+      {"kind": "software", "name": "Comet", "note": "Freely available; using it is not use of the resource."}
+    ],
     "staff": [{"id": "eng", "name": "Jimmy K. Eng", "openalex": "A5011565192"}]
   },
   "sources": {
@@ -756,13 +760,21 @@ A linked page, not a banner (A3). It carries, in plain numbers:
 - **Where the numbers come from:** OpenAlex for citations, topics and affiliations; PubMed Central
   and Europe PMC for full text; Crossref for version links; UWPR's own publications pages. Each
   with the date it was last read.
-- **What is deliberately not evidence:** staff co-authorship alone (**104 works have a staff
-  author**, and that never included one of them), the two related facilities, and the resource's
-  own software, web tools and instrument designs. These non-inclusions are as much a part of how
-  the corpus was assembled as the rules are. **The export carries no list of them**, and principle
-  5 forbids the app naming them itself, so the page describes them in kind rather than by name; if
-  they are to be named, `resource` needs an `exclusions` array, which is the same shape of change
-  as `home_institution`.
+- **What is deliberately not evidence**, *named*: staff co-authorship alone (**104 works have a
+  staff author**, and that never included one of them), the two related facilities that are not
+  this resource, and the resource's own software, web tools and instrument designs. These
+  non-inclusions are as much a part of how the corpus was assembled as the rules are, and a reader
+  checking the method wants to know which specific things were ruled out.
+
+  They come from **`resource.exclusions`**, because principle 5 forbids the app naming any of them
+  itself. Each entry carries a `kind` (`facility`, `software`, `tool` or `hardware`), a `name` as
+  a reader would recognise it, and a short `note` saying why it does not count. The list is
+  configuration, not derived: it restates in public terms what `rules.yaml` already excludes, so
+  the two must be kept in step — a rule change that adds an exclusion should add it here.
+
+  Naming another institution's facility in public is a deliberate choice, made 2026-09-20. The
+  wording is factual and carries no judgement: these are separate facilities whose work is not
+  this resource's, not lesser ones. §11's register applies with particular force here.
 - **What each figure means:** every headline figure's definition, anchored, so
   [06](06-web-app.md) §4.2's "every figure links to its definition on the method page" has
   somewhere to point, with its value over the whole corpus. The citation percentile is the one
