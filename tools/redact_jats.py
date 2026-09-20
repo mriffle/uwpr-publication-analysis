@@ -23,9 +23,15 @@ from xml.etree.ElementTree import Element, ElementTree  # writing back out is no
 
 from defusedxml.ElementTree import fromstring  # P14: never the bare stdlib parser
 
-KEEP_LIMIT = 400  # the schema's excerpt ceiling; nothing longer is ever kept
+KEEP_LIMIT = 300  # what the store publishes (uwpr_pubs.evidence.EXCERPT_LIMIT)
 SENTENCE = re.compile(r"(?<=[.;])(?=\s)")
-PREFIX = 120  # how much of a truncated excerpt must match
+DOCTYPE = re.compile(r"<!DOCTYPE[^>]*>")
+TITLE_LIMIT = 80  # a section heading; anything longer is prose and is redacted
+MIN_MATCH = 40  # an excerpt shorter than this must match exactly, not as a prefix
+
+
+def local(tag: object) -> str:
+    return tag.rsplit("}", 1)[-1] if isinstance(tag, str) else ""
 
 
 def normalise(text: str) -> str:
@@ -47,27 +53,58 @@ def redact(text: str) -> str:
     return "".join(out)
 
 
-def keeps(sentence: str, excerpts: set[str]) -> bool:
-    """True when this sentence is one the store already quotes."""
+def matching(sentence: str, excerpts: set[str]) -> str | None:
+    """The stored excerpt this sentence is, if it is one.
+
+    The whole excerpt must match, not a prefix of it. Matching on the first 120 characters let a
+    plain address through because it happened to open the same way as a published one — and the
+    only excerpts that need prefix treatment are those the store truncated, which are still a
+    genuine prefix of the sentence they came from.
+    """
     candidate = normalise(sentence)
-    if not candidate or len(candidate) > KEEP_LIMIT:
-        return False
+    if not candidate:
+        return None
     for excerpt in excerpts:
         core = excerpt.rstrip("…").strip()
-        if candidate == excerpt or (core and candidate.startswith(core[:PREFIX])):
-            return True
-    return False
+        if candidate == excerpt or (len(core) >= MIN_MATCH and candidate.startswith(core)):
+            return core
+    return None
+
+
+def keep_only_what_is_published(sentence: str, core: str) -> str:
+    """Put back exactly the text the store publishes, and redact the rest, length for length.
+
+    A stored excerpt is truncated to about 300 characters; the sentence it came from can be much
+    longer. Writing the excerpt itself, rather than a prefix of the raw sentence, is what makes
+    the disclosure provably equal to what the store already carries.
+    """
+    kept = core[:KEEP_LIMIT]
+    return kept + redact(sentence[len(kept) :])
 
 
 def redact_text(text: str | None, excerpts: set[str]) -> str | None:
     """Sentence by sentence, so a quoted sentence survives and its neighbours do not."""
     if not text:
         return text
-    return "".join(part if keeps(part, excerpts) else redact(part) for part in SENTENCE.split(text))
+    out = []
+    for part in SENTENCE.split(text):
+        core = matching(part, excerpts)
+        out.append(keep_only_what_is_published(part, core) if core else redact(part))
+    return "".join(out)
 
 
 def redact_tree(element: Element, excerpts: set[str]) -> None:
-    element.text = redact_text(element.text, excerpts)
+    tag = local(element.tag)
+    if tag == "title" and element.text and len(element.text) <= TITLE_LIMIT:
+        # A section heading is a structural label, not prose, and §6.1 locates the methods and
+        # acknowledgement sections by reading it. Redacting it would make that untestable.
+        pass
+    elif tag == "label":
+        # §6.1 drops `<label>`, so no stored excerpt can have come from one. Keeping text here
+        # because it resembles an excerpt found elsewhere would publish what the store does not.
+        element.text = redact(element.text) if element.text else element.text
+    else:
+        element.text = redact_text(element.text, excerpts)
     element.tail = redact_text(element.tail, excerpts)
     for child in element:
         redact_tree(child, excerpts)
@@ -112,7 +149,15 @@ def main() -> int:
             continue
         redact_tree(root, excerpts)
         name = reference.removeprefix("sha256:")[:12]
-        ElementTree(root).write(args.out / f"{name}.xml", encoding="unicode", xml_declaration=True)
+        target = args.out / f"{name}.xml"
+        ElementTree(root).write(target, encoding="unicode", xml_declaration=True)
+        # ElementTree drops the DOCTYPE, and a DOCTYPE is one of the reasons these documents are
+        # real rather than hand-written: a parser that has never met one still has to cope.
+        doctype = DOCTYPE.search(source.read_bytes().decode("utf-8", "replace"))
+        if doctype:
+            body = target.read_text(encoding="utf-8")
+            declaration, _, rest = body.partition("?>")
+            target.write_text(f"{declaration}?>\n{doctype.group(0)}{rest}", encoding="utf-8")
         written += 1
         print(f"{name}.xml  kept {len(excerpts)} excerpt(s)")
     print(f"\n{written} documents written to {args.out}")

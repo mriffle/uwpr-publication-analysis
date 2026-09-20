@@ -1,0 +1,765 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE pmc-articleset PUBLIC "-//NLM//DTD ARTICLE SET 2.0//EN" "https://dtd.nlm.nih.gov/ncbi/pmc/articleset/nlm-articleset-2.0.dtd">
+<pmc-articleset xmlns:ns0="http://www.niso.org/schemas/ali/1.0/" xmlns:ns1="http://www.w3.org/1999/xlink"><article xml:lang="EN" article-type="research-article" dtd-version="1.4"><processing-meta base-tagset="archiving" mathml-version="3.0" table-model="xhtml" tagset-family="jats"><restricted-by>xxx</restricted-by></processing-meta><front><journal-meta><journal-id journal-id-type="nlm-ta">X Xxxxxxxx Xxx</journal-id><journal-id journal-id-type="iso-abbrev">X Xxxxxxxx Xxx</journal-id><journal-id journal-id-type="pmc-domain-id">000</journal-id><journal-id journal-id-type="pmc-domain">xxxxx</journal-id><journal-id journal-id-type="nlm-id">000000000</journal-id><journal-id journal-id-type="publisher-id">xx</journal-id><journal-title-group><journal-title>Xxxxxxx xx Xxxxxxxx Xxxxxxxx</journal-title></journal-title-group><issn pub-type="ppub">0000-0000</issn><issn pub-type="epub">0000-0000</issn><custom-meta-group><custom-meta><meta-name>xxx-xx-xxxxxxxxxx-xxxxxx</meta-name><meta-value>xxx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxxxxxxxx-xxxxx</meta-name><meta-value>XXX XxxxxxXxxxxx</meta-value></custom-meta></custom-meta-group></journal-meta><article-meta><article-id pub-id-type="pmcid">XXX00000000</article-id><article-id pub-id-type="pmcid-ver">XXX00000000.0</article-id><article-id pub-id-type="pmcaid">00000000</article-id><article-id pub-id-type="pmcaiid">00000000</article-id><article-id pub-id-type="pmid">00000000</article-id><article-id pub-id-type="doi">00.0000/xxx.xxxxxxxxx.0x00000</article-id><article-version article-version-type="pmc-version">0</article-version><article-categories><subj-group><subject>Xxxxxxx</subject></subj-group></article-categories><title-group><article-title>Xxxxxxxxx:
+Xx Xxxx, Xxx-Xxxxx Xxxx xxx Xxxxxxxxxxx,
+Xxxxxxx, xxx Xxxxxxxxx Xxxx Xxxxxxxxxxxx Xxxx xxxx XXX Xxxxxxxxx</article-title></title-group><contrib-group><contrib contrib-type="author" corresp="yes" id="ath1"><contrib-id contrib-id-type="orcid" authenticated="true">xxxxx://xxxxx.xxx/0000-0000-0000-0000</contrib-id><name name-style="western"><surname>Xxxxxx</surname><given-names initials="M">Xxxxxxx</given-names></name><xref rid="cor1" ref-type="other">*</xref><xref rid="aff1" ref-type="aff">†</xref><xref rid="aff1" ref-type="aff">‡</xref></contrib><contrib contrib-type="author" id="ath2"><contrib-id contrib-id-type="orcid" authenticated="true">xxxxx://xxxxx.xxx/0000-0000-0000-0000</contrib-id><name name-style="western"><surname>Xxxxxx</surname><given-names initials="A">Xxxx</given-names></name><xref rid="aff1" ref-type="aff">†</xref><xref rid="aff1" ref-type="aff">‡</xref></contrib><contrib contrib-type="author" id="ath3"><contrib-id contrib-id-type="orcid" authenticated="true">xxxxx://xxxxx.xxx/0000-0000-0000-0000</contrib-id><name name-style="western"><surname>Xxxxxxx</surname><given-names initials="D">Xxxxxx</given-names></name><xref rid="aff1" ref-type="aff">†</xref><xref rid="aff1" ref-type="aff">‡</xref></contrib><contrib contrib-type="author" id="ath4"><contrib-id contrib-id-type="orcid" authenticated="true">xxxxx://xxxxx.xxx/0000-0000-0000-0000</contrib-id><name name-style="western"><surname>Xxxxxxxx</surname><given-names initials="MR">Xxxxxxx X.</given-names></name><xref rid="aff2" ref-type="aff">∥</xref></contrib><contrib contrib-type="author" id="ath5"><contrib-id contrib-id-type="orcid" authenticated="true">xxxxx://xxxxx.xxx/0000-0000-0000-000X</contrib-id><name name-style="western"><surname>Xxxxxx</surname><given-names initials="DA">Xxxxxxxx X.</given-names></name><xref rid="aff1" ref-type="aff">†</xref></contrib><contrib contrib-type="author" id="ath6"><contrib-id contrib-id-type="orcid" authenticated="true">xxxxx://xxxxx.xxx/0000-0000-0000-0000</contrib-id><name name-style="western"><surname>Xxxxxx</surname><given-names initials="RL">Xxxxxx X.</given-names></name><xref rid="aff2" ref-type="aff">∥</xref></contrib><contrib contrib-type="author" id="ath7"><name name-style="western"><surname>Xxxxx</surname><given-names initials="TN">Xxxxxx X.</given-names></name><xref rid="aff1" ref-type="aff">‡</xref></contrib><contrib contrib-type="author" id="ath8"><contrib-id contrib-id-type="orcid" authenticated="true">xxxxx://xxxxx.xxx/0000-0000-0000-0000</contrib-id><name name-style="western"><surname>XxxXxxx</surname><given-names initials="MJ">Xxxxxxx X.</given-names></name><xref rid="aff1" ref-type="aff">†</xref></contrib><contrib contrib-type="author" corresp="yes" id="ath9"><contrib-id contrib-id-type="orcid" authenticated="true">xxxxx://xxxxx.xxx/0000-0000-0000-0000</contrib-id><name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names initials="N">Xxxx</given-names></name><xref rid="cor2" ref-type="other">*</xref><xref rid="aff1" ref-type="aff">§</xref></contrib><aff id="aff1"><sup>†</sup>Xxxxxxxxxx
+xx Xxxxxx Xxxxxxxx, <sup>‡</sup>Xxxxxxxxxx xx Xxxxxxxxxxxx, xxx <sup>§</sup>Xxxxxxxxxx xx Xxxxxxxxxxxxx, <institution>Xxxxxxxxxx xx Xxxxxxxxxx</institution>, Xxxxxxx, Xxxxxxxxxx 00000, <country>Xxxxxx Xxxxxx</country></aff><aff id="aff2"><label>∥</label><institution>Xxxxxxxxx
+xxx Xxxxxxx Xxxxxxx</institution>, Xxxxxxx, Xxxxxxxxxx 00000, <country>Xxxxxx Xxxxxx</country></aff></contrib-group><author-notes><corresp id="cor1"><label>*</label>Xxxxx: <email>xxxxxxx@xx.xxx</email>.</corresp><corresp id="cor2"><label>*</label>Xxxxx: <email>xx0@xx.xxx</email>.</corresp></author-notes><pub-date pub-type="epub"><day>00</day><month>00</month><year>0000</year></pub-date><pub-date pub-type="collection"><day>00</day><month>00</month><year>0000</year></pub-date><volume>00</volume><issue>0</issue><issue-id pub-id-type="pmc-issue-id">000000</issue-id><fpage>0000</fpage><lpage>0000</lpage><history><date date-type="received"><day>00</day><month>00</month><year>0000</year></date><date date-type="accepted"><day>00</day><month>00</month><year>0000</year></date><date date-type="rev-recd"><day>00</day><month>00</month><year>0000</year></date></history><pub-history><event event-type="pmc-release"><date><day>00</day><month>00</month><year>0000</year></date></event><event event-type="pmc-live"><date><day>00</day><month>00</month><year>0000</year></date></event><event event-type="pmc-released-under-embargo"><date><day>00</day><month>00</month><year>0000</year></date></event><event event-type="pmc-last-change"><date iso-8601-date="2026-03-04 00:25:13.290"><day>00</day><month>00</month><year>0000</year></date></event></pub-history><permissions><copyright-statement>© 0000 Xxx Xxxxxxx. Xxxxxxxxx xx Xxxxxxxx Xxxxxxxx Xxxxxxx</copyright-statement><copyright-year>0000</copyright-year><copyright-holder>Xxx Xxxxxxx</copyright-holder><license><ns0:license_ref specific-use="textmining" content-type="ccbylicense">xxxxx://xxxxxxxxxxxxxxx.xxx/xxxxxxxx/xx/0.0/</ns0:license_ref><license-p>Xxxxxxx xxx xxxxxxxx xxxx xx xx-xxx xxxxxxxxx xxx xxxxxxxxxx xxxxxxxx, xxxxxxxx xxxx xxxxxx xxxxxxxxxxx xxx xxxxxxxxx xxx xxxxxxxxxx (<ext-link ext-link-type="uri" ns1:href="https://creativecommons.org/licenses/by/4.0/">xxxxx://xxxxxxxxxxxxxxx.xxx/xxxxxxxx/xx/0.0/</ext-link>).</license-p></license></permissions><self-uri content-type="pmc-pdf" ns1:href="pr4c00968.pdf" /><abstract><p content-type="toc-graphic"><graphic id="ab-tgr1" position="float" orientation="portrait" ns1:href="pr4c00968_0007.jpg" /></p><p>Xxxxxx xxxxxxxxxxxxxx-xxxxxx xxxx xxxxxxxxxxxx xxxxxxxxx
+xxxx-xxxxxxxxx
+xxxxxxxxxxx (XXX) xx x xxxxxx, xxxxxx xxxx xxxxxxxxxx xxxxxxxxx xxxxxxxxx
+xxxxxxx xx xxxxxxxx xxxxxxxxx, xxxxxxx–xxxxxxx xxxxxxxxxxx
+xxxxxxx, xxxxxxxxx xxxxxxxxx, xxx xxxxxxx xxxxxxxxxxxx xxxxxxxx. Xxxxxxxx
+xxxxx xxxxx xxx xxxxxxxxx XXX xxxx xxx xxxxxx xxxx xxxxxxx xxx xxxxxx
+xx xxxxxxx. Xxxxx xxxx xxxxxx xxx xxxx xxxxxxxxxx xxxxx xxxxxxx xxxx
+xxxxxxxxxxxxx xxxxxxxx xx xxx xxxxxxxxxx xxxxxxxxxxxxxx, xxxx xxx
+xxxxx xxxxxxx xx xxxx xx xxxxxxxx xxxxxxxx xxxxxxxxx. Xxxx xxxxxxxxx
+xxx xxxxxxxxxxxxx, xxxxxxx xxx xxxxxxxxxxxxxx xx xxxx, xxx xxxxxxx
+xxxxxxxxxx xx xxxxxxx xxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxx. Xx xxxxxxxxx
+Xxxxxxxxx, xx xxxx-xx-xxx, xxxx-xxxxxx, xxxxxx xxxxxxxxx xxxx xxxx
+xxxxxxxx xxxx xxxxxxx, xxxxxxxx xxx xxxxxxxxxxxxx xxx xx xxx xxxx
+xx xxx xxxxxxxx xxxxxxxx xxxxxxxx. Xxxxxxxxx xx x xxxx xxxxxxxxxxxxx
+xxxx xxxxxxxxxxxx xxxxxxxx xx xxxxxxx xxxxxx xx xxx xxxxx “xxxx
+xxxxx”, xxxx xxx xxx xxxxxxxxx xxxx xxxx xx xxxxxxx-xxxxxxxx
+xxxxxxx, xxxxxxx xxxxxxx, xxxxxxxx, xxxxxxxx, xxx xxxxxxxxxxxxx. Xxxxxxxxx
+xx xxxxxxxx xxxx xxx xxxxxx xx xxx xxxxxxx xxx xxxxxxxxxxxxx xxx xx
+xxxxxxx xxxx xxxx xxx XXX xxxxxxxx. Xx xxxxxxx xxxxx xx xxxxxx xxxx
+xxxx xxxx xxxxxx xxxx xxxx-xxxx xxx xxxxxx-xxxx xxxxxx xxxxxxxx xxxxxxxxx.
+Xxxxxxxxx xxxxx xxxxxxxx xxx xxxxxxx xx xxxx xx xxxxxxxxx xx xxxx-xx-xxx
+xxxxxxxxx xxx xxxxxxx xxx xxxxxxxxxxxx xxxx, xxx xxxxx xxx xxxxxx
+xxxxxx xxxx xxxxxxxxxx xxxxxxxxx.</p></abstract><kwd-group><kwd>xxxxxxxx xxxxxxxxxxx</kwd><kwd>xxxxxxxxxx</kwd><kwd>xxxx xxxxxxxxxxxx</kwd><kwd>xxxx xxxxxxxxxxxxx</kwd><kwd>XXX</kwd><kwd>xxxxxx</kwd></kwd-group><funding-group><award-group><funding-source><institution-wrap><institution>XXX Xxxxxx xx xxx Xxxxxxxx</institution><institution-id institution-id-type="doi">00.00000/000000000</institution-id></institution-wrap></funding-source><award-id>X00XX000000</award-id></award-group></funding-group><funding-group><award-group><funding-source><institution-wrap><institution>Xxxxxxxxxxxx Xxxxxxxx Xxxxxxxx Xxxxxxxx Xxxxxxxx</institution><institution-id institution-id-type="doi">00.00000/000000000</institution-id></institution-wrap></funding-source><award-id>X000XX0000000</award-id></award-group></funding-group><funding-group><award-group><funding-source><institution-wrap><institution>Xxxxxxxxxx xx Xxxxxxxxxx</institution><institution-id institution-id-type="doi">00.00000/000000000</institution-id></institution-wrap></funding-source><award-id>XXXX00000</award-id></award-group></funding-group><funding-group><award-group><funding-source><institution-wrap><institution>Xxxxxxxx xx Xxxxxxxxxx Xxxxxxxxxxxxxx</institution><institution-id institution-id-type="doi">00.00000/000000000</institution-id></institution-wrap></funding-source><award-id>XXX-0000000</award-id></award-group></funding-group><funding-group><award-group><funding-source><institution-wrap><institution>Xxxxxxxx Xxxxxxxxx xx Xxxxxxx Xxxxxxx Xxxxxxxx</institution><institution-id institution-id-type="doi">00.00000/000000000</institution-id></institution-wrap></funding-source><award-id>X00XX000000</award-id></award-group></funding-group><funding-group><award-group><funding-source><institution-wrap><institution>Xxxxxxxx Xxxxxxxxx xx Xxxxxxx Xxxxxxx Xxxxxxxx</institution><institution-id institution-id-type="doi">00.00000/000000000</institution-id></institution-wrap></funding-source><award-id>X00XX000000</award-id></award-group></funding-group><funding-group><award-group><funding-source><institution-wrap><institution>Xxxxxxxx Xxxxxxxxx xx Xxxxxxx Xxxxxxx Xxxxxxxx</institution><institution-id institution-id-type="doi">00.00000/000000000</institution-id></institution-wrap></funding-source><award-id>X00XX000000</award-id></award-group></funding-group><custom-meta-group><custom-meta><meta-name>xxx-xxxxxx-xxxxxxxx</meta-name><meta-value>0</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxxxx-xxxx</meta-name><meta-value>xxx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxxxx-xxxxxxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxxxx-xxxxxxxx</meta-name><meta-value>xxx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xxxx-xxxxxx</meta-name><meta-value>xxx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xxxxxxxxxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xxxxxxx-xxxxxxxxxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xxx-xxx</meta-name><meta-value>xxx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xxx-xxxxxxxxxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xxx-xxxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xxxxxxxx-xxxxxxxxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xx-xxxx-xxxxxxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xx-xxxxxxx-xxxxxxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xxxxxxxx</meta-name><meta-value>xx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxx-xx-xxxx</meta-name><meta-value>xxx</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxxxxx-xxx</meta-name><meta-value>XX XX</meta-value></custom-meta><custom-meta><meta-name>xxxxxxxx-xx-xxx-0</meta-name><meta-value>xx0x00000</meta-value></custom-meta><custom-meta><meta-name>xxxxxxxx-xx-xxx-00</meta-name><meta-value>xx0x00000</meta-value></custom-meta><custom-meta><meta-name>xxx-xxxxx</meta-name><meta-value /></custom-meta></custom-meta-group></article-meta><notes id="spn1"><title>Special Issue</title><p>Xxxxxxxxx
+xx xxxx xx <italic toggle="yes">Xxxxxxx xx Xxxxxxxx Xxxxxxxx</italic><ext-link ext-link-type="uri" ns1:href="https://pubs.acs.org/curated-content?journal=jprobs&amp;ref=feature">xxxxxxx xxxxx</ext-link> “Xxxxxxxx Xxxxx xxx Xxxxxxxxx 0000”.</p></notes></front><body><sec id="sec1"><title>Introduction</title><p>Xxxx-xxxxxxxxx xxxxxxxxxxx (XXX) xx xxx
+xxxxxxxxx xx xxxx xxxxxxxxxx
+xxxxxxxxxxxx xxx xxx xxxx xxx xxxxxxxxxx xx xxxxxxxxxx xxx xxxxxxx.
+X xxxxxxx xxxxxx-xx xxxxxx xxxxxxxxxxxxxx-xxxxxx xxxx xxxxxxxxxxxx
+(XX-XX/XX) xxxxxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxxxx xx XX (XX0)
+xxxxxxx xxx xxxx-xx-xxxxxxxx xx xxxxxxxxx xx XX/XX (XX0) xxxxxxx.
+Xxxxxxxx xxxxx xxxx xxxx xxxxxxxxx xx xxxxxx XXX xxxx xx xxxxxxxx
+xxx xxxxxxxx xxx xxxxxxxxxx xxxxxxxxxxxxx xxxx xxxxx xxx xxxxxxx xxxxxxxxx.<sup><xref ref-type="bibr" rid="ref1">0</xref>−<xref ref-type="bibr" rid="ref4">0</xref></sup> Xxxxxxxx xxxxx xxx xxxx xx xxxxxxxxxx xxxxxxxx xx “xxxx-xxxx
+xxxxxxxxx” xx xxxxxxxxxx xxxx xx xxxxx xxxxxxx-xxxxxxxx xxxxxxx
+(XXXx) xx xxxxxxxx xxxxxxxxxx xxxx xxxxxxxxxxxxx xxxx xxxx xxx xxxxxxxxxx
+xxxxxxx xxxxxx xxx xxxxxx xxxxxxxxxx xx xxxxxxx.<sup><xref ref-type="bibr" rid="ref5">0</xref>−<xref ref-type="bibr" rid="ref7">0</xref></sup> Xxxx xxxxxxxx
+xxx xxxxxx xxxx xxx xxxxxxxxxxxx xx xxxxxxxxx xxx xxx xxxx xx xxxxxxxx
+xx xxxxxxx.<sup><xref ref-type="bibr" rid="ref6">0</xref></sup> Xxxx xx xxxxx xxx xxxx xxxx
+xxxxxxxxxx-xxxxxxx xxxxxxx xxxxxxxxx xxxx xxxxxxx xxxxxxxxx, xx xxxxxxxx
+xx xxxxx xxxxxxxxx xxxx xxxxxxx xxxxxxxxxx xx xxxxxxxx xxxxxxxxxxx
+xxx xx xxxxxxxxxxxxxxx xxxxxxxxx xxxxxxx.</p><p>Xxxx XXX xxxxxx xxxxx
+xxxxxx xxxxxxx xxxxx xxxxxx xxxx xxxxxxx
+xxxx xxx xxxx xxxx xxxx xxxxx xxxx xxxx’x xxxxxxxxxxxxx xxxxxxxx,
+xx xx xxxxxx. Xxxxxxx, xxxx xxxxxxxxxx xxxxxxxxxxx xxxx xxxxxxxxxxxxx
+xxx xxx xxxx xxxxxxxx xxxx xxxxxxxxxxxxx xxxxxxxx. Xxxx xxxxxx xxxxx
+xx xxxxxxx xx xxxxxx xxxxxxx xxxxx xxxxxxxx xxxxxxx, xxxx xx xxXxxxxXX<sup><xref ref-type="bibr" rid="ref8">0</xref></sup> xx XxxXXX,<sup><xref ref-type="bibr" rid="ref9">0</xref></sup> xxx xxxx
+xxxx, xxxxxxxxx xxx xxxx xx xxxxxxxxxx xxxx xxxxxxxxxx xxxx xxxxxx
+xxx xxxxx xxxxxxxx xx xxxxx xxxxx xxx xxxxxxx xxxxxxxxx xx xxx x xxxxxxxxxx
+xxxx xxxxxx xxxx xx xxxx xxxxxxxx xxxxxx. Xxxxxxxxxxx, xx xxxxxxxx
+xxxxxxxxxx xxxx xx xxxxx xxxxxxxxx xxxxx xx xxxxxxxxx xxxxx xxxxxxxxxxxxx,
+xxxxx xxxxx xxx xxxxx xxxx xx xxxxxxxxxxx xxxx xxxxxxxxxxxxxx xxxxx
+xxxx xx Xxxxxxxxxx xx XxxxxxxXxxxxxx, xxxx xxxx xxxxxxx xxxxx xxxx
+xxxx xxxxxxx xxx xxxxxxxxxxxxx xxxxxxxxx xxxxx xx xxxxxx. Xxx xxxxx
+xxxxxxx xx xxxx xxxxxxx xxx xxxxx xx xxxxxx, xxxx xxxx x xxxxxx XX-XX/XX
+xxxxxxxxxx, xxxxxxxxxx xxxxxxx xxx xxxxxxxxxxxxx xxx xxxxxxx xx xxx
+xxxx. Xx xx xxxxxxxxx xx xxxxxxx, xxxxxxxxx, xxxxx, xxx xxxxxx xxx
+xxxxxxx xx xxx xxxx. Xx xx xxxx xxxxxxxxx xx xxxxxxx xxxxxx xxxx xxxxxxxxx
+xxxxxxxxx.</p><p>Xxxxxxx, xxxxxxxxx xxxxx xx xxxxxxxxxxx xxxx xxxxxxxxx
+xxxxxxxxxxxxx
+xxxxx. Xxx xxxxxxx, x xxxxxxx xxxxxx-xxxx xxxxxx xxxxxxxxxx xxxxxxxxxx
+xxx xx xxxxxxx xx xxxxxxxxxxx xxxxx xxxxxxxx xxx xxxxxxx xx xxxxx
+xxxxxxx, xxxxx xx xxxx-xxxx xxxxxx xxxxx xx xxxxxxx xx xxxxxxxxxxx
+xxxxx xxxxxxxxxxxx xxxxxx xxx xxxxxxx. Xx xxxxxxxxxxxxx xx xxxxxxxxx
+xxx xxxx xxxxxxxxxxx xxx xx xxxxxx xxxxxxxxxx xx xxxx xxxxx xxxxxx
+xxx xxxxxxxxxxxxxx xxxxx xxxxxx xx xxxx, xxx xx xxxxxxx xx xxxxxxxxx
+xxxxxxx xxxxxxxx, xxxx xx xxx xxxx XX xxxxxxxx xxxxxxxx xx x XXX.
+Xxxxxxxxx xxxxxxxx xxx xxxxxxxxxxxxx xx xxxxxxxxxx xxxx xxxx xxxxxxxx
+xxxxxxxxxxx xxxxx xx xxx xxxx.</p><p>Xxxxxxx xxxx xxxxxxx xxxx xxxx
+xxxxxxxxx xx xxxxxxxxx xxxx xxxxxx-xxxx
+xxx xxxx-xxxx xxxxxx xxxx xxxx xxxxxxx xxxxxxxx xxxxxxxxx. Xxxxxxxx
+xxxxxxx xxxxxx-xxxxxx xxxxxxxxxx xxxxx (x.x., XxxxxxxxXxxxxxxxxx,<sup><xref ref-type="bibr" rid="ref10">00</xref></sup> Xxxxxxxx,<sup><xref ref-type="bibr" rid="ref11">00</xref></sup> Xxxxxxxx,<sup><xref ref-type="bibr" rid="ref12">00</xref></sup> xxx Xxxxxx Xxxxxxxxxxx), xxxxxx-xxxxxx xxxx
+xxxxxxxx (x.x., XxxXxxxx<sup><xref ref-type="bibr" rid="ref13">00</xref>,<xref ref-type="bibr" rid="ref14">00</xref></sup>), xxxx-xxxxxx xxxx
+xxxxxxxx (x.x., XxxxXxxx,<sup><xref ref-type="bibr" rid="ref14">00</xref></sup> Xxxxx-Xxxxxxxxx
+Xxxxxxxx,<sup><xref ref-type="bibr" rid="ref9">0</xref></sup> xxx XxxxXxxxxxxx<sup><xref ref-type="bibr" rid="ref7">0</xref></sup>), xxx xxx-xxxxx xxxxxxxxx xxx xxxxxxx xxxxxxxx xxx xxxxxxxxxxx
+xxxxxxx (x.x., Xxxxxx-X<sup><xref ref-type="bibr" rid="ref15">00</xref></sup>). Xxxxxxx, xxxx
+xx xxxxx xxxxx xxx xxxx xx xxxxxxxx xxxxxxxx xxxxxxxx xxx xxx xxxxxx
+xx xxx xx xxxxx xxx xxxxxxxx xx xxxxxxx. XxxxxxxXxxxxx<sup><xref ref-type="bibr" rid="ref16">00</xref></sup> xx xxxx-xxxxxx xxxxxxxx xxxx xxx xx xxxxxxxxx
+xxxxxxx xx xxxxxxxxx xxx xxxxxxx xxxxxxx xxxx xxxxxxx xxxxxxxxx xxxxxxxxx.
+Xxx xxxxxxxx xxXXXX<sup><xref ref-type="bibr" rid="ref17">00</xref></sup> xx xxxx xxxxxx xxx
+xxxx xxxxxxx xxxx xxxx xxxxxxxxx xxx XXX xxxxxxxx; xxxxxxx, xx xx
+xxxxxxx xxxxxxx xx xxxxxxx xxxxxxxxx xxxxxxx xxx XXXx. Xxxxxxxxxxxx,
+xxxx xxxx xxxxxxxx xxx xxxxxxxxxxxxx xxxxx xxx xxx xxxxxxxx xxx xxxxxx
+xxxx xxxxxxx xxx xxxxxxxxxxxxx, xxx xx xxxxx xxx xxxxxx xxxxxxx xxx
+xxx XXX xxxx xx xx xxxxxx xxxx xxx xxxxxx xxxx xxxxxxxxxxx xx x xxxxxxxx
+xxxx xxx, xx xxxxxxxxxxxx xxxxxx xxxxxxxxxxx xx xxxxxxxxxx xxxxxxxx.</p><p>Xx xxxxxxxxx xxx xxxxxxxx xxxxxxx “Xxxxxxxxx” xx
+xxxxxxx xxx xxxx xxx xx xxxx-xx-xxx, xxxx, xxx xxxx xxxxxx xxxxxxxxxxx
+XXX xxxxxxx xxxxxx, xxxx xx xxxxxxxx xx xxx xxxxxxxx xxxxxxxx xxxx
+xxx xxxxxxxx xx xxxx xxx xx xxxxx xxxx xxxx xxxxxxxxxxxxx xx xxx xxxxxx.<sup><xref ref-type="bibr" rid="ref6">0</xref>,<xref ref-type="bibr" rid="ref18">00</xref></sup> Xxxxxxxxx xx xxxxxxxx xx xx xxxxxxxxxxx xx xxx xxxxxxxx xxxxxxxx
+xxxxxxxx. Xxx xxx xxxxxxxx (x.x., xxxxxxx xxxxxxx, xxxxxxxxxxxxx,
+xxxxxxxxx, xxx xxxxxxxx xxxxxxxx) xxxx xxx xxxx, xxxxxxxxxx xx xxxxx
+xxxxxxxx xxxxxxxx xxxxxxxxx xxx xxxxxxx, xxxxx xxxxxxxxxxxxxx xxxxxxxxxx
+xxxxxxxxxxx xxx xxxxxxxxx xxxxx xxx xxx xxxxxx xxxxxx xxxx xxxxx xxxxxxxx
+xxxxxxxxx. Xxxx xxxxxxxx-xxxxxxxx xxxxxx xx xxxxxxx xx xxx xxxxxxx
+xx Xxxxxxxxx, xxxxxxxxx Xxxxxxxxxx Xxxxxx Xxxxxxxx (XXX) xxxxxxx,
+xxxxxxxx xxxxxx, xxx xxx xxxxxxxxxxx xxxxxxx xxx xxxxxxxx xxxx.</p><p>Xxxxxxxxx xx x xxxxxxx xxxx xxxxxxxxxxxxx xxxxxxxx xxxxxxxxxxx
+xxxx xx xxxxxxxx xxx (0) xxxxxxxxxxxxx xx xxxxx xxxxxxxxxx xxxx xxxxxxxxx
+xxxxxxxxxxx XXX (xxxxxx-xxxx), xxxx-xxxx, xxx xx xxxx xxxxxx xxxxxxx
+xxx xxxxxxxxxx xxxxxxxxxx; (0) xxxxxxxxx xxx xxxxxx xxxx xxxxxxx xxxxxx
+xxxxxxxxx (xxxxxxxxxxxxx xxxxxx x xxxxxxxx xxxxx) xx xxxxxxxx; xxx
+(0) xxxxxxxxx xxxxxxxx xxxxxxxxxxx (x.x., xxxxxxx xxxxxx xxxxxxx xx
+xxxxxxxx xx xxx xxxx xxxx xxxx xxxxxxxxx xxxxxxxxxx xx xxxxxxxxx xxxxxxxx
+xxxxxxxxx xxxxxxxx). Xx xxxxxxxx, Xxxxxxxxx xxxxxxxx xxxxx xxx xxxxxxx
+xx xxxxxxxxx xxx xxxxxxx xxxx xxxxxxx, xxxxx xxxx xxxxxxxxxxx xxxxxxxxxxx
+xxxxx xx xxxxxx xxxx. Xxxxxxxxx xxx xxxxx xxxxxxxxxx xxxx x xxxxx
+xx xxxxxxxxxxxxx xxxxxxxx xx xxxxxxxxxx xxx xxxxxxxxx xxx xxxxxxxxxxxxxxxx
+xx xxxx–xxxxxxx xxxxxxx.<sup><xref ref-type="bibr" rid="ref6">0</xref></sup> Xxx xxxxxxx
+xxxx xxxxxxxx x xxxxxxxxxxxxx xxxxxxxxxxx xx Xxxxxxxxx xxxxxxxx x
+xxxx xxxxx xx xxx xxxxx xxx xxxxxxxx xxxxx xxx xxxxxxxxxxxxx xxx xxxxxxxxxx
+xxxxxxxxx xx xxxxxxxxx. Xx xxxxxxx xxx xxxxxxxxxxxxx xx Xxxxxxxxx
+xxx xxxxxxxxx xxxxxxxxxxxx xxxxx x xxxx xxx (XXX000000) xxxxxxxxxx
+0 XX-XX/XX xxxx xxxx xxxxxxxx xxxxx xxxxx xxxxxxx xx xxxxx xxxxxx
+xxxxxxx xxxxx xx xxxxxxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxx xxx xxxxxxxxxxxxx
+xxxxxxxx. X xxxxxx Xxxxxxxxx xxxxxxx xxxxxxxxxx xxxx xxxx xx xxxxxx
+xxx xxxxxxxxxxxxxx xxxxxxxxx xx xxx xxxxxxxxx xxxxxxxx xx xxxxxxxxx
+xxx xxx xxxxxx xx <uri ns1:href="https://limelight.yeastrc.org/limelight/p/demo">xxxxx://xxxxxxxxx.xxxxxxx.xxx/xxxxxxxxx/x/xxxx</uri>.</p></sec><sec id="sec2"><title>Methods</title><sec id="sec2.1"><title>Architecture</title><p>Xxxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxxx,
+xxxx xxxxxxxxxxx xxx xxxxxxxx xxxxx, xxxxxx xxxxxxxx xxxxx x xxx xxxxxxxx
+xxxxxxxxxxxx. (<xref rid="fig1" ref-type="fig">Xxxxxx <xref rid="fig1" ref-type="fig">0</xref></xref>) Xxxxx xxxxxxx x xxxxxxx xxx xxxxxxxxxxx xxxxxx, xxxx xxxxxx xxxxxxx
+(xxx xxxxxxx xxxxx xxxx xx XXXXX xxxxx), x xxx xxxxxxxxxxx xxx xxxxxxx
+xxx xxxxxxx xxxxxxxx xxxx, x xxxxxxxxxx xxxxxxxx, xxx xxxxxxxx xxx
+xxxxxxxxxx XX0 xxxxxxx xxxxxxxxx xxx xxxxxxxx xxxxxxx xxxxxxxxxx.
+Xxx xxxxxxxxxx xx Xxxxxxxxx xxx xxxx xxx xxxx xxxxxx, xxxxxxxxx xxxxx
+xxxxxxx xxxxxxxx xxxxxxxxxxx xxxx xxxxxxxxx xx xxxxxxx: Xxx xxxxx
+xxx xx xxxxxxxxx xxxxxxxxx xxxxx XxxxXxxxxx xxx Xxxxx (x xxxxxxx xxx
+xxxxxxxxxx xxx xxxxxxxxxx), xxxxxxxx Xxxxxxxxx Xxxxxx Xxxxxxxx (XXXX),
+xxx Xxxxxxxxx Xxxxx Xxxxxx (XXX). XxxxXxxxxx xx xxxxxxxx xxxx XxxxXxxxxx
+xxxxx xxxxxxx xxx xx-xxxxxx xx xxxx xx Xxxxxxxxx’x xxxxxxxxxxxx
+xxxxx xxxxxxx. Xxxxxxxxx xxxxxxxxx xxxxxxx x XXXXxxx xxx xxxxxxxx
+xxxxxxxxxxxx, xxxxx xxx xxxxx-xxx xxxxxx-xxxx xxxxx xxxxxxxx xxxx
+xxxx Xxxxxxxxx xxx xxxxxxxx xxx Xxxxxxxxx Xxxxxxxx Xxxxxxxx (XXXXX)
+xxxxxxxxxxx xxxxxxxxxxx xxxxxxxxx (XXX) xxxxx. Xxx xxxx-xxx xxxx xxxx
+xxxxxxx xxx xxxxxxx xxxxx xx xxxxxxx xxxxxxx xx Xxxx xxxxx xxx Xxxxxx
+xxx xxxxxxxx xxxxxxxxx. Xxxxxxxxx xx xxxxx xxxx x “.xxx”
+xxxx xxxxxxxx xxx xxxxxxx xxxx Xxxxxx Xxxxxx (xxx xxxxx Xxxxxxx Xxxxxxxxxx
+xxxx Xxxxx xxx XxxXxxxx Xxxxxx) xxxxx x xxxxxxxxxxx xx xxx xxx Xxxxxx.</p><fig id="fig1" position="float" orientation="portrait"><label>Xxxxxx 0</label><caption><p>Xxxxxxx
+xxxxxxxx xxxxxxxxxxxx xx Xxxxxxxxx. Xxxx xxxxx xxxxxx xxxx
+xxxxxxxxx xxxxxx xxxx xxxxxxxxx xxxxxxx xx x xxxxxxxx Xxxxxx xxxxxxxxx.
+Xxx xxxxxx xxxxxxxx xxxxx xxxxxxxxxx xx Xxxxxxxxx xxxxxxxx xxxx xxxx
+xxxx xxxxx. Xxx xxxxxxxxxxx xxxx xxx xxxxxxxxx xxxx xxx xxxxxxxxxx
+xx Xxxxxxxxx xxx xxxxxxxx xxxxxxxx xxxxx Xxxxxx Xxxxxxx, xxxx xxxx
+x xxxxxx xxxxxxx xxxx xxxxx xxx xxxxxxxxxx xxx xxxxxxxxx xxxx xxxxxxxxx
+xxx xxxxxxxxxxxxxxxxxx.</p></caption><graphic id="gr1" position="float" orientation="portrait" ns1:href="pr4c00968_0001.jpg" /></fig><p>Xxxxxxxxx xxxxxxxx xx-xxxxxx, xxxx xxxxxx xx xxxxxxxxx
+XX0 xxxxxxx,
+xxxxxxxxx XX0 xxxxxxx, xxx xxxxxx XX0 xxxxxxxxx xxx xxxxxxxxxxxxx
+(XXXx). Xx xxxxxxxxxx xxxx, Xxxxxxxxx xxxxxxxxx xxxxxxxx xxXX<sup><xref ref-type="bibr" rid="ref19">00</xref></sup> xxx xxXXX<sup><xref ref-type="bibr" rid="ref20">00</xref></sup> xxxx
+x xxxxxx xxxxxx xxxx xx xxxxxx xxxxxxxxx xxx xxxx xxxxxxxxxx xxxxxxx
+xxxxx xxx xxxxxxxxx xx xxxxxx xxxxxxxx xxxxx xx xxx xxxxx xx x xxxxx
+xx <italic toggle="yes">x</italic>/<italic toggle="yes">x</italic> xx xxxxxxxxx xxxx xxxxxx.
+X xxxxxxxx xxx xxxxxxxxxxx, xxxxxx “xxxxxx”, xxx xxxxxxxxx
+xx xxxxxxx xxx-xxxxxxx-xxxxx XXX xxxxxx xx xxxxxxx xxxxxxxx xxxx xxxx
+xx xxxx xxxx, xxxxx xx xxxx xxxxxxxx xx Xxxxxxxxx. Xxxxxx xxx xxxxxxxxx
+xx Xxxx xxxxx x xxxxxxx xxxxxxxxx.</p><p>Xxxx xxxxxxxxxxxxx xx Xxxxxxxxx
+xxx xxxx xxxxxxxxxxx xx xxxxxxxx
+xxxxxxxx. Xxxxxxxx xxxxxxx xxxxxxxx xxxxxxxx xxxxxxxxx xxxx xxxxxxxx
+XXX xxxxxxx xx xxxxxxx XX0 xxxxxxx xxxxxxxxx. Xxxxx xxxxxxxx xxxxxxxx
+xxx xxxxxxx xx Xxxxxx xxxxx xxx Xxxxx xxx Xxxxx XXXXxxx xxxxxxxxx
+xxx xxx xxxxxxx xx Xxxxxxxxx xxx x XXXXxxx xxx xxxxxxxx XXX. Xxx XXXx
+xxx xxxxxx xxxx xxx Xxxxxxxxx, xxx xx xxx xxxxxxxxxx, xxx xxxxxxxxxxxxx
+xxx xxxxxxxxxx xx <xref rid="tbl1" ref-type="other">Xxxxx <xref rid="tbl1" ref-type="other">0</xref></xref>.</p><table-wrap id="tbl1" position="float" orientation="portrait"><label>Xxxxx 0</label><caption><title>URLs for Limelight Public Server,
+Source Code, and Documentation</title></caption><table frame="hsides" rules="groups" border="0"><colgroup span="1"><col align="left" span="1" /><col align="left" span="1" /></colgroup><thead><tr><th style="border:none;" align="center" colspan="1" rowspan="1">xxxxxxxxxxx</th><th style="border:none;" align="center" colspan="1" rowspan="1">XXX</th></tr></thead><tbody><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxxxxxxx xxxxxxxx xxx xxxxxx xxx</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://limelight-ms.org/">xxxxx://xxxxxxxxx-xx.xxx/</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxxxxxxx xxxx xxxxxxxxxxxxx xxx xxxxxxxxxxxx
+xxxxxxxxxxxx</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://limelight-ms.readthedocs.io/">xxxxx://xxxxxxxxx-xx.xxxxxxxxxxx.xx/</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxxxx Xxxxxxxxx xxxxxx</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://use.limelight-ms.org/">xxxxx://xxx.xxxxxxxxx-xx.xxx/</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxxxxxxx xxx xxxxxxxxxxx xxxxxx xxxx</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-core">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxxxx xxxxxx xxxx</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/Spectral_Storage_Service">xxxxx://xxxxxx.xxx/xxxxxxx/Xxxxxxxx_Xxxxxxx_Xxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxxxxxxx xxxx xxxxxx xxxxx xxxxxxx</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/file-object-store">xxxxx://xxxxxx.xxx/xxxxxxx/xxxx-xxxxxx-xxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxxxxxx xxxxxxx xxxxxxxxxx xxx xxxxxxx</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-export-blib-service">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxx-xxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxxxxx xxxxxxxxx xxx xxxxxxx</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-pipeline-feature-detection-service">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxxxx-xxxxxxx-xxxxxxxxx-xxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxxxxxxx XXX xxxxxx xxxxxxxxxx (XXX)</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-api">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxx</uri></td></tr></tbody></table></table-wrap></sec><sec id="sec2.2"><title>Installation</title><p>X xxxxxx Xxxxxxxxx xxxxxx xx xxxxxxxxx
+xx <uri ns1:href="https://use.limelight-ms.org/">xxxxx://xxx.xxxxxxxxx-xx.xxx/</uri> xxx xxxxx xxx xxxxxx xxx xx xxx xx xxxxxxx. (<xref rid="tbl1" ref-type="other">Xxxxx <xref rid="tbl1" ref-type="other">0</xref></xref>). Xxxxx xxx xxxxx xxxxxxxxxxxxx xxx xxxxxx
+xxxx xxxxxxxx xx xxxx xxxxxx xxx xxx xx xxxx xx xxxxxxxxxx xxxxxxxxxxx
+xxxxxxxxxx.</p><p>Xxx xxx-xxxx xxxx-xxxxxxx xx Xxxxxxxxx, xxxx xxxxxxxxx
+xx Xxxxxxxxx xx xxxxxxxxxxx xx Xxxxxx (<uri ns1:href="https://www.docker.com/">xxxxx://xxx.xxxxxx.xxx/</uri>) xxxxxx
+xxxxxx xx Xxxxxx Xxx. Xxxxx xxxxxxxxxx xxx xxxxxxxxxxxx xxxxx x Xxxxxx
+Xxxxxxx xxxxxxxxxx xxxx xxxxxxxxxx xxxx x xxxxx xxxxx xx Xxxxxxxxx
+xx XxxXxx. Xxxxxx xx x xxxxxxxxx xxx xxxxxxx xxxxxxxxxxx xxxxxx xx
+xxxxxxxx xxxx xxxxxxx xxx xxxxxxxx xxx xxx xxxxxx xxxxxxxxxxx xxxxxxxxx
+xxx xxxx xxxxxxxx xx xxx. Xxxxxx Xxxxxxx xx x xxxxxxxxx xx Xxxxxx
+xxxx xxxxxxxx xxx xxxxxxxxxxx xx x xxxxxxxxxx xxxxxx xxxx xxxx xxxx
+xxxxxxxxx xxxxx Xxxxxx xxxxxx xxx xxxx xx xxx xxxxxxxxxxx xxx xxx
+xxxx xxxxxx xx xxx xxxxxxxx. Xx xxxxx xx Xxxxxxxxx xxxxxxx, xxxxxxxxx
+xxx xx xxx xxxxxxxxxxxxx, xxx xxx xxxx xxxxxx xxxxx xx xxxx xxxxxxx
+xx xxx xxxxxxxxxxxxx xxxx xxx xxx Xxxxxx Xxxxxxx. Xxx xxxxxxxxxx xx
+Xxxxxxxxx xxxx xxxxxxxxxxxxx xx xxxxxxxxxx xx Xxxxxx xxxxxx xxx xxxxxxxx
+xxxxxxxxxxxxx xx xxx xxx xxxxxx xxxxxxxxxxx. Xxxx xxxxxxx Xxxxxxxxx
+xxxxxxx, xxx xxxxxxxxxx xxx xxx xxxxxxx, xxx xx xxxx xx xxxx xxx xxx
+xxxxxxxxxx xxxx xxxxxxxxxxx xx xxx xxxxxxxx. Xxxx xxxxxxxxxxx xxxxx
+xxx xx xxx Xxxxxxxxx xxxxxxx xxx xx xxxxx xx xxx xxxx xxxxxxxxxxxxx
+xxx xxxxxxxxxxxx xxxxxxxxxxxx (<xref rid="tbl1" ref-type="other">Xxxxx <xref rid="tbl1" ref-type="other">0</xref></xref>).</p><p>Xxx xxxx xxx xxx xxxxxxxxxx xx Xxxxxxxxx xxxx
+xxx xxx xxxxxxx xxxxxxx
+xxxxxx xxx xx xxxxxx xx XxxXxx (<xref rid="tbl1" ref-type="other">Xxxxx <xref rid="tbl1" ref-type="other">0</xref></xref>). XxxXxx Xxxxxxx xxx xxxx xxx xxxxxxxxxx xxxxxxxxxxx
+(XX) xxx xxx xxxxxxxxx xxxxx xxxxxxxxx. Xxxxxx xx xxx xxx xxxxxxxxxxxx
+xxxxxxxxxxxxx xxxxxxx xxxxx xxxxx. Xxxxxxxx x xxx xxxxxxx xxxxxxxxxxxxx
+xxxxxxxx x xxxxxxxxxx xxxxxxxx xxxxx xxxxxxxxx xxxx xxxxxx xxx xxxxxxxx,
+xxxxxxxx xxx xxxx Xxxxxx xxxxxx, xxxxxx Xxxxxx xxxxxx xx Xxxxxx Xxx,
+xxx xxxxxxxxxx xxxxx xxxxxxxxx xxxx xxx xxxxxxx xx XxxXxx.</p></sec><sec id="sec2.3"><title>Data Import</title><p>Xxxxx (xxxx xxxxxxxxxx xxxxxxxxxx) xxx
+xxxxxx xxxxx xxxxxx xxxxxxx xxx xxx xxxx xxxxxx xx xxxxx xxx Xxxxxxxxx
+xxx xxxxxxxxx xx xxx xxx xxxxxxx xxxx, xxxxxx xx xxxxxxxx xx xxxxxxxxx
+Xxxxxxxxx xxxxxxx xxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxxx. Xxx xxxx
+xxxxxx xxxxxxx xx Xxxxxxxxx xxxxxxxx xxxxx xxxx x xxxx xxx xxxxxxxxxxx
+x Xxxx-xxxxx (xxxxx xxxxxxxx) xxxxxx xxxxxxxxxx xxxxxxx, xxxxxxxxxxxxx,
+xxx xxxxxxxxxx xxxxxxxxx xxx xxxxxxxxxxxxxx xxxx xxx xxxxxxx xxxx.
+Xxxx xxxxx xxx xxx xxxxxxxxx, xxxxx xxxxxx xxxxx xxxx xxxxx xxxxxxxx
+xx xxxxxx xxx xxxxxxx xxx xxxxxx xxxx x xxxxxxxxxx xxxxx. Xxxx xxx
+xxxxxxxx xx xxx xxxx xx x Xxxxxxxxx XXX xxxx xxx xxxx xxxxx (x.x.,
+xxXX xx xxXXX xxxxx). Xxxxx xxx xxx xxxxx xxxx xx xxxxxxx xxxxxxx
+xxx xxxxxxxxx xx xxx xxxxx xx xxxx xx x xxx xx xxxxx xxxxxxxx xxxxxxx
+(<xref rid="fig2" ref-type="fig">Xxxxxx <xref rid="fig2" ref-type="fig">0</xref></xref>). Xxxx xx
+xxxxxx xxx xxxx xxxxxxxxx, xxxxx xxxx xxxxxxx xx xxxxx xxxxxxxxxxxx
+xxxx xxxxx xxxxxx xxx xx xxx xxx xxxxxxxxxx xxx, xx xxxxxxxxxx, xxx
+xxxxxxx xxxx xxxxxx xx xxx xxxx xx xxxxxxxx xx xxxxx xxxxxxxxxx xxxxxxxx.</p><fig id="fig2" position="float" orientation="portrait"><label>Xxxxxx 0</label><caption><p>Xxxxxx
+xxxxxxxx xx xxxxxxxxxxxxx xxxxxxxxx xx xxx xxxxxxx xxxxxxxx
+xxxx xx Xxxxxxxxx. (X) Xxx xxxxxxx xxxxxxxxx xx xxx xxxxxxx xxxxxxxx
+xxxx. Xxxx xxxxxxxxxx xxx xx xxxxxxxx xx xxxxxx xxxx xxx xxxxxxxxxxxxx
+xxx xxxx xxxxxxx. Xx xxxxx, xxx “Xxxxxxx Xxxxxxxxxxx”
+xxxxxxx xx xxxx, xxxxxxxxx xxx xxxxxxx xxxxx xxx xxxxxxxx. (X) Xxx
+“Xxxxxxxxxxx” xxxxxxx, xxxxx xxxxx xxxxx xxxxx xxx xxxxxxxxxx
+xxxx xxx xxxxxxx xxx xxxxxxxx xxxxxxxxxx xxx xxxxxxxx xxxxxxxxxx xxxxx
+xxx xxxxxxxxxx xxxxxx xxxxx. (X) Xxx “Xxxxx Xxxx” xxxxxxx,
+xxxxx xxxxxxxx xxxxxxxxxxx xxx xxxxx xxx xxxxxxxx xxx xxxxxxx xxxxxx
+xxxxxx xxxxx xx xxx xxxxxxx. (X) Xxx “Xxxxxx Xxxx” xxxxxxx,
+xxxxx xxxxxxxx xxxxxxxxxxx xxx xxxxx xxxxxxx xx xxxxxxxxx xxx xxxx
+xx xxx xxxxxxx xxx xxxxxxxxx xxxx xx xxxxxxxxxx xxxxxxxx xxxx. (X)
+Xxx “Xxxxxxx Xxxxxx Xxxxxxx” xxxxxxx, xxxxx xxxxx xxx
+xxxxxxxx xxxxxxxx xx xxx xxxxxxx xxx xxxxx xxxxxxxxxx xxxxxxxx. Xxxxx
+xxx xxxxxxxx xxx xxxxxxx xxx xxxxxxxxxx xxxxxxxx. Xxxxx xxx xxxxxxxx
+xxx xxxxxxx xxxxxxx xxx xxxxxxxxxxx xxx xxxx xxx xxxxx xxxxxxxxxx
+xxxxx.</p></caption><graphic id="gr2" position="float" orientation="portrait" ns1:href="pr4c00968_0002.jpg" /></fig><p>Xxxxxxxxx Xxxxxxxxxx Xxxxxx Xxxxxxxx (Xxxxxxxxx
+XXX) xx xxxxxxx
+xx xx XXX Xxxxxx Xxxxxxxxxx (XXX) xxxx (<xref rid="tbl1" ref-type="other">Xxxxx <xref rid="tbl1" ref-type="other">0</xref></xref>) xxxx xxxx xx xxxxxxxxx xxx xxxxxxx xx x
+XXX xxxxxxxxxx xx x xxxxxxxxxxx xxxxxx xxxx xx xxxxxxxx-xxxxxxxx xxx
+xxxxxxxx xxx xxxx xxxxxxxxx xxx Xxxxxxxxx. Xx xxxxxxx xxxx xxxxxxx
+xxxxxxx xx x XXX xxxxxx xxx xxx xxxx xxxxxxxxxx xxxxx, xxxxxxxxx xxxxx
+xxxxxx xxxxxxxx xxxx xxxx, xxxxxxx xxxxxxxxxxxxx xxxxx, xxxxxx xxxxxxxxxx
+xxxx XXXx, xxxxxxx-xxxxx xxxxxx, xxxxxxx-xxxxx xxxxxx, xxxxxxxxxxxx-xxxxx
+xxxxxx xxx xxxxxxx–xxxxxxx xxxxxxxx. Xxxxxxxxxxxx, Xxxxxxxxx
+XXX xxxxxxx xxxxx xxxxxx xxx xxxxxxx xx xxx xxxx xxx xxxx xx xxx xxxxxxxx
+xxxxxxxx xxxx, xxxx xxxxx xxxxxx xxxxxxxx (x.x., XXXx xx xxxxxxxx),
+xxx xxxxxxxxxxxxxxx xx xxxxx xxxxxx (x.x., xxxxxxx xxxxxxx xxx xxxxxx).
+Xxxxxxxxx xxxx xxx xxxx xxx xxxxxxxxxxx xxxxx xxx xxxx xxxxxx xxxx
+xx xxxxxxxxxxx xx xxx Xxxxxxxxx XXX xxxxxxxx.</p><p>XXX xxxxxxx xxxx
+xxx xxxxxxxx xxxx xxx xxxxxxxxxxx xx Xxxxxxxxx
+XXX xxx xx xxxxxxxx xxxx Xxxxxxxxx xxx xxxxxxxxxx xxxxx xxx xxxxx
+xxxxxx Xxxxxxxxx. Xxxx xxxxx xxx xxxxxxxxxxxxxx xx xxxxxxxx xxx xxxxxxx
+xxxxxxx xxxx xxx xxxxxx xx xxxxxxxx xxxxxxxxx xx xxxxxxxxxx xxxxxxxx
+xxxxxxxx, xxxx xxxxxx Xxxxxxxxx XXX xxxxxxxxxx, xxxx xxxx xxxxxxx
+xxxxxx xxxxxx xxxx xxxxxxxx xxxxxxxxx xx Xxxxxxxxx XXX. Xxxxx Xxxxxxxxx
+XXX xxxxxxxxxx xxx xx xxxxxxx xxx xxxxxxxxxx xxxxxxxxxxxxx xx Xxxxxxxxx
+xxxxxx, xxxxx xxxxxxxxxx xxx xxxxxxxx-xxxxxxxx xxxxxx. Xxx xxxxxxx
+xxxx xxxxxxx xxx xxxxxxxx Xxxxxxxxx XXX xxxxxxxxxx xxx xxxx xxxxxxx
+XXX xxxxxxxx xxxxxxxxx (<xref rid="tbl2" ref-type="other">Xxxxx <xref rid="tbl2" ref-type="other">0</xref></xref>) xxx xxxx xxxxxxxx xx xxxxxx xxx xxxx xx xxxxxxxxx xxxxxxxxxx
+xx xxxxxxxx xxxxxxxxxx xxxx xx xx xxxxxxxxxxxxx xxxx xxxxxxx xx XX-XX/XX
+xxxxxx xxxxxxxx.</p><table-wrap id="tbl2" position="float" orientation="portrait"><label>Xxxxx 0</label><caption><title>Current List of Limelight XML Converters
+Built and Maintained by the Authors</title></caption><table frame="hsides" rules="groups" border="0"><colgroup span="1"><col align="left" span="1" /><col align="left" span="1" /></colgroup><thead><tr><th style="border:none;" align="center" colspan="1" rowspan="1">xxxxxxxx xxxxxxxx</th><th style="border:none;" align="center" colspan="1" rowspan="1">xxxxxxxxx
+XXX xxxxxxxxx, xxxxxx xxxx, xxx xxxxxxxxxxxxx</th></tr></thead><tbody><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxxxxxxx (xx xxxx XX)<sup><xref ref-type="bibr" rid="ref21">00</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-casanovo">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxxxx + Xxxxxxxxxx<sup><xref ref-type="bibr" rid="ref22">00</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-comet-percolator">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxx-xxxxxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxxxx + xxxxx xxxxxxxxx xxxxxxxx<sup><xref ref-type="bibr" rid="ref23">00</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-comet-tpp">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxx-xxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxxxx-XXX<sup><xref ref-type="bibr" rid="ref24">00</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-cometptm">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxxx<sup><xref ref-type="bibr" rid="ref25">00</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-crux-comet-percolator">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxx-xxxxx-xxxxxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxxxxx + Xxxxxxxxxx</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-magnum-percolator">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxx-xxxxxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxxxxx + xxxxx xxxxxxxxx xxxxxxxx (XXX)</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-magnum-tpp">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxx-xxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">XxxxXxxxxxxx<sup><xref ref-type="bibr" rid="ref7">0</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-metamorpheus">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxxxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">xxxX<sup><xref ref-type="bibr" rid="ref26">00</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-moda">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">XXXxxxxxx<sup><xref ref-type="bibr" rid="ref5">0</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-msfragger-tsv">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxxxxx-xxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">XXXxxxxxx + XXX</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-msfragger-tpp">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxxxxx-xxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxxx xXxxx<sup><xref ref-type="bibr" rid="ref27">00</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-open-pfind">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxx-xxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxxxxxxxxxx<sup><xref ref-type="bibr" rid="ref28">00</xref></sup> (XXXxxxxxx xx Xxxxx)</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-philosopher-tsv">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxxxxxxx-xxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">XxxXxXXX<sup><xref ref-type="bibr" rid="ref29">00</xref></sup> (XXXXxxxxx,<sup><xref ref-type="bibr" rid="ref30">00</xref></sup> xxxxx XX0)</td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-prolucid-dtaselect">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxxxx-xxxxxxxxx</uri></td></tr><tr><td style="border:none;" align="left" colspan="1" rowspan="1">Xxx Xxxxx<sup><xref ref-type="bibr" rid="ref31">00</xref></sup></td><td style="border:none;" align="left" colspan="1" rowspan="1"><uri ns1:href="https://github.com/yeastrc/limelight-import-taggraph">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxxxx-xxxxxxxx</uri></td></tr></tbody></table></table-wrap></sec><sec id="sec2.4"><title>Database Design</title><p>Xxxxxxxxx xx xxxxx xxxxx xxx XxXXX
+xxxxxxxxxx xxxxxxxx xxxxxxxxxx xxxxxx (XXXXX). Xxxx xxx Xxxxxxxxx
+XXX xxxxxx xxxxxxxxx xxxxx, xxx xxxxxxxx xxxxxx xx xxxxxxxx xx xxxxx
+XXX xxxxxx xxxxxxxx xxx xxxxxxx xx xx xxxxxxxx, xxxxxxxxxxx xxx. Xx
+x xxxxxx xxxxxxxxx xx xxx xxxxxxxx xxxxxxxx xx xxxxx xx xxxxxx xxx
+xxxxx xxxx xxx xxxxxxxx xxxxxx. Xxxxxx xxx xxxxxxxxxxxxx xxxxx xx
+xxxxx xxx xxxxxxxxxxx (x.x., xxxxxx) xxxxxxxxxx xxxx xxxxxxx xxxxx
+xx xxxx xx XXX xxxxxxx (x.x., XXXx) xx x xxx xxxx xx xxxx xxxxxxxxxxx
+xxx xxxxxxxxx xxx xxxxxxxxx, xx xxxx xxx xxxxxx xxxxxx xx xxx xxxxxxxxxx
+xxxxxxxxx xxx xx xxxxxx, xxxxxxxxxxx xxxxxxxx, xxx xxxx xxx xxxxxxxxx
+xxxxxxx xx Xxxxxxxxx.</p></sec></sec><sec id="sec3"><title>Results and Discussion</title><sec id="sec3.1"><title>Project Interface</title><p>Xxx xxxx xx Xxxxxxxxx xxx xxxxxxxxx
+xxxx xxxxxxxx (<xref rid="fig2" ref-type="fig">Xxxxxx <xref rid="fig2" ref-type="fig">0</xref></xref>). Xxxx xxx xxxxxxx xxxx, xxxxx xxx (xxxxxxxxx xx xxxxx xxxxxx xxxxx)
+xxx xx xxxxxx xxxxxxxx, xxxxxxx xxx xxx xxxxxx xx xxx xxxxxxx (<xref rid="fig2" ref-type="fig">Xxxxxx <xref rid="fig2" ref-type="fig">0</xref></xref>X), xxxxxx xxxx (<xref rid="fig2" ref-type="fig">Xxxxxx <xref rid="fig2" ref-type="fig">0</xref></xref>X), xxx xxxxxx xxxxxxxxx,
+xxxxxxxx xxx xxxx, xx xxxxxxxx xx x xxxx xx xxxx xxxxxx xxxxxxx (<xref rid="fig2" ref-type="fig">Xxxxxx <xref rid="fig2" ref-type="fig">0</xref></xref>X). Xxxxxxxx xxx
+xx xxxxxxx xx xxxxx (xxxxxxxxxx x xxxxxxx xx xxxxxxxx) xx xxxxxxxxx
+(xxxxxxxxxx xxxxxx xx xxxxxxxx xx xxxxxxxx). Xxx xxxxxxxx xxxxxxxxxx
+xxxx xxxxxxxx, xxxxxxxxxx xxxxxxxx xxxxxxx xxxxxxxx xx xxxxxxxxxxx
+xxx xxxxxxxxxxxx xxx Xxxxxxxxx.</p><p>Xxxxxxxxx xxxxxxxx xxx xxxxxxx
+xxxxxxxxxx xxx xxxxxxxxxx xxxxxx xxxxxxx: xxxxxxx xxx xxxx. Xxxxx
+xxx xxxxxx xxxxxxx xxxx xxxxxxxxxx xxxxx xxxxxx x xxxxxxx xxx xxxxxxxx
+xxxxx xxxxxxxx xxxxx xxxxx xxxxxxx. Xxxx xxx xxx xxxxxxxxxx xxx xxxxxxx
+xx xxxxx xx xxx xxxxxxx xxxxx, xxxxxxxx xxxxx xx xxxxxx x xxxxxx xxxxxxxxxx
+xxxxxxxxxx xxxxxxxxxx xxx xxxxxxxx xxxxxxxx xx xxx xxxxxxx (<xref rid="fig2" ref-type="fig">Xxxxxx <xref rid="fig2" ref-type="fig">0</xref></xref>X). Xxx xxxxxxx,
+x xxx xxxxxxxx xxxxxx “Xxxxxx xxxx” xxxxx xx xxxxxxx
+xxxx xxxx xxx “Xxxxx”, “xxxxx xxxxx xxxxxxx (XXX)”,
+xxx “xxxxxx” xxxxx xxxxxxxxx xxxxxx. Xxxxxxxx xxx xxxx
+xx xxxxxxx xxxx xxxx xxxxxxxxx xx xxxx xx xxxxx xxxxxxxxxx, xxxxxxx
+xxxx xxxxxxxx xxxx x xxxxxx xxxxxxxx xxxx xx xxxxxx xxx xxx xxxxxxx.
+Xxxx xxx xxxxx xxxx xxxxxxxx xxx xxxxxx, xxxxxx xx xxxxxxxxx xxxxx
+xx xxxxxxx xxxxxxxxx xxxxx xxxxxxxx xxx xxxxxxxx xx xxx xxxxxxx xxxx.
+Xxxxxxxxxxxx, xxxxx xxxx xxx xx xxxx xx xxxxxxx xx xxx xxxxxxx xxxx
+xx xxxxxxx xxxx xxxxxxxx xxxxxxxx.</p><p>Xxx “Xxxxxxx Xxxxxx
+Xxxxxxx” xxxxxxx (<xref rid="fig2" ref-type="fig">Xxxxxx <xref rid="fig2" ref-type="fig">0</xref></xref>X) xx xxx xxxxxxx xxxx xxxxx
+xxx xxxxxx xxxxxxx xxxxxxxx xx xxx xxxxxxx. Xxxxxxxx xxx xxxxxx xxxx
+xxxx xxxxxxx xxxxx xxx xxxx xxx xxx xxxxxxxxx xx xxxxxx (xx xxx xxx
+xxxxxxx). Xxxxx xxx xxxx xxxxxxxx xxx xxxx xxxxxx xx xxxxxxxx xxx
+xxxx xxx, XXXXX, xxxxxxxxxxxxx, xx xxxxx xxxxx xxxxxxxxxx xxxx xxx
+xxxxxx. Xxxx xxxxxx xxxxxxx xxxxxxxx xxxxx xxx xxxxxxx xxx xxxxxxx
+xxxxx xxxxxxxxxxx xxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxx xx xxxx:
+xxxx-xx-xxxx, xxxxxxx-xxxxx, xxxxxxx-xxxxx, xxx xxxxxxxxxxxxx-xxxxx
+(x.x., XXXx). Xxxxxxxxxxxx, x Xxxxx/XX xxxx xxxxxxxx xxxx xxxxxxxxxxxxxx
+xxxxxxxxxxx xxxxxxx xxxxxxx xx xxx xxxxxx xxxxxxx.</p></sec><sec id="sec3.2"><title>Data Visualization Tools</title><p>Xxx xxxxxxx, xxxxxxx xxx xxxxxxxxxxxx
+xxxxx xxxxxxxxxxxxx xxxxx xx Xxxxxxxxx xxxxx xxx xxxx xx xxxxxxx xxx
+xxxx xxxx x xxxxxxx-, xxxxxxx-, xx xxxxxxxxxxxx-xxxxxxx xxxxx xx xxxx
+(<xref rid="fig3" ref-type="fig">Xxxxxx <xref rid="fig3" ref-type="fig">0</xref></xref>). Xxxx xx
+xxxxx xxxxx xxxxxx xxxxxxxx xxxx xx xxx xxxxxxx xxx XXX xxxxx xxxx
+xxxx xxx xxx xxxxxx, xxxxxxxx-xxxxxxxx xxxxxx xxxxxxxxx. Xxxx XXX
+xxxx xxxxxxxx x xxxx xx xxxx xxx xxxxxxxxx XX0 xxxxxxxx xxxxx Xxxxxxxx<sup><xref ref-type="bibr" rid="ref32">00</xref></sup> (<xref rid="fig3" ref-type="fig">Xxxxxx <xref rid="fig3" ref-type="fig">0</xref></xref>X) xxx xx xxxx xxx xxxxxxxxx XX0 xxxxxxxx xxx xxx xxxxxxxxx,
+xxxxxxxxxxxx xxx xxxxxxxx xxxxxxxx xxxxx. Xxxxxxxxxxxx, xxxxx xxx
+xxxx xxx XXX xxx xxx xxxxxxx (<xref rid="fig3" ref-type="fig">Xxxxxx <xref rid="fig3" ref-type="fig">0</xref></xref>X) xx xxx xxxxxxx xx x xxxxx xxxxxx, xxxxx xxxxx xxxxx
+XXXx xxxx xxxxxxxxxx xxx xxx xxxxx xxxxxxx. Xxx XXX xxxxxx xxxxxxxxx
+xxxx xxxxxx (xxxxxxxxx xxxxx) xx xxxxxxxxx xxx XXX xx xxxx xxxx. Xxxxxxxxx
+xxxxx xx xxxxxxx xxx xxxxxxxxxx xxxxxx xxx xxx xxxx xx xxxxxxxxx xxx
+xxxxx xx xxxxxxxxxxxxx xxxxxxx xxx xxxxxx xxx xxxxxxxx xxxxxxx.</p><fig id="fig3" position="float" orientation="portrait"><label>Xxxxxx 0</label><caption><p>Xxxxxx xxxx
+xxxxx xxxx Xxxxxxxxx. (X) Xxx “Xxxxxxxx Xxxx”
+xx x xxxxxxx-xxxxxxx xxxx xx xxx xxxx. Xxx xxxxxxxx (xxxx xxxx xxxxxxx
+xxxxxx xxxxxxx) xxx xxxxxx, xxx xxxx xxx xx xxxxxxxx xxx xxxx xxxxxxxxxxx.
+Xx xxxx xxxxxxx, “XX[00.0000]XXXXXX” xx xxxxxxxx. Xxx
+xxxxxx xxxxxxx- xxx XXX-xxxxx xxxxxx xxx xxxxxxxxx. Xx XXX xxx xxx
+xxxxxxx xx xxxxx xxxx xxx xxxxxx xxxxxxxxxx xx xxxx xxxxxxxxx xxxx
+xxx xxxxxxxx xxxx x XXX xxx xxxxxxx xxx xxxx xxxxxxx. (X) Xxxxxxxxx
+XX0 xxxxxxxx xx xxxxx xx Xxxxxxxxx. Xxx x+ xxxxxxxx xxxx xxx xxxxx
+xx xxxx xxx x+ xxxxxxxx xxxx xxx xxxxx xx xxx. (X) Xxx “Xxxxxxxx
+Xxxx” xx x xxxxxxx-xxxxxxx xxxx xx xxx xxxx. Xxx xxxxxxx xxxxxx
+xxx xxxxx xx xxxx, xxxxxxxxx xxx xxxxxx xxx xxxxx xxxx (x.x., xxxxxxxx
+xxxxxxxx, xxxxxx xx XXXx, xxx xx xxxxx) xxxxxxxxxx xxxx xxxx xxxxxxx
+xxxxx. Xxxx xxxxxxx xxx xx xxxxxxx xxx xxxx xxxxxxxxxxx. (X) Xxx “Xxxxxxxxxxxxx
+Xxxx” xx x XXX (xx xxxxx xxxxxxxxxxxx) xxxxxxx xxxx xx xxx
+xxxx, xxxxxxxx xx xxxxx xxxxxxxxxxxx xxxxxx xxxx xxxxxxxx xx xxx xxxx.
+Xx xxxx xxxxxxx, xxx xxxxxx xxxx xxx xxxxxxxxx xxx xxxxxxxxxxxxx-xxxxxxx
+xxxxxxxx xxxxx xxxxx xxxxxxx (XXX) xxx xxxxxxxx xxxxx xxxxx xxxxxxxx
+xxxx-xxxx xxxxxxxx xxxxxxxxx (XxxxXxxxxxxx, XXXxxxxxx + XXX, xxx Xxxxxx
++ Xxxxxxxxxx) xxx xxxxxxxx xxxxx xxx xxxxxxxxxxxx xxxx xx Xxxxxxxxx.
+Xxx xxxxxxx xxxxxxxxx xxx xxxxxxxxx xx xxxxxxxxxxxx xx XXXx xxxx x
+xxxxx xxxxxxxxxxxx xxxx (xxxxxxx xx xxx xxxxxxx xxxxxxx) xx xxxx xxxxxx
+xxx xxx xxxxxxxxxxxx xxxxxx xxxxxxxx (xxxxxxxx xx 000–000 Xx
+xxx xxxx xxxxxxx). Xxx xxxxx xxx xxxx xxx xxxxxxxx, xxx xxx xxxxx
+xxxxxx xxxx xxx xxx xxxxxxx xxxxxxx. Xxx xxx xxxxx xxxxxxxxx xxx xxxxxxxx
+xxxxxxxxxxxx xxxx xxx xxx xxxxxxxxxxxxx xxxxxxxxx. Xxx xxxxx xxxxx
+xxxxxxxx xx xxxxxxxxx xxx xxxxxxxx xxx xxxxxxxx xxxxxxxxxxxx xxxxxx
+xxx xxxxx xxxxxxxxxx xxxxxxxx, xxxxxxxx, xxx XXXx. Xxx xxx xxxxx xxxxxxxxx
+xxx xxxx xxxxxxxxxx xxxx xxx xxxxxxxx xxxxxxxxxxxx xxxx xx xxxxxxxxxxxxx
+xxxxxxxxx. (Xxx: <uri ns1:href="https://limelight.yeastrc.org/limelight/go/OY5VgsQaHs">xxxxx://xxxxxxxxx.xxxxxxx.xxx/xxxxxxxxx/xx/XX0XxxXxXx</uri>).</p></caption><graphic id="gr3" position="float" orientation="portrait" ns1:href="pr4c00968_0003.jpg" /></fig><p>Xx xxxx xxxxxxx xxx xxxxx xx xxxxxxxx xxxxxxxxx
+xx xxxxxxxx xxxxxxxx,
+xxx xxxxxxx xxxx (<xref rid="fig3" ref-type="fig">Xxxxxx <xref rid="fig3" ref-type="fig">0</xref></xref>X) xxxxxx xxxxx xx xxxxxxx xxxxxxx xxxxxxxxx (xxxxxxx xxxxxxxx).
+Xx xxxxxxx, xxxxxxxx xxx xxxxxxx xxxxx x xxxxxxx xxxxxxxxx xxxxxx
+xxxx xxxx x xxxxxx xxx xxxxx xxxxxxxxx xx xxxxxxxx xxx xxxxxx xxxxxx
+xx xxxxxxx xxxxxx xxxxxxxxx xx xxxxxxx xxx xxxxxxxx xxxxxxxx. Xxxxx
+xxxxxxx xxxxxxx xx xxxxxxxx, xxxx xxxxxxxxx xxxxxx xxxx xxx xxx xxxxxxx
+xx xxxxx xxxxxx, xx, xxxxxxxxx xxx xxxxxx. Xxx xxxxxxx xxxxxx xxx
+xxxxxxxxx xx xxxx xx xxx xxxxxx xxx xxx xxxx xxx xxxxxxx xxxx xxxx
+xxx xxxxxxx xx xxxxxxxx xx xxxxxxx. Xx xxxx xxxxxxxxxxxxxxxx xxxxxxxxxx
+xxxxx xx xxxxxxxx xxxxxx, xxxxx xxx xxxxxx xx xxxx xxxxxxxxxxxxxxx
+xxxxxxx xxxxxxx xxx xxxx xxxxxxx xxxx xxxxxxx xxxxxxxxxx xxxxxxxx
+xxxxxxxxx xxxxxx (XXXX)<sup><xref ref-type="bibr" rid="ref33">00</xref></sup> xxxxxxxx xxxxxxxx
+xxxxxx xxxxx xxx xxxxxxxxx xxxxxxxxx xx XXXXXX<sup><xref ref-type="bibr" rid="ref34">00</xref></sup> xxx xxx XXXX xxxxxxxxxx xxxxx xxxxxxxx xxxxxxxx xxxxxx.</p><p>Xxx “Xxxxxxx Xxxxxxx (XX) xxxx” xxx xxxxxxxxx xx
+xxxxxxx xxxx xxxxxxxxxxxxxx xx xxxxxx xxxxxxxxxx xxx xxxx xxxxxxx.
+Xxx XX xxxx xxx xx xxxx xx xxxxxxxxx xxxxx xxxxxx, xxxxxxx xxxxxxxx
+xxxxxxxxx xxxxxxxxxx, xxxx xxxxxxxxxxxxxxx xxxxxxxx, xxxxxxxxx xxxxxxx
+xx xxxxxxx, xxx xxxxxxx x xxxx xxxx xx xxx xxxxxxxxxxxxx xx xxxxxx
+xx xxx xxxxxxxx. Xx xxxxxxxxxx xxxx, xxxx xxxx xxxxxxxx xxxxxxxx xxxxxx
+xxx xxxxxxxxxxx xxxxx xxxxxxxxx xx xxxxxxxx. Xxx x xxxxxx xxxxxx (<xref rid="fig4" ref-type="fig">Xxxxxx <xref rid="fig4" ref-type="fig">0</xref></xref>), xxxxxxxxxx xxxxxxx
+xxxxxxx xxxxxxxxxx, xxxxxxxxx xxxxxxxxxx, xxxxxx-xxxxx xxxxxxxxxx,
+xxxxxxx xxxxxxxxx xxxxxxxxxx, xxxx xxxx xxxxxxxxxx, xxxxxxxxxxxxxx
+xxxxxxxxxx, XXX-xxxxx xxxxxxxxxx (xxxxx xxxxxxxxx, xxxxxxxxxxxxx xx
+XXX xxxxxx xxx xxxxxx, xxx xxxxxxxxxxxxx xxxxxxx xxxxxx), xxx xxxxxxx
+xxxxx xxxxxxxxxx.</p><fig id="fig4" position="float" orientation="portrait"><label>Xxxxxx 0</label><caption><p>Xxxxxx xxxxxxxx xx xxxxxxxxxxxxxx xxxxxxxxx xx xxx “XX
+Xxxx”
+xx Xxxxxxxxx. (X) Xxx “Xxxxxxx Xxxxxx” xxxxxxxxxxxxx
+xxxxxxxxx xxx xxxxxx xx xxxxxxxx xxxxx, XXXx, xxxxxxxx, xxx xxxxxxxx
+xxxx xxxx xxxxxxxx xx xxx xxxxxxx. (X) Xx xxxxxxx xx xxxxxxxx XXX-xxxxx
+xxxxxx xx xxx xxxxxxx xxxxxxx xxx xxxxx XXX-xxxxx xxxxx. Xx xxxx xxxx,
+xxx −xxx 00 xx xxx Xxxxxxxxxx x-xxxxx xx xxxxxxx xxxxxxx
+xxx Xxxxx Xxxxx (xxxxx xxxxxxxxxxx) xxxxx xxx xxx XXXx xxxxx xx xxx
+xxxxx xxxxxx. Xxx XXXx xxxxxxx xxx xxxxxxx xxxxxxx (xxxxxxx “Xxxxxxxx”)
+xxxxx xx xxxxxx xxx xxx xxxx xxxxx xx xxxxx. (X) X xxxxxxxxx xx xxx
+xxx xxxxx xxxxxxxxxx xxxx xxxxxxxx XXXx. (X) X xxxx xxxxxxxxxx xxx
+xxxxxx xx xxxxxx xxxxxxxxx xxx xxxxxxx, xxx xxxxxxxx xx XXXx xxxxxxxxxx
+x xxxxxx xxxxxxxx, xxx xxx xxxxxx xx xxxxxx xxxxxxxxx xxx XXX. (X)
+X xxx-xxxxxxxxxxx (0X) xxxxxxx xxxx xxxxxxxxxxxx xxx xxxxxxxxxxxx
+xxxxxxx xxxxxxx xxxxxx xxx xxxxxxxxx xxxx, xxxxx xx xxxxxxxx XXXx.
+(X) X xxxx xxxx xxxxx xxx xxxxxxxxxxxxx xx xxxxxxx xxx xxxxxx xxx
+xxx XXX-xxxxx xxxxx xx xxx xxxxxxx. Xx xxxx xxxx xxx Xxxxxxxxxx XXX
+xxxxx xx xxxxx.</p></caption><graphic id="gr4" position="float" orientation="portrait" ns1:href="pr4c00968_0004.jpg" /></fig><p>Xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xx xxx XX xxxx,
+xxxx xx xxx xxxxx
+xxxx xxxxxx xxxx xxx xxxxxx-xxxxxx xxxx xx xxx xxxx xxxxxxxxxx xxx
+xxxxxxxxxxx xxxxxxx xxxxxxxx xxxxxxxx xxxxx xxx xxxxxxxxx xxxxxxx
+(<xref rid="fig5" ref-type="fig">Xxxxxx <xref rid="fig5" ref-type="fig">0</xref></xref>). Xxx xxxxxxx,
+xxx xxxxxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxxxxx xxxxx xxxxxx xx xxxx
+xxxx xxxxxxxxx xx x xxxxxxxx xxxx xxxx xxxxxxxx xxxxx xxxxxxxxxx xxxxxx
+xxxxxxxx. Xxxxxx xxx xxxxx xxx xxxxxxxxx xxx xxxxxxxxx xxxxxxxx, xxxxxx
+xxxx (x.x., xxxxxxxxxxxxxx xxx xxxxxx/xxxxx xxxxxxxxxx) xxx xxx xxxxxxxxxxx
+xxx xxxxxxxxx xxxxxxxx xxx xxx xxx xxxxxxxxx. Xxxx xxxx xxx xx xxxx
+xx xxxxxxxx xxxxxxx xxxxx xxxx xxxxxx, xxxxxxxxxxxxxx, xxxxxxxxx xxxxxxxxxx,
+xxx xxxxx xxxxxxxxxxxxx xxxxxx xxxxxxxx xxxxxxxx xx xxxx.</p><fig id="fig5" position="float" orientation="portrait"><label>Xxxxxx 0</label><caption><p>Xxxxxx xxxxxxxx
+xx xxxxxxxxx xxxxxxxx xxxxxxxx xxxxx xxx “XX
+Xxxx” xx Xxxxxxxxx—xx xxxx xxxx, xxxxxxxxx x Xxxxxxxx
+xx xxxx xxxxxx (xxxxx) xxxx x xxxxx xxxxxx (xxxxxx) xx xxx xxxx xxx
+xxxx. (Xxxx xxxx xxxx xx xxx xxxxx xx xx x xxxxxxxxxx xx xxxxx xxx
+xxxxxxxxx, xxx xxxx xxxxxxxxxxxx xx xxxxx xx Xxxxxxxxx.) (X) X xxxxxxxxxx
+xx xxx xxxxxx xx XXXx xxxxxxxx xx xxx xxx xxxxxxxxx. (X) X xxxxxxxxxx
+xx xxx xxxxxxxxxxxx xx xxxxxxxxx xxxxx. (X) X xxxxxxxxxx xx xxx xxxxxxxxxxxx
+xx xxxxxxxxx XXX xxxxxx. (X) X xxxxxxxxxx xx xxx xxxxxx xx xxxxxxxx
+xxxxxxxx xxxxxxxx. (X) X xxxxxxxxxx xx xxx xxxxxxxxxxxx xx xxxxxxxxx <italic toggle="yes">x</italic>/<italic toggle="yes">x</italic> xxxxxx. (X) X xxxxxxxxxx xx xxx xxxxxx
+xx xxxxxxxx XXXx xxxx x xxxxx xxxxxx xx xxx xxx xxxxxxxxx.</p></caption><graphic id="gr5" position="float" orientation="portrait" ns1:href="pr4c00968_0005.jpg" /></fig><p>Xxxx xx xxx xxxxx xx xxx XX xxxx xxx xxxxxxxxxxx
+xxx xxxxxxx. Xxxxxxxx
+xx xxx xxxx xxxx xxxx xxxx xxxx xx x xxxxxx xxxxxx xxx xxxxxxx xxxx
+xxxxxx xxx xxxxxxxxxxx (x.x., xxxxxxxx xxxxx xxxxxxxxxx xxx xxxxxxx
+xx xxxxxxx xx) xxx xxxxxxxxxxx xxxx xxxx xx x xxxxxx xxxxxxx xxxxx
+(XXX) xx xxxxxx xxxxx (XXX).</p></sec><sec id="sec3.3"><title>Filtering Data</title><p>Xxxx xxxxxxxxx xx xxx xx Xxxxxxxxx’x
+xxxx xxxxxxxx xxxxxxxx xxx xx x xxxxxxxxx xxxx xx xxxxx xxxx xxxx
+xxxx xxxxxxxxx. Xxx xxxxxxxxx xxxxxxx xxxxx xxxxx xx xxxxx xxxx xx
+xxxxxxxxxxxx xxxxxxxxxxx xxxxxxxx, xxxxxxxx, xxxxxxxxxxxxx xx xxxxx
+xxxx xxxxxxxx xx xxxxxxxx xx xxxxx xxx xxxxxxx xxxx xxxx. Xxx xxxxxxx,
+xx x xxxx xx xxxxxxxxxx xxxx xx xxxxxx xxxxxxxxx xxxxxxxx, xxxxxxxx
+xx x xxxxxxxx xxxx, xxx xxxxxxxx x xxxxxxxx xxxxxxxx xx x xxxxxxxx
+xxxxxxx, x xxxx xxx xx xxxxxxxx xx xxxx xxxxxxxx xxxx xxxx xxxxx xxxxxxxx.
+Xxxxx xxxx xxxx xxxxxxxx xxxxxx xxxxxxx xxxx xxxxxxx xxx xxxx xx xxxxxxxx
+xxxxx xxxxxx xx xxx xxx xx xxx xxxx (<xref rid="fig3" ref-type="fig">Xxxxxx <xref rid="fig3" ref-type="fig">0</xref></xref>), xx xxxx xx xxx xxxxxxx xxxx xxx xxxxx
+xxxxxxx xxxxx xxx xxxxxx xx xxxxx xxxxxxxx. Xxx xxxxxx xxxxxx xxxxxxxxxx
+xxxx xxx xxxxxxxx xxxxxxxx xxx xx xxxx xx xxxxxx XXX, xxxxxxx, xxxxxxx,
+xx xxxxxxxxxxxx xxxxxxx. Xxxx xxxxxx xxxxxxxxx xxxx x xxxxxxx xxxxxx
+xxxxx xxx xxxxx xxxxxxx (xx xxxxxxx xx xxx Xxxxxxxxx XXX xxxx xxxx
+xxx xxxxxxxx) xxxxxxxxxxxxx xxxxxxx–xxx xxxxxxx, x xxxxxx xx
+0.00 xxxxx xx xxxxxxx xx xxx Xxxxxxxxxx XXX- xxx xxxxxxx-xxxxx x-xxxxxx
+xx xxxx xxx xxxxxxxxx xx x xxxxxxx xxxxxx xx xxx Xxxxxxxxx XXX. Xxx
+xxxxxxx xxxxx xxxxxxx xxx xx xxxxxxx xx xxx xxx xxxxxxxxx xxx xxx
+xxxx xxxxxxxxxxxxx xxxxxxx xxxxx xxx xxx xxxxxx xxxxxx. Xxxxxxxxx
+xxxxxx xxxx xxx xxxxxxxxxxx xx xxx xxxxxx xxxx xxx Xxxxxxxxx XXX xx
+xxxxxxxxx xxx xx xxxxxx xx xxxxxxxx xxxxxx (x.x., xxxxxxx xx xxxxxx).</p><p>Xx xxxxxxxx xx xxxxxx-xxxxx xxxxx xxxxxxx, xxxx xxxxxxxxxxx xxxxxx
+xxxxxxx xxxxx xxx xxxxx xxxxx xxxx xxx xxxxxxxxxx. Xxx xxxxxxx, xxxxxxxx
+xxx xx xxxxxxxx xx xxxxxxxxx <italic toggle="yes">x</italic>/<italic toggle="yes">x</italic> xx xxxxxxxxx xxxx xxxxxx, xxxxxxxxx xxxxxx(x), XXX xxxxxx, xxxxxxxx
+xxxxxxxxxxxx xxxxxx, xxx xx xx. Xxxxxxxx xxx xx xxxxxxxx xx xxxxxxx
+XXX xxxxxx, xxxxxxx xxxxxxx xxxxxx, xxx x xxxxxxx xxxxxx xx xxxxxxxx
+xxxx xxx xxxxxxxxxxxx xx xxxx xxxxxxx. Xx xxx xxxxxx xxxxxxx xxxx,
+xxx xxxxxxxx xxxxxxxx xxxxxxxxx xxx xxxx xx xxxx xx x xxxxxx xx xxxxxxxx
+xxx xx xxxx xxxxxxxx xx xxxxxx xxx xxxxxxxx xxxxxxxx xxxxx xxxxxxxxx.</p></sec><sec id="sec3.4"><title>Comparing and Contrasting Search Results</title><p>Xx xxxxxxxxx
+xxxxxxx xx Xxxxxxxxx xx xxxx xx xxxxxx xxxx-xx-xxxx xxxxxxxxxx xxx
+xxxxxxxxxxxxx xx xxxxxxxx xxxxxxxxxxx (<xref rid="fig3" ref-type="fig">Xxxxxxx <xref rid="fig3" ref-type="fig">0</xref></xref>X xxx <xref rid="fig5" ref-type="fig">0</xref>). Xxxx xxxxxxx
+xxx xxxx xxxx xxxxxxxxxxx xx xxxxxxx xxxxxxx xxxxxxxxxxxxx xxxxxxxxx
+xxxx xxxx xxxxxxxxx xx xxxxxxxxx xxxxxxx xxxxxxx xx xxxx xxxx-xxxx
+xxxxxx<sup><xref ref-type="bibr" rid="ref6">0</xref></sup> xxx xxxxxx-xxxx xxxxxx<sup><xref ref-type="bibr" rid="ref18">00</xref></sup> xxxxxxxxx. Xxxxxxxxx xxxx xxxxxxxx xxxxxxxxx
+xxxxxxx xxxx xxxxxxxxx XXX xxxxxx xxxxxxxxx xx xxx xxxx xxxxxxxxx
+xxx xxxxx xx xxxxxxxxxxx xxxxx xxxxx xxxxxxxxx xxxxxxxxx xxxx xxxx
+xxx. Xxxx xxxxx xxxx Xxxxxxxxx xxxxxxxx xxxxxxxxx xxxxxxx xxxx xxxxxxxxx
+xxxxxxxx xxxxxxxxx (xx xxxxxxxxx xxxxxxxx xx xxx xxxx xxxxxxxx) xx
+x xxxxxx xxx xxxxxxxxx, xxxxx xxx xxxxxx xxxxxx xxxx xxxx xxx xx xxxxxxx.
+Xxx xxx xxxxxxxx xx xxx xxx xxxxxxxxxxx xxxx xxxxxxxx xx x xxxxxxxxxx
+xxx, xxxxxxxxxx xx xxx xxxxxxxx xxxx xxxxxxxxx xxx xxxx–xx
+xxxx xx xx xxx xx xxxxxxxxxxx xx Xxxxxxxxx XXX. Xxx xxx xxxx xxxx
+xxxxx xxxxxxxxx xxxxx xxx xx xxxx xxx xxxxxx xxxxxxxx xx xxxx xxxxxxxx
+xxxxxxxx. Xxxx xxxxxx xxxx xxxxxxxx xxxxxxxx, xxx xxxxx xxx xxxxxx
+xx xxxxxxxxxxx xxxxxxxxxx xxxxxx xxx xxxxxxxxxx xxxx xxxxxxxx xxxxxxxx,
+xxxxxxx xx xxx. Xxxxxxx xxxxxxxx xxxxxxxx xx xxxxxx; xxx xxxx xxxxxxx
+xxx xxxxxxxx xxxx xxxxx xxxx xx xxxxxxx xxx xxxxxx xxx xxxxxxxx “Xxxxxxx”
+xxxxxx xx xxx “Xxxxxxx Xxxxxx Xxxxxxx” xxxxxxx xx xxx
+xxxxxxx xxxx.</p></sec><sec id="sec3.5"><title>Feature Detection</title><p>XX0 xxxxxxx xxxxxxxxx xx xxx xxxxxxxxxxxxxx
+xx xxxxxxxxxx, xxxxxxx-xxxx xxxxxxx xxxxxxxxxxxxx xxxxxxxx xx xxxxxxxxxxx
+XX0 xxxxx xxxx xxxxxxxx xxxxx xx xxxx xxxxxxxx xxx xx xxxxxxx–xxxx
+xx xxxx xxx xxx xxxxxxxx xx XXXx. Xxxxxxxxx xxxxxxxx xxxxx xxx xxxxx
+xx xxx x Xxxxxxxx<sup><xref ref-type="bibr" rid="ref35">00</xref></sup> xxx Xxxxxxxx<sup><xref ref-type="bibr" rid="ref36">00</xref>,<xref ref-type="bibr" rid="ref37">00</xref></sup> xxxxxxx xxxxxxxxx xxxxxxxx, xxxx xxx xxxxxxxxx xxxxxxxx, xxx xxxx
+xxxxx xxxxxxxx xx xxx xxxxxxx xx xxxxxx xxxxxxx xxxx xxxx xxxx xxxxxxxx
+xxx xxx xxxx xxxx xxxx (<xref rid="fig6" ref-type="fig">Xxxxxx <xref rid="fig6" ref-type="fig">0</xref></xref>). Xxxx xxxxxx xxxxx xx xxxxxxxx xxx xxxx xxxxxxxx xxx xx
+xxxxxxx xx xxxxx xxxx xxxxxxx xxxxxx xx xxxxxxxx xxxx, xxxx xxxx xxx
+xxxxxxx, xxx xx xxx xx xxxxxxxx xx xxx xxxx xx xxxxx xxxxxxxx xxxx
+xxx (xx xxx xxx) xxxxxxxxxxx.</p><fig id="fig6" position="float" orientation="portrait"><label>Xxxxxx 0</label><caption><p>Xxxxxx xxxxxxxx xx xxxx xxx xxxxxxxxxxxxxx xxxxxxxxx
+xxxx xxxxxxx
+XX xxxxxxx xxxxxxxxx xx Xxxxxxxxx. (X) X xxxx xx xxx xxxxx xxx xxxxxxx
+xxxxxx xxxxxxxxx xxxx xxx xxx XX0 xxxxx (xxxxx), xxx xxxxxxxx XX0
+xxxxxxxx (xxx), xxx xxx XXXx xxxx xxxxxxxxxx xx xxxxxxxx xxxxxxxx
+(xxxx). (X) XXXx xxx xxxxxxxxx xxx xxxxxxxxx xxxxxxxxxx xxxxxxxx.
+Xxxxxxxxxxxxx xxx 0 xxxxxxxx xxxxxx xxx xxxxx. Xxx xxxx xxxxxx xxxxxx
+xxxxxxxxx xxx xxxxxxxxx xxxxxxxxx xxxx xxxxx, xxx xxx xxxxx xxxxxxxx
+xxxxxxxxxx XX0 xxxxxxxx xxxx xx xxxxxxx xxx xxxxxxxxxx xxxxxxx, xxx
+xxx xxxxx xxxxx xxxxxxxx XXXx xx xxx xxxx xxx xxx xxxxx xxxxxxxxx
+xxxx xxxxx xxx xxxxx <italic toggle="yes">x</italic>/<italic toggle="yes">x</italic> xxxxxx.
+Xxx xxx xxx xxxxx xxxxx xxx xx xxxxxx xxxx xx xxxxxxx xxx xxxx xxxxxxxxxxx,
+xxxx xx xxxx xxx xxxxxxx xxxxxxxxxxxxxxx xxxx xxx xxx XXXx. (X) X
+xxxxx xxxxxxxxxx xxxxxxx xxxxxxxxxxx, xxxx xx xxxxx XX0 xxx xxxxxxx
+(XXX), xxx XXX xxxxxxxxxx xxxx xxxxxxxxx xxxxxxxx, xxx XXX xxxxxxxxxx
+xxxx xxxxxxxx xxxxxxxxxx xxxx XXXx, xxx xxx xxxxxxxx xx xxx XX0 XXX
+xxxxxxxxxx xxxx x xxxxxxx xxxx xx xxxxxxxxxx xxxx x XXX. Xxxxxx xxx
+xxxx xxxxx xxx xxx xxxxx, xxxxxxxxxx xxxxx xxx xxx xxxxxxx (xxxx xxx
+xxxxxx) xxxx xxx xxx xxxxxxxxx xxxx xxx xxxx xxxx. Xxxxxxxxxxxx, xxx
+xxxxxx xx XXXx xxxx xx xxxxxxxxx xxxxxxx, xxx xxxxxx xx xxxxxxxx xxxx
+xx XXX, xxx xxx xxxxxx xx xxxxxxxxxx xxxxxxxx xxxx xxx xx xxxxxxx
+xxx xxxxxxxx xxxxxxx xxx xxxxx. (X) Xxx xxxxxxxxx XX0 xxxxx xxx xxx
+xxxxxxxxx xxxxxxx xxx xx xxxxxx. Xxx xxxxxxx xxxxx xxxxxxxx xxx xxxxxxxx
+xxxxxxxx xx xxx xxxxxxxx xxxxx.</p></caption><graphic id="gr6" position="float" orientation="portrait" ns1:href="pr4c00968_0006.jpg" /></fig><p>Xx xxx x xxxxxxx xxxxxxxxx xxxxxxxx, xxxxxxx xxxxxx
+xxxxxx xxx
+“Xxxx Xxxx Xxxxx” xxxxxxx xx xxx xxxxxxx xxxx, xxxxx
+xxxxxxxx xxx xxxx xxxxx xxxx xxxx xxxx xxxxxxxx xx xxx xxxxxxx xxxxxxx
+(xxxxxxx xxxx xxxx xxxxxx xxxxxxx xxx xxxxxxxx). Xxx xxxx xxxx xxxxxx
+xxx “Xxx Xxxxxxx Xxxxxxxxx” xxxx xxx x xxxxx xxxx xxxx,
+xxxxxxxx xxxxxxxxxxxxx xxxxxxx, xxx xxxx xxx xxxxxxxx. Xxxx xxxx,
+xxx xxxx xx xxxxxxxx xx xxxxxxxxxx xxx xxx xxxx xxx xxxxxxx xxxxxxxxx
+xxxxxxx xxxx xxx xxxxxxx xxxx xx xxxx xxx XX xxxx xxx xxxxxx xxxxxxx
+xxxx xxxx xxxx xxxx xxxx.</p><p>Xxxxxxx xxxxxxxxx xxxxxxx xxx xxxx
+xx xxxxxx xxxx xxx xxxxxxx xxxx
+xx xxxxxx xxxxxxxxx xxx “Xxxx Xxxxxxx Xxxxxxxxx Xxxx”
+xxxxxxx xx xx xxxxxxxxx xxx “Xxxx Xxxx Xxxxx” xxxxxxx
+xxx xxxx xxx xxxx xxxx xx xxxxxxxx. Xxxx xxxxxxx x xxxxxxx xxxxxxxxx
+xxx, xxxxx xxx xxxxxxxxx xxxx xxxx xxxxxxxxxxxxxx xxxxxxx xx xxx xxxx
+xx xxx xxxxx xxx xxxxxxx (XXX) xx xxxxxxx xx xxx xxxxxxxxx xxxxxxxx,
+x xxxxxxxxx xxxxxxx xxx xxxxxxxxxxxx xx xxxxxxxx xx XXX, xxx x xxxx
+xx xxx xxxxxxxxxx xxxxxxxx xxxxxxxxx xx Xxxxxxxx (<xref rid="fig6" ref-type="fig">Xxxxxx <xref rid="fig6" ref-type="fig">0</xref></xref>). Xxxx xxxx Xxxxxxxx, xxxx
+xx xxxxxx, xxxxxxxxxxxx xxxx, xxxxxxxxx xxxx xxxxx, xxx xxxxxxxxx
+xxx xxxxx xx xxxxxxxxx xxxxxx xxx xxx xxxxxxxx. Xxxx xxxxxxxxxx xxxxxxx
+xxx xx xxxxxxxx xx xxxx xxx xxxxxxxxxx XXX xxx xxxx xx Xxxxxxxx
+xxxxxxxxxxx xxxx xx xxxxxx xxx xxxxxxxxxx xxxxxxx. Xxxxxxxxxxxx, xxxxxx
+xxxxxxx xxx xx xxxxxx xxx xxx xxxxx xxxx xxxx xxxx xxxx xxxxxxxxxx
+xxx xxxxxxxxxxxxxx xxxxxxx xx xxx xxxx xx xxx xxxxxxxx xxxx xxxxxxxx
+XXXx, xxx xxxx XXXx xxxx xxxxxxxxx xxxxxxxx, xxx xxxx xxxxxxxx xxx
+xx x xxxxxx xxxxxxxxx xxxxxxx, xxx xxx XXX xxxx XXXx xxxxxxxx xx XXX
+xx xxxxxxxxx xxxxxxxx.</p></sec><sec id="sec3.6"><title>Data Sharing, Security, and Collaboration</title><p>Xxxxxxxxx
+xx xxxxxxxx xx xx x xxxxxx xxxx-xxxxxxx xxxxxxxx–xxxx xxx xxxxxxxx
+xxxxxxxxxxxxx xxx xxx xxxxxx xxxxxxx. Xxx xxxxxx xx xxxx xx xxxxxxx
+xx xxxxxxxxxxx xxxxxx xx xxxxxxxx, xxx xx xxxxxxx, xxx xxxx xxxxxxxx
+xx x xxxxxxx xxx xxxxxxx, xxx xxxx xxxxx xxxxxxxxxx xxxx xxxx xxxxxxx
+xxxx xxxxxx xx xxxx xx xxxx xxxxxxx. Xxxx “xxxxxxx”
+xxxxx xx xxxxxxx, xxxxx xxx xxxxx xx xxx xxxxxxx xxx xxxxxxxxxx xxxxx
+xxxxxx xxxx xxx xx xxxx xxxxxxxx Xxxxxxxxx xxxxx, xx xxxxxxxx xx xx
+xxxx xxx xxxxxxx xxxx xxxxxxx xxx xxxxxxxxxxxxx. Xx xxxxx xxxx xxxx
+xxxxx xxxxx xx Xxxxxxxxx, xxxxxxx xxxxxx xxx xxx xxxxxxxx Xxxxxxxxx
+xxxxx xx xxxxxx xxxxx xx xxxxxx x Xxxxxxxxx xxxxxxx xxx xxxx xxx xxxxxxx.
+Xxxx xxxxxxxx xxx-Xxxxxxxxx xxxxx, Xxxxxxxxx xxxxx xx xxxxx xxxx xxxxxxxx
+x xxxxxxx xxxx xxx xxxxxxxx xx xxxxxxx xxx xxxxxxx xxx xxxxxxx. Xxxxxxx
+xxxxxx xxx xxxx xxxxxx xxxxx xxxx xxx xxxxxxx (xxxxxxxx xxxxx xxxxxx
+xx xxxx), xx xxxxxx xxxxxx xxxxxx (x.x., xxxxxx x xxxx xxxx xxxx-xxxx
+xx xxxx/xxxxx).</p><p>Xx xxxxx xxxx xxxx xxx xxxxxx (xxxxxxx xxxx
+xxx xxxx x Xxxxxxxxx xxxxxxx) xxx xxxxxxx xxxxx. Xxxxx x xxxxxxx xxx
+xx xxxxxx xx “xxxxxx”—xxxxxx xxxxxxxxx xxx xxxxxxx’x
+xxxxxx XXX xxxx xxxx xxxxxx xx xxx xxxxxxx xxx xxx xxxx (<xref rid="fig2" ref-type="fig">Xxxxxx <xref rid="fig2" ref-type="fig">0</xref></xref>X). Xxx xxxxxxx,
+xxx xxxxxxx xxxxxxxxxx xxxx xxxx xxxxxxxxxxx (<uri ns1:href="https://limelight.yeastrc.org/limelight/p/demo">xxxxx://xxxxxxxxx.xxxxxxx.xxx/xxxxxxxxx/x/xxxx</uri>) xx x xxxxxx xxxxxxx. Xxxx xxxxxx xxxxxxx xxxx xx xxxxxxxx xx xx
+xxxx xxxxx x xxxxxxxxxx xx xxxxxxxx xxx xxxxxxxxxxx xx xx xxxx xxx
+xxxxxxxxx xxxx xxx xxxx xxxxxx xx xxxx xxxxxx. Xxxxxx xxxx xxx xx
+xxxxxxx xx xxxxxxxx xx xxx xxxx xx xxx xxxxxxx xxxxx. Xxxxxx, “xxxxxxxx
+xxxx” xxx xx xxxxxxx xxx x xxxxxxx (<xref rid="fig2" ref-type="fig">Xxxxxx <xref rid="fig2" ref-type="fig">0</xref></xref>X). Xxxxxxxx xxxx xxxxxxxxx x xxxxx, xxxxxxxxxxx
+xxxxxx xxxxxx xxxx x xxx-Xxxxxxxxx xxxx xxx xxxxxx xxxx xxxxxxxxx
+x xxxxxxx xxxx xxxxxx xxxx xxxx-xxxx xxxxxx xx xxx xxxxxxx xxx xxx
+xxxx (xxxxx xxxx xxxxxxxxxxx xxxxx xxxx xxx xxxxxxx xxxxx xxx xxxxxxxx).
+Xxxx xx xxxxxxxx xx xx xxxx xxxx xxxxxxxxxx x xxxxxxxxxx xx xxxx xxxxxxxxx
+xxx xxxxxx xxx xxxx xxxxxxx xxx xxxx xx xxxx xxx xxxx xxxxxx. Xxxxxxxx
+xxxx xxx xx xxxxxxxx xx xxx xxxx xxx xxx xxxxxx xxxxxx xxx xx xxxxxxxxxxx,
+xxxxx xxxxxxxxxxx xxx xxxxxxxx xxxxxx.</p><p>Xxxxxxx xxxxxx xxx xxxx
+xxxxxxxxx xxx XXX xxxxxxxxxx xxxx x xxxxxxx
+xx xx xxxx xxxxxxxxxxx. Xxxxxxxxxxxx, xxx xxxxxxx xxxxx xxx xxxx x
+xxxxxxx, xxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xx xxxxx xxxx xxx xxxxx,
+xxxxxxxx, xx xxxx xxxxxxxxxx xxxx xxx xxxxxxx.</p></sec><sec id="sec3.7"><title>Usage and Scalability</title><p>Xxxxxxxxx xx xxxxxxxx xx xx xxxxxxxxxx
+xxx xxxxxxxx xxxx xx xxxx xxxxxxxx xxx xxxxxxxxxx xxxxxxx. Xxx xxxx
+xxx xxxxxxxxxxx, xxxxxxxx, xxxxxx (xxxxxxx xxx xxxxxxx xxxxxxx xxxx),
+xxx xxx xxxxxxxx xxx xxxxxxx xxxxxxxxx, xxxxxxxx xxxxxxx xxxxxxxxxx,
+xxx xxxx xxxxxx xxxxxxx (xxxxxxx xxxxx xxxx xx XXXXX xxxxx) xxx xxxxxxxxxxxx
+xxx xxx xx xxx xxxxxx xx xxx xxxx xxxxxx xx xxxxxxxx xxxxxxx. Xxxxxxx
+xxxxxxxxx xxx xxxx xxxx xx xxxxxxxxxx xx xxx xxxx xx xxx xxx xxxxxxxxxxx,
+xxxxxx xx xxx xxxxxxxxxx xxxxxxxx, xxxxxxx xxxxxxxxxxxx, xxx xxxxxx
+xxxxxxx xxxx xx xxxxxx xx xxxxxx xxxxxxxxxxx. Xxxxxxxxxx xxx xxxxxxxxxxxx
+xx xxx XXXx, xxxxxx xx XXX, xxx xxxxxxxxxxx xx xxx xxxxxxx xxxxx xxx
+xxxx xxxxx xxxxxxx xx xxx xxxxxxxxxxx xx Xxxxxxxxx xxx xxx xxxxxxxxxx.
+Xxxxxxxx, xxxxxx xxxxxxxx (xxxx xx xxx xxx xxxxxxxxxxx, xxxxxxxx,
+xxx xxxxxx) xx xxxxxxxx xxxxxxx xxx xxxxxxx xxxxxxxxxxx.</p><p>Xxx
+xxxxxxx xxxx xx xxxxxxxx xxxxxxxxxxxx xx Xxxxxxxxx xxxx xx xxxx xxxxxxxxx
+xx xxxxxxxxxxx xxx x xxxxxxx xx xxxxxxxx xxxxx xxx xxx xxxxxxxx xxxxxxxxxx.
+Xxxx xxxxxxxxxxxx xxxxx xxx xxx xxxxxxxxxxx xxx xxxxxxxx xx x xxxxxx
+xxxxxx xxxx xx Xxxxx Xxxx XXX (xxxx 0000), 000 XX XXX, xxx x XXXx
+xxxxx xxxxx xxxx. Xx xx xxxx xxxxxxx, xxxx xxxxxx xxxxx 000 xxxxx,
+0000 XX/XX xxxxxxxx, xxxxxx 00 xxxxxxx xxxxxxxx xxxxxxxxxx xx xxxxx
+xxxxxxxx, xxx xxxxxx 000 xxxxxxx XXXx. Xxxxxx xx xxxxxx xx x xxxxxxxx
+xxxxxx xxxx xxxxx xxxx xxxx 0000 xxxx xxxxx xxxxxx xx 0.0 XX xx xxxxx
+xxxxx xxx xxxxxx xxxxxx xxx xxxxxxx.</p><p>Xxxxxxxxxxxxx xxx xxxxxxxx
+xxx xxxxxxxxxx xxxxxxx xxx xxxxxxxx
+xxxxxxxx xx x xxx xxxxxxxxxxx xx xxxx xxxxxxxx xx Xxxxxxxxx. Xxxxxxxxx
+xxxxxxxx x xxxxx xxxxxx xx xxxxxx xxxx xxx xxxxxxxx xxxx xxxxxx xxxx
+xxxxxxx xxxx xxxxxxx xxxx xxxxx. Xxxxxxxxxxxx, xxxxxx xxxxxxxxxxxxx
+xxxxxx xx <uri ns1:href="https://limelight-ms.readthedocs.io/">xxxxx://xxxxxxxxx-xx.xxxxxxxxxxx.xx/</uri> xxxxxxxxxx xxxxxxxxxxxx, xxxxxxxxxxxxxx, xxxxxxxxx, xxx xxxxx xxxxx
+xx Xxxxxxxxx. Xxx xxxxxxx, xxxxx xxx xxxxxxxxxx xxx xxxxxx xxxxxx
+xxx XxxXxx (<uri ns1:href="https://github.com/yeastrc/limelight-core/issues">xxxxx://xxxxxx.xxx/xxxxxxx/xxxxxxxxx-xxxx/xxxxxx</uri>), xxxx xxx
+Xxxxx xx <uri ns1:href="https://limelight-ms.slack.com/">xxxxx://xxxxxxxxx-xx.xxxxx.xxx/</uri>, xx xxxx xx xxxxx xx xxx xxxxxxx xxxxxx xx xxx xxxxxx xx xxx xxxx.</p></sec><sec id="sec3.8"><title>Limitations and Future Directions</title><p>Xxx xxxxx xxxxxxxxxx
+xx Xxxxxxxxx xx x xxxx xx xxxxxx xxxxxxx xxx xxxxx xxxx xxxxxxxxxxxxxx
+(XXX) xxxxxxxxx, XX0 xxxx xxxx, xxx xxxxxxxx xxxxxxxx xxxxxxxxx xxxxx
+xxxxxx xxxx xxxx (XXXx). Xxxxxxxxxxxx, Xxxxxxxxx xx xxxxxxxxx xxxxxxx
+xx XXX xxxxxxxxx. Xxxxxxxxxxxx xxxx xxxx-xxxxxxxxxxx xxxxxxxxxxx (XXX),
+xxxxxxxx xxxxxxxx xxxxxxxxxx (XXX), xxx xxxxxxxx xxxxxxxx xxxxxxxxxx
+(XXX) xxx xxxx xxxxxxxxxxx xxxx xxxxxxxxxxxx-xxxxx xxxxxxx xxx xxxxxxx
+xxxxxxxxxxxxxx. Xxxxxx xxxx xx Xxxxxxxxx xxxx xx xx xxxxxxxxx XXX-xxxxx
+xxxxxxxxxxxxxx xxxxxxx xxxx xxx xxxxxxxx xxxxxx xxx xxxx xxxxxxxxx
+xxxxxx, xxxxx xxxxxxxxxx xxx xxxx xxxxxxxxx, xxx xx xxxxx x xxxxxxxxxxx
+xxxxx xx xxxxxxx xxxxxxx xxxxxxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxxx
+XXX, XXX, xxx XXX xxxxxxx-xxxxxxx xxxxxxxxx (x.x., x xxxxxxx-xxxxxxx
+Xxxxxxxxx XXX xxxxxx) xx xxxxxxx xxxxx xxxxxxx xx xxx xxxxx xx x xxxxxxxxxx
+xxxxxxx.</p></sec></sec></body><back><notes notes-type="data-availability" id="notes-1"><title>Data Availability Statement</title><p>Xxx xxx xxxx
+xxxxxxxxxxxx xxxx xxxxx xxxx xxxxxxxxx xx xxx XxxxxxxxXxxxxxx Xxxxxxxxxx
+xxxx xxx xxxx xxx xxxxxxxxxx [XXX000000]. Xxxxxxxxx xxxxxxx xxxxxxxxxx
+xxxx xxxx xx xxxxxx xxx xxxxxxxxxxxxxx xxxxxxxxx xx xxxxxxxxx xx <uri ns1:href="http://limelight.yeastrc.org/limelight/p/demo">xxxx://xxxxxxxxx.xxxxxxx.xxx/xxxxxxxxx/x/xxxx</uri>.</p></notes><notes notes-type="COI-statement" id="notes-2"><p>Xxx
+xxxxxxx
+xxxxxxx xxx xxxxxxxxx xxxxxxxxx xxxxxxxxx xxxxxxxx(x): X.X.X. xx x
+xxxx xxxxxxxxxx xxx Xxxxxx Xxxxxx Xxxxxxxxxx. Xxx xxxxxxxxx xxxxxxx
+xxxxxxx xx xxxxxxxxx xxxxxxxxx.</p></notes><ack><title>Acknowledgments</title><p>Xxx xxxx xxxxxxxxx xxxx xxx xxxxxxxxx xx xxx
+Xxxxxxxx Xxxxxxxxxx
+xx Xxxxxx, Xxxxxxxx Xxxxxxxxx xx Xxxxxxx Xxxxxxx Xxxxxxxx xxxxx Xxxxx
+X00XX000000 (xx X.X.), X00XX000000 (xx X.X.X.), xxx X00XX000000 (xx
+X.X.X.), xxx Xxxxxxxx Xxxxxxxxxx xx Xxxxxx Xxxxxx xx xxx Xxxxxxxx
+xxxxx X00XX000000, xxx xxx Xxxxxxxx Xxxxxxx Xxxxxxxxxx Xxxxx XXX-0000000
+(xx X.X.X.). Xxxxxxx xxx xxxx xxxxxxxx xx xxx Xxxxxxxxxxxx Xxxxxxxx
+Xxxxxxxx Xxxxxxxx Xxxxxxxx (XXXXX) XXX-XXX xxxxxxx xxxxxxx xxx Xxxx
+Xxxxxxxx Xxxxxx xxxxxxxx X000XX0000000 (xx X.X.X). Xxx xxxxx xxx xxxxxxxxxxx
+xxxxxxxxx xxxxxx xxx xx xxxxxxxxxxx xx xxxxxxxxxxx xxxxxxxxxxxx xxx
+xxxxxxxx xxxxxxxx, xxxxxx xxxxxxxxx xx xxxxxxx, xx XXXX, XXXXX, XXX,
+xx xxx X.X. Xxxxxxxxxx. Xxx X.X. Xxxxxxxxxx xx xxxxxxxxxx xx xxxxxxxxx
+xxx xxxxxxxxxx xxxxxxxxx xxx xxxxxxxxxxxx xxxxxxxx xxxxxxxxxxxxxxx
+xxx xxxxxxxxx xxxxxxxxxx xxxxxxx.This work was supported in part by the University of Washington’s Proteomics Resource (UWPR95794)..</p></ack><ref-list><title>References</title><ref id="ref1"><mixed-citation publication-type="journal" id="cit1"><name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X. X.</given-names></name>
+<article-title>X Xxxx XXXXXXX Xxxxx
+Xxxxxxxxxxx Xxxxxxxxx</article-title>. <source>X. Xxxxxxxx Xxx.</source>
+<year>0000</year>, <volume>0</volume> (<issue>00</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xx000000x</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref2"><mixed-citation publication-type="journal" id="cit2"><name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X. X.</given-names></name>
+<article-title>X Xxxxxx Xxxx xxxx
+Xxxxx–Xxxxxxxxxxxxxx xxx
+Xxxxxxxx</article-title>. <source>X. Xx. Xxx. Xxxx Xxxxxxxx.</source>
+<year>0000</year>, <volume>00</volume>, <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/x00000-000-0000-x</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref3"><mixed-citation publication-type="journal" id="cit3"><name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxxxxx-Xxxxx
+Xxxxxxx Xxxxxxxxxxxxxx xx Xxxxxxxxx Xxxxxxxx Xxxxxxxxx Xxxxx Xxxx
+Xxxxxxxxxxxx Xxxx</article-title>. <source>Xxxxxxxxxxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>00</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/(XXXX)0000-0000(00000000)00:00&lt;0000::XXX-XXXX0000&gt;0.0.XX;0-0</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref4"><mixed-citation publication-type="journal" id="cit4"><name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>X Xxxxxx xxx Xxxxxxxx
+xxx Xxxx Xxxxxxxx xx Xxxxx Xxxxxxx
+Xxxxxxxxx xxxx Xxxxxx Xxxx Xxxxxxx</article-title>. <source>Xxxxx Xxxxxx.
+Xxxx Xxxxxxxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>00</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xxx.0000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref5"><mixed-citation publication-type="journal" id="cit5"><name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>XXXxxxxxx:
+Xxxxxxxxx xxx Xxxxxxxxxxxxx Xxxxxxx Xxxxxxxxxxxxxx
+xx Xxxx Xxxxxxxxxxxx-Xxxxx Xxxxxxxxxx</article-title>. <source>Xxx.
+Xxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>000</fpage>–<lpage>000</lpage>. <pub-id pub-id-type="doi">00.0000/xxxxx.0000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref6"><mixed-citation publication-type="journal" id="cit6"><name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>
+<article-title>Xxxxxxxxx xxx Xxxxxxxxxxxxx xx Xxxxxxxxxxxxxxx Xxxx-Xxxxxxx
+Xxxxxxx Xxxxx Xxxx Xxxxxxxxxxxx</article-title>. <source>Xxxx. Xxxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xxx.xxxxxxxx.0x00000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref7"><mixed-citation publication-type="journal" id="cit7"><name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxx Xxxxxx
+Xxxx-Xxxxxxxxxxxxx Xxxxxxxxxxxx Xxxxxxxxx xxxx XxxxXxxxxxxx</article-title>. <source>X. Xxxxxxxx Xxx.</source>
+<year>0000</year>, <volume>00</volume>, <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xxx.xxxxxxxxx.0x00000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref8"><mixed-citation publication-type="journal" id="cit8"><name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>
+<article-title>Xxx XxXxxxxXX Xxxx Xxxxxxxx xxx Xxxx Xxxxxxxxxxxx-Xxxxx
+Xxxxxxxxxx Xxxxxxx</article-title>. <source>Xxx. Xxxx. Xxxxxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>X000.000000-0</fpage>–<lpage>X000.000000-00</lpage>. <pub-id pub-id-type="doi">00.0000/XXX.X000.000000</pub-id>.<pub-id pub-id-type="pmcid">XXX0000000</pub-id><pub-id pub-id-type="pmid">00000000</pub-id></mixed-citation></ref><ref id="ref9"><mixed-citation publication-type="journal" id="cit9"><name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>
+<article-title>X Xxxxxxx
+Xxxxxxxxxx XX/XX Xxxxxxxx Xxxxxxxx Xxxxxxxxx Xxxx XXX Xxxx Xxxxxxx</article-title>. <source>Xxx. Xxxx. Xxxx.</source>
+<year>0000</year>, <volume>0</volume>, <elocation-id>0000</elocation-id><pub-id pub-id-type="doi">00.0000/xxx0000000</pub-id>.<pub-id pub-id-type="pmcid">XXX0000000</pub-id><pub-id pub-id-type="pmid">00000000</pub-id></mixed-citation></ref><ref id="ref10"><mixed-citation publication-type="journal" id="cit10"><name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxx
+Xxxxxxxxxx-X Xxxxxxxxx Xxxxxxxx Xxxx Xxxxxxxxxx Xxxxx xxx Xxxxxxx
+Xxxxxxxxxxx</article-title>. <source>Xxxxxxxxx</source>
+<year>0000</year>, <volume>0</volume> (<issue>0</issue>), <elocation-id>00</elocation-id><pub-id pub-id-type="doi">00.0000/xxxxxxxxx0000000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref11"><mixed-citation publication-type="journal" id="cit11"><name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxx:
+X Xxxxxxxxxxxxx Xxxx xxx Xxxxxxxxxx XX/XX-Xxxxx Xxxxxxxxx Xxxxxxx</article-title>. <source>Xxxxxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xxxx.000000000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref12"><mixed-citation publication-type="journal" id="cit12"><name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>XxxxxxXx:
+X Xxxx-xx-Xxxxxxx Xxxxxxxxx
+Xxxxxx xx Xxxxx Xxxxx Xxxxxxxxxxxxx xx Xxx</article-title>. <source>X. Xxxxxx. Xxxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>Xxxxx</issue>), <fpage>X0</fpage>–<lpage>X0</lpage>.</mixed-citation></ref><ref id="ref13"><mixed-citation publication-type="journal" id="cit13"><name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>
+<article-title>Xxxxxxxxxxxxx xx XX-XX/XX Xxxxxxxxxx Xxxx xx XxxXxxxx</article-title>. <source>Xxxxxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xxxx.000000000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref14"><mixed-citation publication-type="journal" id="cit14"><name name-style="western"><surname>Xx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxx
+xx XXX Xxxxxxxxxx Xxxx Xxxxx XXXxxxxxx-XXX xxx XxxxXxxx Xxxxxxxxxxxxx
+Xxxxxxxx</article-title>. <source>Xxx. Xxxxxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <elocation-id>0000</elocation-id><pub-id pub-id-type="doi">00.0000/x00000-000-00000-0</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX00000000</pub-id></mixed-citation></ref><ref id="ref15"><mixed-citation publication-type="journal" id="cit15"><name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxXxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxxxxxxx
+Xxxxxxxxxxxxx Xxxxxxxxxxx
+Xxxxxxxxxxxx xxx Xxxxxxxxx Xxxxx xxx Xxxxxx-X Xxxxxxxxx</article-title>. <source>Xxxxxxxxx</source>
+<year>0000</year>, <volume>0</volume> (<issue>0</issue>), <elocation-id>0</elocation-id><pub-id pub-id-type="doi">00.0000/xxxxxxxxx0000000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref16"><mixed-citation publication-type="journal" id="cit16"><name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>
+<article-title>XxxxxxxXxxxxx
+Xxxxxxx
+Xxxxxxxxxx xx XX-Xxxxxxx Xxxxxxxxxx Xxxx Xxxx</article-title>. <source>Xxx. Xxxxxxxxxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>00</fpage>–<lpage>00</lpage>. <pub-id pub-id-type="doi">00.0000/xxx.0000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref17"><mixed-citation publication-type="journal" id="cit17"><name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxx</surname><given-names>X.</given-names></name>
+<article-title>XxXXXX: Xxx-Xxxxx Xxxxxxxxxxxxx,
+Xxxxxxxx xxx Xxxxxxx xx Xxxxxxxxxx Xxxx</article-title>. <source>Xxxxxxx
+Xxxxx Xxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>X0</issue>), <fpage>X000</fpage>–<lpage>X000</lpage>. <pub-id pub-id-type="doi">00.0000/xxx/xxx000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref18"><mixed-citation publication-type="journal" id="cit18"><name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names>X.</given-names></name>
+<article-title>Xxxxxxxxx xxx Xxxxxxxxxxxxxx xx Xxxx–Xxxxxxx
+Xxxxxxx xx Xxxxx Xxxxx</article-title>. <source>X. Xxxxxxxx Xxx.</source>
+<year>0000</year>, <volume>00</volume>, <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xxx.xxxxxxxxx.0x00000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX00000000</pub-id></mixed-citation></ref><ref id="ref19"><mixed-citation publication-type="journal" id="cit19"><name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx-Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>XxXX--x
+Xxxxxxxxx Xxxxxxxx xxx Xxxx Xxxxxxxxxxxx Xxxx</article-title>. <source>Xxx. Xxxx. Xxxxxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <elocation-id>X000.000000</elocation-id><pub-id pub-id-type="doi">00.0000/XXX.X000.000000</pub-id>.<pub-id pub-id-type="pmcid">XXX0000000</pub-id><pub-id pub-id-type="pmid">00000000</pub-id></mixed-citation></ref><ref id="ref20"><mixed-citation publication-type="journal" id="cit20"><name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X. X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>XxXxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>
+<article-title>X Xxxxxx Xxxx Xxxxxxxxxxxxxx xx Xxxx Xxxxxxxxxxxx Xxxx
+xxx Xxx Xxxxxxxxxxx xx Xxxxxxxxxx Xxxxxxxx</article-title>. <source>Xxx. Xxxxxxxxxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>00</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xxx0000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref21"><mixed-citation publication-type="conf-proc" id="cit21"><person-group person-group-type="allauthors"><name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name></person-group><source>Xx Xxxx
+Xxxx Xxxxxxxxxxxx Xxxxxxx
+Xxxxxxxxxx xxxx x Xxxxxxxxxxx Xxxxx</source>; Xxxxxxxxxxx xx xxx 00xx
+Xxxxxxxxxxxxx Xxxxxxxxxx xx Xxxxxxx Xxxxxxxx;<publisher-name>XXXX</publisher-name>, <year>0000</year>; xx <fpage>00000</fpage>–<lpage>00000</lpage>.</mixed-citation></ref><ref id="ref22"><mixed-citation publication-type="journal" id="cit22"><name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxx-Xxxxxxxxxx
+Xxxxxxxx xxx Xxxxxxx Xxxxxxxxxxxxxx xxxx Xxxxxxx Xxxxxxxxxx Xxxxxxxx</article-title>. <source>Xxx. Xxxxxxx</source>
+<year>0000</year>, <volume>0</volume> (<issue>00</issue>), <fpage>000</fpage>–<lpage>000</lpage>. <pub-id pub-id-type="doi">00.0000/xxxxx0000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref23"><mixed-citation publication-type="journal" id="cit23"><name name-style="western"><surname>Xxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>XXxxxxxx: Xxxxx-Xxxxx Xxxxxxxxxxx Xxxxxxxx xx Xxxxxxx
+Xxxxxxxxx Xxxx Xxxxxxxx Xxxxxxx xxx Xxxxxxx Xxxxxxxxxxxxxx Xxxxx xxx
+Xxxxx Xxxxxxxxx</article-title>. <source>Xxx. Xxxx. Xxxxxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>00</issue>), <elocation-id>X000.000000</elocation-id><pub-id pub-id-type="doi">00.0000/xxx.X000.000000</pub-id>.<pub-id pub-id-type="pmcid">XXX0000000</pub-id><pub-id pub-id-type="pmid">00000000</pub-id></mixed-citation></ref><ref id="ref24"><mixed-citation publication-type="journal" id="cit24"><name name-style="western"><surname>Xxxxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx-xxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx-xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx-xxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx-xxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxxxxxxx
+Xxxxxxxxxxxxxx xx xxx
+Xxxxxxxx Xxxxxxxx Xxxxxxx Xxxxxxxxx Xxxxx Xxxxxx xx Xxxxxxxx Xxxxxxxxxxxxx
+Xxxxxxxxxxxxxx xx xxx Xxxxxxxx Xxxxxxxx Xxxxxxx Xxxxxxxxx Xxxxx Xxxxxx
+xx Xxxxxxxxxxxxx Xxxxxxxxxxxx</article-title>. <source>Xxxx Xxx.</source>
+<year>0000</year>, <volume>00</volume>, <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/x.xxxxxx.0000.00.000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref25"><mixed-citation publication-type="journal" id="cit25"><name name-style="western"><surname>XxXxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx-Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxx: Xxxxx Xxxx
+Xxxxxx Xxxxxxx Xxxxxx Xxxx Xxxxxxxxxxxx Xxxxxxxx</article-title>. <source>X. Xxxxxxxx Xxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>00</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xx000000x</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref26"><mixed-citation publication-type="journal" id="cit26"><name name-style="western"><surname>Xx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>
+<article-title>Xxxx Xxxxx-Xxxxx
+Xxxxxxxxxxxx Xxxxxx
+xxxxxxx Xxxxxx Xxxx Xxxxxxxxxxxx</article-title>. <source>Xxx. Xxxx.
+Xxxxxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <elocation-id>X000.000000</elocation-id><pub-id pub-id-type="doi">00.0000/xxx.X000.000000</pub-id>.<pub-id pub-id-type="pmcid">XXX0000000</pub-id><pub-id pub-id-type="pmid">00000000</pub-id></mixed-citation></ref><ref id="ref27"><mixed-citation publication-type="journal" id="cit27"><name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxxxxxxx Xxxxxxxxxxxxxx xx Xxxxxxxx xx Xxxxxx Xxxx Xxxxxxx Xxxxx
+xx Xxxxxxxxx Xxxx Xxxxxx Xxxxxx</article-title>. <source>Xxx. Xxxxxxxxxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>00</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xxx.0000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id></mixed-citation></ref><ref id="ref28"><mixed-citation publication-type="journal" id="cit28"><name name-style="western"><surname>xx
+Xxxxx Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxxxxx: X Xxxxxxxxx Xxxxxxx
+xxx Xxxxxxx Xxxxxxxxxx Xxxx Xxxxxxxx</article-title>. <source>Xxx. Xxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>000</fpage>–<lpage>000</lpage>. <pub-id pub-id-type="doi">00.0000/x00000-000-0000-x</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref29"><mixed-citation publication-type="journal" id="cit29"><name name-style="western"><surname>Xx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X. X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>XxxXxXXX:
+Xx Xxxxxxxx XXXXXXX-xxxx Xxxxxxxxx xxxx Xxxxxxxx Xxxxxxxxxxx xxx Xxxxxxxxxxx</article-title>. <source>X. Xxxxxxxxxx</source>
+<year>0000</year>, <volume>000</volume>, <fpage>00</fpage>–<lpage>00</lpage>. <pub-id pub-id-type="doi">00.0000/x.xxxxx.0000.00.000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref30"><mixed-citation publication-type="journal" id="cit30"><name name-style="western"><surname>Xxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxXxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>XXXXxxxxx xxx Xxxxxxxx:
+Xxxxx xxx
+Xxxxxxxxxx xxx Xxxxxxxxx Xxxxxxx Xxxxxxxxxxxxxxx xxxx Xxxxxxx Xxxxxxxxxx</article-title>. <source>X. Xxxxxxxx Xxx.</source>
+<year>0000</year>, <volume>0</volume> (<issue>0</issue>), <fpage>00</fpage>–<lpage>00</lpage>. <pub-id pub-id-type="doi">00.0000/xx000000x</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref31"><mixed-citation publication-type="journal" id="cit31"><name name-style="western"><surname>Xxxxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>XxxXxxxx Xxxxxxx
+Xxxx Xxxxxxx Xxxxxxxxxxxx Xxxxxxxxxx xxxx Xxxxx Xxxxxx Xxxx Xxxxxxxxxxxx
+Xxxxxxxx</article-title>. <source>Xxx. Xxxxxxxxxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>000</fpage>–<lpage>000</lpage>. <pub-id pub-id-type="doi">00.0000/x00000-000-0000-0</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref32"><mixed-citation publication-type="journal" id="cit32"><name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>
+<article-title>X Xxxx Xxxxxxxxxxxx
+Xxxxxxxxxx Xxxx Xxxxxxxxxx Xxxxxxxx</article-title>. <source>Xxx. Xxxx.
+Xxxxxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>000</fpage>–<lpage>000</lpage>. <pub-id pub-id-type="doi">00.0000/xxx.X000.000000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref33"><mixed-citation publication-type="journal" id="cit33"><name name-style="western"><surname>Xxxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxxxxx Xxxxxxxx xx Xxxxxxxx Xxxxxxxx Xxxxxxxxxx
+Xxxxxxx xx Xxxxxxxxxxxxx Xxxxxxxxxx</article-title>. <source>X. Xxxxxxxx
+Xxx.</source>
+<year>0000</year>, <volume>0</volume> (<issue>0</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xx000000x</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+</mixed-citation></ref><ref id="ref34"><mixed-citation publication-type="journal" id="cit34"><name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxx:
+X Xxxxxxxxxxxxx Xxxx xxx Xxxxxxxxxx xxx Xxx-Xxxxxxxxxx Xxxxxxxx Xxxxx
+Xxxx xxx Xxxxx-Xxxx Xxxxxxxxxxxx Xxxxxxxxx Xxxxxxxx</article-title>. <source>Xxxxxxxxxx</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xxxx.000000000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref35"><mixed-citation publication-type="journal" id="cit35"><name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxx-Xxxxx
+Xxxx Xxxxxxxxx, Xxxxxxx
+Xxxxxxxxx, xxx XX/XX Xxxxxxxx Xxxxxxx Xxxxxxxxxx xx Xxxxxxx Xxxxxxxxxx
+Xxxx Xxxx Xxxxx Xxxx-Xxxxxxxxxx Xxxx Xxxxxxxxxxxx</article-title>. <source>Xxxx. Xxxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>00</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xx0000000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref36"><mixed-citation publication-type="journal" id="cit36"><name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxxxxxxxxx xx Xxxxxxxx
+Xxxxxx Xxxxxxxxxx xxx Xxxx Xxxxxxxxx Xxxx Xxxxxxxx XX/XX Xxxx</article-title>. <source>X. Xxxxxxxx Xxx.</source>
+<year>0000</year>, <volume>0</volume> (<issue>0</issue>), <fpage>0000</fpage>–<lpage>0000</lpage>. <pub-id pub-id-type="doi">00.0000/xx000000x</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX0000000</pub-id></mixed-citation></ref><ref id="ref37"><mixed-citation publication-type="journal" id="cit37"><name name-style="western"><surname>Xxxxxxx-Xxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X. X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xxxxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxx</surname><given-names>X.</given-names></name>; <name name-style="western"><surname>Xx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>XxxXxxx</surname><given-names>X. X.</given-names></name>; <name name-style="western"><surname>Xxxxx</surname><given-names>X. X.</given-names></name>
+<article-title>Xxx Xxxx Xxxxxxx
+xxx Xxxxxxxx xx Xxxxxx-Xx Xxxxxx Xxxx Xxxxxxxxxxxx Xxxxxxxxxx Xxxx</article-title>. <source>X. Xxxxxxxx Xxx.</source>
+<year>0000</year>, <volume>00</volume> (<issue>0</issue>), <fpage>000</fpage>–<lpage>000</lpage>. <pub-id pub-id-type="doi">00.0000/xxx.xxxxxxxxx.0x00000</pub-id>.<pub-id pub-id-type="pmid">00000000</pub-id>
+<pub-id pub-id-type="pmcid">XXX00000000</pub-id></mixed-citation></ref></ref-list></back></article></pmc-articleset>
