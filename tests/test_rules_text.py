@@ -553,7 +553,7 @@ def test_the_purpose_phrase_stops_at_the_next_persons_clause(
         "computational advice, and Phil Gafken for helpful discussions."
     )
     outcome = r7_of(sentence, config, staff)
-    assert [e["detail"]["staff"] for e in outcome.evidence] == ["vonhaller"]
+    assert [e["detail"].get("staff") for e in outcome.evidence] == ["vonhaller"]
 
 
 def test_a_named_service_survives_discussion_wording(config: Config, staff: Sequence[StaffMember]) -> None:
