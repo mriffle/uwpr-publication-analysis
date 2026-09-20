@@ -91,9 +91,9 @@ r3:
   exclusion_window: 40               # characters either side of a mention
   exclusions:                        # case-insensitive substrings
     url: [github, /UWPR, proteomicsresource.washington.edu/]
-    hardware: [nanospray, NSI source, nano-ESI, source, plans, manufactured]
+    hardware: [nanospray, NSI source, nano-ESI, source, plans, manufactured, design]
     software: [Comet, Lorikeet, Kojak, Hardklor, Limelight, SEQUEST, search engine]
-    tool: [calculator, tool]         # UWPR's online tools, e.g. the fragmentation calculator (D6)
+    tool: [calculator, tool, protocol]         # UWPR's online tools, e.g. the fragmentation calculator (D6)
     other_org: [Fred Hutch, FHCRC, Hutchinson]
 
 # --- R4: early-era facility (Phase 1 §6.4) ------------------------------------------------------

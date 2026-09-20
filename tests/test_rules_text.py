@@ -572,3 +572,34 @@ def test_discussion_alone_still_disqualifies(config: Config, staff: Sequence[Sta
     """The veto is narrowed, not removed: help described only in passing does not count."""
     sentence = "We thank Priska von Haller for helpful discussions about running the instrument."
     assert r7_of(sentence, config, staff).evidence == []
+
+
+@pytest.mark.parametrize(
+    "sentence",
+    [
+        # Calibration C6: the lab built equipment from UWPR's published design.
+        "The emitter was made in-house following the University of Washington Proteomics "
+        "Resource (UWPR) design.",
+        "A high voltage was applied through a platinum wire (adapted from UWPR design).",
+        # C6 again: a published protocol, used by somebody else's lab.
+        "The sample was alkylated as described by a protocol from University of Washington "
+        "Proteomics Resource.",
+    ],
+)
+def test_using_something_uwpr_published_is_not_evidence(
+    sentence: str, config: Config, staff: Sequence[StaffMember]
+) -> None:
+    """01a C6: UWPR did no work for that paper, so a design or protocol credit is not support.
+
+    `plans` and `manufactured` covered the SAWN stage; these are the same case worded differently,
+    and they reached the store through PRIDE dataset descriptions, where they are common.
+    """
+    assert r3_of(sentence, config, staff) == []
+
+
+def test_a_genuine_credit_beside_the_word_protocol_still_counts(
+    config: Config, staff: Sequence[StaffMember]
+) -> None:
+    """The exclusions are contextual, not a ban on the word appearing anywhere in the paper."""
+    sentence = "Samples were analysed at the University of Washington Proteomics Resource in Seattle."
+    assert r3_of(sentence, config, staff) != []

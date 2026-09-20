@@ -14,6 +14,7 @@ from typing import Any
 from uwpr_pubs.config import Config
 from uwpr_pubs.http import HttpError
 from uwpr_pubs.records import ids_from_openalex
+from uwpr_pubs.rules.r3 import R3Rules, mentions
 from uwpr_pubs.rules.r6 import R6Rules
 from uwpr_pubs.rules.staff import StaffMember
 from uwpr_pubs.sources import ResultLimitError
@@ -146,6 +147,7 @@ class ChannelRunner:
         pride: Pride | None = None,
         staff: Sequence[StaffMember] = (),
         r6: R6Rules | None = None,
+        r3: R3Rules | None = None,
     ) -> None:
         self.config = config
         self.openalex = openalex
@@ -154,6 +156,7 @@ class ChannelRunner:
         self.pride = pride
         self.staff = staff
         self.r6 = r6
+        self.r3 = r3
         self.result = DiscoveryResult()
 
     def _r6_phrase(self, query: str) -> str | None:
@@ -182,6 +185,33 @@ class ChannelRunner:
             self.result.phrase_hits.setdefault(phrase, set())
         return found
 
+    def _pride_results(self, query: str, channel: Channel) -> list[Nomination]:
+        """Channel J: datasets that name the resource, and the papers they belong to.
+
+        A PRIDE search hit carries the protocol text but **not** the dataset's references, so it
+        cannot be attached to any publication. Only the datasets whose text actually names the
+        resource are worth a second request, which keeps this to a handful.
+        """
+        if self.pride is None:  # pragma: no cover - the runner is always given one in a run
+            return []
+        found: list[Nomination] = []
+        seen = {dataset.accession for dataset in self.result.datasets}
+        for dataset in self.pride.search(query):
+            if dataset.accession in seen or not self._names_resource(dataset):
+                continue
+            seen.add(dataset.accession)
+            linked = dataset
+            if not dataset.pmids and not dataset.dois:
+                linked = self.pride.project(dataset.accession) or dataset
+            self.result.datasets.append(linked)
+            found.extend(_dataset_nominations(linked, channel))
+        return found
+
+    def _names_resource(self, dataset: Dataset) -> bool:
+        if self.r3 is None:
+            return True
+        return any(m.counts for text in dataset.sentences for m in mentions(text, self.r3))
+
     def _results(self, source: str, query: str, channel: Channel, limit: int | None) -> list[Nomination]:
         if source == "openalex":
             return self._openalex_results(query, channel, limit)
@@ -192,13 +222,7 @@ class ChannelRunner:
                 _europepmc_nomination(r, channel) for r in self.europepmc.search(query, max_results=limit)
             ]
         if source == "pride":
-            if self.pride is None:  # pragma: no cover - the runner is always given one in a run
-                return []
-            found: list[Nomination] = []
-            for dataset in self.pride.search(query):
-                self.result.datasets.append(dataset)
-                found.extend(_dataset_nominations(dataset, channel))
-            return found
+            return self._pride_results(query, channel)
         raise ValueError(f"channel source {source!r} is not a query source")
 
     def run(self, channels: Sequence[str] = ALL_CHANNELS) -> DiscoveryResult:

@@ -38,6 +38,13 @@ deliberately, dated, and noted in this header.
   [01a](01a-discovery-calibration.md) C2 decides is UWPR support. Discussion on its own still
   disqualifies, so "for helpful discussions about running the instrument" does not fire.
   Effect of the two §6.6 changes together: R7 on list papers 12 → 16 of the 18 in §4.2.
+- *2026-09-20, §6.3, exclusions:* `design` joins the hardware terms and `protocol` the tool
+  terms. They are the same case as `plans` and `manufactured` — [01a](01a-discovery-calibration.md)
+  C6, "the paper used something UWPR made publicly available" — worded as PRIDE submitters word
+  it: "made in-house following the University of Washington Proteomics Resource (UWPR) design"
+  and "alkylated as described by a protocol from University of Washington Proteomics Resource".
+  Effect: R3 on list papers unchanged at 156; R3d on works off the list 4 → 1, which is the
+  figure §4.3 gives.
 **Purpose:** define, precisely enough to implement, how the pipeline finds publications supported
 by the UW Proteomics Resource and decides which to include, **without human review**.
 **Basis:** `UWPR_publication_discovery_handoff.md`, plus live measurements made on 2026-09-19

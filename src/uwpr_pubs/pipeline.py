@@ -373,6 +373,7 @@ class Pipeline:
             pride=self.pride,
             staff=self.staff,
             r6=self.r6,
+            r3=self.r3,
         )
         self.discovered = runner.run(self.options.channels)
         for result in self.discovered.channels:

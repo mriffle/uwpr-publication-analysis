@@ -105,12 +105,11 @@ Store: 368 works, 845 candidates, 306 list entries, 736 metrics lines; validator
 preprint-only against 12. **M4's version linking is what closes this** — most of the excess is a
 preprint and its article counted twice. Judge §4.3 after M4, not now.
 
-**R3d is 0 and channel J nominates nothing.** PRIDE's v3 search for `"Proteomics Resource"` and
-`UWPR` returns no datasets, although the fixture's own record (PXD011642) does contain the
-sentence in `sampleProcessingProtocol` and the adapter reads it correctly. The keyword search
-does not appear to cover protocol text. Fixture J will need the dataset fetched by accession
-from the publication's side rather than found by search; §4.2 expects 0 on list papers either
-way, so nothing here changes recall.
+**Channel J needs two requests per dataset, not one.** A PRIDE search hit carries the protocol
+text but **not** the dataset's references, so nothing links it to a publication and the channel
+nominates nothing at all. Only the datasets whose text actually names the resource are fetched
+again by accession, which is a handful. Channel J now nominates 8 papers and R3d finds exactly
+the one work §4.3 expects — PXD011642 → PMID 32613749, which no other channel finds.
 
 ## 4. Decisions taken during implementation
 
