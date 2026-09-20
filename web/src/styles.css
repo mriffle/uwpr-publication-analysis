@@ -920,11 +920,19 @@ button.chart-legend-item.is-selected {
 }
 
 .lookup-empty ul {
+  list-style: none;
   margin: 0.5rem 0 0;
-  padding-left: 1.1rem;
+  padding: 0;
   max-width: 44rem;
   display: grid;
-  gap: 0.4rem;
+  gap: 0.6rem;
+}
+
+.lookup-empty-description {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
 .lookup-answer {
@@ -936,15 +944,16 @@ button.chart-legend-item.is-selected {
   margin: 1.5rem 0;
 }
 
-.lookup-answer[data-outcome='included'] {
+/* The same accent whether it carries a card or stands alone in the list of possible answers. */
+[data-outcome='included'] {
   --lookup-accent: var(--chart-1);
 }
 
-.lookup-answer[data-outcome='not-included'] {
+[data-outcome='not-included'] {
   --lookup-accent: var(--chart-4);
 }
 
-.lookup-answer[data-outcome='unknown'] {
+[data-outcome='unknown'] {
   --lookup-accent: var(--chart-other);
 }
 
@@ -1031,4 +1040,16 @@ button.chart-legend-item.is-selected {
 
 .lookup-more {
   margin-top: 1rem;
+}
+
+/*
+ * The evidence section is the detail view's, reused unchanged. Inside an answer card it needs
+ * one step of contrast back, or the entries and the card they sit in are the same surface.
+ */
+.lookup-answer .evidence-item {
+  background: var(--page-bg);
+}
+
+.lookup-answer .evidence-excerpt {
+  background: var(--panel-bg);
 }

@@ -222,6 +222,52 @@ describe('outcome one: included (docs/05 §8)', () => {
     expect(card).toHaveTextContent(merged.id);
   });
 
+  it('says which version a superseded DOI belongs to (Phase 1 §8)', async () => {
+    const { fetcher } = serving();
+    show(fetcher);
+    // A reader who has the preprint's DOI gets the merged work, whose own DOI is the article's.
+    // Without the note the answer looks like it is about a different paper.
+    const merged = required(
+      doc.works.find((work) =>
+        work.versions.some(
+          (version) =>
+            version.doi !== null && version.doi.toLowerCase() !== work.ids.doi?.toLowerCase(),
+        ),
+      ),
+      'a work holding a version with its own DOI',
+    );
+    const version = required(
+      merged.versions.find((entry) => entry.doi !== null && entry.doi !== merged.ids.doi),
+      'the other version',
+    );
+    await ask(String(version.doi));
+
+    const card = await screen.findByRole('region', { name: INCLUDED });
+    expect(card).toHaveTextContent(`That DOI is the ${version.kind} version of this publication`);
+    expect(within(card).getByText(merged.title)).toBeInTheDocument();
+  });
+
+  it('opens the detail in the app rather than reloading the page', async () => {
+    const opened: string[] = [];
+    render(
+      <Lookup
+        doc={doc}
+        index={index}
+        lookupHref={LOOKUP_URL}
+        fetcher={serving().fetcher}
+        overviewHref="/"
+        methodHref="/method"
+        publicationHref={(work) => `/publication/${work.id}`}
+        onOpenPublication={(work) => opened.push(work.id)}
+      />,
+    );
+    const target = required(doc.works[0], 'a work');
+    await ask(target.id);
+    await screen.findByRole('region', { name: INCLUDED });
+    await userEvent.click(screen.getByRole('link', { name: target.title }));
+    expect(opened).toEqual([target.id]);
+  });
+
   it('has no axe violations', async () => {
     const rendered = show(serving().fetcher);
     await ask(required(doc.works[0], 'a work').id);

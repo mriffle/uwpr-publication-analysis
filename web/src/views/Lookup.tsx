@@ -237,28 +237,43 @@ function summarize(query: ParsedIdentifier, resolution: Resolution): string {
   }
 }
 
+/** The three outcomes, in the order of docs/05 §8, with the label each answer carries. */
+const OUTCOMES: readonly (readonly [string, string, string])[] = [
+  [
+    'included',
+    'Included',
+    'The publication is among those shown here, with the evidence that put it there.',
+  ],
+  [
+    'not-included',
+    'Considered, not included',
+    'The paper was examined and no rule was met, with the reason and anything that came close.',
+  ],
+  [
+    'unknown',
+    'Not in the data',
+    'No search this project runs has ever put the paper forward, so there is nothing recorded about it either way.',
+  ],
+];
+
 /**
- * What the reader sees before asking anything: the three answers they can get, said plainly, so
- * the shape of the reply is not a surprise — and so that "not included" is visibly one ordinary
- * outcome of three rather than a verdict.
+ * What the reader sees before asking anything: the three answers they can get, each under the
+ * label it will arrive with, so the shape of the reply is not a surprise — and so that "not
+ * included" is visibly one ordinary outcome of three rather than a verdict.
  */
 function LookupEmptyState() {
   return (
     <div className="lookup-empty">
       <p>One of three answers comes back:</p>
       <ul>
-        <li>
-          <strong>Included.</strong> The publication is among those shown here, with the evidence
-          that put it there.
-        </li>
-        <li>
-          <strong>Considered, not included.</strong> The paper was examined and no rule was met,
-          with the reason and anything that came close.
-        </li>
-        <li>
-          <strong>Not in the data.</strong> No search this project runs has ever put the paper
-          forward, so there is nothing recorded about it either way.
-        </li>
+        {OUTCOMES.map(([outcome, label, description]) => (
+          <li key={outcome}>
+            <span className="lookup-outcome" data-outcome={outcome}>
+              {label}
+            </span>
+            <span className="lookup-empty-description">{description}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );
@@ -411,11 +426,11 @@ function reasonNote(reason: NotIncluded['reason'], resource: string): string {
   switch (reason) {
     case 'no_rule_fired':
       return (
-        `Counting a paper takes something recorded in it, or in a source that can be read about ` +
-        `it: the award code, ${resource} named, an author affiliated to it, or a staff member ` +
-        `thanked for the analysis. None of those was found. That is a statement about the ` +
-        `record, not about the work — a paper that used the resource and did not say so reads ` +
-        `exactly like this one.`
+        `For a paper to count, something has to be recorded in it, or in a source that can be ` +
+        `read about it: the award code, ${resource} named in the text, an author affiliated to ` +
+        `it, or a staff member thanked for the analysis. None of those was found. That is a ` +
+        `statement about the record, not about the work — a paper that used the resource and ` +
+        `did not say so reads exactly like this one.`
       );
     case 'excluded_record_type':
       return (
