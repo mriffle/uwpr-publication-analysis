@@ -1,7 +1,17 @@
-# Keeps the SHA-pinned actions current (docs/03-retrieval-pipeline.md §11.1).
+# Keeps the SHA-pinned actions current (docs/03-retrieval-pipeline.md §11.1) and the app's npm
+# dependencies current (docs/07-operations.md O8, §11).
+#
+# Monthly for both. The pull requests are also the project's insurance against docs/07 §12's
+# first risk: GitHub disables a scheduled workflow after a period of repository inactivity, and
+# whether the bot's own pushes count is not established. A monthly human-facing pull request is.
 version: 2
 updates:
   - package-ecosystem: github-actions
     directory: /
+    schedule:
+      interval: monthly
+
+  - package-ecosystem: npm
+    directory: /web # package.json and package-lock.json live in web/ (docs/06 B11)
     schedule:
       interval: monthly
