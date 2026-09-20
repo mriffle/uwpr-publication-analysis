@@ -4,6 +4,22 @@
 deliberately, dated, and noted in this header.
 
 **Changes since agreement:**
+- *2026-09-20, §4 and §7.13's chart:* the criteria chart moved from the overview to `/method`,
+  where [05](05-metrics-and-data-contract.md) §7.13 always said it belonged — §4's section list
+  never included it, and it is the one chart about the *method* rather than about the science. Its
+  bars are static rather than click-to-filter, with a line of links beneath opening the overview
+  under each criterion: a mark that navigates away is not the control a pressable bar advertises.
+- *2026-09-20, §3, what `/method` and `/lookup` do with the reader's filter:* §3 settled it only
+  for the detail view. Both carry a clean URL, since they describe the whole corpus rather than a
+  selection, and both push a history entry so the way back restores the exact filtered overview. A
+  definition link carrying a fragment is a plain anchor, so it is shareable, and it does lose the
+  filter — the right trade for a link someone pastes into a document.
+- *2026-09-20, §10, when `/lookup` fetches the index:* "on demand, not on first paint" settled the
+  overview but not this route. It fetches **on mount** — arriving is the demand, it gives a real
+  loading state, and the first answer is then no slower than the rest.
+- *2026-09-20, §6, a lookup query stays out of the URL.* It is neither a filter nor a sort, and
+  `/publication/<identifier>` already permalinks a rejection. A shareable URL asserting that a
+  named paper is not included is a different artefact from a shareable filtered view.
 - *2026-09-20, §3, "opens over the overview":* under-specified, and the literal reading is an
   accessibility hazard — an overview mounted behind a modal means two `h1`s or `inert` over a live
   region. The requirement is that the reader does not lose their filter, which the URL already

@@ -15,6 +15,24 @@ incremental runs that no longer exist. It was rewritten rather than edited.
 
 **Changes since agreement** (all 2026-09-20; the first group found while building the app, the
 rest while implementing stage 11):
+- *§8, five corrections, all found by building `/lookup` against the real index.* The prose was
+  accurate about the figure it quoted and wrong about what it implied. **Signals and labels are
+  positional and labels repeat** — three rows carry the same label twice, and only the staff id
+  after the colon tells them apart, which §4.2 documents as a join key for authors but nothing
+  documented for signals. **Signals are not only a no-rule-fired phenomenon**: 185 of 455
+  candidates carry one, not 136, the rest being excluded record types and two before the window.
+  **The schema allows a fifth rejection reason**, `no_longer_meets_rules`, which the prose never
+  listed. And the `aliases` example invited two wrong assumptions: a retired ID may resolve to a
+  work that is *not* included (14 of 51 do), and a candidate's own ID is not an alias key at all,
+  so a lookup that trusts `aliases` alone silently fails to answer for every rejected paper.
+- *§10 and §5, what the method page hosts.* §10's list omitted two things other sections require
+  of it: the metric definitions §11.3 and [06](06-web-app.md) §4.2 say the headline figures link
+  to, and "works with a staff author", which §5 assigns to the method page explicitly. Both are in
+  the `method` block and required by its schema; §10's list now names them.
+- *§5, the citation percentile's measured median is documentation, not a figure to display.* §7.15
+  bans it as a corpus figure and §2.2 gives the reason, but §5 tabulates `median 0.901`, so a
+  definitions list built from §5 would contradict both. The entry carries its definition and no
+  value.
 - *§4.2, §7.8 and §7.14, the resource block gains `home_institution` and `home_country`.* Two
   charts were specified in terms of facts the export does not carry: "excluding the University of
   Washington" and "an author outside the United States". §1.1 principle 5 forbids the app holding
@@ -649,20 +667,35 @@ browsable list (A4).
      "ids": {"doi": "…", "pmid": "…"},
      "reason": "no_rule_fired",
      "reason_label": "No evidence of UWPR support was found in this paper",
-     "signals": ["staff_coauthor:riffle"],
-     "signal_labels": ["A UWPR staff member is a co-author, which on its own is not evidence"]}
+     "signals": ["staff_coauthor:riffle", "staff_coauthor:sharma"],
+     "signal_labels": ["A UWPR staff member is a co-author, which on its own is not evidence",
+                       "A UWPR staff member is a co-author, which on its own is not evidence"]}
   ]
 }
 ```
 
-- **`aliases`** resolves any identifier — including a **retired work ID**, of which 37 exist — to
-  the current work, so every permalink the app has ever issued keeps working.
-- **`not_included`** carries all 455 candidates: 341 where no rule fired, 85 of an excluded record
-  type, 28 published before the 2006 window, and 1 excluded by override.
+- **`aliases`** resolves an external identifier — and a **retired work ID**, of which 51 exist — to
+  the work it now belongs to, so every permalink the app has ever issued keeps working. **A retired
+  ID may resolve to a work that is not included**: 14 of the 51 do, because a work can be merged
+  and the survivor later excluded. **A candidate's own ID is not an alias key.** `W-000340` appears
+  only as a `not_included[].id`, so a lookup must fall back to that list rather than assuming every
+  identifier resolves through `aliases`.
+- **`not_included`** carries all 455 candidates. The reasons present today are 341 where no rule
+  fired, 85 of an excluded record type, 28 published before the 2006 window, and 1 excluded by
+  override. **The schema allows a fifth, `no_longer_meets_rules`** — a work that lost its evidence
+  to a rule change. None is in the real export today and one is in the sample, so any per-reason
+  wording must handle all five.
+- **`signals` and `signal_labels` are positional, and labels repeat.** The two arrays are parallel
+  and the label is not a key: `W-000033` carries `staff_coauthor:riffle` and
+  `staff_coauthor:sharma`, whose labels are *identical*. Three rows have duplicate labels and five
+  carry more than one signal. **What disambiguates them is the suffix after the colon, which is a
+  `resource.staff[].id`** — the same join key `authors[].staff` uses. A renderer that keys on the
+  label produces two chips a reader cannot tell apart.
 - **`signal_labels`** matters more than it looks. A signal is a near-miss the rules deliberately
-  do not count, and the plain-language label is what turns a rejection into an explanation. Of the
-  341 where no rule fired, **136 carry a signal** — 100 of them a staff co-author — and **205 carry
-  none at all**.
+  do not count, and the plain-language label is what turns a rejection into an explanation.
+  **185 of the 455 candidates carry one**, and they are not only the no-rule-fired case: 136 of
+  those, plus 47 of the 85 excluded record types and 2 before the window. Of the 341 where no rule
+  fired, 100 of the 136 are a staff co-author and **205 carry no signal at all**.
 - **Three outcomes**, and the app must distinguish them: included; considered and not included,
   with the reason; and not found at all, which means no channel ever nominated it and says nothing
   about the paper.
@@ -723,6 +756,17 @@ A linked page, not a banner (A3). It carries, in plain numbers:
 - **Where the numbers come from:** OpenAlex for citations, topics and affiliations; PubMed Central
   and Europe PMC for full text; Crossref for version links; UWPR's own publications pages. Each
   with the date it was last read.
+- **What is deliberately not evidence:** staff co-authorship alone (**104 works have a staff
+  author**, and that never included one of them), the two related facilities, and the resource's
+  own software, web tools and instrument designs. These non-inclusions are as much a part of how
+  the corpus was assembled as the rules are. **The export carries no list of them**, and principle
+  5 forbids the app naming them itself, so the page describes them in kind rather than by name; if
+  they are to be named, `resource` needs an `exclusions` array, which is the same shape of change
+  as `home_institution`.
+- **What each figure means:** every headline figure's definition, anchored, so
+  [06](06-web-app.md) §4.2's "every figure links to its definition on the method page" has
+  somewhere to point, with its value over the whole corpus. The citation percentile is the one
+  exception: it carries its definition and **no value**, because §7.15 bans it as a corpus figure.
 - **How current it is:** the run date, and the weekly schedule.
 
 **The register here is the same as everywhere else** (§11). The honest version of a limitation is
