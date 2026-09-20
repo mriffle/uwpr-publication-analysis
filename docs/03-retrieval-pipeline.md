@@ -335,8 +335,10 @@ that the rules deliberately don't count:
   - stop OpenAlex search requests if the run's spend exceeds `settings.openalex.max_run_usd`
     (default $0.50) or the remaining daily budget falls below $0.10;
   - either way the run raises an alert (§9); ID lookups and filters continue.
-- **Expected spend:** about $0.05 per run, mostly full-text searches ($0.001 per page). This is
-  an estimate. The first live runs measure it, and every manifest records it (`api.cost_usd`).
+- **Measured spend: $0.0100 a run** (the first unattended run, 2026-09-20: 435 requests, of
+  which 28 go to OpenAlex and the rest are free). The earlier $0.05 estimate was five times too
+  high because it assumed paging through full-text searches, which `max_results` now stops at
+  the first page. Every manifest records the real figure (`api.cost_usd`).
 
 ## 8. Command-line interface
 
@@ -647,10 +649,10 @@ the push never see them.
 
 ## 13. Run time and cost
 
-| Run | Time (estimate) | OpenAlex | Other APIs |
+| Run | Time | OpenAlex | Other APIs |
 |---|---|---|---|
-| Normal weekly | 5–15 min | ≈ $0.05 (to be measured) | Free |
-| After a rule change | + ~6 min (re-fetching ~1,100 texts from NCBI on a cold cache) | ≈ $0.05 | Free |
+| Normal weekly | **4m 34s measured** (2026-09-20, cold cache) | **$0.0100 measured** | Free |
+| After a rule change | + ~6 min (re-fetching ~1,100 texts from NCBI on a cold cache); not yet measured, since it needs a `rule_version` bump on a cold runner | ≈ $0.0100 | Free |
 | Check workflow | 2–4 min | none | none |
 
 Well within GitHub's free minutes for public repositories, and the OpenAlex free tier. The
@@ -675,7 +677,9 @@ metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
 3. **Confirm the scheduled workflow stays enabled** after 60 days on bot commits alone
    (§11.4). If it doesn't, add a keep-alive.
 4. **Branch protection** on `main`, and how the bot is allowed to push (§11.4).
-5. **Measure OpenAlex spend** in the first live runs and replace the §7/§13 estimates.
+5. ~~Measure OpenAlex spend in the first live runs and replace the §7/§13 estimates.~~ **Done
+   2026-09-20:** $0.0100 a run, 4m 34s. The rule-change row of §13 is still an estimate, because
+   it needs a `rule_version` bump landing on a cold runner.
 
 ## 16. Exit criteria
 

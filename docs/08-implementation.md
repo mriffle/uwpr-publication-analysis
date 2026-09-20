@@ -20,7 +20,7 @@ records how they are being built and what implementing them taught us.
 | M3 Text and rules core (R3–R7) | **Done** (§3.1 has the numbers) |
 | M4 Completeness and determinism | **Done** (§3.2 has the numbers) |
 | M4.5 Seed rehearsal and seed | **Done** — `store/` seeded 2026-09-20 (§3.3) |
-| M5 Live automation (`update.yml`) | **Written, not yet enabled** — needs one manual run (§3.4) |
+| M5 Live automation (`update.yml`) | **Done** — ran unattended 2026-09-20 and pushed (§3.4) |
 
 391 tests, all offline; ruff, `ruff format`, mypy `--strict` and the store validator all clean, and
 `check.yml` green on every push — it now validates the committed `store/` and runs the Phase 1
@@ -262,16 +262,27 @@ What it does, and why each part is there:
 - **The alert check runs last**, after the data is pushed. An alert means something needs a
   person, not that the run was wrong (§9), so the data lands and then the job fails to send mail.
 
-**Before the schedule is enabled**, one manual run has to confirm the thing that cannot be
-settled from the documentation: the repository's default workflow token is read-only, and the
-workflow requests `contents: write` explicitly. That normally suffices for a same-repository
-trigger. If the push is refused, the fix is the repository's *Workflow permissions* setting, and
-it is safe there because each workflow still declares its own narrower scopes.
+**It ran, unattended, on 2026-09-20** (`workflow_dispatch`, run 35524865177). Every step
+succeeded and the bot pushed `Data update 2026-09-20T17-07-live`, which reported "no change to
+the works" — correct, since the store had been seeded from the same sources an hour earlier.
 
-Still to do, and named in the plan: measure the real spend against the $0.05 estimate and a
-cold-cache rule-change run against the ~1,100-request estimate, and replace both figures in
-Phase 3 §7 and §13. A warm local run is $0.010, so the estimate looks high, but CI starts cold
-and that is the number the spec is about.
+**This settles the question the documentation could not.** The repository's default workflow
+token is read-only (`default_workflow_permissions: "read"`), and the workflow's explicit
+`permissions: {contents: write}` **is** honoured for a same-repository trigger. No repository
+setting had to change.
+
+**Measured, replacing the estimates in Phase 3 §7 and §13:**
+
+| | Estimate | Measured |
+|---|---|---|
+| Duration | 5–15 min | **4m 34s**, on a cold cache |
+| OpenAlex spend | ≈ $0.05 | **$0.0100** |
+| Requests | — | 435: 313 NCBI, 35 Crossref, 28 OpenAlex, 26 Europe PMC, 23 bioRxiv, 6 UWPR, 4 PRIDE |
+
+The estimate was five times high because it assumed paging through full-text searches, which
+`max_results` now stops at the first page. Only OpenAlex costs anything. The one figure still
+unmeasured is a rule-change run on a cold runner, which needs a `rule_version` bump to land on
+a cold cache.
 
 ## 4. Decisions taken during implementation
 
