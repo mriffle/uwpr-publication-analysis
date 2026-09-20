@@ -175,7 +175,8 @@ uv run python samples/build_sample_store.py                    # rebuild sample 
 
 ## Repository rules
 
-- **The repository is public.** Never commit full text (it lives in `cache/`), abstracts, `.env`
-  or the API key. The store may hold short attributed excerpts (≤ ~300 characters).
+- **The repository is public, and Apache-2.0 licensed** (`LICENSE`, `NOTICE`). Never commit full
+  text (it lives in `cache/`), abstracts, `.env` or the API key. The store may hold short
+  attributed excerpts (≤ ~300 characters); `NOTICE` is where that is explained to a reader.
 - **Scratch exploration scripts and their outputs lived outside the repo** and are not
   available. The figures they produced are recorded in the specs.

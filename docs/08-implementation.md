@@ -664,9 +664,18 @@ uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's r
 
 ## 8. Open questions for the maintainer
 
-1. **Workflow permissions** are read-only, so the weekly bot cannot push. Needed before M5.
-2. **No `LICENSE`**, so the public repository is "all rights reserved" by default.
-3. **The `OPEN_ALEX_API_KEY` repository secret** has not been added; nothing needs it until M5.
+1. **Workflow token permissions are read-only** (`default_workflow_permissions: "read"`, confirmed
+   2026-09-20). This is not about the repository: it is the default power of the temporary
+   `GITHUB_TOKEN` each workflow run is given. `check.yml` only reads, so it is unaffected;
+   `update.yml` must push the weekly data commit. It declares `permissions: {contents: write}`,
+   which normally suffices for a same-repository trigger, and the first manual run settles it.
+   If that push is refused, the fix is the repository's *Workflow permissions* setting.
+   `main` is **not** branch-protected (checked the same day), so nothing else blocks the bot.
+2. **Licensed Apache-2.0** (2026-09-20): `LICENSE` is the canonical text, `NOTICE` carries the
+   copyright and records what the store's quoted excerpts are. **Confirm the copyright holder** —
+   `NOTICE` says University of Washington, which is the assumption for work done for UWPR.
+3. **`OPEN_ALEX_API_KEY` is set** as a repository secret (2026-09-20). An `NCBI_API_KEY` is still
+   optional and would make cold-cache CI runs about three times faster.
 4. **Phases 4 to 7 have not been discussed.** Phase 4 (knowledge base) is the next specification
    conversation, and its decisions — an LLM for summaries, the subject vocabulary, whether
    abstracts may be quoted — are the ones that most affect later work.

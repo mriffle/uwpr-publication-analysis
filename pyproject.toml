@@ -3,6 +3,8 @@ name = "uwpr-pubs"
 version = "0.1.0"
 description = "Finds publications supported by the UW Proteomics Resource and keeps their store current"
 requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
 dependencies = [
     "defusedxml>=0.7.1",
     "httpx>=0.28",
