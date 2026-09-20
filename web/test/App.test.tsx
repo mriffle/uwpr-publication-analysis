@@ -68,9 +68,12 @@ describe('when the data loads', () => {
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
   });
 
+  // Past the 5 s default for the same reason as `views/Overview.test.tsx`: axe walks the whole
+  // document, which under `UWPR_EXPORT_DIR` is the real 339-work overview rather than the
+  // sample's 16.
   it('passes axe', async () => {
     const { container } = render(<App url={URL_UNDER_TEST} fetcher={serving(sampleExport())} />);
     await screen.findByRole('heading', { level: 1 });
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 });

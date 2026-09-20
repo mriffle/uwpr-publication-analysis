@@ -135,10 +135,18 @@ describe('the unfiltered overview', () => {
     }
   });
 
+  /**
+   * Past vitest's 5 s default, and deliberately so: axe walks the whole rendered document, and
+   * under `UWPR_EXPORT_DIR` that is the real corpus — 339 works in the explorer, every chart
+   * drawn — which measures about 4 s against the sample's fraction of a second. The corpus grows
+   * every week, so the headroom is generous rather than exact. Scoping the run to a subtree was
+   * the alternative and is the wrong trade: the violations that matter here, heading order and
+   * landmarks, are properties of the whole page.
+   */
   it('passes axe', async () => {
     const { container } = show();
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 });
 
 describe('the honesty constraints each chart carries (docs/05 §7)', () => {

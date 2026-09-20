@@ -164,12 +164,84 @@ describe('a DOI permalink must work from cold (docs/06 §7)', () => {
 });
 
 describe('the three outcomes of docs/05 §8', () => {
-  it('reports a paper that was considered and not included, with its reason', async () => {
-    const { fetcher } = serving();
-    const rejected = required(lookup.not_included[0], 'a rejected candidate');
-    at(`/publication/${rejected.id}`, fetcher);
-    await screen.findByText(new RegExp(rejected.reason_label));
-    expect(screen.getByText(rejected.title)).toBeInTheDocument();
+  /**
+   * This is the URL a PI follows out of a colleague's email, so it is the likelier way to meet a
+   * rejection — and it used to render the barer of the two: a title, the reason label and a bare
+   * list of signals, with no explanation and no way to correct it. It now renders the same card
+   * `/lookup` does (`components/NotIncludedAnswer`), and these assertions are the ones that would
+   * fail if the two ever drift apart again.
+   */
+  describe('a paper that was considered and not included', () => {
+    it('gets the full answer, not a barer one, because this is the likelier way to reach it', async () => {
+      const { fetcher } = serving();
+      const rejected = required(lookup.not_included[0], 'a rejected candidate');
+      at(`/publication/${rejected.id}`, fetcher);
+
+      // The same card, under the same accessible name the lookup gives it.
+      const card = await screen.findByRole('region', {
+        name: 'This publication was considered and is not included',
+      });
+      expect(card).toHaveTextContent(rejected.title);
+      expect(card).toHaveTextContent(rejected.reason_label);
+      // The explanation and the correction path, neither of which this route used to carry.
+      expect(card).toHaveTextContent(
+        /statement about the record|set aside before any rule|window the searches cover|recorded by a person|earlier version of the rules/,
+      );
+      expect(card).toHaveTextContent('correction worth reporting');
+    });
+
+    it('carries the h1, because here the card is the page (docs/06 §9)', async () => {
+      const { fetcher } = serving();
+      const rejected = required(lookup.not_included[0], 'a rejected candidate');
+      at(`/publication/${rejected.id}`, fetcher);
+
+      await screen.findByRole('region', {
+        name: 'This publication was considered and is not included',
+      });
+      const headings = screen.getAllByRole('heading', { level: 1 });
+      expect(headings).toHaveLength(1);
+      expect(headings[0]).toHaveTextContent('This publication was considered and is not included');
+    });
+
+    it('offers both the list it is not on and the form, which a reader arriving cold has not seen', async () => {
+      const { fetcher } = serving();
+      const rejected = required(lookup.not_included[0], 'a rejected candidate');
+      at(`/publication/${rejected.id}`, fetcher);
+
+      await screen.findByRole('region', {
+        name: 'This publication was considered and is not included',
+      });
+      expect(screen.getByRole('link', { name: 'See all publications' })).toBeInTheDocument();
+      const form = screen.getByRole('link', { name: 'Look up another publication' });
+      expect(form).toHaveAttribute('href', '/lookup');
+      await userEvent.click(form);
+      expect(window.location.pathname).toBe('/lookup');
+    });
+
+    it('is not styled or announced as a failure (docs/05 §11)', async () => {
+      const { fetcher } = serving();
+      const rejected = required(lookup.not_included[0], 'a rejected candidate');
+      at(`/publication/${rejected.id}`, fetcher);
+
+      await screen.findByRole('region', {
+        name: 'This publication was considered and is not included',
+      });
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    });
+
+    it('resolves the same candidate by its DOI, which is the form a permalink carries', async () => {
+      const { fetcher } = serving();
+      const rejected = required(
+        lookup.not_included.find((entry) => entry.ids.doi !== null),
+        'a rejected candidate with a DOI',
+      );
+      at(`/publication/${String(rejected.ids.doi)}`, fetcher);
+
+      const card = await screen.findByRole('region', {
+        name: 'This publication was considered and is not included',
+      });
+      expect(card).toHaveTextContent(rejected.title);
+    });
   });
 
   it('says an unknown identifier says nothing about the paper', async () => {

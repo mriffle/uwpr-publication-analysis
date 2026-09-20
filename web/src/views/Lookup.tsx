@@ -34,8 +34,9 @@
  * overview never loads it, and arriving on this route is the demand. There is one fetch path in
  * the app and this view reuses it.
  */
-import { useId, useState, type FormEvent, type MouseEvent, type ReactNode } from 'react';
+import { useId, useState, type FormEvent, type MouseEvent } from 'react';
 import { EvidenceSection } from '../components/EvidenceSection';
+import { AnswerCard, NotIncludedAnswer } from '../components/NotIncludedAnswer';
 import { describeIdentifier, parseIdentifier, type ParsedIdentifier } from '../contract/identifier';
 import { describeFailure, type Fetcher } from '../contract/load';
 import {
@@ -47,7 +48,6 @@ import {
 import type { ExportDocument, Work } from '../contract/types';
 import { useLookupIndex } from '../contract/useLookup';
 import { formatDate } from '../format/date';
-import { staffIndex } from '../format/staff';
 
 export interface LookupProps {
   doc: ExportDocument;
@@ -62,14 +62,6 @@ export interface LookupProps {
   publicationHref: (work: Work) => string;
   onOpenPublication?: (work: Work) => void;
 }
-
-/**
- * The same three links the detail view builds. They are repeated rather than shared because
- * this slice owns only its own files; the two copies should become one when both have landed.
- */
-const doiUrl = (doi: string): string => `https://doi.org/${doi}`;
-const pubmedUrl = (pmid: string): string => `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`;
-const pmcUrl = (pmcid: string): string => `https://pmc.ncbi.nlm.nih.gov/articles/${pmcid}/`;
 
 export function Lookup(props: LookupProps) {
   const { doc, methodHref } = props;
@@ -295,27 +287,6 @@ function Answer({ resolution, ...rest }: CardProps) {
   }
 }
 
-function Card({
-  outcome,
-  label,
-  heading,
-  children,
-}: {
-  outcome: string;
-  label: string;
-  heading: string;
-  children: ReactNode;
-}) {
-  const headingId = useId();
-  return (
-    <section className="lookup-answer" data-outcome={outcome} aria-labelledby={headingId}>
-      <p className="lookup-outcome">{label}</p>
-      <h2 id={headingId}>{heading}</h2>
-      {children}
-    </section>
-  );
-}
-
 /**
  * The identifier the reader typed, where it is not one the card already shows.
  *
@@ -355,7 +326,7 @@ function IncludedCard({
   };
 
   return (
-    <Card outcome="included" label="Included" heading="This publication is included">
+    <AnswerCard outcome="included" label="Included" heading="This publication is included">
       <p className="lookup-answer-title">
         <a href={href} onClick={open}>
           {work.title}
@@ -385,164 +356,39 @@ function IncludedCard({
           See the full record for this publication
         </a>
       </p>
-    </Card>
+    </AnswerCard>
   );
 }
 
-/** The external identifiers a rejected candidate carries, as links, so the reader can check it. */
-function RowLinks({ row }: { row: NotIncluded }) {
-  const links: ReactNode[] = [];
-  if (row.ids.doi !== null)
-    links.push(
-      <a key="doi" href={doiUrl(row.ids.doi)} rel="noreferrer">
-        DOI {row.ids.doi}
-      </a>,
-    );
-  if (row.ids.pmid !== null)
-    links.push(
-      <a key="pmid" href={pubmedUrl(row.ids.pmid)} rel="noreferrer">
-        PubMed {row.ids.pmid}
-      </a>,
-    );
-  if (row.ids.pmcid !== null)
-    links.push(
-      <a key="pmcid" href={pmcUrl(row.ids.pmcid)} rel="noreferrer">
-        PubMed Central {row.ids.pmcid}
-      </a>,
-    );
-  if (links.length === 0) return null;
-  return <p className="lookup-answer-links">{links}</p>;
-}
-
 /**
- * What the recorded reason means, and — the part no styling can carry — what it does not.
+ * The rejection, which `/publication/<identifier>` renders too (`components/NotIncludedAnswer`).
  *
- * The contract's `reason_label` states the finding; this states its scope. "No evidence of
- * support was found in this paper" is a statement about a record, and a paper that used the
- * resource and never said so reads exactly the same way. Saying that is the difference between
- * an explanation and a verdict (docs/05 §8, §11).
+ * Here the reader has just asked a question, so the card sits under this page's own `h1`, the
+ * identifier is named as one they looked up, and the ways onward are left out: the form is
+ * directly above, and offering to look up another publication from inside the answer would be
+ * furniture.
  */
-function reasonNote(reason: NotIncluded['reason'], resource: string): string {
-  switch (reason) {
-    case 'no_rule_fired':
-      return (
-        `For a paper to count, something has to be recorded in it, or in a source that can be ` +
-        `read about it: the award code, ${resource} named in the text, an author affiliated to ` +
-        `it, or a staff member thanked for the analysis. None of those was found. That is a ` +
-        `statement about the record, not about the work — a paper that used the resource and ` +
-        `did not say so reads exactly like this one.`
-      );
-    case 'excluded_record_type':
-      return (
-        `The corpus counts research publications and the preprints behind them. A record of ` +
-        `another type is set aside before any rule is applied to it, so nothing was looked for ` +
-        `here and nothing about the work itself has been found either way.`
-      );
-    case 'before_window':
-      return (
-        `Earlier work sits outside the window the searches cover, so no evidence was sought for ` +
-        `it in either direction. The window is a limit of this project, not a statement about ` +
-        `the paper.`
-      );
-    case 'override_exclude':
-      return (
-        `That decision was recorded by a person, with a reason, rather than reached by a rule. ` +
-        `It is a judgement about the publication and should be read as one.`
-      );
-    case 'no_longer_meets_rules':
-      return (
-        `It was counted under an earlier version of the rules and does not meet the current ` +
-        `ones. The rules change deliberately and every change is dated; the paper has not ` +
-        `changed.`
-      );
-  }
-}
-
-/**
- * Whether the card already puts the identifier the reader typed in front of them.
- *
- * The card shows the work identifier and links the DOI, PubMed and PMC IDs; an OpenAlex ID, or
- * an identifier that reached this candidate through the alias map, appears nowhere. A reader who
- * cannot see what they asked about has been handed an answer they cannot check.
- */
-function shows(row: NotIncluded, query: ParsedIdentifier): boolean {
-  return [row.id, row.ids.doi, row.ids.pmid, row.ids.pmcid]
-    .filter((value): value is string => value !== null)
-    .some((value) => value.toLowerCase() === query.value.toLowerCase());
-}
-
 function NotIncludedCard({
   query,
   row,
   doc,
   methodHref,
 }: Omit<CardProps, 'resolution'> & { row: NotIncluded }) {
-  const staff = staffIndex(doc.resource.staff);
-  // A signal names the staff member it is about; the label, which the contract owns and this
-  // view quotes rather than rewrites, does not. Two co-authors therefore produce two identical
-  // labels, and the name is what tells them apart (docs/05 §11.7: plain language, then the name).
-  const signals = row.signals.map((signal, position) => ({
-    signal,
-    label: row.signal_labels[position] ?? signal,
-    who: staff.get(signal.split(':')[1] ?? '') ?? null,
-  }));
-
   return (
-    <Card
-      outcome="not-included"
-      label="Considered, not included"
-      heading="This publication was considered and is not included"
-    >
-      <p className="lookup-answer-title">{row.title}</p>
-      <p className="lookup-answer-meta">
-        {row.year === null ? 'No year recorded' : row.year}
-        {' · '}
-        {row.id}
-      </p>
-      <RowLinks row={row} />
-      {shows(row, query) ? null : (
-        <p className="lookup-note">Looked up by {describeIdentifier(query)}.</p>
-      )}
-
-      <p className="lookup-reason">{row.reason_label}.</p>
-      <p>{reasonNote(row.reason, doc.resource.short_name)}</p>
-
-      {signals.length > 0 ? (
-        <>
-          <h3>What was found, and why it is not evidence</h3>
-          <p className="lookup-answer-lede">
-            These came up while the paper was read. Each is a connection the rules deliberately do
-            not count on its own, because each can be true of a paper the resource had no part in —
-            which is why they are listed here rather than acted on.{' '}
-            <a href={methodHref}>How this was assembled</a> sets out what does count.
-          </p>
-          <ul className="lookup-signals">
-            {signals.map((entry, position) => (
-              <li key={`${entry.signal}-${String(position)}`}>
-                {entry.label}
-                {entry.who === null ? null : (
-                  <span className="lookup-signal-detail">{entry.who}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : row.reason === 'no_rule_fired' ? (
-        <p>Nothing came close either: no near miss was recorded against this paper.</p>
-      ) : null}
-
-      <p className="lookup-note">
-        If the paper did use {doc.resource.short_name} and says so somewhere that can be read, that
-        is a correction worth reporting: the project records overrides for exactly that purpose,
-        against the repository this page is built from.
-      </p>
-    </Card>
+    <NotIncludedAnswer
+      row={row}
+      resource={doc.resource}
+      methodHref={methodHref}
+      query={query}
+      headingLevel={2}
+      arrival="asked"
+    />
   );
 }
 
 function UnknownCard({ query, overviewHref, methodHref }: Omit<CardProps, 'resolution'>) {
   return (
-    <Card
+    <AnswerCard
       outcome="unknown"
       label="Not in the data"
       heading="This identifier is not in this project’s data"
@@ -562,6 +408,6 @@ function UnknownCard({ query, overviewHref, methodHref }: Omit<CardProps, 'resol
       <p className="lookup-more">
         <a href={overviewHref}>See all publications</a>
       </p>
-    </Card>
+    </AnswerCard>
   );
 }
