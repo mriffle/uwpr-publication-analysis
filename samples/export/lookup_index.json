@@ -1,0 +1,216 @@
+{
+  "aliases": {
+    "doi:10.0000/sample-r-000101": "W-000101",
+    "doi:10.0000/sample-r-000102": "W-000102",
+    "doi:10.0000/sample-r-000103": "W-000103",
+    "doi:10.1016/j.actbio.2023.05.007": "W-000019",
+    "doi:10.1016/j.jasms.2008.10.025": "W-000001",
+    "doi:10.1016/j.jlr.2026.101113": "W-000007",
+    "doi:10.1016/j.mcpro.2024.100875": "W-000016",
+    "doi:10.1021/ac100372c": "W-000015",
+    "doi:10.1021/acs.jproteome.3c00085": "W-000009",
+    "doi:10.1021/acs.jproteome.3c00758": "W-000017",
+    "doi:10.1021/acs.jproteome.5c00706": "W-000006",
+    "doi:10.1038/s41467-026-71449-1": "W-000004",
+    "doi:10.1073/pnas.2529780123": "W-000003",
+    "doi:10.1101/2025.07.25.666826": "W-000006",
+    "doi:10.1111/1758-2229.12867": "W-000013",
+    "doi:10.1161/atvbaha.121.316278": "W-000002",
+    "doi:10.1242/bio.059982": "W-000008",
+    "doi:10.21203/rs.3.rs-4693768/v2": "W-000004",
+    "doi:10.3389/fmars.2021.757245": "W-000010",
+    "doi:10.64898/2026.04.17.719305": "W-000018",
+    "doi:10.64898/2026.07.11.737889": "W-000014",
+    "doi:10.64898/2026.08.03.742469": "W-000011",
+    "doi:10.7287/peerj.14158v0.1/reviews/1": "W-000020",
+    "doi:10.7554/elife.56582": "W-000012",
+    "list:current:67f7c7feeec1": "W-000004",
+    "list:current:f611dce9563d": "W-000003",
+    "list:older:ab19c4e5173b": "W-000002",
+    "list:older:fc63806509de": "W-000001",
+    "openalex:W1964755058": "W-000015",
+    "openalex:W1997945239": "W-000001",
+    "openalex:W2627077766": "W-000021",
+    "openalex:W3025330221": "W-000012",
+    "openalex:W3040179002": "W-000013",
+    "openalex:W3173081558": "W-000002",
+    "openalex:W4207003556": "W-000010",
+    "openalex:W4306770325": "W-000020",
+    "openalex:W4372194298": "W-000019",
+    "openalex:W4381598604": "W-000008",
+    "openalex:W4385688661": "W-000009",
+    "openalex:W4392359170": "W-000017",
+    "openalex:W4404093938": "W-000016",
+    "openalex:W4412674037": "W-000006",
+    "openalex:W4413812605": "W-000004",
+    "openalex:W7117537506": "W-000006",
+    "openalex:W7138937732": "W-000003",
+    "openalex:W7152076691": "W-000004",
+    "openalex:W7155076391": "W-000018",
+    "openalex:W7169511116": "W-000014",
+    "openalex:W7171348049": "W-000007",
+    "openalex:W7196960225": "W-000011",
+    "pmcid:PMC10339035": "W-000008",
+    "pmcid:PMC11296898": "W-000017",
+    "pmcid:PMC11554524": "W-000009",
+    "pmcid:PMC11665681": "W-000016",
+    "pmcid:PMC13012085": "W-000003",
+    "pmcid:PMC13068965": "W-000004",
+    "pmcid:PMC13131538": "W-000018",
+    "pmcid:PMC13404742": "W-000014",
+    "pmcid:PMC13484654": "W-000011",
+    "pmcid:PMC13505420": "W-000007",
+    "pmcid:PMC3073871": "W-000015",
+    "pmcid:PMC3073872": "W-000001",
+    "pmcid:PMC7367685": "W-000012",
+    "pmcid:PMC8295224": "W-000002",
+    "pmid:19070509": "W-000001",
+    "pmid:20364823": "W-000015",
+    "pmid:32406818": "W-000012",
+    "pmid:32613749": "W-000013",
+    "pmid:34134520": "W-000002",
+    "pmid:37150279": "W-000019",
+    "pmid:37345480": "W-000008",
+    "pmid:37557900": "W-000009",
+    "pmid:38426863": "W-000017",
+    "pmid:39515468": "W-000016",
+    "pmid:41468557": "W-000006",
+    "pmid:41849380": "W-000003",
+    "pmid:41951628": "W-000004",
+    "pmid:42079143": "W-000018",
+    "pmid:42508573": "W-000007",
+    "pmid:42523267": "W-000014",
+    "pmid:42620099": "W-000011",
+    "pride:PXD011642": "W-000013",
+    "work:W-000005": "W-000004"
+  },
+  "generated_at": "2026-09-19T00:00:00Z",
+  "not_included": [
+    {
+      "id": "W-000015",
+      "ids": {
+        "doi": "10.1021/ac100372c",
+        "openalex": "W1964755058",
+        "pmcid": "PMC3073871",
+        "pmid": "20364823"
+      },
+      "reason": "no_longer_meets_rules",
+      "reason_label": "A rule changed, and the evidence this paper had is superseded",
+      "signal_labels": [
+        "The paper used a UWPR hardware design, which is not use of the facility"
+      ],
+      "signals": [
+        "uwpr_hardware_mention"
+      ],
+      "title": "Surface Acoustic Wave Nebulization of Peptides As a Microfluidic Interface for Mass Spectrometry",
+      "year": 2010
+    },
+    {
+      "id": "W-000016",
+      "ids": {
+        "doi": "10.1016/j.mcpro.2024.100875",
+        "openalex": "W4404093938",
+        "pmcid": "PMC11665681",
+        "pmid": "39515468"
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [
+        "The paper used a UWPR online tool, which is not use of the facility"
+      ],
+      "signals": [
+        "uwpr_tool_mention"
+      ],
+      "title": "The Hunt Lab Guide to De Novo Peptide Sequence Analysis by Tandem Mass Spectrometry",
+      "year": 2024
+    },
+    {
+      "id": "W-000017",
+      "ids": {
+        "doi": "10.1021/acs.jproteome.3c00758",
+        "openalex": "W4392359170",
+        "pmcid": "PMC11296898",
+        "pmid": "38426863"
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [
+        "A UWPR staff member is thanked, but not for analysis or technical help"
+      ],
+      "signals": [
+        "staff_ack_other:eng"
+      ],
+      "title": "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
+      "year": 2024
+    },
+    {
+      "id": "W-000018",
+      "ids": {
+        "doi": "10.64898/2026.04.17.719305",
+        "openalex": "W7155076391",
+        "pmcid": "PMC13131538",
+        "pmid": "42079143"
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:riffle"
+      ],
+      "title": "Multimodal analysis of molecular remodeling in aging spleen identified global and cell type specific changes",
+      "year": 2026
+    },
+    {
+      "id": "W-000019",
+      "ids": {
+        "doi": "10.1016/j.actbio.2023.05.007",
+        "openalex": "W4372194298",
+        "pmcid": null,
+        "pmid": "37150279"
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [
+        "A different UW core facility is named, which is not UWPR"
+      ],
+      "signals": [
+        "core_named:drc"
+      ],
+      "title": "Cells resident to precision templated 40-µm pore scaffolds generate small extracellular vesicles that affect CD4+ T cell phenotypes through regulatory TLR4 signaling",
+      "year": 2023
+    },
+    {
+      "id": "W-000020",
+      "ids": {
+        "doi": "10.7287/peerj.14158v0.1/reviews/1",
+        "openalex": "W4306770325",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [],
+      "signals": [],
+      "title": "Peer Review #1 of \"Proteomic response of early juvenile Pacific oysters (Crassostrea gigas) to temperature (v0.1)\"",
+      "year": 2022
+    },
+    {
+      "id": "W-000021",
+      "ids": {
+        "doi": null,
+        "openalex": "W2627077766",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [],
+      "signals": [],
+      "title": "Development and application of accurate mass measurements for large-scale protein interaction and proteome studies",
+      "year": 2013
+    }
+  ],
+  "schema_version": "1.0"
+}

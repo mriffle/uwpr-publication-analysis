@@ -14,10 +14,13 @@ from uwpr_pubs.fixtures import evaluate
 from uwpr_pubs.http import Mode
 from uwpr_pubs.pipeline import RunOptions, run_pipeline
 from uwpr_pubs.runtime import api_keys, build_client
+from uwpr_pubs.sample import SAMPLE_RUN_YEAR, build_sample, case_report, missing_cases
 from uwpr_pubs.smoke import run_smoke
+from uwpr_pubs.stages.export import resource_block, schema_problems
+from uwpr_pubs.stages.export import write as write_export
 from uwpr_pubs.store.paths import StorePaths
 from uwpr_pubs.store.read import read_store
-from uwpr_pubs.validate import validate_store
+from uwpr_pubs.validate import validate_export, validate_store
 
 
 def _validate(args: argparse.Namespace) -> int:
@@ -148,6 +151,37 @@ def _fixtures(args: argparse.Namespace) -> int:
     return 1 if regressions else 0
 
 
+def _export(args: argparse.Namespace) -> int:
+    """Build the app's two files from a store, without a run (docs/05 §4, §13).
+
+    This is how `samples/export/` is regenerated, and it is the only way to produce an export
+    from a store the pipeline is not currently writing.
+    """
+    try:
+        config = load_config()
+    except ConfigError as exc:
+        print(f"ERROR {exc}")
+        return 1
+    cases = Path(args.cases) if args.cases else None
+    document, lookup = build_sample(Path(args.store), cases, resource_block(config), args.rule_version)
+
+    problems = schema_problems(document, lookup)
+    problems.extend(validate_export(document, lookup, run_year=SAMPLE_RUN_YEAR).errors)
+    absent = missing_cases(document)
+    if absent:
+        problems.append(f"docs/05 §13 cases not covered: {', '.join(absent)}")
+    for problem in problems:
+        print("ERROR", problem)
+    if problems:
+        return 1
+
+    out = Path(args.out)
+    write_export(out, document, lookup)
+    print(f"{out}: {len(document['works'])} works, {len(lookup['not_included'])} not included")
+    print(case_report(document))
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="uwpr-pubs", description="Find and track publications supported by UWPR."
@@ -187,6 +221,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     fixtures_command.add_argument("--store", default="store")
 
+    export_command = subcommands.add_parser("export", help="build the app's JSON from a store")
+    export_command.add_argument("--store", default="samples/store")
+    export_command.add_argument("--out", default="samples/export")
+    export_command.add_argument("--cases", help="synthetic works for shapes the store cannot hold")
+    export_command.add_argument("--rule-version", help="default: the current rules.yaml version")
+
     handlers: dict[str, Callable[[argparse.Namespace], int]] = {
         "validate": _validate,
         "config": _config,
@@ -195,6 +235,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "explain": _explain,
         "report": _report,
         "fixtures": _fixtures,
+        "export": _export,
     }
     args = parser.parse_args(argv)
     handler = handlers.get(args.command or "")

@@ -1,0 +1,1231 @@
+{
+  "metrics": [
+    {
+      "citation_percentile": 0.5512,
+      "cited_by": 12,
+      "cites_by_year": {
+        "2024": 6,
+        "2025": 6
+      },
+      "date": "2026-09-19",
+      "fwci": 0.8123,
+      "record": "R-000101",
+      "schema": 1,
+      "source": "OpenAlex",
+      "work": "W-000101"
+    },
+    {
+      "citation_percentile": 0.7001,
+      "cited_by": 3,
+      "cites_by_year": {
+        "2024": 1,
+        "2025": 2
+      },
+      "date": "2026-09-19",
+      "fwci": 1.2044,
+      "record": "R-000102",
+      "schema": 1,
+      "source": "OpenAlex",
+      "work": "W-000102"
+    },
+    {
+      "citation_percentile": 0.9912,
+      "cited_by": 147,
+      "cites_by_year": {
+        "2024": 73,
+        "2025": 74
+      },
+      "date": "2026-09-19",
+      "fwci": 9.4471,
+      "record": "R-000103",
+      "schema": 1,
+      "source": "OpenAlex",
+      "work": "W-000103"
+    }
+  ],
+  "note": "Synthetic works for samples/export/ (docs/05 §13). These three shapes cannot come from samples/store/: it holds real papers with real UWPR evidence, is rebuilt from live APIs, and the real store contains no retracted work at all. Every title says SAMPLE and every DOI uses the unassigned 10.0000 test prefix, so none of these can be mistaken for a real paper. They are merged with the sample store's works and passed through the same build_export the pipeline uses.",
+  "works": [
+    {
+      "aliases": [],
+      "canonical": "R-000101",
+      "created": "2026-09-19",
+      "discovery": [
+        {
+          "channel": "B1",
+          "first_seen": "2026-09-19",
+          "last_seen": "2026-09-19",
+          "record": "R-000101"
+        }
+      ],
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "record": "R-000101",
+          "rule": "R2",
+          "rule_version": "2026-09-19.2",
+          "section": "metadata",
+          "source": {
+            "cache": null,
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/SAMPLE"
+          }
+        }
+      ],
+      "id": "W-000101",
+      "records": [
+        {
+          "abstract": null,
+          "authors": [
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": true,
+              "name": "SAMPLE Author 1",
+              "openalex": "A5900000001",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 2",
+              "openalex": "A5900000002",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 3",
+              "openalex": "A5900000003",
+              "orcid": null,
+              "staff": null
+            }
+          ],
+          "fulltext": {
+            "cache": null,
+            "checked": "2026-09-19",
+            "recheck_after": null,
+            "status": "pmc_xml"
+          },
+          "id": "R-000101",
+          "ids": {
+            "doi": "10.0000/sample-r-000101",
+            "openalex": null,
+            "pmcid": null,
+            "pmid": null
+          },
+          "kind": "article",
+          "oa": {
+            "license": "cc-by",
+            "status": "gold",
+            "url": "https://doi.org/10.0000/sample-r-000101"
+          },
+          "published": "2024-05-02",
+          "retracted": true,
+          "sources": {
+            "openalex": "2026-09-19"
+          },
+          "title": "SAMPLE: a retracted article, so the app always has a retraction to render",
+          "topics": [
+            {
+              "domain": "Physical Sciences",
+              "field": "Chemistry",
+              "score": 0.99,
+              "subfield": "Spectroscopy",
+              "topic": "Advanced Proteomics Techniques and Applications"
+            },
+            {
+              "domain": "Life Sciences",
+              "field": "Biochemistry, Genetics and Molecular Biology",
+              "score": 0.61,
+              "subfield": "Molecular Biology",
+              "topic": "Mass Spectrometry Techniques and Applications"
+            }
+          ],
+          "venue": {
+            "issn_l": null,
+            "name": "SAMPLE Journal of Proteomics",
+            "publisher": null
+          },
+          "version_link": null,
+          "year": 2024
+        }
+      ],
+      "rule_version": "2026-09-19.2",
+      "schema": 1,
+      "status": {
+        "basis": "rules",
+        "included": true,
+        "since": "2026-09-19"
+      },
+      "updated": "2026-09-19"
+    },
+    {
+      "aliases": [],
+      "canonical": "R-000102",
+      "created": "2026-09-19",
+      "discovery": [
+        {
+          "channel": "B1",
+          "first_seen": "2026-09-19",
+          "last_seen": "2026-09-19",
+          "record": "R-000102"
+        }
+      ],
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "record": "R-000102",
+          "rule": "R2",
+          "rule_version": "2026-09-19.2",
+          "section": "metadata",
+          "source": {
+            "cache": null,
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/SAMPLE"
+          }
+        }
+      ],
+      "id": "W-000102",
+      "records": [
+        {
+          "abstract": null,
+          "authors": [
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": true,
+              "name": "SAMPLE Author 10",
+              "openalex": "A5900000010",
+              "orcid": null,
+              "staff": null
+            }
+          ],
+          "fulltext": {
+            "cache": null,
+            "checked": "2026-09-19",
+            "recheck_after": null,
+            "status": "pmc_xml"
+          },
+          "id": "R-000102",
+          "ids": {
+            "doi": "10.0000/sample-r-000102",
+            "openalex": null,
+            "pmcid": null,
+            "pmid": null
+          },
+          "kind": "article",
+          "oa": {
+            "license": "cc-by",
+            "status": "gold",
+            "url": "https://doi.org/10.0000/sample-r-000102"
+          },
+          "published": "2024-05-02",
+          "retracted": false,
+          "sources": {
+            "openalex": "2026-09-19"
+          },
+          "title": "SAMPLE: a single-author article",
+          "topics": [
+            {
+              "domain": "Physical Sciences",
+              "field": "Chemistry",
+              "score": 0.99,
+              "subfield": "Spectroscopy",
+              "topic": "Advanced Proteomics Techniques and Applications"
+            },
+            {
+              "domain": "Life Sciences",
+              "field": "Biochemistry, Genetics and Molecular Biology",
+              "score": 0.61,
+              "subfield": "Molecular Biology",
+              "topic": "Mass Spectrometry Techniques and Applications"
+            }
+          ],
+          "venue": {
+            "issn_l": null,
+            "name": "SAMPLE Journal of Proteomics",
+            "publisher": null
+          },
+          "version_link": null,
+          "year": 2024
+        }
+      ],
+      "rule_version": "2026-09-19.2",
+      "schema": 1,
+      "status": {
+        "basis": "rules",
+        "included": true,
+        "since": "2026-09-19"
+      },
+      "updated": "2026-09-19"
+    },
+    {
+      "aliases": [],
+      "canonical": "R-000103",
+      "created": "2026-09-19",
+      "discovery": [
+        {
+          "channel": "B1",
+          "first_seen": "2026-09-19",
+          "last_seen": "2026-09-19",
+          "record": "R-000103"
+        }
+      ],
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "record": "R-000103",
+          "rule": "R2",
+          "rule_version": "2026-09-19.2",
+          "section": "metadata",
+          "source": {
+            "cache": null,
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/SAMPLE"
+          }
+        }
+      ],
+      "id": "W-000103",
+      "records": [
+        {
+          "abstract": null,
+          "authors": [
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 2, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": true,
+              "name": "SAMPLE Author 100",
+              "openalex": "A5900000100",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 101",
+              "openalex": "A5900000101",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 102",
+              "openalex": "A5900000102",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 103",
+              "openalex": "A5900000103",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 104",
+              "openalex": "A5900000104",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 0, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 105",
+              "openalex": "A5900000105",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 106",
+              "openalex": "A5900000106",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 107",
+              "openalex": "A5900000107",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 108",
+              "openalex": "A5900000108",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 109",
+              "openalex": "A5900000109",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 5, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 110",
+              "openalex": "A5900000110",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 111",
+              "openalex": "A5900000111",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 112",
+              "openalex": "A5900000112",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 113",
+              "openalex": "A5900000113",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 114",
+              "openalex": "A5900000114",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 3, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 115",
+              "openalex": "A5900000115",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 116",
+              "openalex": "A5900000116",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 117",
+              "openalex": "A5900000117",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 118",
+              "openalex": "A5900000118",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 119",
+              "openalex": "A5900000119",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 1, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 120",
+              "openalex": "A5900000120",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 121",
+              "openalex": "A5900000121",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 122",
+              "openalex": "A5900000122",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 123",
+              "openalex": "A5900000123",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 124",
+              "openalex": "A5900000124",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 6, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 125",
+              "openalex": "A5900000125",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 126",
+              "openalex": "A5900000126",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 127",
+              "openalex": "A5900000127",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 128",
+              "openalex": "A5900000128",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 129",
+              "openalex": "A5900000129",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 4, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 130",
+              "openalex": "A5900000130",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 131",
+              "openalex": "A5900000131",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 132",
+              "openalex": "A5900000132",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 133",
+              "openalex": "A5900000133",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 134",
+              "openalex": "A5900000134",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 2, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 135",
+              "openalex": "A5900000135",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 136",
+              "openalex": "A5900000136",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 137",
+              "openalex": "A5900000137",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 138",
+              "openalex": "A5900000138",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 139",
+              "openalex": "A5900000139",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 0, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 140",
+              "openalex": "A5900000140",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 141",
+              "openalex": "A5900000141",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 142",
+              "openalex": "A5900000142",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 143",
+              "openalex": "A5900000143",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 144",
+              "openalex": "A5900000144",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 5, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 145",
+              "openalex": "A5900000145",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 146",
+              "openalex": "A5900000146",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 147",
+              "openalex": "A5900000147",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 148",
+              "openalex": "A5900000148",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 149",
+              "openalex": "A5900000149",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": null,
+                  "name": null,
+                  "raw": "SAMPLE Institute 3, Somewhere",
+                  "ror": null
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 150",
+              "openalex": "A5900000150",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 151",
+              "openalex": "A5900000151",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 152",
+              "openalex": "A5900000152",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 153",
+              "openalex": "A5900000153",
+              "orcid": null,
+              "staff": null
+            },
+            {
+              "affiliations": [
+                {
+                  "country": "US",
+                  "name": "University of Washington",
+                  "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+                  "ror": "00cvxb145"
+                }
+              ],
+              "corresponding": false,
+              "name": "SAMPLE Author 154",
+              "openalex": "A5900000154",
+              "orcid": null,
+              "staff": null
+            }
+          ],
+          "fulltext": {
+            "cache": null,
+            "checked": "2026-09-19",
+            "recheck_after": null,
+            "status": "pmc_xml"
+          },
+          "id": "R-000103",
+          "ids": {
+            "doi": "10.0000/sample-r-000103",
+            "openalex": null,
+            "pmcid": null,
+            "pmid": null
+          },
+          "kind": "article",
+          "oa": {
+            "license": "cc-by",
+            "status": "gold",
+            "url": "https://doi.org/10.0000/sample-r-000103"
+          },
+          "published": "2024-05-02",
+          "retracted": false,
+          "sources": {
+            "openalex": "2026-09-19"
+          },
+          "title": "SAMPLE: a large collaboration, for author lists the app has to truncate",
+          "topics": [
+            {
+              "domain": "Physical Sciences",
+              "field": "Chemistry",
+              "score": 0.99,
+              "subfield": "Spectroscopy",
+              "topic": "Advanced Proteomics Techniques and Applications"
+            },
+            {
+              "domain": "Life Sciences",
+              "field": "Biochemistry, Genetics and Molecular Biology",
+              "score": 0.61,
+              "subfield": "Molecular Biology",
+              "topic": "Mass Spectrometry Techniques and Applications"
+            }
+          ],
+          "venue": {
+            "issn_l": null,
+            "name": "SAMPLE Journal of Proteomics",
+            "publisher": null
+          },
+          "version_link": null,
+          "year": 2024
+        }
+      ],
+      "rule_version": "2026-09-19.2",
+      "schema": 1,
+      "status": {
+        "basis": "rules",
+        "included": true,
+        "since": "2026-09-19"
+      },
+      "updated": "2026-09-19"
+    }
+  ]
+}

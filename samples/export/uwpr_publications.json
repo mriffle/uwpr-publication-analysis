@@ -1,0 +1,4973 @@
+{
+  "generated_at": "2026-09-19T00:00:00Z",
+  "method": {
+    "beyond_official_list": 12,
+    "criteria": {
+      "1": 4,
+      "2": 6,
+      "3": 3,
+      "4": 6
+    },
+    "independently_confirmed": 2,
+    "listing_only": 2,
+    "listing_only_text_read": 2,
+    "listing_only_text_unavailable": 0,
+    "official_list_total": 4,
+    "sources_last_read": {
+      "OpenAlex": "2026-09-19",
+      "PMC": "2026-09-19",
+      "PRIDE": "2026-09-19",
+      "UWPR website": "2026-09-19",
+      "overrides.yaml": "2026-09-19"
+    },
+    "works_with_multiple_criteria": 3,
+    "works_with_staff_author": 3
+  },
+  "period": {
+    "citation_years_from": 2012,
+    "citations_before_window": 13,
+    "complete_through": 2025,
+    "current_year_partial": true,
+    "first_year": 2008,
+    "last_year": 2026
+  },
+  "pipeline_version": "sample",
+  "resource": {
+    "identifier": "UWPR95794",
+    "name": "University of Washington Proteomics Resource",
+    "short_name": "UWPR",
+    "staff": [
+      {
+        "name": "Jimmy K. Eng",
+        "openalex": "A5011565192"
+      },
+      {
+        "name": "Michael R. Hoopmann",
+        "openalex": "A5018903678"
+      },
+      {
+        "name": "Michael Riffle",
+        "openalex": "A5067746093"
+      },
+      {
+        "name": "Vagisha Sharma",
+        "openalex": "A5101918119"
+      },
+      {
+        "name": "Priska D. von Haller",
+        "openalex": "A5083225847"
+      }
+    ],
+    "url": "https://proteomicsresource.washington.edu/"
+  },
+  "rule_version": "2026-09-19.2",
+  "run_id": "2026-09-19T00-00-sample",
+  "schema_version": "1.0",
+  "sources": {
+    "citations": {
+      "as_of": "2026-09-19",
+      "name": "OpenAlex"
+    },
+    "notes": [
+      "Citation counts come from OpenAlex and differ from Google Scholar or Web of Science."
+    ]
+  },
+  "summary": {
+    "beyond_official_list": 12,
+    "citations": 323,
+    "citations_in_window": 310,
+    "countries": 9,
+    "first_year": 2008,
+    "fwci_mean": 1.9264,
+    "fwci_median": 1.1967,
+    "h_index": 8,
+    "institutions": 29,
+    "journals": 12,
+    "last_authors": 15,
+    "last_year": 2026,
+    "on_official_list": 4,
+    "open_access": 15,
+    "preprint_only": 2,
+    "publications": 16,
+    "research_groups": 12
+  },
+  "works": [
+    {
+      "aliases": [],
+      "author_count": 6,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Chemistry & Biochemistry, Montana State University"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Montana State University",
+              "ror": "02w0trx84"
+            }
+          ],
+          "name": "William G. Walls",
+          "openalex": "A5086826034",
+          "orcid": "0000-0003-1692-3216",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Deparment of Chemistry, Northwestern University"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "PH",
+              "name": "Northwestern University",
+              "ror": "00m6w7z96"
+            }
+          ],
+          "name": "Hao Yang",
+          "openalex": "A5009583749",
+          "orcid": "0000-0001-7229-0957",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Deparment of Chemistry, Northwestern University"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "PH",
+              "name": "Northwestern University",
+              "ror": "00m6w7z96"
+            }
+          ],
+          "name": "Madeline B. Ho",
+          "openalex": "A5083749582",
+          "orcid": "0000-0001-6351-2132",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Chemistry & Biochemistry, Montana State University"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Montana State University",
+              "ror": "02w0trx84"
+            }
+          ],
+          "name": "William E. Broderick",
+          "openalex": "A5090361351",
+          "orcid": "0000-0001-5782-7322",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Deparment of Chemistry, Northwestern University"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "PH",
+              "name": "Northwestern University",
+              "ror": "00m6w7z96"
+            }
+          ],
+          "name": "Brian M. Hoffman",
+          "openalex": "A5089695755",
+          "orcid": "0000-0002-3100-0746",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Chemistry & Biochemistry, Montana State University"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Montana State University",
+              "ror": "02w0trx84"
+            }
+          ],
+          "name": "Joan Broderick",
+          "openalex": "A5073568934",
+          "orcid": "0000-0001-7057-9124",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2026": 1
+        },
+        "fwci": 1.1891,
+        "percentile": 0.76768208,
+        "total": 1
+      },
+      "corresponding_authors": [],
+      "countries": [
+        "PH",
+        "US"
+      ],
+      "criteria": [
+        1
+      ],
+      "date": "2026-03-18",
+      "evidence": [
+        {
+          "criterion": 1,
+          "detail": {
+            "first_seen": "2026-06-01",
+            "last_seen": "2026-09-12",
+            "list_key": "list:current:f611dce9563d",
+            "page": "current"
+          },
+          "excerpt": null,
+          "first_seen": "2026-06-01",
+          "found_on": {
+            "doi": "10.1073/pnas.2529780123",
+            "kind": "article"
+          },
+          "label": "Listed on UWPR's publications page",
+          "last_seen": "2026-09-12",
+          "rule": "R1",
+          "section": "official list",
+          "source": {
+            "name": "UWPR website",
+            "retrieved": "2026-09-12",
+            "url": "https://proteomicsresource.washington.edu/publications/"
+          }
+        }
+      ],
+      "first_version_date": "2026-03-18",
+      "id": "W-000003",
+      "ids": {
+        "doi": "10.1073/pnas.2529780123",
+        "openalex": "W7138937732",
+        "pmcid": "PMC13012085",
+        "pmid": "41849380"
+      },
+      "institutions": [
+        {
+          "country": "PH",
+          "name": "Northwestern University",
+          "ror": "00m6w7z96"
+        },
+        {
+          "country": "US",
+          "name": "Montana State University",
+          "ror": "02w0trx84"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "hybrid",
+        "url": "https://doi.org/10.1073/pnas.2529780123"
+      },
+      "on_official_list": true,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "The radical SAM enzyme EpeE exhibits distinct site reactivity during the biosynthesis of the RiPP natural product epipeptide",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Energy",
+          "primary": true,
+          "score": 0.9052,
+          "subfield": "Renewable Energy, Sustainability and the Environment",
+          "topic": "Metalloenzymes and iron-sulfur proteins"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": false,
+          "score": 0.0354,
+          "subfield": "Inorganic Chemistry",
+          "topic": "Metal-Catalyzed Oxygenation Mechanisms"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": false,
+          "score": 0.0105,
+          "subfield": "Organic Chemistry",
+          "topic": "Cyclopropane Reaction Mechanisms"
+        }
+      ],
+      "url": "https://doi.org/10.1073/pnas.2529780123",
+      "venue": {
+        "issn_l": "0027-8424",
+        "name": "Proceedings of the National Academy of Sciences"
+      },
+      "versions": [],
+      "year": 2026
+    },
+    {
+      "aliases": [
+        "W-000005"
+      ],
+      "author_count": 11,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Clinical Microbiology, Umeå University, Umeå, Sweden",
+            "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "name": "Marie B. A. Peters",
+          "openalex": "A5123397102",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Clinical Microbiology, Umeå University, Umeå, Sweden",
+            "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "name": "Richard Lindqvist",
+          "openalex": "A5072467906",
+          "orcid": "0000-0001-9798-0129",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Chemistry for Life Sciences, Uppsala University, Uppsala, Sweden"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "SE",
+              "name": "Science for Life Laboratory",
+              "ror": "04ev03g22"
+            }
+          ],
+          "name": "Eszter Kassa",
+          "openalex": "A5042276205",
+          "orcid": "0000-0002-4086-6373",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medical and Translational Biology, SciLifeLab, Umeå University, Umeå, Sweden",
+            "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "name": "Wai‐Lok Yau",
+          "openalex": "A5091569935",
+          "orcid": "0009-0007-0386-3919",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medical Biochemistry and Biophysics, Umeå University, Umeå, Sweden"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "name": "Pallabi Sengupta",
+          "openalex": "A5060364973",
+          "orcid": "0000-0002-1413-9412",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Institute of Virology, Medical University of Innsbruck, Innsbruck, Austria"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "AT",
+              "name": "Innsbruck Medical University",
+              "ror": "03pt86f80"
+            }
+          ],
+          "name": "Isabell Niedermoser",
+          "openalex": "A5057687038",
+          "orcid": "0000-0002-5301-3361",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Institute of Virology, Medical University of Innsbruck, Innsbruck, Austria"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "AT",
+              "name": "Innsbruck Medical University",
+              "ror": "03pt86f80"
+            }
+          ],
+          "name": "Gisa Gerold",
+          "openalex": "A5011303680",
+          "orcid": "0000-0002-1326-5038",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medical Biochemistry and Biophysics, Umeå University, Umeå, Sweden",
+            "Science for Life Laboratory, Umeå University, Umeå, Sweden"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "SE",
+              "name": "Science for Life Laboratory",
+              "ror": "04ev03g22"
+            },
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "name": "Nasim Sabouri",
+          "openalex": "A5054275086",
+          "orcid": "0000-0002-4541-7702",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Chemistry for Life Sciences, Uppsala University, Uppsala, Sweden"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "SE",
+              "name": "Science for Life Laboratory",
+              "ror": "04ev03g22"
+            }
+          ],
+          "name": "Ylva Ivarsson",
+          "openalex": "A5067140972",
+          "orcid": "0000-0002-7081-3846",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medical and Translational Biology, SciLifeLab, Umeå University, Umeå, Sweden",
+            "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "name": "Richard Lundmark",
+          "openalex": "A5016734760",
+          "orcid": "0000-0001-9104-724X",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Clinical Microbiology, Umeå University, Umeå, Sweden. anna.overby@umu.se",
+            "Laboratory for Molecular Infection Medicine Sweden (MIMS), Umeå University, Umeå, Sweden. anna.overby@umu.se"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "SE",
+              "name": "Umeå University",
+              "ror": "05kb8h459"
+            }
+          ],
+          "name": "Anna K. Överby",
+          "openalex": "A5029709232",
+          "orcid": "0000-0001-6553-0940",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {},
+        "fwci": 0.0,
+        "percentile": 0.3053848,
+        "total": 0
+      },
+      "corresponding_authors": [
+        {
+          "name": "Anna K. Överby",
+          "openalex": "A5029709232"
+        }
+      ],
+      "countries": [
+        "AT",
+        "SE"
+      ],
+      "criteria": [
+        1,
+        4
+      ],
+      "date": "2026-04-08",
+      "evidence": [
+        {
+          "criterion": 1,
+          "detail": {
+            "first_seen": "2026-09-19",
+            "last_seen": "2026-09-19",
+            "list_key": "list:current:67f7c7feeec1",
+            "page": "current"
+          },
+          "excerpt": null,
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1038/s41467-026-71449-1",
+            "kind": "article"
+          },
+          "label": "Listed on UWPR's publications page",
+          "last_seen": "2026-09-19",
+          "rule": "R1",
+          "section": "official list",
+          "source": {
+            "name": "UWPR website",
+            "retrieved": "2026-09-19",
+            "url": "https://proteomicsresource.washington.edu/publications/"
+          }
+        },
+        {
+          "criterion": 4,
+          "detail": {
+            "phrase": "Washington's Proteomics Resource",
+            "query_date": "2026-09-19"
+          },
+          "excerpt": null,
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.21203/rs.3.rs-4693768/v2",
+            "kind": "preprint"
+          },
+          "label": "Phrase found in OpenAlex's full-text index of the paper",
+          "last_seen": "2026-09-19",
+          "rule": "R6",
+          "section": "full-text index",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.21203%2Frs.3.rs-4693768%2Fv2"
+          }
+        }
+      ],
+      "first_version_date": "2025-08-29",
+      "id": "W-000004",
+      "ids": {
+        "doi": "10.1038/s41467-026-71449-1",
+        "openalex": "W7152076691",
+        "pmcid": "PMC13068965",
+        "pmid": "41951628"
+      },
+      "institutions": [
+        {
+          "country": "AT",
+          "name": "Innsbruck Medical University",
+          "ror": "03pt86f80"
+        },
+        {
+          "country": "SE",
+          "name": "Science for Life Laboratory",
+          "ror": "04ev03g22"
+        },
+        {
+          "country": "SE",
+          "name": "Umeå University",
+          "ror": "05kb8h459"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.1038/s41467-026-71449-1"
+      },
+      "on_official_list": true,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "Proviral NUP153 binding to viral proteins and RNA regulates structural–nonstructural protein ratios in orthoflavivirus infection",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "primary": true,
+          "score": 0.7301,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Viral Infections and Immunology Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "primary": false,
+          "score": 0.0464,
+          "subfield": "Immunology",
+          "topic": "interferon and immune responses"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "primary": false,
+          "score": 0.0414,
+          "subfield": "Agronomy and Crop Science",
+          "topic": "Animal Disease Management and Epidemiology"
+        }
+      ],
+      "url": "https://doi.org/10.1038/s41467-026-71449-1",
+      "venue": {
+        "issn_l": "2041-1723",
+        "name": "Nature Communications"
+      },
+      "versions": [
+        {
+          "date": "2025-08-29",
+          "doi": "10.21203/rs.3.rs-4693768/v2",
+          "kind": "preprint",
+          "url": "https://doi.org/10.21203/rs.3.rs-4693768/v2",
+          "year": 2025
+        }
+      ],
+      "year": 2026
+    },
+    {
+      "aliases": [],
+      "author_count": 6,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Bo Wen",
+          "openalex": "A5011332528",
+          "orcid": "0000-0003-2261-3150",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Gilbert S. Omenn Department of Computational Medicine and Bioinformatics, University of Michigan"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Michigan",
+              "ror": "00jmfr291"
+            }
+          ],
+          "name": "Kai Li",
+          "openalex": "A5100399851",
+          "orcid": "0000-0002-0810-2437",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Computer Science, University of Antwerp, Antwerp, 2020, Belgium"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "BE",
+              "name": "University of Antwerp",
+              "ror": "008x57b05"
+            }
+          ],
+          "name": "Wout Bittremieux",
+          "openalex": "A5053271927",
+          "orcid": "0000-0002-3105-1359",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington",
+            "Paul G. Allen School of Computer Science and Engineering, University of Washington"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933",
+          "orcid": "0000-0001-7283-4715",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {},
+        "fwci": null,
+        "percentile": null,
+        "total": 0
+      },
+      "corresponding_authors": [
+        {
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933"
+        }
+      ],
+      "countries": [
+        "BE",
+        "US"
+      ],
+      "criteria": [],
+      "date": "2026-07-16",
+      "evidence": [
+        {
+          "criterion": null,
+          "detail": {},
+          "excerpt": null,
+          "first_seen": "2026-09-19",
+          "label": "SAMPLE ONLY: illustrates an include override; not a real decision.",
+          "last_seen": "2026-09-19",
+          "rule": "override",
+          "section": "override",
+          "source": {
+            "name": "overrides.yaml",
+            "retrieved": "2026-09-19",
+            "url": null
+          }
+        }
+      ],
+      "first_version_date": "2026-07-16",
+      "id": "W-000014",
+      "ids": {
+        "doi": "10.64898/2026.07.11.737889",
+        "openalex": "W7169511116",
+        "pmcid": "PMC13404742",
+        "pmid": "42523267"
+      },
+      "institutions": [
+        {
+          "country": "BE",
+          "name": "University of Antwerp",
+          "ror": "008x57b05"
+        },
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        },
+        {
+          "country": "US",
+          "name": "University of Michigan",
+          "ror": "00jmfr291"
+        }
+      ],
+      "is_preprint": true,
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/16/2026.07.11.737889.full.pdf"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [
+        "riffle"
+      ],
+      "title": "CasanovoGUI: a cross-platform desktop application for deep learning-based de novo peptide sequencing with Casanovo",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 0.9122,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.0319,
+          "subfield": "Molecular Biology",
+          "topic": "Machine Learning in Bioinformatics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.027,
+          "subfield": "Molecular Biology",
+          "topic": "vaccines and immunoinformatics approaches"
+        }
+      ],
+      "url": "https://doi.org/10.64898/2026.07.11.737889",
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)"
+      },
+      "versions": [],
+      "year": 2026
+    },
+    {
+      "aliases": [],
+      "author_count": 9,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Medicine, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Yi He",
+          "openalex": "A5054938728",
+          "orcid": "0000-0002-5565-5579",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, USA. Electronic address: hyun.song@vumc.org"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "name": "Hyun D. Song",
+          "openalex": "A5049572208",
+          "orcid": "0000-0002-9768-5055",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Biological Sciences Division, Pacific Northwest National Laboratory, Richland, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "ror": "05h992307"
+            }
+          ],
+          "name": "Youngki You",
+          "openalex": "A5069490814",
+          "orcid": "0000-0002-2189-9049",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Biological Sciences Division, Pacific Northwest National Laboratory, Richland, WA, USA; Department of Pathology and Laboratory Medicine, University of Cincinnati, Cincinnati, OH, USA; Department of Neurology, Oregon Health and Science University, Portland, OR, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Pacific Northwest National Laboratory",
+              "ror": "05h992307"
+            }
+          ],
+          "name": "John Melchior",
+          "openalex": "A5078143727",
+          "orcid": "0000-0003-3781-2566",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "name": "Martin K. Jones",
+          "openalex": "A5055416469",
+          "orcid": "0000-0003-0930-8012",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Biochemistry and Molecular Genetics, University of Alabama at Birmingham, Birmingham, AL, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Alabama at Birmingham",
+              "ror": "008s83205"
+            }
+          ],
+          "name": "Stephen G. Aller",
+          "openalex": "A5010436344",
+          "orcid": "0000-0003-0379-5534",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Pathology and Laboratory Medicine, University of Cincinnati, Cincinnati, OH, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "ror": "01e3m7079"
+            }
+          ],
+          "name": "W. Sean Davidson",
+          "openalex": "A5008316828",
+          "orcid": "0000-0003-2756-2989",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, USA. Electronic address: j.segrest@vumc.org"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Vanderbilt University Medical Center",
+              "ror": "05dq2gs74"
+            }
+          ],
+          "name": "Jere P. Segrest",
+          "openalex": "A5028220327",
+          "orcid": "0000-0002-0676-7996",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {},
+        "fwci": 0.0,
+        "percentile": 0.74429448,
+        "total": 0
+      },
+      "corresponding_authors": [
+        {
+          "name": "Hyun D. Song",
+          "openalex": "A5049572208"
+        },
+        {
+          "name": "Jere P. Segrest",
+          "openalex": "A5028220327"
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        2
+      ],
+      "date": "2026-07-27",
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "match": "text"
+          },
+          "excerpt": "We thank the Proteomics Resource (UWPR95794) and Diabetes Research Center cores (P30DK017047) at the University of Washington for technical support.",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1016/j.jlr.2026.101113",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) stated in the paper",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "acknowledgements",
+          "source": {
+            "name": "PMC",
+            "retrieved": "2026-09-19",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13505420/"
+          }
+        },
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1016/j.jlr.2026.101113",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "metadata",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/W7171348049"
+          }
+        }
+      ],
+      "first_version_date": "2026-07-27",
+      "id": "W-000007",
+      "ids": {
+        "doi": "10.1016/j.jlr.2026.101113",
+        "openalex": "W7171348049",
+        "pmcid": "PMC13505420",
+        "pmid": "42508573"
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Alabama at Birmingham",
+          "ror": "008s83205"
+        },
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        },
+        {
+          "country": "US",
+          "name": "University of Cincinnati",
+          "ror": "01e3m7079"
+        },
+        {
+          "country": "US",
+          "name": "Vanderbilt University Medical Center",
+          "ror": "05dq2gs74"
+        },
+        {
+          "country": "US",
+          "name": "Pacific Northwest National Laboratory",
+          "ror": "05h992307"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://www.jlr.org/article/S0022-2275(26)00143-4/pdf"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "A model of human APOA2 on HDL",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "primary": true,
+          "score": 0.0598,
+          "subfield": "Endocrine and Autonomic Systems",
+          "topic": "Neuroscience of respiration and sleep"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "primary": false,
+          "score": 0.0243,
+          "subfield": "Pediatrics, Perinatology and Child Health",
+          "topic": "Neonatal and fetal brain pathology"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "primary": false,
+          "score": 0.0228,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiovascular Function and Risk Factors"
+        }
+      ],
+      "url": "https://doi.org/10.1016/j.jlr.2026.101113",
+      "venue": {
+        "issn_l": "0022-2275",
+        "name": "Journal of Lipid Research"
+      },
+      "versions": [],
+      "year": 2026
+    },
+    {
+      "aliases": [],
+      "author_count": 5,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Proteomics Facility, Carver College of Medicine, University of Iowa, 431 Newton Road, Iowa City, IA 52242, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Iowa",
+              "ror": "036jqmy94"
+            }
+          ],
+          "name": "Celeste C. Ptak",
+          "openalex": "A5144482659",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "KEYENCE Corporation of America, Life Science Division, 601 Carlson Parkway, Suite 800, Minnetonka, MN 55305, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Carleton College",
+              "ror": "03jep7677"
+            }
+          ],
+          "name": "Conor O'Rourke",
+          "openalex": "A5040803272",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "University of Washington Proteomics Resource, 850 Republican Street, Seattle, WA 98109, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations_raw": [
+            "Department of Immunology and Genomic Medicine, National Jewish Health, 1400 Jackson Street, Denver, CO 80206, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "National Jewish Health",
+              "ror": "016z2bp30"
+            }
+          ],
+          "name": "Lilliana Radoshevich",
+          "openalex": "A5145656791",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Molecular Physiology and Biophysics, Carver College of Medicine, University of Iowa, 51 Newton Road, Iowa City, IA 52242, USA"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Iowa",
+              "ror": "036jqmy94"
+            }
+          ],
+          "name": "Michael E. Wright",
+          "openalex": "A5058458319",
+          "orcid": "0000-0002-4243-2931",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2026": 1
+        },
+        "fwci": null,
+        "percentile": null,
+        "total": 1
+      },
+      "corresponding_authors": [
+        {
+          "name": "Michael E. Wright",
+          "openalex": "A5058458319"
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        3
+      ],
+      "date": "2026-08-06",
+      "evidence": [
+        {
+          "criterion": 3,
+          "detail": {},
+          "excerpt": "University of Washington Proteomics Resource, 850 Republican Street, Seattle, WA 98109, USA",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.64898/2026.08.03.742469",
+            "kind": "preprint"
+          },
+          "label": "An author's affiliation is the UW Proteomics Resource",
+          "last_seen": "2026-09-19",
+          "rule": "R5",
+          "section": "affiliation",
+          "source": {
+            "name": "PMC",
+            "retrieved": "2026-09-19",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13484654/"
+          }
+        }
+      ],
+      "first_version_date": "2026-08-06",
+      "id": "W-000011",
+      "ids": {
+        "doi": "10.64898/2026.08.03.742469",
+        "openalex": "W7196960225",
+        "pmcid": "PMC13484654",
+        "pmid": "42620099"
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        },
+        {
+          "country": "US",
+          "name": "National Jewish Health",
+          "ror": "016z2bp30"
+        },
+        {
+          "country": "US",
+          "name": "University of Iowa",
+          "ror": "036jqmy94"
+        },
+        {
+          "country": "US",
+          "name": "Carleton College",
+          "ror": "03jep7677"
+        }
+      ],
+      "is_preprint": true,
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by-nc-nd",
+        "status": "green",
+        "url": "https://doi.org/10.64898/2026.08.03.742469"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [
+        "eng"
+      ],
+      "title": "A Spatiotemporal Atlas of the Androgen Receptor Proximal Interactome",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": true,
+          "score": 0.8099,
+          "subfield": "Cell Biology",
+          "topic": "Biotin and Related Studies"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": false,
+          "score": 0.0371,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.0244,
+          "subfield": "Molecular Biology",
+          "topic": "Ubiquitin and proteasome pathways"
+        }
+      ],
+      "url": "https://doi.org/10.64898/2026.08.03.742469",
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)"
+      },
+      "versions": [],
+      "year": 2026
+    },
+    {
+      "aliases": [],
+      "author_count": 15,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Gwenneth Straub",
+          "openalex": "A5118834155",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Paul G. Allen School of Computer Science and Engineering",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Varun Ananth",
+          "openalex": "A5121570839",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Talus Bioscience"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "William E. Fondrie",
+          "openalex": "A5008348714",
+          "orcid": "0000-0002-1554-3716",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Chris Hsu",
+          "openalex": "A5071171458",
+          "orcid": "0000-0002-0846-6126",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "School of Computation, Information and Technology",
+            "Technical University of Munich"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "DE",
+              "name": "Technical University of Munich",
+              "ror": "02kkvpp62"
+            }
+          ],
+          "name": "Daniela Klaproth-Andrade",
+          "openalex": "A5090793116",
+          "orcid": "0009-0008-4223-2199",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Computer Science",
+            "University of Antwerp"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "BE",
+              "name": "University of Antwerp",
+              "ror": "008x57b05"
+            }
+          ],
+          "name": "Marina Pominova",
+          "openalex": "A5006378403",
+          "orcid": "0009-0002-5449-3069",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Michael Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations_raw": [
+            "Paul G. Allen School of Computer Science and Engineering",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Justin J. Sanders",
+          "openalex": "A5063712330",
+          "orcid": "0000-0001-8928-4051",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Bo Wen",
+          "openalex": "A5121554610",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Electrical and Computer Engineering",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Lingwen Xu",
+          "openalex": "A5121554896",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Paul G. Allen School of Computer Science and Engineering",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Melih Yilmaz",
+          "openalex": "A5073163733",
+          "orcid": "0000-0001-7473-4785",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Paul G. Allen School of Computer Science and Engineering",
+            "University of Washington"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Sewoong Oh",
+          "openalex": "A5121526070",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Computer Science",
+            "University of Antwerp"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "BE",
+              "name": "University of Antwerp",
+              "ror": "008x57b05"
+            }
+          ],
+          "name": "Wout Bittremieux",
+          "openalex": "A5053271927",
+          "orcid": "0000-0002-3105-1359",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences",
+            "Paul G. Allen School of Computer Science and Engineering",
+            "University of Washington"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933",
+          "orcid": "0000-0001-7283-4715",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2026": 4
+        },
+        "fwci": 1.473,
+        "percentile": 0.82644684,
+        "total": 4
+      },
+      "corresponding_authors": [
+        {
+          "name": "Wout Bittremieux",
+          "openalex": "A5053271927"
+        },
+        {
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933"
+        }
+      ],
+      "countries": [
+        "BE",
+        "DE",
+        "US"
+      ],
+      "criteria": [
+        2,
+        4
+      ],
+      "date": "2025-12-30",
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1021/acs.jproteome.5c00706",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "metadata",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/W7117537506"
+          }
+        },
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1101/2025.07.25.666826",
+            "kind": "preprint"
+          },
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "metadata",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/W4412674037"
+          }
+        },
+        {
+          "criterion": 4,
+          "detail": {
+            "phrase": "Washington's Proteomics Resource",
+            "query_date": "2026-09-19"
+          },
+          "excerpt": null,
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1101/2025.07.25.666826",
+            "kind": "preprint"
+          },
+          "label": "Phrase found in OpenAlex's full-text index of the paper",
+          "last_seen": "2026-09-19",
+          "rule": "R6",
+          "section": "full-text index",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1101%2F2025.07.25.666826"
+          }
+        }
+      ],
+      "first_version_date": "2025-07-26",
+      "id": "W-000006",
+      "ids": {
+        "doi": "10.1021/acs.jproteome.5c00706",
+        "openalex": "W7117537506",
+        "pmcid": null,
+        "pmid": "41468557"
+      },
+      "institutions": [
+        {
+          "country": "BE",
+          "name": "University of Antwerp",
+          "ror": "008x57b05"
+        },
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        },
+        {
+          "country": "DE",
+          "name": "Technical University of Munich",
+          "ror": "02kkvpp62"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "closed",
+        "url": null
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [
+        "riffle"
+      ],
+      "title": "Improvements to Casanovo, a Deep Learning De Novo Peptide Sequencer",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 0.5241,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.1662,
+          "subfield": "Molecular Biology",
+          "topic": "Machine Learning in Bioinformatics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.144,
+          "subfield": "Molecular Biology",
+          "topic": "vaccines and immunoinformatics approaches"
+        }
+      ],
+      "url": "https://doi.org/10.1021/acs.jproteome.5c00706",
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research"
+      },
+      "versions": [
+        {
+          "date": "2025-07-26",
+          "doi": "10.1101/2025.07.25.666826",
+          "kind": "preprint",
+          "url": "https://doi.org/10.1101/2025.07.25.666826",
+          "year": 2025
+        }
+      ],
+      "year": 2025
+    },
+    {
+      "aliases": [],
+      "author_count": 55,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 2, Somewhere"
+          ],
+          "corresponding": true,
+          "institutions": [],
+          "name": "SAMPLE Author 100",
+          "openalex": "A5900000100",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 101",
+          "openalex": "A5900000101",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 102",
+          "openalex": "A5900000102",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 103",
+          "openalex": "A5900000103",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 104",
+          "openalex": "A5900000104",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 0, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 105",
+          "openalex": "A5900000105",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 106",
+          "openalex": "A5900000106",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 107",
+          "openalex": "A5900000107",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 108",
+          "openalex": "A5900000108",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 109",
+          "openalex": "A5900000109",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 5, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 110",
+          "openalex": "A5900000110",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 111",
+          "openalex": "A5900000111",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 112",
+          "openalex": "A5900000112",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 113",
+          "openalex": "A5900000113",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 114",
+          "openalex": "A5900000114",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 3, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 115",
+          "openalex": "A5900000115",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 116",
+          "openalex": "A5900000116",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 117",
+          "openalex": "A5900000117",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 118",
+          "openalex": "A5900000118",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 119",
+          "openalex": "A5900000119",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 1, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 120",
+          "openalex": "A5900000120",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 121",
+          "openalex": "A5900000121",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 122",
+          "openalex": "A5900000122",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 123",
+          "openalex": "A5900000123",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 124",
+          "openalex": "A5900000124",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 6, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 125",
+          "openalex": "A5900000125",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 126",
+          "openalex": "A5900000126",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 127",
+          "openalex": "A5900000127",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 128",
+          "openalex": "A5900000128",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 129",
+          "openalex": "A5900000129",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 4, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 130",
+          "openalex": "A5900000130",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 131",
+          "openalex": "A5900000131",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 132",
+          "openalex": "A5900000132",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 133",
+          "openalex": "A5900000133",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 134",
+          "openalex": "A5900000134",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 2, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 135",
+          "openalex": "A5900000135",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 136",
+          "openalex": "A5900000136",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 137",
+          "openalex": "A5900000137",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 138",
+          "openalex": "A5900000138",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 139",
+          "openalex": "A5900000139",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 0, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 140",
+          "openalex": "A5900000140",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 141",
+          "openalex": "A5900000141",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 142",
+          "openalex": "A5900000142",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 143",
+          "openalex": "A5900000143",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 144",
+          "openalex": "A5900000144",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 5, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 145",
+          "openalex": "A5900000145",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 146",
+          "openalex": "A5900000146",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 147",
+          "openalex": "A5900000147",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 148",
+          "openalex": "A5900000148",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 149",
+          "openalex": "A5900000149",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "SAMPLE Institute 3, Somewhere"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "SAMPLE Author 150",
+          "openalex": "A5900000150",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 151",
+          "openalex": "A5900000151",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 152",
+          "openalex": "A5900000152",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 153",
+          "openalex": "A5900000153",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 154",
+          "openalex": "A5900000154",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2024": 73,
+          "2025": 74
+        },
+        "fwci": 9.4471,
+        "percentile": 0.9912,
+        "total": 147
+      },
+      "corresponding_authors": [
+        {
+          "name": "SAMPLE Author 100",
+          "openalex": "A5900000100"
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        2
+      ],
+      "date": "2024-05-02",
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.0000/sample-r-000103",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "metadata",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/SAMPLE"
+          }
+        }
+      ],
+      "first_version_date": "2024-05-02",
+      "id": "W-000103",
+      "ids": {
+        "doi": "10.0000/sample-r-000103",
+        "openalex": null,
+        "pmcid": null,
+        "pmid": null
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.0000/sample-r-000103"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "SAMPLE: a large collaboration, for author lists the app has to truncate",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 0.99,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.61,
+          "subfield": "Molecular Biology",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        }
+      ],
+      "url": "https://doi.org/10.0000/sample-r-000103",
+      "venue": {
+        "issn_l": null,
+        "name": "SAMPLE Journal of Proteomics"
+      },
+      "versions": [],
+      "year": 2024
+    },
+    {
+      "aliases": [],
+      "author_count": 3,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 1",
+          "openalex": "A5900000001",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 2",
+          "openalex": "A5900000002",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 3",
+          "openalex": "A5900000003",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2024": 6,
+          "2025": 6
+        },
+        "fwci": 0.8123,
+        "percentile": 0.5512,
+        "total": 12
+      },
+      "corresponding_authors": [
+        {
+          "name": "SAMPLE Author 1",
+          "openalex": "A5900000001"
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        2
+      ],
+      "date": "2024-05-02",
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.0000/sample-r-000101",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "metadata",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/SAMPLE"
+          }
+        }
+      ],
+      "first_version_date": "2024-05-02",
+      "id": "W-000101",
+      "ids": {
+        "doi": "10.0000/sample-r-000101",
+        "openalex": null,
+        "pmcid": null,
+        "pmid": null
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.0000/sample-r-000101"
+      },
+      "on_official_list": false,
+      "retracted": true,
+      "staff_authors": [],
+      "title": "SAMPLE: a retracted article, so the app always has a retraction to render",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 0.99,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.61,
+          "subfield": "Molecular Biology",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        }
+      ],
+      "url": "https://doi.org/10.0000/sample-r-000101",
+      "venue": {
+        "issn_l": null,
+        "name": "SAMPLE Journal of Proteomics"
+      },
+      "versions": [],
+      "year": 2024
+    },
+    {
+      "aliases": [],
+      "author_count": 1,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 10",
+          "openalex": "A5900000010",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2024": 1,
+          "2025": 2
+        },
+        "fwci": 1.2044,
+        "percentile": 0.7001,
+        "total": 3
+      },
+      "corresponding_authors": [
+        {
+          "name": "SAMPLE Author 10",
+          "openalex": "A5900000010"
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        2
+      ],
+      "date": "2024-05-02",
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.0000/sample-r-000102",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "metadata",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/SAMPLE"
+          }
+        }
+      ],
+      "first_version_date": "2024-05-02",
+      "id": "W-000102",
+      "ids": {
+        "doi": "10.0000/sample-r-000102",
+        "openalex": null,
+        "pmcid": null,
+        "pmid": null
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.0000/sample-r-000102"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "SAMPLE: a single-author article",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 0.99,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.61,
+          "subfield": "Molecular Biology",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        }
+      ],
+      "url": "https://doi.org/10.0000/sample-r-000102",
+      "venue": {
+        "issn_l": null,
+        "name": "SAMPLE Journal of Proteomics"
+      },
+      "versions": [],
+      "year": 2024
+    },
+    {
+      "aliases": [],
+      "author_count": 7,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "ror": "01485tq96"
+            }
+          ],
+          "name": "Boopathi Balasubramaniam",
+          "openalex": "A5024429508",
+          "orcid": "0000-0002-1230-7873",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "University of Washington 2 Department of Biochemistry , , Seattle 98195-7350 , WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Irini Topalidou",
+          "openalex": "A5060179658",
+          "orcid": "0000-0003-1115-4251",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "ror": "01485tq96"
+            }
+          ],
+          "name": "Melissa L. Kelley",
+          "openalex": "A5054251605",
+          "orcid": "0000-0003-2207-8936",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "ror": "01485tq96"
+            }
+          ],
+          "name": "Sarina M. Meadows",
+          "openalex": "A5010795079",
+          "orcid": "0000-0002-7342-6120",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "ror": "01485tq96"
+            }
+          ],
+          "name": "Owen H. Funk",
+          "openalex": "A5079584017",
+          "orcid": "0000-0001-6524-6958",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "University of Washington 2 Department of Biochemistry , , Seattle 98195-7350 , WA, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Michael Ailion",
+          "openalex": "A5090772669",
+          "orcid": "0000-0002-8070-1362",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "College of Agriculture, Life Sciences and Natural Resources, University of Wyoming 1 Department of Molecular Biology , , Laramie 82071-3944, WY , USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Wyoming",
+              "ror": "01485tq96"
+            }
+          ],
+          "name": "David S. Fay",
+          "openalex": "A5073102971",
+          "orcid": "0000-0002-7599-4017",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2024": 1,
+          "2025": 5,
+          "2026": 4
+        },
+        "fwci": 0.6604,
+        "percentile": 0.69420539,
+        "total": 10
+      },
+      "corresponding_authors": [],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        4
+      ],
+      "date": "2023-06-22",
+      "evidence": [
+        {
+          "criterion": 4,
+          "detail": {},
+          "excerpt": "Mass spectrometry was carried out at the University of Washington Proteomics Resource (Seattle, WA, USA).",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1242/bio.059982",
+            "kind": "article"
+          },
+          "label": "The paper names the UW Proteomics Resource",
+          "last_seen": "2026-09-19",
+          "rule": "R3",
+          "section": "methods",
+          "source": {
+            "name": "PMC",
+            "retrieved": "2026-09-19",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10339035/"
+          }
+        }
+      ],
+      "first_version_date": "2023-06-22",
+      "id": "W-000008",
+      "ids": {
+        "doi": "10.1242/bio.059982",
+        "openalex": "W4381598604",
+        "pmcid": "PMC10339035",
+        "pmid": "37345480"
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        },
+        {
+          "country": "US",
+          "name": "University of Wyoming",
+          "ror": "01485tq96"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://journals.biologists.com/bio/article-pdf/doi/10.1242/bio.059982/2980287/bio059982.pdf"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "Effectors of anterior morphogenesis in C. elegans embryos",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": true,
+          "score": 0.9999,
+          "subfield": "Aging",
+          "topic": "Genetics, Aging, and Longevity in Model Organisms"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Energy",
+          "primary": false,
+          "score": 0.9628,
+          "subfield": "Renewable Energy, Sustainability and the Environment",
+          "topic": "Algal biology and biofuel production"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Materials Science",
+          "primary": false,
+          "score": 0.9382,
+          "subfield": "Materials Chemistry",
+          "topic": "Nanoparticles: synthesis and applications"
+        }
+      ],
+      "url": "https://doi.org/10.1242/bio.059982",
+      "venue": {
+        "issn_l": "2046-6390",
+        "name": "Biology Open"
+      },
+      "versions": [],
+      "year": 2023
+    },
+    {
+      "aliases": [],
+      "author_count": 12,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "University of Washington, Seattle, Washington 98105, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Chris D McGann",
+          "openalex": "A5110699303",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Thermo Fisher Scientific, San Jose, California 95134, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "name": "William D. Barshop",
+          "openalex": "A5012174669",
+          "orcid": "0000-0001-9517-2339",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Thermo Fisher Scientific, San Jose, California 95134, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "name": "Jesse D. Canterbury",
+          "openalex": "A5016116051",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "University of Washington, Seattle, Washington 98105, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Chuwei Lin",
+          "openalex": "A5080168257",
+          "orcid": "0000-0002-8640-5695",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Technical University of Munich, 85354 Freising, Germany"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "DE",
+              "name": "Technical University of Munich",
+              "ror": "02kkvpp62"
+            }
+          ],
+          "name": "Wassim Gabriel",
+          "openalex": "A5076943145",
+          "orcid": "0000-0001-6440-9794",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Thermo Fisher Scientific, San Jose, California 95134, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "name": "Jingjing Huang",
+          "openalex": "A5108270699",
+          "orcid": "0000-0002-3009-8681",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Thermo Fisher Scientific, San Jose, California 95134, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "name": "David Bergen",
+          "openalex": "A5080841168",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Thermo Fisher Scientific, San Jose, California 95134, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "name": "Vlad Zabrouskov",
+          "openalex": "A5062806768",
+          "orcid": "0000-0003-3567-9407",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Thermo Fisher Scientific, San Jose, California 95134, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "name": "Rafael D. Melani",
+          "openalex": "A5080143820",
+          "orcid": "0000-0002-0349-235X",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Technical University of Munich, 85354 Freising, Germany"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "DE",
+              "name": "Technical University of Munich",
+              "ror": "02kkvpp62"
+            }
+          ],
+          "name": "Mathias Wilhelm",
+          "openalex": "A5031508585",
+          "orcid": "0000-0002-9224-3258",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Thermo Fisher Scientific, San Jose, California 95134, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Thermo Fisher Scientific (United States)",
+              "ror": "03x1ewr52"
+            }
+          ],
+          "name": "Graeme C. McAlister",
+          "openalex": "A5024827021",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "University of Washington, Seattle, Washington 98105, United States"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2023": 1,
+          "2024": 10,
+          "2025": 7,
+          "2026": 3
+        },
+        "fwci": 2.3202,
+        "percentile": 0.88913891,
+        "total": 21
+      },
+      "corresponding_authors": [
+        {
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258"
+        }
+      ],
+      "countries": [
+        "DE",
+        "US"
+      ],
+      "criteria": [
+        3
+      ],
+      "date": "2023-08-09",
+      "evidence": [
+        {
+          "criterion": 3,
+          "detail": {
+            "staff": "eng"
+          },
+          "excerpt": "We would like to thank the Schweppe and Villen labs at UW and Jimmy Eng of the UWPR for helpful advice and comments.",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1021/acs.jproteome.3c00085",
+            "kind": "article"
+          },
+          "label": "The paper names the UW Proteomics Resource",
+          "last_seen": "2026-09-19",
+          "rule": "R3",
+          "section": "acknowledgements",
+          "source": {
+            "name": "PMC",
+            "retrieved": "2026-09-19",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11554524/"
+          }
+        }
+      ],
+      "first_version_date": "2023-08-09",
+      "id": "W-000009",
+      "ids": {
+        "doi": "10.1021/acs.jproteome.3c00085",
+        "openalex": "W4385688661",
+        "pmcid": "PMC11554524",
+        "pmid": "37557900"
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        },
+        {
+          "country": "DE",
+          "name": "Technical University of Munich",
+          "ror": "02kkvpp62"
+        },
+        {
+          "country": "US",
+          "name": "Thermo Fisher Scientific (United States)",
+          "ror": "03x1ewr52"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11554524/pdf/nihms-2030407.pdf"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "Real-Time Spectral Library Matching for Sample Multiplexed Quantitative Proteomics",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 1.0,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": false,
+          "score": 0.9987,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.9972,
+          "subfield": "Molecular Biology",
+          "topic": "Advanced Biosensing Techniques and Applications"
+        }
+      ],
+      "url": "https://doi.org/10.1021/acs.jproteome.3c00085",
+      "venue": {
+        "issn_l": "1535-3893",
+        "name": "Journal of Proteome Research"
+      },
+      "versions": [],
+      "year": 2023
+    },
+    {
+      "aliases": [],
+      "author_count": 6,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "School of Oceanography, University of Washington, Seattle, WA, United States"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Megan Duffy",
+          "openalex": "A5039970247",
+          "orcid": "0000-0002-3212-4927",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Darling Marine Center, University of Maine, Walpole, ME, United States",
+            "Maine Department of Marine Resources, West Boothbay Harbor, ME, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Maine Department of Marine Resources",
+              "ror": "00wkygr69"
+            },
+            {
+              "country": "US",
+              "name": "University of Maine",
+              "ror": "01adr0w49"
+            }
+          ],
+          "name": "Cheyenne M. Adams",
+          "openalex": "A5038929782",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "School of Oceanography, University of Washington, Seattle, WA, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Khadijah Homolka",
+          "openalex": "A5014562769",
+          "orcid": "0000-0002-5208-8740",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "School of Oceanography, University of Washington, Seattle, WA, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Jacquelyn Neibauer",
+          "openalex": "A5048627551",
+          "orcid": "0000-0001-9920-2558",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Darling Marine Center, University of Maine, Walpole, ME, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Maine",
+              "ror": "01adr0w49"
+            }
+          ],
+          "name": "Lawrence M. Mayer",
+          "openalex": "A5006302282",
+          "orcid": "0009-0002-4213-9652",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "School of Oceanography, University of Washington, Seattle, WA, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Richard G. Keil",
+          "openalex": "A5041929553",
+          "orcid": "0000-0001-7483-1606",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2022": 1,
+          "2023": 1,
+          "2024": 1,
+          "2025": 2,
+          "2026": 1
+        },
+        "fwci": 0.4726,
+        "percentile": 0.49396304,
+        "total": 6
+      },
+      "corresponding_authors": [
+        {
+          "name": "Megan Duffy",
+          "openalex": "A5039970247"
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        4
+      ],
+      "date": "2022-01-21",
+      "evidence": [
+        {
+          "criterion": 4,
+          "detail": {
+            "phrase": "Washington Proteomics Resource",
+            "query_date": "2026-09-19"
+          },
+          "excerpt": null,
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.3389/fmars.2021.757245",
+            "kind": "article"
+          },
+          "label": "Phrase found in OpenAlex's full-text index of the paper",
+          "last_seen": "2026-09-19",
+          "rule": "R6",
+          "section": "full-text index",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.3389%2Ffmars.2021.757245"
+          }
+        }
+      ],
+      "first_version_date": "2022-01-21",
+      "id": "W-000010",
+      "ids": {
+        "doi": "10.3389/fmars.2021.757245",
+        "openalex": "W4207003556",
+        "pmcid": null,
+        "pmid": null
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        },
+        {
+          "country": "US",
+          "name": "Maine Department of Marine Resources",
+          "ror": "00wkygr69"
+        },
+        {
+          "country": "US",
+          "name": "University of Maine",
+          "ror": "01adr0w49"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.3389/fmars.2021.757245"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "Degradation of Diatom Protein in Seawater: A Peptide-Level View",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 0.9976,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "primary": false,
+          "score": 0.9944,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": false,
+          "score": 0.9744,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        }
+      ],
+      "url": "https://doi.org/10.3389/fmars.2021.757245",
+      "venue": {
+        "issn_l": "2296-7745",
+        "name": "Frontiers in Marine Science"
+      },
+      "versions": [],
+      "year": 2022
+    },
+    {
+      "aliases": [],
+      "author_count": 8,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Biochemistry, Sao Paulo University, Brazil (G.E.R.)",
+            "Graziella E. Ronsein https://orcid.org/0000-0002-2340-6770 Department of Biochemistry, Sao Paulo University, Brazil (G.E.R.)"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "BR",
+              "name": "Universidade de São Paulo",
+              "ror": "036rp1748"
+            }
+          ],
+          "name": "Graziella E. Ronsein",
+          "openalex": "A5078844747",
+          "orcid": "0000-0002-2340-6770",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+            "Tomas Vaisar Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "CZ",
+              "name": "Tomas Bata University in Zlín",
+              "ror": "04nayfw11"
+            }
+          ],
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
+          "orcid": "0000-0002-7406-6606",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Pathology and Laboratory Medicine, University of Cincinnati, OH (W.S.D.)",
+            "W. Sean Davidson Department of Pathology and Laboratory Medicine, University of Cincinnati, OH (W.S.D.)"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Cincinnati",
+              "ror": "01e3m7079"
+            }
+          ],
+          "name": "W. Sean Davidson",
+          "openalex": "A5008316828",
+          "orcid": "0000-0003-2756-2989",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+            "Karin E. Bornfeldt https://orcid.org/0000-0001-9208-6523 Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Qi2",
+              "ror": "021wvan87"
+            }
+          ],
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
+          "orcid": "0000-0001-9208-6523",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+            "Jeffrey L. Probstfield https://orcid.org/0000-0002-4899-9971 Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "Washington and Jefferson College",
+              "ror": "05k3dc376"
+            }
+          ],
+          "name": "Jeffrey L. Probstfield",
+          "openalex": "A5080292021",
+          "orcid": "0000-0002-4899-9971",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+            "Kevin D. O'Brien Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "AT",
+              "name": "Pädagogische Hochschule Wien",
+              "ror": "0105rz203"
+            }
+          ],
+          "name": "Kevin D. O’Brien",
+          "openalex": "A5056023573",
+          "orcid": "0000-0002-2293-9196",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
+            "Xue-Qiao Zhao Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "IHI Corporation (United States)",
+              "ror": "04185av43"
+            }
+          ],
+          "name": "Xue-Qiao Zhao",
+          "openalex": "A5034146558",
+          "orcid": "0000-0001-7713-6369",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Jay W. Heinecke",
+          "openalex": "A5035595391",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2022": 5,
+          "2023": 9,
+          "2024": 13,
+          "2025": 6,
+          "2026": 2
+        },
+        "fwci": 5.4846,
+        "percentile": 0.96902391,
+        "total": 35
+      },
+      "corresponding_authors": [],
+      "countries": [
+        "AT",
+        "BR",
+        "CZ",
+        "US"
+      ],
+      "criteria": [
+        1
+      ],
+      "date": "2021-06-17",
+      "evidence": [
+        {
+          "criterion": 1,
+          "detail": {
+            "first_seen": "2026-09-19",
+            "last_seen": "2026-09-19",
+            "list_key": "list:older:ab19c4e5173b",
+            "page": "older"
+          },
+          "excerpt": null,
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1161/atvbaha.121.316278",
+            "kind": "article"
+          },
+          "label": "Listed on UWPR's publications page",
+          "last_seen": "2026-09-19",
+          "rule": "R1",
+          "section": "official list",
+          "source": {
+            "name": "UWPR website",
+            "retrieved": "2026-09-19",
+            "url": "https://proteomicsresource.washington.edu/publications/older/"
+          }
+        }
+      ],
+      "first_version_date": "2021-06-17",
+      "id": "W-000002",
+      "ids": {
+        "doi": "10.1161/atvbaha.121.316278",
+        "openalex": "W3173081558",
+        "pmcid": "PMC8295224",
+        "pmid": "34134520"
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        },
+        {
+          "country": "AT",
+          "name": "Pädagogische Hochschule Wien",
+          "ror": "0105rz203"
+        },
+        {
+          "country": "US",
+          "name": "University of Cincinnati",
+          "ror": "01e3m7079"
+        },
+        {
+          "country": "US",
+          "name": "Qi2",
+          "ror": "021wvan87"
+        },
+        {
+          "country": "BR",
+          "name": "Universidade de São Paulo",
+          "ror": "036rp1748"
+        },
+        {
+          "country": "US",
+          "name": "IHI Corporation (United States)",
+          "ror": "04185av43"
+        },
+        {
+          "country": "CZ",
+          "name": "Tomas Bata University in Zlín",
+          "ror": "04nayfw11"
+        },
+        {
+          "country": "US",
+          "name": "Washington and Jefferson College",
+          "ror": "05k3dc376"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/8295224"
+      },
+      "on_official_list": true,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "Niacin Increases Atherogenic Proteins in High-Density Lipoprotein of Statin-Treated Subjects",
+      "topics": [
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "primary": true,
+          "score": 0.9985,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "primary": false,
+          "score": 0.9977,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "primary": false,
+          "score": 0.9949,
+          "subfield": "Oncology",
+          "topic": "Clusterin in disease pathology"
+        }
+      ],
+      "url": "https://doi.org/10.1161/atvbaha.121.316278",
+      "venue": {
+        "issn_l": "1079-5642",
+        "name": "Arteriosclerosis Thrombosis and Vascular Biology"
+      },
+      "versions": [],
+      "year": 2021
+    },
+    {
+      "aliases": [],
+      "author_count": 6,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Biochemistry, University of Washington, Seattle, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Grace E Hamilton",
+          "openalex": "A5059461353",
+          "orcid": "0000-0002-0522-0702",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Biochemistry, University of Washington, Seattle, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Luke A. Helgeson",
+          "openalex": "A5061563381",
+          "orcid": "0000-0001-5112-2751",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Structural Biology, Genentech Inc, South San Francisco, United States"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "Cameron L. Noland",
+          "openalex": "A5065806766",
+          "orcid": "0000-0001-6364-3167",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Physiology and Biophysics, University of Washington, Seattle, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Charles L. Asbury",
+          "openalex": "A5074569982",
+          "orcid": "0000-0002-0143-5394",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Structural Biology, Genentech Inc, South San Francisco, United States"
+          ],
+          "corresponding": false,
+          "institutions": [],
+          "name": "Yoana N. Dimitrova",
+          "openalex": "A5010147592",
+          "orcid": "0000-0003-1547-5781",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Biochemistry, University of Washington, Seattle, United States"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Trisha N. Davis",
+          "openalex": "A5022826364",
+          "orcid": "0000-0003-4797-3152",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2020": 3,
+          "2021": 3,
+          "2022": 5,
+          "2023": 4,
+          "2024": 2,
+          "2025": 8,
+          "2026": 4
+        },
+        "fwci": 1.5665,
+        "percentile": 0.80236654,
+        "total": 29
+      },
+      "corresponding_authors": [],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        3
+      ],
+      "date": "2020-05-14",
+      "evidence": [
+        {
+          "criterion": 3,
+          "detail": {
+            "staff": "riffle"
+          },
+          "excerpt": "We also thank Michael Riffle for assistance with data analysis and visualization.",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.7554/elife.56582",
+            "kind": "article"
+          },
+          "label": "A UWPR staff member is thanked for data-analysis or technical help",
+          "last_seen": "2026-09-19",
+          "rule": "R7",
+          "section": "acknowledgements",
+          "source": {
+            "name": "PMC",
+            "retrieved": "2026-09-19",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7367685/"
+          }
+        }
+      ],
+      "first_version_date": "2020-05-14",
+      "id": "W-000012",
+      "ids": {
+        "doi": "10.7554/elife.56582",
+        "openalex": "W3025330221",
+        "pmcid": "PMC7367685",
+        "pmid": "32406818"
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.7554/elife.56582"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "Reconstitution reveals two paths of force transmission through the kinetochore",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": true,
+          "score": 0.9998,
+          "subfield": "Cell Biology",
+          "topic": "Microtubule and mitosis dynamics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.9991,
+          "subfield": "Cell Biology",
+          "topic": "Cellular transport and secretion"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.9983,
+          "subfield": "Cell Biology",
+          "topic": "Cellular Mechanics and Interactions"
+        }
+      ],
+      "url": "https://doi.org/10.7554/elife.56582",
+      "venue": {
+        "issn_l": "2050-084X",
+        "name": "eLife"
+      },
+      "versions": [],
+      "year": 2020
+    },
+    {
+      "aliases": [],
+      "author_count": 8,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "NASA Astrobiology Institute, Alternative Earths Team  Mountain View CA USA",
+            "School of Biological Sciences Georgia Institute of Technology  Atlanta GA USA",
+            "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "NASA Astrobiology Institute",
+              "ror": "01qxmdg18"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "name": "Nadia Szeinbaum",
+          "openalex": "A5061039392",
+          "orcid": "0000-0002-2101-7931",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences University of Washington  Seattle WA USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "name": "Amanda R. Cavazos",
+          "openalex": "A5065680117",
+          "orcid": "0000-0001-5563-7656",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Earth, Ocean, and Atmospheric Sciences University of British Columbia  Vancouver BC Canada",
+            "Department of Microbiology and Immunology University of British Columbia  Vancouver BC Canada",
+            "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "CA",
+              "name": "University of British Columbia",
+              "ror": "03rmrcq20"
+            }
+          ],
+          "name": "Sean A. Crowe",
+          "openalex": "A5001240703",
+          "orcid": "0000-0001-8071-2144",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Microbiology and Immunology Montana State University  Bozeman MT USA",
+            "School of Biological Sciences Georgia Institute of Technology  Atlanta GA USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Montana State University",
+              "ror": "02w0trx84"
+            }
+          ],
+          "name": "Frank J. Stewart",
+          "openalex": "A5043222288",
+          "orcid": "0000-0002-8139-5176",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "School of Biological Sciences Georgia Institute of Technology  Atlanta GA USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "name": "Thomas J. DiChristina",
+          "openalex": "A5035503732",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "NASA Astrobiology Institute, Alternative Earths Team  Mountain View CA USA",
+            "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "NASA Astrobiology Institute",
+              "ror": "01qxmdg18"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "name": "Christopher T. Reinhard",
+          "openalex": "A5061963815",
+          "orcid": "0000-0002-2632-1027",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "NASA Astrobiology Institute, Alternative Earths Team  Mountain View CA USA",
+            "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "NASA Astrobiology Institute",
+              "ror": "01qxmdg18"
+            },
+            {
+              "country": "US",
+              "name": "Georgia Institute of Technology",
+              "ror": "01zkghx44"
+            }
+          ],
+          "name": "Jennifer B. Glass",
+          "openalex": "A5039593835",
+          "orcid": "0000-0003-0775-2486",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2019": 1,
+          "2021": 1,
+          "2022": 1,
+          "2023": 2,
+          "2024": 2,
+          "2025": 2,
+          "2026": 3
+        },
+        "fwci": 0.3368,
+        "percentile": 0.52577478,
+        "total": 12
+      },
+      "corresponding_authors": [
+        {
+          "name": "Jennifer B. Glass",
+          "openalex": "A5039593835"
+        }
+      ],
+      "countries": [
+        "CA",
+        "US"
+      ],
+      "criteria": [
+        4
+      ],
+      "date": "2020-07-02",
+      "evidence": [
+        {
+          "criterion": 4,
+          "detail": {
+            "dataset": "PXD011642"
+          },
+          "excerpt": "The mass spectrometry analysis was performed on a QExactive at the University of Washington Proteomics Resource (Seattle, WA).",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1111/1758-2229.12867",
+            "kind": "article"
+          },
+          "label": "The paper's public dataset record says the work was done at the UW Proteomics Resource",
+          "last_seen": "2026-09-19",
+          "rule": "R3d",
+          "section": "dataset description",
+          "source": {
+            "name": "PRIDE",
+            "retrieved": "2026-09-19",
+            "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD011642"
+          }
+        }
+      ],
+      "first_version_date": "2020-07-02",
+      "id": "W-000013",
+      "ids": {
+        "doi": "10.1111/1758-2229.12867",
+        "openalex": "W3040179002",
+        "pmcid": null,
+        "pmid": "32613749"
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        },
+        {
+          "country": "US",
+          "name": "NASA Astrobiology Institute",
+          "ror": "01qxmdg18"
+        },
+        {
+          "country": "US",
+          "name": "Georgia Institute of Technology",
+          "ror": "01zkghx44"
+        },
+        {
+          "country": "US",
+          "name": "Montana State University",
+          "ror": "02w0trx84"
+        },
+        {
+          "country": "CA",
+          "name": "University of British Columbia",
+          "ror": "03rmrcq20"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7775658"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "Novel insights into the taxonomic diversity and molecular mechanisms of bacterial Mn( III ) reduction",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "primary": true,
+          "score": 0.9981,
+          "subfield": "Environmental Engineering",
+          "topic": "Microbial Fuel Cells and Bioremediation"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "primary": false,
+          "score": 0.9954,
+          "subfield": "Geochemistry and Petrology",
+          "topic": "Geochemistry and Elemental Analysis"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "primary": false,
+          "score": 0.9954,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        }
+      ],
+      "url": "https://doi.org/10.1111/1758-2229.12867",
+      "venue": {
+        "issn_l": "1758-2229",
+        "name": "Environmental Microbiology Reports"
+      },
+      "versions": [],
+      "year": 2020
+    },
+    {
+      "aliases": [],
+      "author_count": 4,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Shawna Hengel",
+          "openalex": "A5077830669",
+          "orcid": "0000-0002-7444-7687",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Scott A. Shaffer",
+          "openalex": "A5013927284",
+          "orcid": "0000-0002-5264-3257",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "Brook L. Nunn",
+          "openalex": "A5082833460",
+          "orcid": "0000-0002-7361-4359",
+          "staff": null
+        },
+        {
+          "affiliations_raw": [
+            "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, USA"
+          ],
+          "corresponding": false,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "David R. Goodlett",
+          "openalex": "A5023542709",
+          "orcid": "0000-0002-8045-8200",
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2012": 2,
+          "2013": 2,
+          "2014": 4,
+          "2015": 4,
+          "2016": 2,
+          "2017": 2,
+          "2018": 1,
+          "2019": 2,
+          "2020": 1,
+          "2021": 2,
+          "2022": 3,
+          "2023": 3,
+          "2024": 1
+        },
+        "fwci": 2.0026,
+        "percentile": 0.84456543,
+        "total": 42
+      },
+      "corresponding_authors": [],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        1,
+        2,
+        4
+      ],
+      "date": "2008-11-18",
+      "evidence": [
+        {
+          "criterion": 1,
+          "detail": {
+            "first_seen": "2026-09-19",
+            "last_seen": "2026-09-19",
+            "list_key": "list:older:fc63806509de",
+            "page": "older"
+          },
+          "excerpt": null,
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1016/j.jasms.2008.10.025",
+            "kind": "article"
+          },
+          "label": "Listed on UWPR's publications page",
+          "last_seen": "2026-09-19",
+          "rule": "R1",
+          "section": "official list",
+          "source": {
+            "name": "UWPR website",
+            "retrieved": "2026-09-19",
+            "url": "https://proteomicsresource.washington.edu/publications/older/"
+          }
+        },
+        {
+          "criterion": 2,
+          "detail": {
+            "match": "text"
+          },
+          "excerpt": "This work was supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1016/j.jasms.2008.10.025",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) stated in the paper",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "acknowledgements",
+          "source": {
+            "name": "PMC",
+            "retrieved": "2026-09-19",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3073872/"
+          }
+        },
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1016/j.jasms.2008.10.025",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "metadata",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/W1997945239"
+          }
+        },
+        {
+          "criterion": 4,
+          "detail": {},
+          "excerpt": "This work was supported in part by the University of Washington’s Proteomics Resource (UWPR95794).",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1016/j.jasms.2008.10.025",
+            "kind": "article"
+          },
+          "label": "The paper names the UW Proteomics Resource",
+          "last_seen": "2026-09-19",
+          "rule": "R3",
+          "section": "acknowledgements",
+          "source": {
+            "name": "PMC",
+            "retrieved": "2026-09-19",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3073872/"
+          }
+        },
+        {
+          "criterion": 4,
+          "detail": {
+            "staff": "vonhaller"
+          },
+          "excerpt": "Additional thanks go to Dr. Alex Sherl for PERL script assistance, and Dr. Priska Van Haller at the University of Washington South Lake Union Mass Spec Facility.",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.1016/j.jasms.2008.10.025",
+            "kind": "article"
+          },
+          "label": "The paper names UWPR's early-era facility (South Lake Union Mass Spec Facility)",
+          "last_seen": "2026-09-19",
+          "rule": "R4",
+          "section": "acknowledgements",
+          "source": {
+            "name": "PMC",
+            "retrieved": "2026-09-19",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3073872/"
+          }
+        }
+      ],
+      "first_version_date": "2008-11-18",
+      "id": "W-000001",
+      "ids": {
+        "doi": "10.1016/j.jasms.2008.10.025",
+        "openalex": "W1997945239",
+        "pmcid": "PMC3073872",
+        "pmid": "19070509"
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "green",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3073872"
+      },
+      "on_official_list": true,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "Tandem mass spectrometry investigation of ADP-ribosylated kemptide",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 0.9997,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "primary": false,
+          "score": 0.9935,
+          "subfield": "Oncology",
+          "topic": "PARP inhibition in cancer therapy"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.9869,
+          "subfield": "Molecular Biology",
+          "topic": "RNA and protein synthesis mechanisms"
+        }
+      ],
+      "url": "https://doi.org/10.1016/j.jasms.2008.10.025",
+      "venue": {
+        "issn_l": "1044-0305",
+        "name": "Journal of the American Society for Mass Spectrometry"
+      },
+      "versions": [],
+      "year": 2008
+    }
+  ]
+}
