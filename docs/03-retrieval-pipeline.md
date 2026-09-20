@@ -55,7 +55,9 @@ was retired with it on 2026-09-20.
   `HttpError.status`:
   - **an outage** — a 5xx, a timeout or a connection failure — is reported and does **not** fail
     the command. The run proceeds and degrades honestly, and three degraded runs still raise an
-    alert;
+    alert. **The budget guard is the exception**: it is an `HttpError` raised before anything is
+    sent, so it carries no status, and a status-only reading would take a run that begins with no
+    OpenAlex budget left as an outage and wave it through. It blocks;
   - **a problem** — an authentication failure (401/403), any other 4xx, or a check whose *content*
     assertion fails (too few list entries, an unexpected identifier, a response that cannot be
     parsed) — still fails the command and blocks the run. Those mean a key, a query or a source's
