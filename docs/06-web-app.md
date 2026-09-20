@@ -4,6 +4,17 @@
 deliberately, dated, and noted in this header.
 
 **Changes since agreement:**
+- *2026-09-20, §8, a series colour is a mark colour, not a text colour.* The palette is validated
+  at the 3:1 §9 asks of a graphical element, and nothing said that a label reusing a series colour
+  becomes text held to 4.5:1. Badge labels shipped at 3.87:1 and 3.42:1 on the light background
+  because of it — found the first time axe ran against the built page, which is also the first
+  time §9's "in both themes" was actually checked.
+- *2026-09-20, §5, a rejection reads the same on both routes.* Neither §5 nor §7 said the
+  `/publication/<identifier>` permalink owes what [05](05-metrics-and-data-contract.md) §8 requires
+  of the lookup, so the likelier route carried the thinner answer. One component now serves both.
+- *2026-09-20, §12.2, what "every route" means:* every rendered *state*, in both themes. `/lookup`
+  has six and `/publication/<id>` three, so the phrase was hiding a large difference in what the
+  gate covers.
 - *2026-09-20, §4 and §7.13's chart:* the criteria chart moved from the overview to `/method`,
   where [05](05-metrics-and-data-contract.md) §7.13 always said it belonged — §4's section list
   never included it, and it is the one chart about the *method* rather than about the science. Its
@@ -231,6 +242,14 @@ own wording, and a generic template produces something false in all three:
 | A full-text index match | Says the phrase was found in OpenAlex's full-text index, with the phrase and the query date. **There is no excerpt**, because the text could not be read directly. 49 works carry one. |
 | An override | Shows the recorded reason, attributed to the person who decided it and dated. It is a judgement, not a measurement, and must read as one. |
 
+**A publication that was considered and not included has the same answer on both routes.** The
+`/publication/<identifier>` permalink is the likelier way a reader reaches a rejection — it is the
+URL in a colleague's email — so it owes what [05](05-metrics-and-data-contract.md) §8 requires of
+the lookup: the reason, what it does not mean, the near misses with why each is deliberately not
+evidence, and the correction path. One component serves both, differing only in heading level and
+in how the reader arrived. Nothing in this spec forbade the barer version, which is exactly how
+the two drifted apart.
+
 Evidence found on a different version than the one displayed says so — evidence on a preprint
 applies to the whole work (Phase 1 §8), and a reader looking at the article should not have to
 guess why the quotation is not in it.
@@ -303,6 +322,12 @@ Detailed visual design happens at implementation against the sample export. The 
 - **Light and dark**, following the system preference, with an explicit override.
 - **Responsive from phone to desktop.** Charts reflow to fewer categories or a different
   orientation rather than shrinking into illegibility.
+- **A series colour is validated as a mark colour, not as text.** The categorical palette is built
+  to the 3:1 that §9 asks of a meaningful graphical element. **Text is held to 4.5:1**, so a label
+  that reuses a series colour needs a darker text-weight token of that series, per theme, with the
+  mark keeping the original. This is not hypothetical: badge labels shipped at 3.87:1 and 3.42:1
+  against a light background because the palette passed its own 3:1 check and nothing said a
+  chart colour becomes text when it labels something.
 - **A colour-blind-safe categorical palette of at most six plus "Other"**, which is why §4.4 groups
   fields to five. Adjacent marks must be distinguishable by more than hue.
 - **No information carried by colour alone** — a preprint mark, a retraction flag and a partial
@@ -444,6 +469,10 @@ of the generic ones.
 - **Component, Vitest and React Testing Library.** Charts at fixed dimensions asserting real SVG;
   the evidence block per case; the publication list; empty, loading and error states. Queried by
   role and accessible name, so the tests fail when the accessibility does.
+- **"Every route" means every rendered state, in both themes.** `/lookup` alone has six — before a
+  question, three answers, unparseable input, and a failed index fetch — and `/publication/<id>`
+  has three. A gate that visits four routes once is a much weaker gate than one that visits every
+  state twice, and the difference is not visible from the phrase.
 - **End-to-end, Playwright**, in Chromium, Firefox and WebKit: load, filter, cross-filter from a
   chart, deep-link a filtered view, open a detail view and return with filters intact, resolve a
   retired identifier, use the lookup for all three outcomes, and complete a keyboard-only pass.
