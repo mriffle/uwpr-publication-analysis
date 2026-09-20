@@ -108,10 +108,12 @@ def _affiliations(authorship: Mapping[str, Any]) -> list[Affiliation]:
     result: list[Affiliation] = []
     for raw in authorship.get("raw_affiliation_strings") or []:
         match = next((i for name, i in institutions.items() if name and str(name) in raw), None)
+        # An institution may carry `ror: null`; `.get("ror", "")` then returns None, not "".
+        ror = str((match or {}).get("ror") or "").rsplit("/", 1)[-1]
         result.append(
             {
                 "raw": raw,
-                "ror": (match or {}).get("ror", "").rsplit("/", 1)[-1] or None if match else None,
+                "ror": ror or None,
                 "name": (match or {}).get("display_name") if match else None,
                 "country": (match or {}).get("country_code") if match else None,
             }

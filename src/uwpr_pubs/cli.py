@@ -9,7 +9,7 @@ from collections.abc import Callable, Sequence
 from pathlib import Path
 
 from uwpr_pubs import __version__
-from uwpr_pubs.channels import IDENTIFIER_CHANNELS
+from uwpr_pubs.channels import ALL_CHANNELS
 from uwpr_pubs.config import ConfigError, load_config
 from uwpr_pubs.context import RunContext
 from uwpr_pubs.http import Mode
@@ -75,7 +75,7 @@ def _run(args: argparse.Namespace) -> int:
         store=store,
         mode=mode,
         dry_run=args.dry_run,
-        channels=tuple(args.channels.split(",")) if args.channels else IDENTIFIER_CHANNELS,
+        channels=tuple(args.channels.split(",")) if args.channels else ALL_CHANNELS,
         summary_out=Path(args.summary_out) if args.summary_out else None,
     )
     result = run_pipeline(config, client, context, options)

@@ -548,7 +548,7 @@ class Pipeline:
             record=record,
             code=self.config.rules["r2"]["code"],
             source_name="OpenAlex",
-            source_url=f"https://api.openalex.org/works/{payload.get('id', '').rsplit('/', 1)[-1]}",
+            source_url=f"https://api.openalex.org/works/{str(payload.get('id') or '').rsplit('/', 1)[-1]}",
             label=self.config.rules["labels"]["R2.metadata"],
             today=self.context.date,
         )
@@ -898,7 +898,7 @@ class Pipeline:
                 record=record_id,
                 source=TextSource(
                     name="OpenAlex",
-                    url=f"https://api.openalex.org/works/{str(payload.get('id', '')).rsplit('/', 1)[-1]}",
+                    url=f"https://api.openalex.org/works/{str(payload.get('id') or '').rsplit('/', 1)[-1]}",
                     cache=None,
                 ),
                 rules=self.r5,

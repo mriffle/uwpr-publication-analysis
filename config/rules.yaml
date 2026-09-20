@@ -58,7 +58,9 @@ record_types:
 text:
   unicode_normalisation: NFKC
   remove_elements: [ref-list, table-wrap, contrib-group]
-  keep_elements: [body, ack, funding-group, author-notes, fn-group, notes, supplementary-material]
+  # `back` is kept as well as its named parts: some papers put their acknowledgement in a plain
+  # <back><sec><title>Acknowledgments</title>, which none of the named elements reaches.
+  keep_elements: [body, back, ack, funding-group, author-notes, fn-group, notes, supplementary-material]
   block_elements: [p, title, aff, fn, td, th, li, caption, funding-statement]
   drop_elements: [label]
   sentence_end: '[.;](?=\s)'
@@ -70,6 +72,7 @@ text:
     fn-group: author notes
     aff: affiliation
   methods_title_pattern: '(?i)method|material|experimental procedure|mass spectrometr'
+  ack_title_pattern: '(?i)acknowledg'      # a <sec> titled this way is an acknowledgement
   ack_whole_block_fallback: true
 
 # --- R2: award code (Phase 1 §6.2) --------------------------------------------------------------

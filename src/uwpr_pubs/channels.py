@@ -16,6 +16,7 @@ from uwpr_pubs.http import HttpError
 from uwpr_pubs.records import ids_from_openalex
 from uwpr_pubs.rules.r6 import R6Rules
 from uwpr_pubs.rules.staff import StaffMember
+from uwpr_pubs.sources import ResultLimitError
 from uwpr_pubs.sources.crossref import Crossref
 from uwpr_pubs.sources.europepmc import EuropePmc
 from uwpr_pubs.sources.openalex import OpenAlex
@@ -168,10 +169,10 @@ class ChannelRunner:
             queries += staff_queries(self.staff, self.config.window_start)
         return queries
 
-    def _openalex_results(self, query: str, channel: Channel) -> list[Nomination]:
+    def _openalex_results(self, query: str, channel: Channel, limit: int | None) -> list[Nomination]:
         phrase = self._r6_phrase(query)
         found = []
-        for work in self.openalex.works(query):
+        for work in self.openalex.works(query, max_results=limit):
             nomination = _openalex_nomination(work, channel)
             found.append(nomination)
             doi = nomination.ids.get("doi")
@@ -181,13 +182,15 @@ class ChannelRunner:
             self.result.phrase_hits.setdefault(phrase, set())
         return found
 
-    def _results(self, source: str, query: str, channel: Channel) -> list[Nomination]:
+    def _results(self, source: str, query: str, channel: Channel, limit: int | None) -> list[Nomination]:
         if source == "openalex":
-            return self._openalex_results(query, channel)
+            return self._openalex_results(query, channel, limit)
         if source == "crossref":
             return [_crossref_nomination(item, channel) for item in self.crossref.by_filter(query)]
         if source == "europepmc":
-            return [_europepmc_nomination(r, channel) for r in self.europepmc.search(query)]
+            return [
+                _europepmc_nomination(r, channel) for r in self.europepmc.search(query, max_results=limit)
+            ]
         if source == "pride":
             if self.pride is None:  # pragma: no cover - the runner is always given one in a run
                 return []
@@ -207,17 +210,21 @@ class ChannelRunner:
             if channel_id not in channels or not queries:
                 continue
             outcome = merged.setdefault(channel_id, ChannelResult(channel=channel_id))
+            limit = int(definition["max_results"])
             for query in queries:
                 outcome.queries += 1
                 try:
-                    found = self._results(str(definition["source"]), query, definition["id"])
+                    found = self._results(str(definition["source"]), query, definition["id"], limit)
+                except ResultLimitError as exc:
+                    outcome.errors.append(f"{query}: {exc}; treating the channel as failed")
+                    continue
                 except HttpError as exc:
                     outcome.errors.append(f"{query}: {exc}")
                     continue
-                if len(found) > int(definition["max_results"]):
+                if len(found) > limit:  # a source that reports no total is still caught
                     outcome.errors.append(
-                        f"{query}: {len(found)} results exceeds max_results "
-                        f"{definition['max_results']}; treating the channel as failed"
+                        f"{query}: {len(found)} results exceeds max_results {limit}; "
+                        "treating the channel as failed"
                     )
                     continue
                 outcome.nominations.extend(found)

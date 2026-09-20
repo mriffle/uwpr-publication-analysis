@@ -8,6 +8,7 @@ from collections.abc import Iterator
 from typing import Any
 
 from uwpr_pubs.http import HttpClient, HttpError, Policy
+from uwpr_pubs.sources import ResultLimitError
 
 BASE = "https://www.ebi.ac.uk/europepmc/webservices/rest"
 PAGE_SIZE = 100
@@ -18,8 +19,11 @@ class EuropePmc:
         self.client = client
         self.contact = contact
 
-    def search(self, query: str, page_size: int = PAGE_SIZE) -> Iterator[dict[str, Any]]:
+    def search(
+        self, query: str, page_size: int = PAGE_SIZE, max_results: int | None = None
+    ) -> Iterator[dict[str, Any]]:
         cursor = "*"
+        first = True
         while cursor:
             reply = self.client.get(
                 f"{BASE}/search",
@@ -34,6 +38,11 @@ class EuropePmc:
                 policy=Policy.REFRESH,
             )
             payload = reply.json()
+            if first and max_results is not None:
+                total = int(payload.get("hitCount") or 0)
+                if total > max_results:
+                    raise ResultLimitError(total, max_results)
+            first = False
             results = (payload.get("resultList") or {}).get("result") or []
             yield from results
             next_cursor = payload.get("nextCursorMark") or ""
@@ -49,9 +58,18 @@ class EuropePmc:
         return int(reply.json().get("hitCount", 0))
 
     def full_text_xml(self, pmcid: str) -> bytes | None:
-        """None when the record is not open access, which Europe PMC signals with a 500."""
+        """None when the record is not open access, which Europe PMC signals with a 500.
+
+        That 500 is the answer, not a wobble, so it is asked once. Retrying it with backoff cost
+        about 14 seconds on every non-open-access record, and there are hundreds of them.
+        """
         try:
-            reply = self.client.get(f"{BASE}/{pmcid}/fullTextXML", host="europepmc", policy=Policy.IMMUTABLE)
+            reply = self.client.get(
+                f"{BASE}/{pmcid}/fullTextXML",
+                host="europepmc",
+                policy=Policy.IMMUTABLE,
+                attempts=1,
+            )
         except HttpError:
             return None
         return reply.body

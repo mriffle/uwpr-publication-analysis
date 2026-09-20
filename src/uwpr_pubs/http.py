@@ -205,7 +205,7 @@ class HttpClient:
                 pass
         return min(2.0**attempt, 30.0) + self._jitter()
 
-    def get(
+    def get(  # noqa: PLR0913 - one request, its host, its policy, its cost and its retries
         self,
         url: str,
         params: Mapping[str, str] | None = None,
@@ -213,7 +213,14 @@ class HttpClient:
         host: str,
         policy: Policy = Policy.REFRESH,
         cost: float = 0.0,
+        attempts: int | None = None,
     ) -> Response:
+        """`attempts` overrides the retry count for an endpoint whose error is an answer.
+
+        Europe PMC replies 500 to every non-open-access record (Phase 1 §7). Retrying that with
+        backoff costs about 14 seconds each, on hundreds of records, for a reply that will not
+        change.
+        """
         request_params = dict(params or {})
         key = request_key(url, request_params)
         self.last_key = key
@@ -235,7 +242,8 @@ class HttpClient:
 
         headers = {"User-Agent": f"{self.user_agent} (mailto:{self.contact})"}
         last_error = ""
-        for attempt in range(self.max_attempts):
+        max_attempts = self.max_attempts if attempts is None else max(1, attempts)
+        for attempt in range(max_attempts):
             self.rate_limiter.wait(host)
             try:
                 response = self.transport(url, request_params, headers, self.timeout)
@@ -251,10 +259,10 @@ class HttpClient:
                 last_error = f"HTTP {response.status}"
                 if response.status not in RETRY_STATUSES:
                     break
-                if attempt + 1 < self.max_attempts:
+                if attempt + 1 < max_attempts:
                     self._sleep(self._backoff(attempt, response.headers.get("retry-after")))
                 continue
-            if attempt + 1 < self.max_attempts:
+            if attempt + 1 < max_attempts:
                 self._sleep(self._backoff(attempt, None))
         raise HttpError(f"{scrub(strip_url(url))}: {last_error}")
 

@@ -538,3 +538,37 @@ def test_signals_are_sorted_and_unique() -> None:
         staff_authors=["riffle", "riffle"],
         acknowledged=["eng"],
     ) == ["core_named:drc", "staff_ack_other:eng", "staff_coauthor:riffle", "uwpr_tool_mention"]
+
+
+def test_the_purpose_phrase_stops_at_the_next_persons_clause(
+    config: Config, staff: Sequence[StaffMember]
+) -> None:
+    """§6.6's 160 characters are a ceiling, not a target.
+
+    Here von Haller is thanked for mass-spectrometry help and two other people for discussions.
+    Reading on past her clause would let their wording disqualify her.
+    """
+    sentence = (
+        "We thank Priska von Haller for help with mass spectrometry, Martin Morgan for "
+        "computational advice, and Phil Gafken for helpful discussions."
+    )
+    outcome = r7_of(sentence, config, staff)
+    assert [e["detail"]["staff"] for e in outcome.evidence] == ["vonhaller"]
+
+
+def test_a_named_service_survives_discussion_wording(config: Config, staff: Sequence[StaffMember]) -> None:
+    """01a C2 decides that thanks for technical help is UWPR support.
+
+    "Discussions and technical assistance" names two things, one of which qualifies outright.
+    """
+    for sentence in (
+        "We thank Priska von Haller for their discussions and technical assistance.",
+        "We thank Priska von Haller for technical assistance and helpful discussions.",
+    ):
+        assert r7_of(sentence, config, staff).evidence != [], sentence
+
+
+def test_discussion_alone_still_disqualifies(config: Config, staff: Sequence[StaffMember]) -> None:
+    """The veto is narrowed, not removed: help described only in passing does not count."""
+    sentence = "We thank Priska von Haller for helpful discussions about running the instrument."
+    assert r7_of(sentence, config, staff).evidence == []

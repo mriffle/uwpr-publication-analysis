@@ -8,6 +8,7 @@ import pytest
 
 from uwpr_pubs.cache import Cache
 from uwpr_pubs.http import Budget, HttpClient, Mode, RateLimiter, Response
+from uwpr_pubs.sources import ResultLimitError
 from uwpr_pubs.sources.crossref import Crossref
 from uwpr_pubs.sources.europepmc import EuropePmc
 from uwpr_pubs.sources.ncbi import Ncbi
@@ -273,3 +274,39 @@ def test_europepmc_full_text_returns_none_for_non_open_access(tmp_path: Path) ->
     """A 500 here is normal for anything not open access (Phase 1 §7)."""
     client, _ = client_for(lambda url, params: Response(url, 500, b"", {}), tmp_path)
     assert EuropePmc(client, "c@x.y").full_text_xml("PMC1") is None
+
+
+# --- max_results is enforced from the first page (docs/03 §10.3) ---------------------------
+
+
+def test_an_over_broad_query_stops_at_the_first_page(tmp_path: Path) -> None:
+    """D3's `"Van Haller"` full-text search matches 13,608 works.
+
+    Paging through them to discover that costs $0.068 in search pages, for nominations the
+    channel then throws away. The API reports the total on page one, so that is where it stops.
+    """
+    page = {"meta": {"count": 13608, "next_cursor": "next"}, "results": [{"id": "W1"}]}
+    client, seen = client_for(lambda url, params: json_response(page), tmp_path)
+
+    with pytest.raises(ResultLimitError) as raised:
+        list(OpenAlex(client, "mriffle@uw.edu").works("fulltext.search:x", max_results=3000))
+
+    assert raised.value.total == 13608
+    assert len(seen) == 1
+
+
+def test_a_query_within_its_limit_pages_normally(tmp_path: Path) -> None:
+    page = {"meta": {"count": 2, "next_cursor": None}, "results": [{"id": "W1"}, {"id": "W2"}]}
+    client, _ = client_for(lambda url, params: json_response(page), tmp_path)
+
+    found = list(OpenAlex(client, "mriffle@uw.edu").works("awards.funder_award_id:X", max_results=3000))
+    assert [w["id"] for w in found] == ["W1", "W2"]
+
+
+def test_europe_pmc_reports_its_own_total(tmp_path: Path) -> None:
+    page = {"hitCount": 99999, "resultList": {"result": [{"pmid": "1"}]}, "nextCursorMark": "n"}
+    client, seen = client_for(lambda url, params: json_response(page), tmp_path)
+
+    with pytest.raises(ResultLimitError):
+        list(EuropePmc(client, "mriffle@uw.edu").search("UWPR*", max_results=3000))
+    assert len(seen) == 1

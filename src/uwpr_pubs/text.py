@@ -40,6 +40,7 @@ class TextRules:
     abbreviations: tuple[str, ...]
     sections: Mapping[str, Section]
     methods_title: re.Pattern[str]
+    ack_title: re.Pattern[str]
     ack_whole_block_fallback: bool
     normalisation: NormalisationForm
 
@@ -54,6 +55,7 @@ def text_rules(config: Mapping[str, Any]) -> TextRules:
         abbreviations=tuple(config["abbreviations"]),
         sections=cast(Mapping[str, Section], dict(config["sections"])),
         methods_title=re.compile(config["methods_title_pattern"]),
+        ack_title=re.compile(config["ack_title_pattern"]),
         ack_whole_block_fallback=bool(config["ack_whole_block_fallback"]),
         normalisation=cast(NormalisationForm, config["unicode_normalisation"]),
     )
@@ -145,13 +147,13 @@ def _full_text(element: Element, rules: TextRules) -> str:
     return _normalise("".join(parts), rules.normalisation)
 
 
-def _in_methods(chain: Sequence[Element], rules: TextRules) -> bool:
-    """A section counts as methods when its own title, or an ancestor's, names one (§6.1)."""
+def _titled(chain: Sequence[Element], rules: TextRules, pattern: re.Pattern[str]) -> bool:
+    """True when a `sec` in the chain has a title matching the pattern (§6.1)."""
     for element in chain:
         if _local(element.tag) != "sec":
             continue
         for child in element:
-            if _local(child.tag) == "title" and rules.methods_title.search(_full_text(child, rules)):
+            if _local(child.tag) == "title" and pattern.search(_full_text(child, rules)):
                 return True
     return False
 
@@ -161,7 +163,10 @@ def _section(chain: Sequence[Element], rules: TextRules) -> Section:
         mapped = rules.sections.get(_local(element.tag))
         if mapped:
             return mapped
-    if _in_methods(chain, rules):
+    # Some papers write their acknowledgement as a plain <sec> rather than an <ack>.
+    if _titled(chain, rules, rules.ack_title):
+        return "acknowledgements"
+    if _titled(chain, rules, rules.methods_title):
         return "methods"
     return "main text"
 
@@ -266,7 +271,15 @@ def parse_jats(data: bytes | str, rules: TextRules) -> Document | None:
     for kept in _kept_roots(root, rules):
         found: list[Block] = []
         _walk(kept, (), rules, found)
-        if found and _local(kept.tag) == "body":
+        tag = _local(kept.tag)
+        if not found:
+            # A kept part whose content sits in no block element of its own: `<funding-group>`
+            # states the award in `<award-id>`, and §6.1 asks for `<ack>` to be searched whole
+            # when splitting would lose it. Either way the text is evidence and must not vanish.
+            whole = _full_text(kept, rules)
+            if whole:
+                found.append(Block(element=tag, section=_section((kept,), rules), text=whole))
+        if found and tag == "body":
             body_available = True
         blocks.extend(found)
 

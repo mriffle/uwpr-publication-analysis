@@ -29,6 +29,16 @@ from uwpr_pubs.text import Document, Sentence
 FOR = re.compile(r"\bfor\b")
 OTHER_INSTITUTION = "other_institution"
 
+# Where the next person's thanks begins: ", Martin Morgan for …" or "and Phil Gafken for …".
+# The purpose phrase stops there, because §6.6's 160 characters are a ceiling, not a target, and
+# its whole reason for existing is that the help-with-work wording may belong to somebody else.
+NEXT_CLAUSE = re.compile(r"(?:,|\band\b)\s+(?:[A-Z][\w.\-']*\s+){1,4}for\b")
+
+DISCUSSION = "discussion"
+# Services named outright, as opposed to help described in passing. These are the wordings 01a
+# C2 quotes when it decides this case type is UWPR support.
+NAMED_SERVICE = re.compile(r"(?i)technical (?:assistance|support|help)|data analysis")
+
 
 @dataclass(frozen=True)
 class WorkPattern:
@@ -72,10 +82,17 @@ class R7Outcome:
 
 
 def purpose_phrase(sentence: str, name_end: int, limit: int) -> str:
-    """The "for …" phrase after the staff name, capped at `limit` characters (§6.6)."""
+    """The "for …" phrase after the staff name, capped at `limit` characters (§6.6).
+
+    It also stops at the next person's clause, so that "…von Haller for help with mass
+    spectrometry, Martin Morgan for computational advice, Phil Gafken for helpful discussions"
+    tests only "for help with mass spectrometry".
+    """
     match = FOR.search(sentence, name_end)
     start = match.start() if match else name_end
-    return sentence[start : start + limit]
+    phrase = sentence[start : start + limit]
+    boundary = NEXT_CLAUSE.search(phrase)
+    return phrase[: boundary.start()] if boundary else phrase
 
 
 def _thanked(document: Document, sentence: Sentence, rules: R7Rules) -> bool:
@@ -88,7 +105,13 @@ def _thanked(document: Document, sentence: Sentence, rules: R7Rules) -> bool:
 
 
 def _disqualified(sentence: str, purpose: str, rules: R7Rules) -> bool:
+    named_service = bool(NAMED_SERVICE.search(purpose))
     for name, pattern in rules.disqualifiers:
+        if name == DISCUSSION and named_service:
+            # "for their discussions and technical assistance" names a service outright, which
+            # 01a C2 decides is UWPR support. The discussion wording still vetoes on its own —
+            # "for helpful discussions about running the instrument" is not a service.
+            continue
         target = sentence if name == OTHER_INSTITUTION else purpose
         if pattern.search(target):
             return True

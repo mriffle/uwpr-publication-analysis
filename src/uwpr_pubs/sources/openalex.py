@@ -10,6 +10,7 @@ from typing import Any, cast
 from urllib.parse import urlsplit
 
 from uwpr_pubs.http import HttpClient, Policy, openalex_cost
+from uwpr_pubs.sources import ResultLimitError
 
 BASE = "https://api.openalex.org"
 PER_PAGE = 200
@@ -60,21 +61,33 @@ class OpenAlex:
         return cast(dict[str, Any], reply.json())
 
     def pages(
-        self, path: str, params: Mapping[str, str], per_page: int = PER_PAGE
+        self,
+        path: str,
+        params: Mapping[str, str],
+        per_page: int = PER_PAGE,
+        max_results: int | None = None,
     ) -> Iterator[list[dict[str, Any]]]:
-        """Cursor paging; each page is charged separately."""
+        """Cursor paging; each page is charged separately, so an over-broad query stops at page 1."""
         cursor = "*"
+        first = True
         while cursor:
             payload = self._get(path, {**params, "per-page": str(per_page), "cursor": cursor})
+            meta = cast(dict[str, Any], payload.get("meta") or {})
+            if first and max_results is not None:
+                total = int(meta.get("count") or 0)
+                if total > max_results:
+                    raise ResultLimitError(total, max_results)
+            first = False
             results = cast(list[dict[str, Any]], payload.get("results") or [])
             yield results
-            meta = cast(dict[str, Any], payload.get("meta") or {})
             cursor = str(meta.get("next_cursor") or "")
             if not results:
                 break
 
-    def works(self, filter_expr: str, select: str = WORK_FIELDS) -> Iterator[dict[str, Any]]:
-        for page in self.pages("/works", {"filter": filter_expr, "select": select}):
+    def works(
+        self, filter_expr: str, select: str = WORK_FIELDS, max_results: int | None = None
+    ) -> Iterator[dict[str, Any]]:
+        for page in self.pages("/works", {"filter": filter_expr, "select": select}, max_results=max_results):
             yield from page
 
     def search_by_title(self, title: str, limit: int = 25) -> list[dict[str, Any]]:

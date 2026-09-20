@@ -21,6 +21,7 @@ from uwpr_pubs.http import (
     openalex_cost,
 )
 from uwpr_pubs.secrets import REDACTED, scrub, strip_url
+from uwpr_pubs.sources.europepmc import EuropePmc
 
 FAKE_KEY = "fake-openalex-key-abc123"
 FAKE_NCBI_KEY = "fake-ncbi-key-xyz789"
@@ -264,3 +265,35 @@ def test_committed_recordings_contain_no_text_or_abstracts() -> None:
     for path in blobs.rglob("*") if blobs.exists() else []:
         if path.is_file():
             assert recording.violations(path.read_bytes()) == [], path
+
+
+def test_an_endpoint_whose_error_is_an_answer_is_asked_once(tmp_path: Path) -> None:
+    """Europe PMC replies 500 to every non-open-access record (Phase 1 §7).
+
+    Retrying that with backoff cost about 14 seconds each, on hundreds of records, which is what
+    made the first full run unworkably slow.
+    """
+    transport = FakeTransport(Response("https://ebi", 500, b""))
+    client, sleeps = make_client(transport, tmp_path)
+
+    with pytest.raises(HttpError):
+        client.get("https://ebi/PMC1/fullTextXML", host="europepmc", attempts=1)
+
+    assert len(transport.calls) == 1
+    assert sleeps == []
+
+
+def test_a_transient_failure_is_still_retried(tmp_path: Path) -> None:
+    transport = FakeTransport(Response("https://x", 503, b""), ok(b"{}"))
+    client, _ = make_client(transport, tmp_path)
+
+    assert client.get("https://x", host="ncbi").status == 200
+    assert len(transport.calls) == 2
+
+
+def test_europe_pmc_full_text_asks_once(tmp_path: Path) -> None:
+    transport = FakeTransport(Response("https://ebi", 500, b""))
+    client, _ = make_client(transport, tmp_path)
+
+    assert EuropePmc(client, "mriffle@uw.edu").full_text_xml("PMC1") is None
+    assert len(transport.calls) == 1
