@@ -23,7 +23,7 @@ from uwpr_pubs.config import Config
 from uwpr_pubs.context import RunContext
 from uwpr_pubs.evidence import MergeContext, merge_evidence
 from uwpr_pubs.fixtures import evaluate
-from uwpr_pubs.fulltext import TextFetcher, TextResult, fulltext_field, needs_evaluation
+from uwpr_pubs.fulltext import TextFetcher, TextResult, fulltext_field, needs_evaluation, recheck_after
 from uwpr_pubs.http import HttpClient, HttpError, Mode
 from uwpr_pubs.match import (
     TITLE_SIMILARITY,
@@ -1232,10 +1232,37 @@ class Pipeline:
             if work_id is None or work_id not in self.drafts or kind not in INCLUDED_RECORD_KINDS:
                 continue
             draft = self.drafts[work_id]
+            known = set(draft.records)
             record_id = self._record_for(draft, payload)
             draft.payloads[record_id] = payload
+            if record_id not in known:
+                self._unread_text(draft, record_id)
             self._openalex_evidence(draft, record_id, payload)
             self.recorder.note(f"{draft.id}: journal version {doi} added by version linking")
+
+    def _unread_text(self, draft: Draft, record_id: RecordId) -> None:
+        """A record created in stage 6 has not been looked for, and needs no look (stage 6).
+
+        Evidence applies to the whole work, so the article the preprint's relation named does not
+        have to be read for the work to be included. It joins the ordinary 90-day recheck queue
+        instead. Dating its recheck today would have it read on the very next run, which rewrites
+        the record a second time and breaks the no-diff rule for one run (Phase 2 §15).
+        """
+        record = draft.records[record_id]
+        draft.records[record_id] = cast(
+            Record,
+            {
+                **record,
+                "fulltext": {
+                    "status": "unavailable",
+                    "checked": self.context.date,
+                    "recheck_after": recheck_after(
+                        self.context.date, int(self.config.settings["recheck_days"])
+                    ),
+                    "cache": None,
+                },
+            },
+        )
 
     def _version_records(self) -> list[versions.VersionRecord]:
         found: list[versions.VersionRecord] = []
@@ -1440,11 +1467,7 @@ class Pipeline:
         line: dict[str, Any] = {
             "schema": 1,
             "id": draft.id,
-            "records": [
-                to_candidate_record(record, draft.kinds.get(record["id"]))
-                for record in io.sort_records(list(draft.records.values()))
-            ]
-            or draft.candidate_records,
+            "records": self._candidate_records(draft),
             "reason": status.reason or "no_rule_fired",
             # §6.4: a work this run did not re-evaluate keeps the signals it already had.
             "signals": sorted(draft.signals) if draft.evaluated else draft.stored_signals,
@@ -1459,6 +1482,23 @@ class Pipeline:
         if status.keeps_former_evidence and evidence:
             line["former_evidence"] = io.sort_evidence(evidence)
         return cast(Candidate, line)
+
+    @staticmethod
+    def _candidate_records(draft: Draft) -> list[CandidateRecord]:
+        """This run's records, plus any the store held that nothing rebuilt (docs/02 §4).
+
+        A candidate's records only re-enter the draft when a channel nominates them again, and
+        stage 6 creates records no channel ever nominates. Replacing the stored list therefore
+        dropped records — and a record ID, once minted, is permanent. Two consecutive runs and a
+        diff are what showed this: the article vanished from the line on the second run.
+        """
+        rebuilt = [
+            to_candidate_record(record, draft.kinds.get(record["id"])) for record in draft.records.values()
+        ]
+        known = {record["id"] for record in rebuilt}
+        carried = [record for record in draft.candidate_records if record["id"] not in known]
+        # Ordered so that the line does not depend on which records happened to be nominated.
+        return sorted([*rebuilt, *carried], key=lambda r: (r["kind"] == "preprint", r["year"] or 0, r["id"]))
 
     def measure_recall(self, works: Sequence[Work]) -> None:
         """Phase 1 §4.2 and §11: the share of assessable list papers that R2-R7 reach.

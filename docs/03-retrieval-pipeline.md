@@ -31,6 +31,16 @@ stage (§5, stages 10–11).
 - *§10.6:* the report is accumulated as the stages run, not built from the finished store, because
   a failed run must still produce one.
 
+**Changes made while implementing M4** (2026-09-20):
+- *§5 stage 6, the record a version link creates:* it is written with `fulltext.status`
+  `unavailable`, checked today and rechecked in the ordinary 90 days. The stage's own wording —
+  "the article needs no text of its own, because evidence applies to the whole work" — settles
+  the question its status enum leaves open, and dating the recheck today instead made the next
+  run rewrite the record, which breaks Phase 2 §15's no-diff rule for one run.
+- *§9, a source that answers "no such record":* Crossref's 404 is a fact about the DOI, not an
+  outage, so it does not degrade the run. Anything else does, and stage 6 then stops asking that
+  source for the rest of the run rather than spending minutes of backoff on the same answer.
+
 **What the review changed (Draft 2 → 3):**
 - Metadata for every record is refreshed each run, before the rules (stage 3). Draft 2 took it
   from stage 8, which runs after the rules and never touched works that weren't included.

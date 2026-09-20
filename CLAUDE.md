@@ -12,10 +12,11 @@ Resource (UWPR).
 - Each included publication also gets a markdown knowledge-base page, which the app opens when
   the publication is clicked.
 
-**Current state:** Phases 1-3 frozen. Implementation is under way: milestones M0-M2 are done, so
-the pipeline already builds a validating store from the official list and the award code. M3 (text
-and rules R3-R7) is next. **`docs/08-implementation.md` is the handoff: status, decisions and the
-full plan.** Public repo: mriffle/uwpr-publication-analysis.
+**Current state:** Phases 1-3 frozen. Implementation is under way: milestones M0-M4 are done, so
+the pipeline runs every channel, reads PMC full text, applies all rules, links versions and
+produces a validating store that matches Phase 1's figures. M4.5 (seeding the real store, which
+mints ~1,100 permanent work IDs) is next. **`docs/08-implementation.md` is the handoff: status,
+measurements, decisions and the full plan.** Public repo: mriffle/uwpr-publication-analysis.
 
 Work proceeds phase by phase. `docs/00-project-phases.md` is the index; each phase has a numbered
 spec in `docs/`.
@@ -25,7 +26,7 @@ spec in `docs/`.
 | 1 Discovery | **Frozen** |
 | 2 Data model | **Frozen** |
 | 3 Pipeline | **Frozen** |
-| 8 Implementation | **In progress** (M0-M2 done; see `docs/08-implementation.md`) |
+| 8 Implementation | **In progress** (M0-M4 done; see `docs/08-implementation.md`) |
 | 4 Knowledge base | Not written |
 | 5 Metrics / app JSON | Unreviewed starting point |
 | 6 Web app | Unreviewed starting point |
@@ -53,7 +54,10 @@ uv run pytest tests/test_evidence.py::test_the_28_day_rule     # single test
 uv run uwpr-pubs validate samples/store                        # schemas + invariants; exit 1 on error
 uv run uwpr-pubs config                                        # fingerprints and config summary
 uv run uwpr-pubs smoke                                         # live source check (~$0.001)
-uv run uwpr-pubs run --store /tmp/scratch-store                # live run (~$0.002, warm cache)
+uv run uwpr-pubs run --store /tmp/scratch-store                # live run (~$0.010, ~110 s, warm cache)
+uv run uwpr-pubs explain <DOI|PMID|W-id> --store DIR           # why a paper is, or is not, included
+uv run uwpr-pubs fixtures --store DIR                          # the Phase 1 §12 test papers
+uv run uwpr-pubs report [RUN_ID] --store DIR                   # a run report (default: the latest)
 uv run python samples/build_sample_store.py                    # rebuild sample store from live APIs
 ```
 
@@ -87,6 +91,18 @@ uv run python samples/build_sample_store.py                    # rebuild sample 
     nanospray source).
 
   Check §6 and `docs/01a-discovery-calibration.md` before changing rule behaviour.
+
+**Versions and merges** (Phase 1 §8; stage 6).
+- Four signals link a preprint to its article, in descending order of trust: a Crossref relation
+  (**both** directions — `has-preprint` on the article is far commoner than `is-preprint-of` on
+  the preprint), bioRxiv's `published` field, a DOI among an OpenAlex record's locations, and
+  only then title + first author + year.
+- **Only preprint-only works are asked about.** A work already holding both versions needs no
+  request, which is what keeps this cheap.
+- Merging is union-find over work IDs: **the lowest ID survives**, the rest become `work:`
+  aliases, and everything that named a retired ID is repointed.
+- Some real pairs no source links at all. Those need a **merge override** (`overrides.yaml`);
+  the NUP153 preprint/article pair is the worked example, in `samples/store/`.
 
 **Store** (`docs/02-data-model.md`; `samples/store/` is a real, validated example of the layout).
 - **One JSON file per included work:** `store/works/W-000123.json`. It holds the work's records
@@ -140,6 +156,21 @@ uv run python samples/build_sample_store.py                    # rebuild sample 
   Resource" in Seattle.
 - **Hand-written YAML dates** (`date: 2026-09-20`) load as date objects; normalise them to ISO
   strings before schema validation.
+- **Crossref's 404 is an answer, not an outage.** `HttpError.status` carries the distinction; a
+  real outage must degrade the run rather than read as "this DOI has no preprint relation".
+- **Preprint servers mint a DOI per revision** (`…-33v24-v2`, `…/v2`), so a stated relation may
+  name a revision the store does not hold.
+
+## Measuring
+
+- **`docs/08` §3's figures go stale.** Before claiming a change moved a number, re-run the
+  *previous commit* against the same cache the same day. Comparing against a recorded table once
+  showed a 392-candidate regression that had never happened.
+- **Run twice and diff the store.** It has now found six identity and date bugs, and no unit
+  test has ever caught one of them. The most recent: a candidate's stored records were dropped
+  whenever another of its records was re-nominated.
+- **Read the channel table in the run report before believing any number under it.** A whole
+  class of channels silently didn't run during M3 while recall still looked fine.
 
 ## Repository rules
 

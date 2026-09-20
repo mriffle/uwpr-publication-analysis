@@ -38,6 +38,17 @@ deliberately, dated, and noted in this header. The schemas (`schemas/`) and vali
   the run ID ends with it. New required fields: `status`, `degradations` and
   `rules_fingerprint`.
 
+**Changes made while implementing M4** (2026-09-20, both in the validator, §18):
+- *§10, §14, metrics history:* a monthly `<YYYY-MM>.jsonl` may name a work that has since left
+  `works/`, and a retired work ID in one is resolved through `aliases.json`. A month's file is a
+  record of what was true that month, and a work can leave afterwards through a rule change, an
+  exclude override or a merge; rewriting history to hide that would be worse than carrying it.
+  It is now a warning for a past month and still an error for `latest.jsonl`. Without this, the
+  first merge would have made the store invalid at the start of the following month.
+- *§9, §14, a merge override not yet applied:* an override naming works that are still separate
+  is a warning, not an error. As an error it made the stage-0 check reject the very store the run
+  was about to fix, so a merge override could never take effect.
+
 **Purpose:** define how the pipeline stores what it finds between runs, precisely enough to
 implement.
 **Depends on:** [01-discovery-strategy.md](01-discovery-strategy.md) (frozen). This spec uses its

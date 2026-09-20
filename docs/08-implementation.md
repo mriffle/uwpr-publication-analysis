@@ -1,6 +1,6 @@
 # Phase 8 — Implementation: status and handoff
 
-**Status:** in progress · last updated 2026-09-19
+**Status:** in progress · last updated 2026-09-20
 **Purpose:** everything needed to pick this work up: where the build has got to, what was decided
 along the way, and the approved plan in full (§6).
 **Depends on:** the frozen specs [01](01-discovery-strategy.md), [01a](01a-discovery-calibration.md),
@@ -18,11 +18,11 @@ records how they are being built and what implementing them taught us.
 | M1.5 Evidence and status core (pure) | **Done** |
 | M2 Vertical slice (channels A/B1/B2/C1/C2, R1 + R2 metadata, gate, report) | **Done** |
 | M3 Text and rules core (R3–R7) | **Done** (§3.1 has the numbers) |
-| M4 Completeness and determinism | **Next** |
-| M4.5 Seed rehearsal | Not started |
+| M4 Completeness and determinism | **Done** (§3.2 has the numbers) |
+| M4.5 Seed rehearsal | **Next** |
 | M5 Live automation (`update.yml`) | Not started |
 
-298 tests, all offline; ruff, `ruff format`, mypy `--strict` and the store validator all clean, and
+389 tests, all offline; ruff, `ruff format`, mypy `--strict` and the store validator all clean, and
 `check.yml` green on every push. **Nothing is committed to `store/` yet** — the pipeline has only
 ever written to scratch stores, by design, until M4.5.
 
@@ -45,18 +45,22 @@ src/uwpr_pubs/
   metrics.py     citation lines from the same OpenAlex refresh
   report.py      RunRecorder: the report is accumulated as stages run
   pipeline.py    the stage machine, the staging write and the gate
+  versions.py    the four version-linking signals, and the merge plan they imply
+  fixtures.py    the Phase 1 §12 test papers, evaluated against a store
+  explain.py     everything known about one work, for `uwpr-pubs explain`
   validate.py    the store validator (was tools/validate_store.py)
-  git.py         clean-tree and reset; the commit half is M4
+  git.py         clean-tree, reset, and the run's one data commit
   runtime.py     builds the client from config; reads .env for local runs
   smoke.py       `uwpr-pubs smoke`, the only live test
-  sources/       uwpr_site, openalex, ncbi, crossref, europepmc
-  rules/         r1 (official list), r2 (award code, metadata arm)
+  sources/       uwpr_site, openalex, ncbi, crossref, europepmc, biorxiv, pride
+  rules/         one module per rule, plus staff name forms and the §6.4 signals
   stages/        kb.py and export.py: no-ops until Phases 4 and 5
   store/         models (TypedDicts), io, ids, paths, read
 ```
 
-Commands: `uwpr-pubs validate`, `config`, `smoke`, `run`. `run` takes `--mode`, `--store`,
-`--cache`, `--dry-run`, `--channels` and `--summary-out`.
+Commands: the full Phase 3 §8 set — `validate`, `config`, `smoke`, `run`, `explain`, `report`
+and `fixtures`. `run` takes `--mode`, `--store`, `--cache`, `--dry-run`, `--channels`,
+`--no-commit` and `--summary-out`.
 
 ## 3. Measurements so far
 
@@ -110,6 +114,62 @@ text but **not** the dataset's references, so nothing links it to a publication 
 nominates nothing at all. Only the datasets whose text actually names the resource are fetched
 again by accession, which is a handful. Channel J now nominates 8 papers and R3d finds exactly
 the one work §4.3 expects — PXD011642 → PMID 32613749, which no other channel finds.
+
+### 3.2 M4 live runs, 2026-09-20 (UTC)
+
+A full sweep takes **about 110 seconds** on a warm cache and costs **$0.010**. Version linking
+adds roughly 30 seconds to a first run, and almost nothing afterwards: a work that already holds
+both versions needs no request.
+
+**The number M4 had to move.** Phase 1 §4.3 expects about 37 works off the official list, 12 of
+them preprint-only. Both figures were measured against the same sources on the same day, so the
+comparison is like for like:
+
+| | before M4 | after M4 | Phase 1 §4.3 |
+|---|---:|---:|---:|
+| Works | 369 | 342 | |
+| **Off the official list** | 63 | **36** | ~37 |
+| **Of those, preprint-only** | 39 | **12** | 12 |
+| Candidates | 476 | 453 | |
+| Recall on the official list | 206/251 (82%) | 208/253 (82%) | 82% |
+
+50 merges: 27 works and 23 candidates. The 37 version links are 31 Crossref relations, 2 bioRxiv
+`published` fields and 4 title matches. **All 21 fixtures behave** — 19 as expected and B and B2
+still known misses — and fixture G still shows R1 without R3.
+
+**Two runs on unchanged sources produce byte-identical data.** This is the check that earns its
+keep: it found both of the bugs in §5 below.
+
+**Per-rule counts**, on list papers and off, against Phase 1 §4.2:
+
+| Rule | On list, M4 | before M4 | Phase 1 §4.2 | Off list, M4 | before M4 |
+|---|---:|---:|---:|---:|---:|
+| R2 identifier in metadata | 120 | 115 | 111 | 11 | 34 |
+| R2 identifier in text | 141 | 141 | 144 | 4 | 9 |
+| R3 resource named | 156 | 156 | 159 | 9 | 14 |
+| R4 South Lake Union | 1 | 1 | 1 | 0 | 0 |
+| R5 affiliation is the resource | 33 | 33 | 28 | 4 | 7 |
+| R6 OpenAlex full-text proxy | 35 | 20 | 18 | 14 | 29 |
+| R7 staff thanked | 16 | 16 | 18 | 7 | 7 |
+| R3d dataset description | 0 | 0 | 0 | 1 | 1 |
+
+The on-list rises in R2-metadata and R6 are the merges working, not a rule change: evidence found
+on a preprint applies to the whole work (Phase 1 §8), so when a preprint joins a listed article
+its evidence moves to the list side of this table. Each rule's total is unchanged. No rule's
+behaviour was altered in M4.
+
+**The two duplicates Phase 1 §4.3 predicted, checked one at a time.**
+- **Galanthamine was never a duplicate.** The list entry *An Extraction Assay Analysis for
+  Galanthamine…* has no PMID and matches the article `10.4172/scientificreports.149` by title, so
+  it has been one work since M2. Nothing to merge.
+- **NUP153 cannot be merged automatically, and this was measured rather than assumed.** Crossref
+  gives the preprint only `is-version-of` pointing at its own v1, and the article's `relation` is
+  empty. Neither record's OpenAlex locations names the other. The titles score 0.645 against the
+  0.85 threshold and the first authors differ, because the author order changed between versions.
+  None of Phase 1 §8's four signals reaches it. `samples/store/` has always linked this pair with
+  `method: "override"`, which is the answer: it is the worked example in Phase 2 §9. **It needs a
+  merge override, which belongs to M4.5**, because overrides name work IDs and those are not
+  permanent until the store is seeded.
 
 ## 4. Decisions taken during implementation
 
@@ -166,6 +226,30 @@ because they are the things a reader would otherwise have to rediscover.
 - **A text fetch is not retried per record beyond the client's own retries**; a failure adds the
   record to the run's unevaluated set, so its stored evidence is left exactly as it was (§6.2).
 
+**Made during M4** (the two spec changes are dated in `docs/02` and `docs/03`'s headers):
+- **Crossref states the relation from the article's side far more often than the preprint states
+  it from its own.** 13 of the 63 works the award filter returns carry `has-preprint`, against
+  one carrying `is-preprint-of`. Phase 1 §8 names both directions; reading the article's side
+  costs no request at all, because channel B2 has already fetched those records.
+- **Only preprint-only works are asked about.** A work that already holds both versions keeps
+  them in one file and carries its `version_link` forward, so it needs no request. That is what
+  keeps version linking to about 30 seconds on a first run and nothing on a normal week.
+- **A preprint server mints a DOI per revision** (`…-33v24-v2`, `…/v2`), and a relation may name
+  a revision we do not hold. The revision is stripped as a *second* chance, after the exact DOI
+  fails, and only when exactly one record matches — so an ambiguous revision links nothing.
+- **A DOI read out of an OpenAlex location URL is only used if it matches a record we already
+  hold.** That is what makes parsing DOIs out of URLs safe: a mis-parse finds nothing.
+- **`HttpError` carries its status.** Crossref's 404 means "no such DOI", which is a fact about
+  the record; anything else means the source is down. Without the distinction, an outage would
+  have looked like "no preprint has a published version".
+- **A positive fixture whose paper is absent from the store is not a regression.** Phase 3 §12.2
+  says the positive papers *present in the store* must stay included, and the qualifier matters:
+  without it, the first run into an empty store fails on every fixture at once.
+- **The run's commit is made after the report,** because the report and the manifest are among
+  the files it commits. So the report does not name the commit it is part of; the CLI prints it.
+- **A commit that fails raises an alert rather than failing the run.** The data is already
+  written by then, and what needs a person is the repository, not the run.
+
 ## 5. Gotchas found while building
 
 - **Two consecutive live runs are the only way to catch identity bugs.** Both record-permanence
@@ -195,6 +279,25 @@ because they are the things a reader would otherwise have to rediscover.
   is Phase 1 §4.1's 155 records, and it is what `fulltext: unavailable` means.
 - **NCBI is fast (about 0.4 s a request); the slowness was ours.** Measure a real request before
   assuming a source is the bottleneck.
+
+**Found during M4** — both by running twice and diffing, and neither by any unit test:
+- **A candidate's stored records were dropped whenever one of them was re-nominated.** The
+  candidate line was rebuilt from this run's nominations, falling back to the stored list only
+  when the draft had no records at all. Every candidate record used to arrive from a nomination
+  each run, so it never showed. Stage 6 creates records no channel ever nominates, and those
+  vanished on the following run. The line now merges the two lists. **A record ID, once minted,
+  is permanent — including one nothing will name again.**
+- **A record created in stage 6 must not be dated for rechecking today.** Doing so had the next
+  run fetch its text, find none, and rewrite the record with a 90-day date — a data diff on the
+  second run, from a store nobody had touched.
+- **The docs' own figures go stale, so re-measure the baseline rather than trusting a table.**
+  §3.1 recorded 845 candidates; the same code on the same day now produces 476, because three
+  commits landed after that measurement was written. Comparing M4 against the recorded figure
+  would have shown a 392-candidate "regression" that never happened. The comparison in §3.2 is
+  against a run of the previous commit made the same afternoon, on the same cache.
+- **The stage-0 validator can reject the store a run was about to fix.** A merge override names
+  works that are, by definition, not yet merged. As an error, that made the override unusable;
+  it is now a warning. Any check that asserts a *post-run* state has this problem.
 
 ## 6. The approved implementation plan
 
@@ -443,6 +546,31 @@ End to end, before the first scheduled run:
 
 ---
 
+## 6a. The expected-store reconciliation (the M4 plan's written task)
+
+The plan asked for the replay scenarios' expected store to be *derived* from `samples/store/`,
+and for the reconciliation to be written down. Having done the derivation, the answer is that
+**the sample store should not be the expected output of a run, and the scenarios assert
+behaviour instead.** The reasons are not incidental:
+
+- its manifest is `mode: sample`, and the run ID's suffix is its mode, so no run can produce it;
+- `W-000003`'s R1 dates are hand-made, to show a list entry that has disappeared;
+- its list keys use `page: "current"`, which the live parser now keys by year heading;
+- it links the NUP153 pair by `override`, which requires an `overrides.yaml` naming work IDs that
+  only exist once a store has been seeded;
+- it is a curated cross-section — one work per rule — not the output of any channel sweep.
+
+Forcing a run to reproduce it would mean special-casing the pipeline to match a fixture, which is
+the wrong direction. What the sample is genuinely good for, and is now used for, is as a real
+validated store to read: `tests/test_fixtures_and_explain.py` runs the fixture evaluator and
+`explain` against it, so both are exercised against shapes a hand-built store produced
+independently of the pipeline.
+
+`tests/test_scenarios.py` covers what the plan wanted from the replay runs, over a two-paper
+corpus: an exclude override and a rule change removing a work and carrying its superseded
+evidence forward (and restoring it when the rule comes back), byte-identical determinism between
+two stores built from scratch, and a failing source that shrinks nothing.
+
 ## 7. How to pick this up
 
 ```
@@ -450,7 +578,10 @@ uv sync --locked --all-groups
 uv run ruff check . && uv run ruff format --check . && uv run mypy && uv run pytest
 uv run uwpr-pubs validate samples/store
 uv run uwpr-pubs smoke                              # live; about $0.001
-uv run uwpr-pubs run --store /tmp/scratch-store     # live; about $0.002 with a warm cache
+uv run uwpr-pubs run --store /tmp/scratch-store     # live; about $0.010, ~110 s, warm cache
+uv run uwpr-pubs fixtures --store /tmp/scratch-store        # the Phase 1 §12 papers
+uv run uwpr-pubs explain 10.1021/acs.jproteome.5c00706 --store /tmp/scratch-store
+uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's report
 ```
 
 - **Work one milestone at a time,** committing as you go, with `check.yml` green on every push.
@@ -468,3 +599,9 @@ uv run uwpr-pubs run --store /tmp/scratch-store     # live; about $0.002 with a 
 4. **Phases 4 to 7 have not been discussed.** Phase 4 (knowledge base) is the next specification
    conversation, and its decisions — an LLM for summaries, the subject vocabulary, whether
    abstracts may be quoted — are the ones that most affect later work.
+5. **The NUP153 merge override, at M4.5.** The preprint `10.21203/rs.3.rs-4693768/v2` and the
+   article `10.1038/s41467-026-71449-1` are one piece of research that no source links (§3.2).
+   The override asserts that as a fact and is attributed to a person, so it is written once the
+   seed run has minted the two work IDs it must name.
+6. **An `NCBI_API_KEY`** would take cold-cache runs from 3 to 10 requests a second. Only CI
+   starts cold, so this matters from M5 rather than now.
