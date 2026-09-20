@@ -107,6 +107,8 @@ export default defineConfig(({ mode }) => {
       globals: false,
       setupFiles: ['./vitest.setup.ts'],
       include: ['test/**/*.test.{ts,tsx}'],
+      // Playwright owns e2e/; vitest must not try to run those specs.
+      exclude: ['e2e/**', 'node_modules/**', 'dist/**'],
       coverage: {
         provider: 'v8',
         reporter: ['text', 'lcov'],

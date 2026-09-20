@@ -287,6 +287,26 @@ describe('open access over time (docs/05 §7.12)', () => {
     work({ year: 2016, oa: { status: 'green', url: null, license: null } }),
   ];
 
+  it('formats the share axis as a share, not as a count', () => {
+    const { container } = render(
+      <OpenAccessOverTimeChart works={works} period={period} width={800} height={320} />,
+    );
+    // An integer formatter would render a 0–1 axis as a column of zeros and ones.
+    const right = container.querySelector('.visx-axis-right');
+    expect(right?.textContent).toContain('%');
+  });
+
+  it('marks the partial year over the stack, and says so in words (docs/05 §4.2)', () => {
+    const { container } = render(
+      <OpenAccessOverTimeChart works={works} period={period} width={800} height={320} />,
+    );
+    expect(container.querySelector('[data-testid="partial-2016"]')?.getAttribute('fill')).toMatch(
+      /^url\(#/,
+    );
+    expect(container.querySelector('[data-testid="partial-2015"]')).toBeNull();
+    expect(container.textContent).toContain('2016 is partial');
+  });
+
   it('draws the counts as well as the share, which is the measured constraint', () => {
     const { container } = render(
       <OpenAccessOverTimeChart works={works} period={period} width={800} height={320} />,

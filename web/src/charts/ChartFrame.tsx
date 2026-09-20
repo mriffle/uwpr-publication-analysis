@@ -40,9 +40,14 @@ export interface ChartFrameProps {
    * the lines always cross the value axis and never the category axis.
    */
   grid?: 'rows' | 'columns';
-  /** Overridden where an axis carries categories rather than counts. */
+  /** Overridden where an axis carries categories, or shares, rather than counts. */
   xTickFormat?: (value: unknown) => string;
   yTickFormat?: (value: unknown) => string;
+  /**
+   * The second axis is not always a second count: docs/05 §7.12 draws a *share* there, and
+   * formatting 0.5 as an integer renders the axis as a column of zeros and ones.
+   */
+  rightTickFormat?: (value: unknown) => string;
   /** A band axis wants one tick per category, not five. */
   yNumTicks?: number;
   children: (inner: { innerWidth: number; innerHeight: number }) => ReactNode;
@@ -70,6 +75,7 @@ export function ChartFrame({
   grid = 'rows',
   xTickFormat,
   yTickFormat = (value) => formatCount(Number(value)),
+  rightTickFormat = (value) => formatCount(Number(value)),
   yNumTicks = 5,
   children,
 }: ChartFrameProps) {
@@ -143,7 +149,7 @@ export function ChartFrame({
               numTicks={5}
               stroke="var(--chart-axis)"
               tickStroke="var(--chart-axis)"
-              tickFormat={(value) => formatCount(Number(value))}
+              tickFormat={(value) => rightTickFormat(value)}
               tickLabelProps={() => ({
                 ...tickLabel,
                 textAnchor: 'start',

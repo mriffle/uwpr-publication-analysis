@@ -24,6 +24,7 @@ import { ChartFrame, DEFAULT_MARGIN } from './ChartFrame';
 import { ChartTable } from './ChartTable';
 import { ChartTooltip } from './ChartTooltip';
 import { seriesColour } from './palette';
+import { PartialKey, PartialPattern } from './partial';
 
 /** What one bar counts, so the accessible names read "2 publications" or "469 citations". */
 export interface SeriesUnit {
@@ -109,25 +110,7 @@ export function YearSeriesChart({
       >
         {() => (
           <>
-            <defs>
-              <pattern
-                id={patternId}
-                width={6}
-                height={6}
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(45)"
-              >
-                <rect width={6} height={6} fill="var(--chart-partial-bg)" />
-                <line
-                  x1={0}
-                  y1={0}
-                  x2={0}
-                  y2={6}
-                  stroke="var(--chart-partial-line)"
-                  strokeWidth={3}
-                />
-              </pattern>
-            </defs>
+            <PartialPattern id={patternId} />
             {points.map((point) => {
               const selected = selectedYears.includes(point.year);
               const x = xScale(String(point.year)) ?? 0;
@@ -202,14 +185,7 @@ export function YearSeriesChart({
           ]}
         />
       ) : null}
-      {partialYears.length > 0 ? (
-        <p className="chart-partial-key">
-          <span className="chart-partial-swatch" aria-hidden="true" />
-          {partialYears.map(String).join(', ')} {partialYears.length === 1 ? 'is' : 'are'} partial:
-          the {partialYears.length === 1 ? 'year is' : 'years are'} not over, so the{' '}
-          {partialYears.length === 1 ? 'bar is' : 'bars are'} hatched and will grow.
-        </p>
-      ) : null}
+      <PartialKey labels={partialYears.map(String)} />
     </div>
   );
 }

@@ -180,7 +180,7 @@ describe('citations (docs/05 §6.5)', () => {
       screen.getByText(/42 citations, reported by OpenAlex as of 20 September 2026/),
     ).toBeInTheDocument();
     expect(screen.getByText(/field-weighted citation impact is 1.80/)).toBeInTheDocument();
-    expect(screen.getByText(/91% percentile/)).toBeInTheDocument();
+    expect(screen.getByText(/above 91% of comparable papers/)).toBeInTheDocument();
     const table = screen.getByRole('table', { name: /Citations received by year/ });
     expect(within(table).getByRole('rowheader', { name: '2024' })).toBeInTheDocument();
   });

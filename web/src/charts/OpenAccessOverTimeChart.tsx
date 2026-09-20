@@ -12,7 +12,7 @@
  *
  * Clicking a year's bar toggles that year in the filter (docs/06 §6).
  */
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { Bar, LinePath } from '@visx/shape';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { openAccessPerYear, type OpenAccessPoint } from '../aggregate/series';
@@ -23,6 +23,7 @@ import { ChartLegend } from './ChartLegend';
 import { ChartTable } from './ChartTable';
 import { ChartTooltip } from './ChartTooltip';
 import { otherColour, seriesColour } from './palette';
+import { PartialKey, PartialPattern } from './partial';
 
 export function openAccessMarkLabel(point: OpenAccessPoint, selected: boolean): string {
   const partial = point.partial ? ', a partial year' : '';
@@ -53,6 +54,7 @@ export function OpenAccessOverTimeChart({
   selectedYears = [],
   onSelectYear,
 }: OpenAccessOverTimeChartProps) {
+  const patternId = useId();
   const [hovered, setHovered] = useState<OpenAccessPoint | null>(null);
   const points = openAccessPerYear(works, period);
 
@@ -86,9 +88,13 @@ export function OpenAccessOverTimeChart({
         yLabel="Publications"
         rightLabel="Open-access share"
         xTickValues={tickValues}
+        rightTickFormat={(value) => formatShare(Number(value))}
       >
         {() => (
           <>
+            {/* Hatched *over* the stack rather than in place of it: the two counts are the point
+                of this chart, so the partial mark must not replace their colours. */}
+            <PartialPattern id={patternId} filled={false} />
             {points.map((point) => {
               const x = xScale(point.year.toString()) ?? 0;
               const bandWidth = xScale.bandwidth();
@@ -140,6 +146,18 @@ export function OpenAccessOverTimeChart({
                     fill={seriesColour(0)}
                     data-testid={`open-${String(point.year)}`}
                   />
+                  {point.partial ? (
+                    <Bar
+                      x={x}
+                      y={yTotal}
+                      width={bandWidth}
+                      height={Math.max(0, innerHeight - yTotal)}
+                      fill={`url(#${patternId})`}
+                      stroke="var(--chart-partial-line)"
+                      strokeWidth={1}
+                      data-testid={`partial-${String(point.year)}`}
+                    />
+                  ) : null}
                 </g>
               );
             })}
@@ -172,6 +190,9 @@ export function OpenAccessOverTimeChart({
           ]}
         />
       ) : null}
+      <PartialKey
+        labels={points.filter((point) => point.partial).map((point) => String(point.year))}
+      />
       <ChartLegend
         label="Open-access status"
         entries={[

@@ -51,7 +51,7 @@ import {
   OpenAccessOverTimeTable,
 } from '../charts/OpenAccessOverTimeChart';
 import { MostCitedList, MostCitedTable } from '../charts/MostCitedChart';
-import { otherColour, seriesColour } from '../charts/palette';
+import { seriesColour } from '../charts/palette';
 import { FilterBar } from '../components/FilterBar';
 import { HeadlineFigures } from '../components/HeadlineFigures';
 import { PublicationExplorer } from '../components/PublicationExplorer';
@@ -166,7 +166,7 @@ export function Overview({
         </p>
         <p>
           Data generated {formatDate(doc.generated_at)}. Citations from {doc.sources.citations.name}{' '}
-          as of {doc.sources.citations.as_of}.{' '}
+          as of {formatDate(doc.sources.citations.as_of)}.{' '}
           <a href={doc.resource.url}>{doc.resource.short_name}</a>
         </p>
       </header>
@@ -333,7 +333,7 @@ export function Overview({
         description="Publications by OpenAlex subfield, which is the level dense enough to be informative. Select a subfield to filter the page by it."
         note={
           subfields.notShown > 0
-            ? `The ${String(subfields.items.length)} most frequent of ${pluralize(subfields.distinct, 'subfield')}; ${String(subfields.notShown)} are not shown. A publication is counted once in each subfield it touches.`
+            ? `The ${formatCount(subfields.items.length)} most frequent of ${pluralize(subfields.distinct, 'subfield')}; ${formatCount(subfields.notShown)} are not shown. A publication is counted once in each subfield it touches.`
             : 'A publication is counted once in each subfield it touches.'
         }
         rows={subfields.items.map((item) => ({
@@ -363,7 +363,7 @@ export function Overview({
               ? 'Resource staff are included and marked. A staff member on many papers and an external investigator on many papers are different facts, and the chart does not merge them.'
               : 'Resource staff are excluded by default: a staff member on many papers describes staff contribution, not sustained use of the facility.'}{' '}
             {researchers.notShown > 0
-              ? `The ${String(researchers.items.length)} most frequent of ${pluralize(researchers.distinct, 'researcher')}; ${String(researchers.notShown)} are not shown.`
+              ? `The ${formatCount(researchers.items.length)} most frequent of ${pluralize(researchers.distinct, 'researcher')}; ${formatCount(researchers.notShown)} are not shown.`
               : null}
           </>
         }
@@ -415,9 +415,9 @@ export function Overview({
           <>
             {home === null
               ? null
-              : `${home.label} is excluded: it appears on ${String(home.count)} of ${pluralize(doc.works.length, 'publication')} and would flatten the chart to one bar and a fringe. `}
+              : `${home.label} is excluded: it appears on ${formatCount(home.count)} of ${pluralize(doc.works.length, 'publication')} and would flatten the chart to one bar and a fringe. `}
             {institutions.notShown > 0
-              ? `The ${String(institutions.items.length)} most frequent of ${pluralize(institutions.distinct, 'other institution')}; ${String(institutions.notShown)} are not shown. `
+              ? `The ${formatCount(institutions.items.length)} most frequent of ${pluralize(institutions.distinct, 'other institution')}; ${formatCount(institutions.notShown)} are not shown. `
               : ''}
             Institutions are a floor: an affiliation with no ROR identifier cannot be counted.
           </>
@@ -450,7 +450,7 @@ export function Overview({
             <>
               {pluralize(worksOutside(works, homeCountry.key), 'publication')} of the{' '}
               {pluralize(works.length, 'publication')} shown have an author outside{' '}
-              {countryName(homeCountry.key)}, which appears on {String(homeCountry.count)} of{' '}
+              {countryName(homeCountry.key)}, which appears on {formatCount(homeCountry.count)} of{' '}
               {pluralize(doc.works.length, 'publication')} and is left out of the chart below. There
               is no map: one saturated country and a scattering conveys less than this sentence
               does.
@@ -481,9 +481,9 @@ export function Overview({
         note={
           <>
             {pluralize(journals.distinct, 'distinct venue')} in all
-            {journals.notShown > 0 ? `; ${String(journals.notShown)} are not shown` : ''}. Preprint
-            servers are venues and are counted and labelled as such, because leaving them out would
-            misstate the corpus.
+            {journals.notShown > 0 ? `; ${formatCount(journals.notShown)} are not shown` : ''}.
+            Preprint servers are venues and are counted and labelled as such, because leaving them
+            out would misstate the corpus.
           </>
         }
         rows={journals.items.map((item) => ({
@@ -574,7 +574,6 @@ export function Overview({
           label: item.label,
           value: item.count,
           selected: filter.criterion.includes(item.criterion),
-          colour: otherColour(),
         }))}
         unit={publicationUnit}
         valueAxisLabel="Publications"

@@ -268,8 +268,8 @@ export function PublicationDetail({
         )}{' '}
         {work.citations.percentile === null ? null : (
           <>
-            OpenAlex places it in the {formatShare(work.citations.percentile)} percentile of its
-            field and year.
+            OpenAlex puts it above {formatShare(work.citations.percentile)} of comparable papers in
+            its field and year.
           </>
         )}
       </p>

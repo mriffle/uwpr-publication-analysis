@@ -19,6 +19,7 @@ import {
   yearSpan,
 } from '../aggregate/metrics';
 import type { Work } from '../contract/types';
+import { formatDate } from '../format/date';
 import { formatCount, formatDecimal } from '../format/number';
 
 export interface HeadlineFiguresProps {
@@ -49,7 +50,7 @@ export function headlineFigures(works: readonly Work[], citationsAsOf: string): 
     {
       label: 'Citations',
       value: formatCount(totalCitations(works)),
-      definition: `Citations reported by OpenAlex as of ${citationsAsOf}.`,
+      definition: `Citations reported by OpenAlex as of ${formatDate(citationsAsOf)}.`,
     },
     {
       label: 'Research groups',
@@ -91,8 +92,8 @@ export function HeadlineFigures({ works, citationsAsOf }: HeadlineFiguresProps) 
           <>
             The median publication shown is cited about {formatDecimal(median)} times as often as
             the average paper in its field and year (field-weighted citation impact, OpenAlex, as of{' '}
-            {citationsAsOf}). This records how these publications were cited; it does not measure
-            what caused the citations.
+            {formatDate(citationsAsOf)}). This records how these publications were cited; it does
+            not measure what caused the citations.
           </>
         )}
       </p>

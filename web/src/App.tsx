@@ -9,7 +9,7 @@
  * the filtered view the reader built (docs/06 §3); reached cold, there is no query to keep and
  * the detail offers a route to an unfiltered overview instead.
  */
-import { useCallback, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react';
 import { toggleSort, type SortKey } from './aggregate/explorer';
 import { basePath, exportUrl, lookupUrl } from './contract/config';
 import { describeFailure } from './contract/load';
@@ -132,14 +132,26 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
     [base, search],
   );
 
+  // True while the entry on screen is one this app pushed, so closing the detail can pop it
+  // rather than push a third entry. Without this, opening and closing five publications leaves
+  // ten entries to press Back through, and the detail docs/06 §3 describes as opening "over" the
+  // overview would never close again.
+  const openedInApp = useRef(false);
+
   const openPublication = useCallback(
     (work: Work) => {
+      openedInApp.current = true;
       navigate({ pathname: publicationPath(work.id, base) });
     },
     [navigate, base],
   );
 
   const backToOverview = useCallback(() => {
+    if (openedInApp.current) {
+      openedInApp.current = false;
+      window.history.back();
+      return;
+    }
     navigate({ pathname: overviewPath(base) });
   }, [navigate, base]);
 

@@ -13,7 +13,7 @@
  * top five, and it changes as the corpus and the filter change — so it is drawn but not
  * clickable, and its accessible name says so.
  */
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { Bar } from '@visx/shape';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { OTHER_FIELD, type AreaBucket, type AreasOverTime } from '../aggregate/areas';
@@ -23,6 +23,7 @@ import { ChartLegend, type LegendEntry } from './ChartLegend';
 import { ChartTable } from './ChartTable';
 import { ChartTooltip } from './ChartTooltip';
 import { otherColour, seriesColour } from './palette';
+import { PartialKey, PartialPattern } from './partial';
 
 export const AXIS_LABEL = 'Topic assignments';
 
@@ -63,6 +64,7 @@ export function ResearchAreasOverTimeChart({
   selectedFields = [],
   onSelectField,
 }: ResearchAreasOverTimeChartProps) {
+  const patternId = useId();
   const [hovered, setHovered] = useState<{ bucket: AreaBucket; index: number } | null>(null);
 
   const margin = DEFAULT_MARGIN;
@@ -110,6 +112,10 @@ export function ResearchAreasOverTimeChart({
       >
         {() => (
           <>
+            {/* Hatched over the stack, so the segments keep their colours (docs/05 §4.2 still
+                requires the mark: a bucket holding an unfinished year is not comparable with a
+                complete one). */}
+            <PartialPattern id={patternId} filled={false} />
             {areas.buckets.map((bucket) => {
               const x = xScale(bucket.key) ?? 0;
               const bandWidth = xScale.bandwidth();
@@ -167,6 +173,23 @@ export function ResearchAreasOverTimeChart({
                 );
               });
             })}
+            {areas.buckets
+              .filter((bucket) => bucket.partial && bucket.total > 0)
+              .map((bucket) => (
+                <Bar
+                  key={`partial-${bucket.key}`}
+                  x={xScale(bucket.key) ?? 0}
+                  y={yScale(bucket.total)}
+                  width={xScale.bandwidth()}
+                  height={Math.max(0, innerHeight - yScale(bucket.total))}
+                  fill={`url(#${patternId})`}
+                  stroke="var(--chart-partial-line)"
+                  strokeWidth={1}
+                  pointerEvents="none"
+                  aria-hidden="true"
+                  data-testid={`partial-${bucket.key}`}
+                />
+              ))}
           </>
         )}
       </ChartFrame>
@@ -189,6 +212,10 @@ export function ResearchAreasOverTimeChart({
           ]}
         />
       ) : null}
+      <PartialKey
+        labels={areas.buckets.filter((bucket) => bucket.partial).map((bucket) => bucket.label)}
+        noun={areas.bucketYears === 1 ? 'year' : 'period'}
+      />
       <ChartLegend
         entries={entries}
         label="Research fields"
