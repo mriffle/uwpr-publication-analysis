@@ -104,7 +104,7 @@ informed it.
 | A5 | **Works absent from UWPR's own list are shown as ordinary publications.** The count appears on the method page. The per-paper report stays an operations artifact. |
 | A6 | **No UW branding** (D8, answered 2026-09-20). Clean and modern, visually neutral. The resource is named and linked. |
 | A7 | **Funders and grants are not exported.** The store does not hold them (§3.1). |
-| A8 | **Author and evidence lists are not capped.** Measured: the full export is 1.08 MB, 0.15 MB gzipped (§4.4). Capping saves nothing and hides the evidence the project exists to show. |
+| A8 | **Author and evidence lists are not capped.** Measured: the full export is 3.48 MB as written, **0.31 MB gzipped** (§4.4), which is what the transfer costs. Capping saves a fraction of that and hides the evidence the project exists to show. |
 
 ### 2.1 Why the year is the article's date (A2)
 
@@ -599,7 +599,7 @@ browsable list (A4).
 **The file is public and complete.** Anyone who fetches it can read every candidate line. Showing
 it only on lookup is a decision about what the page asserts, not a way of keeping data back, and
 the spec says so rather than implying a privacy property the file does not have. Measured at
-0.10 MB, so it costs nothing to ship and is loaded on demand.
+0.36 MB, 0.06 MB gzipped, and is loaded on demand rather than on first paint.
 
 **Why there is no browsable rejection list.** Measured, 205 of the 341 have no suggestive signal
 whatsoever, and the pool includes a Spanish constitutional-law article, a Canadian literature

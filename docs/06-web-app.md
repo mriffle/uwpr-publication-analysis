@@ -286,19 +286,27 @@ Detailed visual design happens at implementation against the sample export. The 
 
 ## 10. Performance
 
-Measured inputs: the data file is **1.08 MB, 0.15 MB gzipped**, plus **0.10 MB** for the lookup
-index, growing about 0.1 MB a year.
+Measured inputs, re-measured 2026-09-20 from the export as actually built
+([05](05-metrics-and-data-contract.md) §4.4): the data file is **3.48 MB as written, 0.31 MB
+gzipped**, plus **0.36 MB (0.06 MB gzipped)** for the lookup index, growing about 0.03 MB gzipped
+a year.
 
 | Budget | Target |
 |---|---|
 | JavaScript, gzipped | ≤ 250 KB |
+| Data transferred on first load, gzipped | ≤ 400 KB |
 | First contentful paint, typical laptop broadband | < 1.5 s |
 | Interactive with charts drawn | < 2.5 s |
 | Filter change to redrawn charts | < 100 ms |
 
+The compressed transfer is what the budget is about — about 0.56 MB for the app and its data
+together, which is an ordinary page weight. The 3.48 MB uncompressed figure matters only for parse
+time and memory, and at this size neither is a concern.
+
 At 339 rows every aggregation is trivial; the risk is not throughput but redrawing everything on
 every keystroke. Derived aggregates are memoised on the filter state, and the search box is
-debounced. **The lookup index loads on demand,** not on first paint.
+debounced. **The lookup index loads on demand,** not on first paint — it is more than half the
+uncompressed weight of the data file and answers a question most readers never ask.
 
 `d3` is imported as individual submodules. Pulling the umbrella package in for two scale functions
 is the single easiest way to miss the bundle budget.
