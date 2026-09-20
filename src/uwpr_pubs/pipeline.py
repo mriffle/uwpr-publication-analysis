@@ -101,7 +101,12 @@ from uwpr_pubs.store.read import StoreSnapshot, read_store
 from uwpr_pubs.text import split_sentences, text_rules
 from uwpr_pubs.validate import validate_export, validate_store
 
-CODE_VERSION = "m4"
+# The version of the code that produced a run, recorded in its manifest (docs/02 §11) and, through
+# it, in the export's `pipeline_version`. It is the package version and nothing else: it was a
+# milestone label ("m4") until 2026-09-20, which made a rebuilt export disagree with the one the
+# run wrote, because stage 11 stamps `__version__` while a rebuild reads this back out of the
+# manifest. One field, one source.
+CODE_VERSION = __version__
 INCLUDED_RECORD_KINDS: frozenset[str] = frozenset(IncludedKind.__args__)  # type: ignore[attr-defined]
 # A repository copy is a version of the article it copies (Phase 1 §8), so it may be linked even
 # though it is not a publication we count on its own.

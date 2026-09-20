@@ -12,6 +12,7 @@ from typing import Any, cast
 
 import pytest
 
+from uwpr_pubs import __version__
 from uwpr_pubs.config import load_config
 from uwpr_pubs.export import (
     ExportMeta,
@@ -24,6 +25,7 @@ from uwpr_pubs.export import (
     h_index,
     signal_label,
 )
+from uwpr_pubs.pipeline import CODE_VERSION
 from uwpr_pubs.rules.signals import NEAR_MISS_IDENTIFIER
 from uwpr_pubs.sample import CASES, missing_cases
 from uwpr_pubs.schemas import schema_errors
@@ -682,6 +684,17 @@ def test_a_real_export_takes_its_period_from_the_store_not_a_constant() -> None:
     assert document["rule_version"] == manifest["rule_version"]
     assert document["pipeline_version"] == manifest["code_version"]
     assert document["period"]["complete_through"] == int(manifest["run_id"][:4]) - 1
+
+
+def test_both_export_paths_stamp_the_same_pipeline_version() -> None:
+    """The invariant that broke CI on 2026-09-20, and the only thing that guards it.
+
+    Stage 11 stamps `__version__` during a run; a rebuild reads `code_version` back out of the
+    run manifest. They are the same field and must hold the same value, or the committed export
+    and a rebuild of it disagree — which is exactly what `check.yml`'s freshness diff compares.
+    `CODE_VERSION` was the milestone label "m4" while `__version__` was "0.1.0", so they did not.
+    """
+    assert __version__ == CODE_VERSION
 
 
 def test_the_period_follows_a_store_whose_run_is_in_another_year(tmp_path: Path) -> None:
