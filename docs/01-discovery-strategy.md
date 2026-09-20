@@ -13,6 +13,31 @@ deliberately, dated, and noted in this header.
   listed paper credited "Sequest HT search engine (The University of Washington's Proteomics
   Resource…)", which is a software credit (C6), not facility use. Effect: recall on the official
   list 202 → 201 of 246 (still 82%); new works unchanged.
+
+**Changes made while implementing M3** (dates are UTC, matching the run manifests):
+- *2026-09-20, §6.1, kept parts:* `<back>` is kept as well as the elements already named. Some
+  papers write their acknowledgement as a plain `<back><sec><title>Acknowledgments</title>`,
+  which `<ack>` does not reach, and a `<sec>` titled that way is treated as the acknowledgements
+  section. Effect on list papers: R2 in text 137 → 141, R3 153 → 156.
+- *2026-09-20, §6.1, kept parts with no block inside them:* a kept part that contains no block
+  element yields its whole text as one block. `<funding-group>` states the award in
+  `<award-id>`, which is not a block, so the code was being lost entirely. This is also where
+  §6.1's "`<ack>` is searched as a whole, as a fallback" takes effect.
+- *2026-09-20, §6.3:* R3 is not applied to affiliation blocks. An author's address naming the
+  resource is R5's case, with its own criterion (3, staff in their UWPR role); letting R3 fire
+  there as well recorded one fact twice and inflated R3 against §4.2. Nothing is lost: such a
+  paper is still included, by R5.
+- *2026-09-20, §6.6, the purpose phrase:* it stops at the next person's clause (", Martin Morgan
+  for …", "and Phil Gafken for …") as well as at 160 characters. The 160 is a ceiling, and the
+  purpose phrase exists precisely because the help-with-work wording may belong to somebody
+  else; without the boundary a staff member thanked for mass-spectrometry help was disqualified
+  by the discussion wording of the two people thanked after her.
+- *2026-09-20, §6.6, the discussion disqualifier:* it no longer vetoes when the purpose phrase
+  names a service outright (`technical assistance|support|help`, `data analysis`).
+  "…for their discussions and technical assistance" names two things, one of which
+  [01a](01a-discovery-calibration.md) C2 decides is UWPR support. Discussion on its own still
+  disqualifies, so "for helpful discussions about running the instrument" does not fire.
+  Effect of the two §6.6 changes together: R7 on list papers 12 → 16 of the 18 in §4.2.
 **Purpose:** define, precisely enough to implement, how the pipeline finds publications supported
 by the UW Proteomics Resource and decides which to include, **without human review**.
 **Basis:** `UWPR_publication_discovery_handoff.md`, plus live measurements made on 2026-09-19

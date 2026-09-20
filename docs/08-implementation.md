@@ -17,12 +17,12 @@ records how they are being built and what implementing them taught us.
 | M1 Shell (HTTP, cache, source adapters, live smoke) | **Done** |
 | M1.5 Evidence and status core (pure) | **Done** |
 | M2 Vertical slice (channels A/B1/B2/C1/C2, R1 + R2 metadata, gate, report) | **Done** |
-| M3 Text and rules core (R3–R7) | **Next** |
-| M4 Completeness and determinism | Not started |
+| M3 Text and rules core (R3–R7) | **Done** (§3.1 has the numbers) |
+| M4 Completeness and determinism | **Next** |
 | M4.5 Seed rehearsal | Not started |
 | M5 Live automation (`update.yml`) | Not started |
 
-202 tests, all offline; ruff, `ruff format`, mypy `--strict` and the store validator all clean, and
+298 tests, all offline; ruff, `ruff format`, mypy `--strict` and the store validator all clean, and
 `check.yml` green on every push. **Nothing is committed to `store/` yet** — the pipeline has only
 ever written to scratch stores, by design, until M4.5.
 
@@ -78,6 +78,40 @@ about 25 seconds):
   works, many of them preprint versions that M4's version linking will merge;
 - two consecutive runs produce byte-identical data.
 
+### 3.1 M3 live runs, 2026-09-20 (UTC)
+
+A full sweep takes about 150 seconds on a warm cache and costs **$0.013**. The first run on a
+cold cache downloaded roughly 200 MB of PMC full text and took about 25 minutes at NCBI's
+keyless 3 requests a second; every run after that reads the cache, because full text is
+immutable (Phase 2 §12).
+
+**Recall on the official list: 206/251 (82%)** — Phase 1 §4.2's baseline. The denominator is 251
+rather than 246 because the list has grown since Phase 1 measured it.
+
+| Rule | On list papers | Phase 1 §4.2 | Off list |
+|---|---:|---:|---:|
+| R2 identifier in metadata | 115 | 111 | 34 |
+| R2 identifier in text | 141 | 144 | 9 |
+| R3 resource named | 156 | 159 | 14 |
+| R4 South Lake Union | 1 | 1 | 0 |
+| R5 affiliation is the resource | 33 | 28 | 7 |
+| R6 OpenAlex full-text proxy | 20 | 18 | 29 |
+| R7 staff thanked | 16 | 18 | 7 |
+| R3d dataset description | 0 | 0 | 0 |
+
+Store: 368 works, 845 candidates, 306 list entries, 736 metrics lines; validator clean.
+
+**Not yet at target, and expected:** 62 off-list works against §4.3's ~37, of which 39 are
+preprint-only against 12. **M4's version linking is what closes this** — most of the excess is a
+preprint and its article counted twice. Judge §4.3 after M4, not now.
+
+**R3d is 0 and channel J nominates nothing.** PRIDE's v3 search for `"Proteomics Resource"` and
+`UWPR` returns no datasets, although the fixture's own record (PXD011642) does contain the
+sentence in `sampleProcessingProtocol` and the adapter reads it correctly. The keyword search
+does not appear to cover protocol text. Fixture J will need the dataset fetched by accession
+from the publication's side rather than found by search; §4.2 expects 0 on list papers either
+way, so nothing here changes recall.
+
 ## 4. Decisions taken during implementation
 
 Each is already reflected in the code, the config or a dated spec note. They are listed here
@@ -116,6 +150,23 @@ because they are the things a reader would otherwise have to rediscover.
 - **`ruff format` is not applied to Markdown**, and the two spec-phase scripts are excluded from
   linting, so the specs and `samples/build_sample_store.py` are left as they are.
 
+**Made during M3** (the five rule changes are dated in `docs/01`'s header):
+- **Identifiers accumulate** (`records.merge_ids`). The NCBI ID converter finds a PMCID in stage
+  4; OpenAlex, which does not carry it, blanked it again on the next run's metadata refresh. A
+  source that stops reporting an identifier never takes it away. A new identifier is also added
+  to `aliases.json`, or the gate rejects the store.
+- **R6 is decided from the record's stored text status, not this run's fetch.** A record read on
+  an earlier run and not re-read today still has text of its own, and P13 says R6 stands in only
+  where we have none.
+- **`max_results` is enforced from the first page,** using the total the API reports. D3's
+  `"Van Haller"` full-text search matches 13,612 works; paging through them to discover that
+  cost $0.068 of the $0.080 the run spent. Now $0.013.
+- **Europe PMC's 500 is an answer, not a wobble** (Phase 1 §7), so `fullTextXML` is asked once.
+  Retrying it with backoff cost about 14 seconds on every non-open-access record, which made the
+  first full run take hours rather than minutes.
+- **A text fetch is not retried per record beyond the client's own retries**; a failure adds the
+  record to the run's unevaluated set, so its stored evidence is left exactly as it was (§6.2).
+
 ## 5. Gotchas found while building
 
 - **Two consecutive live runs are the only way to catch identity bugs.** Both record-permanence
@@ -132,6 +183,19 @@ because they are the things a reader would otherwise have to rediscover.
   be resolved through the NCBI ID converter before a record can be written.
 - A monthly metrics file from an earlier month can reference a work that later stops being
   included, which the validator rejects. It cannot happen yet; M4 must handle it.
+
+**Found during M3:**
+- **The CLI kept the M2 channel list.** `run` passed `IDENTIFIER_CHANNELS`, so D1, D2, D3, E, F,
+  G and J never ran, and the first "complete" run was nothing of the kind — while still
+  reporting a plausible 82% recall, because R1 and R2 carry most list papers on their own.
+  **Read the channel table in the report before believing any number under it.**
+- **An OpenAlex institution may carry `ror: null`,** so `.get("ror", "")` returns None rather
+  than "". M2's narrow channels never met one; M3's broad ones do, and the run died on it.
+- **PMC answers 200 with no `<body>`** for publisher-restricted records, carrying the comment
+  "The publisher of this article does not allow downloading of the full text in XML form". That
+  is Phase 1 §4.1's 155 records, and it is what `fulltext: unavailable` means.
+- **NCBI is fast (about 0.4 s a request); the slowness was ours.** Measure a real request before
+  assuming a source is the bottleneck.
 
 ## 6. The approved implementation plan
 
