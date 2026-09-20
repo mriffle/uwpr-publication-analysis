@@ -7,13 +7,13 @@
 import { describe, expect, it } from 'vitest';
 import {
   criteriaBars,
-  dominantCountry,
-  dominantInstitution,
   rankCountries,
   rankInstitutions,
   rankJournals,
   rankResearchers,
   rankSubfields,
+  worksAtInstitution,
+  worksInCountry,
   worksOutside,
 } from '../../src/aggregate/categories';
 import type { Institution, Topic } from '../../src/contract/types';
@@ -34,26 +34,22 @@ const topic = (overrides: Partial<Topic> = {}): Topic => ({
   ...overrides,
 });
 
-describe('the dominant institution and country are derived, never named (docs/05 §1.1 principle 5)', () => {
-  it('finds the one value on more than half the works', () => {
+describe('the home institution and country come from the contract, never from frequency', () => {
+  it('counts the works the excluded institution is on, which is all the chart has to work out', () => {
     const works = [
       work({ institutions: [uw, isb] }),
       work({ institutions: [uw] }),
       work({ institutions: [uw] }),
       work({ institutions: [isb] }),
     ];
-    expect(dominantInstitution(works)?.key).toBe(uw.ror);
-    expect(dominantInstitution(works)?.count).toBe(3);
+    expect(worksAtInstitution(works, uw.ror)).toBe(3);
+    expect(worksAtInstitution(works, isb.ror)).toBe(2);
   });
 
-  it('finds nothing when no value dominates, so no chart silently drops a category', () => {
-    const works = [work({ institutions: [uw] }), work({ institutions: [isb] })];
-    expect(dominantInstitution(works)).toBeNull();
-  });
-
-  it('finds nothing in an empty corpus', () => {
-    expect(dominantInstitution([])).toBeNull();
-    expect(dominantCountry([])).toBeNull();
+  it('counts nothing for an institution the corpus does not carry, and none for an empty one', () => {
+    expect(worksAtInstitution([work({ institutions: [isb] })], uw.ror)).toBe(0);
+    expect(worksAtInstitution([], uw.ror)).toBe(0);
+    expect(worksInCountry([], 'US')).toBe(0);
   });
 
   it('does the same for countries, which is what the geography sentence counts "outside"', () => {
@@ -62,16 +58,31 @@ describe('the dominant institution and country are derived, never named (docs/05
       work({ countries: ['US', 'DE'] }),
       work({ countries: ['CN'] }),
     ];
-    expect(dominantCountry(works)?.key).toBe('US');
+    expect(worksInCountry(works, 'US')).toBe(2);
     expect(worksOutside(works, 'US')).toBe(2);
-    expect(worksOutside(works, null)).toBe(3);
   });
 
-  it('matches the measured shape of the real corpus when run against it', () => {
+  it('excludes what the contract names even where it is not the most frequent value', () => {
+    // The heuristic this replaced took the most frequent value when it was on more than half the
+    // works, so on a corpus like this one it would have excluded the wrong institution, or
+    // nothing at all, and said so in the chart's note.
+    const works = [
+      work({ institutions: [uw, isb] }),
+      work({ institutions: [isb] }),
+      work({ institutions: [isb] }),
+    ];
+    expect(rankInstitutions(works, { exclude: uw.ror }).items.map((item) => item.key)).toEqual([
+      isb.ror,
+    ]);
+    expect(worksAtInstitution(works, uw.ror)).toBe(1);
+  });
+
+  it('is what the export states, and the export states something the corpus carries', () => {
     const doc = sampleExport();
-    const home = dominantInstitution(doc.works);
-    // The sample is small and may have no dominant institution; the real export does.
-    if (home !== null) expect(home.count / doc.works.length).toBeGreaterThan(0.5);
+    expect(doc.resource.home_institution.ror).toMatch(/^0[a-z0-9]{8}$/);
+    expect(doc.resource.home_country).toMatch(/^[A-Z]{2}$/);
+    expect(worksAtInstitution(doc.works, doc.resource.home_institution.ror)).toBeGreaterThan(0);
+    expect(worksInCountry(doc.works, doc.resource.home_country)).toBeGreaterThan(0);
   });
 });
 
@@ -201,7 +212,7 @@ describe('research areas overall, at subfield level (docs/05 §7.6)', () => {
 });
 
 describe('countries (docs/05 §7.14)', () => {
-  it('excludes the dominant country and ranks the rest', () => {
+  it('excludes the home country it is given and ranks the rest', () => {
     const works = [
       work({ countries: ['US', 'DE'] }),
       work({ countries: ['US', 'DE'] }),

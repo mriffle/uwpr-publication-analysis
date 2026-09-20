@@ -12,14 +12,21 @@
  * title would hide a real gap. React escapes text by default, so this costs nothing but the
  * discipline not to add a repair.
  */
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { EvidenceSection } from '../components/EvidenceSection';
-import type { Author, Topic, Work } from '../contract/types';
+import type { Author, Resource, Topic, Work } from '../contract/types';
 import { formatDate } from '../format/date';
 import { formatCount, formatDecimal, formatShare, pluralize } from '../format/number';
+import { staffIndex, staffPhrase } from '../format/staff';
 
 export interface PublicationDetailProps {
   work: Work;
+  /**
+   * The facility the page describes. Every name it lends this view comes from the export: the
+   * app holds no text of its own about the resource (docs/05 §1.1 principle 5), and `staff` is
+   * what turns `staff_authors`' identifiers into people.
+   */
+  resource: Resource;
   /** The date the citation figures were read, from `sources.citations.as_of`. */
   citationsAsOf: string;
   /**
@@ -44,12 +51,14 @@ const doiUrl = (doi: string): string => `https://doi.org/${doi}`;
 const pubmedUrl = (pmid: string): string => `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`;
 const pmcUrl = (pmcid: string): string => `https://pmc.ncbi.nlm.nih.gov/articles/${pmcid}/`;
 
-function AuthorRow({ author }: { author: Author }) {
+function AuthorRow({ author, resourceName }: { author: Author; resourceName: string }) {
   return (
     <li className="author-row">
       <span className="author-name">
         {author.name}
-        {author.staff === null ? null : <span className="badge badge-staff"> UWPR staff</span>}
+        {author.staff === null ? null : (
+          <span className="badge badge-staff"> {resourceName} staff</span>
+        )}
         {author.corresponding ? <span className="badge"> corresponding</span> : null}
       </span>
       {author.orcid === null ? null : (
@@ -86,6 +95,7 @@ const orderedTopics = (topics: readonly Topic[]): Topic[] =>
 
 export function PublicationDetail({
   work,
+  resource,
   citationsAsOf,
   standalone = false,
   onClose,
@@ -116,6 +126,11 @@ export function PublicationDetail({
     .map(([year, count]) => ({ year: Number(year), count }))
     .sort((a, b) => a.year - b.year);
   const topics = orderedTopics(work.topics);
+  // `staff_authors` is a list of identifiers; `resource.staff` is what names them.
+  const staffAuthors = useMemo(
+    () => staffPhrase(staffIndex(resource.staff), work.staff_authors),
+    [resource.staff, work.staff_authors],
+  );
 
   return (
     <article className="detail" aria-labelledby="detail-heading">
@@ -162,9 +177,9 @@ export function PublicationDetail({
       </p>
       <p className="detail-authors-short">
         {pluralize(work.author_count, 'author')}
-        {work.staff_authors.length > 0
-          ? `, ${String(work.staff_authors.length)} of them UWPR staff`
-          : ''}
+        {staffAuthors === null
+          ? ''
+          : `, ${String(work.staff_authors.length)} of them ${resource.short_name} staff: ${staffAuthors}`}
       </p>
 
       {/* 2. Links (docs/05 §6.2). */}
@@ -207,7 +222,11 @@ export function PublicationDetail({
       <h2>Authors and affiliations</h2>
       <ol className="author-list">
         {work.authors.map((author, index) => (
-          <AuthorRow key={`${author.openalex ?? author.name}-${String(index)}`} author={author} />
+          <AuthorRow
+            key={`${author.openalex ?? author.name}-${String(index)}`}
+            author={author}
+            resourceName={resource.short_name}
+          />
         ))}
       </ol>
 

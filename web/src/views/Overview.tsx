@@ -16,13 +16,13 @@
 import { useMemo, useState } from 'react';
 import {
   criteriaBars,
-  dominantCountry,
-  dominantInstitution,
   rankCountries,
   rankInstitutions,
   rankJournals,
   rankResearchers,
   rankSubfields,
+  worksAtInstitution,
+  worksInCountry,
   worksOutside,
 } from '../aggregate/categories';
 import { researchAreasOverTime } from '../aggregate/areas';
@@ -108,11 +108,18 @@ export function Overview({
   const lastChip = chips.at(-1);
   const empty = works.length === 0;
 
-  // The excluded institution and the home country are taken from the **unfiltered** corpus, so
-  // the exclusion is a stable fact about the page rather than something that moves as the reader
-  // filters. Neither is named in the app: both are derived (see `aggregate/categories.ts`).
-  const home = useMemo(() => dominantInstitution(doc.works), [doc.works]);
-  const homeCountry = useMemo(() => dominantCountry(doc.works), [doc.works]);
+  // The institution §7.8 excludes and the country §7.14 counts "outside" are stated by the
+  // contract, not found in the data: they are facts about the facility, which the app must not
+  // carry itself (docs/05 §1.1 principle 5) and must not infer from frequency.
+  const home = doc.resource.home_institution;
+  const homeCountry = doc.resource.home_country;
+  // The figures that justify each exclusion, from the **unfiltered** corpus, so they are stable
+  // facts about the page rather than numbers that move as the reader filters.
+  const homeWorks = useMemo(() => worksAtInstitution(doc.works, home.ror), [doc.works, home.ror]);
+  const homeCountryWorks = useMemo(
+    () => worksInCountry(doc.works, homeCountry),
+    [doc.works, homeCountry],
+  );
 
   const areas = useMemo(
     () => researchAreasOverTime(works, doc.period, { bucketYears: singleYears ? 1 : 3 }),
@@ -124,12 +131,12 @@ export function Overview({
     [works, includeStaff],
   );
   const institutions = useMemo(
-    () => rankInstitutions(works, { exclude: home?.key ?? null }),
-    [works, home],
+    () => rankInstitutions(works, { exclude: home.ror }),
+    [works, home.ror],
   );
   const journals = useMemo(() => rankJournals(works), [works]);
   const countries = useMemo(
-    () => rankCountries(works, { exclude: homeCountry?.key ?? null }),
+    () => rankCountries(works, { exclude: homeCountry }),
     [works, homeCountry],
   );
   const criteria = useMemo(() => criteriaBars(works, CRITERION_LABELS), [works]);
@@ -413,9 +420,7 @@ export function Overview({
         description="Institutions on the publications shown, counted once per publication. Select an institution to filter the page by it."
         note={
           <>
-            {home === null
-              ? null
-              : `${home.label} is excluded: it appears on ${formatCount(home.count)} of ${pluralize(doc.works.length, 'publication')} and would flatten the chart to one bar and a fringe. `}
+            {`${home.name} is excluded: it is the resource’s own institution, appears on ${formatCount(homeWorks)} of ${pluralize(doc.works.length, 'publication')} and would flatten the chart to one bar and a fringe. `}
             {institutions.notShown > 0
               ? `The ${formatCount(institutions.items.length)} most frequent of ${pluralize(institutions.distinct, 'other institution')}; ${formatCount(institutions.notShown)} are not shown. `
               : ''}
@@ -440,22 +445,16 @@ export function Overview({
       <RankedBarCard
         title="Countries"
         chartLabel="Countries by number of publications, most frequent first"
-        description={
-          homeCountry === null
-            ? 'Countries on the publications shown, counted once per publication.'
-            : `Countries other than ${countryName(homeCountry.key)} on the publications shown, counted once per publication. Select a country to filter the page by it.`
-        }
+        description={`Countries other than ${countryName(homeCountry)} on the publications shown, counted once per publication. Select a country to filter the page by it.`}
         note={
-          homeCountry === null ? null : (
-            <>
-              {pluralize(worksOutside(works, homeCountry.key), 'publication')} of the{' '}
-              {pluralize(works.length, 'publication')} shown have an author outside{' '}
-              {countryName(homeCountry.key)}, which appears on {formatCount(homeCountry.count)} of{' '}
-              {pluralize(doc.works.length, 'publication')} and is left out of the chart below. There
-              is no map: one saturated country and a scattering conveys less than this sentence
-              does.
-            </>
-          )
+          <>
+            {pluralize(worksOutside(works, homeCountry), 'publication')} of the{' '}
+            {pluralize(works.length, 'publication')} shown have an author outside{' '}
+            {countryName(homeCountry)}, the resource’s own country, which appears on{' '}
+            {formatCount(homeCountryWorks)} of {pluralize(doc.works.length, 'publication')} and is
+            left out of the chart below. There is no map: one saturated country and a scattering
+            conveys less than this sentence does.
+          </>
         }
         rows={countries.items.map((item) => ({
           key: item.key,

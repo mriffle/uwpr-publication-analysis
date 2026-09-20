@@ -16,6 +16,7 @@ export type {
   Evidence,
   Version,
   Person,
+  NamedPerson,
   Period,
   Summary,
   Method,

@@ -9,7 +9,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Router } from '../../src/App';
+import { worksAtInstitution, worksInCountry, worksOutside } from '../../src/aggregate/categories';
 import { summarize } from '../../src/aggregate/metrics';
+import { countryName } from '../../src/format/country';
 import { applyFilter } from '../../src/filter/predicate';
 import { EMPTY_FILTER } from '../../src/filter/state';
 import { sampleExport } from '../support/fixture';
@@ -122,7 +124,16 @@ describe('the honesty constraints each chart carries (docs/05 §7)', () => {
   it('names the institution it excludes and why (§7.8)', () => {
     show();
     const institutions = screen.getByRole('region', { name: 'Institutions' });
-    expect(institutions).toHaveTextContent(/would flatten the chart to one bar and a fringe|floor/);
+    const home = doc.resource.home_institution;
+    // The excluded value is the one the contract names, not the most frequent one, and the note
+    // states the figure that justifies leaving it out.
+    expect(institutions).toHaveTextContent(`${home.name} is excluded`);
+    expect(institutions).toHaveTextContent(
+      new RegExp(`${String(worksAtInstitution(doc.works, home.ror))} of `),
+    );
+    expect(institutions).toHaveTextContent(/would flatten the chart to one bar and a fringe/);
+    // Named once, in the note that says it is left out — never again as a bar or a table row.
+    expect((institutions.textContent ?? '').split(home.name)).toHaveLength(2);
   });
 
   it('says the criteria overlap and the bars sum to more than the corpus (§7.13)', () => {
@@ -136,7 +147,15 @@ describe('the honesty constraints each chart carries (docs/05 §7)', () => {
   it('states there is no map, and counts the works with an author abroad (§7.14)', () => {
     show();
     const card = screen.getByRole('region', { name: 'Countries' });
+    const home = countryName(doc.resource.home_country);
     expect(card).toHaveTextContent(/There is no map/);
+    expect(card).toHaveTextContent(
+      `${String(worksOutside(doc.works, doc.resource.home_country))} publications of the`,
+    );
+    expect(card).toHaveTextContent(`have an author outside ${home}, the resource’s own country`);
+    expect(card).toHaveTextContent(
+      new RegExp(`${String(worksInCountry(doc.works, doc.resource.home_country))} of `),
+    );
   });
 
   it('says the citation distribution is not selectable, because there is no such filter (§7.11)', () => {

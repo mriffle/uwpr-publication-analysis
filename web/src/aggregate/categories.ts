@@ -63,65 +63,52 @@ function tally(
   return counts;
 }
 
-/**
- * The one institution, or country, that is on so many works that charting it flattens everything
- * else (docs/05 §7.8: the University of Washington "appears on 316 of 339 works and would flatten
- * the chart to one bar and a fringe"; §7.14: "the United States appears on 322 of 339 works").
- *
- * **It is derived, not named.** The contract carries no "home institution" or "home country"
- * field, and docs/05 §1.1 principle 5 forbids the app holding UWPR knowledge of its own, so the
- * dominant value is found in the data: the most frequent one, when it is on more than half the
- * works. The chart then states which value it excluded and why, in terms of the number that
- * justified it, rather than asserting a fact about the resource that the file never told it.
- */
-export const DOMINANCE_THRESHOLD = 0.5;
-
-export function dominant(
-  counts: ReadonlyMap<string, RankedItem>,
-  works: number,
-): RankedItem | null {
-  if (works === 0) return null;
-  let best: RankedItem | null = null;
-  for (const item of counts.values()) {
-    if (
-      best === null ||
-      item.count > best.count ||
-      (item.count === best.count && item.label < best.label)
-    ) {
-      best = item;
-    }
-  }
-  return best !== null && best.count / works > DOMINANCE_THRESHOLD ? best : null;
-}
-
 const institutionEntries = (work: Work) =>
   work.institutions.map((institution) => ({
     key: institution.ror,
     label: institution.name ?? institution.ror,
   }));
 
-/** The institution the institution chart excludes, taken from the **unfiltered** corpus. */
-export const dominantInstitution = (works: readonly Work[]): RankedItem | null =>
-  dominant(tally(works, institutionEntries), works.length);
-
 const countryEntries = (work: Work) =>
   work.countries.map((country) => ({ key: country, label: country }));
 
-/** The country the geography section counts "outside", taken from the **unfiltered** corpus. */
-export const dominantCountry = (works: readonly Work[]): RankedItem | null =>
-  dominant(tally(works, countryEntries), works.length);
+/**
+ * Works carrying the resource's own institution — the figure §7.8's chart states to justify
+ * leaving it out ("appears on 316 of 339 works and would flatten the chart to one bar and a
+ * fringe").
+ *
+ * **Which institution that is comes from `resource.home_institution`, never from this data.**
+ * The app once took the most frequent value when it covered more than half the corpus. That was
+ * right on the corpus it was written against and wrong in principle: a corpus where the home
+ * institution fell below the threshold would have silently started charting it, and docs/05
+ * §1.1 principle 5 forbids the app carrying the fact itself. The contract carries it, so the
+ * only thing left to compute is the count that the note quotes.
+ */
+export const worksAtInstitution = (works: readonly Work[], ror: string): number =>
+  works.filter((work) => work.institutions.some((institution) => institution.ror === ror)).length;
+
+/** Works carrying `country` — §7.14's "the United States appears on 322 of 339 works". */
+export const worksInCountry = (works: readonly Work[], country: string): number =>
+  works.filter((work) => work.countries.includes(country)).length;
+
+/** Works with at least one author outside `country` — §7.14's 82 of 339. */
+export const worksOutside = (works: readonly Work[], country: string): number =>
+  works.filter((work) => work.countries.some((code) => code !== country)).length;
 
 /**
- * docs/05 §7.8: institutions, "excluding the University of Washington … The tail is long and
+ * docs/05 §7.8: institutions, "excluding the resource's own institution … The tail is long and
  * thin, so the chart shows the top 15 and states how many institutions are not shown."
+ *
+ * `exclude` is `resource.home_institution.ror`. It is optional only so the ranking itself can be
+ * tested and reused; the chart always passes it.
  */
 export function rankInstitutions(
   works: readonly Work[],
-  options: { exclude?: string | null; limit?: number } = {},
+  options: { exclude?: string; limit?: number } = {},
 ): RankedList {
-  const { exclude = null, limit = 15 } = options;
+  const { exclude, limit = 15 } = options;
   const counts = tally(works, institutionEntries);
-  if (exclude !== null) counts.delete(exclude);
+  if (exclude !== undefined) counts.delete(exclude);
   return rank([...counts.values()], limit, works.length);
 }
 
@@ -222,23 +209,18 @@ export const rankSubfields = (works: readonly Work[], limit = 15): RankedList =>
  *
  * "A choropleth is not recommended for v1 — it would be one saturated country and a scattering,
  * which conveys less than a sentence does." What the data supports is the count of works with an
- * author outside the dominant country (82 of 339) and a short bar of the others.
+ * author outside the **home country** (82 of 339) and a short bar of the others. `exclude` is
+ * `resource.home_country`, as §7.14 requires: "not from the app and not from frequency".
  */
 export const rankCountries = (
   works: readonly Work[],
-  options: { exclude?: string | null; limit?: number } = {},
+  options: { exclude?: string; limit?: number } = {},
 ): RankedList => {
-  const { exclude = null, limit = 10 } = options;
+  const { exclude, limit = 10 } = options;
   const counts = tally(works, countryEntries);
-  if (exclude !== null) counts.delete(exclude);
+  if (exclude !== undefined) counts.delete(exclude);
   return rank([...counts.values()], limit, works.length);
 };
-
-/** Works with at least one author outside `country`; the whole corpus when it is null. */
-export const worksOutside = (works: readonly Work[], country: string | null): number =>
-  country === null
-    ? works.length
-    : works.filter((work) => work.countries.some((code) => code !== country)).length;
 
 export interface CriterionBar extends RankedItem {
   criterion: number;

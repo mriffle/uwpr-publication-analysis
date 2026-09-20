@@ -12,10 +12,14 @@ import { expectNoAxeViolations } from '../support/axe';
 import { isSampleExport, sampleExport } from '../support/fixture';
 import { author, work } from '../support/works';
 
+/** The resource the app is told about, from the fixture rather than invented here. */
+const resource = sampleExport().resource;
+
 const show = (overrides: Partial<Work> = {}, props: Record<string, unknown> = {}) =>
   render(
     <PublicationDetail
       work={work(overrides)}
+      resource={resource}
       citationsAsOf="2026-09-20"
       overviewHref="/"
       {...props}
@@ -86,6 +90,7 @@ describe('links (docs/05 §6.2)', () => {
 
 describe('authors and affiliations (docs/05 §6.3)', () => {
   it('lists every author in published order, with a staff marker', () => {
+    const short = resource.short_name;
     const { container } = show({
       authors: [
         author({ name: 'First Author' }),
@@ -95,9 +100,30 @@ describe('authors and affiliations (docs/05 §6.3)', () => {
       staff_authors: ['riffle'],
     });
     const names = [...container.querySelectorAll('.author-name')].map((node) => node.textContent);
-    expect(names).toEqual(['First Author', 'Staff Member UWPR staff']);
-    expect(screen.getByText('UWPR staff')).toBeInTheDocument();
-    expect(screen.getByText(/2 authors, 1 of them UWPR staff/)).toBeInTheDocument();
+    expect(names).toEqual(['First Author', `Staff Member ${short} staff`]);
+    expect(screen.getByText(`${short} staff`)).toBeInTheDocument();
+  });
+
+  it('names the staff authors behind the identifiers, from resource.staff (docs/05 §4.2)', () => {
+    // `staff_authors` is a list of identifiers and nothing else in the work names the people.
+    // The join key the contract now carries is what lets the app say who they are.
+    const named = (id: string) => resource.staff.find((person) => person.id === id)?.name;
+    show({
+      authors: [author({ staff: 'riffle' }), author({ staff: 'eng' }), author()],
+      author_count: 3,
+      staff_authors: ['eng', 'riffle'],
+    });
+    expect(
+      screen.getByText(
+        `3 authors, 2 of them ${resource.short_name} staff: ${String(named('eng'))} and ${String(named('riffle'))}`,
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('shows an identifier the resource block cannot name rather than dropping it', () => {
+    // The two halves of the file disagreeing is a pipeline bug; hiding it would hide the bug.
+    show({ author_count: 1, staff_authors: ['nobody'] as unknown as Work['staff_authors'] });
+    expect(screen.getByText(/1 of them .* staff: nobody/)).toBeInTheDocument();
   });
 
   it('marks a corresponding author', () => {
@@ -284,7 +310,12 @@ describe.skipIf(!isSampleExport)('every work in the sample renders (docs/06 §12
   it('renders all twelve cases of docs/05 §13 without throwing', () => {
     for (const item of sampleExport().works) {
       const { unmount } = render(
-        <PublicationDetail work={item} citationsAsOf="2026-09-20" overviewHref="/" />,
+        <PublicationDetail
+          work={item}
+          resource={resource}
+          citationsAsOf="2026-09-20"
+          overviewHref="/"
+        />,
       );
       expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(item.title);
       unmount();

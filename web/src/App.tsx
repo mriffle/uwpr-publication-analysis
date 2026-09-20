@@ -192,6 +192,7 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
   const detail = (work: Work, resolvedFrom: string | null) => (
     <PublicationDetail
       work={work}
+      resource={doc.resource}
       citationsAsOf={doc.sources.citations.as_of}
       standalone={!seenOverview}
       overviewHref={`${overviewPath(base)}${search}`}

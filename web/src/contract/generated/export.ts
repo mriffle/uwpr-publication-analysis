@@ -70,9 +70,24 @@ export interface Resource {
   short_name: string;
   url: string;
   identifier: string;
+  /**
+   * The institution this resource belongs to. docs/05 §7.8's chart excludes it; the app is told which one rather than taking the most frequent, which would silently start charting the home institution if it ever fell below the threshold.
+   */
+  home_institution: {
+    ror: string;
+    name: string;
+  };
+  /**
+   * The ISO 3166-1 alpha-2 country the resource sits in. docs/05 §7.14 counts works with an author outside it, and leaves it out of the country bar.
+   */
+  home_country: string;
   staff: Person[];
 }
+/**
+ * A member of the resource's staff. `id` is the join key: it is the same identifier that works[].authors[].staff and works[].staff_authors carry, so the app can turn one into a name (docs/05 §4.2).
+ */
 export interface Person {
+  id: 'eng' | 'sharma' | 'riffle' | 'hoopmann' | 'vonhaller';
   name: string;
   openalex: string | null;
 }
@@ -145,7 +160,7 @@ export interface Work {
   staff_authors: ('eng' | 'sharma' | 'riffle' | 'hoopmann' | 'vonhaller')[];
   institutions: Institution[];
   countries: string[];
-  corresponding_authors: Person[];
+  corresponding_authors: NamedPerson[];
   topics: Topic[];
   citations: Citations;
   on_official_list: boolean;
@@ -175,6 +190,13 @@ export interface Institution {
   ror: string;
   name: string | null;
   country: string | null;
+}
+/**
+ * Someone named on a publication who is not part of the resource, so has no staff identifier.
+ */
+export interface NamedPerson {
+  name: string;
+  openalex: string | null;
 }
 export interface Topic {
   domain: string;
