@@ -12,13 +12,13 @@ Resource (UWPR).
 - Clicking a publication in the app shows its detail: subject, authors, affiliations, and the
   evidence for why it counts as UWPR's. All of that is already in the store.
 
-**Current state:** Phases 1-3 frozen; Phase 4 retired; **Phases 5 and 6 agreed 2026-09-20**. **The
-pipeline is finished and running** (M0-M5): `store/` is seeded and committed (339 works,
-2026-09-20), its work and record IDs are permanent and must never be renumbered, and `update.yml`
-runs it weekly, unattended, for about $0.01 and four minutes. **The data contract (`docs/05`) and
-the app (`docs/06`) are specified; building them is next.** Nothing of the app exists yet, stage
-11 does not yet write `export/`, and `web/` does not exist. Start with the sample export, which
-the app cannot be developed or tested without (05 §13). **`docs/08-implementation.md` is the
+**Current state:** Phases 1-3 frozen; Phase 4 retired; **Phases 5, 6 and 7 agreed 2026-09-20 —
+every phase is now specified and what remains is implementation.** **The pipeline is finished and
+running** (M0-M5): `store/` is seeded and committed (339 works, 2026-09-20), its work and record
+IDs are permanent and must never be renumbered, and `update.yml` runs it weekly, unattended, for
+about $0.01 and four minutes. **Nothing of the app exists yet**, stage 11 does not yet write
+`export/`, `web/` does not exist and there is no `gh-pages` branch. Start with the sample export,
+which the app cannot be developed or tested without (05 §13). **`docs/08-implementation.md` is the
 handoff: status, measurements, decisions and the full plan.** Public repo:
 mriffle/uwpr-publication-analysis.
 
@@ -33,7 +33,7 @@ spec in `docs/`.
 | 4 Knowledge base | **Retired 2026-09-20** — the store already held all of it but a summary, which is not wanted |
 | 5 Metrics / app JSON | **Agreed 2026-09-20.** Decisions A1-A8; every figure measured against the real store |
 | 6 Web app | **Agreed 2026-09-20.** Decisions B1-B11: React + TypeScript + Vite, visx charts, in `web/` |
-| 7 Operations | **Next to discuss.** Draft predates almost every decision since; rewrite rather than edit |
+| 7 Operations | **Agreed 2026-09-20.** Decisions O1-O8: Pages from `gh-pages`, data publish decoupled from the app build |
 | 8 Implementation | Pipeline done (M0-M5); see `docs/08-implementation.md` |
 
 ## How specs are handled

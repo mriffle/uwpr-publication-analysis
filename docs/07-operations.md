@@ -1,112 +1,317 @@
 # Phase 7 — Operations Specification
 
-> **Starting point only.** Drafted ahead of discussion; nothing here has been reviewed or agreed.
-> Expect it to be reworked when we reach this phase.
+**Status:** Agreed · 2026-09-20 · the last specification. Changes from here are made deliberately,
+dated, and noted in this header.
+**Purpose:** define where this runs, how the app is published, how a failure becomes visible, and
+who is responsible when it does.
+**Depends on:** [03](03-retrieval-pipeline.md) (frozen), which already specifies the run, its
+failure handling and its workflow; [05](05-metrics-and-data-contract.md) and
+[06](06-web-app.md) (agreed), which specify what is published.
+**Replaces:** the unreviewed draft of 2026-09-19, which assumed incremental, full and audit run
+modes, a human-merged pull request per run, tier-gated publishing and a private roster — none of
+which survive. The pipeline does a full sweep every run, commits directly to `main`, and there are
+no tiers and no roster.
 
-**Status:** Unreviewed starting point · 2026-09-19
-**Purpose:** define where the pipeline runs, how often, how the app is published, and how we
-notice when something breaks.
+---
 
-## 1. Run cadence (D9)
+## 1. What is already settled
 
-| Run | Frequency | What it does |
+This spec does not re-decide these. They are listed so it is clear what is left.
+
+| Settled | Where |
+|---|---|
+| Weekly scheduled run, Mondays 13:17 UTC, plus a manual trigger | D9, [03](03-retrieval-pipeline.md) §11.3; `update.yml` |
+| A full sweep every run; no watermarks, no incremental mode | [03](03-retrieval-pipeline.md) P1 |
+| One bot commit per run, directly to `main`, after the validation gate | [03](03-retrieval-pipeline.md) C3 |
+| A failing source degrades the run and never shrinks the data | [03](03-retrieval-pipeline.md) P4, §9 |
+| A run that needs a person raises `alert`: data is written and committed, then the job fails so GitHub emails | [03](03-retrieval-pipeline.md) P12 |
+| Secrets are GitHub Actions secrets, scoped per step, and the commit is scanned before it is pushed | [03](03-retrieval-pipeline.md) C5, §11.3 |
+| Public repository, Apache-2.0, jointly held by Michael Riffle and the University of Washington | [08](08-implementation.md) §8 |
+| No UW branding; no cookies, analytics or third-party runtime requests | [06](06-web-app.md) B9, B10 |
+
+**Measured, on the first real unattended run (2026-09-20):** 4m 34s on a cold cache, **$0.0100**,
+435 requests. The estimate it replaced was five times high.
+
+## 2. Decisions
+
+Agreed 2026-09-20.
+
+| # | Decision | Why |
 |---|---|---|
-| Incremental | Weekly | New/changed works since watermark (60-day overlap), metrics refresh, export, reports |
-| Full | Monthly, and on any config change | All channels without date filters; retries unavailable full text |
-| Audit | Quarterly | Recall vs official list, per-channel precision from decisions, capture–recapture estimate |
+| O1 | **The app is published to GitHub Pages from a `gh-pages` branch holding the built site.** | §4. The weekly data publish must not depend on a JavaScript build succeeding. |
+| O2 | **A data update copies only the export files onto `gh-pages`. It never runs the app build.** | §4.2. Decouples the most routine operation from the most fragile one. |
+| O3 | **The page states its own staleness.** If the data is older than 14 days — two missed runs — the page says so, in place, rather than presenting old numbers as current. | §5. This is the honest counterpart to a silent pipeline failure, and it is what turns an invisible outage into a visible one. |
+| O4 | **The maintainer is named, with a named fallback**, and both are recorded in `RUNBOOK.md`. | §7. A scheduled system with no owner decays silently. |
+| O5 | **A bad data commit is fixed forward with an override, not reverted.** Reverting is reserved for a corrupted store and is the one genuinely dangerous operation here. | §8. Reverting can cause a permanent work ID to be re-minted against a different paper. |
+| O6 | **A major `schema_version` change ships the pipeline and the app together,** app first. | §10. |
+| O7 | **`RUNBOOK.md` is written before the schedule is relied upon**, and its rollback path is rehearsed once. | §13. An untested rollback is not a rollback. |
+| O8 | **Dependabot covers npm as well as Actions**, monthly. | §11, and it incidentally mitigates §12's inactivity risk. |
 
-Publication indexing lags by weeks, so runs more frequent than weekly add cost without benefit.
+## 3. The weekly data update
 
-## 2. Execution environment
+Built and proven. `update.yml` does the following, and each part is there for a measured reason
+([08](08-implementation.md) §3.4): secrets scoped to the three steps that need them; a guard so an
+unset optional secret does not make the key scan match every line; a full-depth checkout because
+the push rebases; a git identity because a runner has none; the report posted with `if: always()`
+so a run that stopped at the gate still explains itself; and the alert check last, so the data
+lands before the job fails.
 
-Two viable options; choose one (D8):
+**What a normal week changes:** `official_list/entries.jsonl`, `metrics/`, `runs/`, and a
+`last_seen` refresh about once a month ([02](02-data-model.md) §15). Once stage 11 lands, also
+`export/`.
 
-- **A. Scheduled CI job in the git host** (e.g. GitHub Actions). The run commits store changes to
-  a branch and opens a pull request containing the run summary; merging publishes. Gives review,
-  history and notifications for free. Needs the repository to be hosted there and secrets stored
-  in the CI system.
-- **B. Cron on a UW-managed machine.** Same commands; commits locally and pushes. Simpler access
-  to internal resources (e.g. a user roster), but monitoring and notification must be built.
+**The download cache is an accelerator only.** GitHub evicts caches that go unused, and a weekly
+run sits near that boundary, so the cache may or may not survive from one week to the next.
+**This does not matter**, and the measurement is why: a full cold-cache run is 4m 34s and $0.0100.
+The pipeline is required to be correct with an empty cache
+([03](03-retrieval-pipeline.md) §1), and the cost of being wrong about the cache is four minutes.
 
-Default: **A**, with `roster.yaml` kept in a private repository.
+**Cadence stays weekly.** Publication indexing lags by weeks, so a faster cadence buys nothing. A
+failed run leaves the data untouched and the next week retries; a week of staleness in publication
+data is immaterial, and `workflow_dispatch` covers the case where it is not.
 
-## 3. Publishing flow
+## 4. Publishing the app
 
-```
-scheduled run ─► store updated on branch ─► validate ─► export JSON ─► build dist/index.html
-              ─► PR with run summary + review queue ─► human merges ─► deploy static file
-```
+### 4.1 Why a branch, and not a build on every update
 
-- **Gate:** export and build happen only if validation passes (Phase 3 §8). A failed run leaves
-  the live page untouched.
-- **Automatic vs gated publishing:** tier-1 additions are backed by explicit evidence, so the
-  default is to publish them automatically on merge of the run PR; nothing at tier 2–3 changes
-  the default public view until a reviewer decides. If UWPR prefers, every change can wait for
-  review.
-- **Deploy:** copy `dist/index.html` to the UWPR web server sub-path (or static hosting). Keep
-  the previous N builds for rollback.
+The obvious arrangement — one workflow that builds the app and publishes it together with the
+current data — couples data freshness to the health of a JavaScript toolchain. A dependency
+resolution failure, a transitive breakage or an expired action would then stop the *data* being
+published, which is the one thing that must keep working unattended for years.
 
-## 4. Monitoring and alerts
+So the built site lives on a `gh-pages` branch, and the two things that change it are separate:
 
-A run notifies the maintainer (email or chat) when:
+| Trigger | What it does | Runs npm? |
+|---|---|---|
+| A change to `web/` on `main` | Build the app, replace the app files on `gh-pages` | Yes |
+| A successful weekly data update | Copy `export/*.json` onto `gh-pages` | **No** |
 
-- any stage fails, or validation blocks an export;
-- the official-list parser sees a structural change or a sharp count drop;
-- a channel's hit count deviates strongly from its trailing average, or returns zero;
-- a source has failed on consecutive runs (watermark stalled);
-- API spend approaches the ceiling;
-- no successful run has completed within 2× the scheduled interval (dead-man check).
+This also makes [06](06-web-app.md) §11.1's durability argument operational rather than
+theoretical: because the app fetches its data at runtime, the deployed site keeps working **and
+keeps showing current data** even if the toolchain that built it can no longer be built. The
+branch is the deployed artifact, so what is live is inspectable and revertible with ordinary git.
 
-Every run writes `reports/run_summary.md`: new works by tier and channel, tier changes, new
-preprint→article links, retractions detected, queue size and backlog, source health, API calls
-and cost.
+The cost is a build product in version control. That is a real but small price — a few hundred
+kilobytes — and it buys the ability to see and revert exactly what is being served.
 
-## 5. Secrets, budgets, politeness
+### 4.2 Mechanics
 
-- NCBI and OpenAlex keys in the scheduler's secret store; never in the repo or logs.
-- Contact address in every request's `User-Agent`/`mailto`.
-- OpenAlex is usage-priced but a free account key allows $1/day, far above the estimated cost of
-  a run (< $0.10). Per-run ceiling $0.50; the run reads the `x-ratelimit-remaining-usd` header and
-  stops optional channels if it runs low. No paid plan is needed.
-- Respect `robots.txt` and publisher terms for any HTML retrieval.
+- The data copy must touch **only** the export files, and the app deploy must touch only the app
+  files. Neither may clobber the other.
+- The data copy runs after the push in `update.yml`, conditional on the run having committed.
+  A run that wrote nothing publishes nothing.
+- **If the copy fails, the data commit still stands.** Publishing is downstream of the record;
+  the store on `main` is the record, and `gh-pages` is a view of it that can be rebuilt.
 
-## 6. Data retention and backup
+### 4.3 Address and base path
 
-- Git is the record for store, curation and config. Remote hosting is the backup.
-- `data/raw/` is a cache: not in git, but retained on the runner (or in object storage) because
-  it backs evidence provenance. If lost, it can be refetched, except for content that has since
-  changed upstream — acceptable, because evidence rows carry their own excerpts.
-- Official-list snapshots are committed (small, and the primary source).
+The site is a GitHub Pages project site, so it is served under a sub-path and the app is built
+with a matching base path ([06](06-web-app.md) §3).
 
-## 7. Maintenance
+**Serving it later from UWPR's own site needs no code change** — a rebuild with a different base
+path, and the export files copied alongside. That was the reason the base path is build-time
+configuration, and it is the most likely future move, so it should stay true.
+
+A custom domain is not set up for v1 and is not needed.
+
+## 5. Knowing it still works
+
+Three layers, because each catches what the others miss.
+
+**The run tells the workflow.** A run that needs a person finishes with `alert`, and the job then
+fails so GitHub sends its standard failure email. A run that fails outright fails the job too.
+Both leave the report in the job summary.
+
+**The page tells the reader (O3).** This is the layer the previous draft lacked, and it is the one
+that catches the worst failure mode: the schedule silently stopping. If the page's data is older
+than **14 days**, the page says so where the reader will see it, rather than presenting stale
+figures as current. Fourteen days is two missed runs, which distinguishes a skipped week from
+something broken.
+
+This is a requirement on the app, and it belongs to operations because the alternative is a page
+that quietly lies for months. It also fits the project's register: a page whose whole argument is
+that its numbers are checkable should not misrepresent how current they are.
+
+**A person looks, monthly.** Reading the latest run report: recall against the 82% baseline,
+the channel table, the per-rule counts, and anything under the degradation list.
+[08](08-implementation.md) §5 records why the channel table in particular must be read before any
+number under it is believed — a whole class of channels silently did not run during M3 while
+recall still looked fine.
+
+### 5.1 What the run already watches
+
+From [03](03-retrieval-pipeline.md) §9, needing no new work: recall falling more than 5 points
+from the 82% baseline; the official list shrinking more than 10%; three consecutive degraded runs;
+a channel deviating sharply from its trailing average; OpenAlex spend approaching the per-run
+ceiling of $0.50 against a measured $0.0100.
+
+## 6. Alerts: who receives them
+
+GitHub's failure email is the alert channel, so **the named maintainer must be watching the
+repository with Actions failure notifications enabled**, and this must be confirmed once by
+deliberately failing a run rather than assumed.
+
+For a scheduled workflow, GitHub's notification routing is not the same as for a push, which is
+exactly the kind of detail that is discovered during an outage rather than before one. Verifying
+it is a two-minute job and is on the exit criteria.
+
+## 7. Ownership
+
+**Needs an answer:** a named maintainer and a named fallback, recorded in `RUNBOOK.md`.
+
+Michael Riffle is the evident maintainer. **The fallback is the real gap.** This system is
+designed to run unattended for years on a $0.52-a-year budget; the failure mode it is least
+protected against is not technical but the maintainer becoming unavailable with nobody else
+holding the keys, the context or the notifications. The runbook exists largely for that person.
+
+## 8. Rollback, and the one dangerous operation
+
+**Prefer fixing forward.** A wrong inclusion or exclusion is corrected with an override and a
+re-run (§9), not by rewriting history.
+
+**Reverting a data commit is genuinely dangerous, and this is the reason.** Work IDs are permanent
+and are minted in the order records are first seen. If a run mints `W-000900` and that commit is
+reverted, the next run mints `W-000900` again — and if the inputs have shifted in the meantime, it
+may mint it **against a different paper**. Any link issued in between then resolves to the wrong
+publication, silently. The store's whole identity model assumes minting is append-only.
+
+So:
+
+| Situation | Action |
+|---|---|
+| A work should not have been included, or should have been | An override, attributed and dated, then a manual run. The store records the change and why |
+| A rule produced a wrong result generally | A rule change with a `rule_version` bump, which re-evaluates every work and supersedes what no longer holds |
+| The store is genuinely corrupted | Revert, and **treat re-minting as expected**: check `aliases.json` afterwards and verify that no previously published ID now points elsewhere |
+| A bad app deploy | Revert `gh-pages` to the previous commit. No data is involved and nothing is at risk |
+
+## 9. Corrections
+
+The store is public and will be read by people who know these papers better than any rule does.
+The path for a report:
+
+1. Someone reports a wrong inclusion or a missing paper, via the contact on the page
+   ([06](06-web-app.md) §4.9).
+2. The claim is checked against the evidence — `uwpr-pubs explain <DOI|PMID|W-id>` answers it
+   directly, and for a paper that was considered and rejected the candidate line already carries
+   the reason and its near-miss signals.
+3. If the rules were right, reply with the evidence. This is the ordinary outcome and the reason
+   the evidence is published.
+4. If the rules were wrong in a way that generalises, change the rule and bump `rule_version`.
+   **Re-measure recall before and after** — a change that fixes one paper and drops five listed
+   ones is a bad trade, and only measurement shows it.
+5. If it does not generalise, add an override with a reason and an attribution.
+   [01a](01a-discovery-calibration.md)'s two examples are the model: one wording became a rule
+   change because it named the act, the other became an override because no rule could reach it
+   without dropping papers UWPR itself lists.
+6. Run manually and confirm.
+
+## 9.1 Findings that belong back on UWPR's own page (D10)
+
+Every run identifies works that carry evidence but are absent from UWPR's publications page —
+**33 of 339 today**. D10 settled that these should flow back to the site.
+
+This is an operations artifact, not a public claim
+([05](05-metrics-and-data-contract.md) A5): the app shows these papers as ordinary publications,
+because whether they appear on UWPR's own page is a fact about the page rather than about the
+science, and the method page carries only the count.
+
+The list belongs in the run report, where whoever maintains the publications page can read it.
+**Nobody currently owns acting on it**, which is a smaller instance of §7's gap: the report is
+produced whether or not anyone reads it. Worth naming an owner at the same time as the fallback
+maintainer.
+
+## 10. Changing the data contract
+
+The export carries `schema_version`, and the app refuses a major version it does not know, showing
+a clear message rather than rendering wrongly ([06](06-web-app.md) §7). That safety net means the
+worst case is a visibly broken page, not a quietly wrong one.
+
+**Procedure for a major bump (O6):** the schema, the pipeline's writer and the app's generated
+types change together in one reviewed change; the app is deployed first; the next data update then
+publishes data the deployed app understands. Additive changes bump the minor version and need no
+coordination, because the app ignores fields it does not know.
+
+Because the app's types are generated from the schema ([06](06-web-app.md) B3), a pipeline change
+the app has not accounted for fails the build rather than reaching the page.
+
+## 11. Routine maintenance
 
 | Trigger | Action |
 |---|---|
-| Staff join or leave | Update `staff.yaml` with tenure dates → full run |
-| New instrument | Update `instruments.yaml` |
-| UWPR changes identifier or acknowledgement wording | Update `search_terms.yaml`; old terms are kept forever |
-| Source API changes or is retired | Channel adapter fix; live smoke test catches this |
-| Schema change | Bump `schema_version`; app and pipeline released together |
-| Annual | Dependency updates; review of open questions and thresholds; roster refresh from UWPR records |
+| Staff join or leave | Update `staff.yaml` tenure. It is part of the rules fingerprint, so this is a rule change: bump `rule_version` and re-measure recall |
+| UWPR changes its acknowledgement wording or identifier | Update `rules.yaml`; **old terms are kept forever**, since old papers keep the old wording |
+| UWPR's publications page changes structure | The parser breaks loudly: every page must yield entries and the total may not fall more than 10%. Fix the parser; the page snapshots in `official_list/pages/` show what changed |
+| A source API changes | `uwpr-pubs smoke` catches it at the start of the run, before anything is written |
+| Dependencies | Dependabot monthly for Actions and npm (O8); `uv.lock` reviewed at the same time |
+| Annual | Re-read the open items in each spec; confirm the recall baseline still reflects reality; confirm notification routing still works |
 
-A short `RUNBOOK.md` will cover: running manually, reading a run summary, working the review
-queue, rolling back a bad publish, and rotating keys.
+## 12. Risks
 
-## 8. Ownership
+Named, with what is done about each. The first is the one most likely to end this project quietly.
 
-Named maintainer for the pipeline, named reviewer for curation (D5), and a named fallback for
-each. Without an owner, scheduled systems decay silently — the dead-man check in §4 exists to
-make that visible.
+| Risk | Mitigation |
+|---|---|
+| **GitHub disables the scheduled workflow after a period of repository inactivity.** Whether the bot's own pushes count as activity is **not established**, and it should not be assumed either way. | Dependabot's monthly pull requests create human activity (O8). GitHub warns by email before disabling, which the maintainer must be positioned to receive (§6). The page's own staleness notice (O3) catches it if both fail. **Verify after 60+ days of no human commits that the schedule still fires** — this is on the exit criteria, and it cannot be verified sooner than that |
+| The maintainer becomes unavailable | A named fallback and `RUNBOOK.md` (§7). Currently unmet |
+| The official-list scraper breaks | Loud by design (§11); a degraded run changes nothing |
+| A source changes terms or withdraws access | The run degrades and keeps the data. OpenAlex is the only paid dependency, at $0.52 a year against a $1/day allowance |
+| The store is lost | Git is the record and GitHub is the backup; the maintainer keeps a local clone. Permanent IDs make this worth more than a cache would be |
+| A published number is wrong | Every figure traces to evidence with a source and date; `explain` answers any single paper; corrections go through §9 |
 
-## 9. Open questions
+## 13. `RUNBOOK.md`
 
-1. Option A or B; where is the repository hosted, and is it public? (D8)
-2. Where is the page hosted, and who can deploy to it?
-3. Auto-publish tier-1 changes, or gate every change on review?
-4. Who receives alerts?
+Written before the schedule is relied upon (O7), for the person who is not the author. It covers:
+running the pipeline by hand and reading its report; what `degraded` and `alert` mean and what to
+do about each; adding an override; changing a rule and re-measuring recall; rolling back an app
+deploy; **why not to revert a data commit** (§8); rotating the OpenAlex key; and who to contact.
 
-## 10. Exit criteria
+Its rollback path is rehearsed once, on the app deploy, because an untested rollback is a plan
+rather than a capability.
 
-- [ ] Cadence, environment and hosting chosen.
-- [ ] Publishing gate policy agreed.
-- [ ] Owners named.
+## 14. Cost
+
+| Item | Cost |
+|---|---|
+| OpenAlex | **$0.0100 a run, about $0.52 a year**, against a $1/day allowance |
+| GitHub Actions | Free for public repositories |
+| GitHub Pages | Free |
+| Every other source | No charge |
+
+**Under a dollar a year**, which is worth stating plainly because it is the strongest argument for
+keeping the thing running.
+
+## 15. Security, privacy and legal
+
+- **Secrets:** `OPEN_ALEX_API_KEY` is a repository secret; `NCBI_API_KEY` is optional and unset.
+  Both are scoped to individual steps, stripped from everything logged or cached, and the run's
+  own commit is scanned for them before it is pushed.
+- **No personal data** beyond published authorship, and no reader data at all: no cookies, no
+  analytics, no third-party requests (B10).
+- **The contact address `mriffle@uw.edu` is deliberately public**, sent to APIs as required by
+  their terms. No other personal address is used anywhere.
+- **Quotation:** the store holds short attributed excerpts of up to about 300 characters, with
+  source and retrieval date. `NOTICE` explains this to a reader. Full text and abstracts are never
+  committed.
+
+## 16. Open items
+
+1. **The named fallback maintainer** (§7). The only decision in this spec that needs a person
+   rather than a change.
+2. **The inactivity rule** (§12) cannot be verified for at least 60 days. Until then it is a known
+   unknown, not a solved problem.
+3. **An `NCBI_API_KEY`** would make a cold-cache run about three times faster. Optional; the run
+   is 4m 34s without it.
+4. **Serving from UWPR's own site** (§4.3) is the most likely future change and needs no code
+   change — only a rebuild and a decision.
+
+## 17. Exit criteria
+
+- [x] Cadence, environment and hosting settled.
+- [x] Publishing flow decided, and decoupled from the data update.
+- [x] Failure visibility specified at all three layers, including the page's own staleness notice.
+- [x] Rollback policy decided, including the one operation that must not be routine.
+- [ ] Maintainer and fallback named.
+- [ ] `gh-pages` publishing implemented and a deploy rolled back once in rehearsal.
+- [ ] Notification routing confirmed by deliberately failing a run.
+- [ ] `RUNBOOK.md` written.
+- [ ] The schedule confirmed to still fire after 60+ days without a human commit.

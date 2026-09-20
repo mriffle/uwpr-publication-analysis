@@ -2,6 +2,15 @@
 
 **Status:** Agreed · 2026-09-20 · the input to implementation. Changes from here are made
 deliberately, dated, and noted in this header.
+
+**Changes since agreement:**
+- *2026-09-20, §7 and §4.1, the staleness notice:* the app must state its own staleness when the
+  data is more than 14 days old — two missed weekly runs — where the reader will see it, rather
+  than presenting old figures as current. Added by [07](07-operations.md) O3, which needed a layer
+  that catches the schedule silently stopping: the run's own alerting cannot report a run that
+  never happened. It also follows from §1's register, since a page arguing that its numbers are
+  checkable should not misrepresent how current they are. The threshold comes from the export's
+  `generated_at`.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -241,6 +250,7 @@ charts and the publication list, with the filter stated and the data date on the
 | Data fails to load | A plain message naming the file, with a retry. No partial page pretending to be complete |
 | `schema_version` is a major version the app does not know | A clear message naming the version found and the version expected, and no attempt to render. A wrong render is worse than none |
 | A work referenced by URL does not exist | Resolve it through the export's alias map first — 37 works carry a retired identifier — and only then show a not-found state |
+| **The data is more than 14 days old** | Say so, in place, near the "data as of" date and the headline figures. Two missed weekly runs means something is wrong, and a page that keeps presenting the figures as current is the failure mode [07](07-operations.md) §5 exists to prevent |
 
 ## 8. Design direction
 

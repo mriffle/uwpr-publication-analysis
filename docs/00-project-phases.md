@@ -1,8 +1,8 @@
 # UWPR Publication Impact — Project Phases
 
 **Status:** the pipeline is built and running weekly; the app is not. See 08.
-**Last updated:** 2026-09-20 (Phase 4 retired; **Phases 5 and 6 agreed** — the data contract and
-the app are specified, and building them is next)
+**Last updated:** 2026-09-20 (Phase 4 retired; **every remaining phase is agreed** — 5, 6 and 7
+are specified, and all that is left is to build them)
 
 ## Goal
 
@@ -44,7 +44,7 @@ is shown, it is labelled as a preprint.
 | 4 | ~~Publication knowledge base~~ | — | *never written* | **Retired 2026-09-20.** The store already carries everything it was to contain except a summary, which was not wanted. Publication detail moved into Phase 5. |
 | 5 | Metrics & app data contract *(added)* | Exactly what is in the JSON that drives the app, and how is each number defined? | [05-metrics-and-data-contract.md](05-metrics-and-data-contract.md) | **Agreed** 2026-09-20 |
 | 6 | Web app | What does the single-page app show, how does it behave, and how does data get into it? | [06-web-app.md](06-web-app.md) | **Agreed** 2026-09-20 |
-| 7 | Operations *(added)* | Where does it run, how often, where is it hosted, and how do we know it is still correct? | [07-operations.md](07-operations.md) | Unreviewed starting point |
+| 7 | Operations *(added)* | Where does it run, how often, where is it hosted, and how do we know it is still correct? | [07-operations.md](07-operations.md) | **Agreed** 2026-09-20 |
 | 8 | Implementation | Build to the specs, in the order below. | [08-implementation.md](08-implementation.md) | **In progress** — M0–M5 done; the store is seeded and the weekly run works |
 
 ### Why Phase 4 was retired (2026-09-20)
@@ -85,11 +85,10 @@ wanted, it has a home, a regeneration trigger and an owned-paths rule already.
 
 ## Dependencies and order of work
 
-1 → 2 → 3 are done and frozen. **Phases 5 and 6 are agreed** (2026-09-20): 5 carries the
-publication detail Phase 4 was to hold plus the visualizations the app is built around, and 6
-specifies the app itself. **Building them is next**, starting with the sample export, which the
-app cannot be developed or tested without (05 §13). Phase 7 is settled last; it owns hosting, and
-6 assumes only that static files are served (see 06 §13).
+1 → 2 → 3 are done and frozen. **5, 6 and 7 are all agreed** (2026-09-20): 5 is the data contract
+and carries the publication detail Phase 4 was to hold, 6 is the app, and 7 is how both are
+published and kept running. **Every phase is now specified, and what remains is implementation**,
+starting with the sample export, which the app cannot be developed or tested without (05 §13).
 
 Suggested implementation order once specs are agreed:
 
@@ -126,7 +125,7 @@ Suggested implementation order once specs are agreed:
 | D7 | ~~Show "probable" works?~~ | Obsolete — inclusion is now yes/no | — |
 | D8 | Hosting location and UW branding requirements | **Answered:** public GitHub repository; pipeline on GitHub Actions; the app most likely on GitHub Pages. **No UW branding** (2026-09-20) — clean and modern, visually neutral; the resource is named and linked | 03 §11, 05, 06, 07 |
 | D9 | Run cadence | **Answered:** weekly scheduled GitHub Actions run (full sweep every run), plus a manual trigger | 03 §2, §11 |
-| D10 | Should findings flow back to the official publications page? | Yes — a "missing from site" report each run | 07 |
+| D10 | Should findings flow back to the official publications page? | **Answered:** yes — a "missing from site" report each run, as an operations artifact rather than a public claim (07 §9.1). 33 works today. An owner for acting on it is still needed | 05, 07 |
 | D11 | ~~How are summaries generated, and may abstracts be quoted?~~ | **Answered 2026-09-20: no summaries, and no abstracts.** A summary is the one thing on a publication page that could not be traced to a source, and abstracts are copyrighted, which is why they stay in the cache and out of the repository | — |
 | D12 | ~~Own subject vocabulary, or reuse an existing one?~~ | **Answered 2026-09-20:** use OpenAlex topics as reported — domain, field, subfield, topic — which cover 100% of included works. No vocabulary of our own | 05 |
 | D13 | ~~Embed knowledge-base content, or load pages on click?~~ | **Obsolete** — there is no separate knowledge base to embed or load. Publication detail is part of the app's data contract | 05 |
