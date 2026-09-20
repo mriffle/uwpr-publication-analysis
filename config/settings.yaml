@@ -13,6 +13,66 @@ resource:                            # what the app names; the app holds no UWPR
   # works and US on 322.
   home_institution: {ror: 00cvxb145, name: University of Washington}   # as OpenAlex names it
   home_country: US                   # ISO 3166-1 alpha-2
+  # What is deliberately not evidence, named (docs/05 §10). The method page describes the
+  # exclusions in kind; principle 5 forbids it naming any of them itself, so the names come from
+  # here. This list restates in public terms what config/rules.yaml already excludes — the two
+  # `signals.cores` patterns, and the `r3.exclusions` software, tool, hardware and other_org
+  # groups — so a rule change that adds an exclusion adds it here too.
+  #
+  # Register (docs/05 §11, and §10's note of 2026-09-20): factual, no judgement. These are
+  # separate facilities whose work is not this resource's, not lesser ones, and the software is
+  # freely available to anyone, which is exactly why using it is not use of the facility.
+  exclusions:
+    - kind: facility
+      name: Quantitative and Functional Proteomics Core, UW Diabetes Research Center
+      note: >-
+        At the University of Washington's Diabetes Research Center. Publications it supported are
+        not counted here unless UWPR also supported them.
+    - kind: facility
+      name: Mass Spectrometry Resource, UW Department of Medicine
+      note: >-
+        In the University of Washington's Department of Medicine, in use since at least 1995 and
+        often used by the same research groups. Publications it supported are not counted here
+        unless UWPR also supported them.
+    - kind: facility
+      name: Proteomics Resource, Fred Hutchinson Cancer Center
+      note: >-
+        In Seattle, and named almost exactly as this project's searches are worded. A publication
+        naming it and not UWPR is not counted here.
+    - kind: software
+      name: Comet
+      note: An open-source sequence-database search engine that any group can download and run.
+    - kind: software
+      name: SEQUEST
+      note: >-
+        A sequence-database search engine distributed with commercial instrument software, and
+        used far beyond this facility.
+    - kind: software
+      name: Kojak
+      note: >-
+        An open-source search engine for cross-linked peptides, downloaded and run by whoever
+        needs it.
+    - kind: software
+      name: Hardklor
+      note: >-
+        An open-source program for finding peptide isotope distributions in mass spectra,
+        downloaded and run by whoever needs it.
+    - kind: software
+      name: Limelight
+      note: >-
+        An open-source web application for analysing and sharing proteomics results, which any
+        group can install on its own servers.
+    - kind: software
+      name: Lorikeet
+      note: >-
+        An open-source viewer for annotated peptide spectra, which any site can embed in its own
+        pages.
+    - kind: tool
+      name: The online peptide fragmentation calculator
+      note: A public web page that works out the fragment masses of a peptide sequence.
+    - kind: hardware
+      name: The nanospray source design
+      note: Plans on the resource's website that any workshop can follow.
 official_list:
   index_url: https://proteomicsresource.washington.edu/publications/
   page_link_pattern: '^(?:https://proteomicsresource\.washington\.edu)?/publications/(?:[0-9]{4}|older)/$'

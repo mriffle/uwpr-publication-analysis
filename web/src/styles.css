@@ -897,6 +897,23 @@ button.chart-legend-item.is-selected {
   margin: 0.5rem 0;
 }
 
+/*
+ * The named exclusions (docs/05 §10). Each group is one bullet whose shared reason is a
+ * sentence, and the things themselves are a nested list under it: a reader scanning for whether
+ * a particular program or facility is ruled out finds the names as names, not inside a
+ * paragraph.
+ */
+.method-sublist {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+  list-style: circle;
+}
+
+.method-sublist li {
+  margin: 0.25rem 0;
+  color: var(--text-muted);
+}
+
 .method-links {
   font-size: 0.9rem;
 }

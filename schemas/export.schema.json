@@ -71,7 +71,7 @@
     "resource": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "short_name", "url", "identifier", "home_institution", "home_country", "staff"],
+      "required": ["name", "short_name", "url", "identifier", "home_institution", "home_country", "exclusions", "staff"],
       "properties": {
         "name": {"type": "string", "minLength": 1},
         "short_name": {"type": "string", "minLength": 1},
@@ -92,7 +92,24 @@
           "type": "string",
           "pattern": "^[A-Z]{2}$"
         },
+        "exclusions": {
+          "description": "What is deliberately not evidence, named (docs/05 §10). The method page groups these by `kind` and shows each with its note; it carries no such names of its own, because §1.1 principle 5 keeps everything resource-specific in this file.",
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/exclusion"}
+        },
         "staff": {"type": "array", "items": {"$ref": "#/$defs/person"}}
+      }
+    },
+    "exclusion": {
+      "description": "One thing that looks like evidence and is deliberately not counted as any. `kind` groups it on the method page; `note` says why it does not count, factually and without judgement (docs/05 §10, §11).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "name", "note"],
+      "properties": {
+        "kind": {"enum": ["facility", "software", "tool", "hardware"]},
+        "name": {"type": "string", "minLength": 1},
+        "note": {"type": "string", "minLength": 1}
       }
     },
     "period": {

@@ -238,6 +238,12 @@ class ExportHomeInstitution(TypedDict):
     name: str
 
 
+class ExportExclusion(TypedDict):
+    kind: str
+    name: str
+    note: str
+
+
 class ExportResource(TypedDict):
     name: str
     short_name: str
@@ -247,6 +253,10 @@ class ExportResource(TypedDict):
     #: Facts about the facility, so they are stated here rather than inferred by the app.
     home_institution: ExportHomeInstitution
     home_country: str
+    #: What is deliberately not evidence, named (docs/05 §10). The method page groups these by
+    #: `kind`; it names none of them itself, because §1.1 principle 5 keeps every
+    #: resource-specific string in this file.
+    exclusions: list[ExportExclusion]
     staff: list[ExportPerson]
 
 

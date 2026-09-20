@@ -88,6 +88,22 @@ def test_the_resource_block_states_the_home_institution_and_country() -> None:
     assert resource["home_country"] == "US"
 
 
+def test_the_named_exclusions_stay_in_step_with_the_rules() -> None:
+    """docs/05 §10: `resource.exclusions` restates in public terms what `rules.yaml` excludes.
+
+    Neither side can be derived from the other — the name a reader recognises is not the regex
+    fragment the rules match on — so the guard is parity on the one group where the two use the
+    same words: the software the R3 mentions exclusion names. A rule that starts excluding a new
+    program without the page naming it, or the page naming one the rules do not exclude, fails
+    here rather than leaving the method page quietly wrong.
+    """
+    config = load_config()
+    generic = {"search engine"}  # a category, not something a reader could be shown
+    matched = set(config.rules["r3"]["exclusions"]["software"]) - generic
+    named = {e["name"] for e in resource_block(config)["exclusions"] if e["kind"] == "software"}
+    assert named == matched
+
+
 def test_the_home_institution_is_what_the_real_store_actually_reports() -> None:
     """A ROR that named nothing in the data would exclude nothing and the chart would not say so.
 
@@ -492,6 +508,7 @@ def _meta() -> ExportMeta:
                 "identifier": "i",
                 "home_institution": {"ror": "00cvxb145", "name": "n"},
                 "home_country": "US",
+                "exclusions": [{"kind": "software", "name": "x", "note": "n"}],
                 "staff": [],
             },
         ),

@@ -45,7 +45,7 @@ import { ProportionCard } from '../charts/ProportionCard';
 import { RankedBarCard } from '../charts/RankedBarCard';
 import { otherColour, seriesColour } from '../charts/palette';
 import { StalenessNotice } from '../components/StalenessNotice';
-import type { ExportDocument } from '../contract/types';
+import type { Exclusion, ExportDocument } from '../contract/types';
 import { CRITERION_LABELS } from '../filter/describe';
 import { EMPTY_FILTER } from '../filter/state';
 import { encodeFilterToQuery } from '../filter/url';
@@ -84,6 +84,64 @@ function useFragmentTarget(ready: boolean): void {
     target.scrollIntoView?.();
     target.focus();
   }, [ready]);
+}
+
+/**
+ * The deliberate exclusions, grouped for the page (docs/05 §10).
+ *
+ * **Every name and every note is the export's.** Principle 5 forbids the app carrying any of
+ * them, which is the whole reason `resource.exclusions` exists: the page named none of these
+ * until the contract did. What the app supplies is the grouping — a heading and one shared
+ * sentence per `kind` — and each of those says the same thing about a facility, a program or a
+ * published design as it would for any other resource this template served.
+ *
+ * A kind with no entries is not rendered, so a resource that publishes no software or no
+ * hardware design gets a shorter list rather than an empty heading.
+ */
+const EXCLUSION_KINDS: {
+  kind: Exclusion['kind'];
+  heading: string;
+  lead: (resource: string) => string;
+}[] = [
+  {
+    kind: 'facility',
+    heading: 'Other facilities.',
+    lead: (resource) =>
+      `Their names resemble ${resource}’s closely enough to match a careless search. Each is a ` +
+      `separate facility with its own staff and its own record, and work it did is not work ` +
+      `${resource} did.`,
+  },
+  {
+    kind: 'software',
+    heading: 'Software.',
+    lead: () =>
+      'Programs anyone can obtain and run without contacting the facility. Citing a program is ' +
+      'not using the facility, and counting it would turn a publication record into a software ' +
+      'citation count.',
+  },
+  {
+    kind: 'tool',
+    heading: 'Web tools.',
+    lead: () =>
+      'Pages the resource publishes for whoever opens them. Nobody at the facility is involved ' +
+      'in a visit, and nothing about the work reaches it.',
+  },
+  {
+    kind: 'hardware',
+    heading: 'Instrument designs.',
+    lead: () =>
+      'Designs the resource publishes. A laboratory that follows them has built its own ' +
+      'instrument, and the facility did no work for that paper.',
+  },
+];
+
+type ExclusionGroup = (typeof EXCLUSION_KINDS)[number] & { items: Exclusion[] };
+
+function exclusionGroups(exclusions: readonly Exclusion[]): ExclusionGroup[] {
+  return EXCLUSION_KINDS.map((group) => ({
+    ...group,
+    items: exclusions.filter((exclusion) => exclusion.kind === group.kind),
+  })).filter((group) => group.items.length > 0);
 }
 
 export function Method({ doc, overviewHref, onClose, now }: MethodProps) {
@@ -222,7 +280,8 @@ export function Method({ doc, overviewHref, onClose, now }: MethodProps) {
       <p>
         Several things look like evidence and are not counted as any. The exclusions are as much a
         part of how this corpus was assembled as the four criteria, and each of them would have made
-        the count larger.
+        the count larger. They are named here rather than described in kind, because a reader
+        checking the method wants to know which particular things were ruled out.
       </p>
       <ul className="method-list">
         <li>
@@ -232,17 +291,18 @@ export function Method({ doc, overviewHref, onClose, now }: MethodProps) {
           paper. Every one of those {formatCount(staffAuthored)} is here for one of the four reasons
           above, and would be here without the staff author.
         </li>
-        <li>
-          <strong>Other proteomics facilities</strong> at the same university and in the same city.
-          Their names resemble {resource}’s closely enough to match a careless search, and a paper
-          that names one of them and not {resource} is not a {resource} paper.
-        </li>
-        <li>
-          <strong>Software, web tools and instrument designs</strong> that originated at {resource}.
-          They are used worldwide by people who have never contacted the facility. Citing a program
-          is not using the facility, and counting it would turn a publication record into a software
-          citation count.
-        </li>
+        {exclusionGroups(doc.resource.exclusions).map((group) => (
+          <li key={group.kind}>
+            <strong>{group.heading}</strong> {group.lead(resource)}
+            <ul className="method-sublist">
+              {group.items.map((item) => (
+                <li key={item.name}>
+                  <strong>{item.name}</strong> — {item.note}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
       </ul>
 
       {/* --- docs/05 §10, "What is independently confirmed" ------------------------------- */}
