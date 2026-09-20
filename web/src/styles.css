@@ -1,0 +1,377 @@
+/*
+ * docs/06 §8: neutral, clean, modern; no UW marks, colours or typography (B9). Light and dark
+ * follow the system preference, with an explicit override on `data-theme`. Reduced motion is
+ * respected: transitions here are an affordance, never decoration.
+ *
+ * This is the first slice of the app (the chart kit and one chart), so it styles the kit and the
+ * page frame and nothing else.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --page-bg: #ffffff;
+  --panel-bg: #f7f8fa;
+  --text: #16181d;
+  --text-muted: #4b5563;
+  --border: #d8dce3;
+  --focus: #0b5fff;
+  --link: #0b4f9c;
+  --warning-bg: #fdf3e3;
+  --warning-border: #b06d00;
+  --warning-text: #613b00;
+  --error-bg: #fcf0f0;
+  --error-border: #a4262c;
+
+  --chart-1: #0072b2;
+  --chart-2: #d55e00;
+  --chart-3: #009e73;
+  --chart-4: #cc79a7;
+  --chart-5: #56b4e9;
+  --chart-6: #e69f00;
+  --chart-other: #6b7280;
+  --chart-grid: #e3e6ea;
+  --chart-axis: #9aa3b2;
+  --chart-axis-text: #4b5563;
+  --chart-partial-bg: #eef1f5;
+  --chart-partial-line: #6b7280;
+
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --page-bg: #121417;
+    --panel-bg: #181b20;
+    --text: #e9ecf1;
+    --text-muted: #a8b0bd;
+    --border: #2c313a;
+    --focus: #7fb0ff;
+    --link: #8ab4f8;
+    --warning-bg: #2a2110;
+    --warning-border: #d19a2a;
+    --warning-text: #f0dcb0;
+    --error-bg: #2a1416;
+    --error-border: #e06c75;
+
+    --chart-1: #63b3ed;
+    --chart-2: #f6935a;
+    --chart-3: #4fd1a5;
+    --chart-4: #e0a3c4;
+    --chart-5: #8fd3f4;
+    --chart-6: #f0c14b;
+    --chart-other: #9aa3b2;
+    --chart-grid: #262b33;
+    --chart-axis: #5b6472;
+    --chart-axis-text: #a8b0bd;
+    --chart-partial-bg: #1d2128;
+    --chart-partial-line: #8b95a5;
+  }
+}
+
+:root[data-theme='dark'] {
+  --page-bg: #121417;
+  --panel-bg: #181b20;
+  --text: #e9ecf1;
+  --text-muted: #a8b0bd;
+  --border: #2c313a;
+  --focus: #7fb0ff;
+  --link: #8ab4f8;
+  --warning-bg: #2a2110;
+  --warning-border: #d19a2a;
+  --warning-text: #f0dcb0;
+  --error-bg: #2a1416;
+  --error-border: #e06c75;
+
+  --chart-1: #63b3ed;
+  --chart-2: #f6935a;
+  --chart-3: #4fd1a5;
+  --chart-4: #e0a3c4;
+  --chart-5: #8fd3f4;
+  --chart-6: #f0c14b;
+  --chart-other: #9aa3b2;
+  --chart-grid: #262b33;
+  --chart-axis: #5b6472;
+  --chart-axis-text: #a8b0bd;
+  --chart-partial-bg: #1d2128;
+  --chart-partial-line: #8b95a5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: var(--link);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.page {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  margin: 0 0 0.25rem;
+}
+
+.page-header p {
+  margin: 0.25rem 0;
+  color: var(--text-muted);
+}
+
+.notice {
+  border: 1px solid var(--warning-border);
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+}
+
+.notice-error {
+  border-color: var(--error-border);
+  background: var(--error-bg);
+  color: var(--text);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --- chart kit ------------------------------------------------------------------------- */
+
+.chart-card {
+  border: 1px solid var(--border);
+  background: var(--panel-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.chart-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.chart-card-head h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.chart-card-toggle,
+.chart-empty button,
+.notice button {
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--page-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.chart-card-description,
+.chart-card-note {
+  margin: 0.4rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.chart-card-body {
+  margin-top: 0.75rem;
+}
+
+.chart-responsive {
+  width: 100%;
+}
+
+.chart-plot {
+  position: relative;
+}
+
+.chart-svg {
+  display: block;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.chart-bar {
+  cursor: pointer;
+}
+
+.chart-bar rect {
+  transition: opacity 120ms ease-in-out;
+}
+
+.chart-bar:hover rect,
+.chart-bar:focus-visible rect {
+  opacity: 0.85;
+}
+
+.chart-bar.is-selected rect {
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.chart-tooltip {
+  position: absolute;
+  transform: translate(-50%, -110%);
+  pointer-events: none;
+  background: var(--page-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+  white-space: nowrap;
+}
+
+.chart-tooltip-title {
+  margin: 0 0 0.2rem;
+  font-weight: 600;
+}
+
+.chart-tooltip-rows {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0 0.5rem;
+}
+
+.chart-tooltip-rows div {
+  display: contents;
+}
+
+.chart-tooltip-rows dt {
+  color: var(--text-muted);
+}
+
+.chart-tooltip-rows dd {
+  margin: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-partial-key {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.chart-partial-swatch {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid var(--chart-partial-line);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--chart-partial-bg),
+    var(--chart-partial-bg) 2px,
+    var(--chart-partial-line) 2px,
+    var(--chart-partial-line) 4px
+  );
+}
+
+.chart-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.chart-table caption {
+  text-align: left;
+  color: var(--text-muted);
+  padding-bottom: 0.5rem;
+}
+
+.chart-table th,
+.chart-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+}
+
+.chart-table .numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-skeleton,
+.chart-empty {
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 1.5rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.chart-empty p {
+  margin: 0 0 0.5rem;
+}
+
+.figure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.figure-grid li {
+  border: 1px solid var(--border);
+  background: var(--panel-bg);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.figure-value {
+  font-size: 1.6rem;
+  font-variant-numeric: tabular-nums;
+  display: block;
+}
+
+.figure-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
