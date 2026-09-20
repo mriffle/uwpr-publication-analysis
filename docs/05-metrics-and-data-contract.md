@@ -13,10 +13,51 @@ rather than inventing it.
 model, the four inclusion criteria and retired work IDs, and which described tiers and
 incremental runs that no longer exist. It was rewritten rather than edited.
 
+**Changes since agreement** (all 2026-09-20, found while implementing stage 11):
+- *§13, where the synthetic cases live:* the sample export is built from `samples/store/` **plus
+  `samples/export_cases.json`**, a committed file of synthetic works that the same `build_export`
+  consumes. Audited rather than assumed: the sample store covers **nine of the twelve** cases;
+  the three it cannot hold are a retracted work, a single-author work and one with more than 50
+  authors (its author lists run 4 to 15). They cannot be added to `samples/store/` because it is
+  rebuilt from live APIs, must rebuild byte-identically, and holds real papers with real UWPR
+  evidence — inventing an acknowledgement for a real paper that has none would put a false claim
+  into a committed, validated artifact. Every synthetic title says SAMPLE and every DOI uses the
+  unassigned `10.0000` test prefix, both asserted by a test.
+- *§12, the alias cross-check:* "every `aliases` target resolves to an exported work" was too
+  narrow and failed every pipeline test. `aliases.json` maps every external identifier to its
+  work whether that work is included or not, and the lookup index exists precisely so a
+  **rejected** paper's DOI still gets an answer. The check is now: a target must be an exported
+  work **or** a `not_included` row.
+- *§4.4, the size table was understated.* Measured from the export as this spec defines it:
+  **2.22 MB compact, 3.48 MB as written** (the canonical writer uses 2-space indent, which §4.1
+  requires for diffability), **0.31 MB gzipped**; the lookup index is 0.36 MB, 0.06 MB gzipped.
+  The original 1.08 MB / 0.15 MB came from a sizing script that omitted `affiliations_raw` and
+  the work-level `institutions`, `countries` and `corresponding_authors`. The conclusion is
+  unchanged — A8 still caps nothing, and 0.31 MB gzipped is well inside [06](06-web-app.md) §10's
+  budget — but the numbers in that table were wrong.
+- *§10, where "last read" comes from:* the records' own `sources` map cannot supply it. Measured:
+  every record in the store carries `openalex` and nothing else. The method block derives
+  `sources_last_read` from the **evidence** instead, whose `source.name` is already the
+  human-facing name the page shows (OpenAlex, PMC, Crossref, PRIDE, the UWPR website). A source
+  that produced no evidence is absent rather than guessed at.
+- *§4.5 versus §5, open access:* §4.5 said "works with an open-access link" and §5 said "status
+  other than `closed`". Both give 307 in today's store, but they are different definitions. §5 is
+  the definitions section and wins; `summary.open_access` counts status.
+- *`config/settings.yaml` gains a `resource` block* (name, short name, URL), because principle 5
+  says the app carries no UWPR text of its own and every name it shows has to arrive through the
+  export. The award identifier comes from `rules.yaml` and the staff list from `staff.yaml`.
+
 **Every figure in this document was measured against the committed store on 2026-09-20**
 (339 works, rule version `2026-09-20.1`). Figures move as the store grows; the definitions do
 not. Where a number is quoted to justify a design decision, re-measure before changing that
 decision (see [08](08-implementation.md) §5 on stale figures).
+
+**Implemented 2026-09-20.** Stage 11 writes both files and the gate validates them. Built against
+the committed store, every figure in §5 reproduced exactly — 339 works, 29,575 citations, 29,117
+in the by-year window with 458 before it, median field-weighted impact 2.68, h-index 83, 307 open
+access, 130 journals, 243 institutions, 34 countries, 215 research groups, 155 last authors, 306
+listed and 33 beyond, 14 preprint-only, 224 works on more than one criterion, and the 91
+listing-only works splitting 44 read to 47 unreadable.
 
 ---
 
@@ -290,18 +331,20 @@ exists to prevent).
 
 Measured over the real 339 works:
 
+Re-measured 2026-09-20 from the export as built, replacing an earlier estimate that omitted
+`affiliations_raw` and the work-level institution, country and corresponding-author lists:
+
 | Variant | Size | Per work |
 |---|---:|---:|
-| **Full: every author, affiliation, topic and evidence entry** | **1.08 MB** | 3,197 B |
-| gzipped (GitHub Pages serves compressed) | **0.15 MB** | — |
-| Authors reduced to names only | 0.81 MB | 2,380 B |
-| Evidence omitted | 0.70 MB | 2,068 B |
-| Lookup index, all 455 candidates | 0.10 MB | — |
+| **As written: 2-space indent, sorted keys** (§4.1) | **3.48 MB** | 10,265 B |
+| Compact, no indent | 2.22 MB | 6,549 B |
+| **gzipped, as written** (GitHub Pages serves compressed) | **0.31 MB** | — |
+| Lookup index, all 455 candidates | 0.36 MB (0.06 MB gzipped) | — |
 
-Growth is 30–50 works a year ([02](02-data-model.md) §1), so about 0.1 MB a year uncompressed.
-The file stays inlineable for many years. **This is why A8 caps nothing:** the entire saving from
-capping authors and evidence is about 0.4 MB uncompressed and far less compressed, in exchange for
-an app that can show less than it can prove.
+Growth is 30–50 works a year ([02](02-data-model.md) §1), so about 0.4 MB a year as written and
+roughly 0.03 MB gzipped. **This is why A8 caps nothing:** what matters is the compressed transfer,
+0.31 MB today against [06](06-web-app.md) §10's budget, and capping authors and evidence would buy
+a fraction of that in exchange for an app that can show less than it can prove.
 
 ### 4.5 The `summary` block
 
@@ -646,26 +689,49 @@ These apply to every string the app displays and to the explanatory text in the 
 - **The app checks `schema_version` on load** and refuses a major version it does not know, with a
   message naming the version it found and the one it expects. Additive changes bump the minor
   version; renames and removals bump the major version.
-- **Cross-checks, run by the validator:** every `aliases` target resolves to an exported work;
-  every work's `criteria` matches its evidence; the `summary` block equals a recomputation from
-  the rows; `period.complete_through` is the year before the run's year; every exported work is
+- **Cross-checks, run by the validator:** every `aliases` target resolves to an exported work
+  **or to a `not_included` row** (corrected 2026-09-20 — aliases cover every work, included or
+  not, and the lookup index is how a rejected paper's identifier still gets an answer); every
+  work's `criteria` matches its evidence; the `summary` block equals a recomputation from the
+  rows; `period.complete_through` is the year before the run's year; every exported work is
   included in the store; no exported work carries a superseded evidence entry.
 
 ## 13. The sample export
 
 A committed sample drives app development and tests without the real store: `samples/export/`,
-built from `samples/store/` by the same code that writes the real one.
+built by the same `build_export` that writes the real one, from `samples/store/` **plus
+`samples/export_cases.json`**. It is regenerated with
+
+```
+uv run uwpr-pubs export --store samples/store --out samples/export --cases samples/export_cases.json
+```
+
+which refuses to write if any case below is missing, and a test asserts the committed sample
+still matches a fresh build.
 
 It must cover, because each of these is a case the app gets wrong if it never sees one: a
 preprint-only work; a merged preprint-and-article pair; a work whose only evidence is the site
 listing, with no excerpt; a full-text-index match, with no excerpt; an override with its
 attribution; a work with no open-access link; a work with no field-weighted impact; a retracted
 work; a work with a single author; a work with more than 50; an author with no ROR-resolved
-affiliation; and a retired work ID in `aliases`.
+affiliation; and a retired work ID in `aliases`. Each is a predicate in `uwpr_pubs.sample`, so
+"it must cover" is checked rather than promised.
 
-**The real store does not contain a retracted work** (0 of 339), so the sample must carry a
-synthetic one. An app that has never rendered a retraction flag will render it wrongly the first
-time a real one appears, and citation metrics refresh every run, so that can happen any week.
+**Nine of the twelve come from `samples/store/`** (audited 2026-09-20). The three that cannot are
+a retracted work, a single-author work, and one with more than 50 authors — the sample store's
+author lists run 4 to 15, and **the real store contains no retracted work at all** (0 of 339). An
+app that has never rendered a retraction flag will render it wrongly the first time a real one
+appears, and citation metadata refreshes every run, so that can happen any week.
+
+**Why they are a separate file rather than more sample works.** `samples/store/` is rebuilt from
+live APIs by `samples/build_sample_store.py`, must rebuild byte-identically, and holds *real*
+papers with *real* UWPR evidence. Adding a retracted paper to it would mean inventing a UWPR
+acknowledgement for a paper that does not have one, inside a committed and validated artifact —
+which is the one thing this project's traceability principle exists to prevent. The synthetic
+works instead live in their own file, validate against `work.schema.json` like any other, carry
+`SAMPLE` in every title and the unassigned `10.0000` test DOI prefix, and are merged with the
+sample store's works before the one export function sees them. The export code has a single path;
+only its input is a union.
 
 ## 14. Open items
 
@@ -685,7 +751,8 @@ time a real one appears, and citation metrics refresh every run, so that can hap
 - [x] Visualizations specified against measured feasibility, including the two the measurements
       corrected (research areas over time, geography).
 - [x] Publication detail specified, including the three evidence cases that need their own wording.
-- [ ] JSON Schemas written for both files.
-- [ ] Stage 11 implemented, with the export validated at the gate.
-- [ ] Sample export committed, covering the cases in §13.
-- [ ] The `summary` cross-check asserted by a test.
+- [x] JSON Schemas written for both files (2026-09-20).
+- [x] Stage 11 implemented, with the export validated at the gate (2026-09-20).
+- [x] Sample export committed, covering all twelve cases in §13 (2026-09-20).
+- [x] The `summary` cross-check asserted by a test, on the pipeline side (2026-09-20). The app
+      side of the same check is [06](06-web-app.md) §12.1's, and waits for the app.

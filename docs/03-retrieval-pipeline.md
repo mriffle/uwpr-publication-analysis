@@ -31,6 +31,17 @@ was retired with it on 2026-09-20.
 - *§10.6:* the report is accumulated as the stages run, not built from the finished store, because
   a failed run must still produce one.
 
+**Changes made while implementing stage 11** (2026-09-20, Phase 5):
+- *§10.1, `settings.yaml` gains a `resource` block* — the facility's name, short name and URL.
+  The app holds no UWPR-specific text of its own ([00](00-project-phases.md), principle 5), so
+  every name it displays has to arrive through `export/`, and config is where it comes from. The
+  award identifier is already in `rules.yaml` and the staff list in `staff.yaml`; only these three
+  had no home.
+- *§5 stage 11 and stage 13:* the export is written to `export/`, a **sibling** of `store/`
+  ([02](02-data-model.md) §3), derived from `--store` rather than carried separately, so a run
+  against a scratch store writes a scratch export. Stage 11 stages it inside the staging tree and
+  stage 13 publishes it beside the store.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the
@@ -414,6 +425,10 @@ It stands in for `uwpr_pubs.config` until that module exists.
 ```yaml
 contact: mriffle@uw.edu              # sent to APIs as mailto/email (public)
 window_start: 2006
+resource:                            # what the app names; added 2026-09-20 for Phase 5
+  name: University of Washington Proteomics Resource
+  short_name: UWPR
+  url: https://proteomicsresource.washington.edu/
 openalex: {max_run_usd: 0.50, min_remaining_usd: 0.10}
 recheck_days: 90
 last_seen_refresh_days: 28           # P11
