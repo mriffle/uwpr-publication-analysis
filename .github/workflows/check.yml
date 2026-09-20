@@ -30,3 +30,29 @@ jobs:
       - run: uv run uwpr-pubs validate store          # the committed store (seeded 2026-09-20)
       - run: uv run uwpr-pubs validate samples/store
       - run: uv run uwpr-pubs fixtures --store store  # the Phase 1 §12 papers, offline
+
+  # The web app's gate (docs/06 §12.3). Independent of `check`: both must pass.
+  # Playwright and the visual-regression pass of §12.2 arrive with the views they cover.
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: web/.nvmrc
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci                    # from the committed lockfile, exactly (docs/06 §11.1)
+      - run: npm run check:types-fresh # contract drift is a build failure, not a broken page (B3)
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm run test:coverage     # unit and component tests, 80% floor (B7)
+      - run: npm run build
+      - run: npm run check:budget      # JS ≤ 250 KB gzipped; the job fails on an overrun (§10)
