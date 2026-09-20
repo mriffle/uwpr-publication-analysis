@@ -17,8 +17,11 @@ from uwpr_pubs.config import load_config
 from uwpr_pubs.context import RunContext
 from uwpr_pubs.http import Budget, HttpClient, Mode, RateLimiter, Response
 from uwpr_pubs.pipeline import RunOptions, run_pipeline
+from uwpr_pubs.schemas import schema_errors
+from uwpr_pubs.stages.export import export_dir
+from uwpr_pubs.stages.export import read as read_export
 from uwpr_pubs.store import io
-from uwpr_pubs.validate import validate_store
+from uwpr_pubs.validate import validate_export, validate_store
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
 TODAY = "2026-09-21"
@@ -651,3 +654,26 @@ def test_duplicate_openalex_records_for_one_doi_are_chosen_the_same_way(tmp_path
     assert pipeline_module._preferred([high, low]) is low
     assert pipeline_module._preferred([low, high]) is low
     assert pipeline_module._preferred([]) is None
+
+
+def test_a_run_writes_the_export_beside_its_store(client: HttpClient, tmp_path: Path) -> None:
+    """Stage 11 runs in the pipeline, and stage 13 publishes it outside the store (docs/02 §3)."""
+    store = tmp_path / "store"
+    result = do_run(client, store)
+    assert result.status == "ok", result.errors
+
+    exported = export_dir(store)
+    assert exported == tmp_path / "export"
+    assert not (store / "export").exists(), "the export must not land inside the store"
+
+    document, lookup = read_export(exported)
+    assert schema_errors("export", document) == []
+    assert schema_errors("lookup-index", lookup) == []
+    assert document["summary"]["publications"] == len(document["works"]) == 3
+    assert validate_export(document, lookup, run_year=int(TODAY[:4])).errors == []
+
+
+def test_a_dry_run_writes_no_export(client: HttpClient, tmp_path: Path) -> None:
+    store = tmp_path / "store"
+    do_run(client, store, dry_run=True)
+    assert not export_dir(store).exists()
