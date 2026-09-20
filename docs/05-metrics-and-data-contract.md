@@ -761,8 +761,10 @@ A linked page, not a banner (A3). It carries, in plain numbers:
   and Europe PMC for full text; Crossref for version links; UWPR's own publications pages. Each
   with the date it was last read.
 - **What is deliberately not evidence**, *named*: staff co-authorship alone (**104 works have a
-  staff author**, and that never included one of them), the two related facilities that are not
-  this resource, and the resource's own software, web tools and instrument designs. These
+  staff author**, and that never included one of them), the **three** similarly-named facilities
+  that are not this resource — two other units of the same university and one at another
+  institution in the same city — and the resource's own software, web tools and instrument
+  designs. These
   non-inclusions are as much a part of how the corpus was assembled as the rules are, and a reader
   checking the method wants to know which specific things were ruled out.
 
@@ -772,9 +774,16 @@ A linked page, not a banner (A3). It carries, in plain numbers:
   configuration, not derived: it restates in public terms what `rules.yaml` already excludes, so
   the two must be kept in step — a rule change that adds an exclusion should add it here.
 
-  Naming another institution's facility in public is a deliberate choice, made 2026-09-20. The
+  Naming a facility in public is a deliberate choice, made 2026-09-20 — two of the three are
+  other units of this resource's own university and one belongs to another institution. The
   wording is factual and carries no judgement: these are separate facilities whose work is not
   this resource's, not lesser ones. §11's register applies with particular force here.
+
+  **The list is checkable against the rules where both sides use the same words.** A parity test
+  asserts the named software equals `rules.yaml`'s software exclusions, so a rule that starts
+  excluding a new program without the page naming it fails the suite. The facility, tool and
+  hardware groups are term lists rather than names and cannot be checked mechanically, so a rule
+  change there has to add an entry by hand.
 - **What each figure means:** every headline figure's definition, anchored, so
   [06](06-web-app.md) §4.2's "every figure links to its definition on the method page" has
   somewhere to point, with its value over the whole corpus. The citation percentile is the one
