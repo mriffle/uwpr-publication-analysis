@@ -42,6 +42,28 @@ was retired with it on 2026-09-20.
   against a scratch store writes a scratch export. Stage 11 stages it inside the staging tree and
   stage 13 publishes it beside the store.
 
+**Changed 2026-09-20, after the first hand-triggered weekly run** (§8, §11.3):
+- *`uwpr-pubs smoke` degrades on an outage instead of blocking the run.* Europe PMC answered 503
+  on two of channel E's nine queries, the smoke step failed, and the whole weekly update was
+  skipped — for a source the pipeline is explicitly built to proceed without. The re-run proved
+  it: the same outage, taken as a degradation, produced a complete run that changed no works and
+  named both failed queries in its report. **The gate was stricter than the pipeline's own failure
+  policy** (P4), and it converted "one channel is partly missing this week" into "nothing ran this
+  week", which is strictly worse for the same outage.
+
+  Smoke now classifies each failure the way §9 already classifies one during a run, using
+  `HttpError.status`:
+  - **an outage** — a 5xx, a timeout or a connection failure — is reported and does **not** fail
+    the command. The run proceeds and degrades honestly, and three degraded runs still raise an
+    alert;
+  - **a problem** — an authentication failure (401/403), any other 4xx, or a check whose *content*
+    assertion fails (too few list entries, an unexpected identifier, a response that cannot be
+    parsed) — still fails the command and blocks the run. Those mean a key, a query or a source's
+    shape has changed, and spending a run on them is pointless.
+
+  The distinction matters because the two need opposite responses: an outage needs patience, and a
+  changed source needs a person. Conflating them is what made a transient 503 cost a week.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the

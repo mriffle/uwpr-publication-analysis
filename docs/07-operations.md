@@ -84,6 +84,19 @@ run sits near that boundary, so the cache may or may not survive from one week t
 The pipeline is required to be correct with an empty cache
 ([03](03-retrieval-pipeline.md) §1), and the cost of being wrong about the cache is four minutes.
 
+**A source being down does not stop the run** (changed 2026-09-20, [03](03-retrieval-pipeline.md)
+§8). The smoke check reports an outage and lets the run proceed to degrade honestly; it still
+blocks on an authentication failure or a source whose shape has changed, because those need a
+person rather than patience. Proven the hard way: the first hand-triggered run was skipped
+entirely because Europe PMC returned 503 on two of nine queries, and the re-run completed with
+those two queries named as degradations and no works changed.
+
+**What an outage actually costs.** Nothing already found: works accumulate and a failing source
+never shrinks the data (P4, principle 3). What is deferred is *discovery* — a paper only that
+channel would have nominated waits for the next run. That is survivable **only because every run
+is a full sweep with no watermark** (P1): were the pipeline incremental, a missed window would be
+missed permanently, and a transient 503 would silently leave a hole nothing would ever fill.
+
 **Cadence stays weekly.** Publication indexing lags by weeks, so a faster cadence buys nothing. A
 failed run leaves the data untouched and the next week retries; a week of staleness in publication
 data is immaterial, and `workflow_dispatch` covers the case where it is not.
