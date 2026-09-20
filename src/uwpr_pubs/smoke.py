@@ -3,13 +3,19 @@
 The only live test. Each check is measured against what Phase 1 §4.1 and §4.4 found, so a source
 that changes its syntax, or quietly starts returning nothing, fails here rather than silently
 shrinking a run. It is deliberately cheap: about $0.002 of OpenAlex budget.
+
+**A failure is not automatically a reason to skip the week.** Smoke classifies each one the way
+§9 classifies a failure during a run, because the two need opposite responses: an outage needs
+patience, and a changed source needs a person. Only the second blocks (docs/03 §8, changed
+2026-09-20, after a 503 on two of nine Europe PMC queries cost a whole weekly run).
 """
 
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass
+from enum import StrEnum
 
 from uwpr_pubs.config import Config
-from uwpr_pubs.http import HttpClient, HttpError
+from uwpr_pubs.http import BudgetExceededError, HttpClient, HttpError
 from uwpr_pubs.runtime import api_keys
 from uwpr_pubs.sources.crossref import Crossref
 from uwpr_pubs.sources.europepmc import EuropePmc
@@ -25,24 +31,100 @@ MIN_CROSSREF_AWARD = 63
 MIN_EUROPEPMC_IDENTIFIER = 185
 KNOWN_PMID = "19070509"  # the sample store's oldest work
 KNOWN_PMCID = "PMC3073872"
+SERVER_ERROR_FLOOR = 500
 
 
-@dataclass
+class Outcome(StrEnum):
+    """What a check found, and therefore what happens to the weekly run (docs/03 §8, §9).
+
+    Three states rather than two, because "this source is down" and "this source has changed"
+    are different facts with opposite remedies. Only `PROBLEM` blocks.
+    """
+
+    OK = "ok"
+    OUTAGE = "outage"
+    PROBLEM = "problem"
+
+    @property
+    def tag(self) -> str:
+        """The four-column marker the log is read by. `PASS` and `FAIL` keep their old meaning."""
+        return {Outcome.OK: "PASS", Outcome.OUTAGE: "DOWN", Outcome.PROBLEM: "FAIL"}[self]
+
+
+@dataclass(frozen=True)
 class Check:
     name: str
-    ok: bool
+    outcome: Outcome
     detail: str
 
     def line(self) -> str:
-        return f"{'PASS' if self.ok else 'FAIL'}  {self.name}: {self.detail}"
+        return f"{self.outcome.tag}  {self.name}: {self.detail}"
+
+
+def classify(exc: Exception) -> Outcome:
+    """Outage or problem? Decided from `HttpError.status`, as §9 decides it during a run.
+
+    `status` is `None` when no answer ever arrived — a timeout, a DNS or connection failure — and
+    a 5xx is the source saying it is broken. Both pass with time, and the pipeline is built to
+    proceed without a source (P4), so neither blocks.
+
+    Everything else is a statement about us rather than about the source's health: 401 and 403
+    mean a key, another 4xx means a query the source no longer accepts, and a `KeyError` or
+    `ValueError` means a reply we could no longer parse. Those need a person, and a run spent on
+    them is wasted.
+
+    The budget guard is the one `HttpError` that is not a source failure at all: it is raised
+    before anything is sent, so it has no status, and it blocks. A run that begins with no
+    OpenAlex budget left would only alert (§9) on its way to the same conclusion.
+    """
+    if not isinstance(exc, HttpError) or isinstance(exc, BudgetExceededError):
+        return Outcome.PROBLEM
+    if exc.status is None or exc.status >= SERVER_ERROR_FLOOR:
+        return Outcome.OUTAGE
+    return Outcome.PROBLEM
+
+
+def blocked(checks: Sequence[Check]) -> bool:
+    """Does anything here need a person before the run is worth starting?"""
+    return any(check.outcome is Outcome.PROBLEM for check in checks)
+
+
+def _count(names: Sequence[str], singular: str, plural: str) -> str:
+    return f"{len(names)} {singular if len(names) == 1 else plural}"
+
+
+def verdict(checks: Sequence[Check]) -> str:
+    """The last line: may the run proceed, and why. Written to be read without counting lines."""
+    outages = [check.name for check in checks if check.outcome is Outcome.OUTAGE]
+    problems = [check.name for check in checks if check.outcome is Outcome.PROBLEM]
+    if problems:
+        line = (
+            f"VERDICT  BLOCKED: {_count(problems, 'check needs', 'checks need')} a person "
+            f"({', '.join(problems)}); a key, a query or a source's shape has changed."
+        )
+        if outages:
+            line += (
+                f" {_count(outages, 'source is', 'sources are')} also down"
+                f" ({', '.join(outages)}), which alone would not have blocked the run."
+            )
+        return line
+    if outages:
+        return (
+            f"VERDICT  PROCEED: {_count(outages, 'source is', 'sources are')} down"
+            f" ({', '.join(outages)}); the run degrades honestly, removes nothing, and alerts if the"
+            " same source fails three runs running."
+        )
+    return f"VERDICT  PROCEED: all {len(checks)} checks passed."
 
 
 def _check(name: str, run: Callable[[], tuple[bool, str]]) -> Check:
     try:
         ok, detail = run()
     except (HttpError, KeyError, ValueError) as exc:
-        return Check(name, False, f"{type(exc).__name__}: {exc}")
-    return Check(name, ok, detail)
+        return Check(name, classify(exc), f"{type(exc).__name__}: {exc}")
+    # A content assertion that returns false is always a problem: the source answered, and the
+    # answer was not the one Phase 1 measured.
+    return Check(name, Outcome.OK if ok else Outcome.PROBLEM, detail)
 
 
 def run_smoke(config: Config, client: HttpClient) -> list[Check]:

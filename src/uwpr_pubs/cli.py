@@ -15,7 +15,7 @@ from uwpr_pubs.http import Mode
 from uwpr_pubs.pipeline import RunOptions, run_pipeline
 from uwpr_pubs.runtime import api_keys, build_client
 from uwpr_pubs.sample import case_report, missing_cases
-from uwpr_pubs.smoke import run_smoke
+from uwpr_pubs.smoke import blocked, run_smoke, verdict
 from uwpr_pubs.stages.export import NoRunError, build_from_store, resource_block, schema_problems
 from uwpr_pubs.stages.export import write as write_export
 from uwpr_pubs.store.paths import StorePaths
@@ -61,7 +61,9 @@ def _smoke(args: argparse.Namespace) -> int:
         print(check.line())
     spend = client.budget.spent_usd
     print(f"\nOpenAlex spend: ${spend:.4f}   calls: {sum(u.calls for u in client.usage.values())}")
-    return 0 if all(check.ok for check in checks) else 1
+    # An outage is reported and forgiven; only a problem stops the week (docs/03 §8, §9).
+    print(verdict(checks))
+    return 1 if blocked(checks) else 0
 
 
 def _run(args: argparse.Namespace) -> int:
@@ -207,7 +209,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     config = subcommands.add_parser("config", help="load config/*.yaml and show its fingerprints")
     config.add_argument("--dir", help="default: <project root>/config")
 
-    smoke = subcommands.add_parser("smoke", help="live check that each source answers as expected")
+    smoke = subcommands.add_parser(
+        "smoke", help="live check that each source answers as expected; an outage reports but exits 0"
+    )
     smoke.add_argument("--cache", help="default: <project root>/cache")
 
     run = subcommands.add_parser("run", help="find publications and update the store")

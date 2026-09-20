@@ -103,6 +103,13 @@ uv run uwpr-pubs smoke                           # does every source still answe
 uv run uwpr-pubs config                          # rule version and fingerprints
 ```
 
+**`smoke` prints three states, and only one of them stops the week** (docs/03 §8). `PASS` is fine;
+`DOWN` is a source that is down or timing out, which is reported and forgiven — the run proceeds
+and degrades (§4); `FAIL` is a key, a query or a source's shape that has changed, and needs a
+person. The last line says which it was and whether the run may proceed, and the exit code is what
+`update.yml` reads. So a green smoke step does **not** mean every source answered: read its
+verdict line, or the run's own Degradations section, for that.
+
 A run refuses to start if `store/` or `export/` has uncommitted changes. That is deliberate: a run
 interrupted part-way through writing would otherwise be read back as though it were the record.
 Commit the changes, or discard them with `git checkout -- store export && git clean -fd store export`.
