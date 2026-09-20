@@ -43,7 +43,16 @@ class Policy(StrEnum):
 
 
 class HttpError(RuntimeError):
-    """A request that could not be completed after retrying."""
+    """A request that could not be completed after retrying.
+
+    `status` is the last HTTP status seen, when there was one. A caller that treats some statuses
+    as an answer rather than a failure needs it: Crossref's 404 means "no such DOI", which is a
+    fact about the record, while a 503 means the source is down and the run is degraded (§9).
+    """
+
+    def __init__(self, message: str, status: int | None = None) -> None:
+        super().__init__(message)
+        self.status = status
 
 
 class MissingRecordingError(HttpError):
@@ -242,6 +251,7 @@ class HttpClient:
 
         headers = {"User-Agent": f"{self.user_agent} (mailto:{self.contact})"}
         last_error = ""
+        last_status: int | None = None
         max_attempts = self.max_attempts if attempts is None else max(1, attempts)
         for attempt in range(max_attempts):
             self.rate_limiter.wait(host)
@@ -257,6 +267,7 @@ class HttpClient:
                     self._store(key, url, request_params, response)
                     return response
                 last_error = f"HTTP {response.status}"
+                last_status = response.status
                 if response.status not in RETRY_STATUSES:
                     break
                 if attempt + 1 < max_attempts:
@@ -264,7 +275,7 @@ class HttpClient:
                 continue
             if attempt + 1 < max_attempts:
                 self._sleep(self._backoff(attempt, None))
-        raise HttpError(f"{scrub(strip_url(url))}: {last_error}")
+        raise HttpError(f"{scrub(strip_url(url))}: {last_error}", last_status)
 
     def _store(self, key: str, url: str, params: dict[str, str], response: Response) -> None:
         content_type = response.headers.get("content-type", "")

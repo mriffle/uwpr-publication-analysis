@@ -26,6 +26,7 @@ INDEX = "https://proteomicsresource.washington.edu/publications/"
 # Three publications, matching the committed page fixture; the first carries the award code.
 LISTED_PMIDS = ["38665238", "37615442", "37305927"]
 UNLISTED_PMID = "99999999"  # nominated by a channel, but on no list and with no award
+PREPRINT_DOI = "10.1101/2023.04.01.535000"  # the preprint of work 1, under a different title
 
 
 def openalex_work(index: int, *, award: bool = False, year: int = 2023) -> dict[str, Any]:
@@ -69,6 +70,34 @@ def openalex_work(index: int, *, award: bool = False, year: int = 2023) -> dict[
     if award:
         work["awards"] = [{"funder_award_id": "UWPR95794", "funder_display_name": "UW"}]
     return work
+
+
+def preprint_work() -> dict[str, Any]:
+    """The preprint of work 1. Its title differs, so only a stated relation can link them.
+
+    Its DOI sorts before every `10.1234/…`, so it is minted first and its work ID is the lower
+    one — which is the ID the merge must keep (docs/02 §4).
+    """
+    return {
+        "id": "https://openalex.org/W5",
+        "doi": f"https://doi.org/{PREPRINT_DOI}",
+        "ids": {"openalex": "https://openalex.org/W5", "doi": f"https://doi.org/{PREPRINT_DOI}"},
+        "display_name": "A preliminary account of the first example",
+        "publication_date": "2023-04-01",
+        "publication_year": 2023,
+        "type": "preprint",
+        "primary_location": {"source": {"display_name": "bioRxiv", "issn_l": None}},
+        "authorships": [],
+        "topics": [],
+        "open_access": {"oa_status": "green"},
+        "best_oa_location": {},
+        "is_retracted": False,
+        "cited_by_count": 0,
+        "counts_by_year": [],
+        "fwci": None,
+        "citation_normalized_percentile": {},
+        "awards": [{"funder_award_id": "UWPR95794", "funder_display_name": "UW"}],
+    }
 
 
 # Each listed paper has a PMC copy; the ID converter is what links them (Phase 1 §7).
@@ -117,7 +146,7 @@ def route(url: str, params: Mapping[str, str]) -> Response:  # noqa: PLR0911, PL
     if "api.openalex.org/works" in url:
         expression = params.get("filter", "")
         if "awards.funder_award_id" in expression:
-            results = [openalex_work(1, award=True)]
+            results = [openalex_work(1, award=True), preprint_work()]
         elif expression.startswith("pmid:"):
             wanted = expression.removeprefix("pmid:").split("|")
             results = [openalex_work(i, award=(i == 1)) for i in (1, 2, 3) if LISTED_PMIDS[i - 1] in wanted]
@@ -131,13 +160,21 @@ def route(url: str, params: Mapping[str, str]) -> Response:  # noqa: PLR0911, PL
         elif expression.startswith("openalex_id:"):
             wanted = expression.removeprefix("openalex_id:").split("|")
             results = [openalex_work(i, award=(i == 1)) for i in (1, 2, 3, 4) if f"W{i}" in wanted]
+            results += [preprint_work()] if "W5" in wanted else []
         else:
             results = []
         payload = {"results": results, "meta": {"next_cursor": None}}
         return Response(url, 200, json.dumps(payload).encode(), {})
+    if url.endswith(f"/works/{PREPRINT_DOI}"):
+        # Crossref states the relation outright, which is the signal version linking trusts most.
+        relation = {"message": {"relation": {"is-preprint-of": [{"id": "10.1234/example.1"}]}}}
+        return Response(url, 200, json.dumps(relation).encode(), {})
     if "api.crossref.org" in url:
         empty: dict[str, Any] = {"message": {"items": [], "next-cursor": None}}
         return Response(url, 200, json.dumps(empty).encode(), {})
+    if "api.biorxiv.org" in url:
+        unknown: dict[str, Any] = {"collection": []}
+        return Response(url, 200, json.dumps(unknown).encode(), {})
     if "ebi.ac.uk" in url:
         nothing: dict[str, Any] = {"resultList": {"result": []}, "nextCursorMark": ""}
         return Response(url, 200, json.dumps(nothing).encode(), {})
@@ -200,8 +237,9 @@ def test_listed_works_carry_r1_and_the_award_carries_r2(client: HttpClient, tmp_
     rules = {work["id"]: sorted(e["rule"] for e in work["evidence"]) for work in works}
 
     # One paper states the award code and names the resource, one thanks a staff member, and one
-    # gives the resource as an author's address.
-    assert sorted(rules.values()) == [["R1", "R2", "R2", "R3"], ["R1", "R5"], ["R1", "R7"]]
+    # gives the resource as an author's address. The first carries a third R2 as well, from the
+    # metadata of the preprint stage 6 merged into it.
+    assert sorted(rules.values()) == [["R1", "R2", "R2", "R2", "R3"], ["R1", "R5"], ["R1", "R7"]]
 
     award_work = next(w for w in works if any(e["rule"] == "R2" for e in w["evidence"]))
     r2 = next(e for e in award_work["evidence"] if e["section"] == "metadata")
@@ -249,6 +287,55 @@ def test_r6_does_not_fire_on_a_paper_we_can_read(client: HttpClient, tmp_path: P
     assert not [e for work in works for e in work["evidence"] if e["rule"] == "R6"]
 
 
+def test_a_preprint_and_its_article_become_one_work(client: HttpClient, tmp_path: Path) -> None:
+    """Stage 6: the two records a channel found separately are one work (Phase 1 §8).
+
+    Their titles differ, so the only thing that can join them is Crossref's stated relation —
+    which is what Phase 1 §4.3's duplicate preprints need.
+    """
+    store = tmp_path / "store"
+    do_run(client, store)
+    works = [io.read_json(p) for p in sorted((store / "works").glob("W-*.json"))]
+    merged = next(w for w in works if len(w["records"]) > 1)
+
+    kinds = sorted(record["kind"] for record in merged["records"])
+    assert kinds == ["article", "preprint"]
+    assert merged["records"][0]["kind"] == "article"  # articles sort first (docs/02 §15)
+    canonical = next(r for r in merged["records"] if r["id"] == merged["canonical"])
+    assert canonical["kind"] == "article"  # the journal version represents the work
+
+    preprint = next(r for r in merged["records"] if r["kind"] == "preprint")
+    article = next(r for r in merged["records"] if r["kind"] == "article")
+    assert preprint["version_link"] == {"to": article["id"], "method": "crossref_relation"}
+    assert article["version_link"] is None
+
+
+def test_a_merge_retires_the_higher_work_id_and_repoints_everything(
+    client: HttpClient, tmp_path: Path
+) -> None:
+    """The lower ID survives; the other becomes an alias, and the list entry follows it."""
+    store = tmp_path / "store"
+    result = do_run(client, store)
+    aliases = io.read_json(store / "aliases.json")["aliases"]
+    retired = {key.removeprefix("work:"): target for key, target in aliases.items() if "work:" in key}
+    assert retired  # the article's work was merged into the preprint's, which was minted first
+
+    for old, new in retired.items():
+        assert not (store / "works" / f"{old}.json").exists()
+        assert old > new
+        work = io.read_json(store / "works" / f"{new}.json")
+        assert old in work["aliases"]
+
+    # Everything that named the retired work now names the survivor, or validation would fail.
+    entries = io.read_jsonl(store / "official_list" / "entries.jsonl")
+    assert not {entry["work"] for entry in entries} & set(retired)
+    assert not set(aliases.values()) & set(retired)
+    manifest = io.read_json(store / "runs" / f"{result.run_id}.json")
+    assert manifest["changes"]["merged"] == [
+        {"into": new, "retired": old} for old, new in sorted(retired.items())
+    ]
+
+
 def test_a_resolved_pmcid_is_kept_and_aliased(client: HttpClient, tmp_path: Path) -> None:
     """The ID converter's PMCID must survive the next run's OpenAlex refresh, which lacks it."""
     store = tmp_path / "store"
@@ -274,7 +361,7 @@ def test_metrics_and_the_run_record_are_written(client: HttpClient, tmp_path: Pa
     store = tmp_path / "store"
     result = do_run(client, store)
     metrics = io.read_jsonl(store / "metrics" / "latest.jsonl")
-    assert len(metrics) == 3
+    assert len(metrics) == 4  # one per record: three articles and the merged preprint
     assert metrics[0]["source"] == "OpenAlex"
     assert (store / "metrics" / "2026-09.jsonl").exists()
     manifest = io.read_json(store / "runs" / f"{result.run_id}.json")

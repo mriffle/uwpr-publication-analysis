@@ -7,6 +7,7 @@ from uwpr_pubs.http import HttpClient, HttpError, Policy
 
 BASE = "https://api.crossref.org/works"
 ROWS = 100
+NOT_FOUND = frozenset({404, 410})
 
 
 class Crossref:
@@ -38,10 +39,17 @@ class Crossref:
         return int(message.get("total-results", 0))
 
     def by_doi(self, doi: str) -> dict[str, Any] | None:
+        """One record, or None when Crossref has no such DOI.
+
+        Only "not found" becomes None. Any other failure is the source being unwell, and the
+        caller degrades the run rather than concluding the record has no preprint relation.
+        """
         try:
             return self._get(f"{BASE}/{doi}", {})
-        except HttpError:
-            return None
+        except HttpError as exc:
+            if exc.status in NOT_FOUND:
+                return None
+            raise
 
     @staticmethod
     def award_numbers(work: Mapping[str, Any]) -> list[str]:

@@ -29,6 +29,11 @@ YEAR_IN_TEXT = re.compile(r"\b(19[89][0-9]|20[0-9]{2})\b")
 INCLUDED_KINDS: frozenset[str] = frozenset(IncludedKind.__args__)  # type: ignore[attr-defined]
 UNKNOWN_KIND = "other"  # an unmapped source type is excluded, and the run report names it
 
+DOI_IN_URL = re.compile(r"10\.\d{4,9}/[^\s\"'<>]+")
+# A preprint server's URL carries the version and the file after the DOI:
+# ".../content/10.1101/2021.08.31.458345v2.full.pdf" is the DOI plus "v2.full.pdf".
+URL_DOI_SUFFIX = re.compile(r"(v\d+)?(\.full(-text)?)?(\.pdf)?$", re.IGNORECASE)
+
 
 def short_openalex_id(value: str | None) -> str | None:
     """OpenAlex gives full URLs; the store keeps the bare id."""
@@ -47,6 +52,31 @@ def ids_from_openalex(work: Mapping[str, Any]) -> Ids:
         "openalex": short_openalex_id(work.get("id")),
     }
     return ids
+
+
+def dois_in_locations(work: Mapping[str, Any]) -> list[str]:
+    """Every other DOI an OpenAlex record points at through its locations (Phase 1 §8).
+
+    A location gives a landing page and a PDF rather than a DOI, so the DOI is read out of the
+    URL. Nothing here has to be right: version linking keeps only DOIs that match a record we
+    already hold, so a mis-parsed one finds nothing.
+    """
+    own = ids_from_openalex(work).get("doi")
+    found: set[str] = set()
+    for location in work.get("locations") or []:
+        if not isinstance(location, Mapping):
+            continue
+        stated = location.get("doi")
+        candidates = [str(stated)] if stated else []
+        candidates += [str(location.get(field) or "") for field in ("landing_page_url", "pdf_url")]
+        for text in candidates:
+            match = DOI_IN_URL.search(text)
+            if match is None:
+                continue
+            doi = normalise_doi(URL_DOI_SUFFIX.sub("", match.group(0).rstrip(".,;)")))
+            if doi and doi != own:
+                found.add(doi)
+    return sorted(found)
 
 
 def merge_ids(stored: Ids, fresh: Ids) -> Ids:

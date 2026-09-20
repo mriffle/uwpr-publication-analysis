@@ -17,6 +17,7 @@ from uwpr_pubs.http import HttpClient, HttpError, Policy
 BASE = "https://api.biorxiv.org/details"
 SERVERS = ("biorxiv", "medrxiv")
 NOT_PUBLISHED = frozenset({"", "na", "n/a", "none"})
+NOT_FOUND = frozenset({404, 410})
 
 
 @dataclass(frozen=True)
@@ -42,8 +43,10 @@ class Biorxiv:
         for server in SERVERS:
             try:
                 reply = self.client.get(f"{BASE}/{server}/{doi}", {}, host="biorxiv", policy=Policy.REFRESH)
-            except HttpError:
-                continue
+            except HttpError as exc:
+                if exc.status in NOT_FOUND:
+                    continue  # the other server may still know it
+                raise
             payload = reply.json()
             if not isinstance(payload, dict):
                 continue

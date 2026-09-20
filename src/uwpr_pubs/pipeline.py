@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, cast
 
-from uwpr_pubs import git
+from uwpr_pubs import git, versions
 from uwpr_pubs.channels import ALL_CHANNELS, ChannelRunner, DiscoveryResult, Nomination
 from uwpr_pubs.config import Config
 from uwpr_pubs.context import RunContext
@@ -35,6 +35,7 @@ from uwpr_pubs.metrics import metrics_line
 from uwpr_pubs.records import (
     UNKNOWN_KIND,
     canonical_record,
+    dois_in_locations,
     ids_from_openalex,
     kind_of,
     merge_ids,
@@ -57,6 +58,7 @@ from uwpr_pubs.rules.staff import StaffMember, staff_members
 from uwpr_pubs.runtime import api_keys
 from uwpr_pubs.schemas import project_root
 from uwpr_pubs.secrets import scrub
+from uwpr_pubs.sources.biorxiv import Biorxiv
 from uwpr_pubs.sources.crossref import Crossref
 from uwpr_pubs.sources.europepmc import EuropePmc
 from uwpr_pubs.sources.ncbi import Ncbi
@@ -67,7 +69,7 @@ from uwpr_pubs.stages import export as export_stage
 from uwpr_pubs.stages import kb as kb_stage
 from uwpr_pubs.status import Status, StatusInput, decide
 from uwpr_pubs.store import io
-from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi
+from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi, retired_key
 from uwpr_pubs.store.models import (
     Candidate,
     CandidateRecord,
@@ -82,6 +84,7 @@ from uwpr_pubs.store.models import (
     Record,
     RecordId,
     StaffKey,
+    VersionMethod,
     Work,
     WorkId,
 )
@@ -90,8 +93,12 @@ from uwpr_pubs.store.read import StoreSnapshot, read_store
 from uwpr_pubs.text import split_sentences, text_rules
 from uwpr_pubs.validate import validate_store
 
-CODE_VERSION = "m3"
+CODE_VERSION = "m4"
 INCLUDED_RECORD_KINDS: frozenset[str] = frozenset(IncludedKind.__args__)  # type: ignore[attr-defined]
+# A repository copy is a version of the article it copies (Phase 1 §8), so it may be linked even
+# though it is not a publication we count on its own.
+VERSION_KINDS: frozenset[str] = INCLUDED_RECORD_KINDS | {"repository-copy"}
+PREPRINT_DOI_PREFIXES = ("10.1101/",)  # bioRxiv and medRxiv; asking about others wastes requests
 
 
 class RunFailureError(Exception):
@@ -181,6 +188,7 @@ class Pipeline:
         self.europepmc = EuropePmc(client, config.contact)
         self.ncbi = Ncbi(client, config.contact, ncbi_key)
         self.pride = Pride(client, config.contact)
+        self.biorxiv = Biorxiv(client, config.contact)
         self.staff: tuple[StaffMember, ...] = staff_members(config.staff)
         self.text_rules = text_rules(config.rules["text"])
         self.fetcher = TextFetcher(self.ncbi, self.europepmc, self.text_rules)
@@ -200,6 +208,7 @@ class Pipeline:
         self.snapshot: StoreSnapshot | None = None
         self.minter = Minter()
         self.list_nominations: list[Nomination] = []
+        self._unreachable: set[str] = set()  # sources that failed once; stage 6 stops asking
 
     # --- stage 0 ---------------------------------------------------------------------------
 
@@ -564,6 +573,7 @@ class Pipeline:
         if existing in draft.records:
             stored = draft.records[existing]
             record["fulltext"] = stored["fulltext"]  # stage 4 owns the text
+            record["version_link"] = stored["version_link"]  # stage 6 owns the link
             record["ids"] = merge_ids(stored["ids"], record["ids"])
         draft.records[record_id] = record
         for key in external_keys(record["ids"]):
@@ -981,6 +991,223 @@ class Pipeline:
         record = draft.records.get(record_id)
         return [author["name"] for author in record["authors"]] if record else []
 
+    # --- stage 6: versions -----------------------------------------------------------------
+
+    def link_versions(self) -> None:
+        """Join the records that are versions of one work, and merge the works they sat in.
+
+        Most of the excess over Phase 1 §4.3 is one paper counted twice: a preprint that one
+        channel found and the journal article that another found, with no link between them. The
+        trusted signals come from metadata, and only the title fallback can be wrong (§8).
+        """
+        published = self._published_versions()
+        self._create_published_records(published)
+        records = self._version_records()
+        links = versions.resolve(records, published=published, locations=self._location_dois())
+        index = {record.record: record for record in records}
+        for merge in versions.merges(links, index):
+            self._merge_drafts(merge.into, merge.retired)
+        self._apply_links(links)
+
+    def _published_versions(self) -> list[tuple[VersionMethod, dict[str, str]]]:
+        """Ask each preprint-only work whether its journal version has appeared (stage 6).
+
+        A work that already holds both versions needs no request: its records are in one file and
+        its `version_link` is carried forward, so a normal week asks about a handful of preprints.
+        """
+        relations: dict[str, str] = {}
+        published: dict[str, str] = {}
+        for draft in self._preprint_only_drafts():
+            for doi in self._preprint_dois(draft):
+                article = self._crossref_relation(doi)
+                if article:
+                    relations[doi] = normalise_doi(article)
+                    continue
+                article = self._biorxiv_published(doi)
+                if article:
+                    published[doi] = normalise_doi(article)
+        return [("crossref_relation", relations), ("biorxiv_published", published)]
+
+    def _crossref_relation(self, doi: str) -> str | None:
+        if "crossref" in self._unreachable:
+            return None
+        try:
+            payload = self.crossref.by_doi(doi)
+        except HttpError as exc:
+            # One failure is enough to conclude the source is unwell: asking 40 more times would
+            # cost minutes of backoff for the same answer, and version linking is not worth that.
+            self._unreachable.add("crossref")
+            self.recorder.degrade(adapter_source("crossref"), f"preprint relations unavailable: {exc}")
+            return None
+        return Crossref.preprint_of(payload) if payload else None
+
+    def _biorxiv_published(self, doi: str) -> str | None:
+        if "biorxiv" in self._unreachable or not doi.startswith(PREPRINT_DOI_PREFIXES):
+            return None
+        try:
+            details = self.biorxiv.details(doi)
+        except HttpError as exc:
+            self._unreachable.add("biorxiv")
+            self.recorder.degrade(adapter_source("biorxiv"), f"published check unavailable: {exc}")
+            return None
+        return details.published_doi if details else None
+
+    def _kinds_of(self, draft: Draft) -> list[str]:
+        kinds = [draft.kinds.get(r, draft.records[r]["kind"]) for r in sorted(draft.records)]
+        kinds += [c["kind"] for c in draft.candidate_records if c["id"] not in draft.records]
+        return kinds
+
+    def _preprint_only_drafts(self) -> list[Draft]:
+        found: list[Draft] = []
+        for _, draft in sorted(self.drafts.items()):
+            kinds = self._kinds_of(draft)
+            if kinds and all(kind == "preprint" for kind in kinds):
+                found.append(draft)
+        return found
+
+    @staticmethod
+    def _preprint_dois(draft: Draft) -> list[str]:
+        dois = {str(r["ids"]["doi"]) for r in draft.records.values() if r["ids"].get("doi")}
+        dois |= {str(c["ids"]["doi"]) for c in draft.candidate_records if c["ids"].get("doi")}
+        return sorted(dois)
+
+    def _create_published_records(self, published: Sequence[tuple[VersionMethod, dict[str, str]]]) -> None:
+        """Stage 6 creates the article's record even though no channel nominated it.
+
+        Its `fulltext` says `unavailable` with today as the recheck date, so the next run reads it
+        like any other record. That is honest — we have not looked yet — and it avoids adding a
+        "not checked" state to a frozen schema for something that resolves in a week.
+        """
+        wanted: dict[str, str] = {}  # article DOI -> the preprint DOI that named it
+        for _, mapping in published:
+            for preprint_doi, article_doi in sorted(mapping.items()):
+                if f"doi:{article_doi}" not in self.aliases:
+                    wanted.setdefault(article_doi, preprint_doi)
+        if not wanted:
+            return
+        try:
+            payloads = list(self.openalex.works_by_ids(sorted(wanted), key="doi"))
+        except HttpError as exc:
+            self.recorder.degrade(adapter_source("openalex"), f"published-version lookup failed: {exc}")
+            return
+        for payload in sorted(payloads, key=_openalex_order):
+            doi = str(ids_from_openalex(payload).get("doi") or "")
+            named_by = wanted.get(doi)
+            work_id = self.aliases.get(f"doi:{named_by}") if named_by else None
+            kind = kind_of(payload, self.config)
+            if work_id is None or work_id not in self.drafts or kind not in INCLUDED_RECORD_KINDS:
+                continue
+            draft = self.drafts[work_id]
+            record_id = self._record_for(draft, payload)
+            draft.payloads[record_id] = payload
+            self._openalex_evidence(draft, record_id, payload)
+            self.recorder.note(f"{draft.id}: journal version {doi} added by version linking")
+
+    def _version_records(self) -> list[versions.VersionRecord]:
+        found: list[versions.VersionRecord] = []
+        for _, draft in sorted(self.drafts.items()):
+            for record_id in sorted(draft.records):
+                record = draft.records[record_id]
+                kind = draft.kinds.get(record_id, record["kind"])
+                if kind not in VERSION_KINDS:
+                    continue
+                authors = record["authors"]
+                found.append(
+                    versions.VersionRecord(
+                        record=record_id,
+                        work=draft.id,
+                        kind=kind,
+                        doi=record["ids"].get("doi"),
+                        title=record["title"],
+                        first_author=authors[0]["name"] if authors else "",
+                        year=record["year"] or None,
+                    )
+                )
+            for candidate in draft.candidate_records:
+                if candidate["id"] in draft.records or candidate["kind"] not in VERSION_KINDS:
+                    continue
+                found.append(
+                    versions.VersionRecord(
+                        record=candidate["id"],
+                        work=draft.id,
+                        kind=candidate["kind"],
+                        doi=candidate["ids"].get("doi"),
+                        title=candidate["title"],
+                        first_author="",  # a candidate line keeps no authors, so no title fallback
+                        year=candidate["year"],
+                    )
+                )
+        return found
+
+    def _location_dois(self) -> dict[RecordId, list[str]]:
+        """The DOIs each record's OpenAlex locations point at — free, from metadata we hold."""
+        found: dict[RecordId, list[str]] = {}
+        for _, draft in sorted(self.drafts.items()):
+            for record_id, payload in sorted(draft.payloads.items()):
+                dois = dois_in_locations(payload)
+                if dois:
+                    found[record_id] = dois
+        return found
+
+    def _merge_drafts(self, into: WorkId, retired: WorkId) -> None:
+        """Fold one work into another; the lower ID survives and the other becomes an alias.
+
+        Everything the retired work carried moves across — its records, evidence (which is keyed
+        by record, so nothing collides), discovery and signals — and anything that pointed at the
+        retired ID is repointed, or the next validation would find a dangling reference.
+        """
+        survivor = self.drafts.get(into)
+        gone = self.drafts.pop(retired, None)
+        if survivor is None or gone is None:  # pragma: no cover - merges come from current drafts
+            return
+        survivor.records.update(gone.records)
+        survivor.kinds.update(gone.kinds)
+        survivor.stored_evidence.extend(gone.stored_evidence)
+        survivor.derived_evidence.extend(gone.derived_evidence)
+        survivor.discovery.update(gone.discovery)
+        survivor.payloads.update(gone.payloads)
+        survivor.texts.update(gone.texts)
+        survivor.candidate_records.extend(
+            record for record in gone.candidate_records if record["id"] not in survivor.records
+        )
+        survivor.signals |= gone.signals
+        survivor.stored_signals = sorted({*survivor.stored_signals, *gone.stored_signals})
+        survivor.created = min(filter(None, (survivor.created, gone.created)), default=survivor.created)
+        survivor.first_seen = min(
+            filter(None, (survivor.first_seen, gone.first_seen)), default=survivor.first_seen
+        )
+        sinces = [value for value in (survivor.since, gone.since) if value]
+        survivor.since = min(sinces) if sinces else None
+        survivor.on_official_list = survivor.on_official_list or gone.on_official_list
+        survivor.is_new = survivor.is_new and gone.is_new
+        survivor.evaluated = survivor.evaluated or gone.evaluated
+
+        self.aliases = {key: (into if target == retired else target) for key, target in self.aliases.items()}
+        self.aliases[retired_key(retired)] = into
+        for key, entry in self.entries.items():
+            if entry["work"] == retired:
+                self.entries[key] = cast(ListEntry, {**entry, "work": into})
+        acknowledged = self._acknowledged.pop(retired, set())
+        if acknowledged:
+            self._acknowledged.setdefault(into, set()).update(acknowledged)
+        self.recorder.merged.append({"into": into, "retired": retired})
+
+    def _apply_links(self, links: Sequence[versions.Link]) -> None:
+        """Record on the preprint how it was tied to its article (docs/02 §5.2).
+
+        The link is written only once both records sit in one work, because the validator requires
+        a `version_link` to point inside the work that holds it.
+        """
+        owner = {record_id: draft for draft in self.drafts.values() for record_id in draft.records}
+        for link in links:
+            draft = owner.get(link.preprint)
+            if draft is None or link.article not in draft.records:
+                continue
+            record = draft.records[link.preprint]
+            draft.records[link.preprint] = cast(
+                Record, {**record, "version_link": {"to": link.article, "method": link.method}}
+            )
+
     # --- stages 7 and 8 --------------------------------------------------------------------
 
     def decide_status(self) -> tuple[list[Work], list[Candidate], list[MetricsLine]]:
@@ -1246,6 +1473,7 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
         pipeline.attach_official_list()
         pipeline.fetch_text()
         pipeline.apply_rules()
+        pipeline.link_versions()
         works, candidates, metrics = pipeline.decide_status()
         pipeline.measure_recall(works)
         pipeline.stage_and_validate(works, candidates, metrics, staging)
