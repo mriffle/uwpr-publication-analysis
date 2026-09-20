@@ -8,7 +8,7 @@
  */
 import type { ReactNode } from 'react';
 import { AxisBottom, AxisLeft, AxisRight, type AxisScale } from '@visx/axis';
-import { GridRows } from '@visx/grid';
+import { GridColumns, GridRows } from '@visx/grid';
 import { Group } from '@visx/group';
 import { formatCount } from '../format/number';
 
@@ -35,6 +35,16 @@ export interface ChartFrameProps {
   yLabel?: string;
   rightLabel?: string;
   xTickValues?: readonly (string | number)[];
+  /**
+   * Which way the gridlines run. Rows for a vertical chart, columns for a horizontal one, so
+   * the lines always cross the value axis and never the category axis.
+   */
+  grid?: 'rows' | 'columns';
+  /** Overridden where an axis carries categories rather than counts. */
+  xTickFormat?: (value: unknown) => string;
+  yTickFormat?: (value: unknown) => string;
+  /** A band axis wants one tick per category, not five. */
+  yNumTicks?: number;
   children: (inner: { innerWidth: number; innerHeight: number }) => ReactNode;
 }
 
@@ -57,6 +67,10 @@ export function ChartFrame({
   yLabel,
   rightLabel,
   xTickValues,
+  grid = 'rows',
+  xTickFormat,
+  yTickFormat = (value) => formatCount(Number(value)),
+  yNumTicks = 5,
   children,
 }: ChartFrameProps) {
   const innerWidth = Math.max(0, width - margin.left - margin.right);
@@ -73,14 +87,25 @@ export function ChartFrame({
     >
       <Group left={margin.left} top={margin.top}>
         <g aria-hidden="true">
-          <GridRows
-            scale={yScale}
-            width={innerWidth}
-            height={innerHeight}
-            stroke="var(--chart-grid)"
-            strokeWidth={1}
-            numTicks={5}
-          />
+          {grid === 'rows' ? (
+            <GridRows
+              scale={yScale}
+              width={innerWidth}
+              height={innerHeight}
+              stroke="var(--chart-grid)"
+              strokeWidth={1}
+              numTicks={5}
+            />
+          ) : (
+            <GridColumns
+              scale={xScale}
+              width={innerWidth}
+              height={innerHeight}
+              stroke="var(--chart-grid)"
+              strokeWidth={1}
+              numTicks={5}
+            />
+          )}
         </g>
         {children({ innerWidth, innerHeight })}
         {/*
@@ -96,13 +121,14 @@ export function ChartFrame({
             tickStroke="var(--chart-axis)"
             tickLabelProps={() => ({ ...tickLabel, textAnchor: 'middle', dy: '0.25em' })}
             {...(xTickValues ? { tickValues: [...xTickValues] } : {})}
+            {...(xTickFormat ? { tickFormat: (value: unknown) => xTickFormat(value) } : {})}
           />
           <AxisLeft
             scale={yScale}
-            numTicks={5}
+            numTicks={yNumTicks}
             stroke="var(--chart-axis)"
             tickStroke="var(--chart-axis)"
-            tickFormat={(value) => formatCount(Number(value))}
+            tickFormat={(value) => yTickFormat(value)}
             tickLabelProps={() => ({
               ...tickLabel,
               textAnchor: 'end',

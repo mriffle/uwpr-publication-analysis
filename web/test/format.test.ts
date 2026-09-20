@@ -2,6 +2,7 @@
  * One number format and one date format for the whole page (docs/06 §8).
  */
 import { describe, expect, it } from 'vitest';
+import { countryName } from '../src/format/country';
 import { formatDate } from '../src/format/date';
 import {
   formatCount,
@@ -47,5 +48,19 @@ describe('dates', () => {
 
   it('shows an unparseable value as stored rather than as "Invalid Date"', () => {
     expect(formatDate('not a date')).toBe('not a date');
+  });
+});
+
+describe('country names (docs/05 §9: the contract carries codes, not names)', () => {
+  it('names a country from its ISO code, using the platform rather than a table of our own', () => {
+    expect(countryName('US')).toBe('United States');
+    expect(countryName('GB')).toBe('United Kingdom');
+  });
+
+  it('falls back to the code itself rather than inventing a name', () => {
+    // A well-formed code CLDR has no name for comes back unchanged...
+    expect(countryName('QQ')).toBe('QQ');
+    // ...and so does something that is no region code at all, which `of` rejects outright.
+    expect(countryName('not a code')).toBe('not a code');
   });
 });

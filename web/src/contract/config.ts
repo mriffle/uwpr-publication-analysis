@@ -26,3 +26,11 @@ export const LOOKUP_FILE = 'lookup_index.json';
 
 export const exportUrl = (): string => join(base, dataPath, EXPORT_FILE);
 export const lookupUrl = (): string => join(base, dataPath, LOOKUP_FILE);
+
+/**
+ * The app's build-time base path, which the router resolves every route against (docs/06 §3).
+ *
+ * It is a function rather than a constant so that a test can render the app under a sub-path
+ * deployment without reloading the module.
+ */
+export const basePath = (): string => base;

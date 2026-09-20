@@ -17,6 +17,12 @@ export interface ChartCardProps {
   loading?: boolean;
   /** Rendered instead of the chart when the current filter selects nothing (docs/06 §6). */
   empty?: ReactNode;
+  /**
+   * Chart-specific controls beside the table toggle: §4.3's publications/citations switch,
+   * §4.4's year bucketing, §4.5's "include staff". They sit in the card's head so that every
+   * chart's controls are in the same place and in the same reading order.
+   */
+  controls?: ReactNode;
   chart: ReactNode;
   table: ReactNode;
 }
@@ -27,6 +33,7 @@ export function ChartCard({
   note,
   loading = false,
   empty,
+  controls,
   chart,
   table,
 }: ChartCardProps) {
@@ -39,17 +46,20 @@ export function ChartCard({
     <section className="chart-card" aria-labelledby={headingId} aria-describedby={descriptionId}>
       <div className="chart-card-head">
         <h3 id={headingId}>{title}</h3>
-        <button
-          type="button"
-          className="chart-card-toggle"
-          aria-expanded={asTable}
-          aria-controls={bodyId}
-          onClick={() => {
-            setAsTable((value) => !value);
-          }}
-        >
-          {asTable ? 'View as chart' : 'View as table'}
-        </button>
+        <div className="chart-card-controls">
+          {controls}
+          <button
+            type="button"
+            className="chart-card-toggle"
+            aria-expanded={asTable}
+            aria-controls={bodyId}
+            onClick={() => {
+              setAsTable((value) => !value);
+            }}
+          >
+            {asTable ? 'View as chart' : 'View as table'}
+          </button>
+        </div>
       </div>
       <p className="chart-card-description" id={descriptionId}>
         {description}

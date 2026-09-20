@@ -9,13 +9,17 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 export interface ResponsiveChartProps {
-  height: number;
+  /**
+   * Omitted by a chart that derives its own height — a ranked bar chart's height is a function
+   * of how many rows it has, not of the space available.
+   */
+  height?: number;
   /** Below this, a caller may reflow to fewer categories or another orientation (docs/06 §8). */
   minWidth?: number;
   children: (size: { width: number; height: number }) => ReactNode;
 }
 
-export function ResponsiveChart({ height, minWidth = 240, children }: ResponsiveChartProps) {
+export function ResponsiveChart({ height = 0, minWidth = 240, children }: ResponsiveChartProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [width, setWidth] = useState(0);
 

@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { publicationsPerYear } from '../../src/aggregate/series';
+import {
+  citationsBeforeWindow,
+  citationsPerYear,
+  openAccessPerYear,
+  publicationsPerYear,
+} from '../../src/aggregate/series';
 import type { Period } from '../../src/contract/types';
 import { work } from '../support/works';
 
@@ -59,5 +64,122 @@ describe('publications per year (docs/05 §7.1, §7.2)', () => {
     const points = publicationsPerYear([], period);
     expect(points).toHaveLength(19);
     expect(points.every((point) => point.count === 0 && point.cumulative === 0)).toBe(true);
+  });
+});
+
+describe('citations per year (docs/05 §7.3, §7.4)', () => {
+  const cited = (year: number, byYear: Record<string, number>, total?: number) =>
+    work({
+      year,
+      citations: {
+        total: total ?? Object.values(byYear).reduce((sum, value) => sum + value, 0),
+        by_year: byYear,
+        fwci: null,
+        percentile: null,
+        as_of: '2026-09-20',
+      },
+    });
+
+  it('cannot begin before the window the export states, whatever the publications do', () => {
+    const points = citationsPerYear([cited(2008, { '2012': 5, '2013': 7 })], period);
+    expect(points[0]?.year).toBe(2012);
+    expect(points.some((point) => point.year < 2012)).toBe(false);
+  });
+
+  it('sums every work’s citations for the year and accumulates them', () => {
+    const points = citationsPerYear(
+      [cited(2008, { '2012': 5, '2013': 7 }), cited(2010, { '2013': 3 })],
+      period,
+    );
+    expect(points.find((point) => point.year === 2012)?.count).toBe(5);
+    expect(points.find((point) => point.year === 2013)?.count).toBe(10);
+    expect(points.at(-1)?.cumulative).toBe(15);
+  });
+
+  it('runs to the end of the period and marks the partial year', () => {
+    const points = citationsPerYear([cited(2020, { '2020': 1 })], period);
+    expect(points.at(-1)?.year).toBe(2026);
+    expect(points.at(-1)?.partial).toBe(true);
+  });
+
+  it('falls back to the observed years when the export states no window', () => {
+    const open: Period = { ...period, citation_years_from: null };
+    const points = citationsPerYear([cited(2008, { '2015': 2 })], open);
+    expect(points[0]?.year).toBe(2015);
+  });
+
+  it('draws nothing rather than a broken frame when there is no window and no data', () => {
+    const open: Period = { ...period, citation_years_from: null, last_year: 2000 };
+    expect(citationsPerYear([], open)).toEqual([]);
+  });
+
+  it('ignores a non-numeric year key rather than drawing a NaN band', () => {
+    const points = citationsPerYear([cited(2008, { '2012': 4, unknown: 9 })], period);
+    expect(points.find((point) => point.year === 2012)?.count).toBe(4);
+    expect(points.every((point) => Number.isInteger(point.year))).toBe(true);
+  });
+});
+
+describe('citations outside the by-year window (docs/05 §4.2)', () => {
+  it('is the difference between the total and what the by-year series accounts for', () => {
+    const works = [
+      work({
+        citations: {
+          total: 10,
+          by_year: { '2012': 4 },
+          fwci: null,
+          percentile: null,
+          as_of: '2026-09-20',
+        },
+      }),
+    ];
+    expect(citationsBeforeWindow(works)).toBe(6);
+  });
+
+  it('is zero when every citation is inside the window', () => {
+    const works = [
+      work({
+        citations: {
+          total: 4,
+          by_year: { '2012': 4 },
+          fwci: null,
+          percentile: null,
+          as_of: '2026-09-20',
+        },
+      }),
+    ];
+    expect(citationsBeforeWindow(works)).toBe(0);
+  });
+});
+
+describe('open access over time (docs/05 §7.12)', () => {
+  const oa = (year: number, status: 'gold' | 'closed') =>
+    work({ year, oa: { status, url: null, license: null } });
+
+  it('carries the counts alongside the share, because a share over six works is one paper', () => {
+    const points = openAccessPerYear([oa(2010, 'gold'), oa(2010, 'closed')], period);
+    const year = points.find((point) => point.year === 2010);
+    expect(year).toMatchObject({ open: 1, closed: 1, total: 2, share: 0.5 });
+  });
+
+  it('has no share at all for a year with no publications, rather than a share of zero', () => {
+    const points = openAccessPerYear([], period);
+    expect(points[0]?.share).toBeNull();
+    expect(points[0]?.total).toBe(0);
+  });
+
+  it('counts every status other than closed as open (docs/05 §5)', () => {
+    const statuses = ['gold', 'green', 'hybrid', 'bronze', 'diamond', 'unknown'] as const;
+    const works = statuses.map((status) =>
+      work({ year: 2015, oa: { status, url: null, license: null } }),
+    );
+    expect(openAccessPerYear(works, period).find((p) => p.year === 2015)?.open).toBe(
+      statuses.length,
+    );
+  });
+
+  it('marks the partial year, like every other year-indexed series', () => {
+    const points = openAccessPerYear([oa(2026, 'gold')], period);
+    expect(points.at(-1)?.partial).toBe(true);
   });
 });
