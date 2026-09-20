@@ -1172,3 +1172,44 @@ button.chart-legend-item.is-selected {
   gap: 0.25rem 1.25rem;
 }
 
+/* --- badge labels at text contrast, not mark contrast (docs/06 §9) ------------------------ */
+
+/*
+ * A badge's label is text, so AA asks 4.5:1 of it. The palette's six are validated at 3:1, which
+ * is §9's bar for "a meaningful graphical element" — what a chart mark needs — and using a mark
+ * colour as 12px text is the gap between the two. Measured against the light theme's `--page-bg`,
+ * `--chart-2` reaches 3.87:1 and `--chart-3` 3.42:1, so every "preprint", "open access" and
+ * "staff" badge on the overview failed. Found by the axe pass over the built app; the component
+ * tests cannot see it, because jsdom resolves no colours and they disable the rule.
+ *
+ * The badge keeps its hue and its tie to the series it names: the border stays the exact chart
+ * colour, which is a graphical element and clears 3:1. Only the label darkens, to a shade of the
+ * same hue that clears 4.5:1 on both light surfaces — 5.2:1 and 5.4:1 on `--page-bg`, 4.9:1 and
+ * 5.1:1 on `--panel-bg`. The dark theme's variants already clear it at 7.6:1 and better, so there
+ * the token is the chart colour unchanged.
+ */
+:root {
+  --chart-2-text: #b35000;
+  --chart-3-text: #00795a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --chart-2-text: var(--chart-2);
+    --chart-3-text: var(--chart-3);
+  }
+}
+
+:root[data-theme='dark'] {
+  --chart-2-text: var(--chart-2);
+  --chart-3-text: var(--chart-3);
+}
+
+.badge-staff,
+.badge-preprint {
+  color: var(--chart-2-text);
+}
+
+.badge-oa {
+  color: var(--chart-3-text);
+}
