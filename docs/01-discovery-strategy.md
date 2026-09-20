@@ -45,6 +45,21 @@ deliberately, dated, and noted in this header.
   and "alkylated as described by a protocol from University of Washington Proteomics Resource".
   Effect: R3 on list papers unchanged at 156; R3d on works off the list 4 → 1, which is the
   figure §4.3 gives.
+**Change from the one-time calibration review** (2026-09-20, `rule_version` 2026-09-20.1). The
+works found off the official list were reviewed as Phase 1 §2 allows, and 33 of 35 were
+confirmed. The two that were not split into a rule change and an override:
+- *§6.6 item 5, the deposition disqualifier:* it now also covers **assembling or sharing data**,
+  not only the named repositories. [01a](01a-discovery-calibration.md) C4 decided that help
+  getting data into a repository is not UWPR support; "technical support in assembling and
+  sharing data" is that same act described without naming the repository. Measured effect: of
+  the 23 R7 entries in the store it disqualifies exactly one, and that one is off the list, so
+  **recall is unchanged at 208/253 (82%)** and R7 falls from 23 works to 21.
+- *No rule change for the second:* a bare credit "for their excellent technical assistance" is
+  word for word what listed papers say when they credit real UWPR work (compare "for expert
+  technical assistance" and "provided technical assistance", both on the list), so narrowing R7
+  to reach it would drop papers UWPR itself lists. That one work is excluded by `overrides.yaml`
+  instead, which is what an override is for.
+
 **Purpose:** define, precisely enough to implement, how the pipeline finds publications supported
 by the UW Proteomics Resource and decides which to include, **without human review**.
 **Basis:** `UWPR_publication_discovery_handoff.md`, plus live measurements made on 2026-09-19

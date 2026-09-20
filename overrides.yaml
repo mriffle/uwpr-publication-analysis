@@ -14,3 +14,18 @@
     samples/store/ has linked it by override since Phase 2.
   by: mriffle
   date: 2026-09-20
+
+# Reviewed 2026-09-20, against the works the rules found off the official list (docs/08 §3.3).
+# 33 of the 35 were confirmed. This one is the only drop that no rule can express: the
+# acknowledgement reads "for their excellent technical assistance", which is word for word what
+# listed papers say when they credit real UWPR work, so narrowing R7 to exclude it would drop
+# papers UWPR itself lists. The other drop became a rule change instead (01a C4, R7's deposition
+# disqualifier), because its wording names the act.
+- target: W-000686
+  action: exclude
+  reason: >-
+    Reviewed: the staff member thanked here was not acting in a UWPR role. A bare credit for
+    "excellent technical assistance", with no instrument, analysis or sample work named, is not
+    evidence that the resource was used (Phase 1 §2.1, criterion 3).
+  by: mriffle
+  date: 2026-09-20

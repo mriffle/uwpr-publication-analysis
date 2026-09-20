@@ -208,6 +208,28 @@ groups agree, and every one is consistent with a decision already recorded in
 
 Fixture J's paper is the R3d one — PMID 32613749, via PXD011642, which no other channel finds.
 
+**Reviewed 2026-09-20: 33 of the 35 confirmed, two dropped.** Both were R7-only credits to the
+same staff member, and they are the two C2 examples in
+[01a](01a-discovery-calibration.md) that name no work — the third, the kinetochore paper
+("assistance with data analysis and visualization"), stands. The two were handled differently on
+purpose:
+
+| Work | Wording | Handled by | Why |
+|---|---|---|---|
+| `W-000761` | "technical support in assembling and sharing data" | **rule change** (`2026-09-20.1`) | It is C4 — repository help — with the repository not named. Measured: of 23 R7 entries it disqualifies exactly that one, none on the list, so recall is unchanged. |
+| `W-000686` | "their excellent technical assistance" | **override** | Word for word what listed papers say when crediting real UWPR work, so no rule reaches it without dropping papers UWPR itself lists. |
+
+After both: **339 works, 33 off the official list, 11 preprint-only**, recall 208/253 (82%), all
+21 fixtures behaving. Every other work ID is untouched — a rule change does not move the minting
+order, because it does not change which records are nominated.
+
+**Author affiliations are captured** for the web app and knowledge base (Phase 1 §13): 99% of
+included works have at least one, 3,098 authors and 4,956 affiliation strings, each keeping the
+raw string as published plus OpenAlex's ROR ID, institution name and country, and a `staff` key
+where the author is UWPR staff. Coverage holds back to 2005. One presentation wrinkle for Phase
+5: OpenAlex often returns the same affiliation twice with trivially different punctuation, so the
+app should collapse them on display rather than the store dropping what a source published.
+
 **One case remains genuinely uncertain, and it is the same one calibration flagged.** `W-000664`
 (*Low Clusterin Levels in High-Density Lipoprotein…*, 2010) is [01a](01a-discovery-calibration.md)
 Part 2 row 2, marked "?" there and never resolved. Its R3 match sits inside a long funding list

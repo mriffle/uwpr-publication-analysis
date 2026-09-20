@@ -20,7 +20,7 @@ def test_the_projects_config_loads() -> None:
     config = load_config()
     assert config.contact == "mriffle@uw.edu"
     assert config.window_start == 2006
-    assert config.rule_version == "2026-09-19.2"
+    assert config.rule_version == "2026-09-20.1"
     assert {person["key"] for person in config.staff} == {
         "eng",
         "riffle",

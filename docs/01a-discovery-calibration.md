@@ -39,6 +39,17 @@ the only evidence for a paper.
 **Decided 2026-09-19: include.** Encoded as rule R7 (strategy §6.6). No requirement for a UW
 co-author; precision comes from full-name matching plus help-with-work wording.
 
+**Narrowed 2026-09-20 by the calibration review.** The kinetochore paper stands: "assistance with
+data analysis and visualization" names analysis work. The other two examples above do not, and
+neither is UWPR support:
+- **PMC10185886** is C4, not C2 — "assembling and sharing data" is repository help. R7's
+  deposition disqualifier now covers that wording, so no similar paper is included again.
+- **PMC6480907** names no work at all, only "excellent technical assistance". No rule can
+  separate that from the same phrase on listed papers, so it is excluded by `overrides.yaml`.
+
+The lesson for any later review: **a credit that names the work is evidence; a credit that names
+only the helper is not.**
+
 ### C3. A staff member is thanked for advice on, or contributions to, software or standards they develop
 
 - 2024 · *EndoGenius: Optimized Neuropeptide Identification…* — "thank Jimmy Eng for guidance in the development of the peptide fragmentation portion of the program."
@@ -54,6 +65,11 @@ co-author; precision comes from full-name matching plus help-with-work wording.
 - 2026 · *A quantitative proteomics dataset for assessment and prediction of…* · PMC13228472
 
 **Decided 2026-09-19: exclude.** Help with repository deposition is not UWPR support.
+
+**Widened 2026-09-20** (calibration review, Phase 1 §6.6): the same act is often described
+without naming the repository — "technical support in assembling and sharing data". That wording
+is now excluded too. It moves one paper, PMC10185886 below, from C2 to C4; the C2 entry for it is
+marked accordingly.
 
 ### C5. A staff member is thanked for work done at another institution
 

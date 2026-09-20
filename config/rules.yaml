@@ -7,7 +7,7 @@
 # built from the Phase 1 and 01a example sentences, pin down each pattern's behaviour. Until the
 # first live run there is no stored evidence, so fixes made to pass those tests need no new version.
 schema: 1
-rule_version: "2026-09-19.2"          # the calibrated rules of Phase 1 (same as the sample store)
+rule_version: "2026-09-20.1"          # C4 widened to cover data assembly and sharing (01a C4)
 
 # --- Record types (Phase 1 §1, §8) --------------------------------------------------------------
 # Types not in Phase 1 §1's included list are excluded ("other"). R1 still includes a listed work
@@ -131,7 +131,9 @@ r7:
   disqualifiers:
     discussion: '(?i)discussion|conversation|comment|correspondence|feedback|critical reading|manuscript'
     development: '(?i)contribut\w* to|development of|design of|guidance in the development|advice (?:with|on) using|the use'
-    deposition: '(?i)Panorama|ProteomeXchange|PRIDE|deposit'          # C4
+    # C4: help getting data into a repository is not UWPR support. Assembling and sharing a
+    # dataset is the same act described without naming the repository (added 2026-09-20).
+    deposition: '(?i)Panorama|ProteomeXchange|PRIDE|deposit|(?:shar|assembl)\w*(?:\s+\S+){0,2}?\s+data\b|\bdata shar\w*'
     other_institution: 'Institute for Systems Biology|\bISB\b'        # C5
 
 # --- Signals for works not included (Phase 2 §6; Phase 3 §6.4) ----------------------------------

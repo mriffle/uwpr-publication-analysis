@@ -391,8 +391,10 @@ def test_r6_records_the_query_it_ran() -> None:
 
 R7_POSITIVE = [
     "We also thank Michael Riffle for assistance with data analysis and visualization.",
+    # A bare credit for technical assistance still fires. Reviewed 2026-09-20: one such paper is
+    # excluded by override, because the wording is word for word what listed papers use when they
+    # credit real UWPR work, so no rule can separate them (overrides.yaml, W-000686).
     "We thank Vagisha Sharma (University of Washington) for their excellent technical assistance.",
-    "We thank Vagisha Sharma (University of Washington) for technical support in assembling data.",
     "We thank P. von Haller for technical assistance with the mass spectrometry experiments.",
     "We are grateful to Jimmy Eng for running the samples on the instrument.",
 ]
@@ -402,8 +404,12 @@ R7_NEGATIVE = [
     "We thank Jimmy Eng for guidance in the development of the peptide fragmentation portion.",
     "We thank Jimmy Eng for advice with using X!Tandem.",
     "We thank Michael Riffle for contributions to the development of Limelight.",
-    # C4: help depositing data.
+    # C4: help getting data into a repository, named or not. The last three are the same act
+    # described without naming the repository (reviewed 2026-09-20).
     "We thank Vagisha Sharma for help depositing the data in Panorama Public.",
+    "We thank Vagisha Sharma (University of Washington) for technical support in assembling data.",
+    "We thank Vagisha Sharma for technical support in assembling and sharing data.",
+    "We thank Vagisha Sharma for her help with data sharing.",
     # Discussion only (not C1's institutional thanks, which R3 covers).
     "We thank Michael Riffle for helpful discussions and comments on the manuscript.",
     # A bare surname never counts (§6.6 item 1).
