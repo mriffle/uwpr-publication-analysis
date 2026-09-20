@@ -1,8 +1,8 @@
 # UWPR Publication Impact — Project Phases
 
 **Status:** the pipeline is built and running weekly; the app is not. See 08.
-**Last updated:** 2026-09-20 (Phase 4 retired; **Phase 5 agreed** — the data contract is settled
-and Phase 6 is next)
+**Last updated:** 2026-09-20 (Phase 4 retired; **Phases 5 and 6 agreed** — the data contract and
+the app are specified, and building them is next)
 
 ## Goal
 
@@ -43,7 +43,7 @@ is shown, it is labelled as a preprint.
 | 3 | Retrieval pipeline | What does the code that discovers, fetches and updates the data do, and how does it re-run safely? | [03-retrieval-pipeline.md](03-retrieval-pipeline.md) | **Frozen** 2026-09-19 |
 | 4 | ~~Publication knowledge base~~ | — | *never written* | **Retired 2026-09-20.** The store already carries everything it was to contain except a summary, which was not wanted. Publication detail moved into Phase 5. |
 | 5 | Metrics & app data contract *(added)* | Exactly what is in the JSON that drives the app, and how is each number defined? | [05-metrics-and-data-contract.md](05-metrics-and-data-contract.md) | **Agreed** 2026-09-20 |
-| 6 | Web app | What does the single-page app show, how does it behave, and how does data get into it? | [06-web-app.md](06-web-app.md) | Unreviewed starting point |
+| 6 | Web app | What does the single-page app show, how does it behave, and how does data get into it? | [06-web-app.md](06-web-app.md) | **Agreed** 2026-09-20 |
 | 7 | Operations *(added)* | Where does it run, how often, where is it hosted, and how do we know it is still correct? | [07-operations.md](07-operations.md) | Unreviewed starting point |
 | 8 | Implementation | Build to the specs, in the order below. | [08-implementation.md](08-implementation.md) | **In progress** — M0–M5 done; the store is seeded and the weekly run works |
 
@@ -85,10 +85,11 @@ wanted, it has a home, a regeneration trigger and an owned-paths rule already.
 
 ## Dependencies and order of work
 
-1 → 2 → 3 are done and frozen. **Phase 5 is agreed** (2026-09-20) and carries the publication
-detail that Phase 4 was to hold, plus the visualizations the app is built around. **Phase 6 is
-next**; it depends only on 5, so app design proceeds against the sample export. Phase 7 is settled
-last, but its hosting decision constrains 6 (see 06 §7).
+1 → 2 → 3 are done and frozen. **Phases 5 and 6 are agreed** (2026-09-20): 5 carries the
+publication detail Phase 4 was to hold plus the visualizations the app is built around, and 6
+specifies the app itself. **Building them is next**, starting with the sample export, which the
+app cannot be developed or tested without (05 §13). Phase 7 is settled last; it owns hosting, and
+6 assumes only that static files are served (see 06 §13).
 
 Suggested implementation order once specs are agreed:
 

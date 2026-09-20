@@ -12,13 +12,15 @@ Resource (UWPR).
 - Clicking a publication in the app shows its detail: subject, authors, affiliations, and the
   evidence for why it counts as UWPR's. All of that is already in the store.
 
-**Current state:** Phases 1-3 frozen; Phase 4 retired; **Phase 5 agreed 2026-09-20**. **The
+**Current state:** Phases 1-3 frozen; Phase 4 retired; **Phases 5 and 6 agreed 2026-09-20**. **The
 pipeline is finished and running** (M0-M5): `store/` is seeded and committed (339 works,
 2026-09-20), its work and record IDs are permanent and must never be renumbered, and `update.yml`
-runs it weekly, unattended, for about $0.01 and four minutes. **The data contract is settled
-(`docs/05`); Phase 6, the web app, is next** — nothing of the app exists yet, and stage 11 does
-not yet write `export/`. **`docs/08-implementation.md` is the handoff: status, measurements,
-decisions and the full plan.** Public repo: mriffle/uwpr-publication-analysis.
+runs it weekly, unattended, for about $0.01 and four minutes. **The data contract (`docs/05`) and
+the app (`docs/06`) are specified; building them is next.** Nothing of the app exists yet, stage
+11 does not yet write `export/`, and `web/` does not exist. Start with the sample export, which
+the app cannot be developed or tested without (05 §13). **`docs/08-implementation.md` is the
+handoff: status, measurements, decisions and the full plan.** Public repo:
+mriffle/uwpr-publication-analysis.
 
 Work proceeds phase by phase. `docs/00-project-phases.md` is the index; each phase has a numbered
 spec in `docs/`.
@@ -30,8 +32,8 @@ spec in `docs/`.
 | 3 Pipeline | **Frozen** |
 | 4 Knowledge base | **Retired 2026-09-20** — the store already held all of it but a summary, which is not wanted |
 | 5 Metrics / app JSON | **Agreed 2026-09-20.** Decisions A1-A8; every figure measured against the real store |
-| 6 Web app | **Next to discuss.** Draft predates almost every decision since; rewrite rather than edit |
-| 7 Operations | Unreviewed starting point |
+| 6 Web app | **Agreed 2026-09-20.** Decisions B1-B11: React + TypeScript + Vite, visx charts, in `web/` |
+| 7 Operations | **Next to discuss.** Draft predates almost every decision since; rewrite rather than edit |
 | 8 Implementation | Pipeline done (M0-M5); see `docs/08-implementation.md` |
 
 ## How specs are handled

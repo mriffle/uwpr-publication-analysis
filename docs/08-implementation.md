@@ -719,10 +719,13 @@ uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's r
 3. **`OPEN_ALEX_API_KEY` is set** as a repository secret (2026-09-20). An `NCBI_API_KEY` is still
    optional and would make cold-cache CI runs about three times faster.
 4. **Phase 4 is retired** (2026-09-20) and D11–D13 are answered: no summaries, no abstracts,
-   OpenAlex topics as reported. **Phase 5 is agreed** (2026-09-20, decisions A1–A8): the export is
-   two files, `uwpr_publications.json` and `lookup_index.json`, written by stage 11 and validated
-   at the gate. **Phase 6 — the web app — is the next specification conversation.** The drafts of
-   06–07 predate almost every decision since and should be rewritten rather than edited.
+   OpenAlex topics as reported. **Phases 5 and 6 are agreed** (2026-09-20). Phase 5 (A1–A8): the
+   export is two files, `uwpr_publications.json` and `lookup_index.json`, written by stage 11 and
+   validated at the gate. Phase 6 (B1–B11): React with TypeScript, built by Vite, charts on visx,
+   living in `web/` with its own CI job. **Building them is next, and the sample export comes
+   first — the app cannot be developed or tested without it** (05 §13). **Phase 7 — operations and
+   hosting — is the next specification conversation**; its draft predates almost every decision
+   since and should be rewritten rather than edited.
 5. **The NUP153 merge override is written** (`overrides.yaml`, §3.3) and verified against the
    rehearsal, but it asserts a judgement and is attributed to a person. It takes effect at the
    seed; until `store/` exists, the work IDs it names do not, which is why it is committed

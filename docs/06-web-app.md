@@ -1,128 +1,438 @@
 # Phase 6 — Web App Specification
 
-> **Starting point only.** Drafted ahead of discussion; nothing here has been reviewed or agreed.
-> Expect it to be reworked when we reach this phase.
+**Status:** Agreed · 2026-09-20 · the input to implementation. Changes from here are made
+deliberately, dated, and noted in this header.
+**Purpose:** specify the single-page app that presents the publications supported by the UW
+Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
+**Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
+The app has no knowledge of UWPR beyond what that file tells it
+([00](00-project-phases.md), principle 5).
+**Constrained by:** Phase 7, which owns hosting. This spec assumes only that two static JSON files
+are served alongside static app files (§13).
+**Replaces:** the unreviewed draft of 2026-09-19, which assumed evidence tiers, a separate
+knowledge base, funder data and a world map — none of which exist — and which specified a
+no-toolchain build that §11.1 revisits explicitly.
 
-**Status:** Unreviewed starting point · 2026-09-19
-**Purpose:** specify the single-page app that displays and substantiates UWPR's impact. One
-template; the only thing that changes between updates is `uwpr_publications.json` (Phase 5).
+---
 
-## 1. Audience and message (assumed — see D6)
+## 1. Audience and purpose
 
-University leadership, funders and review panels, and prospective users. The page must let a
-reader grasp the scale of UWPR's contribution in ten seconds, explore it for ten minutes, and
-**check any number** by drilling down to the individual papers and the evidence for each.
+Public, aimed at UW leadership, funders and prospective users (D6). Three readers want three
+different things, and the page serves them in this order:
 
-## 2. Page structure
+1. **Someone assessing the resource** wants the scale and character of the output, in about ten
+   seconds, without reading anything.
+2. **Someone considering using the resource** wants to know what kind of science it supports —
+   fields, journals, groups, recency.
+3. **Someone checking the claim** wants to know how each number was produced and how a given paper
+   came to be counted. This reader is the reason the project exists in the form it does, and the
+   evidence trail must be reachable from any publication in one click.
 
-One scrolling page with a sticky filter bar. Top to bottom:
+**What the page asserts:** that these publications record use of the resource, that each one can
+show why it is counted, and that the method's limits are stated. It does not assert that the
+resource caused the citations ([05](05-metrics-and-data-contract.md) §5.1).
 
-1. **Header** — resource name, one-sentence statement, "data as of" date.
-2. **Headline figures** — publications · total citations · h-index · highly cited papers ·
-   collaborating institutions · countries · years of activity. Each figure responds to filters.
-3. **Output over time** — publications per year (bars) with cumulative line; toggle to citations
-   received per year.
-4. **Influence** — citation distribution; share of works in the top 10% of their field;
-   most-cited works (ranked list linking into the table).
-5. **Reach** — collaborating institutions on a world map plus ranked list; UW vs external share.
-6. **Research areas** — field → subfield → topic breakdown; how areas shift over time.
-7. **Where the work appears** — top journals; open-access share.
-8. **How UWPR contributed** — support type (instrument / computational / consultation /
-   staff co-author); staff co-authorship over time.
-9. **Research programmes supported** — funders and count of distinct grants that relied on the
-   resource (if retained, 05 §8.3).
-10. **Publication explorer** — searchable, sortable, filterable table of every work; expanding
-    a row shows authors, links (DOI, PubMed, PMC), versions, and **"Why is this paper here?"**
-    with evidence labels and excerpts.
-11. **How this was assembled** — short plain-language method, the `coverage` figures, data
-    sources and caveats, how to acknowledge UWPR, and contact for corrections.
+**Register.** [05](05-metrics-and-data-contract.md) §11 governs every string the app displays: no
+promotional language, no superlatives, no causal claims, every figure carrying its definition and
+date, every proxy labelled as one. The page reports; it does not promote.
 
-## 3. Interaction
+## 2. Decisions
 
-- **Global filters:** year range, evidence tier (confirmed / + probable), support type, research
-  field, staff co-authored. Every figure and the table respond together.
-- **Cross-filtering:** clicking a bar, journal, institution or topic applies it as a filter;
-  active filters are shown as removable chips.
-- **Deep links:** filter state and selected work encoded in the URL hash, so a specific view can
-  be cited in a report.
-- **Downloads:** current table selection as CSV and BibTeX; each chart as SVG/PNG.
-- **Print / PDF:** a print stylesheet yielding a clean static report of the current view.
-- **Tooltips** give exact values; every chart has a "view as table" alternative.
+Agreed 2026-09-20.
 
-## 4. Data loading — how data gets into the app
+| # | Decision | Why |
+|---|---|---|
+| B1 | **React with TypeScript in strict mode, built by Vite.** Not Next.js. | A static page doing client-side filtering needs no server or rendering model. Vite produces plain static output. |
+| B2 | **Charts built on visx and `d3-scale`, over one shared chart kit.** | §11.2. The alternative was considered and the trade-off is recorded there. |
+| B3 | **TypeScript types are generated from the JSON Schemas**, not hand-written. | Makes the data contract the compile-time interface: a pipeline schema change that the app does not handle fails the build rather than the page. |
+| B4 | **All aggregation is pure functions in a layer of its own,** with no React in it. | Mirrors the pipeline's pure-core/thin-shell split ([03](03-retrieval-pipeline.md) §3). Every metric definition gets exhaustive unit tests without rendering anything. |
+| B5 | **Filter and view state live in the URL.** | A filtered view is the unit people cite in reports. It must be linkable and reproducible. |
+| B6 | **Data is fetched at runtime, not bundled at build time.** | The data changes weekly; the app does not. The weekly data commit must never need a site rebuild. §11.1 gives the second, larger reason. |
+| B7 | **Vitest, React Testing Library and Playwright,** with a coverage floor of 80% to match the Python side. | §12. |
+| B8 | **ESLint and Prettier**, not Biome. | `eslint-plugin-jsx-a11y`. A public page that is mostly charts needs the accessibility rules more than it needs a faster linter. |
+| B9 | **No UW branding** (D8). Visually neutral, clean, modern, light and dark. | The repository is Apache-2.0 and public; official use of UW marks needs approval, and a neutral page avoids implying an official UW communications product. |
+| B10 | **No cookies, no analytics, no third-party requests at runtime.** | Nothing about a page of published bibliographic facts requires tracking its readers. It also keeps the page servable from anywhere without a privacy review. |
+| B11 | **The app lives in `web/` in this repository,** with its own CI job. | The contract and its only consumer stay together, so a change to one shows up against the other in the same commit. |
 
-The template contains a single placeholder:
+## 3. Information architecture
 
-```html
-<script id="uwpr-data" type="application/json">/*__UWPR_DATA__*/</script>
+Four views. The overview is the page; the rest are routes reachable from it.
+
+| Route | View | What it is for |
+|---|---|---|
+| `/` | **Overview** | The figures, the charts and the publication explorer, all under one filter state |
+| `/publication/<work id>` | **Publication detail** | One publication: what it is, who wrote it, and why it is counted |
+| `/method` | **How this was assembled** | The method, its coverage and its limits, in numbers |
+| `/lookup` | **Why is a paper not here?** | Identifier lookup against the full candidate set |
+
+**The detail view opens over the overview** when reached from it, so the reader does not lose a
+filter they spent a minute building. Reached cold from a link, it stands alone with a route back
+to an unfiltered overview. Either way the URL is the same and is linkable.
+
+**Routing** uses the History API with a build-time base path, and ships a `404.html` copy of
+`index.html` so a deep link resolves on static hosts that have no rewrite rules (GitHub Pages
+among them). A build flag switches to hash routing if the host Phase 7 settles on cannot serve
+that fallback.
+
+## 4. The overview
+
+Top to bottom. A sticky bar carries the active filters and the resulting publication count.
+
+### 4.1 Header
+
+Resource name, one descriptive sentence, the date the data was generated, a link to the resource's
+own site, and links to the method page and the lookup. Nothing else.
+
+### 4.2 Headline figures
+
+Five, from [05](05-metrics-and-data-contract.md) §5, each responding to the active filter:
+**publications · years covered · citations · research groups · journals.**
+
+Below them, one sentence carrying the quality claim: the median field-weighted citation impact,
+stated in words — that the median publication is cited about *n* times as often as the average
+paper in its field and year — with the figure, its source and its date.
+
+Every figure links to its definition on the method page. "Research groups" and "institutions"
+carry their proxy and floor labels inline, not in a footnote
+([05](05-metrics-and-data-contract.md) §11.4).
+
+**No h-index and no citation percentile here.** Both are available and both are on the detail
+view or the method page; §2.2 of the contract gives the reasoning.
+
+### 4.3 Output over time
+
+Publications per year as bars, with cumulative publications as a line on a second axis. A toggle
+switches the same frame to citations received per year with cumulative citations.
+
+This is the section that most needs the honesty constraints, and they are requirements:
+
+- **The current year is partial** and is drawn distinctly — hatched or muted, never as a
+  full bar — with a label saying so. Without it the page shows a decline that is an artifact of
+  the calendar.
+- **The citation series cannot start before 2012**, four years after the publications start, and
+  the citations outside that window are stated as a figure rather than left as an unexplained
+  discrepancy between two charts.
+- **Nothing is recorded before 2008.** The axis starts there, or the two empty years are labelled.
+
+### 4.4 Research areas
+
+Two charts. **Areas over time**: a stacked area or stacked bar, grouped to the five largest fields
+plus "Other", with years bucketed in threes by default and single years available. **Areas
+overall**: a treemap or horizontal bar at the subfield level.
+
+The over-time chart's axis is labelled **topic assignments**, not publications, because a work
+contributes to each of its topics and the total therefore exceeds the number of publications.
+[05](05-metrics-and-data-contract.md) §7.5 has the measurements that forced this shape.
+
+### 4.5 Who the work involves
+
+**Researchers appearing most often**, as a horizontal bar, defaulting to non-staff researchers
+with a toggle to include staff, who are marked distinctly wherever they appear. A staff member on
+many papers and an external investigator on many papers are different facts and the chart must not
+merge them.
+
+**Institutions**, as a horizontal bar, excluding the University of Washington — which appears on
+316 of 339 works and would otherwise flatten the chart to one bar and a fringe. The top 15, with
+a statement of how many are not shown.
+
+**Countries**, as a single sentence and a short bar of the most frequent non-US countries. No
+choropleth ([05](05-metrics-and-data-contract.md) §7.14).
+
+### 4.6 Where the work appears
+
+**Journals**, as a horizontal bar of the most frequent, with the total distinct count. Preprint
+servers appear here, labelled as such, because leaving them out would misstate the corpus.
+
+**Open access over time**, as a share with counts shown alongside — the early years have six to
+fifteen publications each, so a bare percentage there moves by one paper.
+
+### 4.7 Citation profile
+
+**Distribution**, as a histogram on a logarithmic citation axis, with works that have no citations
+yet in their own explicit bucket, since a log axis has no zero.
+
+**Most cited publications**, as a ranked list of ten to twenty, each row linking to its detail.
+
+### 4.8 Publication explorer
+
+Every publication under the current filter, as a list. At 339 rows — growing 30–50 a year — no
+virtualisation is needed; a plain list is simpler, prints properly and is accessible by default.
+
+Each row: title, authors abbreviated with the full count, venue, year, citation count, and marks
+for preprint-only, open access and retraction. Sortable by year, citations and title. A free-text
+search box filters on title, author and venue.
+
+Clicking a row opens the publication detail.
+
+### 4.9 Footer
+
+Data source and generation date, the run identifier, a link to the repository, the licence, and a
+contact for corrections. An override exists precisely so a reported mistake can be fixed
+([02](02-data-model.md) §9), so the page should say where to report one.
+
+## 5. Publication detail
+
+Renders [05](05-metrics-and-data-contract.md) §6 in that order: identity; links; authors with
+affiliations and staff markers; research areas at all four levels; citations; **why this is a UWPR
+publication**; other versions; retraction if flagged.
+
+The evidence section is the one that must not be templated carelessly. Three cases each need their
+own wording, and a generic template produces something false in all three:
+
+| Case | Requirement |
+|---|---|
+| The site listing | Says it was listed, with the page and the dates first and last seen. **There is no excerpt**, and the app must not render an empty quotation. 91 of 339 works have this as their only evidence. |
+| A full-text index match | Says the phrase was found in OpenAlex's full-text index, with the phrase and the query date. **There is no excerpt**, because the text could not be read directly. 49 works carry one. |
+| An override | Shows the recorded reason, attributed to the person who decided it and dated. It is a judgement, not a measurement, and must read as one. |
+
+Evidence found on a different version than the one displayed says so — evidence on a preprint
+applies to the whole work (Phase 1 §8), and a reader looking at the article should not have to
+guess why the quotation is not in it.
+
+**Excerpts are rendered as published, not cleaned up.** Where the pipeline has stored a defect —
+currently one work with an undecoded XML entity ([05](05-metrics-and-data-contract.md) §3.2) — it
+is visible. Decoding entities in the app would mask future extraction bugs and risks
+double-decoding text that legitimately contains an escaped character. The fix belongs in
+extraction; the app's job is to show what the store holds.
+
+The same applies to the one work whose stored title is a filename. It renders as stored.
+
+## 6. Filtering
+
+One filter state drives every figure, every chart and the explorer. The dimensions are
+[05](05-metrics-and-data-contract.md) §9's: year, research area at four levels, journal,
+institution, country, author, open access, kind, how the publication is known, and whether it is
+on the resource's own list.
+
+**Rules:**
+
+- **Clicking a chart mark applies it** — a year's bar, an area's band, an institution's row.
+  This is the main reason the contract carries every dimension on every row.
+- **Active filters are always visible** as removable chips in the sticky bar, with the resulting
+  publication count beside them, and a control that clears them all.
+- **The active filter is stated in words.** A filtered figure that looks like a total is the
+  easiest way for an accurate page to mislead.
+- **Filters are combined with AND across dimensions and OR within one** — two selected journals
+  mean either, a journal and a year mean both.
+- **An empty result is a designed state**, naming the filters responsible and offering to clear
+  the last one. It is reachable in a few clicks and will be reached.
+- **State is in the URL** and survives reload, back and forward, and sharing.
+
+## 7. Cross-cutting behaviour
+
+**Every chart has a table.** A control on each chart shows the same data as a table of numbers.
+This serves screen readers, satisfies the reader who wants the exact value, and costs little
+because the aggregation layer already produced the rows.
+
+**Tooltips give exact values,** including the denominator for anything shown as a share.
+
+**Downloads.** The publications under the current filter as CSV and as BibTeX, and each chart as
+SVG and PNG. This audience writes reports and grant renewals; a page they cannot get numbers out
+of will be retyped by hand, with errors.
+
+**Print.** A stylesheet that renders the current filtered view as a clean static document: figures,
+charts and the publication list, with the filter stated and the data date on the page.
+
+**Loading and failure are designed states,** not blank screens:
+
+| Condition | Behaviour |
+|---|---|
+| Data loading | A skeleton layout, not a spinner over an empty page |
+| Data fails to load | A plain message naming the file, with a retry. No partial page pretending to be complete |
+| `schema_version` is a major version the app does not know | A clear message naming the version found and the version expected, and no attempt to render. A wrong render is worse than none |
+| A work referenced by URL does not exist | Resolve it through the export's alias map first — 37 works carry a retired identifier — and only then show a not-found state |
+
+## 8. Design direction
+
+Detailed visual design happens at implementation against the sample export. The constraints:
+
+- **Neutral, clean, modern.** No UW marks, colours or typography (B9).
+- **Light and dark**, following the system preference, with an explicit override.
+- **Responsive from phone to desktop.** Charts reflow to fewer categories or a different
+  orientation rather than shrinking into illegibility.
+- **A colour-blind-safe categorical palette of at most six plus "Other"**, which is why §4.4 groups
+  fields to five. Adjacent marks must be distinguishable by more than hue.
+- **No information carried by colour alone** — a preprint mark, a retraction flag and a partial
+  year all carry text or shape as well.
+- **Charts read as one system.** One axis treatment, one tooltip, one legend, one number format,
+  from the shared kit (§11.2), not per-chart decisions.
+- **Reduced motion respected.** Transitions are an affordance, not decoration, and are dropped
+  entirely when the system asks.
+
+## 9. Accessibility
+
+**WCAG 2.1 AA, treated as a requirement rather than an audit at the end.**
+
+- Fully keyboard operable, including every chart's interactive marks and the filter chips, with a
+  visible focus indicator throughout.
+- Every chart has an accessible name, a short text description of what it shows, and the table
+  alternative of §7.
+- Filter changes announce the new result count in a live region; a silent update strands a screen
+  reader user mid-page.
+- Contrast meets AA for text and 3:1 for meaningful graphical elements, in both themes.
+- Semantic structure: one `h1`, ordered headings, real landmarks, real buttons and links.
+- Automated checks in CI (§12) plus a keyboard walkthrough before release. Automated checks catch
+  perhaps half of what matters and are not sufficient on their own.
+
+## 10. Performance
+
+Measured inputs: the data file is **1.08 MB, 0.15 MB gzipped**, plus **0.10 MB** for the lookup
+index, growing about 0.1 MB a year.
+
+| Budget | Target |
+|---|---|
+| JavaScript, gzipped | ≤ 250 KB |
+| First contentful paint, typical laptop broadband | < 1.5 s |
+| Interactive with charts drawn | < 2.5 s |
+| Filter change to redrawn charts | < 100 ms |
+
+At 339 rows every aggregation is trivial; the risk is not throughput but redrawing everything on
+every keystroke. Derived aggregates are memoised on the filter state, and the search box is
+debounced. **The lookup index loads on demand,** not on first paint.
+
+`d3` is imported as individual submodules. Pulling the umbrella package in for two scale functions
+is the single easiest way to miss the bundle budget.
+
+## 11. Technology
+
+### 11.1 Why a build toolchain, having previously decided against one
+
+The superseded draft specified plain HTML, CSS and ES modules with no build step, so that the page
+would stay maintainable "without a Node ecosystem". The concern is legitimate and the conclusion is
+still wrong, for three reasons.
+
+1. **What this app actually is.** Twelve interactive charts that cross-filter, a router, a
+   searchable list, a detail view and full keyboard accessibility. Written without a framework
+   that is a large amount of bespoke state-synchronisation code — *harder* to maintain than
+   idiomatic React, and much harder to test.
+2. **The build runs when the app changes, not when the data does** (B6). After v1 that is rare.
+   The weekly data commit touches no build at all.
+3. **The deployed app outlives its own toolchain.** Because the data is fetched at runtime, the
+   built output is plain static files with no runtime dependency on anything that was used to
+   build them. If the toolchain becomes unbuildable in 2032, the last build keeps working *and
+   keeps showing current data*. That is a stronger guarantee than the no-build approach offered,
+   and it is what makes the trade acceptable.
+
+Mitigations, which are the part that matters: the Node version is pinned, the lockfile is
+committed and CI installs from it exactly, dependencies are few and boring, and the app is built
+and tested in CI on every push so decay is visible immediately rather than discovered years later.
+
+### 11.2 Charts: visx, and what it is chosen over
+
+**visx with `d3-scale` and `d3-array`, over one shared chart kit** built once and used by every
+chart: responsive container, axes, grid, tooltip, legend, number formatting, palette, and the
+empty and loading states.
+
+Chosen over a higher-level charting library for two reasons:
+
+1. **The specified charts fight high-level defaults.** A logarithmic axis needing a separate zero
+   bucket; a partial period drawn differently from complete ones; an "Other" grouping; a stacked
+   series over bucketed years; and click-to-filter on every mark of every chart.
+2. **Testability.** Recharts' `ResponsiveContainer` measures the DOM and renders nothing under
+   jsdom without mocked dimensions, which makes component tests awkward exactly where they are
+   wanted. visx takes width and height as props, so tests pass fixed dimensions and assert
+   deterministic SVG.
+
+**The trade is recorded honestly:** visx costs more code up front than a higher-level library.
+The shared kit is what keeps that cost one-time, and because all aggregation lives outside the
+components (B4), swapping the rendering layer later would touch only the chart components.
+
+### 11.3 Project layout
+
+```
+web/
+  package.json, package-lock.json, tsconfig.json, vite.config.ts
+  index.html
+  src/
+    main.tsx, App.tsx
+    contract/        types generated from schemas/ (B3); the loader and version check
+    aggregate/       pure functions: every metric in 05 §5, and every chart's series
+    filter/          filter state, URL encoding, predicate building
+    charts/          the shared kit, then one module per chart
+    views/           overview, publication detail, method, lookup
+    components/      figures, filter chips, publication list, evidence, tables
+    format/          numbers, dates, names, author lists
+  test/              unit and component tests
+  e2e/               Playwright specs
 ```
 
-`uwpr-pubs build-app` replaces the placeholder with the validated JSON and writes
-`dist/index.html` — **one self-contained file** that works from a web server, a file share, or
-an email attachment, with no cross-origin or `file://` fetch problems.
+The `aggregate/` and `filter/` layers import nothing from React. That boundary is what makes the
+metric definitions testable as arithmetic, and it is enforced by a lint rule rather than by
+intention.
 
-Fallback for development: if the placeholder is empty, the app fetches
-`./uwpr_publications.json` (or the path in `?data=`). On load the app checks `schema_version`;
-on a mismatch or malformed file it shows a clear error rather than a partial page.
+## 12. Testing
 
-## 5. Technology
+Industry-standard tooling, plus three checks specific to this project that are worth more than any
+of the generic ones.
 
-- **No framework and no build toolchain.** Plain HTML, CSS and ES modules concatenated into the
-  template by the same build step. The page must remain maintainable by UWPR staff years from
-  now without a Node ecosystem.
-- **Charts:** D3 (or Observable Plot on top of it), vendored and inlined — no CDN at runtime, so
-  the file is self-contained and unaffected by third-party outages. World map from a bundled,
-  simplified TopoJSON.
-- **Table:** custom lightweight implementation; at ~500 rows no virtualisation is needed.
-- **Budget:** total file ≤ 3 MB including data; interactive in under 2 s on a typical laptop.
+### 12.1 The project-specific checks
 
-## 6. Design
+| Check | What it catches |
+|---|---|
+| **The summary cross-check.** The app's unfiltered aggregates must equal the exported `summary` block, which the pipeline computes independently ([05](05-metrics-and-data-contract.md) §1.2). | A metric implemented to a different definition than the pipeline used. This is the single highest-value test in the suite: two independent computations of the same number. |
+| **The sample export validates against its JSON Schema**, and the app's types are generated from that schema. | Contract drift. A pipeline change the app does not handle becomes a build failure, not a broken page. |
+| **Every case in [05](05-metrics-and-data-contract.md) §13 renders.** Preprint-only; a merged pair; evidence with no excerpt, in both of its forms; an override with attribution; no open-access link; no field-weighted impact; retracted; one author; more than fifty; an unresolved affiliation; a retired identifier in the alias map. | The states that exist in the data but are rare enough that nobody meets them while developing. The retraction case in particular **has no instance in the real store**, so only the sample exercises it — and citation metadata refreshes weekly, so a real one can appear any week. |
 
-- UW brand-compatible palette and typography (D8), with a colour-blind-safe categorical palette
-  for charts; light and dark themes following system preference.
-- Responsive from phone to wall display; charts reflow rather than shrink.
-- Accessibility to WCAG 2.1 AA: keyboard operable, focus visible, text alternatives and data
-  tables for every chart, no information carried by colour alone, respects reduced-motion.
-- Numbers are stated honestly: citation source and date beside the figures; estimates (e.g. labs
-  served) labelled as estimates; tier 2 visibly distinguished when shown.
-- Detailed visual design is done at implementation time against the sample JSON, with charts
-  following the project's data-visualisation guidelines.
+### 12.2 The rest
 
-## 7. Embedding and hosting constraints
+- **Unit, Vitest.** Every function in `aggregate/` and `filter/`, exhaustively, against the
+  definitions in [05](05-metrics-and-data-contract.md) §5. This is where correctness lives.
+- **Component, Vitest and React Testing Library.** Charts at fixed dimensions asserting real SVG;
+  the evidence block per case; the publication list; empty, loading and error states. Queried by
+  role and accessible name, so the tests fail when the accessibility does.
+- **End-to-end, Playwright**, in Chromium, Firefox and WebKit: load, filter, cross-filter from a
+  chart, deep-link a filtered view, open a detail view and return with filters intact, resolve a
+  retired identifier, use the lookup for all three outcomes, and complete a keyboard-only pass.
+- **Accessibility:** `axe` assertions in component tests and on every route in end-to-end, plus
+  `eslint-plugin-jsx-a11y` at lint time.
+- **Visual regression:** Playwright screenshots of each chart at two widths and both themes.
+  Charts are the one thing where a silent visual break passes every functional test.
+- **Coverage floor 80%,** matching the Python side.
 
-- Must work as a static file under a sub-path of the existing UWPR site.
-- An `?embed=1` mode hides header/footer for use inside an iframe on a UWPR page.
-- No cookies, analytics or external requests by default.
+### 12.3 CI
 
-## 8. Testing
+A `web` job alongside the existing `check` job, on every push and pull request: pinned Node,
+`npm ci` from the committed lockfile, then lint, type-check, unit and component tests with
+coverage, build against the budget of §10, and Playwright. The job fails on a budget overrun, so
+the bundle cannot grow unnoticed.
 
-- Aggregation unit tests: app-computed unfiltered totals equal the file's `summary` block.
-- Rendering tests against the sample JSON, including edge cases: empty filter result, a single
-  year, works with no topics / no DOI / retracted, very long titles and author lists.
-- Schema-mismatch and malformed-data error paths.
-- Accessibility audit (automated + keyboard walkthrough); print output check.
-- Cross-browser: current Chrome, Firefox, Safari, Edge.
+The Python gate and the web gate are independent and both must pass. Actions stay pinned to commit
+SHAs, as the existing workflows are.
 
-## 9. Open questions
+## 13. What Phase 6 assumes of Phase 7
 
-0. **Requirement added 2026-09-19:** each publication opens its knowledge-base entry (Phase 4) —
-   summary, subject tags, category, authors, affiliations and UWPR evidence. §2 item 10's
-   expandable row is the first sketch of this; to be redesigned when Phase 4 is specified.
-0. **Requirement added 2026-09-19:** preprint-only works are visibly labelled as preprints
-   everywhere they appear (table, lists, knowledge-base page), and can be filtered.
+Only this: **static files served over HTTP, with the two export files reachable at a configurable
+path relative to the app.** No server, no build on request, no database.
 
-1. Audience and public/private (D6); tier-2 visibility (D7); branding and host (D8).
-2. Is a co-authorship / collaboration network view wanted? Visually striking, but costly and
-   often less informative than the map and ranked lists. Default: not in v1.
-3. Should individual staff members be featured (their tools, their co-authored work)?
-4. Is a "featured papers" strip wanted, curated by UWPR (would add a small curated list to the
-   JSON)?
-5. Should the page also link to UWPR-developed software and their citation counts as a separate
-   impact strand? This is outside "supported publications" and would need its own data.
+The data path, the routing base path and the fallback strategy of §3 are build-time configuration,
+so the same source serves a root deployment, a sub-path, or a different host, without a code
+change.
 
-## 10. Exit criteria
+Phase 7 settles where it is published and how publication relates to the weekly data commit. The
+recommendation carried forward from B6: **publish the app when the app changes, and let the weekly
+data commit change only the JSON it fetches.**
 
-- [ ] Section list and filters agreed.
-- [ ] Data-loading mechanism agreed.
-- [ ] D6–D8 answered.
-- [ ] Wireframe reviewed against the sample JSON.
+## 14. Open items
+
+1. **A co-authorship network view** is supported by the data — 1,684 authors over 3,062 authorship
+   slots — and is deferred ([05](05-metrics-and-data-contract.md) §7.15). A hairball is a poor
+   first-paint object; revisit once the rest works.
+2. **A self-contained single-file build**, inlining the data into one HTML file for offline or
+   email use, was in the superseded draft and has real merit. It conflicts with B6, so it would be
+   a *second* artifact rather than the primary one. Deferred; not v1.
+3. **Embed mode** (`?embed=1`, chrome hidden, for an iframe on the resource's own site) is cheap
+   and plausible, but nobody has asked for it. Deferred until someone does.
+4. **The two pipeline defects** the app will display as stored (§5) are tracked in
+   [08](08-implementation.md) §8 item 7.
+
+## 15. Exit criteria
+
+- [x] Audience, message and register agreed.
+- [x] Views, sections and filter model agreed.
+- [x] Technology, project layout and testing strategy agreed (B1–B11).
+- [x] D6 and D8 answered.
+- [ ] Sample export committed ([05](05-metrics-and-data-contract.md) §13) — the app cannot be
+      built or tested before it exists.
+- [ ] Chart kit built, with one chart end to end through it.
+- [ ] Accessibility walkthrough passed on every route.
+- [ ] The summary cross-check asserted against the real export.
