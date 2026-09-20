@@ -4,7 +4,10 @@ name: check
 
 on:
   push:
-    branches: ["**"]
+    # Every branch but the deployed site. `gh-pages` holds a build product and no source, so the
+    # gate could only fail on it — and it is pushed by hand during a rollback (docs/07 §8), which
+    # would otherwise send the maintainer a failure email for doing the documented thing.
+    branches-ignore: ["gh-pages"]
   pull_request:
 
 permissions:
@@ -30,6 +33,14 @@ jobs:
       - run: uv run uwpr-pubs validate store          # the committed store (seeded 2026-09-20)
       - run: uv run uwpr-pubs validate samples/store
       - run: uv run uwpr-pubs fixtures --store store  # the Phase 1 §12 papers, offline
+      # `export/` is committed (docs/02 §3) and is what the site serves, so it must never drift
+      # from the store and config it was built from. Rebuilding it is deterministic — every
+      # field comes from the store's own latest run manifest — so a diff is the whole check.
+      # If this fails: `uv run uwpr-pubs export --store store --out export` and commit.
+      - name: The committed export matches the committed store
+        run: |
+          uv run uwpr-pubs export --store store --out "$RUNNER_TEMP/export"
+          diff -r "$RUNNER_TEMP/export" export
 
   # The web app's gate (docs/06 §12.3). Independent of `check`: both must pass.
   # Playwright and the visual-regression pass of §12.2 arrive with the views they cover.
