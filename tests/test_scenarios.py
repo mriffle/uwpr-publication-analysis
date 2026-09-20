@@ -217,6 +217,51 @@ def test_an_exclude_override_removes_a_work_but_never_a_listed_one(
     assert validate_store(store, overrides).errors == []
 
 
+def test_an_include_override_reaches_the_app_with_its_reason_and_attribution(
+    client: HttpClient, tmp_path: Path
+) -> None:
+    """docs/02 §9 and docs/05 §6: the reason is the label, `by` and `date` are its attribution.
+
+    The override is the only thing holding this work in — the rule change has just superseded its
+    R2 evidence — so this is the case the app has to render, and before the override was recorded
+    as evidence the work reached the export carrying no reason at all, which the export schema
+    rejects: the whole run failed.
+    """
+    store = tmp_path / "store"
+    go(client, store)
+    offlist = offlist_work_id(store)
+    changed = config_at(tmp_path, "2026-09-22.1", r2={"code": "OTHER99999"})
+    overrides = tmp_path / "overrides.yaml"
+    overrides.write_text(
+        f"- target: {offlist}\n  action: include\n  reason: 'PI confirmed the samples were run at UWPR.'\n"
+        f"  by: mriffle\n  date: 2026-09-22\n",
+        encoding="utf-8",
+    )
+
+    result = go(client, store, day="2026-09-22", config_dir=changed, overrides=overrides)
+
+    assert result.status == "ok", result.errors
+    work = io.read_json(store / "works" / f"{offlist}.json")
+    assert work["status"]["basis"] == "override", "the file must say what actually included it"
+    entry = next(e for e in work["evidence"] if e["rule"] == "override")
+    assert entry["label"] == "PI confirmed the samples were run at UWPR."
+    assert entry["detail"] == {"by": "mriffle", "date": "2026-09-22"}
+    assert entry["criterion"] is None and entry["record"] is None
+    assert entry["source"]["name"] == "overrides.yaml"
+    assert validate_store(store, overrides).errors == []
+
+    exported = io.read_json(store.parent / "export" / "uwpr_publications.json")
+    shown = next(
+        e
+        for exported_work in exported["works"]
+        if exported_work["id"] == offlist
+        for e in exported_work["evidence"]
+        if e["rule"] == "override"
+    )
+    assert shown["detail"] == {"by": "mriffle", "date": "2026-09-22"}
+    assert shown["label"] == "PI confirmed the samples were run at UWPR."
+
+
 def test_a_rule_change_supersedes_the_evidence_and_drops_the_work(client: HttpClient, tmp_path: Path) -> None:
     """docs/02 §13: a new rule version re-derives everything, and what it no longer produces
     is superseded and kept, so the file still says why the work was once included."""

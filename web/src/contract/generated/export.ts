@@ -7,6 +7,8 @@
 export type Evidence = {
   [k: string]: unknown;
 } & {
+  [k: string]: unknown;
+} & {
   rule: 'R1' | 'R2' | 'R3' | 'R3d' | 'R4' | 'R5' | 'R6' | 'R7' | 'override';
   criterion: 1 | 2 | 3 | 4 | null;
   label: string;

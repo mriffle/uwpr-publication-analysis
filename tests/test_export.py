@@ -81,6 +81,22 @@ def test_the_sample_validates(built: tuple[Any, Any]) -> None:
     assert report.errors == []
 
 
+def test_the_schema_requires_an_override_to_be_attributed_and_dated(built: tuple[Any, Any]) -> None:
+    """The guarantee the app reads (docs/05 §6): the store schema leaves `detail` free, so the
+    export schema is where "attributed to the person who decided it and dated" is enforced."""
+    document, _ = built
+    works = []
+    for work in document["works"]:
+        evidence = [
+            {**e, "detail": {}} if e["rule"] == "override" else e for e in cast(Any, work["evidence"])
+        ]
+        works.append({**work, "evidence": evidence})
+    stripped = {**document, "works": works}
+
+    problems = schema_errors("export", stripped)
+    assert any("detail" in problem for problem in problems), problems
+
+
 def test_the_synthetic_cases_are_valid_store_shapes() -> None:
     """They are merged with real works and go through the same code, so they must be real Works."""
     document = json.loads(SAMPLE_CASES.read_text(encoding="utf-8"))
@@ -322,18 +338,30 @@ def test_superseded_evidence_is_never_exported() -> None:
     assert exported["criteria"] == [2]
 
 
-def test_override_evidence_names_no_version() -> None:
-    """It belongs to the work, not a record, so `found_on` is omitted rather than nulled."""
+def test_override_evidence_names_no_version_but_does_name_who_decided_it() -> None:
+    """It belongs to the work, not a record, so `found_on` is omitted rather than nulled.
+
+    Its attribution does reach the app: docs/05 §6 shows an override's reason "attributed to the
+    person who decided it and dated", and `detail` is where `by` and `date` travel.
+    """
     work = _minimal_work(
         [_record()],
         [
             _evidence(
-                rule="override", criterion=None, record=None, section="override", excerpt=None, detail={}
+                rule="override",
+                criterion=None,
+                record=None,
+                section="override",
+                excerpt=None,
+                label="PI confirmed the samples were run at UWPR.",
+                detail={"by": "mriffle", "date": "2026-09-20"},
             )
         ],
     )
     exported = export_work(work, {}, "2026-01-01")
     assert "found_on" not in exported["evidence"][0]
+    assert exported["evidence"][0]["detail"] == {"by": "mriffle", "date": "2026-09-20"}
+    assert exported["evidence"][0]["label"] == "PI confirmed the samples were run at UWPR."
     assert exported["criteria"] == []
 
 
@@ -538,6 +566,21 @@ def test_every_case_predicate_is_exercised_by_the_sample(built: tuple[Any, Any])
     works = built[0]["works"]
     for name, matches in CASES.items():
         assert any(matches(work) for work in works), name
+
+
+def test_the_override_case_asks_for_the_attribution_not_just_the_rule(built: tuple[Any, Any]) -> None:
+    """§13's case is "an override *with its attribution*".
+
+    While the predicate asked only for `rule == "override"`, the sample passed the coverage guard
+    with `detail: {}` — the attribution reached nothing and nothing noticed.
+    """
+    matches = CASES["override with attribution"]
+    work = next(work for work in built[0]["works"] if matches(work))
+    entry = next(e for e in work["evidence"] if e["rule"] == "override")
+    assert entry["detail"]["by"] and entry["detail"]["date"]
+
+    stripped = {**work, "evidence": [{**entry, "detail": {}}]}
+    assert not matches(cast(Any, stripped))
 
 
 # --- exporting a store that is not the sample (docs/05 §4) ----------------------------------

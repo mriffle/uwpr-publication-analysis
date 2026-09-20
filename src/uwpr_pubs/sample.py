@@ -33,6 +33,18 @@ def _has_no_excerpt(work: ExportWork, rule: str) -> bool:
     return any(e["rule"] == rule and e["excerpt"] is None for e in work["evidence"])
 
 
+def _is_attributed_override(entry: Mapping[str, object]) -> bool:
+    """The case is "an override *with its attribution*", so the reason, the person and the date
+    all have to be there. Asking only for `rule == "override"` let the sample pass §13 while the
+    attribution reached nothing at all."""
+    if entry["rule"] != "override":
+        return False
+    detail = entry.get("detail") or {}
+    if not isinstance(detail, Mapping):
+        return False
+    return bool(entry.get("label")) and bool(detail.get("by")) and bool(detail.get("date"))
+
+
 # One predicate per case, so "it must cover" is a test rather than a promise.
 CASES: Mapping[str, Callable[[ExportWork], bool]] = {
     "preprint-only work": lambda w: w["is_preprint"],
@@ -40,7 +52,7 @@ CASES: Mapping[str, Callable[[ExportWork], bool]] = {
     "listing is the only evidence": lambda w: [e["rule"] for e in w["evidence"]] == ["R1"],
     "listing evidence has no excerpt": lambda w: _has_no_excerpt(w, "R1"),
     "full-text index match, no excerpt": lambda w: _has_no_excerpt(w, "R6"),
-    "override with attribution": lambda w: any(e["rule"] == "override" for e in w["evidence"]),
+    "override with attribution": lambda w: any(_is_attributed_override(e) for e in w["evidence"]),
     "no open-access link": lambda w: w["oa"]["url"] is None,
     "no field-weighted impact": lambda w: w["citations"]["fwci"] is None,
     "retracted": lambda w: w["retracted"],

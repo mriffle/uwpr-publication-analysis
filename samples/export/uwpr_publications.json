@@ -791,7 +791,10 @@
       "evidence": [
         {
           "criterion": null,
-          "detail": {},
+          "detail": {
+            "by": "sample",
+            "date": "2026-09-19"
+          },
           "excerpt": null,
           "first_seen": "2026-09-19",
           "label": "SAMPLE ONLY: illustrates an include override; not a real decision.",

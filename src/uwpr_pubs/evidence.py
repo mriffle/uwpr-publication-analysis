@@ -18,7 +18,15 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import Any, cast
 
-from uwpr_pubs.store.models import Date, Evidence, RecordId, RuleVersion, StaffKey
+from uwpr_pubs.store.models import (
+    Date,
+    Evidence,
+    EvidenceOverride,
+    Override,
+    RecordId,
+    RuleVersion,
+    StaffKey,
+)
 
 EXCERPT_LIMIT = 300  # docs/02 §5.3 says "at most about 300 characters"; the schema allows 400
 ELLIPSIS = "…"
@@ -87,6 +95,33 @@ def criterion_for(rule: str, *, phrase: str | None = None, names_staff: bool = F
     if rule == "R6":
         return 2 if phrase and "UWPR95794" in phrase.replace(" ", "") else 4
     raise ValueError(f"unknown rule {rule!r}")
+
+
+def override_evidence(override: Override, today: Date) -> EvidenceOverride:
+    """An `include` override, as evidence (docs/02 §9).
+
+    The reason becomes the label, so it is shown like any other reason; `by` and `date` become
+    the detail, because docs/05 §6 has the app show the reason "attributed to the person who
+    decided it and dated". An override is the one place a human judgement enters an otherwise
+    automatic pipeline, so it is the last place that should be less traceable than a parsed
+    sentence.
+    """
+    return cast(
+        EvidenceOverride,
+        {
+            "rule": "override",
+            "criterion": criterion_for("override"),
+            "label": str(override["reason"]),
+            "record": None,  # it belongs to the work, not to any one version (docs/02 §5.3)
+            "source": {"name": "overrides.yaml", "url": None, "retrieved": today, "cache": None},
+            "section": "override",
+            "excerpt": None,
+            "detail": {"by": str(override["by"]), "date": str(override["date"])},
+            "rule_version": "",  # the merge stamps the run's version
+            "first_seen": today,
+            "last_seen": today,
+        },
+    )
 
 
 def staff_named(detail: Mapping[str, Any]) -> StaffKey | None:

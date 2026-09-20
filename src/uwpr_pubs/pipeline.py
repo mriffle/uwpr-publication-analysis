@@ -21,7 +21,7 @@ from uwpr_pubs import __version__, git, versions
 from uwpr_pubs.channels import ALL_CHANNELS, ChannelRunner, DiscoveryResult, Nomination
 from uwpr_pubs.config import Config
 from uwpr_pubs.context import RunContext
-from uwpr_pubs.evidence import MergeContext, merge_evidence
+from uwpr_pubs.evidence import MergeContext, merge_evidence, override_evidence
 from uwpr_pubs.fixtures import evaluate
 from uwpr_pubs.fulltext import TextFetcher, TextResult, fulltext_field, needs_evaluation, recheck_after
 from uwpr_pubs.http import HttpClient, HttpError, Mode
@@ -1373,6 +1373,14 @@ class Pipeline:
         overrides = {
             str(o["target"]): str(o["action"]) for o in self.config.overrides if isinstance(o["target"], str)
         }
+        # An include override is a reason, and is recorded as evidence like any other (docs/02 §9).
+        # Without it a work included by override would carry no evidence at all, which the export
+        # schema rejects, and the app would have nothing to show for why it is here.
+        includes = {
+            str(o["target"]): o
+            for o in self.config.overrides
+            if o["action"] == "include" and isinstance(o["target"], str)
+        }
         merge_context = MergeContext(
             rule_version=self.config.rule_version,
             today=self.context.date,
@@ -1384,6 +1392,9 @@ class Pipeline:
         metrics: list[MetricsLine] = []
 
         for work_id, draft in sorted(self.drafts.items()):
+            forced = includes.get(work_id)
+            if forced is not None:
+                draft.derived_evidence.append(override_evidence(forced, self.context.date))
             outcome = merge_evidence(draft.stored_evidence, draft.derived_evidence, merge_context)
             canonical = None
             year = None
@@ -1406,7 +1417,7 @@ class Pipeline:
             if status.included and canonical and draft.on_official_list:
                 canonical = self._storable_canonical(draft, canonical)
             if status.included and canonical:
-                works.append(self._work_file(draft, outcome.evidence, canonical, status.since or ""))
+                works.append(self._work_file(draft, outcome.evidence, canonical, status))
                 metrics.extend(self._metrics_for(draft))
                 for entry in outcome.evidence:
                     if "superseded" not in entry:
@@ -1436,7 +1447,7 @@ class Pipeline:
         draft.records[canonical] = cast(Record, {**draft.records[canonical], "kind": "article"})
         return canonical
 
-    def _work_file(self, draft: Draft, evidence: list[Evidence], canonical: RecordId, since: str) -> Work:
+    def _work_file(self, draft: Draft, evidence: list[Evidence], canonical: RecordId, status: Status) -> Work:
         records = io.sort_records(list(draft.records.values()))
         if draft.is_new:
             self.recorder.added.append(draft.id)
@@ -1450,7 +1461,13 @@ class Pipeline:
                     for key, target in self.aliases.items()
                     if key.startswith("work:") and target == draft.id
                 ),
-                "status": {"included": True, "since": since or self.context.date, "basis": "rules"},
+                # The basis is what decided it, not what usually decides: a work included by an
+                # override says so, or the file claims rules that did not fire (docs/02 §13).
+                "status": {
+                    "included": True,
+                    "since": status.since or self.context.date,
+                    "basis": status.basis or "rules",
+                },
                 "canonical": canonical,
                 "records": records,
                 "evidence": io.sort_evidence(evidence),

@@ -45,6 +45,9 @@ LABELS = {  # plain-language labels; in the real pipeline these live in config/r
     ("R6", None): "Phrase found in OpenAlex's full-text index of the paper",
     ("R7", None): "A UWPR staff member is thanked for data-analysis or technical help",
 }
+# Who decided the sample's overrides. An override is a judgement, so the store carries the person
+# and the date alongside the reason (docs/02 §9, docs/05 §6); the same value writes overrides.yaml.
+OVERRIDE_BY = "sample"
 KIND = {"article": "article", "review": "review", "letter": "letter", "preprint": "preprint",
         "data-paper": "data-paper", "book-chapter": "book-chapter"}
 OA_SELECT = ("id,doi,ids,display_name,publication_date,publication_year,type,primary_location,authorships,topics,"
@@ -247,6 +250,7 @@ def build_evidence(e, rec, observed, rule_version, list_entry=None, page_url=Non
                     detail={"phrase": q, "query_date": observed})
     elif rule == "override":
         base.update(label=e["reason"], section="override", excerpt=None, record=None,
+                    detail={"by": OVERRIDE_BY, "date": observed},
                     source={"name": "overrides.yaml", "url": None, "retrieved": observed, "cache": None})
     elif rule == "R2" and e.get("source") == "OpenAlex":
         base.update(label=LABELS[("R2", "metadata")], section="metadata", excerpt=e["excerpt"], detail=e["detail"],
@@ -408,10 +412,11 @@ def main():
 
     overrides = [
         {"target": "W-000014", "action": "include",
-         "reason": "SAMPLE ONLY: illustrates an include override; not a real decision.", "by": "sample", "date": observed},
+         "reason": "SAMPLE ONLY: illustrates an include override; not a real decision.",
+         "by": OVERRIDE_BY, "date": observed},
         {"target": ["W-000004", "W-000005"], "action": "merge",
          "reason": "Preprint and article of the same study; titles differ too much to link automatically.",
-         "by": "sample", "date": observed},
+         "by": OVERRIDE_BY, "date": observed},
     ]
     (SAMPLES / "overrides.yaml").write_text(
         "# Sample overrides for the Phase 2 sample store (docs/02-data-model.md §9).\n"

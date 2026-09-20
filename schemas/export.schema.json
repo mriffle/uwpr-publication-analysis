@@ -288,6 +288,21 @@
           "if": {"properties": {"rule": {"const": "override"}}, "required": ["rule"]},
           "then": {"not": {"required": ["found_on"]}},
           "else": {"required": ["found_on"]}
+        },
+        {
+          "comment": "An override is a judgement: the app shows it attributed and dated (docs/05 §6).",
+          "if": {"properties": {"rule": {"const": "override"}}, "required": ["rule"]},
+          "then": {
+            "properties": {
+              "detail": {
+                "required": ["by", "date"],
+                "properties": {
+                  "by": {"type": "string", "minLength": 1},
+                  "date": {"$ref": "common.schema.json#/$defs/date"}
+                }
+              }
+            }
+          }
         }
       ]
     },

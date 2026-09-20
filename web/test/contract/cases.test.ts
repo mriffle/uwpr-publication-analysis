@@ -39,7 +39,10 @@ const CASES: Record<string, (work: Work) => boolean> = {
   'a full-text-index match, with no excerpt': (work) =>
     work.evidence.some((entry) => entry.rule === 'R6' && entry.excerpt === null),
   'an override with its attribution': (work) =>
-    work.evidence.some((entry) => entry.rule === 'override'),
+    work.evidence.some((entry) => {
+      const detail = entry.detail as Record<string, unknown>;
+      return entry.rule === 'override' && Boolean(detail.by) && Boolean(detail.date);
+    }),
   'a work with no open-access link': (work) => work.oa.url === null,
   'a work with no field-weighted impact': (work) => work.citations.fwci === null,
   'a retracted work': (work) => work.retracted,
@@ -99,27 +102,26 @@ describe.skipIf(!isSampleExport)(
     });
 
     /**
-     * A recorded gap, deliberately asserted so that closing it fails here and points at the spec.
-     *
-     * docs/05 §13 and docs/06 §12.1 call this case "an override with its attribution", and
      * docs/06 §5 requires the app to show "the recorded reason, attributed to the person who
      * decided it and dated. It is a judgement, not a measurement, and must read as one."
      *
-     * The export carries none of those three. `overrides.yaml` records `reason`, `by` and `date`
-     * on every entry, but no code path turns an include override into evidence carrying them:
-     * `evidence[].detail` is `{}`, and the schema requires nothing of it for `rule: "override"`.
-     * `uwpr_pubs.sample`'s coverage predicate only asks that some evidence has `rule == override`,
-     * so the §13 guard passes while the attribution is missing.
-     *
-     * Until that is decided, the app cannot render §5's override wording without inventing an
-     * attribution, which is the one thing docs/05 §11.6 forbids. **When the contract starts
-     * carrying the attribution, this test fails — delete it and implement §5's wording.**
+     * All three now arrive: `overrides.yaml` records `reason`, `by` and `date` on every entry,
+     * the pipeline turns an include override into evidence carrying them (the reason as the
+     * label, the rest as `detail`), and the export schema requires `detail.by` and `detail.date`
+     * of every `rule: "override"` entry. So the app can render §5's wording from the data rather
+     * than inventing an attribution, which docs/05 §11.6 forbids. This test is what the app's
+     * own reading of the case rests on; it was a recorded gap until 2026-09-20.
      */
-    it('RECORDED GAP: an override reaches the app with no reason, author or date', () => {
+    it('carries the attribution the app must show: a reason, a person and a date', () => {
       const work = find(CASES['an override with its attribution'] as (work: Work) => boolean);
       const entry = work?.evidence.find((item) => item.rule === 'override');
       const detail = entry?.detail as Record<string, unknown>;
-      expect(Object.keys(detail)).toEqual([]);
+      expect(entry?.label).toBeTruthy();
+      expect(detail.by).toEqual(expect.any(String));
+      expect(detail.by).not.toBe('');
+      // A date the app can format, not a free-text one: the same ISO shape as every other date.
+      expect(detail.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      // The reason is the label; there is no quotation to show, because nothing was read.
       expect(entry?.excerpt).toBeNull();
     });
 
