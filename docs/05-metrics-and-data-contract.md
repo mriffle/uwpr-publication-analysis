@@ -13,7 +13,34 @@ rather than inventing it.
 model, the four inclusion criteria and retired work IDs, and which described tiers and
 incremental runs that no longer exist. It was rewritten rather than edited.
 
-**Changes since agreement** (all 2026-09-20, found while implementing stage 11):
+**Changes since agreement** (all 2026-09-20; the first group found while building the app, the
+rest while implementing stage 11):
+- *§6 and §13, an override's attribution was promised but not carried.* §6 requires the app to
+  show an override's reason "attributed to the person who decided it and dated", and §13 names the
+  case "an override with its attribution". The reason does arrive — [02](02-data-model.md) §5.3
+  makes it the evidence `label` — but **`by` and `date` reached nothing**. `overrides.yaml`
+  requires both on every entry, and no code path carried them into evidence, so the app could not
+  render §6's wording without inventing an attribution, which §11.6 forbids. **Decided: carry
+  them**, as `detail.by` and `detail.date`. An override is the one place a human judgement enters
+  an otherwise automatic pipeline, so it is the last place that should be less traceable than a
+  parsed sentence. This needs **no schema change in [02](02-data-model.md)**: `common.schema.json`
+  constrains override evidence only to `criterion: null` and `section: "override"` and leaves
+  `detail` free, so the change is the pipeline populating it, the export requiring it, and §13's
+  predicate checking for the attribution rather than merely for the rule.
+- *§5, the precision of the field-weighted figures is part of their definition.* §1.2 asserts
+  equality between two independent implementations, so an unstated rounding convention is a
+  latent failure: the sample's own median is 1.19675, which rounds to 1.1967 or 1.1968 depending
+  on the rule chosen. Four decimal places, rounding the exact binary value, with the mean summed
+  by compensated addition.
+- *§5, two definitions were narrower than what the pipeline computes.* **Research groups** and
+  **distinct last authors** said "by OpenAlex ID"; the pipeline falls back to the author's name
+  for the 2% of slots with no ID, which is why the figures are 215 and 155 rather than 210 and
+  150. **Citations in the by-year window** said "available from 2012"; the pipeline sums the whole
+  by-year series whatever it covers, and `period.citation_years_from` is nullable. The two agree
+  today only because OpenAlex reports nothing before 2012.
+- *§4.5, the summary block list was one field short and one definition stale:* `last_authors` was
+  missing from the prose although the schema requires it, and it still described open access as "a
+  link" after the changelog below resolved that §5's "status other than `closed`" wins.
 - *§13, `uwpr-pubs export` is general, not a sample builder:* the run metadata comes from the
   store's own latest run manifest, and the §13 coverage guard applies only when `--cases` is
   given. Keying the guard on nothing made the command fail permanently against the real store,
@@ -355,10 +382,11 @@ a fraction of that in exchange for an app that can show less than it can prove.
 
 ### 4.5 The `summary` block
 
-Pre-computed, independently, over all works with no filter applied: publications, first and last
-year, total citations, citations in the by-year window, median and mean field-weighted impact,
-corpus h-index, works with an open-access link, distinct journals, distinct institutions, distinct
-countries, distinct corresponding authors, works on the official list, works not on it, and
+Pre-computed, independently, over all works with no filter applied. **Seventeen fields**, and the
+schema is the list of record: publications, first and last year, total citations, citations in the
+by-year window, median and mean field-weighted impact, corpus h-index, works whose open-access
+status is not `closed`, distinct journals, distinct institutions, distinct countries, distinct
+corresponding authors, **distinct last authors**, works on the official list, works not on it, and
 preprint-only works.
 
 It is used for three things: the cross-check in §1.2, link previews, and any plain-text report.
@@ -376,15 +404,15 @@ check the app against this document.
 | **Year of a work** | Publication date of the canonical record (§2.1). | — |
 | **Citations of a work** | OpenAlex `cited_by` of the **canonical record only**. | — |
 | **Total citations** | Sum over works. | **29,575** |
-| **Citations received in year Y** | Sum of each work's citations received in Y. Available from **2012**; 458 earlier citations are outside the window and are reported as a single figure. | 29,117 in window |
-| **Field-weighted citation impact** | OpenAlex FWCI: citations against the average for the same field, year and type. 1.0 is average. **Reported as the median** over works that have one (323 of 339). | **median 2.68** |
+| **Citations received in year Y** | Sum of each work's citations received in Y. **The window is whatever the by-year series covers, not a fixed start year** — `period.citation_years_from` reports it and is nullable. OpenAlex currently reports nothing before **2012**, so 458 earlier citations fall outside it and are reported as a single figure. | 29,117 in window |
+| **Field-weighted citation impact** | OpenAlex FWCI: citations against the average for the same field, year and type. 1.0 is average. **Reported as the median** over works that have one (323 of 339). **Rounded to four decimal places**, rounding the exact binary value, and the mean summed with compensated addition — §1.2 asserts equality between two implementations, so the precision is part of the definition. | **median 2.68** |
 | **Citation percentile** | OpenAlex percentile within field and year. **Detail view only** (§2.2). | median 0.901 |
 | **Corpus h-index** | Largest *h* with *h* works cited at least *h* times. Secondary, not a headline (it largely measures corpus size and age). | **83** |
 | **Open-access share** | Works whose canonical record has an open-access status other than `closed`, over all works. | **307 of 339 (91%)** |
 | **Distinct journals** | Distinct venues, keyed by ISSN-L where present, else by name. Preprint servers are venues and are counted as such. | **130** |
 | **Distinct institutions** | Distinct ROR IDs across all authors of all works. **A floor, and labelled as one:** 898 of 4,907 affiliation strings carry no ROR ID. | **243** |
 | **Distinct countries** | Distinct countries across ROR-resolved affiliations. Same floor caveat. | **34** |
-| **Research groups** | Distinct corresponding authors, by OpenAlex ID. **A proxy, and labelled as one:** 283 of 339 works mark a corresponding author, and a group may publish under several. Distinct last authors (155) is exported as a second view. | **215** |
+| **Research groups** | Distinct corresponding authors, keyed by OpenAlex ID **and falling back to the author's name where there is none** (2% of author slots). **A proxy, and labelled as one:** 283 of 339 works mark a corresponding author, and a group may publish under several. Distinct last authors (155), keyed the same way, is exported as a second view. | **215** |
 | **Works with a staff author** | Works with at least one author identified as UWPR staff. Reported on the method page, never as evidence — staff co-authorship alone never includes a paper (D2). | **104** |
 | **On the official list** | Works whose evidence includes the site listing. | **306** |
 | **Found beyond the official list** | Works included on evidence but absent from UWPR's own list. | **33** |
@@ -427,7 +455,7 @@ false:
 |---|---|
 | The listing itself | "Listed on UWPR's publications page", with the page and the first and last dates it was seen. **There is no excerpt** and the app must not leave an empty quotation. **91 works have this as their only evidence.** |
 | A full-text index match | "This phrase was found in OpenAlex's full-text index of this paper", with the phrase and the query date. **There is no excerpt**, because we could not read the text ourselves. **49 works carry one.** |
-| An override | The reason recorded by the person who made the decision, attributed to them and dated. It is a judgement, not a measurement, and should read as one. |
+| An override | The reason recorded by the person who made the decision, attributed to them and dated. It is a judgement, not a measurement, and should read as one. The reason arrives as the evidence `label` ([02](02-data-model.md) §5.3); **the attribution arrives as `detail.by` and `detail.date`**, which the export requires for override evidence. |
 
 ## 7. Visualizations
 

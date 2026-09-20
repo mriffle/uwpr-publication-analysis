@@ -4,6 +4,12 @@
 deliberately, dated, and noted in this header.
 
 **Changes since agreement:**
+- *2026-09-20, §7, which alias map resolves a permalink:* "the export's alias map" was ambiguous,
+  and the two maps have different reach. The export's `aliases` cover retired work IDs only; an
+  external identifier resolves only through `lookup_index.json`, which §10 deliberately loads on
+  demand. §7 now states the order and requires the on-demand fetch before a not-found, so a DOI
+  permalink works from cold. Found while building the contract layer.
+- *2026-09-20, §11.2, visx 4:* 3.x will not install beside React 19.
 - *2026-09-20, §7 and §4.1, the staleness notice:* the app must state its own staleness when the
   data is more than 14 days old — two missed weekly runs — where the reader will see it, rather
   than presenting old figures as current. Added by [07](07-operations.md) O3, which needed a layer
@@ -249,7 +255,7 @@ charts and the publication list, with the filter stated and the data date on the
 | Data loading | A skeleton layout, not a spinner over an empty page |
 | Data fails to load | A plain message naming the file, with a retry. No partial page pretending to be complete |
 | `schema_version` is a major version the app does not know | A clear message naming the version found and the version expected, and no attempt to render. A wrong render is worse than none |
-| A work referenced by URL does not exist | Resolve it through the export's alias map first — 37 works carry a retired identifier — and only then show a not-found state |
+| A work referenced by URL does not exist | **Two maps, with different reach, and the order matters.** The export's own `aliases` resolve **retired work IDs** only — 37 works carry one — and are already loaded. An external identifier in a permalink (a DOI, PMID or OpenAlex ID) resolves only through `lookup_index.json`, which §10 loads on demand. So: try the export first; if the URL carries an identifier it cannot resolve, **fetch the lookup index before deciding**, and only then show a not-found state. A DOI permalink must work from cold, at the cost of one extra fetch in the case that needs it |
 | **The data is more than 14 days old** | Say so, in place, near the "data as of" date and the headline figures. Two missed weekly runs means something is wrong, and a page that keeps presenting the figures as current is the failure mode [07](07-operations.md) §5 exists to prevent |
 
 ## 8. Design direction
@@ -350,6 +356,9 @@ Chosen over a higher-level charting library for two reasons:
    jsdom without mocked dimensions, which makes component tests awkward exactly where they are
    wanted. visx takes width and height as props, so tests pass fixed dimensions and assert
    deterministic SVG.
+
+**Version note (measured 2026-09-20):** visx **4.x** is required. 3.x peer-declares React 16–18
+and refuses to install beside B1's React 19; `@visx/*@4.0.0` declares `^18 || ^19`.
 
 **The trade is recorded honestly:** visx costs more code up front than a higher-level library.
 The shared kit is what keeps that cost one-time, and because all aggregation lives outside the
