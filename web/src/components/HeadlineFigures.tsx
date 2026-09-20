@@ -72,7 +72,7 @@ export function HeadlineFigures({ works, citationsAsOf }: HeadlineFiguresProps) 
 
   return (
     <>
-      <ul className="figure-grid">
+      <ul className="figure-grid" aria-label="Headline figures">
         {figures.map((figure) => (
           <li key={figure.label}>
             <span className="figure-value">{figure.value}</span>

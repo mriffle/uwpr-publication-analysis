@@ -58,7 +58,7 @@ export default defineConfig(({ mode }) => {
         provider: 'v8',
         reporter: ['text', 'lcov'],
         include: ['src/**/*.{ts,tsx}'],
-        exclude: ['src/main.tsx', 'src/contract/generated/**'],
+        exclude: ['src/main.tsx', 'src/contract/generated/**', 'src/**/*.d.ts'],
         thresholds: {
           lines: 80,
           statements: 80,

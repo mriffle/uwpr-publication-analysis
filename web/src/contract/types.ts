@@ -24,19 +24,3 @@ export type {
 } from './generated/export';
 
 export type { LookupIndexDocument } from './generated/lookup-index';
-
-/** `oa.status` values the contract allows (docs/05 §9: six values plus `unknown`). */
-export const OA_STATUSES = [
-  'diamond',
-  'gold',
-  'green',
-  'hybrid',
-  'bronze',
-  'closed',
-  'unknown',
-] as const;
-export type OaStatus = (typeof OA_STATUSES)[number];
-
-/** The four inclusion criteria of docs/01 §6, as they appear on a work. */
-export const CRITERIA = [1, 2, 3, 4] as const;
-export type Criterion = (typeof CRITERIA)[number];
