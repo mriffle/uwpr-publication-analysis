@@ -59,22 +59,24 @@ export function Overview({ doc, now }: OverviewProps) {
         update strands a screen reader user mid-page." The same sentence is shown, because
         docs/06 §6 requires the active filter to be stated in words beside the figures.
       */}
-      <p className="notice" role="status" aria-live="polite">
-        {sentence}
+      <div className="notice filter-bar">
+        {/*
+          The control sits outside the live region: a live region announces everything inside it
+          on every change, and a reader does not need "Clear all filters" read out each time the
+          count moves.
+        */}
+        <p role="status">{sentence}</p>
         {chips.length > 0 ? (
-          <>
-            {' '}
-            <button
-              type="button"
-              onClick={() => {
-                setFilter(EMPTY_FILTER);
-              }}
-            >
-              Clear all filters
-            </button>
-          </>
+          <button
+            type="button"
+            onClick={() => {
+              setFilter(EMPTY_FILTER);
+            }}
+          >
+            Clear all filters
+          </button>
         ) : null}
-      </p>
+      </div>
 
       <h2>Headline figures</h2>
       <HeadlineFigures works={works} citationsAsOf={doc.sources.citations.as_of} />

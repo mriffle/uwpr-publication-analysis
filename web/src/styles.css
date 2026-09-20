@@ -144,21 +144,22 @@ a {
   margin: 1rem 0;
 }
 
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-bar p {
+  margin: 0;
+}
+
 .notice-error {
   border-color: var(--error-border);
   background: var(--error-bg);
   color: var(--text);
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
 }
 
 /* --- chart kit ------------------------------------------------------------------------- */
@@ -337,6 +338,10 @@ a {
 
 .chart-empty p {
   margin: 0 0 0.5rem;
+}
+
+.chart-empty-filter {
+  font-size: 0.9rem;
 }
 
 .figure-grid {
