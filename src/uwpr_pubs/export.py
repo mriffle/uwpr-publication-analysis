@@ -102,6 +102,20 @@ class ExportAuthor(TypedDict):
 
 
 class ExportPerson(TypedDict):
+    """A member of the resource's staff.
+
+    `id` is the join key the app needs: the same identifier `authors[].staff` and
+    `staff_authors` carry, so a staff id can be turned into a name (docs/05 §4.2).
+    """
+
+    id: StaffKey
+    name: str
+    openalex: str | None
+
+
+class ExportNamedPerson(TypedDict):
+    """Someone named on a publication who is not staff, and so has no staff identifier."""
+
     name: str
     openalex: str | None
 
@@ -168,7 +182,7 @@ class ExportWork(TypedDict):
     staff_authors: list[StaffKey]
     institutions: list[ExportInstitution]
     countries: list[str]
-    corresponding_authors: list[ExportPerson]
+    corresponding_authors: list[ExportNamedPerson]
     topics: list[ExportTopic]
     citations: ExportCitations
     on_official_list: bool
@@ -219,11 +233,20 @@ class ExportMethod(TypedDict):
     sources_last_read: dict[str, Date]
 
 
+class ExportHomeInstitution(TypedDict):
+    ror: str
+    name: str
+
+
 class ExportResource(TypedDict):
     name: str
     short_name: str
     url: str
     identifier: str
+    #: The institution docs/05 §7.8's chart excludes, and the country §7.14 counts "outside".
+    #: Facts about the facility, so they are stated here rather than inferred by the app.
+    home_institution: ExportHomeInstitution
+    home_country: str
     staff: list[ExportPerson]
 
 

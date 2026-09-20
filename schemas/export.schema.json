@@ -48,6 +48,18 @@
   },
   "$defs": {
     "person": {
+      "description": "A member of the resource's staff. `id` is the join key: it is the same identifier that works[].authors[].staff and works[].staff_authors carry, so the app can turn one into a name (docs/05 §4.2).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "openalex"],
+      "properties": {
+        "id": {"$ref": "common.schema.json#/$defs/staffKey"},
+        "name": {"type": "string"},
+        "openalex": {"type": ["string", "null"]}
+      }
+    },
+    "namedPerson": {
+      "description": "Someone named on a publication who is not part of the resource, so has no staff identifier.",
       "type": "object",
       "additionalProperties": false,
       "required": ["name", "openalex"],
@@ -59,12 +71,27 @@
     "resource": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "short_name", "url", "identifier", "staff"],
+      "required": ["name", "short_name", "url", "identifier", "home_institution", "home_country", "staff"],
       "properties": {
         "name": {"type": "string", "minLength": 1},
         "short_name": {"type": "string", "minLength": 1},
         "url": {"type": "string", "format": "uri"},
         "identifier": {"type": "string", "minLength": 1},
+        "home_institution": {
+          "description": "The institution this resource belongs to. docs/05 §7.8's chart excludes it; the app is told which one rather than taking the most frequent, which would silently start charting the home institution if it ever fell below the threshold.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ror", "name"],
+          "properties": {
+            "ror": {"$ref": "common.schema.json#/$defs/ror"},
+            "name": {"type": "string", "minLength": 1}
+          }
+        },
+        "home_country": {
+          "description": "The ISO 3166-1 alpha-2 country the resource sits in. docs/05 §7.14 counts works with an author outside it, and leaves it out of the country bar.",
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
         "staff": {"type": "array", "items": {"$ref": "#/$defs/person"}}
       }
     },
@@ -392,7 +419,7 @@
         },
         "institutions": {"type": "array", "items": {"$ref": "#/$defs/institution"}},
         "countries": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
-        "corresponding_authors": {"type": "array", "items": {"$ref": "#/$defs/person"}},
+        "corresponding_authors": {"type": "array", "items": {"$ref": "#/$defs/namedPerson"}},
         "topics": {"type": "array", "items": {"$ref": "#/$defs/topic"}},
         "citations": {"$ref": "#/$defs/citations"},
         "on_official_list": {"type": "boolean"},

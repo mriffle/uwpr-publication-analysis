@@ -33,27 +33,37 @@
   },
   "pipeline_version": "samples/build_sample_store.py",
   "resource": {
+    "home_country": "US",
+    "home_institution": {
+      "name": "University of Washington",
+      "ror": "00cvxb145"
+    },
     "identifier": "UWPR95794",
     "name": "University of Washington Proteomics Resource",
     "short_name": "UWPR",
     "staff": [
       {
+        "id": "eng",
         "name": "Jimmy K. Eng",
         "openalex": "A5011565192"
       },
       {
+        "id": "hoopmann",
         "name": "Michael R. Hoopmann",
         "openalex": "A5018903678"
       },
       {
+        "id": "riffle",
         "name": "Michael Riffle",
         "openalex": "A5067746093"
       },
       {
+        "id": "sharma",
         "name": "Vagisha Sharma",
         "openalex": "A5101918119"
       },
       {
+        "id": "vonhaller",
         "name": "Priska D. von Haller",
         "openalex": "A5083225847"
       }

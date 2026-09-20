@@ -6,6 +6,13 @@ resource:                            # what the app names; the app holds no UWPR
   name: University of Washington Proteomics Resource
   short_name: UWPR
   url: https://proteomicsresource.washington.edu/
+  # The facility's own institution and country, stated rather than inferred (docs/05 §7.8, §7.14).
+  # The institution chart excludes the first and the geography section counts "outside" the
+  # second; both are facts about this facility, so the app must be told them, not guess from
+  # frequency. Measured against the committed store on 2026-09-20: this ROR is on 316 of 339
+  # works and US on 322.
+  home_institution: {ror: 00cvxb145, name: University of Washington}   # as OpenAlex names it
+  home_country: US                   # ISO 3166-1 alpha-2
 official_list:
   index_url: https://proteomicsresource.washington.edu/publications/
   page_link_pattern: '^(?:https://proteomicsresource\.washington\.edu)?/publications/(?:[0-9]{4}|older)/$'

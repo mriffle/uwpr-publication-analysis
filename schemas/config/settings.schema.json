@@ -13,11 +13,26 @@
       "description": "What the app calls the facility it describes. The app holds no UWPR-specific text of its own (docs/05 §1.1 principle 5), so every name and link it shows comes from here through export/.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "short_name", "url"],
+      "required": ["name", "short_name", "url", "home_institution", "home_country"],
       "properties": {
         "name": {"type": "string", "minLength": 1},
         "short_name": {"type": "string", "minLength": 1},
-        "url": {"type": "string", "pattern": "^https://"}
+        "url": {"type": "string", "pattern": "^https://"},
+        "home_institution": {
+          "description": "The institution the facility belongs to, which docs/05 §7.8's chart excludes. Stated here because the app must not infer it from frequency.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ror", "name"],
+          "properties": {
+            "ror": {"description": "ROR ID without the https://ror.org/ prefix, matching works[].institutions[].ror", "$ref": "../common.schema.json#/$defs/ror"},
+            "name": {"description": "As the affiliation source names it, so the chart's note and the data agree", "type": "string", "minLength": 1}
+          }
+        },
+        "home_country": {
+          "description": "ISO 3166-1 alpha-2 code the facility sits in; docs/05 §7.14 counts authors outside it.",
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        }
       }
     },
     "contact": {

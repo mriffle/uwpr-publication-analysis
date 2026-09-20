@@ -27,7 +27,15 @@ from uwpr_pubs.export import (
 )
 from uwpr_pubs.schemas import schema_errors
 from uwpr_pubs.store import io
-from uwpr_pubs.store.models import Candidate, Date, DateTime, MetricsLine, Work, WorkId
+from uwpr_pubs.store.models import (
+    Candidate,
+    Date,
+    DateTime,
+    MetricsLine,
+    StaffKey,
+    Work,
+    WorkId,
+)
 from uwpr_pubs.store.read import StoreSnapshot, read_store
 
 EXPORT_FILE = "uwpr_publications.json"
@@ -40,15 +48,28 @@ def export_dir(store: Path) -> Path:
 
 
 def resource_block(config: Config) -> ExportResource:
-    """The facility's own names, from config rather than from anywhere in the code."""
+    """The facility's own names, from config rather than from anywhere in the code.
+
+    `home_institution` and `home_country` are facts about *this* facility, which docs/05 §7.8
+    and §7.14 need and which the app must not infer (§1.1 principle 5). Each staff entry carries
+    its `key` as `id`, the same identifier `authors[].staff` and `staff_authors` use, which is
+    what lets the app name a staff member from an id.
+    """
     resource = config.resource
+    home = resource["home_institution"]
     return {
         "name": str(resource["name"]),
         "short_name": str(resource["short_name"]),
         "url": str(resource["url"]),
         "identifier": str(config.rules["r2"]["code"]),
+        "home_institution": {"ror": str(home["ror"]), "name": str(home["name"])},
+        "home_country": str(resource["home_country"]),
         "staff": [
-            {"name": str(person["name"]), "openalex": str(person["openalex"][0])}
+            {
+                "id": cast(StaffKey, str(person["key"])),
+                "name": str(person["name"]),
+                "openalex": str(person["openalex"][0]),
+            }
             for person in sorted(config.staff, key=lambda p: str(p["key"]))
         ],
     }

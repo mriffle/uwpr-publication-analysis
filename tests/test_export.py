@@ -81,6 +81,44 @@ def test_the_sample_validates(built: tuple[Any, Any]) -> None:
     assert report.errors == []
 
 
+def test_the_resource_block_states_the_home_institution_and_country() -> None:
+    """docs/05 §7.8 and §7.14: the app must be told, not left to infer from frequency."""
+    resource = resource_block(load_config())
+    assert resource["home_institution"] == {"ror": "00cvxb145", "name": "University of Washington"}
+    assert resource["home_country"] == "US"
+
+
+def test_the_home_institution_is_what_the_real_store_actually_reports() -> None:
+    """A ROR that named nothing in the data would exclude nothing and the chart would not say so.
+
+    Measured against the committed store: 316 of 339 works and 322 of 339 countries, the figures
+    docs/05 §7.8 and §7.14 quote.
+    """
+    config = load_config()
+    document, _ = build_from_store(REAL_STORE, resource_block(config))
+    home = document["resource"]["home_institution"]
+    at_home = [w for w in document["works"] if any(i["ror"] == home["ror"] for i in w["institutions"])]
+
+    assert len(at_home) == 316
+    assert {i["name"] for w in at_home for i in w["institutions"] if i["ror"] == home["ror"]} == {
+        home["name"]
+    }
+    country = document["resource"]["home_country"]
+    assert sum(country in w["countries"] for w in document["works"]) == 322
+
+
+def test_every_staff_entry_carries_the_id_that_joins_it_to_an_author() -> None:
+    """The join key docs/05 §4.2 was missing: `authors[].staff` and `staff_authors` are ids."""
+    config = load_config()
+    document, _ = build_from_store(REAL_STORE, resource_block(config))
+    staff = {person["id"]: person["name"] for person in document["resource"]["staff"]}
+
+    assert staff == {person["key"]: person["name"] for person in config.staff}
+    used = {key for work in document["works"] for key in work["staff_authors"]}
+    used |= {a["staff"] for w in document["works"] for a in w["authors"] if a["staff"] is not None}
+    assert used <= set(staff), "a staff id on a work that resource.staff cannot name"
+
+
 def test_the_schema_requires_an_override_to_be_attributed_and_dated(built: tuple[Any, Any]) -> None:
     """The guarantee the app reads (docs/05 §6): the store schema leaves `detail` free, so the
     export schema is where "attributed to the person who decided it and dated" is enforced."""
@@ -446,7 +484,16 @@ def _meta() -> ExportMeta:
         run_year=2026,
         citations_as_of="2026-01-01",
         resource=cast(
-            Any, {"name": "n", "short_name": "s", "url": "https://x/", "identifier": "i", "staff": []}
+            Any,
+            {
+                "name": "n",
+                "short_name": "s",
+                "url": "https://x/",
+                "identifier": "i",
+                "home_institution": {"ror": "00cvxb145", "name": "n"},
+                "home_country": "US",
+                "staff": [],
+            },
         ),
     )
 
