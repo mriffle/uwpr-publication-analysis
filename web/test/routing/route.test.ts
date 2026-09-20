@@ -4,6 +4,7 @@
  */
 import { describe, expect, it } from 'vitest';
 import {
+  methodPath,
   overviewPath,
   parseRoute,
   publicationPath,
@@ -52,7 +53,7 @@ describe('parsing', () => {
   });
 
   it('reads anything else as unknown, so the app can show a designed state', () => {
-    expect(parseRoute('/method')).toEqual({ kind: 'unknown', path: 'method' });
+    expect(parseRoute('/nowhere')).toEqual({ kind: 'unknown', path: 'nowhere' });
     // The trailing slash is stripped with every other one, so this is "publication" with no
     // identifier, which is no route rather than an empty publication.
     expect(parseRoute('/publication/')).toEqual({ kind: 'unknown', path: 'publication' });
@@ -87,7 +88,19 @@ describe('building', () => {
   it('builds a path for every route it can parse', () => {
     expect(routePath({ kind: 'overview' })).toBe('/');
     expect(routePath({ kind: 'publication', id: 'W-1' })).toBe('/publication/W-1');
-    expect(routePath({ kind: 'unknown', path: 'method' })).toBe('/method');
+    expect(routePath({ kind: 'method' })).toBe('/method');
+    expect(routePath({ kind: 'unknown', path: 'nowhere' })).toBe('/nowhere');
+  });
+
+  it('round-trips the method route, at the root and under a base (docs/06 §3)', () => {
+    expect(methodPath()).toBe('/method');
+    expect(methodPath('/uwpr/')).toBe('/uwpr/method');
+    expect(parseRoute(methodPath('/uwpr/'), '/uwpr/')).toEqual({ kind: 'method' });
+    // Only the exact path is the method page: a deeper one is no route rather than a near miss.
+    expect(parseRoute('/method/definitions')).toEqual({
+      kind: 'unknown',
+      path: 'method/definitions',
+    });
   });
 });
 

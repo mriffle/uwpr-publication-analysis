@@ -191,7 +191,7 @@ describe('the three outcomes of docs/05 §8', () => {
 describe('an address that is no route at all', () => {
   it('is a designed state with a way back, not a blank page', () => {
     const { fetcher } = serving();
-    at('/method', fetcher);
+    at('/nowhere', fetcher);
     expect(screen.getByRole('alert')).toHaveTextContent('There is no page at this address.');
     expect(screen.getByRole('link', { name: 'See all publications' })).toBeInTheDocument();
   });

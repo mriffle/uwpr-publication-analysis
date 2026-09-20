@@ -95,7 +95,6 @@ describe('the unfiltered overview', () => {
       'Open access over time',
       'Citation distribution',
       'Most cited publications',
-      'How each publication is known',
     ]) {
       expect(screen.getByRole('region', { name })).toHaveAccessibleDescription();
     }
@@ -104,7 +103,36 @@ describe('the unfiltered overview', () => {
   it('offers a table alternative on every chart (docs/06 §7)', () => {
     show();
     const toggles = screen.getAllByRole('button', { name: 'View as table' });
-    expect(toggles.length).toBe(11);
+    expect(toggles.length).toBe(10);
+  });
+
+  it('leaves §7.13’s chart to the method page, and links there instead', () => {
+    show();
+    // docs/05 §7.13: it "belongs on the method page", and docs/06 §4's enumeration of this view
+    // does not include it. The link is docs/06 §4.1's, and every headline figure carries one too.
+    expect(
+      screen.queryByRole('region', { name: 'How each publication is known' }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'How this was assembled' })).toHaveAttribute(
+      'href',
+      '/method',
+    );
+  });
+
+  it('links every headline figure to its definition on the method page (docs/06 §4.2)', () => {
+    show();
+    const figures = within(screen.getByRole('list', { name: 'Headline figures' }));
+    for (const [label, id] of [
+      ['Publications', 'publications'],
+      ['Years covered', 'years-covered'],
+      ['Citations', 'citations'],
+      ['Research groups', 'research-groups'],
+      ['Journals', 'journals'],
+    ] as const) {
+      expect(
+        figures.getByRole('link', { name: `${label}: how this figure is defined` }),
+      ).toHaveAttribute('href', `/method#${id}`);
+    }
   });
 
   it('passes axe', async () => {
@@ -134,14 +162,6 @@ describe('the honesty constraints each chart carries (docs/05 §7)', () => {
     expect(institutions).toHaveTextContent(/would flatten the chart to one bar and a fringe/);
     // Named once, in the note that says it is left out — never again as a bar or a table row.
     expect((institutions.textContent ?? '').split(home.name)).toHaveLength(2);
-  });
-
-  it('says the criteria overlap and the bars sum to more than the corpus (§7.13)', () => {
-    show();
-    const card = screen.getByRole('region', { name: 'How each publication is known' });
-    expect(card).toHaveTextContent(
-      'The bars overlap and sum to more than the number of publications.',
-    );
   });
 
   it('states there is no map, and counts the works with an author abroad (§7.14)', () => {
@@ -224,14 +244,17 @@ describe('clicking a chart mark filters the page', () => {
     expect(field).not.toBe('');
   });
 
-  it('filters by a criterion from the "how it is known" chart', async () => {
+  it('still filters by a criterion, from a shared link (docs/05 §9)', () => {
+    // §7.13's chart moved to the method page, which links back here with each criterion applied.
+    // The dimension itself is unchanged and a link carrying it must still open filtered.
+    window.history.replaceState(null, '', '?criterion=1');
     show();
-    const card = within(screen.getByRole('region', { name: 'How each publication is known' }));
-    const bar = card.getAllByRole('button', {
-      name: /Activate to filter by this/,
-    })[0] as HTMLElement;
-    await userEvent.click(bar);
-    expect(window.location.search).toContain('criterion=');
+    const expected = applyFilter(doc.works, { ...EMPTY_FILTER, criterion: [1] });
+    expect(
+      screen.getByText(
+        sentence(expected.length, "matching How it is known: Listed on UWPR's publications page."),
+      ),
+    ).toBeInTheDocument();
   });
 
   it('clears the filter again, and empties the URL', async () => {

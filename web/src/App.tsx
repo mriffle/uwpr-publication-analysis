@@ -18,10 +18,11 @@ import { useExportDocument } from './contract/useExport';
 import { useLookupIndex } from './contract/useLookup';
 import type { ExportDocument, Work } from './contract/types';
 import type { Fetcher } from './contract/load';
-import { overviewPath, parseRoute, publicationPath } from './routing/route';
+import { methodPath, overviewPath, parseRoute, publicationPath } from './routing/route';
 import { useLocation } from './routing/useLocation';
 import { decodeView, encodeViewToQuery } from './routing/view';
 import type { FilterState } from './filter/state';
+import { Method } from './views/Method';
 import { Overview } from './views/Overview';
 import { PublicationDetail } from './views/PublicationDetail';
 
@@ -113,6 +114,12 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
   const [seenOverview, setSeenOverview] = useState(route.kind === 'overview');
   if (route.kind === 'overview' && !seenOverview) setSeenOverview(true);
 
+  // The method page is reached from the overview and from a headline figure's definition link
+  // (docs/06 §4.1, §4.2). It carries no filter of its own: it describes how the corpus was
+  // assembled, which no filter changes, so the query string is deliberately left behind and the
+  // way back is to the unfiltered publication list.
+  const methodHref = methodPath(base);
+
   const setFilter = useCallback(
     (filter: FilterState) => {
       navigate({ search: encodeViewToQuery({ ...view, filter }) });
@@ -155,6 +162,14 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
     navigate({ pathname: overviewPath(base) });
   }, [navigate, base]);
 
+  // The method page carries no filter, so its URL drops the query rather than showing a filter
+  // that changes nothing on it. Going back pops the entry, which restores the reader's filtered
+  // overview exactly — the same mechanism that keeps the filter across a publication detail.
+  const openMethod = useCallback(() => {
+    openedInApp.current = true;
+    navigate({ pathname: methodHref, search: '' });
+  }, [navigate, methodHref]);
+
   // docs/06 §7: the export's own aliases resolve retired work IDs and are already loaded; an
   // external identifier resolves only through the lookup index, which is fetched only when the
   // export could not answer. `needsLookup` is that condition, and nothing else triggers a fetch.
@@ -172,8 +187,21 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
         onSort={setSort}
         publicationHref={publicationHref}
         onOpenPublication={openPublication}
+        methodHref={methodHref}
+        onOpenMethod={openMethod}
         {...(now ? { now } : {})}
         {...(searchDebounceMs === undefined ? {} : { searchDebounceMs })}
+      />
+    );
+  }
+
+  if (route.kind === 'method') {
+    return (
+      <Method
+        doc={doc}
+        overviewHref={overviewPath(base)}
+        {...(seenOverview ? { onClose: backToOverview } : {})}
+        {...(now ? { now } : {})}
       />
     );
   }

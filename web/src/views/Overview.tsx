@@ -1,7 +1,8 @@
 /**
  * The overview (docs/06 §4), top to bottom: header, headline figures, output over time, research
- * areas, who the work involves, where it appears, the citation profile, how the publications are
- * known, the publication explorer, footer.
+ * areas, who the work involves, where it appears, the citation profile, the publication explorer,
+ * footer. That is §4's enumeration exactly; how the publications are *known* is the method page's
+ * subject (docs/05 §7.13, §10) and its chart lives there.
  *
  * **Every chart recomputes under every filter, and nothing reads the `summary` block**
  * (docs/05 §1.1, §7). The filtered rows are computed once here and handed to each chart's own
@@ -15,7 +16,6 @@
  */
 import { useMemo, useState } from 'react';
 import {
-  criteriaBars,
   rankCountries,
   rankInstitutions,
   rankJournals,
@@ -57,12 +57,11 @@ import { HeadlineFigures } from '../components/HeadlineFigures';
 import { PublicationExplorer } from '../components/PublicationExplorer';
 import { StalenessNotice } from '../components/StalenessNotice';
 import type { ExportDocument, Work } from '../contract/types';
-import { CRITERION_LABELS, buildLabels, describeFilter, filterSentence } from '../filter/describe';
+import { buildLabels, describeFilter, filterSentence } from '../filter/describe';
 import { applyFilter } from '../filter/predicate';
 import {
   EMPTY_FILTER,
   setSearch,
-  toggleCriterion,
   toggleString,
   toggleYear,
   type FilterState,
@@ -80,6 +79,9 @@ export interface OverviewProps {
   /** The route for a publication (docs/06 §3), and the in-app navigation to it. */
   publicationHref: (work: Work) => string;
   onOpenPublication: (work: Work) => void;
+  /** The method page (docs/06 §4.1), which §4.2's figures also link into by fragment. */
+  methodHref: string;
+  onOpenMethod: () => void;
   /** Injected in tests so the staleness threshold is exercised without freezing the clock. */
   now?: Date;
   /** 0 in tests, so a keystroke in the search box does not need a timer to land. */
@@ -94,6 +96,8 @@ export function Overview({
   onSort,
   publicationHref,
   onOpenPublication,
+  methodHref,
+  onOpenMethod,
   now,
   searchDebounceMs,
 }: OverviewProps) {
@@ -139,7 +143,6 @@ export function Overview({
     () => rankCountries(works, { exclude: homeCountry }),
     [works, homeCountry],
   );
-  const criteria = useMemo(() => criteriaBars(works, CRITERION_LABELS), [works]);
   const beforeWindow = citationsBeforeWindow(works);
 
   const emptyState = empty ? (
@@ -176,6 +179,19 @@ export function Overview({
           as of {formatDate(doc.sources.citations.as_of)}.{' '}
           <a href={doc.resource.url}>{doc.resource.short_name}</a>
         </p>
+        <p>
+          <a
+            href={methodHref}
+            onClick={(event) => {
+              if (!event.metaKey && !event.ctrlKey && event.button === 0) {
+                event.preventDefault();
+                onOpenMethod();
+              }
+            }}
+          >
+            How this was assembled
+          </a>
+        </p>
       </header>
 
       <StalenessNotice generatedAt={doc.generated_at} {...(now ? { now } : {})} />
@@ -191,7 +207,15 @@ export function Overview({
 
       {/* §4.2 Headline figures. */}
       <h2>Headline figures</h2>
-      <HeadlineFigures works={works} citationsAsOf={doc.sources.citations.as_of} />
+      <HeadlineFigures
+        works={works}
+        citationsAsOf={doc.sources.citations.as_of}
+        // docs/06 §4.2: "Every figure links to its definition on the method page." The inline
+        // definition stays as well — docs/05 §11.3 accepts either, and the two answer different
+        // questions: the sentence says what the figure is, the link says how it is computed, what
+        // it excludes and what it is over the whole corpus.
+        definitionHref={(id) => `${methodHref}#${id}`}
+      />
 
       {/* §4.3 Output over time, with the citations toggle on the same frame. */}
       <h2>Output over time</h2>
@@ -551,39 +575,11 @@ export function Overview({
         table={<MostCitedTable works={works} />}
       />
 
-      {/* docs/05 §7.13. The spec files this under the method page; it is here as well because it
-          is the clearest single statement of how the corpus was assembled, and because each bar
-          is one of the filter's dimensions. */}
-      <h2>How these publications are known</h2>
-      <RankedBarCard
-        title="How each publication is known"
-        chartLabel="Publications by how they are known to have used the resource"
-        description="The four ways a publication qualifies. Select one to filter the page by it."
-        note={
-          <>
-            <strong>The bars overlap and sum to more than the number of publications.</strong>{' '}
-            {pluralize(criteria.overlapping, 'publication')} of the{' '}
-            {pluralize(criteria.works, 'publication')} shown satisfy more than one, so the bars
-            total {formatCount(criteria.total)}. This is not a division of the corpus into parts,
-            which is why it is not a pie chart.
-          </>
-        }
-        rows={criteria.items.map((item) => ({
-          key: item.key,
-          label: item.label,
-          value: item.count,
-          selected: filter.criterion.includes(item.criterion),
-        }))}
-        unit={publicationUnit}
-        valueAxisLabel="Publications"
-        categoryHeader="How it is known"
-        tableCaption="Publications by how they are known to have used the resource, under the current filter."
-        onSelect={(row) => {
-          onFilter(toggleCriterion(filter, Number(row.key)));
-        }}
-        selectVerb="filter by this"
-        {...(emptyState ? { empty: emptyState } : {})}
-      />
+      {/* docs/05 §7.13's chart is on the method page, not here: §7.13 says it "belongs on the
+          method page, where it is the clearest single statement of how the corpus was assembled",
+          and docs/06 §4's enumeration of this view does not include it. It is the one chart about
+          method rather than about the science, and its four bars are still filter dimensions —
+          the method page links back here with each one applied. */}
 
       {/* §4.8 Publication explorer. */}
       <h2>All publications</h2>

@@ -15,9 +15,13 @@
  */
 
 export type Route =
-  { kind: 'overview' } | { kind: 'publication'; id: string } | { kind: 'unknown'; path: string };
+  | { kind: 'overview' }
+  | { kind: 'publication'; id: string }
+  | { kind: 'method' }
+  | { kind: 'unknown'; path: string };
 
 const PUBLICATION = 'publication/';
+const METHOD = 'method';
 
 /** A hand-edited or double-encoded URL is a normal thing to receive; it is never an exception. */
 function safeDecode(value: string): string {
@@ -44,6 +48,7 @@ export function stripBase(pathname: string, base: string): string {
 export function parseRoute(pathname: string, base = '/'): Route {
   const rest = stripBase(pathname, base);
   if (rest === '') return { kind: 'overview' };
+  if (rest === METHOD) return { kind: 'method' };
   if (rest.startsWith(PUBLICATION)) {
     const id = safeDecode(rest.slice(PUBLICATION.length));
     return id === '' ? { kind: 'unknown', path: rest } : { kind: 'publication', id };
@@ -65,12 +70,17 @@ export const overviewPath = (base = '/'): string => withBase(base, '');
 export const publicationPath = (id: string, base = '/'): string =>
   withBase(base, `${PUBLICATION}${encodeURIComponent(id)}`);
 
+/** `/method` — "How this was assembled" (docs/06 §3, §10). */
+export const methodPath = (base = '/'): string => withBase(base, METHOD);
+
 export function routePath(route: Route, base = '/'): string {
   switch (route.kind) {
     case 'overview':
       return overviewPath(base);
     case 'publication':
       return publicationPath(route.id, base);
+    case 'method':
+      return methodPath(base);
     case 'unknown':
       return withBase(base, route.path);
   }

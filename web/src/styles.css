@@ -854,3 +854,84 @@ button.chart-legend-item.is-selected {
   color: var(--text-muted);
   font-size: 0.85rem;
 }
+
+/* --- the proportion bar (docs/06 §10, the method page) ---------------------------------- */
+
+.chart-proportion-segment rect {
+  stroke: var(--panel-bg);
+  stroke-width: 1;
+}
+
+/*
+ * The in-place number on a wide segment. Every segment's exact count is also in the legend and
+ * in the table, so a segment too narrow to label loses nothing (docs/06 §7, §8).
+ */
+.chart-proportion-value {
+  fill: var(--page-bg);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+/* --- the method page (docs/06 §10) ------------------------------------------------------ */
+
+.method-page h2 {
+  margin: 2.5rem 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.method-page h3 {
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.method-page p {
+  max-width: 46rem;
+}
+
+.method-list {
+  max-width: 46rem;
+  padding-left: 1.2rem;
+}
+
+.method-list li {
+  margin: 0.5rem 0;
+}
+
+.method-links {
+  font-size: 0.9rem;
+}
+
+/*
+ * The definitions docs/06 §4.2's headline figures link into. Each is a focus target, so a reader
+ * arriving on a fragment link carries on tabbing from the definition rather than from the top of
+ * the page; the outline is the one every other focus target uses.
+ */
+.definition-list {
+  margin: 1rem 0;
+  max-width: 46rem;
+}
+
+.definition {
+  border-top: 1px solid var(--border);
+  padding: 0.75rem 0;
+}
+
+.definition:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.definition dt {
+  font-weight: 600;
+}
+
+.definition dd {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+}
+
+.definition-value {
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}

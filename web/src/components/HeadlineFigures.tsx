@@ -21,14 +21,28 @@ import {
 import type { Work } from '../contract/types';
 import { formatDate } from '../format/date';
 import { formatCount, formatDecimal } from '../format/number';
+import type { HeadlineDefinitionId } from '../method/definitions';
 
 export interface HeadlineFiguresProps {
   works: readonly Work[];
   /** The date the citation figures were read, from `sources.citations.as_of`. */
   citationsAsOf: string;
+  /**
+   * docs/06 §4.2: "Every figure links to its definition on the method page." Given a figure's
+   * `id`, this returns that link. It is optional so the component can be rendered on its own in
+   * a test; the overview always passes it.
+   *
+   * The inline definition below each figure stays as well. docs/05 §11.3 accepts either — "every
+   * figure carries its definition and its date, **or** links to §5" — and the two are not the
+   * same answer: the sentence says what the figure is without a navigation, and the link says
+   * how it is computed, what it excludes, and what it is over the whole corpus.
+   */
+  definitionHref?: (id: string) => string;
 }
 
 interface Figure {
+  /** The fragment of this figure's entry on the method page (`method/definitions.ts`). */
+  id: HeadlineDefinitionId;
   label: string;
   value: string;
   definition: string;
@@ -38,27 +52,32 @@ export function headlineFigures(works: readonly Work[], citationsAsOf: string): 
   const span = yearSpan(works);
   return [
     {
+      id: 'publications',
       label: 'Publications',
       value: formatCount(publications(works)),
       definition: 'Distinct works. A preprint and its journal article count once.',
     },
     {
+      id: 'years-covered',
       label: 'Years covered',
       value: span === null ? '—' : `${String(span.first)}–${String(span.last)}`,
       definition: 'First and last publication year of each work’s canonical record.',
     },
     {
+      id: 'citations',
       label: 'Citations',
       value: formatCount(totalCitations(works)),
       definition: `Citations reported by OpenAlex as of ${formatDate(citationsAsOf)}.`,
     },
     {
+      id: 'research-groups',
       label: 'Research groups',
       value: formatCount(researchGroups(works)),
       definition:
         'A proxy: distinct corresponding authors. Not every work marks one, and a group may publish under several.',
     },
     {
+      id: 'journals',
       label: 'Journals',
       value: formatCount(distinctJournals(works)),
       definition:
@@ -67,7 +86,7 @@ export function headlineFigures(works: readonly Work[], citationsAsOf: string): 
   ];
 }
 
-export function HeadlineFigures({ works, citationsAsOf }: HeadlineFiguresProps) {
+export function HeadlineFigures({ works, citationsAsOf, definitionHref }: HeadlineFiguresProps) {
   const figures = headlineFigures(works, citationsAsOf);
   const median = fwciMedian(works);
 
@@ -77,7 +96,27 @@ export function HeadlineFigures({ works, citationsAsOf }: HeadlineFiguresProps) 
         {figures.map((figure) => (
           <li key={figure.label}>
             <span className="figure-value">{figure.value}</span>
-            <span className="figure-label">{figure.label}</span>
+            <span className="figure-label">
+              {definitionHref ? (
+                /*
+                  The accessible name is given outright rather than assembled from a
+                  visually-hidden span, because engines do not agree on how they join adjacent
+                  text nodes: the same markup reads "Publications: how…" under jsdom and
+                  "Publications : how…" in Chromium, and a name that differs between the
+                  component test and the browser is a name no test really pins down. It opens
+                  with the visible label, so the name a reader hears still starts with the one
+                  they can see.
+                */
+                <a
+                  href={definitionHref(figure.id)}
+                  aria-label={`${figure.label}: how this figure is defined`}
+                >
+                  {figure.label}
+                </a>
+              ) : (
+                figure.label
+              )}
+            </span>
             <p className="chart-card-description">{figure.definition}</p>
           </li>
         ))}
