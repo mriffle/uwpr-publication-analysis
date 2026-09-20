@@ -17,7 +17,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, cast
 
-from uwpr_pubs import git, versions
+from uwpr_pubs import __version__, git, versions
 from uwpr_pubs.channels import ALL_CHANNELS, ChannelRunner, DiscoveryResult, Nomination
 from uwpr_pubs.config import Config
 from uwpr_pubs.context import RunContext
@@ -99,7 +99,7 @@ from uwpr_pubs.store.models import (
 from uwpr_pubs.store.paths import StorePaths
 from uwpr_pubs.store.read import StoreSnapshot, read_store
 from uwpr_pubs.text import split_sentences, text_rules
-from uwpr_pubs.validate import validate_store
+from uwpr_pubs.validate import validate_export, validate_store
 
 CODE_VERSION = "m4"
 INCLUDED_RECORD_KINDS: frozenset[str] = frozenset(IncludedKind.__args__)  # type: ignore[attr-defined]
@@ -1593,6 +1593,34 @@ class Pipeline:
         self.recorder.counts = dict(report.counts)
         self.check_fixtures(staging)
 
+    def export(
+        self,
+        works: Sequence[Work],
+        candidates: Sequence[Candidate],
+        metrics: Sequence[MetricsLine],
+        staging: Path,
+    ) -> None:
+        """Stage 11: the app's two files, validated before they are written (docs/05 §12).
+
+        A bad export stops the run like a bad store does, so the previous one stays in place. The
+        staged copy lives beside the staged store, and stage 13 moves both.
+        """
+        meta = export_stage.meta_for(self.config, self.context, __version__)
+        document, lookup = export_stage.build(works, candidates, metrics, self.aliases, meta)
+        problems = export_stage.schema_problems(document, lookup)
+        cross = validate_export(
+            document,
+            lookup,
+            store_works={work["id"]: work for work in works},
+            run_year=meta.run_year,
+        )
+        problems.extend(cross.errors)
+        if problems:
+            raise RunFailureError(
+                "the export does not validate, so nothing was written:\n  " + "\n  ".join(problems[:20])
+            )
+        export_stage.write(_staged_export(staging), document, lookup)
+
     def check_fixtures(self, staging: Path) -> None:
         """The second half of the gate: the Phase 1 §12 papers must still behave (§12.2).
 
@@ -1660,11 +1688,17 @@ class Pipeline:
         for path in target.works.glob("W-??????.json"):
             if path.stem not in keep:
                 path.unlink()
+        staged_export = _staged_export(staging)
         for path in sorted(staging.rglob("*")):
-            if path.is_dir():
+            if path.is_dir() or staged_export in path.parents:
                 continue
             destination = target.root / path.relative_to(staging)
             destination.parent.mkdir(parents=True, exist_ok=True)
+            io.write_bytes_atomic(destination, path.read_bytes())
+        # `export/` is a sibling of `store/` (docs/02 §3), so it is published beside it rather
+        # than into it. Both are regenerated whole, so nothing here needs an owned-paths sweep.
+        for path in sorted(staged_export.glob("*.json")):
+            destination = export_stage.export_dir(self.options.store) / path.name
             io.write_bytes_atomic(destination, path.read_bytes())
 
     def commit(self) -> None:
@@ -1702,6 +1736,11 @@ def _preferred(works: Sequence[Mapping[str, Any]]) -> Mapping[str, Any] | None:
     return min(works, key=_openalex_order) if works else None
 
 
+def _staged_export(staging: Path) -> Path:
+    """Where stage 11 stages the export, inside the staging tree but outside the staged store."""
+    return staging / ".export"
+
+
 def _overrides_path(config: Config) -> Path | None:
     """The overrides the run actually loaded, so the gate validates against the same file.
 
@@ -1732,7 +1771,7 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
         pipeline.measure_recall(works)
         pipeline.assess_run_quality()
         pipeline.stage_and_validate(works, candidates, metrics, staging)
-        export_stage.write(works)  # Phase 5; stage 10 retired with Phase 4 on 2026-09-20
+        pipeline.export(works, candidates, metrics, staging)  # stage 11; 10 retired with Phase 4
         if not options.dry_run:
             pipeline.publish(staging)
             written = True

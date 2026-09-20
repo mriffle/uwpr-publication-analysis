@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/lookup-index.schema.json",
+  "title": "export/lookup_index.json — \"why is a paper not here?\" (docs/05-metrics-and-data-contract.md §8)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "aliases", "not_included"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
+    "generated_at": {"$ref": "common.schema.json#/$defs/datetime"},
+    "aliases": {
+      "comment": "Every external identifier and retired work ID, so an old permalink still opens.",
+      "type": "object",
+      "propertyNames": {"pattern": "^(doi|pmid|pmcid|openalex|pride|list|work):"},
+      "additionalProperties": {"$ref": "common.schema.json#/$defs/workId"}
+    },
+    "not_included": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "year", "ids", "reason", "reason_label", "signals", "signal_labels"],
+        "properties": {
+          "id": {"$ref": "common.schema.json#/$defs/workId"},
+          "title": {"type": "string"},
+          "year": {"type": ["integer", "null"]},
+          "ids": {"$ref": "export.schema.json#/$defs/ids"},
+          "reason": {
+            "enum": [
+              "no_rule_fired",
+              "excluded_record_type",
+              "before_window",
+              "override_exclude",
+              "no_longer_meets_rules"
+            ]
+          },
+          "reason_label": {"type": "string", "minLength": 1},
+          "signals": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "signal_labels": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

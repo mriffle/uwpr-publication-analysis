@@ -4,11 +4,22 @@
   "title": "Pipeline settings: config/settings.yaml (docs/03-retrieval-pipeline.md §10.1)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema", "contact", "window_start", "official_list", "openalex", "rate_limits", "max_attempts",
-               "recheck_days", "last_seen_refresh_days", "list_drop_tolerance", "recall_baseline",
+  "required": ["schema", "contact", "window_start", "resource", "official_list", "openalex", "rate_limits",
+               "max_attempts", "recheck_days", "last_seen_refresh_days", "list_drop_tolerance", "recall_baseline",
                "recall_alert_points", "degraded_to_alert_after", "timezone_for_dates"],
   "properties": {
     "schema": {"const": 1},
+    "resource": {
+      "description": "What the app calls the facility it describes. The app holds no UWPR-specific text of its own (docs/05 §1.1 principle 5), so every name and link it shows comes from here through export/.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "short_name", "url"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "short_name": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "pattern": "^https://"}
+      }
+    },
     "contact": {
       "description": "Sent to APIs as mailto/email/User-Agent contact. Fixed by project rule: no other personal address is ever sent (Phase 1 §7).",
       "const": "mriffle@uw.edu"

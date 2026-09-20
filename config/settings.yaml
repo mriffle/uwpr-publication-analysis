@@ -2,6 +2,10 @@
 schema: 1
 contact: mriffle@uw.edu              # sent to APIs as mailto/email (public); fixed by project rule
 window_start: 2006                   # Phase 1 D4
+resource:                            # what the app names; the app holds no UWPR text of its own (docs/05 §1.1)
+  name: University of Washington Proteomics Resource
+  short_name: UWPR
+  url: https://proteomicsresource.washington.edu/
 official_list:
   index_url: https://proteomicsresource.washington.edu/publications/
   page_link_pattern: '^(?:https://proteomicsresource\.washington\.edu)?/publications/(?:[0-9]{4}|older)/$'

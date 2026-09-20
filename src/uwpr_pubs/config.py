@@ -83,6 +83,11 @@ class Config:
     def window_start(self) -> int:
         return cast(int, self.settings["window_start"])
 
+    @property
+    def resource(self) -> dict[str, Any]:
+        """What the app calls the facility. The app carries no UWPR text of its own (docs/05 §1.1)."""
+        return cast(dict[str, Any], self.settings["resource"])
+
     def staff_member(self, key: StaffKey) -> dict[str, Any]:
         for person in self.staff:
             if person["key"] == key:

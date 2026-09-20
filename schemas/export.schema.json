@@ -1,0 +1,394 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/export.schema.json",
+  "title": "export/uwpr_publications.json — the app's data contract (docs/05-metrics-and-data-contract.md §4)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generated_at",
+    "run_id",
+    "pipeline_version",
+    "rule_version",
+    "resource",
+    "sources",
+    "period",
+    "summary",
+    "method",
+    "works"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
+    "generated_at": {"$ref": "common.schema.json#/$defs/datetime"},
+    "run_id": {"type": "string", "minLength": 1},
+    "pipeline_version": {"type": "string", "minLength": 1},
+    "rule_version": {"$ref": "common.schema.json#/$defs/ruleVersion"},
+    "resource": {"$ref": "#/$defs/resource"},
+    "sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["citations", "notes"],
+      "properties": {
+        "citations": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "as_of"],
+          "properties": {
+            "name": {"const": "OpenAlex"},
+            "as_of": {"$ref": "common.schema.json#/$defs/date"}
+          }
+        },
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "period": {"$ref": "#/$defs/period"},
+    "summary": {"$ref": "#/$defs/summary"},
+    "method": {"$ref": "#/$defs/method"},
+    "works": {"type": "array", "items": {"$ref": "#/$defs/work"}}
+  },
+  "$defs": {
+    "person": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "openalex"],
+      "properties": {
+        "name": {"type": "string"},
+        "openalex": {"type": ["string", "null"]}
+      }
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "short_name", "url", "identifier", "staff"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "short_name": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "identifier": {"type": "string", "minLength": 1},
+        "staff": {"type": "array", "items": {"$ref": "#/$defs/person"}}
+      }
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first_year",
+        "last_year",
+        "complete_through",
+        "current_year_partial",
+        "citation_years_from",
+        "citations_before_window"
+      ],
+      "properties": {
+        "first_year": {"type": "integer"},
+        "last_year": {"type": "integer"},
+        "complete_through": {"type": "integer"},
+        "current_year_partial": {"type": "boolean"},
+        "citation_years_from": {"type": ["integer", "null"]},
+        "citations_before_window": {"type": "integer", "minimum": 0}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "publications",
+        "first_year",
+        "last_year",
+        "citations",
+        "citations_in_window",
+        "fwci_median",
+        "fwci_mean",
+        "h_index",
+        "open_access",
+        "journals",
+        "institutions",
+        "countries",
+        "research_groups",
+        "last_authors",
+        "on_official_list",
+        "beyond_official_list",
+        "preprint_only"
+      ],
+      "properties": {
+        "publications": {"type": "integer", "minimum": 0},
+        "first_year": {"type": "integer"},
+        "last_year": {"type": "integer"},
+        "citations": {"type": "integer", "minimum": 0},
+        "citations_in_window": {"type": "integer", "minimum": 0},
+        "fwci_median": {"type": ["number", "null"], "minimum": 0},
+        "fwci_mean": {"type": ["number", "null"], "minimum": 0},
+        "h_index": {"type": "integer", "minimum": 0},
+        "open_access": {"type": "integer", "minimum": 0},
+        "journals": {"type": "integer", "minimum": 0},
+        "institutions": {"type": "integer", "minimum": 0},
+        "countries": {"type": "integer", "minimum": 0},
+        "research_groups": {"type": "integer", "minimum": 0},
+        "last_authors": {"type": "integer", "minimum": 0},
+        "on_official_list": {"type": "integer", "minimum": 0},
+        "beyond_official_list": {"type": "integer", "minimum": 0},
+        "preprint_only": {"type": "integer", "minimum": 0}
+      }
+    },
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "criteria",
+        "works_with_multiple_criteria",
+        "official_list_total",
+        "independently_confirmed",
+        "listing_only",
+        "listing_only_text_read",
+        "listing_only_text_unavailable",
+        "beyond_official_list",
+        "works_with_staff_author",
+        "sources_last_read"
+      ],
+      "properties": {
+        "criteria": {
+          "type": "object",
+          "propertyNames": {"enum": ["1", "2", "3", "4"]},
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        },
+        "works_with_multiple_criteria": {"type": "integer", "minimum": 0},
+        "official_list_total": {"type": "integer", "minimum": 0},
+        "independently_confirmed": {"type": "integer", "minimum": 0},
+        "listing_only": {"type": "integer", "minimum": 0},
+        "listing_only_text_read": {"type": "integer", "minimum": 0},
+        "listing_only_text_unavailable": {"type": "integer", "minimum": 0},
+        "beyond_official_list": {"type": "integer", "minimum": 0},
+        "works_with_staff_author": {"type": "integer", "minimum": 0},
+        "sources_last_read": {
+          "type": "object",
+          "additionalProperties": {"$ref": "common.schema.json#/$defs/date"}
+        }
+      }
+    },
+    "institution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ror", "name", "country"],
+      "properties": {
+        "ror": {"$ref": "common.schema.json#/$defs/ror"},
+        "name": {"type": ["string", "null"]},
+        "country": {"type": ["string", "null"]}
+      }
+    },
+    "ids": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["doi", "pmid", "pmcid", "openalex"],
+      "properties": {
+        "doi": {"oneOf": [{"$ref": "common.schema.json#/$defs/doi"}, {"type": "null"}]},
+        "pmid": {"oneOf": [{"$ref": "common.schema.json#/$defs/pmid"}, {"type": "null"}]},
+        "pmcid": {"oneOf": [{"$ref": "common.schema.json#/$defs/pmcid"}, {"type": "null"}]},
+        "openalex": {"type": ["string", "null"]}
+      }
+    },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "openalex",
+        "orcid",
+        "staff",
+        "corresponding",
+        "institutions",
+        "affiliations_raw"
+      ],
+      "properties": {
+        "name": {"type": "string"},
+        "openalex": {"type": ["string", "null"]},
+        "orcid": {"oneOf": [{"$ref": "common.schema.json#/$defs/orcid"}, {"type": "null"}]},
+        "staff": {
+          "oneOf": [{"$ref": "common.schema.json#/$defs/staffKey"}, {"type": "null"}]
+        },
+        "corresponding": {"type": "boolean"},
+        "institutions": {"type": "array", "items": {"$ref": "#/$defs/institution"}},
+        "affiliations_raw": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "topic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "field", "subfield", "topic", "score", "primary"],
+      "properties": {
+        "domain": {"type": "string"},
+        "field": {"type": "string"},
+        "subfield": {"type": "string"},
+        "topic": {"type": "string"},
+        "score": {"type": "number"},
+        "primary": {"type": "boolean"}
+      }
+    },
+    "citations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "by_year", "fwci", "percentile", "as_of"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0},
+        "by_year": {
+          "type": "object",
+          "propertyNames": {"pattern": "^[0-9]{4}$"},
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        },
+        "fwci": {"type": ["number", "null"], "minimum": 0},
+        "percentile": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "as_of": {"$ref": "common.schema.json#/$defs/date"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule",
+        "criterion",
+        "label",
+        "section",
+        "excerpt",
+        "source",
+        "detail",
+        "first_seen",
+        "last_seen"
+      ],
+      "properties": {
+        "rule": {"enum": ["R1", "R2", "R3", "R3d", "R4", "R5", "R6", "R7", "override"]},
+        "criterion": {"type": ["integer", "null"], "enum": [1, 2, 3, 4, null]},
+        "label": {"type": "string", "minLength": 1},
+        "section": {"type": "string", "minLength": 1},
+        "excerpt": {"type": ["string", "null"], "maxLength": 400},
+        "found_on": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "doi"],
+          "properties": {
+            "kind": {"$ref": "common.schema.json#/$defs/includedKind"},
+            "doi": {"oneOf": [{"$ref": "common.schema.json#/$defs/doi"}, {"type": "null"}]}
+          }
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "url", "retrieved"],
+          "properties": {
+            "name": {"type": "string"},
+            "url": {"type": ["string", "null"]},
+            "retrieved": {"$ref": "common.schema.json#/$defs/date"}
+          }
+        },
+        "detail": {"type": "object"},
+        "first_seen": {"$ref": "common.schema.json#/$defs/date"},
+        "last_seen": {"$ref": "common.schema.json#/$defs/date"}
+      },
+      "allOf": [
+        {
+          "comment": "Override evidence belongs to the work, not a record, so it names no version.",
+          "if": {"properties": {"rule": {"const": "override"}}, "required": ["rule"]},
+          "then": {"not": {"required": ["found_on"]}},
+          "else": {"required": ["found_on"]}
+        }
+      ]
+    },
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "doi", "date", "year", "url"],
+      "properties": {
+        "kind": {"$ref": "common.schema.json#/$defs/includedKind"},
+        "doi": {"oneOf": [{"$ref": "common.schema.json#/$defs/doi"}, {"type": "null"}]},
+        "date": {"oneOf": [{"$ref": "common.schema.json#/$defs/date"}, {"type": "null"}]},
+        "year": {"type": "integer"},
+        "url": {"type": ["string", "null"]}
+      }
+    },
+    "work": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "aliases",
+        "title",
+        "year",
+        "date",
+        "first_version_date",
+        "kind",
+        "is_preprint",
+        "venue",
+        "ids",
+        "url",
+        "oa",
+        "retracted",
+        "authors",
+        "author_count",
+        "staff_authors",
+        "institutions",
+        "countries",
+        "corresponding_authors",
+        "topics",
+        "citations",
+        "on_official_list",
+        "criteria",
+        "evidence",
+        "versions"
+      ],
+      "properties": {
+        "id": {"$ref": "common.schema.json#/$defs/workId"},
+        "aliases": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/workId"}},
+        "title": {"type": "string"},
+        "year": {"type": "integer"},
+        "date": {"oneOf": [{"$ref": "common.schema.json#/$defs/date"}, {"type": "null"}]},
+        "first_version_date": {
+          "oneOf": [{"$ref": "common.schema.json#/$defs/date"}, {"type": "null"}]
+        },
+        "kind": {"$ref": "common.schema.json#/$defs/includedKind"},
+        "is_preprint": {"type": "boolean"},
+        "venue": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["name", "issn_l"],
+          "properties": {
+            "name": {"type": "string"},
+            "issn_l": {"type": ["string", "null"]}
+          }
+        },
+        "ids": {"$ref": "#/$defs/ids"},
+        "url": {"type": ["string", "null"]},
+        "oa": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "url", "license"],
+          "properties": {
+            "status": {
+              "enum": ["gold", "green", "hybrid", "bronze", "diamond", "closed", "unknown"]
+            },
+            "url": {"type": ["string", "null"]},
+            "license": {"type": ["string", "null"]}
+          }
+        },
+        "retracted": {"type": "boolean"},
+        "authors": {"type": "array", "items": {"$ref": "#/$defs/author"}},
+        "author_count": {"type": "integer", "minimum": 0},
+        "staff_authors": {
+          "type": "array",
+          "items": {"$ref": "common.schema.json#/$defs/staffKey"},
+          "uniqueItems": true
+        },
+        "institutions": {"type": "array", "items": {"$ref": "#/$defs/institution"}},
+        "countries": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "corresponding_authors": {"type": "array", "items": {"$ref": "#/$defs/person"}},
+        "topics": {"type": "array", "items": {"$ref": "#/$defs/topic"}},
+        "citations": {"$ref": "#/$defs/citations"},
+        "on_official_list": {"type": "boolean"},
+        "criteria": {
+          "type": "array",
+          "items": {"enum": [1, 2, 3, 4]},
+          "uniqueItems": true
+        },
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "versions": {"type": "array", "items": {"$ref": "#/$defs/version"}}
+      }
+    }
+  }
+}

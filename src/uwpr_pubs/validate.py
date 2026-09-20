@@ -7,12 +7,14 @@ errors are always printed.
 """
 
 import json
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 import yaml
 
+from uwpr_pubs.export import build_summary
 from uwpr_pubs.schemas import schema_errors
 from uwpr_pubs.store.ids import external_keys
 from uwpr_pubs.store.models import IncludedKind
@@ -291,5 +293,99 @@ def validate_store(store: Path, overrides_path: Path | None = None) -> Report:  
     for work_id in generated:
         if work_id not in works:
             report.error(f"{work_id}.generated.json", "generated content for a work that is not included")
+
+    return report
+
+
+def _check_aliases_resolve(lookup: Any, by_id: Mapping[str, Any], report: Report) -> None:
+    """An alias that resolves to nothing is an identifier the app can say nothing about.
+
+    docs/05 §12 words this as "resolves to an exported work", but `aliases.json` maps every
+    external identifier to its work whether that work is included or not, and the lookup index
+    exists precisely so a *rejected* paper's DOI still gets an answer. So a target counts as
+    resolved if it is either an exported work or a `not_included` row; only a target in neither
+    would 404.
+    """
+    answerable = set(by_id) | {row["id"] for row in lookup.get("not_included", [])}
+    for key, target in lookup.get("aliases", {}).items():
+        if target not in answerable:
+            report.error("lookup_index.json", f"alias {key} points at {target}, which is not exported")
+
+
+def _check_criteria_match_evidence(works: Sequence[Any], report: Report) -> None:
+    """`criteria` is derived from the evidence, so it cannot disagree with it."""
+    for work in works:
+        derived = sorted({e["criterion"] for e in work["evidence"] if e["criterion"] is not None})
+        if work["criteria"] != derived:
+            report.error(work["id"], f"criteria {work['criteria']} does not match evidence {derived}")
+
+
+def _check_summary(export: Any, works: Sequence[Any], report: Report) -> None:
+    """The summary is computed independently; if it disagrees, one of the two is wrong.
+
+    This is the same cross-check the app runs against its own aggregation (docs/05 §1.2), so a
+    metric implemented to a subtly different definition is caught on both sides of the contract.
+    """
+    for key, value in build_summary(works).items():
+        if export["summary"].get(key) != value:
+            report.error("summary", f"{key} is {export['summary'].get(key)}, recomputed as {value}")
+
+
+def _check_against_store(
+    works: Sequence[Any], by_id: Mapping[str, Any], store_works: Mapping[str, Any], report: Report
+) -> None:
+    """Every exported work is an included one, and carries only its active evidence."""
+    for work in works:
+        stored = store_works.get(work["id"])
+        if stored is None:
+            report.error(work["id"], "exported but not an included work in the store")
+            continue
+        active = [e for e in stored["evidence"] if "superseded" not in e]
+        if len(work["evidence"]) != len(active):
+            report.error(
+                work["id"],
+                f"exported {len(work['evidence'])} evidence entries against {len(active)} active",
+            )
+    for work_id in store_works:
+        if work_id not in by_id:
+            report.error(work_id, "an included work that the export leaves out")
+
+
+def validate_export(
+    export: Any,
+    lookup: Any,
+    *,
+    store_works: Mapping[str, Any] | None = None,
+    run_year: int | None = None,
+) -> Report:
+    """The export's schemas and the cross-checks of docs/05 §12.
+
+    The cross-checks all answer the same question in different places: does the export still say
+    what the store says? A projection that has drifted from its source is worse than no export,
+    because every number on the page would still look self-consistent.
+    """
+    report = Report()
+    export_ok = _check("export", export, "uwpr_publications.json", report)
+    _check("lookup-index", lookup, "lookup_index.json", report)
+    if not export_ok:
+        return report
+
+    works: list[Any] = export["works"]
+    by_id = {work["id"]: work for work in works}
+    report.counts = {"works": len(works), "not included": len(lookup.get("not_included", []))}
+
+    _check_aliases_resolve(lookup, by_id, report)
+    _check_criteria_match_evidence(works, report)
+    _check_summary(export, works, report)
+
+    # The current year is partial by definition, so completeness stops at the year before it.
+    if run_year is not None and export["period"]["complete_through"] != run_year - 1:
+        report.error(
+            "period",
+            f"complete_through is {export['period']['complete_through']}, expected {run_year - 1}",
+        )
+
+    if store_works is not None:
+        _check_against_store(works, by_id, store_works, report)
 
     return report
