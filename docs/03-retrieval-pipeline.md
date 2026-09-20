@@ -31,6 +31,15 @@ stage (§5, stages 10–11).
 - *§10.6:* the report is accumulated as the stages run, not built from the finished store, because
   a failed run must still produce one.
 
+**Changes made while implementing M5** (2026-09-20):
+- *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
+  The workflow has no other way to know whether the run committed anything, and it needs the
+  hash twice: to decide whether to push at all, and to say which commit the key scan reads.
+- *§12.4, the coverage threshold:* set to **80%**, measured at 84%. The shortfall is the
+  live-only shell (`smoke.py`, `runtime.py`), which no offline test can reach. It lives in
+  `[tool.coverage.report]`, so it applies wherever coverage runs rather than slowing a local
+  `pytest`.
+
 **Changes made while implementing M4** (2026-09-20):
 - *§5 stage 6, the record a version link creates:* it is written with `fulltext.status`
   `unavailable`, checked today and rechecked in the ordinary 90 days. The stage's own wording —

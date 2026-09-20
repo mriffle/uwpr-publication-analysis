@@ -61,3 +61,13 @@ xfail_strict = true
 [tool.coverage.run]
 branch = true
 source = ["uwpr_pubs"]
+
+[tool.coverage.report]
+# Set once the code settled, as Phase 3 §12.4 and decision C2 said it would be. Measured 84% at
+# M5. The shortfall is almost entirely the live-only shell: `smoke.py` runs only in the update
+# workflow and `runtime.py` builds the real HTTP client, neither of which an offline test can
+# reach. The threshold allows for that rather than excluding those files, which would report a
+# higher number for a less-tested codebase. It only applies where coverage runs — CI — so a bare
+# local `pytest` stays fast.
+fail_under = 80
+show_missing = true

@@ -88,8 +88,10 @@ def _run(args: argparse.Namespace) -> int:
         print(f"committed {result.commit}")
     output = os.environ.get("GITHUB_OUTPUT")
     if output:
+        # `commit` is how the workflow knows whether there is anything to push, and which commit
+        # to scan for a leaked key before it does (§11.3). Empty means the run changed nothing.
         with open(output, "a", encoding="utf-8") as handle:
-            handle.write(f"status={result.status}\nrun_id={result.run_id}\n")
+            handle.write(f"status={result.status}\nrun_id={result.run_id}\ncommit={result.commit or ''}\n")
     return 1 if result.status == "failed" else 0
 
 

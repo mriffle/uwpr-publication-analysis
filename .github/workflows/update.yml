@@ -1,0 +1,122 @@
+# Weekly data update (docs/03-retrieval-pipeline.md §11.3).
+#
+# The pipeline does the work and commits locally. This workflow's job is to give it a clean
+# runner, hand the secrets only to the two steps that need them, check its own commit for a
+# leaked key before pushing, and fail loudly when the run raises an alert (§9) so GitHub emails
+# the maintainer. Bot commits do not trigger check.yml, so the run validates itself at stage 9
+# before committing anything (§11.4).
+name: update
+
+on:
+  schedule:
+    # Mondays 13:17 UTC, about 06:17 in Seattle. Off the hour: GitHub queues scheduled runs
+    # hardest on the hour, and a delayed start is a delayed weekly update.
+    - cron: "17 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write # the bot pushes one data commit per run; nothing else is needed
+
+concurrency:
+  group: update
+  cancel-in-progress: false # never interrupt a run part-way through writing the store
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # The push rebases onto main first, which a shallow clone cannot do.
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: uv sync --locked --all-groups
+
+      # The download cache is an accelerator only (§11.4), and the run must be correct without
+      # it. The key is unique per run, so the restore always misses and falls back to the newest
+      # dlcache-v1-*, and the save below always writes a fresh one.
+      - name: Restore the download cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: cache
+          key: dlcache-v1-${{ github.run_id }}
+          restore-keys: dlcache-v1-
+
+      # A runner has no git identity, and the pipeline commits for itself in stage 13.
+      - name: Identify the committer
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - name: Check each source still answers
+        env:
+          OPEN_ALEX_API_KEY: ${{ secrets.OPEN_ALEX_API_KEY }}
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+        run: uv run uwpr-pubs smoke
+
+      - name: Run the pipeline
+        id: run
+        env:
+          OPEN_ALEX_API_KEY: ${{ secrets.OPEN_ALEX_API_KEY }}
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+        run: uv run uwpr-pubs run --mode live --summary-out "$RUNNER_TEMP/run-summary.md"
+
+      # Always: a run that stopped at the validation gate wrote no store, so its report exists
+      # only here, and that report is the whole explanation of what went wrong (§10.6).
+      - name: Post the run report
+        if: always()
+        run: |
+          if [ -f "$RUNNER_TEMP/run-summary.md" ]; then
+            cat "$RUNNER_TEMP/run-summary.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'The run produced no report, so it failed before the pipeline started.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Check the new commit for a leaked key
+        if: steps.run.outputs.commit != ''
+        env:
+          OPEN_ALEX_API_KEY: ${{ secrets.OPEN_ALEX_API_KEY }}
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+          COMMIT: ${{ steps.run.outputs.commit }}
+        run: |
+          set -euo pipefail
+          for name in OPEN_ALEX_API_KEY NCBI_API_KEY; do
+            value="${!name:-}"
+            # An unset secret would leave `grep -F ""`, which matches every line and would fail
+            # every run for the wrong reason. NCBI_API_KEY is optional, so this is the normal path.
+            if [ -z "$value" ]; then
+              echo "$name is not set; nothing to scan for"
+              continue
+            fi
+            if git show "$COMMIT" | grep -qF -- "$value"; then
+              echo "::error::$name appears in $COMMIT; refusing to push"
+              exit 1
+            fi
+            echo "$name does not appear in the commit"
+          done
+
+      - name: Push the data commit
+        if: steps.run.outputs.commit != ''
+        run: |
+          set -euo pipefail
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Save the download cache
+        if: steps.run.outcome == 'success'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: cache
+          key: dlcache-v1-${{ github.run_id }}
+
+      # Last, so the data is already written and pushed. An alert means something needs a person,
+      # not that the run was wrong (§9), and a failed job is how GitHub tells them.
+      - name: Fail the job if the run raised an alert
+        if: steps.run.outputs.status == 'alert'
+        run: |
+          echo "::error::run ${{ steps.run.outputs.run_id }} finished with status 'alert' — the data was written, but the report names something that needs attention"
+          exit 1

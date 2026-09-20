@@ -20,7 +20,7 @@ records how they are being built and what implementing them taught us.
 | M3 Text and rules core (R3–R7) | **Done** (§3.1 has the numbers) |
 | M4 Completeness and determinism | **Done** (§3.2 has the numbers) |
 | M4.5 Seed rehearsal and seed | **Done** — `store/` seeded 2026-09-20 (§3.3) |
-| M5 Live automation (`update.yml`) | **Next** |
+| M5 Live automation (`update.yml`) | **Written, not yet enabled** — needs one manual run (§3.4) |
 
 391 tests, all offline; ruff, `ruff format`, mypy `--strict` and the store validator all clean, and
 `check.yml` green on every push — it now validates the committed `store/` and runs the Phase 1
@@ -241,6 +241,37 @@ Part 2 row 2, marked "?" there and never resolved. Its R3 match sits inside a lo
 that names several centres. The frozen rules include it, and the spot-check was approved with it
 left uncertain rather than rejected, so it stays — but it is the one work to look at first if a
 precision question is ever raised.
+
+### 3.4 M5: `update.yml`, written 2026-09-20
+
+The weekly workflow exists and follows §11.3. It is **not yet proven**, because the only honest
+test of a workflow is running it, and that needs a `workflow_dispatch` from someone with access.
+
+What it does, and why each part is there:
+- **Secrets are scoped to three steps** — the smoke check, the run, and the key scan. The push
+  step never sees them.
+- **The key scan skips an unset secret.** `NCBI_API_KEY` is optional, and `grep -F ""` matches
+  every line, so without the guard every run would fail for the wrong reason. All three paths
+  were exercised by hand before committing: unset, set and absent, set and present.
+- **`fetch-depth: 0`**, because the push rebases onto `main` first and a shallow clone cannot.
+- **A git identity is configured**, because a runner has none and the pipeline commits for
+  itself. Without it stage 13 fails.
+- **The report is posted with `if: always()`**, read from `--summary-out` rather than from the
+  store, so a run that stopped at the validation gate still explains itself — that report is the
+  only place the explanation exists (§10.6).
+- **The alert check runs last**, after the data is pushed. An alert means something needs a
+  person, not that the run was wrong (§9), so the data lands and then the job fails to send mail.
+
+**Before the schedule is enabled**, one manual run has to confirm the thing that cannot be
+settled from the documentation: the repository's default workflow token is read-only, and the
+workflow requests `contents: write` explicitly. That normally suffices for a same-repository
+trigger. If the push is refused, the fix is the repository's *Workflow permissions* setting, and
+it is safe there because each workflow still declares its own narrower scopes.
+
+Still to do, and named in the plan: measure the real spend against the $0.05 estimate and a
+cold-cache rule-change run against the ~1,100-request estimate, and replace both figures in
+Phase 3 §7 and §13. A warm local run is $0.010, so the estimate looks high, but CI starts cold
+and that is the number the spec is about.
 
 ## 4. Decisions taken during implementation
 
