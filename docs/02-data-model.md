@@ -89,6 +89,14 @@ a store without `funding/` is valid and checked exactly as before, and no work f
   on its work is a warning, as an unapplied merge is.
 - *§15:* a funding line changes only when its data does.
 
+**Changed 2026-09-26, the manifest's funding block** ([09](09-funding-impact.md) §8.4, §9.6;
+Phase 9 milestone B3):
+- *§11 and `run.schema.json`:* a manifest may carry `funding`, with the `funding_version` and the
+  funding fingerprint the run ran with, both required inside it, and the funding stage's `mode`,
+  `grants`, `amount_usd` and `requests` optional for it to fill. Stage 0 compares the version and
+  fingerprint as it does the rules'. The block is optional, so every manifest written before it
+  stays valid, and a run finding none compares nothing.
+
 **Purpose:** define how the pipeline stores what it finds between runs, precisely enough to
 implement.
 **Depends on:** [01-discovery-strategy.md](01-discovery-strategy.md) (frozen). This spec uses its
@@ -449,8 +457,10 @@ says what one string on one work is — the grant it names, or `null` for "not a
 
 Each manifest records:
 - the run ID (start time plus mode: `live`, `replay`, `record` or `sample`), start and end, code
-  version, the config and rules fingerprints (changed 2026-09-19), and the overrides fingerprint
-  (added 2026-09-26; older manifests lack it);
+  version, the config and rules fingerprints (changed 2026-09-19), the overrides fingerprint
+  (added 2026-09-26; older manifests lack it), and the funding version and fingerprint, with what
+  the funding stage did (added 2026-09-26, [09](09-funding-impact.md) §9.6; older manifests lack
+  them);
 - the run status: `ok`, `degraded` or `alert` (Phase 3 §9). A failed run writes nothing, so it
   has no manifest;
 - each degradation, with its source and cause;

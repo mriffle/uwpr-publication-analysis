@@ -217,6 +217,20 @@ C4, §8, §11.3; [09](09-funding-impact.md) F12, §13):
   them can make `smoke` exit non-zero: the verdict names them apart, and the funding stage
   degrades without them. An exception of any kind in one is caught for the same reason.
 
+**Changed 2026-09-26, two configuration files for funding** (Phase 9, B3; §10; [09](09-funding-impact.md)
+§8.4, §7.2):
+- *§10, `funding.yaml` and `exchange_rates.yaml`* join the validated config (§10.7), with
+  `schemas/config/funding.schema.json` and `exchange_rates.schema.json`. `funding.yaml` ships with
+  `enabled: false`, so nothing reads it yet but stage 0.
+- *§10.4's guard has a twin.* The **funding fingerprint** covers `funding.yaml` without its
+  `funding_version`, and may change only with it: every manifest now records
+  `funding: {version, fingerprint}`, and stage 0 fails a run whose file changed under the same
+  version, as it does for `rule_version`. A manifest from before 2026-09-26 has no block and is not
+  compared. The exchange rates are outside the fingerprint, since every amount is recomputed from
+  them each run, and grant overrides are too ([09](09-funding-impact.md) §6.6). Neither file is in
+  the rules or the overrides fingerprint, so an edit to one re-reads no text and re-evaluates no
+  work; like any config file, both are in the config fingerprint.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the
@@ -713,6 +727,23 @@ from the finished store, so a run that fails at the gate still produces one (wri
   - test-paper results;
   - R6 entries not confirmed by our own text (§6.3).
 - **Degradations and their causes,** and works with re-evaluation pending (§6.2).
+
+### 10.7 `funding.yaml` and `exchange_rates.yaml`
+
+Added 2026-09-26 for Phase 9; [09](09-funding-impact.md) §8.4 is the specification.
+- **`funding.yaml`**: `funding_version` and `enabled`; the refresh intervals and RePORTER's
+  request window; NIH's institute codes, phase pairs and activity-code categories; the agencies,
+  each with the OpenAlex funder IDs, Crossref funder DOIs and PubMed agency patterns that name it,
+  its number prefixes and pattern and where its amounts come from; the DOE facility contracts;
+  the institution-wide awards; the not-grants; OpenAlex's excluded and corrected provenances; and
+  two alert thresholds. Any change needs a new `funding_version` (§10.4's guard, for funding).
+- **`exchange_rates.yaml`**: US dollars per unit, by currency and year, as decimal strings, from
+  the Federal Reserve's G.5A and, for currencies G.5A lacks, OECD's annual averages, with each
+  source's release and retrieval date. Updated each January; outside the funding fingerprint.
+
+`tests/test_funding_config.py` and `tests/test_config.py` check both against their schemas, every
+pattern compiles, one funder ID names one agency, and every activity code among the grants NIH
+links to the corpus has a category.
 
 ## 11. GitHub Actions
 

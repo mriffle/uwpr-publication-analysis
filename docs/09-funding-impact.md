@@ -52,6 +52,52 @@ plan. [08](08-implementation.md) records them as they are built.
   which no listed method describes. Invariant F1 also requires one line per work, grant, probe
   and agency (§8.6), and §6.6's warning is skipped, with one warning, in a store with no
   `funding/` yet.
+- *2026-09-26, B3 — the resolver, the amounts and the rates as built, where §6-§8 were silent or
+  the research's own outcomes needed a rule to reach.* Appendix A passes whole under these, and
+  they are the choices B7 and B5 build on:
+  - **A string is pooled per work by the override match key** (§6.6: case, spaces, dashes, and
+    droppable parentheses and trailing punctuation), and shown as its most frequent written form,
+    so `NRF-2016R1A5A1010764` in one source and the same with a Unicode hyphen in another are one
+    string, named by both sources' funders. The other forms are kept for `cited_as` (§11.2).
+  - **§6.1's separators gain a spaced dash between two numbers** (`RTG 2467 - 391498659`), which
+    A9.19 and A9.20's "not merged" needs; a comma inside parentheses splits nothing.
+  - **A fragment lists the longest number it is part of** (§6.10): `ANR-10` beside both
+    `ANR-10-IAHU-0001` and `ANR-10-IAHU- 01` lists the first, as A9.17 says. The rule merges a
+    fourth pair Appendix F left apart, NKFIH's `2018-1.2-1-NKP` into `2018-1.2.1-NKP-2018-00005`
+    on W-000396, and keys SNSF's `181503` as `SNSF:P2ZHP3181503`, beside `P2ZHP3_181503`.
+  - **An agency's `number_pattern`, when set, is what its numbers must fit.** Among several
+    agencies named, one the number does not fit is out, and one whose pattern fits beats one with
+    none: KHIDI over NRF Korea, Gates over NWO (whose numbers are digits), the Swedish Foundation
+    for Strategic Research over the Research Council. NOAA's pattern makes Washington Sea Grant's
+    `R/SFA-8` Miscellaneous, as A6.43 says, where "the number stands" alone would key it
+    `USA:NOAA:RSFA8`.
+  - **Whose a declined string is:** a full NIH-format number is NIH's, whatever else is named; a
+    configured agency named beats NIH, HHS or PHS; either beats one unconfigured OpenAlex funder
+    (`F<digits>:`); several unconfigured funders, or none, give Miscellaneous.
+  - **Attribution is by funder ID and PubMed's agency alone, for every agency,** as §6.4 says for
+    NIH: a Crossref funder entry with no registry DOI names nothing. Under the sources' own
+    attribution, 15 of Appendix F's 270 rows gain a Miscellaneous key on some work that way
+    (`tests/test_funding_appendix_f.py` lists them, each with its reason); the report lists every
+    one, for an override. The registry's other "NSF"s, the National Sleep Foundation and Norway's
+    nurses' union, which publishers chose for NSF's own numbers, are configured under NSF, whose
+    API still decides.
+  - **A Miscellaneous key** keeps an NIH-format string's written number without type or suffix
+    (`MISC:R01GM122864`), and otherwise the letters and digits left once labels are stripped; every
+    key segment is folded to ASCII (`ÚNKP-21-3` is `NKFIH:UNKP213`).
+  - **Contracts:** `N01…` numbers parse as NIH numbers and are keyed as contracts; a task order
+    whose IDIQ neither RePORTER nor the work names is keyed alone, `NIH-contract:<task order>`.
+  - **Amounts:** every amount from OpenAlex is flagged `amount_from_openalex`, as B4's sample
+    has it; a stated OpenAlex amount of 0 is no amount; of a grant's several OpenAlex awards, the
+    lowest ID decides; an end date that is a year alone counts as its 31 December. NSF's
+    categories use the API's award type ("Fellowship Award"), which §8.3's NSF facts do not keep,
+    so the category is decided when the facts are fetched.
+  - **Configuration:** `funding.yaml` carries `schema: 1`; an agency may give `short_name`,
+    `parent` (BBSRC's is UKRI) and `categories` (NSF's, §11.4); `facility_contracts` and
+    `not_grants` mix numbers or strings with patterns, each with a reason; NSF programmes are
+    `{name, pattern, reason}`. The institute codes are NIH's list, RePORTER's, the historical RR,
+    RM, CM and HV, the VA's BX, CX, HX and RX, and AHRQ's HS; not CDC's.
+  - **Rates:** G.5A's Venezuelan bolívar is left out, because one series spans four currencies
+    (VEB, VEF, VES, VED); the other 22 of G.5A's 23 have 1999-2025 (§5.10, Appendix D).
 
 ---
 
@@ -571,9 +617,16 @@ for all of these, at the cost measured in §3.3. Adding any one later is a `fund
   2026-09-26 while writing this spec, lists 23 currencies for 2022–2025, and historical releases
   go back further (the euro from 1999). **Four are quoted in US dollars per unit — AUD, EUR, NZD,
   GBP — and the rest in units per US dollar;** the table stores every rate as US dollars per unit,
-  inverting the latter.
+  inverting the latter. *B3 read every January release from 2000-01-03 to 2026-01-05 (retrieved
+  2026-09-26), each year from the latest release that reports it, since releases revise the years
+  before: every currency has 1999–2025, the euro included. The inverted rates are computed in
+  decimal and rounded to ten significant digits, halves to even. The bolívar is left out
+  (Appendix D).*
 - **OECD annual average exchange rates** (national currency per US dollar), for currencies G.5A
-  lacks. The only one seen is CLP. B3 records the exact dataset and URL.
+  lacks. The only one seen is CLP. *B3 fixed the dataset: `OECD.SDD.NAD:DSD_NAMAIN10@DF_TABLE4`
+  (2.0), transaction `EXC_A`, 1999–2025, read on 2026-09-26 from
+  `https://sdmx.oecd.org/public/rest/data/OECD.SDD.NAD,DSD_NAMAIN10@DF_TABLE4,/A....EXC_A.......`.
+  It supplies 26 currencies G.5A lacks, CLP among them; its euro-area series are in euros.*
 
 ## 6. Resolution
 
@@ -581,9 +634,10 @@ for all of these, at the cost measured in §3.3. Adding any one later is a `fund
 
 For each work, the stage gathers **sightings** — a string, its source, and the funder the source
 names — from OpenAlex, Crossref, PubMed and JATS (from JATS prose, full-format numbers only,
-§5.8), plus the work's **RePORTER links**. Lists are split first (on commas, semicolons and
-" and ", keeping `K99/R00` whole); Unicode dashes and no-break spaces are normalised, and trailing
-punctuation and parenthetical initials or years are dropped. Then each string is resolved in this
+§5.8), plus the work's **RePORTER links**. Lists are split first (on commas, semicolons,
+" and " and a spaced dash between two numbers, keeping `K99/R00` and `P30 DK 089,507` whole);
+Unicode dashes and no-break spaces are normalised, and trailing punctuation and parenthetical
+initials or years are dropped. *A string written two ways on one work is one string (B3, header).* Then each string is resolved in this
 order, and the first step that decides wins:
 
 1. **Resource code** — the string contains `rules.r2.code` → `resource_code`. Never a grant (F1).
@@ -743,7 +797,7 @@ covers only FY2008 on, so a miss there is not proof of a typo. Two exceptions:
 digits left after the agency's configured prefixes are stripped (`VR-RFI 2019-00217` →
 `VR:201900217`; `FKZ 031 A 534A` → `BMBF:031A534A`). **On one work, a number that is a proper
 prefix or suffix, of at least three characters, of another number of the same agency is a
-fragment of it** and lists the longer number: `HDTRA1` and `HDTRA1-18` beside `HDTRA1‐18‐1‐0001`;
+fragment of it** and lists the longest number it is part of: `HDTRA1` and `HDTRA1-18` beside `HDTRA1‐18‐1‐0001`;
 `PID2023` beside `PID2023-153058OB-I00`; `100576` beside `PRE2021-100576`.
 
 **The same number written differently is one grant.** Three pairs the research left apart merge
@@ -1007,12 +1061,14 @@ total_drop_alert: 0.05
 ```
 `UWPR95794` is read from `rules.r2.code`, never duplicated here.
 
-**`config/exchange_rates.yaml`:** `{sources: [{name, url, retrieved, currencies}], rates: {GBP:
-{1999: "1.6177", …}, …}}`, US dollars per unit, as decimal strings.
+**`config/exchange_rates.yaml`:** `{sources: [{name, url, dataset, retrieved, years, currencies}],
+rates: {GBP: {"1999": "1.6172", …}, …}}`, US dollars per unit, as decimal strings, the years
+quoted so YAML keeps them strings.
 
 **Fingerprint.** `Config.funding_fingerprint` covers `funding.yaml` without its version, and not
-the rates file. A stage-0 guard fails the run when the fingerprint changed without a
-`funding_version` bump, exactly like the rules guard. **A version bump schedules a full refresh.**
+the rates file. Every run records it and the version in its manifest (§9.6), and a stage-0
+guard fails the run when the fingerprint changed without a `funding_version` bump, exactly like
+the rules guard; a manifest without the block is not compared. **A version bump schedules a full refresh.**
 Grant overrides are not in this fingerprint (§6.6).
 
 ### 8.5 The `grant` override
@@ -1137,8 +1193,10 @@ overrides not applied; OpenAlex–agency disagreements over 1%; untagged awards 
 grants of one agency seen only beside another on the same work (§6.10); counts excluded as
 not-grants, resource code and facility contracts.
 
-**The manifest** gains an optional `funding: {mode, version, grants, amount_usd, requests}` and
-B1's `overrides_fingerprint`, both additive to `run.schema.json`.
+**The manifest** gains an optional `funding: {version, fingerprint, mode, grants, amount_usd,
+requests}` and B1's `overrides_fingerprint`, both additive to `run.schema.json`. Every run writes
+`version` and `fingerprint`, which stage 0's guard compares (§8.4; added by B3); the funding stage
+adds the rest.
 
 **`uwpr-pubs explain W-…`** gains a Funding section, and `explain NIH:R01…` (any grant key) lists
 the grant's works, listings and facts.
@@ -1738,7 +1796,8 @@ Each lands, dated, with the milestone that makes it true.
     the four amount sources have no person identifier, so one person under two spellings counts
     twice. The count is still worth showing, cross-checked like every other figure; the method
     page states the caveat.
-11. **The OECD dataset** and the G.5A currencies' first years are fixed in B3.
+11. **Closed (B3):** the OECD dataset is `DSD_NAMAIN10@DF_TABLE4`, transaction `EXC_A`, and every
+    G.5A currency has 1999–2025 (§5.10).
 12. **The sample cases' work IDs** (§11.8) are verified in B8.
 
 ## 17. Exit criteria
@@ -1761,7 +1820,8 @@ recorded; `dlcache-v2-`.
 **B3** — Appendix A passes 100% as a parametrised test; P30CA015704 FY2024 = $10,090,142 from
 sub-projects, never added; P30DK017047 $52.8M not $86.0M; NSF, ANID, gepris, quote direction and
 unconverted-currency rules tested; `funding/` branch coverage ≥ 95%; the guard fails stage 0.
-- [ ] Accepted.
+- [x] Accepted 2026-09-26 (421aa37): Appendix A's 187 cases pass; Appendix F's 270 rows come to 267
+      keys; the two parent-row totals as stated; `funding/` branch coverage 99%.
 
 **B4** — byte-identical round trip; seven mutation stores fail for the intended reason; stores
 without `funding/` validate.
@@ -2161,8 +2221,11 @@ krone, Hong Kong dollar, Indian rupee, South Korean won, Malaysian ringgit, Mexi
 Norwegian krone, Singapore dollar, South African rand, Sri Lankan rupee, Taiwan dollar, Thai baht
 and Venezuelan bolívar (units per US dollar). Korean and Hungarian funders appear in the corpus
 without amounts. **Not in G.5A, if they appear:** CLP is the only one seen; any other (HUF, PLN,
-CZK and so on) uses OECD if OECD publishes it — *to verify in B3* — and is otherwise left
-unconverted (F7).
+CZK and so on) uses OECD if OECD publishes it, and is otherwise left unconverted (F7). *Verified in
+B3: OECD publishes 26 that G.5A lacks — ALL, ARS, CLP, COP, CRC, CVE, CZK, GEL, HUF, IDR, ILS, ISK,
+KZT, MAD, MGA, MKD, PEN, PLN, RON, RSD, RUB, SAR, TRY, XAF, XOF, ZMW. The bolívar is left out of
+the table: G.5A's one series spans the VEB, VEF, VES and VED, so no ISO code names it, and a
+bolívar amount stays unconverted.*
 
 ## Appendix E — The nine seeded grant overrides
 
