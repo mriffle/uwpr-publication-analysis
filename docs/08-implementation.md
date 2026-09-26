@@ -880,8 +880,9 @@ The app's commands are in `CLAUDE.md` and `web/package.json`; operating the syst
 run, reading a report, rolling back — is `RUNBOOK.md`'s.
 
 - **A scratch run into an empty directory mints a fresh store.** To exercise the real one, copy
-  `store/`, `export/` *and* `overrides.yaml` into one scratch directory, outside the repository,
-  and run against the copy; without `overrides.yaml` beside it, stage 0 stops (§8 item 4).
+  `store/` and `export/` into one scratch directory, outside the repository, and run against the
+  copy. The run validates against the project's `overrides.yaml` wherever the store is (§8 item
+  4); `uwpr-pubs validate` still looks beside the store, so give it `--overrides overrides.yaml`.
 - **Work in small steps,** committing as you go, with `check.yml` green on every push.
 - **Measure, don't assume.** Phase 1 §4 is the yardstick; a change is done when its numbers
   match, not when the tests pass.
@@ -932,12 +933,13 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
    override for a paper the pipeline has never seen has nothing to attach to.
 3. ~~**A weekly run rewrites every work file**~~ (§3.5). **Fixed 2026-09-26** (§3.6): a week on,
    no work file or candidate line changes.
-4. **Stage 0 validates against a different `overrides.yaml` from the gate** (found 2026-09-26).
-   `precheck` calls `validate_store(store)`, which looks for `<store>/../overrides.yaml`, while
-   the run and the gate use `config.overrides_path` — the mismatch that `_overrides_path`'s
-   docstring warns about. For the real store they are the same file. For a scratch copy of it
-   they are not, and the run stops at stage 0 (`W-000686: reason override_exclude but no exclude
-   override targets it`). The fix is to pass `_overrides_path(self.config)` in stage 0 as well.
+4. ~~**Stage 0 validates against a different `overrides.yaml` from the gate**~~ (found
+   2026-09-26). `precheck` called `validate_store(store)`, which looks for
+   `<store>/../overrides.yaml`, while the run and the gate use `config.overrides_path`. For the
+   real store they are the same file; for a scratch copy of it they were not, and the run stopped
+   at stage 0 (`W-000686: reason override_exclude but no exclude override targets it`). **Fixed
+   2026-09-26:** stage 0 passes `_overrides_path(config)` as the gate does. A scenario test keeps
+   the overrides away from the store and runs twice; it fails on the old code with that error.
 5. **Two Phase 7 exit criteria** ([07](07-operations.md) §17). The `gh-pages` rollback has not
    been rehearsed. The schedule surviving 60+ days without a human commit cannot be checked
    before late November 2026.
