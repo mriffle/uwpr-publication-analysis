@@ -1,11 +1,16 @@
 # Phase 8 — Implementation: status and handoff
 
-**Status:** in progress · last updated 2026-09-26
-**Purpose:** everything needed to pick this work up: where the build has got to, what was decided
-along the way, and the approved plan in full (§6).
+**Status:** Record — the build is done and live, and this is appended to as it runs · last
+updated 2026-09-26
+**Purpose:** everything needed to pick this work up: what was built, what was measured, what was
+decided along the way, and the approved plan in full (§6).
 **Depends on:** the frozen specs [01](01-discovery-strategy.md), [01a](01a-discovery-calibration.md),
-[02](02-data-model.md) and [03](03-retrieval-pipeline.md). They are the authority; this document
-records how they are being built and what implementing them taught us.
+[02](02-data-model.md) and [03](03-retrieval-pipeline.md), and the agreed specs
+[05](05-metrics-and-data-contract.md), [06](06-web-app.md) and [07](07-operations.md). They are
+the authority; this document records how they were built and what building them taught us.
+**Tidied 2026-09-26:** §1, §2, §7 and §8 describe the present, and were brought up to date: they
+still read as if the app were unbuilt. §8's settled questions are cut to one line each; their full
+text is in git history. The dated sections (§3–§5) and the plan (§6) were only added to.
 
 ---
 
@@ -21,15 +26,26 @@ records how they are being built and what implementing them taught us.
 | M4 Completeness and determinism | **Done** (§3.2 has the numbers) |
 | M4.5 Seed rehearsal and seed | **Done** — `store/` seeded 2026-09-20 (§3.3) |
 | M5 Live automation (`update.yml`) | **Done** — ran unattended 2026-09-20 and pushed (§3.4) |
+| Stage 11, the app's JSON ([05](05-metrics-and-data-contract.md)) | **Done** 2026-09-20 — two files, validated at the gate, committed with the store |
+| The web app ([06](06-web-app.md)) | **Done** 2026-09-20 — `web/`: React, TypeScript, Vite, visx |
+| Publishing ([07](07-operations.md)) | **Done** 2026-09-20 — `gh-pages`, with the data and the app published separately |
+| Scheduled running | **Done, after a false start** — the first scheduled run failed on 2026-09-21; fixed, and caught up on 2026-09-26 (§3.5) |
 
-391 tests, all offline; ruff, `ruff format`, mypy `--strict` and the store validator all clean, and
-`check.yml` green on every push — it now validates the committed `store/` and runs the Phase 1
-§12 test papers against it as well.
+**The app is live** at <https://mriffle.github.io/uwpr-publication-analysis/>.
+
+**The checks, as of 2026-09-26:** 501 Python tests and 707 web unit tests, all offline, plus 40
+Playwright tests against the built app. ruff, `ruff format`, mypy `--strict`, ESLint, Prettier,
+`tsc`, the bundle budget and the store validator are all clean. `check.yml` is green on every
+push. Besides the code, it validates the committed `store/`, runs the Phase 1 §12 test papers
+against it, and checks that the committed export matches the committed store.
 
 **`store/` was seeded on 2026-09-20**: 339 works, 455 candidates, 306 list entries, 754 metrics
 lines, 0 errors and 0 warnings. The ~1,100 work and record IDs it minted are permanent from here.
 The seeded store is **byte-identical to the rehearsal that was reviewed** (§3.3), so what is
 committed is exactly what was read.
+
+**The store after the 2026-09-26 run:** 339 works, 477 candidates, 306 list entries and 754
+metrics lines; recall on the official list 208/253 (82%).
 
 ## 2. What exists
 
@@ -39,6 +55,7 @@ src/uwpr_pubs/
   context.py     RunContext: the only reader of the clock
   schemas.py     schema registry and project-root discovery
   secrets.py     the one place secrets are stripped from URLs, params and text
+  cli.py         the `uwpr-pubs` command
   cache.py       content-addressed cache; the same format as tests/recordings/
   http.py        rate limits, retries, budget guard, live/replay/record, cost classification
   recording.py   record-mode scrubbing (P10) and the guard the §12.3 test uses
@@ -47,25 +64,34 @@ src/uwpr_pubs/
   evidence.py    identity keys, the merge matrix, the criterion mapping, excerpt limit
   status.py      every row of Phase 2 §13, in precedence order
   channels.py    channel definitions → nominations
+  fulltext.py    stage 4: readable text, NCBI efetch first, then Europe PMC
+  text.py        structural JATS extraction (Phase 1 §6.1)
   metrics.py     citation lines from the same OpenAlex refresh
   report.py      RunRecorder: the report is accumulated as stages run
   pipeline.py    the stage machine, the staging write and the gate
   versions.py    the four version-linking signals, and the merge plan they imply
   fixtures.py    the Phase 1 §12 test papers, evaluated against a store
   explain.py     everything known about one work, for `uwpr-pubs explain`
+  export.py      the app's data contract, pure: store shapes in, export shapes out (docs/05)
+  sample.py      the twelve cases the sample export must cover (docs/05 §13)
   validate.py    the store validator (was tools/validate_store.py)
   git.py         clean-tree, reset, and the run's one data commit
   runtime.py     builds the client from config; reads .env for local runs
   smoke.py       `uwpr-pubs smoke`, the only live test
   sources/       uwpr_site, openalex, ncbi, crossref, europepmc, biorxiv, pride
   rules/         one module per rule, plus staff name forms and the §6.4 signals
-  stages/        kb.py and export.py: no-ops until Phases 4 and 5
+  stages/        export.py: stage 11, the shell around export.py (stage 10 retired with Phase 4)
   store/         models (TypedDicts), io, ids, paths, read
+
+web/             the app (docs/06): contract/ (types generated from schemas/), aggregate/ and
+                 filter/ (no React), charts/, views/; e2e/ holds the Playwright tests
+tools/           publish-site.sh (the two halves of gh-pages); redact_jats.py
+.github/         check.yml, update.yml (weekly), pages.yml (app deploy), dependabot.yml
 ```
 
 Commands: the full Phase 3 §8 set — `validate`, `config`, `smoke`, `run`, `explain`, `report`
-and `fixtures`. `run` takes `--mode`, `--store`, `--cache`, `--dry-run`, `--channels`,
-`--no-commit` and `--summary-out`.
+and `fixtures` — plus `export`. `run` takes `--mode`, `--store`, `--cache`, `--dry-run`,
+`--channels`, `--no-commit` and `--summary-out`.
 
 ## 3. Measurements so far
 
@@ -485,6 +511,23 @@ because they are the things a reader would otherwise have to rediscover.
   works that are, by definition, not yet merged. As an error, that made the override unusable;
   it is now a warning. Any check that asserts a *post-run* state has this problem.
 
+**Found after going live (2026-09-26):**
+- **The run report's Notes were 222 lines of false duplicates.** Every "OpenAlex has 2 records
+  for …" note named the *same* id twice (`W1985458075, W1985458075`): three notes, one per
+  identifier, for each of 74 papers. Nominations are grouped by their first identifier. So a
+  paper nominated once with a DOI and once with only a PMID is fetched by both batches, and
+  `_choose_payloads` counted the copies. It now keys by OpenAlex id. A live run on a copy of the
+  store left **one** such note, a real triple (`doi:10.1136/jnnp.73.2.213`) that had been buried
+  among the 222. The payload chosen is unchanged, so no data moved.
+- **PMC full text is not quite immutable.** In a local run against a copy of the committed store,
+  four candidates' `fulltext.cache` hashes differed from CI's run an hour earlier. The local
+  cache held the texts as fetched on 2026-09-20. CI starts cold and had fetched them again, and
+  PMC's XML had changed in between. None of the four is included, so inclusion was untouched. A
+  warm local cache can therefore diff against the committed store even with the same code on the
+  same day.
+- **Stage 0 and the gate read different `overrides.yaml` files** (§8, open item 4). It was found
+  when that local run stopped at stage 0.
+
 ## 6. The approved implementation plan
 
 Written and approved on 2026-09-19, before M0. Reproduced in full and unedited; §1 above says how
@@ -762,16 +805,22 @@ two stores built from scratch, and a failing source that shrinks nothing.
 ```
 uv sync --locked --all-groups
 uv run ruff check . && uv run ruff format --check . && uv run mypy && uv run pytest
-uv run uwpr-pubs validate samples/store
+uv run uwpr-pubs validate store
 uv run uwpr-pubs smoke                              # live; about $0.001
-uv run uwpr-pubs run --store /tmp/scratch-store     # live; about $0.010, ~110 s, warm cache
+uv run uwpr-pubs run --store /tmp/scratch-store     # live; about $0.010, ~150 s, warm cache
 uv run uwpr-pubs fixtures --store /tmp/scratch-store        # the Phase 1 §12 papers
 uv run uwpr-pubs explain 10.1021/acs.jproteome.5c00706 --store /tmp/scratch-store
 uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's report
 ```
 
-- **Work one milestone at a time,** committing as you go, with `check.yml` green on every push.
-- **Measure, don't assume.** Phase 1 §4 is the yardstick; a milestone is done when its numbers
+The app's commands are in `CLAUDE.md` and `web/package.json`; operating the system — triggering a
+run, reading a report, rolling back — is `RUNBOOK.md`'s.
+
+- **A scratch run into an empty directory mints a fresh store.** To exercise the real one, copy
+  `store/`, `export/` *and* `overrides.yaml` into one scratch directory, outside the repository,
+  and run against the copy; without `overrides.yaml` beside it, stage 0 stops (§8 item 4).
+- **Work in small steps,** committing as you go, with `check.yml` green on every push.
+- **Measure, don't assume.** Phase 1 §4 is the yardstick; a change is done when its numbers
   match, not when the tests pass.
 - **Run twice and diff.** It is the only reliable way to catch identity and date bugs.
 - **Frozen specs change only deliberately,** with a dated note in the spec's header.
@@ -779,34 +828,24 @@ uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's r
 
 ## 8. Open questions for the maintainer
 
-1. **Workflow token permissions are read-only** (`default_workflow_permissions: "read"`, confirmed
-   2026-09-20). This is not about the repository: it is the default power of the temporary
-   `GITHUB_TOKEN` each workflow run is given. `check.yml` only reads, so it is unaffected;
-   `update.yml` must push the weekly data commit. It declares `permissions: {contents: write}`,
-   which normally suffices for a same-repository trigger, and the first manual run settles it.
-   If that push is refused, the fix is the repository's *Workflow permissions* setting.
-   `main` is **not** branch-protected (checked the same day), so nothing else blocks the bot.
-2. **Licensed Apache-2.0** (2026-09-20): `LICENSE` is the canonical text; `NOTICE` carries the
-   copyright and records what the store's quoted excerpts are. The holders are **Michael Riffle
-   and the University of Washington**, jointly (confirmed 2026-09-20). Settled.
-3. **`OPEN_ALEX_API_KEY` is set** as a repository secret (2026-09-20). An `NCBI_API_KEY` is still
-   optional and would make cold-cache CI runs about three times faster.
-4. **Phase 4 is retired** (2026-09-20) and D11–D13 are answered: no summaries, no abstracts,
-   OpenAlex topics as reported. **Phases 5 and 6 are agreed** (2026-09-20). Phase 5 (A1–A8): the
-   export is two files, `uwpr_publications.json` and `lookup_index.json`, written by stage 11 and
-   validated at the gate. Phase 6 (B1–B11): React with TypeScript, built by Vite, charts on visx,
-   living in `web/` with its own CI job. **Building them is next, and the sample export comes
-   first — the app cannot be developed or tested without it** (05 §13). **Phase 7 — operations and
-   hosting — is the next specification conversation**; its draft predates almost every decision
-   since and should be rewritten rather than edited.
-5. **The NUP153 merge override is written** (`overrides.yaml`, §3.3) and verified against the
-   rehearsal, but it asserts a judgement and is attributed to a person. It takes effect at the
-   seed; until `store/` exists, the work IDs it names do not, which is why it is committed
-   alongside the seed rather than before it.
-6. **An `NCBI_API_KEY`** would take cold-cache runs from 3 to 10 requests a second. Only CI
-   starts cold, so this matters from M5 rather than now.
-7. **Two data defects found while specifying Phase 5** (2026-09-20). Neither affects inclusion;
-   both are visible in the committed store and would surface in the app.
+*Brought up to date 2026-09-26.*
+
+**Settled**, each with where the answer is recorded:
+- **Workflow token permissions.** `update.yml`'s own `permissions: {contents: write}` is honoured,
+  and no repository setting had to change (§3.4, 2026-09-20).
+- **Licence.** Apache-2.0, held jointly by Michael Riffle and the University of Washington
+  (`LICENSE`, `NOTICE`; 2026-09-20).
+- **`OPEN_ALEX_API_KEY`** is a repository secret (2026-09-20).
+- **Phases 4 to 7.** Phase 4 is retired and D11–D13 are answered; 5, 6 and 7 are agreed, built
+  and live (2026-09-20; §1).
+- **The NUP153 merge override** was committed with the seed, and holds (§3.3).
+- **Maintainer and fallback.** Michael Riffle is the maintainer, and Michael Hoopmann the
+  fallback (2026-09-26; `RUNBOOK.md` §1). The fallback does not receive the scheduled run's
+  failure email; [07](07-operations.md) §6 says why, and what they watch instead.
+
+**Open:**
+1. **Two data defects found while specifying Phase 5** (2026-09-20). Neither affects inclusion;
+   both are visible in the committed store and surface in the app.
    - **`W-000746`'s title is a filename**, `1_manuscript_2020-04-14.pdf` — a ChemRxiv preprint
      included on a full-text-index match. Phase 1 §8 already says to take the title from Crossref
      or the preprint server when this happens; it is not happening for this record. One of ~390
@@ -818,12 +857,30 @@ uv run uwpr-pubs report --store /tmp/scratch-store          # the latest run's r
      under an unchanged rule version — would be kept alongside it, leaving duplicates. A version
      bump supersedes the old entry properly. That bump is also the **cold-cache rule-change run
      that Phase 3 §13 still carries as an estimate**, so the two should be done in one go.
-8. **An override that names a DOI or PMID silently does nothing** (found 2026-09-20). Phase 2 §9
-   allows an `include` or `exclude` target to be "a DOI / PMID for a paper not yet in the store",
-   and `overrides.schema.json` accepts one, but the pipeline matches overrides only by work ID.
-   Such an entry is accepted, validated and ignored — the worst shape for a correction tool, since
-   the person who wrote it gets no signal that it did not take effect. Both of today's overrides
-   name work IDs, so nothing is currently wrong. **Needs a decision:** either resolve such a
-   target through `aliases.json` before matching, or reject it at config load so it fails loudly.
-   The second is cheaper and arguably better, since an override for a paper the pipeline has never
-   seen has nothing to attach to.
+2. **An override that names a DOI or PMID silently does nothing** (found 2026-09-20, still true
+   2026-09-26). Phase 2 §9 allows an `include` or `exclude` target to be "a DOI / PMID for a paper
+   not yet in the store", and `overrides.schema.json` accepts one, but the pipeline matches
+   overrides only by work ID. Such an entry is accepted, validated and ignored — the worst shape
+   for a correction tool, since the person who wrote it gets no signal that it did not take
+   effect. Both current overrides name work IDs, so nothing is currently wrong. **Needs a
+   decision:** either resolve such a target through `aliases.json` before matching, or reject it
+   at config load so it fails loudly. The second is cheaper and arguably better, since an
+   override for a paper the pipeline has never seen has nothing to attach to.
+3. **A weekly run rewrites every work file** (§3.5, found 2026-09-26). Only dates change, and all
+   of them are true. But Phase 2 §15 says a run on unchanged sources changes only the list
+   entries, `metrics/` and `runs/`, plus a monthly `last_seen` refresh. Left for a deliberate fix.
+   To confirm one, run on two different days and diff.
+4. **Stage 0 validates against a different `overrides.yaml` from the gate** (found 2026-09-26).
+   `precheck` calls `validate_store(store)`, which looks for `<store>/../overrides.yaml`, while
+   the run and the gate use `config.overrides_path` — the mismatch that `_overrides_path`'s
+   docstring warns about. For the real store they are the same file. For a scratch copy of it
+   they are not, and the run stops at stage 0 (`W-000686: reason override_exclude but no exclude
+   override targets it`). The fix is to pass `_overrides_path(self.config)` in stage 0 as well.
+5. **Two Phase 7 exit criteria** ([07](07-operations.md) §17). The `gh-pages` rollback has not
+   been rehearsed. The schedule surviving 60+ days without a human commit cannot be checked
+   before late November 2026.
+6. **An `NCBI_API_KEY`** would take cold-cache runs from 3 to 10 requests a second, and every CI
+   run starts cold. Optional: a run takes 2–5 minutes without it.
+7. **Visual-regression tests** ([06](06-web-app.md) §12.2) are not written.
+8. **[07](07-operations.md) §9.1's missing-from-site list** has no report section, and nobody owns
+   acting on it (07 §16 item 0).

@@ -19,9 +19,13 @@ frozen, Phase 4 retired, 5-7 agreed 2026-09-20 with dated changelogs.
 - **The app is built and deployed** at https://mriffle.github.io/uwpr-publication-analysis/, from
   the `gh-pages` branch. `web/` is React + TypeScript + Vite; `export/` holds the two JSON files
   it reads, rebuilt and committed by every run.
-- **What is left** is small and listed in `docs/07` §16 and `docs/08` §8: a named fallback
-  maintainer, visual-regression tests (`docs/06` §12.2), one `schema_version` minor bump, and two
-  cosmetic data defects that need a `rule_version` bump to fix cleanly.
+- **What is left** is small and listed in `docs/07` §16 and `docs/08` §8:
+  - visual-regression tests (`docs/06` §12.2);
+  - one `schema_version` minor bump;
+  - two cosmetic data defects that need a `rule_version` bump to fix cleanly;
+  - a weekly run that rewrites every work file with fresh dates.
+
+  The fallback maintainer is Michael Hoopmann, named 2026-09-26 (`RUNBOOK.md` §1).
 
 **`docs/08-implementation.md` is the record**: status, measurements, decisions taken while
 building, and the gotchas — read §4 and §5 before changing pipeline code. Public repo:
@@ -67,7 +71,7 @@ uv run uwpr-pubs validate store                                # schemas + invar
 uv run uwpr-pubs export --store store --out DIR                # build the app's JSON (export/ is a store sibling)
 uv run uwpr-pubs config                                        # fingerprints and config summary
 uv run uwpr-pubs smoke                                         # live source check (~$0.001)
-uv run uwpr-pubs run --store /tmp/scratch-store                # live run (~$0.010, ~110 s, warm cache)
+uv run uwpr-pubs run --store /tmp/scratch-store                # live run (~$0.010, ~150 s, warm cache)
 uv run uwpr-pubs explain <DOI|PMID|W-id> --store DIR           # why a paper is, or is not, included
 uv run uwpr-pubs fixtures --store DIR                          # the Phase 1 §12 test papers
 uv run uwpr-pubs report [RUN_ID] --store DIR                   # a run report (default: the latest)

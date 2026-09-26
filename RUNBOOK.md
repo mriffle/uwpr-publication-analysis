@@ -27,13 +27,20 @@ year** (OpenAlex; everything else is free).
 | Role | Person |
 |---|---|
 | **Maintainer** | Michael Riffle — <mriffle@uw.edu> |
-| **Fallback** | **Not yet named.** See below. |
+| **Fallback** | Michael Hoopmann — <hoopmann@uw.edu> (named 2026-09-26) |
 
-**The fallback is the largest unmitigated risk in this project** (docs/07 §7, §16 item 1). The
-system is built to run unattended for years; what it is least protected against is not a technical
-failure but the maintainer becoming unavailable with nobody else holding the notifications, the
-repository access or the context. Naming a second person, giving them repository admin, and having
-them read this page once is the entire mitigation. Record the name here when it is decided.
+**Why there is a fallback** (docs/07 §7). The system is built to run unattended for years; what
+it is least protected against is not a technical failure but the maintainer becoming unavailable
+with nobody else holding the notifications, the repository access or the context. Naming a second
+person was the first step. The rest is giving them repository admin and having them read this page
+once.
+
+**The fallback does not get the weekly run's failure email.** GitHub sends a *scheduled* run's
+failure notification to one person: whoever created the workflow, or last changed its `cron` line
+(or re-enabled it after GitHub disabled it). Here that is the maintainer. Watching the repository
+does not add anyone. The fallback's signals are a failed run on the Actions tab, and the page's own
+staleness notice after 14 days (docs/07 O3). Taking over the email means changing the `cron` line
+in `update.yml` and committing it as yourself.
 
 Nobody currently owns acting on the publications the run finds that are **absent from UWPR's own
 publications page** (33 of 339 as of 2026-09-20; docs/07 §9.1). Worth naming at the same time.
@@ -60,11 +67,12 @@ These cannot be set from a workflow.
    setting will not offer the branch.
 2. **Settings → Actions → General → Workflow permissions.** The weekly run and the deploy both
    push, and both declare `permissions: contents: write`. If a push is ever refused with a 403,
-   this setting is why (docs/08 §8 item 1).
+   this setting is why (docs/08 §3.4).
 3. **Watch the repository with Actions failure notifications enabled**, for the maintainer and the
    fallback. This is the *only* alert channel (§5). Notification routing for a *scheduled*
-   workflow is not the same as for a push, so confirm it once by deliberately failing a run —
-   see §7 — rather than assuming it.
+   workflow is not the same as for a push: its failure email goes only to the person who created
+   the workflow or last changed its `cron` line (§1). Confirm it once by deliberately failing a
+   run — see §7 — rather than assuming it.
 
 ## 3. Run the pipeline by hand
 
@@ -238,7 +246,7 @@ measurement.
 - **An override cannot beat R1.** A paper on UWPR's own publications page cannot be excluded.
 - **Name a work ID, not a DOI or a PMID.** The schema accepts a DOI or PMID target, but the
   pipeline matches overrides by work ID only, so such an entry is accepted, validated and then
-  **silently ignored** (docs/08 §8 item 8). Find the work ID with `uwpr-pubs explain <doi>`.
+  **silently ignored** (docs/08 §8 item 2). Find the work ID with `uwpr-pubs explain <doi>`.
 
 Then run and confirm. `overrides.yaml` is part of the config fingerprint, so the next run
 re-evaluates every work:
@@ -312,8 +320,10 @@ That is also how the site is bootstrapped, and how a failed weekly publish is re
 
 **Confirm the alerting once** (docs/07 §6), because notification routing for a scheduled workflow
 is discovered during an outage otherwise. Break a run deliberately — for example set the OpenAlex
-secret to a wrong value, run `update` by hand, and check the failure email arrives at both
-addresses — then put the secret back.
+secret to a wrong value, run `update` by hand, and check the failure email arrives — then put the
+secret back. A run started by hand emails the person who started it, so this proves that person's
+settings; a *scheduled* failure emails only the workflow's `cron` owner (§1). The scheduled route
+to the maintainer was proven by a real failure on 2026-09-21.
 
 ## 8. Rolling back an app deploy
 

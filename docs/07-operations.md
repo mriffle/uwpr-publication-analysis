@@ -24,6 +24,16 @@ dated, and noted in this header.
   with breaking changes (0.12 had several) would have reached the weekly run unannounced; it now
   installs the newest uv inside the range, and a local uv outside it refuses to run. A new uv
   minor is taken deliberately (RUNBOOK §11).
+
+**Changed 2026-09-26, when the fallback was named:**
+- *§7 and §16, the fallback is Michael Hoopmann* (UWPR staff), recorded in `RUNBOOK.md` §1. O4 is
+  met.
+- *§6, a scheduled run's failure email reaches one person, and watching the repository adds no
+  one.* GitHub sends it to whoever created the workflow or last changed its `cron` line (or
+  re-enabled it), and a run started by hand emails the person who started it. So the fallback
+  does not receive the weekly run's email. Their signals are the Actions tab and O3's staleness
+  notice. Found on GitHub's page about notifications for workflow runs while recording the
+  fallback.
 **Purpose:** define where this runs, how the app is published, how a failure becomes visible, and
 who is responsible when it does.
 **Depends on:** [03](03-retrieval-pipeline.md) (frozen), which already specifies the run, its
@@ -203,12 +213,15 @@ it is a two-minute job and is on the exit criteria.
 
 ## 7. Ownership
 
-**Needs an answer:** a named maintainer and a named fallback, recorded in `RUNBOOK.md`.
+**Answered 2026-09-26:** Michael Riffle is the maintainer, and **Michael Hoopmann is the
+fallback**. Both are recorded in `RUNBOOK.md` §1.
 
-Michael Riffle is the evident maintainer. **The fallback is the real gap.** This system is
+The fallback was the real gap. This system is
 designed to run unattended for years on a $0.52-a-year budget; the failure mode it is least
 protected against is not technical but the maintainer becoming unavailable with nobody else
 holding the keys, the context or the notifications. The runbook exists largely for that person.
+Naming them is not the whole of it: they also need repository admin and one read of the runbook.
+They do not receive the scheduled run's failure email (§6).
 
 ## 8. Rollback, and the one dangerous operation
 
@@ -298,7 +311,7 @@ Named, with what is done about each. The first is the one most likely to end thi
 | Risk | Mitigation |
 |---|---|
 | **GitHub disables the scheduled workflow after a period of repository inactivity.** Whether the bot's own pushes count as activity is **not established**, and it should not be assumed either way. | Dependabot's monthly pull requests create human activity (O8). GitHub warns by email before disabling, which the maintainer must be positioned to receive (§6). The page's own staleness notice (O3) catches it if both fail. **Verify after 60+ days of no human commits that the schedule still fires** — this is on the exit criteria, and it cannot be verified sooner than that |
-| The maintainer becomes unavailable | A named fallback and `RUNBOOK.md` (§7). Currently unmet |
+| The maintainer becomes unavailable | A named fallback and `RUNBOOK.md` (§7). Named 2026-09-26 |
 | The official-list scraper breaks | Loud by design (§11); a degraded run changes nothing |
 | A source changes terms or withdraws access | The run degrades and keeps the data. OpenAlex is the only paid dependency, at $0.52 a year against a $1/day allowance |
 | The store is lost | Git is the record and GitHub is the backup; the maintainer keeps a local clone. Permanent IDs make this worth more than a cache would be |
@@ -348,8 +361,7 @@ keeping the thing running.
    figure exists and the *list* does not reach anyone. It is a small addition to `report.py`, and
    it is deliberately not made yet, because §9.1 also records that nobody owns acting on it —
    producing a list no one reads is not an improvement.
-1. **The named fallback maintainer** (§7). The only decision in this spec that needs a person
-   rather than a change.
+1. ~~**The named fallback maintainer** (§7).~~ **Answered 2026-09-26:** Michael Hoopmann.
 2. **The inactivity rule** (§12) cannot be verified for at least 60 days. Until then it is a known
    unknown, not a solved problem.
 3. **An `NCBI_API_KEY`** would make a cold-cache run about three times faster. Optional; the run
@@ -363,7 +375,7 @@ keeping the thing running.
 - [x] Publishing flow decided, and decoupled from the data update.
 - [x] Failure visibility specified at all three layers, including the page's own staleness notice.
 - [x] Rollback policy decided, including the one operation that must not be routine.
-- [ ] Maintainer and fallback named.
+- [x] Maintainer and fallback named (2026-09-26).
 - [ ] `gh-pages` publishing implemented and a deploy rolled back once in rehearsal.
 - [x] Notification routing confirmed by a failing run — not a deliberate one: the first scheduled
   run failed on 2026-09-21 (docs/08 §3.5), and GitHub's email reached the maintainer.

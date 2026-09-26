@@ -521,7 +521,7 @@ data commit change only the JSON it fetches.**
 3. **Embed mode** (`?embed=1`, chrome hidden, for an iframe on the resource's own site) is cheap
    and plausible, but nobody has asked for it. Deferred until someone does.
 4. **The two pipeline defects** the app will display as stored (§5) are tracked in
-   [08](08-implementation.md) §8 item 7.
+   [08](08-implementation.md) §8 item 1.
 
 ## 15. Exit criteria
 
