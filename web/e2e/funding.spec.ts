@@ -23,7 +23,8 @@ test.skip(
 
 interface ExportDocument {
   works: { year: number }[];
-  funding?: unknown;
+  /** Absent in a 1.0 export; its `version` is null in a 1.1 export with no funding data. */
+  funding?: { version: string | null } | null;
 }
 
 async function readExport(page: Page): Promise<ExportDocument> {
@@ -94,7 +95,7 @@ test('the funding view resolves from cold, and says when the export has no fundi
     'href',
     `/?year=${String(year)}`,
   );
-  if (doc.funding === undefined || doc.funding === null) {
+  if ((doc.funding?.version ?? null) === null) {
     await expect(
       page.getByRole('region', { name: 'No funding data in this export' }),
     ).toBeVisible();

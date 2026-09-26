@@ -57,10 +57,22 @@ SAMPLE_CASES = Path("samples/export_cases.json")
 DATA_BUDGET_SCRIPT = Path("web/scripts/check-data-budget.mjs")
 
 
+def build_sample() -> tuple[Any, Any]:
+    """The sample as `uwpr-pubs export --cases` builds it: the sample's own overrides, and the rate
+    sources, which the funding block names (docs/09 §11.3)."""
+    config = load_config(overrides_path=SAMPLE_STORE.parent / "overrides.yaml")
+    return build_from_store(
+        SAMPLE_STORE,
+        resource_block(config),
+        extra=SAMPLE_CASES,
+        overrides=config.overrides,
+        rate_sources=config.exchange_rates["sources"],
+    )
+
+
 @pytest.fixture(scope="module")
 def built() -> tuple[Any, Any]:
-    config = load_config()
-    return build_from_store(SAMPLE_STORE, resource_block(config), extra=SAMPLE_CASES)
+    return build_sample()
 
 
 @pytest.fixture(scope="module")
@@ -181,9 +193,7 @@ def test_the_synthetic_cases_cannot_be_mistaken_for_real_papers() -> None:
 
 def test_building_twice_is_byte_identical(tmp_path: Path) -> None:
     """docs/02 §15: two runs on unchanged input produce no diff in `export/`."""
-    config = load_config()
-    first = build_from_store(SAMPLE_STORE, resource_block(config), extra=SAMPLE_CASES)
-    second = build_from_store(SAMPLE_STORE, resource_block(config), extra=SAMPLE_CASES)
+    first, second = build_sample(), build_sample()
     one, two = tmp_path / "one", tmp_path / "two"
     write_export(one, *first)
     write_export(two, *second)

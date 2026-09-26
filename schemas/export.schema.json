@@ -15,6 +15,7 @@
     "period",
     "summary",
     "method",
+    "funding",
     "works"
   ],
   "properties": {
@@ -44,6 +45,7 @@
     "period": {"$ref": "#/$defs/period"},
     "summary": {"$ref": "#/$defs/summary"},
     "method": {"$ref": "#/$defs/method"},
+    "funding": {"$ref": "#/$defs/funding"},
     "works": {"type": "array", "items": {"$ref": "#/$defs/work"}}
   },
   "$defs": {
@@ -390,7 +392,8 @@
         "on_official_list",
         "criteria",
         "evidence",
-        "versions"
+        "versions",
+        "grants"
       ],
       "properties": {
         "id": {"$ref": "common.schema.json#/$defs/workId"},
@@ -446,7 +449,309 @@
           "uniqueItems": true
         },
         "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
-        "versions": {"type": "array", "items": {"$ref": "#/$defs/version"}}
+        "versions": {"type": "array", "items": {"$ref": "#/$defs/version"}},
+        "grants": {
+          "description": "The grants this work lists, sorted by grant; empty when it lists none or the export carries no funding data (docs/09 §11.2)",
+          "type": "array",
+          "items": {"$ref": "#/$defs/grantListing"}
+        }
+      }
+    },
+    "grantListing": {
+      "description": "One grant on one work (docs/09 §11.2). `cited_as` and `override` are present only where they apply.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grant", "how", "agencies"],
+      "properties": {
+        "grant": {"description": "A key in funding.grants; never null: an unresolved number is a MISC: grant", "$ref": "common.schema.json#/$defs/grantKey"},
+        "how": {
+          "description": "The strongest evidence that the paper names the grant: the first of listed, corrected, override, nih_link",
+          "enum": ["listed", "nih_link", "corrected", "override"]
+        },
+        "cited_as": {
+          "description": "The written forms on this work that reached the grant only by correction or override, whitespace collapsed, sorted; present exactly when there are any, whatever `how` is",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "override": {"$ref": "#/$defs/grantOverride"},
+        "agencies": {
+          "description": "The grant's agency chain, root first, so a filter needs nothing but the row",
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "common.schema.json#/$defs/agencyCode"}
+        }
+      }
+    },
+    "grantOverride": {
+      "description": "Who decided a string on this work is this grant, and why: present exactly when a grant override applied",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason", "by", "date"],
+      "properties": {
+        "reason": {"type": "string", "minLength": 1},
+        "by": {"type": "string", "minLength": 1},
+        "date": {"$ref": "common.schema.json#/$defs/date"}
+      }
+    },
+    "funding": {
+      "description": "The funding behind the publications (docs/09 §11.3). `version` is null exactly when this export carries no funding data; then every list is empty and every count zero.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "as_of", "sources", "exchange_rates", "method", "summary", "agencies", "grants"],
+      "properties": {
+        "version": {"oneOf": [{"$ref": "common.schema.json#/$defs/ruleVersion"}, {"type": "null"}]},
+        "as_of": {
+          "description": "The date of the last full refresh: every amount was read then or later",
+          "oneOf": [{"$ref": "common.schema.json#/$defs/date"}, {"type": "null"}]
+        },
+        "sources": {"type": "array", "items": {"$ref": "#/$defs/fundingSource"}},
+        "exchange_rates": {"type": "array", "items": {"$ref": "#/$defs/exchangeRates"}},
+        "method": {"$ref": "#/$defs/fundingMethod"},
+        "summary": {"$ref": "#/$defs/fundingSummary"},
+        "agencies": {"description": "Every agency a grant names, with every parent, sorted by code", "type": "array", "items": {"$ref": "#/$defs/agency"}},
+        "grants": {"description": "Every grant an exported work lists, sorted by key", "type": "array", "items": {"$ref": "#/$defs/grant"}}
+      }
+    },
+    "fundingSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "url", "as_of", "amounts_from", "partial_year"],
+      "properties": {
+        "id": {"enum": ["reporter", "nsf", "usaspending", "openalex", "pubmed", "crossref", "pmc"]},
+        "name": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "as_of": {"description": "The latest date a fact from this source was confirmed", "$ref": "common.schema.json#/$defs/date"},
+        "amounts_from": {"description": "The first year the source's amounts cover, where they start somewhere", "type": ["integer", "null"]},
+        "partial_year": {"description": "The fiscal year in progress on as_of, for a source reported by fiscal year", "type": ["integer", "null"]}
+      }
+    },
+    "exchangeRates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url", "currencies", "through_year"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"},
+        "currencies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z]{3}$"}},
+        "through_year": {"type": "integer"}
+      }
+    },
+    "fundingMethod": {
+      "description": "Distinct (work, string) pairs over the exported works, by outcome and by method, for the method page",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strings", "resolution", "works_without_funding_metadata"],
+      "properties": {
+        "strings": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["grant", "unresolved", "not_a_grant", "resource_code", "facility_contract"],
+          "properties": {
+            "grant": {"type": "integer", "minimum": 0},
+            "unresolved": {"type": "integer", "minimum": 0},
+            "not_a_grant": {"type": "integer", "minimum": 0},
+            "resource_code": {"type": "integer", "minimum": 0},
+            "facility_contract": {"type": "integer", "minimum": 0}
+          }
+        },
+        "resolution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["exact", "normalised", "corrected", "override"],
+          "properties": {
+            "exact": {"type": "integer", "minimum": 0},
+            "normalised": {"type": "integer", "minimum": 0},
+            "corrected": {"type": "integer", "minimum": 0},
+            "override": {"type": "integer", "minimum": 0}
+          }
+        },
+        "works_without_funding_metadata": {"type": "integer", "minimum": 0}
+      }
+    },
+    "fundingSummary": {
+      "description": "Computed from the rows, with institution-wide awards included, for the cross-check (docs/09 §11.6)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grants",
+        "grants_resolved",
+        "grants_with_amount",
+        "grants_unconverted",
+        "grants_institution_wide",
+        "agencies",
+        "investigators",
+        "organizations",
+        "amount_usd",
+        "amount_usd_institution_wide",
+        "amount_usd_nih",
+        "nih_grants",
+        "works_with_grants",
+        "works_with_listings",
+        "first_year",
+        "last_year",
+        "by_first_year"
+      ],
+      "properties": {
+        "grants": {"type": "integer", "minimum": 0},
+        "grants_resolved": {"type": "integer", "minimum": 0},
+        "grants_with_amount": {"type": "integer", "minimum": 0},
+        "grants_unconverted": {"type": "integer", "minimum": 0},
+        "grants_institution_wide": {"type": "integer", "minimum": 0},
+        "agencies": {"type": "integer", "minimum": 0},
+        "investigators": {"type": "integer", "minimum": 0},
+        "organizations": {"type": "integer", "minimum": 0},
+        "amount_usd": {"type": "integer", "minimum": 0},
+        "amount_usd_institution_wide": {"type": "integer", "minimum": 0},
+        "amount_usd_nih": {"type": "integer", "minimum": 0},
+        "nih_grants": {"type": "integer", "minimum": 0},
+        "works_with_grants": {"type": "integer", "minimum": 0},
+        "works_with_listings": {"type": "integer", "minimum": 0},
+        "first_year": {"type": ["integer", "null"]},
+        "last_year": {"type": ["integer", "null"]},
+        "by_first_year": {
+          "description": "Resolved grants by their first year: the cumulative rule's increments",
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {"^[0-9]{4}$": {"$ref": "#/$defs/fundingYear"}}
+        }
+      }
+    },
+    "fundingYear": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grants", "grants_institution_wide", "amount_usd", "amount_usd_institution_wide"],
+      "properties": {
+        "grants": {"type": "integer", "minimum": 0},
+        "grants_institution_wide": {"type": "integer", "minimum": 0},
+        "amount_usd": {"type": "integer", "minimum": 0},
+        "amount_usd_institution_wide": {"type": "integer", "minimum": 0}
+      }
+    },
+    "agency": {
+      "description": "An agency (docs/09 §11.5). The app finds Miscellaneous by `group`, never by a key.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "name", "short_name", "parent", "group", "country"],
+      "properties": {
+        "code": {"$ref": "common.schema.json#/$defs/agencyCode"},
+        "name": {"type": "string", "minLength": 1},
+        "short_name": {"type": ["string", "null"]},
+        "parent": {"oneOf": [{"$ref": "common.schema.json#/$defs/agencyCode"}, {"type": "null"}]},
+        "group": {"enum": ["us_federal", "us_nonfederal", "non_us", "miscellaneous"]},
+        "country": {"description": "ISO 3166 alpha-2", "oneOf": [{"type": "string", "pattern": "^[A-Z]{2}$"}, {"type": "null"}]}
+      }
+    },
+    "grant": {
+      "description": "A grant (docs/09 §11.4)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "agency",
+        "number",
+        "category",
+        "scope",
+        "scope_reason",
+        "status",
+        "title",
+        "pis",
+        "organization",
+        "start_year",
+        "end_year",
+        "first_year",
+        "amount_usd",
+        "amount_original",
+        "currency",
+        "rate_year",
+        "amount_source",
+        "fiscal_years",
+        "url",
+        "url_name",
+        "flags"
+      ],
+      "properties": {
+        "key": {"$ref": "common.schema.json#/$defs/grantKey"},
+        "agency": {"description": "The most specific agency: an NIH grant's administering IC", "$ref": "common.schema.json#/$defs/agencyCode"},
+        "number": {"description": "The display form", "type": "string", "minLength": 1},
+        "category": {"enum": ["research", "center", "training", "instrument", "contract", "other"]},
+        "scope": {"enum": ["project", "institution-wide"]},
+        "scope_reason": {"description": "Why it is institution-wide; null for a project", "type": ["string", "null"]},
+        "status": {"description": "unresolved exactly for a MISC: grant", "enum": ["resolved", "unresolved"]},
+        "title": {"description": "As the source gives it; RePORTER's are often capitals", "type": ["string", "null"]},
+        "pis": {"description": "As the funder's public record gives them", "type": "array", "items": {"$ref": "#/$defs/investigator"}},
+        "organization": {"type": ["string", "null"]},
+        "start_year": {"type": ["integer", "null"]},
+        "end_year": {"type": ["integer", "null"]},
+        "first_year": {"description": "The year of the earliest exported work that lists it", "type": ["integer", "null"]},
+        "amount_usd": {"description": "Whole US dollars; null when unknown or unconverted, never 0 for unknown", "type": ["integer", "null"], "minimum": 0},
+        "amount_original": {"description": "In `currency`", "type": ["number", "null"]},
+        "currency": {"description": "ISO 4217", "oneOf": [{"type": "string", "pattern": "^[A-Z]{3}$"}, {"type": "null"}]},
+        "rate_year": {"description": "The exchange rate's year, when converted", "type": ["integer", "null"]},
+        "amount_source": {"oneOf": [{"$ref": "#/$defs/amountSource"}, {"type": "null"}]},
+        "fiscal_years": {
+          "description": "Sums by fiscal year, RePORTER only; a year whose rows report no amount is null. The years with amounts sum to amount_usd.",
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "patternProperties": {"^[0-9]{4}$": {"type": ["integer", "null"]}}
+            },
+            {"type": "null"}
+          ]
+        },
+        "url": {"description": "A page a reader can open to check the grant", "type": ["string", "null"]},
+        "url_name": {"description": "The link's label, naming the page it opens; null exactly when url is", "type": ["string", "null"]},
+        "flags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "active",
+              "starts_before_fy1985",
+              "starts_before_fy2008",
+              "no_amount_reported",
+              "amount_not_found",
+              "amount_from_openalex",
+              "amount_corrected",
+              "amounts_disagree",
+              "unconverted_currency",
+              "rate_year_estimated"
+            ]
+          }
+        }
+      }
+    },
+    "investigator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "id"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "id": {"description": "RePORTER's profile_id; null where the source gives no identifier", "type": ["string", "null"]}
+      }
+    },
+    "amountSource": {
+      "description": "Where a grant's amount comes from: the page is the grant's url, the date the store line's `checked`",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url", "as_of", "basis"],
+      "properties": {
+        "name": {"enum": ["NIH RePORTER", "NSF Award API", "USAspending", "OpenAlex"]},
+        "url": {"type": ["string", "null"]},
+        "as_of": {"$ref": "common.schema.json#/$defs/date"},
+        "basis": {
+          "enum": [
+            "reporter_fiscal_years",
+            "reporter_contract",
+            "reporter_task_order",
+            "nsf_obligated",
+            "nsf_estimated",
+            "usaspending_obligation",
+            "openalex_amount"
+          ]
+        }
       }
     }
   }

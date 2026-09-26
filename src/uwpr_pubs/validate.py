@@ -22,8 +22,9 @@ from typing import Any
 
 import yaml
 
-from uwpr_pubs.export import build_summary
+from uwpr_pubs.export import SCHEMA_VERSION, build_summary
 from uwpr_pubs.funding.overrides import override_match_key
+from uwpr_pubs.funding.summary import build_funding_summary
 from uwpr_pubs.schemas import project_root, schema_errors
 from uwpr_pubs.store.ids import external_keys
 from uwpr_pubs.store.models import IncludedKind
@@ -640,20 +641,216 @@ def _check_against_store(
             report.error(work_id, "an included work that the export leaves out")
 
 
+# --- the export's funding (docs/09 §11.7) ------------------------------------------------------------
+# Each check has its own message, so a failure says which promise of the contract broke. They read
+# the export alone, except the last, which compares the listings with the store's citations lines
+# when the caller has them (the pipeline does).
+
+HOW_ORDER = ("listed", "corrected", "override", "nih_link")  # docs/09 §11.2's precedence
+
+
+def _chain(code: str, parents: Mapping[str, Any]) -> tuple[list[str], bool]:
+    """An agency and its parents, root first, and whether following them closed a cycle."""
+    chain = [code]
+    parent = parents.get(code)
+    while parent is not None:
+        if parent in chain:
+            return chain[::-1], True
+        chain.append(parent)
+        parent = parents.get(parent)
+    return chain[::-1], False
+
+
+def _check_no_funding(funding: Any, works: Sequence[Any], report: Report) -> None:
+    """§11.1: a null `version` means no funding data at all: every list empty, every count zero."""
+    for name in ("sources", "exchange_rates", "agencies", "grants"):
+        if funding[name]:
+            report.error("funding", f"version is null, but {name} has {len(funding[name])} entries")
+    if funding["as_of"] is not None:
+        report.error("funding", f"version is null, but as_of is {funding['as_of']}")
+    method = funding["method"]
+    counts = {
+        **{f"strings.{k}": v for k, v in method["strings"].items()},
+        **{f"resolution.{k}": v for k, v in method["resolution"].items()},
+        "works_without_funding_metadata": method["works_without_funding_metadata"],
+    }
+    for name, value in counts.items():
+        if value:
+            report.error("funding", f"version is null, but method.{name} is {value}")
+    for name, value in funding["summary"].items():
+        if value not in (0, None, {}):
+            report.error("funding", f"version is null, but summary.{name} is {value}")
+    for work in works:
+        if work["grants"]:
+            report.error(work["id"], "lists grants, but the export's funding version is null")
+
+
+def _check_funding_agencies(funding: Any, report: Report) -> dict[str, list[str]]:
+    """Every grant's agency, and every parent, is present; no cycles. Returns each grant's chain."""
+    parents = {agency["code"]: agency["parent"] for agency in funding["agencies"]}
+    for code, parent in parents.items():
+        if parent is not None and parent not in parents:
+            report.error("funding.agencies", f"{code}'s parent {parent} is not in funding.agencies")
+        if _chain(code, parents)[1]:
+            report.error("funding.agencies", f"{code}'s parents form a cycle")
+    chains: dict[str, list[str]] = {}
+    for grant in funding["grants"]:
+        if grant["agency"] not in parents:
+            message = f"{grant['key']}'s agency {grant['agency']} is not in funding.agencies"
+            report.error("funding.grants", message)
+        chains[grant["key"]] = _chain(grant["agency"], parents)[0]
+    return chains
+
+
+def _check_listings(works: Sequence[Any], chains: Mapping[str, list[str]], report: Report) -> None:
+    """Each listing names a grant the block holds, under its chain, with a coherent `how`."""
+    listed: set[str] = set()
+    for work in works:
+        for row in work["grants"]:
+            key = row["grant"]
+            listed.add(key)
+            if key not in chains:
+                report.error(work["id"], f"lists {key}, which funding.grants lacks")
+            elif row["agencies"] != chains[key]:
+                message = f"lists {key} under agencies {row['agencies']}, but its chain is {chains[key]}"
+                report.error(work["id"], message)
+            if row["how"] in ("corrected", "override") and "cited_as" not in row:
+                report.error(work["id"], f"{key} is how: {row['how']}, but has no cited_as")
+            if row["how"] == "override" and "override" not in row:
+                report.error(work["id"], f"{key} is how: override, but carries no override attribution")
+            if "override" in row and "cited_as" not in row:
+                report.error(work["id"], f"{key} carries an override attribution, but no cited_as")
+    for key in chains:
+        if key not in listed:
+            report.error("funding.grants", f"{key} is listed by no exported work")
+
+
+def _check_first_years(works: Sequence[Any], funding: Any, code: str, report: Report) -> None:
+    """A grant's first year is its earliest listing work's; no work writes the resource code."""
+    first: dict[str, int] = {}
+    for work in works:
+        for row in work["grants"]:
+            first[row["grant"]] = min(work["year"], first.get(row["grant"], work["year"]))
+        for written in (text for row in work["grants"] for text in row.get("cited_as", [])):
+            if code and code in _letters_and_digits(written):
+                report.error(work["id"], f"the resource code {code} is written in cited_as '{written}'")
+    for grant in funding["grants"]:
+        key = grant["key"]
+        if key in first and grant["first_year"] != first[key]:
+            report.error(
+                "funding.grants",
+                f"{key}'s first_year is {grant['first_year']}, but the earliest exported work listing it"
+                f" is from {first[key]}",
+            )
+
+
+def _check_grant_rows(funding: Any, code: str, report: Report) -> None:
+    """Fiscal years, Miscellaneous, links, and the resource code in no key or number."""
+    groups = {agency["code"]: agency["group"] for agency in funding["agencies"]}
+    for grant in funding["grants"]:
+        key, amount, where = grant["key"], grant["amount_usd"], "funding.grants"
+        years = grant["fiscal_years"]
+        if years is not None:
+            total = sum(value for value in years.values() if value is not None)
+            if amount is None and any(value is not None for value in years.values()):
+                report.error(where, f"{key}'s fiscal years hold {total}, but it has no amount_usd")
+            elif amount is not None and total != amount:
+                report.error(where, f"{key}'s fiscal years sum to {total}, but amount_usd is {amount}")
+        if key.startswith("MISC:"):
+            if grant["status"] != "unresolved":
+                report.error(where, f"{key} is a Miscellaneous grant, but its status is {grant['status']}")
+            if groups.get(grant["agency"]) != "miscellaneous":
+                report.error(where, f"{key} is a Miscellaneous grant, but its agency is not in that group")
+            if amount is not None or grant["amount_original"] is not None:
+                report.error(where, f"{key} is a Miscellaneous grant, but has an amount")
+        if (grant["url"] is None) != (grant["url_name"] is None):
+            report.error(where, f"{key} has a url without a url_name, or a url_name without a url")
+        for field_name in ("key", "number"):
+            if code and code in _letters_and_digits(grant[field_name]):
+                report.error(where, f"the resource code {code} is in the {field_name} of {key}")
+
+
+def _check_funding_summary(works: Sequence[Any], funding: Any, report: Report) -> None:
+    """The funding half of docs/05 §1.2's cross-check, recomputed by the export's own function."""
+    for key, value in build_funding_summary(works, funding["grants"], funding["agencies"]).items():
+        if funding["summary"].get(key) != value:
+            report.error("funding.summary", f"{key} is {funding['summary'].get(key)}, recomputed as {value}")
+
+
+def _check_listings_against_lines(works: Sequence[Any], citations: Mapping[str, Any], report: Report) -> None:
+    """`how`, `cited_as` and `override` are what the work's citations line says (§11.2)."""
+    for work in works:
+        line = citations.get(work["id"]) or {"strings": [], "nih_links": []}
+        hows: dict[str, set[str]] = {}
+        written: dict[str, set[str]] = {}
+        decided: set[str] = set()
+        for string in line["strings"]:
+            how = string["method"] if string["method"] in ("corrected", "override") else "listed"
+            for key in string["grants"]:
+                hows.setdefault(key, set()).add(how)
+                if how != "listed":
+                    written.setdefault(key, set()).add(" ".join(string["raw"].split()))
+                if how == "override":
+                    decided.add(key)
+        for link in line["nih_links"]:
+            hows.setdefault(link["grant"], set()).add("nih_link")
+        rows = {row["grant"]: row for row in work["grants"]}
+        if set(rows) != set(hows):
+            report.error(work["id"], f"lists {sorted(rows)}, but its citations line lists {sorted(hows)}")
+        for key in sorted(set(rows) & set(hows)):
+            row = rows[key]
+            expected = next(how for how in HOW_ORDER if how in hows[key])
+            if row["how"] != expected:
+                message = f"{key} is how: {row['how']}, but its strings and links make it {expected}"
+                report.error(work["id"], message)
+            if row.get("cited_as", []) != sorted(written.get(key, ())):
+                report.error(
+                    work["id"],
+                    f"{key}'s cited_as is {row.get('cited_as', [])}, but the forms corrected or overridden"
+                    f" to it are {sorted(written.get(key, ()))}",
+                )
+            if (key in decided) != ("override" in row):
+                state = "no attribution" if key in decided else "an attribution no override on it explains"
+                report.error(work["id"], f"{key}: its override and its listing disagree ({state})")
+
+
+def _check_funding(
+    export: Any, works: Sequence[Any], report: Report, citations: Mapping[str, Any] | None
+) -> None:
+    funding = export["funding"]
+    if funding["version"] is None:
+        _check_no_funding(funding, works, report)
+        return
+    chains = _check_funding_agencies(funding, report)
+    _check_listings(works, chains, report)
+    code = _letters_and_digits(str(export["resource"]["identifier"]))
+    _check_first_years(works, funding, code, report)
+    _check_grant_rows(funding, code, report)
+    _check_funding_summary(works, funding, report)
+    if citations is not None:
+        _check_listings_against_lines(works, citations, report)
+
+
 def validate_export(
     export: Any,
     lookup: Any,
     *,
     store_works: Mapping[str, Any] | None = None,
     run_year: int | None = None,
+    funding_citations: Mapping[str, Any] | None = None,
 ) -> Report:
-    """The export's schemas and the cross-checks of docs/05 §12.
+    """The export's schemas and the cross-checks of docs/05 §12 and docs/09 §11.7.
 
     The cross-checks all answer the same question in different places: does the export still say
     what the store says? A projection that has drifted from its source is worse than no export,
-    because every number on the page would still look self-consistent.
+    because every number on the page would still look self-consistent. `funding_citations`, the
+    store's citations lines by work, lets the listings be checked against what the works wrote.
     """
     report = Report()
+    version = export.get("schema_version") if isinstance(export, dict) else None
+    if version != SCHEMA_VERSION:
+        message = f"schema_version is {version}, but this contract is {SCHEMA_VERSION}"
+        report.error("uwpr_publications.json", message)
     export_ok = _check("export", export, "uwpr_publications.json", report)
     _check("lookup-index", lookup, "lookup_index.json", report)
     if not export_ok:
@@ -666,6 +863,7 @@ def validate_export(
     _check_aliases_resolve(lookup, by_id, report)
     _check_criteria_match_evidence(works, report)
     _check_summary(export, works, report)
+    _check_funding(export, works, report, funding_citations)
 
     # The current year is partial by definition, so completeness stops at the year before it.
     if run_year is not None and export["period"]["complete_through"] != run_year - 1:

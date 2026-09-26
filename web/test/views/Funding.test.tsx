@@ -19,12 +19,31 @@ import { Grant } from '../../src/views/Grant';
 import { expectNoAxeViolations } from '../support/axe';
 import { sampleExport } from '../support/fixture';
 
-const doc = sampleExport();
+/**
+ * The sample as an export with no funding data, which is what the pipeline writes while the store
+ * holds none (docs/09 §11.1): the block is there and its `version` is null.
+ */
+const withoutFunding = (): ExportDocument => {
+  const sample = sampleExport();
+  return {
+    ...sample,
+    funding: {
+      ...sample.funding,
+      version: null,
+      as_of: null,
+      sources: [],
+      agencies: [],
+      grants: [],
+    },
+    works: sample.works.map((work) => ({ ...work, grants: [] })),
+  };
+};
+
+const doc = withoutFunding();
 const year = String(doc.period.last_year);
 
-/** The contract's funding block is not in the generated types yet, so a test adds it untyped. */
-const withFunding = (): ExportDocument =>
-  ({ ...sampleExport(), funding: { summary: {} } }) as ExportDocument;
+/** The committed sample carries synthetic funding data (docs/09 §11.8). */
+const withFunding = (): ExportDocument => sampleExport();
 
 const at = (path: string, state: unknown = null, document_: ExportDocument = doc) => {
   window.history.replaceState(state, '', path);
@@ -52,10 +71,13 @@ afterEach(() => {
 });
 
 describe('the accessor', () => {
-  it('finds no funding data in this export, which is every export today', () => {
+  it('finds no funding data in an export whose block has a null version, or has no block', () => {
     expect(fundingOf(doc)).toBeNull();
-    expect(fundingOf({ ...doc, funding: null } as ExportDocument)).toBeNull();
-    expect(fundingOf(withFunding())).toEqual({ summary: {} });
+    expect(fundingOf({ ...doc, funding: null } as unknown as ExportDocument)).toBeNull();
+    const legacy: Partial<ExportDocument> = withFunding();
+    delete legacy.funding; // a 1.0 export, as after a rollback of the data (docs/07 O2)
+    expect(fundingOf(legacy as ExportDocument)).toBeNull();
+    expect(fundingOf(withFunding())).toEqual(sampleExport().funding);
   });
 });
 

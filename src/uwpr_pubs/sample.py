@@ -22,9 +22,11 @@ by definition never reaches the export — so applying it everywhere made the ex
 permanently against its most obvious target.
 """
 
+import re
 from collections.abc import Callable, Mapping, Sequence
 
 from uwpr_pubs.export import ExportDoc, ExportWork
+from uwpr_pubs.funding.contract import ExportGrant, ExportGrantListing
 
 LONG_AUTHOR_LIST = 50
 
@@ -65,17 +67,158 @@ CASES: Mapping[str, Callable[[ExportWork], bool]] = {
 }
 
 
+# --- funding (docs/09 §11.8) -------------------------------------------------------------------
+# The synthetic half of §11.8, from `samples/export_cases.json`. The real half — cases the sample
+# store's own papers show once it has `funding/` — is added with that funding (B8). Each predicate
+# reads the whole document, because a funding case is a relation between works, grants and
+# agencies rather than a property of one work, and each returns what exhibits it, so the export
+# command can say where.
+
+NIH_FORMAT = re.compile(r"^[1-9]?[A-Z][A-Z0-9]{2} ?[A-Z]{2} ?[0-9]{6}")
+
+
+def _grants(export: ExportDoc) -> list[ExportGrant]:
+    return export["funding"]["grants"]
+
+
+def _listings(export: ExportDoc) -> list[tuple[ExportWork, ExportGrantListing]]:
+    return [(work, row) for work in export["works"] for row in work["grants"]]
+
+
+def _contracts(export: ExportDoc, segments: int) -> list[str]:
+    return [
+        g["key"]
+        for g in _grants(export)
+        if g["key"].startswith("NIH-contract:")
+        and g["key"].count(":") == segments
+        and g["category"] == "contract"
+    ]
+
+
+def _unresolved_nih(export: ExportDoc) -> list[str]:
+    groups = {agency["code"]: agency["group"] for agency in export["funding"]["agencies"]}
+    return [
+        g["key"]
+        for g in _grants(export)
+        if g["status"] == "unresolved"
+        and groups.get(g["agency"]) == "miscellaneous"
+        and NIH_FORMAT.match(g["number"])
+    ]
+
+
+def _attributed_overrides(export: ExportDoc) -> list[str]:
+    return [
+        f"{work['id']} {row['grant']}"
+        for work, row in _listings(export)
+        if row["how"] == "override"
+        and row.get("cited_as")
+        and "override" in row
+        and bool(row["override"]["reason"] and row["override"]["by"] and row["override"]["date"])
+    ]
+
+
+def _cited(export: ExportDoc, how: str) -> list[str]:
+    return [
+        f"{work['id']} {row['grant']}"
+        for work, row in _listings(export)
+        if row["how"] == how and row.get("cited_as")
+    ]
+
+
+def _converted_by_oecd(export: ExportDoc) -> list[str]:
+    oecd = {
+        currency
+        for source in export["funding"]["exchange_rates"]
+        if source["name"].startswith("OECD")
+        for currency in source["currencies"]
+    }
+    return [
+        g["key"]
+        for g in _grants(export)
+        if g["currency"] == "CLP"
+        and "CLP" in oecd
+        and g["amount_usd"] is not None
+        and g["rate_year"] is not None
+    ]
+
+
+def _unconverted(export: ExportDoc) -> list[str]:
+    covered = {
+        currency for source in export["funding"]["exchange_rates"] for currency in source["currencies"]
+    }
+    return [
+        g["key"]
+        for g in _grants(export)
+        if "unconverted_currency" in g["flags"]
+        and g["amount_usd"] is None
+        and g["amount_original"] is not None
+        and g["currency"] not in covered
+    ]
+
+
+def _no_grants(export: ExportDoc) -> list[str]:
+    if export["funding"]["version"] is None:
+        return []
+    return [work["id"] for work in export["works"] if not work["grants"]]
+
+
+def _shared_across_years(export: ExportDoc) -> list[str]:
+    years: dict[str, set[int]] = {}
+    for work, row in _listings(export):
+        years.setdefault(row["grant"], set()).add(work["year"])
+    first = {g["key"]: g["first_year"] for g in _grants(export)}
+    return [key for key, seen in sorted(years.items()) if len(seen) > 1 and first.get(key) == min(seen)]
+
+
+def _no_amount(export: ExportDoc) -> list[str]:
+    return [
+        g["key"]
+        for g in _grants(export)
+        if g["status"] == "resolved" and g["amount_usd"] is None and g["amount_source"] is None
+    ]
+
+
+def _sub_agencies(export: ExportDoc) -> list[str]:
+    named = {g["agency"] for g in _grants(export)}
+    return [
+        a["code"] for a in export["funding"]["agencies"] if a["parent"] is not None and a["code"] in named
+    ]
+
+
+FUNDING_CASES: Mapping[str, Callable[[ExportDoc], Sequence[str]]] = {
+    "a contract": lambda export: _contracts(export, 1),
+    "a task order": lambda export: _contracts(export, 2),
+    "an unresolved NIH-format string in Miscellaneous": _unresolved_nih,
+    "a grant override with attribution": _attributed_overrides,
+    "a corrected near-miss": lambda export: _cited(export, "corrected"),
+    "a corrected form beside the exact one (cited_as with how: listed)": lambda export: _cited(
+        export, "listed"
+    ),
+    "a CLP amount converted by the OECD rate": _converted_by_oecd,
+    "an amount in a currency no rate table covers, unconverted": _unconverted,
+    "a work with no grants": _no_grants,
+    "one grant listed by two works in different years": _shared_across_years,
+    "a grant with a null amount": _no_amount,
+    "a sub-agency with a parent": _sub_agencies,
+}
+
+
 def missing_cases(export: ExportDoc) -> list[str]:
-    """Which of §13's cases no exported work exhibits."""
+    """Which of §13's cases no exported work exhibits, and which of docs/09 §11.8's the export lacks."""
     works = export["works"]
-    return [name for name, matches in CASES.items() if not any(matches(work) for work in works)]
+    missing = [name for name, matches in CASES.items() if not any(matches(work) for work in works)]
+    return missing + [name for name, exhibits in FUNDING_CASES.items() if not exhibits(export)]
 
 
 def case_report(export: ExportDoc) -> str:
-    """Which work covers each case, for the export command's output."""
+    """Which work, grant or agency covers each case, for the export command's output."""
     lines = []
     for name, matches in CASES.items():
         covered: Sequence[str] = [w["id"] for w in export["works"] if matches(w)]
+        mark = "ok  " if covered else "MISS"
+        lines.append(f"  {mark} {name}: {', '.join(covered) if covered else '—'}")
+    for name, exhibits in FUNDING_CASES.items():
+        covered = exhibits(export)
         mark = "ok  " if covered else "MISS"
         lines.append(f"  {mark} {name}: {', '.join(covered) if covered else '—'}")
     return "\n".join(lines)

@@ -15,6 +15,10 @@ The export is a *projection* of the store, not a copy. Three rules govern what c
 - **Absent versus null.** A `null` means "known to be absent" and the app shows it as such: no
   ORCID, no field-weighted impact, no ISSN-L. A key is omitted only where the concept does not
   apply at all — `found_on` on override evidence, which belongs to the work and to no record.
+
+Funding (docs/09 §11, contract 1.1) follows the same rules: each work's `grants` are rows the app
+filters on, and the top-level `funding` block, built by `funding.export`, carries the grants, the
+agencies and a summary written independently. Its shapes live in `funding.contract`.
 """
 
 import statistics
@@ -22,6 +26,8 @@ from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any, NotRequired, TypedDict
 
+from uwpr_pubs.funding.contract import ExportFunding, ExportGrantListing
+from uwpr_pubs.funding.export import FundingInput, build_funding
 from uwpr_pubs.store.models import (
     Affiliation,
     Author,
@@ -39,7 +45,9 @@ from uwpr_pubs.store.models import (
     WorkId,
 )
 
-SCHEMA_VERSION = "1.0"
+# 1.1 (docs/09 §11) added funding: `works[].grants` and the top-level `funding` block. Additive,
+# so a minor bump (docs/05 §12): the app refuses only a major version it does not know.
+SCHEMA_VERSION = "1.1"
 
 # Presentation text for the lookup index (docs/05 §8). It lives here rather than in rules.yaml
 # because a change to that file is a rule change and forces a `rule_version` bump that
@@ -189,6 +197,7 @@ class ExportWork(TypedDict):
     criteria: list[int]
     evidence: list[ExportEvidence]
     versions: list[ExportVersion]
+    grants: list[ExportGrantListing]  # docs/09 §11.2; empty until the funding block fills it
 
 
 class ExportPeriod(TypedDict):
@@ -271,6 +280,7 @@ class ExportDoc(TypedDict):
     period: ExportPeriod
     summary: ExportSummary
     method: ExportMethod
+    funding: ExportFunding
     works: list[ExportWork]
 
 
@@ -524,6 +534,7 @@ def export_work(
             for record in work["records"]
             if record["id"] != work["canonical"]
         ],
+        "grants": [],
     }
 
 
@@ -663,9 +674,14 @@ def build_export(
     works: Sequence[Work],
     metrics: Sequence[MetricsLine],
     meta: ExportMeta,
+    funding: FundingInput | None = None,
 ) -> ExportDoc:
+    """The app's document. Without `funding`, it says there is no funding data (docs/09 §11.1)."""
     by_record = {line["record"]: line for line in metrics}
     exported = sort_works(export_work(work, by_record, meta.citations_as_of, meta.listings) for work in works)
+    listings, funding_block = build_funding({w["id"]: w["year"] for w in exported}, funding or FundingInput())
+    for work in exported:
+        work["grants"] = listings.get(work["id"], [])
     return {
         "schema_version": SCHEMA_VERSION,
         "generated_at": meta.generated_at,
@@ -680,6 +696,7 @@ def build_export(
         "period": build_period(exported, meta.run_year),
         "summary": build_summary(exported),
         "method": build_method(works, exported, meta.read_on),
+        "funding": funding_block,
         "works": exported,
     }
 

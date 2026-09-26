@@ -168,20 +168,27 @@ def _export(args: argparse.Namespace) -> int:
     own latest run manifest, so this reproduces what that run wrote. `--cases` adds the synthetic
     works the sample needs and turns on the docs/05 §13 coverage guard, which applies to the
     sample alone — a real store can never satisfy "retracted" or "override with attribution".
+
+    The overrides read are the store's own, beside it, as `validate` reads them: a grant
+    override's attribution is exported (docs/09 §11.2), and the sample's work IDs are not the real
+    store's.
     """
+    store = Path(args.store)
     try:
-        config = load_config()
+        config = load_config(overrides_path=store.parent / "overrides.yaml")
     except ConfigError as exc:
         print(f"ERROR {exc}")
         return 1
     cases = Path(args.cases) if args.cases else None
     try:
         document, lookup = build_from_store(
-            Path(args.store),
+            store,
             resource_block(config),
             extra=cases,
             rule_version=args.rule_version,
             channels=config.channels,
+            overrides=config.overrides,
+            rate_sources=config.exchange_rates["sources"],
         )
     except NoRunError as exc:
         print(f"ERROR {exc}")
@@ -202,6 +209,11 @@ def _export(args: argparse.Namespace) -> int:
     write_export(out, document, lookup)
     print(f"{out}: {len(document['works'])} works, {len(lookup['not_included'])} not included")
     print(f"  from run {document['run_id']}, complete through {document['period']['complete_through']}")
+    funding = document["funding"]
+    if funding["version"] is None:
+        print("  funding: no funding data in this store")
+    else:
+        print(f"  funding {funding['version']}: {len(funding['grants'])} grants, as of {funding['as_of']}")
     if cases:
         print(case_report(document))
     return 0

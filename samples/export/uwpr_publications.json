@@ -1,10 +1,567 @@
 {
+  "funding": {
+    "agencies": [
+      {
+        "code": "ANID",
+        "country": "CL",
+        "group": "non_us",
+        "name": "Agencia Nacional de Investigación y Desarrollo",
+        "parent": null,
+        "short_name": "ANID"
+      },
+      {
+        "code": "F4399999999",
+        "country": "UA",
+        "group": "non_us",
+        "name": "SAMPLE Research Foundation",
+        "parent": null,
+        "short_name": null
+      },
+      {
+        "code": "MISC",
+        "country": null,
+        "group": "miscellaneous",
+        "name": "Miscellaneous",
+        "parent": null,
+        "short_name": null
+      },
+      {
+        "code": "NHLBI",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Heart, Lung, and Blood Institute",
+        "parent": "NIH",
+        "short_name": "NHLBI"
+      },
+      {
+        "code": "NIA",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Institute on Aging",
+        "parent": "NIH",
+        "short_name": "NIA"
+      },
+      {
+        "code": "NIAID",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Institute of Allergy and Infectious Diseases",
+        "parent": "NIH",
+        "short_name": "NIAID"
+      },
+      {
+        "code": "NIGMS",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Institute of General Medical Sciences",
+        "parent": "NIH",
+        "short_name": "NIGMS"
+      },
+      {
+        "code": "NIH",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Institutes of Health",
+        "parent": null,
+        "short_name": "NIH"
+      },
+      {
+        "code": "VA",
+        "country": "US",
+        "group": "us_federal",
+        "name": "Department of Veterans Affairs",
+        "parent": null,
+        "short_name": "VA"
+      }
+    ],
+    "as_of": "2026-09-26",
+    "exchange_rates": [
+      {
+        "currencies": [
+          "AUD",
+          "BRL",
+          "CAD",
+          "CHF",
+          "CNY",
+          "DKK",
+          "EUR",
+          "GBP",
+          "HKD",
+          "INR",
+          "JPY",
+          "KRW",
+          "LKR",
+          "MXN",
+          "MYR",
+          "NOK",
+          "NZD",
+          "SEK",
+          "SGD",
+          "THB",
+          "TWD",
+          "ZAR"
+        ],
+        "name": "Federal Reserve G.5A",
+        "through_year": 2025,
+        "url": "https://www.federalreserve.gov/releases/g5a/"
+      },
+      {
+        "currencies": [
+          "ALL",
+          "ARS",
+          "CLP",
+          "COP",
+          "CRC",
+          "CVE",
+          "CZK",
+          "GEL",
+          "HUF",
+          "IDR",
+          "ILS",
+          "ISK",
+          "KZT",
+          "MAD",
+          "MGA",
+          "MKD",
+          "PEN",
+          "PLN",
+          "RON",
+          "RSD",
+          "RUB",
+          "SAR",
+          "TRY",
+          "XAF",
+          "XOF",
+          "ZMW"
+        ],
+        "name": "OECD annual average exchange rates",
+        "through_year": 2025,
+        "url": "https://sdmx.oecd.org/public/rest/data/OECD.SDD.NAD,DSD_NAMAIN10@DF_TABLE4,/A....EXC_A.......?startPeriod=1999&endPeriod=2025"
+      }
+    ],
+    "grants": [
+      {
+        "agency": "ANID",
+        "amount_original": 2000000000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 2522936,
+        "category": "other",
+        "currency": "CLP",
+        "end_year": 2030,
+        "first_year": 2024,
+        "fiscal_years": null,
+        "flags": [
+          "active",
+          "amount_from_openalex"
+        ],
+        "key": "ANID:1599A0999",
+        "number": "1599A0999",
+        "organization": "SAMPLE Universidad",
+        "pis": [
+          {
+            "id": null,
+            "name": "SAMPLE Investigator K"
+          }
+        ],
+        "rate_year": 2020,
+        "scope": "institution-wide",
+        "scope_reason": "SAMPLE: a national research centre programme",
+        "start_year": 2020,
+        "status": "resolved",
+        "title": "SAMPLE: research centre programme",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "F4399999999",
+        "amount_original": 5000000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": null,
+        "category": "other",
+        "currency": "UAH",
+        "end_year": null,
+        "first_year": 2024,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex",
+          "unconverted_currency"
+        ],
+        "key": "F4399999999:UA99001",
+        "number": "UA-99001",
+        "organization": null,
+        "pis": [
+          {
+            "id": null,
+            "name": "Sample  Investigator K"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2021,
+        "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "MISC",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": null,
+        "first_year": 2019,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "MISC:R01GM999999",
+        "number": "R01 GM999999",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "unresolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "NIAID",
+        "amount_original": 5000000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_contract",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/99990004"
+        },
+        "amount_usd": 5000000,
+        "category": "contract",
+        "currency": "USD",
+        "end_year": 2024,
+        "first_year": 2024,
+        "fiscal_years": {
+          "2021": 3000000,
+          "2022": 1500000,
+          "2023": 500000
+        },
+        "flags": [],
+        "key": "NIH-contract:HHSN272209900001C",
+        "number": "HHSN272209900001C",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2021,
+        "status": "resolved",
+        "title": "SAMPLE: CONTRACT FOR A REFERENCE PROTEOME",
+        "url": "https://reporter.nih.gov/project-details/99990004",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIAID",
+        "amount_original": 700000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_task_order",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/99990005"
+        },
+        "amount_usd": 700000,
+        "category": "contract",
+        "currency": "USD",
+        "end_year": 2023,
+        "first_year": 2024,
+        "fiscal_years": {
+          "2022": 400000,
+          "2023": 300000
+        },
+        "flags": [],
+        "key": "NIH-contract:HHSN272209900002I:75N99099F00001",
+        "number": "75N99099F00001",
+        "organization": "SAMPLE CONTRACTOR",
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2022,
+        "status": "resolved",
+        "title": "SAMPLE: TASK ORDER",
+        "url": "https://reporter.nih.gov/project-details/99990005",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHLBI",
+        "amount_original": 2100000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/99990002"
+        },
+        "amount_usd": 2100000,
+        "category": "center",
+        "currency": "USD",
+        "end_year": 2021,
+        "first_year": 2019,
+        "fiscal_years": {
+          "2016": null,
+          "2017": 1000000,
+          "2018": 1100000
+        },
+        "flags": [],
+        "key": "NIH:P01HL999001",
+        "number": "P01HL999001",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "9000002",
+            "name": "SAMPLE Investigator L"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2016,
+        "status": "resolved",
+        "title": "SAMPLE: PROGRAM PROJECT ON CARDIAC PROTEOMICS",
+        "url": "https://reporter.nih.gov/project-details/99990002",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 1030000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/99990001"
+        },
+        "amount_usd": 1030000,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2022,
+        "first_year": 2019,
+        "fiscal_years": {
+          "2018": 250000,
+          "2019": 255000,
+          "2020": 260000,
+          "2021": 265000
+        },
+        "flags": [],
+        "key": "NIH:R01GM999001",
+        "number": "R01GM999001",
+        "organization": "University of Washington",
+        "pis": [
+          {
+            "id": "9000002",
+            "name": "SAMPLE Investigator L"
+          },
+          {
+            "id": "9000003",
+            "name": "SAMPLE Investigator M"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2018,
+        "status": "resolved",
+        "title": "SAMPLE: RESEARCH PROJECT",
+        "url": "https://reporter.nih.gov/project-details/99990001",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIA",
+        "amount_original": 4100000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/99990003"
+        },
+        "amount_usd": 4100000,
+        "category": "center",
+        "currency": "USD",
+        "end_year": 2024,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2019": 2000000,
+          "2020": 2100000
+        },
+        "flags": [],
+        "key": "NIH:U19AG999002",
+        "number": "U19AG999002",
+        "organization": "SAMPLE UNIVERSITY",
+        "pis": [
+          {
+            "id": "9000004",
+            "name": "SAMPLE Investigator N"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2019,
+        "status": "resolved",
+        "title": "SAMPLE: COOPERATIVE CENTER",
+        "url": "https://reporter.nih.gov/project-details/99990003",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "VA",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "research",
+        "currency": null,
+        "end_year": 2023,
+        "first_year": 2024,
+        "fiscal_years": {
+          "2019": null,
+          "2020": null
+        },
+        "flags": [
+          "no_amount_reported"
+        ],
+        "key": "VA:I01BX999001",
+        "number": "I01BX999001",
+        "organization": "VA PUGET SOUND HEALTH CARE SYSTEM",
+        "pis": [
+          {
+            "id": "9000005",
+            "name": "SAMPLE Investigator O"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2019,
+        "status": "resolved",
+        "title": "SAMPLE: MERIT AWARD",
+        "url": "https://reporter.nih.gov/project-details/99990006",
+        "url_name": "NIH RePORTER project page"
+      }
+    ],
+    "method": {
+      "resolution": {
+        "corrected": 2,
+        "exact": 6,
+        "normalised": 0,
+        "override": 1
+      },
+      "strings": {
+        "facility_contract": 1,
+        "grant": 11,
+        "not_a_grant": 1,
+        "resource_code": 1,
+        "unresolved": 1
+      },
+      "works_without_funding_metadata": 13
+    },
+    "sources": [
+      {
+        "amounts_from": 1985,
+        "as_of": "2026-09-26",
+        "id": "reporter",
+        "name": "NIH RePORTER",
+        "partial_year": 2026,
+        "url": "https://reporter.nih.gov/"
+      },
+      {
+        "amounts_from": null,
+        "as_of": "2026-09-26",
+        "id": "openalex",
+        "name": "OpenAlex",
+        "partial_year": null,
+        "url": "https://openalex.org/"
+      },
+      {
+        "amounts_from": null,
+        "as_of": "2026-09-26",
+        "id": "pubmed",
+        "name": "PubMed",
+        "partial_year": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/"
+      },
+      {
+        "amounts_from": null,
+        "as_of": "2026-09-26",
+        "id": "crossref",
+        "name": "Crossref",
+        "partial_year": null,
+        "url": "https://www.crossref.org/"
+      },
+      {
+        "amounts_from": null,
+        "as_of": "2026-09-26",
+        "id": "pmc",
+        "name": "PubMed Central",
+        "partial_year": null,
+        "url": "https://pmc.ncbi.nlm.nih.gov/"
+      }
+    ],
+    "summary": {
+      "agencies": 4,
+      "amount_usd": 15452936,
+      "amount_usd_institution_wide": 2522936,
+      "amount_usd_nih": 12930000,
+      "by_first_year": {
+        "2019": {
+          "amount_usd": 3130000,
+          "amount_usd_institution_wide": 0,
+          "grants": 2,
+          "grants_institution_wide": 0
+        },
+        "2021": {
+          "amount_usd": 4100000,
+          "amount_usd_institution_wide": 0,
+          "grants": 1,
+          "grants_institution_wide": 0
+        },
+        "2024": {
+          "amount_usd": 8222936,
+          "amount_usd_institution_wide": 2522936,
+          "grants": 5,
+          "grants_institution_wide": 1
+        }
+      },
+      "first_year": 2019,
+      "grants": 9,
+      "grants_institution_wide": 1,
+      "grants_resolved": 8,
+      "grants_unconverted": 1,
+      "grants_with_amount": 6,
+      "investigators": 5,
+      "last_year": 2024,
+      "nih_grants": 5,
+      "organizations": 5,
+      "works_with_grants": 4,
+      "works_with_listings": 4
+    },
+    "version": "2026-09-26.1"
+  },
   "generated_at": "2026-09-19T00:00:00Z",
   "method": {
-    "beyond_official_list": 12,
+    "beyond_official_list": 14,
     "criteria": {
       "1": 4,
-      "2": 6,
+      "2": 8,
       "3": 3,
       "4": 6
     },
@@ -129,7 +686,7 @@
   },
   "rule_version": "2026-09-19.2",
   "run_id": "2026-09-19T00-00-sample",
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "sources": {
     "citations": {
       "as_of": "2026-09-19",
@@ -140,23 +697,23 @@
     ]
   },
   "summary": {
-    "beyond_official_list": 12,
-    "citations": 323,
-    "citations_in_window": 310,
+    "beyond_official_list": 14,
+    "citations": 336,
+    "citations_in_window": 323,
     "countries": 9,
     "first_year": 2008,
-    "fwci_mean": 1.9264,
-    "fwci_median": 1.1967,
-    "h_index": 8,
+    "fwci_mean": 1.7884,
+    "fwci_median": 1.0652,
+    "h_index": 9,
     "institutions": 29,
     "journals": 12,
-    "last_authors": 15,
+    "last_authors": 17,
     "last_year": 2026,
     "on_official_list": 4,
-    "open_access": 15,
+    "open_access": 17,
     "preprint_only": 2,
-    "publications": 16,
-    "research_groups": 12
+    "publications": 18,
+    "research_groups": 14
   },
   "works": [
     {
@@ -311,6 +868,7 @@
         }
       ],
       "first_version_date": "2026-03-18",
+      "grants": [],
       "id": "W-000003",
       "ids": {
         "doi": "10.1073/pnas.2529780123",
@@ -651,6 +1209,7 @@
         }
       ],
       "first_version_date": "2025-08-29",
+      "grants": [],
       "id": "W-000004",
       "ids": {
         "doi": "10.1038/s41467-026-71449-1",
@@ -876,6 +1435,7 @@
         }
       ],
       "first_version_date": "2026-07-16",
+      "grants": [],
       "id": "W-000014",
       "ids": {
         "doi": "10.64898/2026.07.11.737889",
@@ -1174,6 +1734,7 @@
         }
       ],
       "first_version_date": "2026-07-27",
+      "grants": [],
       "id": "W-000007",
       "ids": {
         "doi": "10.1016/j.jlr.2026.101113",
@@ -1387,6 +1948,7 @@
         }
       ],
       "first_version_date": "2026-08-06",
+      "grants": [],
       "id": "W-000011",
       "ids": {
         "doi": "10.64898/2026.08.03.742469",
@@ -1828,6 +2390,7 @@
         }
       ],
       "first_version_date": "2025-07-26",
+      "grants": [],
       "id": "W-000006",
       "ids": {
         "doi": "10.1021/acs.jproteome.5c00706",
@@ -2828,6 +3391,7 @@
         }
       ],
       "first_version_date": "2024-05-02",
+      "grants": [],
       "id": "W-000103",
       "ids": {
         "doi": "10.0000/sample-r-000103",
@@ -2982,6 +3546,24 @@
         }
       ],
       "first_version_date": "2024-05-02",
+      "grants": [
+        {
+          "agencies": [
+            "NIH",
+            "NIAID"
+          ],
+          "grant": "NIH-contract:HHSN272209900001C",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIAID"
+          ],
+          "grant": "NIH-contract:HHSN272209900002I:75N99099F00001",
+          "how": "listed"
+        }
+      ],
       "id": "W-000101",
       "ids": {
         "doi": "10.0000/sample-r-000101",
@@ -3102,6 +3684,29 @@
         }
       ],
       "first_version_date": "2024-05-02",
+      "grants": [
+        {
+          "agencies": [
+            "ANID"
+          ],
+          "grant": "ANID:1599A0999",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "F4399999999"
+          ],
+          "grant": "F4399999999:UA99001",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "VA"
+          ],
+          "grant": "VA:I01BX999001",
+          "how": "listed"
+        }
+      ],
       "id": "W-000102",
       "ids": {
         "doi": "10.0000/sample-r-000102",
@@ -3318,6 +3923,7 @@
         }
       ],
       "first_version_date": "2023-06-22",
+      "grants": [],
       "id": "W-000008",
       "ids": {
         "doi": "10.1242/bio.059982",
@@ -3641,6 +4247,7 @@
         }
       ],
       "first_version_date": "2023-08-09",
+      "grants": [],
       "id": "W-000009",
       "ids": {
         "doi": "10.1021/acs.jproteome.3c00085",
@@ -3874,6 +4481,7 @@
         }
       ],
       "first_version_date": "2022-01-21",
+      "grants": [],
       "id": "W-000010",
       "ids": {
         "doi": "10.3389/fmars.2021.757245",
@@ -3942,6 +4550,163 @@
       },
       "versions": [],
       "year": 2022
+    },
+    {
+      "aliases": [],
+      "author_count": 1,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 12",
+          "openalex": "A5900000012",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2022": 2,
+          "2023": 2
+        },
+        "fwci": 0.7031,
+        "percentile": 0.441,
+        "total": 4
+      },
+      "corresponding_authors": [
+        {
+          "name": "SAMPLE Author 12",
+          "openalex": "A5900000012"
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        2
+      ],
+      "date": "2021-06-08",
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.0000/sample-r-000105",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "metadata",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/SAMPLE"
+          }
+        }
+      ],
+      "first_version_date": "2021-06-08",
+      "grants": [
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "cited_as": [
+            "P01 HL99900"
+          ],
+          "grant": "NIH:P01HL999001",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R01GM999001",
+          "how": "nih_link"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIA"
+          ],
+          "cited_as": [
+            "U19AG9990"
+          ],
+          "grant": "NIH:U19AG999002",
+          "how": "override",
+          "override": {
+            "by": "sample",
+            "date": "2026-09-26",
+            "reason": "SAMPLE ONLY: the paper writes the serial a digit short and no source links it to a grant; the grant is identified from its title and investigator. Not a real decision."
+          }
+        }
+      ],
+      "id": "W-000105",
+      "ids": {
+        "doi": "10.0000/sample-r-000105",
+        "openalex": null,
+        "pmcid": null,
+        "pmid": null
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.0000/sample-r-000105"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "SAMPLE: an article listing a grant by override, and grants an earlier article lists",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 0.99,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.61,
+          "subfield": "Molecular Biology",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        }
+      ],
+      "url": "https://doi.org/10.0000/sample-r-000105",
+      "venue": {
+        "issn_l": null,
+        "name": "SAMPLE Journal of Proteomics"
+      },
+      "versions": [],
+      "year": 2021
     },
     {
       "aliases": [],
@@ -4167,6 +4932,7 @@
         }
       ],
       "first_version_date": "2021-06-17",
+      "grants": [],
       "id": "W-000002",
       "ids": {
         "doi": "10.1161/atvbaha.121.316278",
@@ -4403,6 +5169,7 @@
         }
       ],
       "first_version_date": "2020-05-14",
+      "grants": [],
       "id": "W-000012",
       "ids": {
         "doi": "10.7554/elife.56582",
@@ -4688,6 +5455,7 @@
         }
       ],
       "first_version_date": "2020-07-02",
+      "grants": [],
       "id": "W-000013",
       "ids": {
         "doi": "10.1111/1758-2229.12867",
@@ -4766,6 +5534,155 @@
       },
       "versions": [],
       "year": 2020
+    },
+    {
+      "aliases": [],
+      "author_count": 1,
+      "authors": [
+        {
+          "affiliations_raw": [
+            "Department of Genome Sciences, University of Washington, Seattle, WA, USA"
+          ],
+          "corresponding": true,
+          "institutions": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "ror": "00cvxb145"
+            }
+          ],
+          "name": "SAMPLE Author 11",
+          "openalex": "A5900000011",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "citations": {
+        "as_of": "2026-09-19",
+        "by_year": {
+          "2020": 3,
+          "2021": 4,
+          "2022": 2
+        },
+        "fwci": 0.9412,
+        "percentile": 0.6123,
+        "total": 9
+      },
+      "corresponding_authors": [
+        {
+          "name": "SAMPLE Author 11",
+          "openalex": "A5900000011"
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "criteria": [
+        2
+      ],
+      "date": "2019-03-14",
+      "evidence": [
+        {
+          "criterion": 2,
+          "detail": {
+            "field": "awards[].funder_award_id"
+          },
+          "excerpt": "UWPR95794",
+          "first_seen": "2026-09-19",
+          "found_on": {
+            "doi": "10.0000/sample-r-000104",
+            "kind": "article"
+          },
+          "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+          "last_seen": "2026-09-19",
+          "rule": "R2",
+          "section": "metadata",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-19",
+            "url": "https://api.openalex.org/works/SAMPLE"
+          }
+        }
+      ],
+      "first_version_date": "2019-03-14",
+      "grants": [
+        {
+          "agencies": [
+            "MISC"
+          ],
+          "grant": "MISC:R01GM999999",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "cited_as": [
+            "P01 HL99900"
+          ],
+          "grant": "NIH:P01HL999001",
+          "how": "corrected"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R01GM999001",
+          "how": "listed"
+        }
+      ],
+      "id": "W-000104",
+      "ids": {
+        "doi": "10.0000/sample-r-000104",
+        "openalex": null,
+        "pmcid": null,
+        "pmid": null
+      },
+      "institutions": [
+        {
+          "country": "US",
+          "name": "University of Washington",
+          "ror": "00cvxb145"
+        }
+      ],
+      "is_preprint": false,
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.0000/sample-r-000104"
+      },
+      "on_official_list": false,
+      "retracted": false,
+      "staff_authors": [],
+      "title": "SAMPLE: an article whose grants are written exactly, by a near miss, and unresolved",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "primary": true,
+          "score": 0.99,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "primary": false,
+          "score": 0.61,
+          "subfield": "Molecular Biology",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        }
+      ],
+      "url": "https://doi.org/10.0000/sample-r-000104",
+      "venue": {
+        "issn_l": null,
+        "name": "SAMPLE Journal of Proteomics"
+      },
+      "versions": [],
+      "year": 2019
     },
     {
       "aliases": [],
@@ -4980,6 +5897,7 @@
         }
       ],
       "first_version_date": "2008-11-18",
+      "grants": [],
       "id": "W-000001",
       "ids": {
         "doi": "10.1016/j.jasms.2008.10.025",

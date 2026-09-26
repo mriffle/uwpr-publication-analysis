@@ -1791,13 +1791,25 @@ class Pipeline:
             entries=self.entries.values(),
             degradations=self.recorder.degradations,
         )
-        document, lookup = export_stage.build(works, candidates, metrics, self.aliases, meta)
+        # Funding as the store holds it (docs/09 §11): no stage writes it yet, so this carries the
+        # committed `funding/` forward, or exports "no funding data" when there is none.
+        funding = (
+            export_stage.funding_input(
+                self.snapshot,
+                overrides=self.config.overrides,
+                rate_sources=self.config.exchange_rates["sources"],
+            )
+            if self.snapshot is not None
+            else None
+        )
+        document, lookup = export_stage.build(works, candidates, metrics, self.aliases, meta, funding=funding)
         problems = export_stage.schema_problems(document, lookup)
         cross = validate_export(
             document,
             lookup,
             store_works={work["id"]: work for work in works},
             run_year=meta.run_year,
+            funding_citations=funding.citations if funding is not None else None,
         )
         problems.extend(cross.errors)
         if problems:

@@ -63,6 +63,7 @@ export function work(overrides: Partial<Work> = {}): Work {
       },
     ],
     versions: [],
+    grants: [],
     ...overrides,
   };
 }

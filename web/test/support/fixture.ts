@@ -5,8 +5,8 @@
  * same `build_export` that writes the real one and covering all twelve edge cases of §13.
  *
  * It is read from `samples/export/` rather than copied into `web/`, so there is one fixture in
- * the repository and it is the one the pipeline writes. Its figures are small — 16 works, 13
- * real and 3 synthetic — and nothing here hard-codes them: every expectation is read from the
+ * the repository and it is the one the pipeline writes. Its figures are small — 18 works, 13
+ * real and 5 synthetic — and nothing here hard-codes them: every expectation is read from the
  * document under test, so the same tests pass against the real 339-work export.
  */
 import { existsSync, readFileSync } from 'node:fs';
@@ -40,7 +40,7 @@ const root = repositoryRoot();
  *     uv run uwpr-pubs export --store store --out /tmp/real-export
  *     UWPR_EXPORT_DIR=/tmp/real-export npm test
  *
- * Nothing in the suite hard-codes a figure, so the same assertions hold over 16 works or 339.
+ * Nothing in the suite hard-codes a figure, so the same assertions hold over 18 works or 339.
  */
 const exportDir = process.env.UWPR_EXPORT_DIR ?? resolve(root, 'samples/export');
 
