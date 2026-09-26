@@ -106,6 +106,32 @@ was retired with it on 2026-09-20.
   as well as up — OpenAlex's award count fell from 140 to 139 between 2026-09-21 and -26 — so one
   withdrawn record would have blocked a week. A floor is there to catch a collapse, not a dip.
 
+**Changed 2026-09-26, so a weekly run stops rewriting every file** (Phase 2 §15; docs/08 §3.6):
+- *§6.3, R1's dates.* The merging bullet said R1 keeps the list entry's dates exactly, always. The
+  P11 paragraph under §5, and Phase 2 §7, say it takes them exactly *once the entry has gone*.
+  The code followed §6.3. The list's `last_seen` moves every week, so all 306 listed work files
+  were rewritten every week, which Phase 2 §15 rules out. R1 now follows P11 while the entry is
+  listed, and takes the entry's exact last day once it has left. When the list cannot be fetched,
+  R1 is left exactly as it was (§9): its entries' frozen dates must not read as a delisting.
+- *§6.3 and P11, the dates that record when we looked.* An evidence entry's `source.retrieved`
+  and R6's `detail.query_date`, and a record's `sources`, say when the run looked, not what it
+  found. They are not content, and they move only when `last_seen` does. R6's query date had
+  counted as content, so every R6 entry was rewritten weekly with its `source` too.
+- *P11 reaches discovery entries and candidate lines, as Phase 2 §5.3 already said.* The code
+  applied it to evidence only.
+- *A work file's `updated` changes only when something else in the file does.*
+- *§6.1, a candidate is not read again every week.* A candidate line keeps one text status
+  (Phase 2 §6), and it was never put back on the record when the line was read, so every
+  re-nominated candidate looked new (§6.1 item 1) and its text was fetched on every run. It is now
+  restored to the line's lowest-numbered record, the one it is written from, unless the rule
+  version has changed (item 3). Its records' identifiers now accumulate as an included work's do:
+  the re-reads had been what kept 304 candidates' PMCIDs, which only the ID converter knows.
+- *A refresh keeps the source a reason was found in.* It moves `retrieved` only when this run
+  looked at the same source. One R5 affiliation can arrive from the PMC text and from OpenAlex
+  with one identity, and the first refresh had traded six entries' PMC source for OpenAlex's.
+- *Stage 11 takes the exact dates from where they are kept* ([05](05-metrics-and-data-contract.md),
+  changed 2026-09-26): a listing's from `entries.jsonl`, and a source's last read from the run.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the
@@ -344,9 +370,11 @@ Each evidence entry has an identity key, so repeated runs update it rather than 
 
 **Merging:**
 - **Same rule version:**
-  - a reproduced entry has its `last_seen` updated (subject to P11). R1 is the exception: its
-    dates are the official-list entry's own, kept exactly (Phase 2 §7), so "listed from X to Y"
-    stays true to the day;
+  - a reproduced entry has its `last_seen` updated (subject to P11). R1's dates are the
+    official-list entry's own: while the entry is listed they follow P11 too, and once it has
+    gone R1 takes its exact last day (Phase 2 §7), so "listed from X to Y" is true to the day
+    where it matters (changed 2026-09-26). The dates that record when we looked (`source.retrieved`,
+    R6's `query_date`) move only with `last_seen`;
   - a new entry is added;
   - an entry not reproduced keeps its `last_seen` (the source stopped showing it); it is not
     superseded.

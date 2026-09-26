@@ -33,7 +33,7 @@ text is in git history. The dated sections (§3–§5) and the plan (§6) were o
 
 **The app is live** at <https://mriffle.github.io/uwpr-publication-analysis/>.
 
-**The checks, as of 2026-09-26:** 501 Python tests and 707 web unit tests, all offline, plus 40
+**The checks, as of 2026-09-26:** 510 Python tests and 707 web unit tests, all offline, plus 40
 Playwright tests against the built app. ruff, `ruff format`, mypy `--strict`, ESLint, Prettier,
 `tsc`, the bundle budget and the store validator are all clean. `check.yml` is green on every
 push. Besides the code, it validates the committed `store/`, runs the Phase 1 §12 test papers
@@ -361,13 +361,73 @@ days after the seed, almost all of it dates: 1,325 `discovery[].last_seen`, 305 
 80 R6 `query_date`, and `updated` on every file. Every run before this one was on the seed's own
 day, so nothing could show it: another date bug that only running on a second day finds. The
 dates are true, so nothing is wrong, only noisy; it is **left for a deliberate fix** rather than
-patched under a catch-up run, and the next scheduled run would have done the same.
+patched under a catch-up run, and the next scheduled run would have done the same. *(Fixed the
+same day; §3.6.)*
 
 **The catch-up then landed** (run 36248419286, on `10e364a`): smoke `PROCEED`, the run
 **DEGRADED** in 150 s for $0.0101 with the one expected degradation (`source:biorxiv`), data commit
 `Data update 2026-09-26T14-25-live` pushed, and the export on `gh-pages` and live. 339 works, no
 work added or removed, 477 candidates (456 before), recall 208/253, fixtures unchanged. If
 bioRxiv's `details` stays empty for three runs, §9's alert will say so.
+
+### 3.6 The weekly rewrite, fixed 2026-09-26
+
+**Measured before fixing.** The committed store, run live as if on 2026-10-03: a scratch script
+builds a `RunContext` for that day, and everything else is the real pipeline. **All 339 work
+files and all 477 candidate lines changed, and every difference was a date:**
+
+| Field | Changed | Why |
+|---|---:|---|
+| `discovery[].last_seen` | 1,335 | P11 was applied to evidence only, although Phase 2 §5.3 names discovery entries too |
+| `evidence[].source.retrieved` | 389 | only because the R1 and R6 entries below were replaced whole (306 + 83) |
+| `records[].sources.openalex` | 375 | set to the run's date on every record rebuilt from OpenAlex |
+| `updated` | 339 | set to the run's date on every file |
+| R1 `last_seen`, in the entry and its detail | 306 + 306 | copied from the list entry, which moves every week |
+| R6 `detail.query_date` | 83 | counted as content, so every R6 entry was replaced |
+| candidate `last_seen` | 477 | P11 again |
+| candidate `fulltext.checked` | 476 | every candidate was read again (below) |
+
+**R1 was the spec's own contradiction.** docs/03 §6.3 said R1 keeps the entry's dates exactly;
+docs/03 §5's P11 paragraph and Phase 2 §7 say it takes them exactly *once the entry has gone*. The
+code followed §6.3, which made Phase 2 §15 impossible for all 306 listed works. R1 now follows P11
+while listed and takes the exact last day once delisted. A list that cannot be fetched now leaves
+R1 alone. Otherwise its frozen dates would read as every paper being delisted.
+
+**Every candidate was read again, every run.** A candidate line keeps one text status (Phase 2
+§6), and nothing put it back on the record when the line was read. So each re-nominated candidate
+looked new to §6.1. In CI the reads came from the restored download cache (3 NCBI requests on
+2026-09-26), so the cost was churn rather than requests. The status now goes back to the line's
+lowest-numbered record, the one it is written from, unless the rule version has changed.
+
+**The fix itself exposed two older bugs.** The live runs found both, and the tests found neither:
+- **304 of 477 candidates lost their PMCID** on the first fixed run. Only the NCBI ID converter
+  knows a PMCID, and it runs only on records being read. So re-reading every candidate each week
+  was what had kept theirs. Identifiers now accumulate on a candidate's records as they always
+  did on an included work's (`merge_ids`).
+- **The first 28-day refresh changed the source of 6 R5 entries** from PMC to OpenAlex, dropping
+  the cache pointer to the text they were read from. The same affiliation appears in the PMC text
+  and in OpenAlex's strings, with one identity. A refresh now moves only `retrieved`, and only
+  when this run looked at the same source.
+
+**Measured after**, the same way:
+
+| | a week on (2026-10-03) | a month on (2026-10-24) |
+|---|---:|---:|
+| Work files changed | **0** of 339 | 339, dates only |
+| Candidate lines changed | **0** of 477 | 477, `last_seen` only |
+| Other files changed | the list entries, `metrics/`, `runs/` | the same |
+
+**The app kept its exact dates.** "First on X and most recently on Y" and the method page's "last
+read" had been kept current by the churn. The export changes every run anyway, so it now takes a
+listing's dates from `entries.jsonl` and a queried source's last read from the run itself
+([05](05-metrics-and-data-contract.md), changed 2026-09-26). That also corrected Crossref's last
+read, which had said 2026-09-20 since the seed.
+
+A month on is P11's refresh, which Phase 2 §15 allows: every date that records when the run
+looked moves once, together, and nothing else does. 618 `retrieved` dates moved against 624
+`last_seen`: the other six are the R5 entries, which keep their PMC source. Both stores validate,
+and recall (208/253) and the test papers are unchanged. Each run cost $0.0100. `tests/test_pipeline.py` now runs a week and 28 days apart. It also
+covers a failed list fetch and a candidate not being read again.
 
 ## 4. Decisions taken during implementation
 
@@ -382,6 +442,7 @@ because they are the things a reader would otherwise have to rediscover.
 - `run` gained `--store` and `--summary-out`; degradation sources use a controlled vocabulary;
   the stage-1 drop check reads its baseline from `entries.jsonl`.
 - R1 takes its dates from the list entry exactly, while every other rule follows the 28-day rule.
+  **Reversed 2026-09-26** for a listed paper, which it made rewrite every week (§3.6).
 
 **Made while building, worth knowing:**
 - **Official-list entries are nominations from channel A.** An entry with a PMID goes through
@@ -521,10 +582,12 @@ because they are the things a reader would otherwise have to rediscover.
   among the 222. The payload chosen is unchanged, so no data moved.
 - **PMC full text is not quite immutable.** In a local run against a copy of the committed store,
   four candidates' `fulltext.cache` hashes differed from CI's run an hour earlier. The local
-  cache held the texts as fetched on 2026-09-20. CI starts cold and had fetched them again, and
-  PMC's XML had changed in between. None of the four is included, so inclusion was untouched. A
-  warm local cache can therefore diff against the committed store even with the same code on the
-  same day.
+  cache fetched those texts at 00:01 on 2026-09-20. CI's cache got them from its first run, at
+  17:07 the same day (313 NCBI requests, from empty), and `update.yml` has restored that cache for
+  every run since. PMC's XML changed in those 17 hours. None of the four is included, so inclusion
+  was untouched. The two caches can therefore disagree, so a local run can diff against the
+  committed store even with the same code on the same day. *(Corrected the same day: this first
+  said CI starts cold, which it does not; the 2026-09-26 run made 3 NCBI requests.)*
 - **Stage 0 and the gate read different `overrides.yaml` files** (§8, open item 4). It was found
   when that local run stopped at stage 0.
 
@@ -822,7 +885,8 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
 - **Work in small steps,** committing as you go, with `check.yml` green on every push.
 - **Measure, don't assume.** Phase 1 §4 is the yardstick; a change is done when its numbers
   match, not when the tests pass.
-- **Run twice and diff.** It is the only reliable way to catch identity and date bugs.
+- **Run twice and diff — on two different days.** It is the only reliable way to catch identity
+  and date bugs, and a same-day rerun cannot see a date bug (§3.6).
 - **Frozen specs change only deliberately,** with a dated note in the spec's header.
 - **Never commit full text, abstracts, `.env` or the API key.** The repository is public.
 
@@ -866,10 +930,8 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
    decision:** either resolve such a target through `aliases.json` before matching, or reject it
    at config load so it fails loudly. The second is cheaper and arguably better, since an
    override for a paper the pipeline has never seen has nothing to attach to.
-3. **A weekly run rewrites every work file** (§3.5, found 2026-09-26). Only dates change, and all
-   of them are true. But Phase 2 §15 says a run on unchanged sources changes only the list
-   entries, `metrics/` and `runs/`, plus a monthly `last_seen` refresh. Left for a deliberate fix.
-   To confirm one, run on two different days and diff.
+3. ~~**A weekly run rewrites every work file**~~ (§3.5). **Fixed 2026-09-26** (§3.6): a week on,
+   no work file or candidate line changes.
 4. **Stage 0 validates against a different `overrides.yaml` from the gate** (found 2026-09-26).
    `precheck` calls `validate_store(store)`, which looks for `<store>/../overrides.yaml`, while
    the run and the gate use `config.overrides_path` — the mismatch that `_overrides_path`'s

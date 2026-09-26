@@ -121,6 +121,19 @@ rest while implementing stage 11):
   says the app carries no UWPR text of its own and every name it shows has to arrive through the
   export. The award identifier comes from `rules.yaml` and the staff list from `staff.yaml`.
 
+**Changed 2026-09-26, when weekly runs stopped rewriting every work file** (Phase 2 §15;
+[08](08-implementation.md) §3.6). The store now holds the dates that record when the run looked
+under the 28-day rule, so two exported dates are taken from where they are still exact:
+- *§6, a listing's dates.* R1's `first_seen` and `last_seen`, in the entry and its `detail`, come
+  from the list entry in `official_list/entries.jsonl`, which keeps exact dates. The work file's
+  may be up to 27 days behind, and the page says "most recently on" that date.
+- *§10, `sources_last_read`.* A source every run queries afresh (OpenAlex, Crossref, PRIDE, the
+  UWPR website) is dated with the run's own day, unless the run degraded on it. Otherwise, and for
+  PMC and Europe PMC, whose text is read once and kept, the date is still the latest
+  `source.retrieved` on its evidence. It is still only a source that produced evidence. This also
+  corrects Crossref, which had shown 2026-09-20 on a store last run on 2026-09-26: its evidence
+  had never changed, so its `retrieved` had never moved.
+
 **Every figure in this document was measured against the committed store on 2026-09-20**
 (339 works, rule version `2026-09-20.1`). Figures move as the store grows; the definitions do
 not. Where a number is quoted to justify a design decision, re-measure before changing that

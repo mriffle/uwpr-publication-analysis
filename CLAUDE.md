@@ -21,8 +21,7 @@ frozen, Phase 4 retired, 5-7 agreed 2026-09-20 with dated changelogs.
   it reads, rebuilt and committed by every run.
 - **What is left** is small and listed in `docs/07` §16 and `docs/08` §8:
   - visual-regression tests (`docs/06` §12.2);
-  - two cosmetic data defects that need a `rule_version` bump to fix cleanly;
-  - a weekly run that rewrites every work file with fresh dates.
+  - two cosmetic data defects that need a `rule_version` bump to fix cleanly.
 
   The fallback maintainer is Michael Hoopmann, named 2026-09-26 (`RUNBOOK.md` §1).
 
@@ -207,9 +206,11 @@ npm test -- --run && npm run build && npm run check:budget && npm run e2e
 - **`docs/08` §3's figures go stale.** Before claiming a change moved a number, re-run the
   *previous commit* against the same cache the same day. Comparing against a recorded table once
   showed a 392-candidate regression that had never happened.
-- **Run twice and diff the store.** It has now found six identity and date bugs, and no unit
-  test has ever caught one of them. The most recent: a candidate's stored records were dropped
-  whenever another of its records was re-nominated.
+- **Run twice and diff the store — on two different days.** It has now found seven identity and
+  date bugs, and no unit test caught one of them first. A same-day rerun cannot see a date bug:
+  every run was on the seed's own day until 2026-09-26, when a week's run turned out to rewrite
+  all 339 work files. `tests/test_pipeline.py` now runs a week apart, and a scratch script can
+  build a `RunContext` for any day.
 - **Read the channel table in the run report before believing any number under it.** A whole
   class of channels silently didn't run during M3 while recall still looked fine.
 

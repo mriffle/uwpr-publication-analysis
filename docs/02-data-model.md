@@ -49,6 +49,15 @@ deliberately, dated, and noted in this header. The schemas (`schemas/`) and vali
   is a warning, not an error. As an error it made the stage-0 check reject the very store the run
   was about to fix, so a merge override could never take effect.
 
+**Changed 2026-09-26, because §15 did not hold** (docs/03's header has the detail; docs/08 §3.6
+the measurements). The first week on the seed rewrote all 339 work files and all 477 candidate
+lines, with nothing changed but dates:
+- *§5.3, R1:* its dates follow the 28-day rule while the paper is listed, and take the list
+  entry's exact last day once it has gone, as §7 already said.
+- *§5.2 and §5.3, the dates that record when we looked* — `records[].sources`, an evidence
+  entry's `source.retrieved`, R6's query date — move only with `last_seen`.
+- *§5.1, `updated`* changes only when something else in the file does.
+
 **Purpose:** define how the pipeline stores what it finds between runs, precisely enough to
 implement.
 **Depends on:** [01-discovery-strategy.md](01-discovery-strategy.md) (frozen). This spec uses its
@@ -236,7 +245,7 @@ Illustrative example (values abbreviated):
 | `fulltext.recheck_after` | When to look again for readable text (Phase 3 sets the interval). |
 | `abstract` | A pointer into the cache, not the text. Abstracts are often copyrighted and stay out of git. **Decided 2026-09-20 (D11): they are never quoted.** The app links to the paper instead. |
 | `version_link` | How this record was linked to its sibling: `crossref_relation`, `biorxiv_published`, `openalex_locations`, `title_author` or `override`. |
-| `sources` | The date each source was last consulted for this record. |
+| `sources` | The date each source was last consulted for this record, advanced under the same 28-day rule as `last_seen` (changed 2026-09-26). |
 
 ### 5.3 Evidence
 
@@ -253,7 +262,7 @@ One entry per distinct reason, on any record of the work. The fields follow Phas
 | `excerpt` | The matching sentence, at most about 300 characters. For R1, none (see `detail`). For R6, none: the page says "phrase found in OpenAlex full-text index". |
 | `detail` | Rule-specific facts. **R1:** list page, first seen, last seen. **R6:** phrase and query date. **R7:** staff key. **R3d:** dataset accession. **R2:** metadata field. |
 | `rule_version` | The rule-set version that produced the entry (§13) |
-| `first_seen`, `last_seen` | `last_seen` stops advancing if the source stops showing the evidence; the entry is not deleted. It is advanced only once it is at least 28 days old (`settings.last_seen_refresh_days`), so weekly runs don't rewrite every work file (changed 2026-09-19). The same applies to discovery entries and to `candidates.jsonl`. |
+| `first_seen`, `last_seen` | `last_seen` stops advancing if the source stops showing the evidence; the entry is not deleted. It is advanced only once it is at least 28 days old (`settings.last_seen_refresh_days`), so weekly runs don't rewrite every work file (changed 2026-09-19). The same applies to discovery entries and to `candidates.jsonl`. R1 follows it while the paper is listed, and takes the entry's exact last day once it has gone (§7). `source.retrieved` and R6's query date move only with `last_seen` (changed 2026-09-26). |
 | `superseded` | Present only when a later rule version no longer produces this entry: `{"by_rule_version": …, "date": …}`. Superseded entries are inactive (§13). |
 
 **Override evidence.** An `include` override adds an entry with `rule: "override"`,
