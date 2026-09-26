@@ -177,6 +177,31 @@ plan. [08](08-implementation.md) records them as they are built.
     synthetic funding sits in `samples/export_cases.json` beside two more SAMPLE works (2019 and
     2021), so that a grant can be listed in two years; its grant override is there too, since
     `samples/overrides.yaml` must name only the sample store's works.
+- *2026-09-26, W4 — the filter and the scope rule (§12.4) as built, where they were silent or
+  read literally would mislead.* These are the readings W5–W7 build on:
+  - **A selected Miscellaneous grant is in scope.** Read literally, "Miscellaneous grants are kept
+    only when no grant is selected" drops a Miscellaneous number the reader selected. The view of
+    the publications listing it would then show no grant at all. The clause keeps unmatched
+    numbers out of a view narrowed to *other* grants, which the grant restriction already does, so
+    a selected one is kept, as an explicit grant selection overrides the institution-wide toggle.
+    Miscellaneous is still found by `group`, and otherwise kept only when no grant is selected
+    and any agency selection includes it.
+  - **The agency and grant restrictions combine with AND**, as dimensions do: `agency=NSF` with
+    an NIH grant selected selects the publications listing both and shows the grants that are
+    both, which is none. The agency restriction reads each listing's `agencies` chain, the test
+    the publication predicate applies. So every grant kept comes from a listing that made its
+    publication match.
+  - **With no funding data** (§12.10) a work lists no grant, so an `agency` or `grant` selection
+    matches no publication, and the publications view shows its designed empty state naming it.
+  - **The institution-wide position is view state, not a filter.** It narrows no publication, so
+    clearing the filter keeps it; it rides in the query string, so the switch carries it (§12.2).
+    Any value of `institution_wide` but `exclude` reads as the default.
+  - **The funding sentence** states an exclusion as a second sentence, "Institution-wide awards
+    are excluded.", so it cannot be read as a chip. It says nothing while a grant is selected,
+    since the toggle then does not apply. With nothing selected it reads "…, no filter applied.",
+    as the publications sentence does.
+  - **Chips** read "Funding agency: *name*" and "Grant: *agency short name, else its name*
+    *number*" ("Grant: NIGMS R01GM086688"); a code or key the export lacks shows raw.
 
 ---
 

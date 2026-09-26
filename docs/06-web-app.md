@@ -110,6 +110,23 @@ deliberately, dated, and noted in this header.
   gains a second fixture: the funding builders (`test/support/funding.ts`) are validated by Ajv
   against their own definitions in the schema, so a hand-built grant cannot be one the pipeline
   could never write. Nothing on the page changes.
+- *2026-09-26, §6, the funding dimensions, the scope rule, and the institution-wide position in
+  the URL* ([09](09-funding-impact.md) §12.4, F4, F15). §6's dimensions gain **funding agency and
+  grant**, and both views honour them, so the switch keeps one filter meaning one thing. A work
+  matches an agency when any of its listings' agency chains contains it, so NIH selects every
+  institute's grants, and a grant when it lists it. The predicate cannot tell from the rows
+  which listings the export vouches for, so it takes the funding index as an argument. Without
+  funding data, as in a 1.0 export, such a selection matches nothing, and the page shows the
+  designed empty state naming it. **The scope rule** decides which grants a filtered funding
+  view shows. It lives once, in `filter/funding.ts`, so the figures, charts, table and sentence
+  cannot read it differently. §6 now states it, with the two readings §12.4 left open. **The
+  institution-wide position goes in the URL** as `institution_wide=exclude`, written only when
+  the reader excludes those awards. §6's boundary put the filters and the sort in the URL and
+  per-chart state out, which did not settle a toggle that governs the whole view. It goes in by
+  the sort's argument: it changes the headline people cite. Like the sort, it is view state
+  rather than a filter. It narrows no publication, so clearing the filter keeps it, and it
+  travels with the query string across the switch. Every existing URL and every existing
+  sentence is unchanged, since the new parameters appear only when set.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -342,7 +359,8 @@ as stored.
 One filter state drives every figure, every chart and the explorer. The dimensions are
 [05](05-metrics-and-data-contract.md) §9's: year, research area at four levels, journal,
 institution, country, author, open access, kind, how the publication is known, and whether it is
-on the resource's own list.
+on the resource's own list. [09](09-funding-impact.md) §12.4 adds **funding agency and grant**,
+which the publications view honours as well as the Funding impact view.
 
 **Rules:**
 
@@ -356,11 +374,42 @@ on the resource's own list.
   mean either, a journal and a year mean both.
 - **An empty result is a designed state**, naming the filters responsible and offering to clear
   the last one. It is reachable in a few clicks and will be reached.
+- **The funding dimensions** ([09](09-funding-impact.md) §12.4). A work matches agency *A* when
+  any of its grant listings' agency chains contains *A*, root first, so `agency=NIH` matches
+  every institute's grants and Miscellaneous is selectable. It matches grant *G* when it lists
+  *G*. Codes and keys ride as they are, with the `:` percent-encoded. The predicate takes the
+  funding index (`fundingOf(doc)`) as an argument and reads listings only through it. With no
+  funding data, as in a 1.0 export, a work lists nothing, so an agency or grant selection
+  matches nothing and the empty state names it. Chips read "Funding agency: *name*" and
+  "Grant: *agency short name, else name* *number*"; a code or key the export lacks shows raw.
+- **The scope rule** ([09](09-funding-impact.md) F15) decides which grants a filtered funding
+  view shows. It applies to the distinct grants listed on the filtered publications:
+  - restricted to the selected agencies, by the listing's chain, when any are selected;
+  - restricted to the selected grants, when any are selected;
+  - the two restrictions combine with AND, like dimensions, so `agency=NSF` with an NIH grant
+    selected shows none;
+  - a grant selection overrides the institution-wide toggle;
+  - Miscellaneous, found by its group, is kept only when no grant is selected and the agency
+    selection, if any, includes it, unless it is the grant selected.
+
+  A selected institution-wide award is shown while they are excluded, and a selected
+  Miscellaneous number likewise. The rule lives once, in `filter/funding.ts` (`grantsInScope`),
+  and the aggregates build on it. The Funding impact view's live-region sentence says "41 grants
+  listed on 88 of 338 publications matching Year: 2020." When the exclusion is in effect it adds
+  "Institution-wide awards are excluded." It says nothing of the exclusion while a grant is
+  selected, since the toggle then does not apply.
 - **State is in the URL** and survives reload, back and forward, and sharing. **The boundary:** the
   filter dimensions and the explorer's sort go in the URL, because they are what someone means by
   "this view". Per-chart view state — which series a frame is showing, the bucket size, whether
   staff are included — does not, because a shared link would then carry half a dozen parameters
-  nobody set deliberately.
+  nobody set deliberately. **The institution-wide position goes in**, by the sort's argument:
+  one deliberate choice that changes the headline people cite. It is written as
+  `institution_wide=exclude` only when the reader excludes them, since the default is included
+  ([09](09-funding-impact.md) F4). Like the sort it is view state, not a filter. It narrows no
+  publication, so clearing the filter keeps it, and the switch between the views carries it
+  with the rest of the query. The Funding impact view's by-agency stack, its bucket size, its
+  ranking by value or by count, and the grants table's sort and search stay out. The table's
+  search never narrows the publications.
 - **Closing a detail pops its history entry** rather than pushing another. Otherwise opening and
   closing five publications leaves ten entries to press Back through.
 
