@@ -68,6 +68,20 @@ deliberately, dated, and noted in this header.
   Blob and an object URL, so no request leaves it (B10). Like `aggregate/` and `filter/` it
   imports no React, enforced by a lint rule, so what a spreadsheet receives is unit-tested as
   strings.
+- *2026-09-26, §3, the Funding impact routes, and where the way back is kept*
+  ([09](09-funding-impact.md)). §3 gains `/funding`, `/funding/agency/<key>` and
+  `/funding/grant/<key>`, and a switch between Publications and Funding impact that carries the
+  query string both ways. They are built behind a `VITE_FUNDING` flag, which CI turns on and the
+  production build leaves off until release. The way back moves into `history.state`. An in-app
+  open records the page it left, and a page offers "Back to …" only when its entry has one,
+  naming that page. The in-memory flag it replaces had two faults. A publication opened from
+  `/lookup` said "Back to the publications" and then went back to the lookup. And a reload lost
+  the flag. Both were found while designing the chain funding → agency → grant → publication,
+  which one flag cannot unwind.
+- *2026-09-26, §9, the view switch is navigation, not tabs.* "Real buttons and links" did not say
+  how to mark the view being read. The switch is a `<nav>` of two links, and the view being read
+  has `aria-current="page"`. Each view is a page with its own address and its own history entry.
+  ARIA tabs would promise panels on one page and arrow keys between them, and neither is true.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -122,7 +136,8 @@ Agreed 2026-09-20.
 
 ## 3. Information architecture
 
-Four views. The overview is the page; the rest are routes reachable from it.
+Four views, and Funding impact with its two entity pages. The overview is the page; the rest are
+routes reachable from it.
 
 | Route | View | What it is for |
 |---|---|---|
@@ -130,6 +145,15 @@ Four views. The overview is the page; the rest are routes reachable from it.
 | `/publication/<work id>` | **Publication detail** | One publication: what it is, who wrote it, and why it is counted |
 | `/method` | **How this was assembled** | The method, its coverage and its limits, in numbers |
 | `/lookup` | **Why is a paper not here?** | Identifier lookup against the full candidate set |
+| `/funding` | **Funding impact** | The grants the publications list, under the same filter ([09](09-funding-impact.md)) |
+| `/funding/agency/<key>` | **Agency** | One funding agency |
+| `/funding/grant/<key>` | **Grant** | One grant |
+
+**The overview and Funding impact are peers.** Their shared header has a switch between them, a
+`<nav>` of two links, and each link carries the query string, so a filter survives the switch in
+both directions. The funding routes are built behind the `VITE_FUNDING` flag until the view is
+released. Without it they are no route, and nothing links to them. An agency or grant key is
+everything after its prefix, as a DOI is for a publication.
 
 **The detail view must not cost the reader the filter they spent a minute building.** That is the
 requirement; a visual overlay is not. Keeping the overview mounted behind a modal means either two
@@ -140,6 +164,13 @@ exact filtered view.
 So the detail renders in place of the overview, the query survives, and the way back differs by how
 the reader arrived: back to the filtered publications when they came from the overview, or to all
 publications when they arrived cold on a link. Either way the URL is the same and is linkable.
+
+**The way back is kept with the history entry.** An in-app open stores the page it left in
+`history.state`. A page offers a back control only when its entry has one. The control pops the
+entry, which restores that page exactly, and it names the page ("Back to the lookup"). Arriving
+cold, the page links to its parent instead: all publications for a publication, the funding view
+for an agency or a grant. The browser keeps the state with the entry, so the way back survives
+reload, back and forward.
 
 **Routing** uses the History API with a build-time base path, and ships a `404.html` copy of
 `index.html` so a deep link resolves on static hosts that have no rewrite rules (GitHub Pages
@@ -371,6 +402,10 @@ Detailed visual design happens at implementation against the sample export. The 
   reader user mid-page.
 - Contrast meets AA for text and 3:1 for meaningful graphical elements, in both themes.
 - Semantic structure: one `h1`, ordered headings, real landmarks, real buttons and links.
+- The switch between views is a `<nav>` of links, and the view being read has
+  `aria-current="page"`. It is not ARIA tabs, because each view is a separate page with its own
+  address. The funding view and the publication, agency and grant pages move focus to their `h1`
+  when they open, so a reader who switched or opened one hears where they are.
 - Automated checks in CI (§12) plus a keyboard walkthrough before release. Automated checks catch
   perhaps half of what matters and are not sufficient on their own.
 
