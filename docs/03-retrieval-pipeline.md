@@ -193,6 +193,30 @@ was retired with it on 2026-09-20.
   `dlcache-v1-` is its fallback restore key and the first v2 run starts warm
   ([07](07-operations.md), changed 2026-09-26).
 
+**Changed 2026-09-26, so the weekly run falls inside NIH RePORTER's window** (Phase 9, B10;
+C4, §8, §11.3; [09](09-funding-impact.md) F12, §13):
+- *C4 and §11.3, Saturdays 07:17 UTC* (`17 7 * * 6`), where it was Mondays 13:17. RePORTER asks
+  for large jobs at weekends or between 9 PM and 5 AM Eastern, and the funding refresh is one
+  ([09](09-funding-impact.md) §5.1); Monday 13:17 UTC is 08:17 or 09:17 in New York, a weekday
+  morning. 07:17 UTC is 03:17 Eastern in summer and 02:17 in winter, Saturday both ways. NCBI
+  asks the same window of any series of more than 100 E-utilities requests, as a cold-cache run
+  makes (313 on the first, 604 on the rule change above; [08](08-implementation.md) §5), and the
+  Monday schedule was outside it. "The first Saturday" cannot be written in cron, whose
+  day-of-month and day-of-week are ORed when both are set, so anything monthly is decided in code,
+  as the funding refresh's 28 days are. The commit that changes the line makes its author the
+  recipient of the scheduled run's failure email ([07](07-operations.md) §6).
+- *§8, `smoke` checks the funding sources, and they never block.* Each has a known answer,
+  confirmed live on 2026-09-26: NIH RePORTER (P41GM103533's 13 parent rows, FY2012–2021, every one
+  with an amount; PMID 19070509 linked to S10RR017262), the NSF award 1908587's
+  `fundsObligatedAmt`, USAspending's `total_obligation` for NNX14AJ87G ($796,089.19, within 1%),
+  PubMed's grant list for 19070509, OpenAlex's `amount` for award G3111500291, and one Crossref
+  funder batch answering both of two DOIs (its requests are counted, since the adapter's per-DOI
+  fallback would hide a batch filter that stopped working). Eight requests, $0.0001 of OpenAlex.
+  They are classified as every check is, an outage `DOWN` and a changed shape `FAIL`, but
+  **funding must never block the publication update** ([09](09-funding-impact.md) F16), so none of
+  them can make `smoke` exit non-zero: the verdict names them apart, and the funding stage
+  degrades without them. An exception of any kind in one is caught for the same reason.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the
@@ -265,7 +289,7 @@ Agreed 2026-09-19 (Draft 2):
 | C1 | **`pyproject.toml` + `uv.lock`**, replacing `requirements.txt`. Development tools go in a dev group. The same `uv` commands work locally and in CI. |
 | C2 | **ruff** (lint and format), **mypy --strict**, **pytest** with coverage reported. A coverage threshold is set once the code settles. |
 | C3 | **Data commits go directly to `main`,** one bot commit per run, after validation. |
-| C4 | **Weekly** (Mondays), plus manual `workflow_dispatch`. |
+| C4 | **Weekly** (Saturdays since 2026-09-26; Mondays before), plus manual `workflow_dispatch`. |
 | C5 | **The OpenAlex key is a GitHub Actions secret.** The contact address lives in `config/settings.yaml`. An NCBI key is an optional secret. |
 | C6 | **Run report** in the workflow's job summary and in `store/runs/`. A failed or alerting run triggers GitHub's standard failure email. |
 | R1 | **The repository is public.** This affects secrets, the cache, test recordings and inactivity handling (§11.4, §12.3). |
@@ -525,6 +549,10 @@ uwpr-pubs report [RUN_ID]             print a run report
 
 `explain` is the tool for "why is (or isn't) this paper listed?"
 
+`smoke` exits non-zero only when a publication source needs a person. An outage is reported and
+forgiven, and a funding source never blocks, whatever it answered (changed 2026-09-26; see this
+spec's header and [09](09-funding-impact.md) §13.2).
+
 `run` exits 0 when it wrote a store (status `ok`, `degraded` or `alert`), and non-zero when it
 failed. It writes its status and run id to `$GITHUB_OUTPUT` when that variable is set (§11.3).
 `--store` (default `store/`) keeps development and tests away from the real store.
@@ -726,7 +754,7 @@ requests.
 
 ```yaml
 on:
-  schedule: [{cron: "17 13 * * 1"}]      # Mondays 13:17 UTC (≈ 06:17 Seattle); off the hour to avoid queueing
+  schedule: [{cron: "17 7 * * 6"}]       # Saturdays 07:17 UTC (≈ 03:17 Eastern), in RePORTER's window; off the hour
   workflow_dispatch: {}
 permissions: {contents: write}
 concurrency: {group: update, cancel-in-progress: false}

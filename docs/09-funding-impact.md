@@ -26,6 +26,25 @@ they differed; B6's live measurements of the same day are folded into §5 and §
 The milestones named here — M0, B1–B10, W1–W10 and R — are those of the approved implementation
 plan. [08](08-implementation.md) records them as they are built.
 
+**Changes since agreement:**
+- *2026-09-26, §13.2, B10 confirmed the smoke controls live, and they never block.* F16 says a
+  funding failure never blocks the publication update; the smoke step comes before the run, so it
+  holds there too. A funding check is shown and classified like any other, and `smoke` exits 0
+  whatever it shows. The measured answers are in §13.2.
+- *2026-09-26, §13.3, the terms as B10 re-read them.* Three differ from the table as first written:
+  USAspending's CC0 is the licence of its API's source code, and no licence is stated for its data;
+  NLM's terms require an exact phrase, clearly shown, and a statement that the data may not be
+  current; and the OECD's licence is CC BY 4.0, which asks for changes to be indicated. The table
+  and §13.3's note say what was found and where.
+- *2026-09-26, §3.5 and §11.9, the export's size by the budget's own measure* is 310,628 bytes,
+  not 310,651. The larger figure was `gzip -9`, whose header carries the file's name (23 bytes);
+  the budget, like the JavaScript one, gzips the bytes alone. Node's `gzipSync` and Python's
+  `gzip.compress` agree to the byte. The default-level figure moves the same way, to 334,481.
+- *2026-09-26, §17, the `workflow_dispatch` run with funding enabled moves from B10 to B9*:
+  funding cannot be enabled before the seed. *§15, `RUNBOOK.md`'s funding sections (§13.4) move
+  from B10 to B7*, whose report section, `--funding full` and alerts they describe; B10 updates
+  the schedule and the smoke checks there.
+
 ---
 
 ## 1. What this phase decides, and what it does not
@@ -280,13 +299,14 @@ linked grants, before the 19 found from strings, the contracts, corrections and 
 
 ### 3.5 Sizes
 
-The committed export is **310,651 bytes gzipped at level 9 (303 KiB)**, the measure the budget
-uses (§11.9), and 334,504 bytes (327 KiB) at gzip's default level; both measured on the committed
-export on 2026-09-26. **With funding added it is estimated at roughly 420–450 KiB at level 9** —
-an estimate, to be measured in B5 (the sample) and B9 (the real export). Planning's "427 KB" is
-not comparable: it mixed decimal kilobytes and compression levels. Against the 500 KiB budget
-(512,000 bytes, F14), the estimate leaves about **two years' headroom** at the export's growth of
-about 35 KiB a year (an estimate from planning).
+The committed export is **310,628 bytes gzipped at level 9 (303.3 KiB)**, the measure the budget
+uses (§11.9), and 334,481 bytes (327 KiB) at gzip's default level; both measured on the committed
+export on 2026-09-26. *(Corrected by B10 the same day: `gzip -9` reports 23 bytes more, the file's
+name in its header, which the budget does not count.)* **With funding added it is estimated at
+roughly 420–450 KiB at level 9** — an estimate, to be measured in B5 (the sample) and B9 (the real
+export). Planning's "427 KB" is not comparable: it mixed decimal kilobytes and compression levels.
+Against the 500 KiB budget (512,000 bytes, F14), the estimate leaves about **two years' headroom**
+at the export's growth of about 35 KiB a year (an estimate from planning).
 
 ## 4. Definitions
 
@@ -1483,25 +1503,61 @@ links `S10RR017262`; NSF — award 1908587 has `fundsObligatedAmt`; USAspending 
 about $796k; PubMed — a `GrantList` for PMID 19070509; OpenAlex — `/awards` for a known award has
 `amount`; Crossref — the funder batch works.
 
+**Confirmed live by B10** (2026-09-26, a Saturday, inside the window; eight requests, $0.0001 of
+OpenAlex):
+- RePORTER: **13 parent rows** for `P41GM103533`, FY2012–2021, every one with an `award_amount`,
+  $20,699,505 in all, none a sub-project. The grant has ended, so the count is stable; the floor
+  is 12. PMID 19070509 links `S10RR017262` and `T32GM007750`.
+- NSF: award 1908587's `fundsObligatedAmt` is `"900000"`, as is its `estimatedTotalAmt`.
+- USAspending: one grant numbered `NNX14AJ87G`, with `total_obligation` **$796,089.19**; the check
+  allows 1%.
+- PubMed: four grants in 19070509's `GrantList` (`CompleteYN="Y"`), `S10 RR017262` among them.
+- OpenAlex: award **`G3111500291`** — NSF 1908587 — has `amount` 900000.0 USD, from
+  `nsf_award_search`. The awards OpenAlex mints for the NIH grants above have no amount, so the
+  control is an NSF one.
+- Crossref: one batch answered both `10.1002/pmic.200900216` and `10.1002/pmic.201000616`, each
+  naming `UWPR95794`. The check counts the requests, because the adapter asks any DOI a batch
+  misses on its own, which would otherwise hide a batch filter that had stopped working.
+
+**None of them ever blocks the run** (F16). Each is shown `PASS`, `DOWN` or `FAIL` and classified
+as every check is, but `smoke` exits 0 whatever they show; the verdict names them apart ("the
+funding stage will degrade; the publication update proceeds"), and an exception of any kind in one
+is caught. A funding `FAIL` still needs a person, after the run rather than before it: a 403 from
+RePORTER may be the block §13.7 fears.
+
 ### 13.3 Attribution and terms
 
 `NOTICE` and `README.md` add the funding sources, each under its own terms:
 
-| Source | Terms, as found |
+| Source | Terms, as found (re-read 2026-09-26 by B10) |
 |---|---|
-| NIH RePORTER | US government information. **No explicit licence was found** on the API pages, which point to a data access policy. Attributed as NIH RePORTER; questions to **RePORT@mail.nih.gov** |
-| USAspending.gov | US government work, public domain; the data is offered under CC0 |
-| NSF Award API | NSF open data, attributed as the NSF Award Search |
-| PubMed / MEDLINE | NLM's terms: attribution, and no implied endorsement by NLM |
+| NIH RePORTER | US government information. **No explicit licence was found** on the API pages, which point to a data access policy, a privacy statement and a disclaimer. Attributed as NIH RePORTER; questions to **RePORT@mail.nih.gov**. *Re-read: unchanged. Its window is written "weekends or weekdays between 9:00 PM and 5:00 AM EST"; §9.3 reads that as New York time, and Saturday runs are inside it either way* |
+| USAspending.gov | US government information. *Re-read: the CC0 is the licence of the API's **source code** (the `usaspending-api` repository's LICENSE), not a stated licence for the data. No licence is stated for the data on usaspending.gov, api.usaspending.gov or its data.gov entry, whose access level is "public"* |
+| NSF Award API | NSF open data, attributed as the NSF Award Search. *Re-read: NSF says its open data "are made available under an open license that places no restrictions on their use", and its web policy lets its text be copied freely, crediting "Courtesy: U.S. National Science Foundation" at the user's discretion. The API's own page states no terms* |
+| PubMed / MEDLINE | NLM's terms. *Re-read, and more specific than first recorded:* **the phrase "Courtesy of the U.S. National Library of Medicine", "in a clear and conspicuous manner"**; no indication or implication that NLM endorses the product; and a republisher must keep the data current, **or say clearly that it may not reflect the most current data** from NLM. NCBI's E-utilities guideline also asks for any series of more than 100 requests to run at weekends or 9 PM–5 AM Eastern |
 | OpenAlex | CC0 (already in `NOTICE`) |
 | Crossref | Metadata used through its public API (already in `NOTICE`) |
-| Federal Reserve G.5A | Federal Reserve Board statistical release, attributed |
-| OECD | OECD exchange-rate data, attributed as OECD requires |
+| Federal Reserve G.5A | Federal Reserve Board statistical release, attributed. *Re-read: "Unless otherwise indicated, information on Board's website is in the public domain", and the Board asks to be cited as the source. The current release is 2026-01-05's* |
+| OECD | OECD exchange-rate data, attributed as OECD requires. *Re-read: **CC BY 4.0**, the OECD's default licence for what it publishes from 1 July 2024, which asks for attribution and for changes to be indicated. The terms page refused automated reads (HTTP 403) on 2026-09-26, so this is from its indexed text and the OECD's announcement of July 2024* |
 
-B10 reads each source's current terms again and records any change here. **PI names** (F13) are
-published award records; [07](07-operations.md) §15's "no personal data beyond published
-authorship" gets a dated note extending it to published award records. The contact sent to every
-API is **mriffle@uw.edu**, and no other personal address.
+**What the re-reading changed** (B10, 2026-09-26). `NOTICE` and `README.md` say what each source's
+terms ask, and three things follow beyond them:
+- **NLM's phrase belongs where a reader of the page sees funding data**, not only in `NOTICE`.
+  The method page's funding section (W9), or the footer when the view ships (R), carries
+  "Courtesy of the U.S. National Library of Medicine" and the data's date, which is the statement
+  of currency NLM asks for.
+- **The stored OECD rates are inverted** to US dollars per unit (§5.10), which CC BY counts as a
+  change; `NOTICE` says so, and so should the method page's note on currency.
+- **USAspending's data carries no stated licence.** It is US government information, attributed;
+  the table no longer claims CC0 for it.
+
+The G.5A page also announces the eventual retirement of the Federal Reserve's Data Download
+Program. The release page itself carries the annual table, so the January update (§13.4) does not
+depend on it.
+
+**PI names** (F13) are published award records; [07](07-operations.md) §15's "no personal data
+beyond published authorship" gets a dated note extending it to published award records. The
+contact sent to every API is **mriffle@uw.edu**, and no other personal address.
 
 ### 13.4 `RUNBOOK.md`
 
@@ -1591,7 +1647,9 @@ Each lands, dated, with the milestone that makes it true.
 | [07](07-operations.md) (agreed) | §1 and C4 the schedule; §3 a normal week (`store/funding/`); §11 January rates; §12 the RePORTER risk; §14 cost; §15 PI names and attribution | B10 |
 | [08](08-implementation.md) | The Phase 9 record; §8 item 9 closed | B1, R |
 | `CLAUDE.md` | Phases table, commands, gotchas (`sort_field`, `exclude_subprojects`, HHSN, task orders, VA without amounts, USAspending `total_obligation` and TLS, the NSF amount rule, gepris, ANID ×1,000, the G.5A currency list, PubMed abstracts in recordings, cron's day-of-month/day-of-week OR) | R |
-| `NOTICE`, `README.md`, `RUNBOOK.md` | §13.3, §13.4 | B10 |
+| `NOTICE`, `README.md` | §13.3; and the schedule wherever it is named | B10 |
+| `RUNBOOK.md` | The schedule and the funding smoke checks | B10 |
+| `RUNBOOK.md` | §13.4: it describes B7's report section, `--funding full` and its alerts | B7 |
 
 ## 16. Open items
 
@@ -1681,13 +1739,19 @@ exactly `S10OD032290`, `R01GM122864`, `P01 HL0996` plus any new ones the report 
 contract and no `UWPR95794` as a grant; every Appendix B key listed is tagged; OpenAlex agrees with
 the agency source in ≥ 99% of comparable grants; CLP converted by OECD; export ≤ 500 KiB gzipped
 at level 9 (estimated 420–450 KiB; the figure recorded); a same-day rerun changes nothing and
-a +7-day replay rewrites no file; an incremental run adds ≤ 1 minute and a full run ≤ 5.
+a +7-day replay rewrites no file; an incremental run adds ≤ 1 minute and a full run ≤ 5; one
+`workflow_dispatch` run of `update.yml` succeeds with funding enabled (moved from B10).
 - [ ] Accepted.
 
 **B10** — `smoke` shows PASS for every new source and DOWN on a simulated 503;
 `check:data-budget` passes and fails on a planted file of 501 KiB gzipped; one `workflow_dispatch`
 run succeeds with funding enabled.
-- [ ] Accepted.
+- [x] Accepted 2026-09-26 (92326ae): all seven funding checks PASS live, inside the window (§13.2);
+      offline, DOWN on a simulated 503 and FAIL on a changed shape, and neither blocks.
+      `check:data-budget` passes on `export/` (310,628 bytes, 303.3 KiB) and `samples/export/`
+      (15,188 bytes), fails on a planted file of 513,024 bytes (501.0 KiB) and passes one of
+      exactly 512,000; stage 11 alerts above the budget and still writes. *The `workflow_dispatch`
+      run with funding enabled moved to B9: funding cannot be enabled before the seed.*
 
 **W1–W10** — as §12 and §14 specify; the existing router, overview, method and e2e tests pass
 unchanged; the flag hides every funding entry point; JavaScript ≤ 250 KiB.

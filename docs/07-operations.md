@@ -49,6 +49,30 @@ dated, and noted in this header.
   cache, so it costs time rather than requests. Every run after it records the overrides
   fingerprint and reads nothing extra.
 
+**Changed 2026-09-26, to operate the funding data** ([09](09-funding-impact.md) §13; Phase 9, B10):
+- *§1, the weekly run is on Saturdays at 07:17 UTC* (`17 7 * * 6`), 03:17 or 02:17 in New York
+  ([03](03-retrieval-pipeline.md) C4, changed the same day). NIH RePORTER asks for large jobs at
+  weekends or between 9 PM and 5 AM Eastern, and the funding refresh is one. NCBI asks the
+  same of any series of more than 100 requests, which a cold-cache run is. The commit that changes
+  the `cron` line makes its author the recipient of the scheduled run's failure email (§6), so it
+  is pushed by the maintainer.
+- *§3, a normal week* also changes `store/funding/` from the funding seed on — only the lines whose
+  data changed ([09](09-funding-impact.md) §8). The smoke step checks the funding sources too, and
+  none of them can stop the week.
+- *§5.1, the export's size is watched.* Stage 11 alerts when `uwpr_publications.json` passes the
+  500 KiB data budget ([06](06-web-app.md) §10), which no CI run would otherwise see.
+- *§11, January:* the year's exchange rates are added once the Federal Reserve's G.5A release is
+  out, early in January, and `funding_version` is bumped.
+- *§12, NIH RePORTER can block the address*, and says so. The mitigations are its own limits
+  kept in code, the Saturday schedule, an alert on HTTP 403 and a RUNBOOK entry. A block costs
+  funding its freshness, never the week.
+- *§14, cost:* the funding refresh adds about $0.004 of OpenAlex every 28 days, and smoke $0.0001
+  a run. Still under a dollar a year.
+- *§15, principal investigators' names* are exported where a funder's published award record
+  gives them ([09](09-funding-impact.md) F13), which extends "published authorship" to published
+  award records. Each funding source is attributed under its own terms in `NOTICE` and
+  `README.md`, including NLM's required wording ([09](09-funding-impact.md) §13.3).
+
 **Purpose:** define where this runs, how the app is published, how a failure becomes visible, and
 who is responsible when it does.
 **Depends on:** [03](03-retrieval-pipeline.md) (frozen), which already specifies the run, its
@@ -67,7 +91,7 @@ This spec does not re-decide these. They are listed so it is clear what is left.
 
 | Settled | Where |
 |---|---|
-| Weekly scheduled run, Mondays 13:17 UTC, plus a manual trigger | D9, [03](03-retrieval-pipeline.md) §11.3; `update.yml` |
+| Weekly scheduled run, Saturdays 07:17 UTC (Mondays 13:17 until 2026-09-26), plus a manual trigger | D9, [03](03-retrieval-pipeline.md) C4, §11.3; [09](09-funding-impact.md) F12; `update.yml` |
 | A full sweep every run; no watermarks, no incremental mode | [03](03-retrieval-pipeline.md) P1 |
 | One bot commit per run, directly to `main`, after the validation gate | [03](03-retrieval-pipeline.md) C3 |
 | A failing source degrades the run and never shrinks the data | [03](03-retrieval-pipeline.md) P4, §9 |
@@ -104,7 +128,15 @@ so a run that stopped at the gate still explains itself; and the alert check las
 lands before the job fails.
 
 **What a normal week changes:** `official_list/entries.jsonl`, `metrics/`, `runs/`, `export/`, and
-a `last_seen` refresh about once a month ([02](02-data-model.md) §15).
+a `last_seen` refresh about once a month ([02](02-data-model.md) §15). From the funding seed on,
+`store/funding/` too, and only the lines whose data changed: every source is read in full every 28
+days, and between those runs only for what is new or still active
+([09](09-funding-impact.md) §8, §9.2).
+
+**Why Saturday** (changed 2026-09-26). NIH RePORTER asks for large jobs at weekends or between
+9 PM and 5 AM Eastern, and blocks addresses that ignore it; the funding refresh is a large job.
+07:17 UTC is 03:17 Eastern in summer and 02:17 in winter, Saturday both ways, so every scheduled
+run is inside that window, and inside NCBI's equivalent for series of more than 100 requests.
 
 **`export/` is committed by the run itself** — which is not what the code did. Stage 11 wrote it
 and the commit named only `store/`, so every weekly run built the export on the runner and threw
@@ -217,7 +249,9 @@ recall still looked fine.
 From [03](03-retrieval-pipeline.md) §9, needing no new work: recall falling more than 5 points
 from the 82% baseline; the official list shrinking more than 10%; three consecutive degraded runs;
 a channel deviating sharply from its trailing average; OpenAlex spend approaching the per-run
-ceiling of $0.50 against a measured $0.0100.
+ceiling of $0.50 against a measured $0.0100. Since 2026-09-26, also the export passing the 500 KiB
+data budget of [06](06-web-app.md) §10: stage 11 alerts and still writes it
+([09](09-funding-impact.md) §9.5).
 
 ## 6. Alerts: who receives them
 
@@ -321,6 +355,7 @@ the app has not accounted for fails the build rather than reaching the page.
 | A source API changes | `uwpr-pubs smoke` catches it at the start of the run, before anything is written |
 | The cache index gains lines older code cannot load | Move `update.yml`'s cache prefix (`dlcache-vN-`, in both the restore and the save) in the same commit (§3) |
 | Dependencies | Dependabot monthly for Actions, npm and `uv.lock` (O8); uv's own minor version moved by hand (RUNBOOK §11) |
+| January | Add the previous year's exchange rates once the Federal Reserve's G.5A is released (early January), with the OECD's for the currencies G.5A lacks, and bump `funding_version` ([09](09-funding-impact.md) §5.10, §13.4) |
 | Annual | Re-read the open items in each spec; confirm the recall baseline still reflects reality; confirm notification routing still works |
 
 ## 12. Risks
@@ -333,6 +368,7 @@ Named, with what is done about each. The first is the one most likely to end thi
 | The maintainer becomes unavailable | A named fallback and `RUNBOOK.md` (§7). Named 2026-09-26 |
 | The official-list scraper breaks | Loud by design (§11); a degraded run changes nothing |
 | A source changes terms or withdraws access | The run degrades and keeps the data. OpenAlex is the only paid dependency, at $0.52 a year against a $1/day allowance |
+| **NIH RePORTER blocks the address.** It reserves the right to, for requests faster than one a second or large jobs outside its window | Its limits kept in code: one request a second, the window guard and a weekday cap for runs started by hand ([09](09-funding-impact.md) §9.3). Saturday runs, inside the window. An alert on HTTP 403, and a RUNBOOK entry. A block degrades the funding stage and never the week, because funding never blocks the publication update ([09](09-funding-impact.md) F16) |
 | The store is lost | Git is the record and GitHub is the backup; the maintainer keeps a local clone. Permanent IDs make this worth more than a cache would be |
 | A published number is wrong | Every figure traces to evidence with a source and date; `explain` answers any single paper; corrections go through §9 |
 
@@ -351,6 +387,7 @@ rather than a capability.
 | Item | Cost |
 |---|---|
 | OpenAlex | **$0.0100 a run, about $0.52 a year**, against a $1/day allowance |
+| OpenAlex, for funding | About $0.004 per full refresh, one every 28 days, and $0.0001 a run for smoke's award check: about $0.06 a year ([09](09-funding-impact.md) §13.6) |
 | GitHub Actions | Free for public repositories |
 | GitHub Pages | Free |
 | Every other source | No charge |
@@ -363,13 +400,19 @@ keeping the thing running.
 - **Secrets:** `OPEN_ALEX_API_KEY` is a repository secret; `NCBI_API_KEY` is optional and unset.
   Both are scoped to individual steps, stripped from everything logged or cached, and the run's
   own commit is scanned for them before it is pushed.
-- **No personal data** beyond published authorship, and no reader data at all: no cookies, no
-  analytics, no third-party requests (B10).
+- **No personal data** beyond published authorship and published award records, and no reader
+  data at all: no cookies, no analytics, no third-party requests (B10). The award records are the
+  principal investigators' names, exported where the funder's public record gives them
+  ([09](09-funding-impact.md) F13; changed 2026-09-26).
 - **The contact address `mriffle@uw.edu` is deliberately public**, sent to APIs as required by
   their terms. No other personal address is used anywhere.
 - **Quotation:** the store holds short attributed excerpts of up to about 300 characters, with
   source and retrieval date. `NOTICE` explains this to a reader. Full text and abstracts are never
   committed.
+- **Funding sources are attributed under their own terms** in `NOTICE` and `README.md`: NIH
+  RePORTER, USAspending.gov, the NSF Award API, PubMed ("Courtesy of the U.S. National Library of
+  Medicine", as NLM's terms require), OpenAlex, Crossref, the Federal Reserve's G.5A and the OECD
+  ([09](09-funding-impact.md) §13.3, as re-read 2026-09-26).
 
 ## 16. Open items
 

@@ -82,6 +82,18 @@ deliberately, dated, and noted in this header.
   how to mark the view being read. The switch is a `<nav>` of two links, and the view being read
   has `aria-current="page"`. Each view is a page with its own address and its own history entry.
   ARIA tabs would promise panels on one page and arrow keys between them, and neither is true.
+- *2026-09-26, §10 and §12.3, the data budget is 500 KiB at gzip level 9, and it is enforced*
+  ([09](09-funding-impact.md) F14, §11.9). The row said 400 KB, and nothing checked it: only the
+  JavaScript budget had a script. It rises for the funding block, and it now means exactly what
+  the JavaScript budget means — gzip level 9, in KiB of 1,024 bytes — so 500 KiB is 512,000 bytes.
+  What it measures is `uwpr_publications.json` alone, since that is the one data file first load
+  fetches; `lookup_index.json` loads on demand (§10), so it is shown and not counted.
+  `npm run check:data-budget` (`web/scripts/check-data-budget.mjs`) fails the web job above it, on
+  `export/` and `samples/export/`. That cannot see the weekly run's export, whose bot commit starts
+  no workflow ([07](07-operations.md) §6), so stage 11 measures the same file the same way and
+  alerts above it ([09](09-funding-impact.md) §9.5); a Python test keeps the two constants equal.
+  Measured 2026-09-26: 310,628 bytes (303.3 KiB) for `export/`, 15,188 (14.8 KiB) for the sample,
+  and 64,736 bytes (63.2 KiB) for the lookup index; Node and Python agree to the byte.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -419,7 +431,7 @@ a year.
 | Budget | Target |
 |---|---|
 | JavaScript, gzipped | ≤ 250 KB |
-| Data transferred on first load, gzipped | ≤ 400 KB |
+| Data transferred on first load, gzipped at level 9 | ≤ 500 KiB (512,000 bytes) |
 | First contentful paint, typical laptop broadband | < 1.5 s |
 | Interactive with charts drawn | < 2.5 s |
 | Filter change to redrawn charts | < 100 ms |
@@ -432,6 +444,12 @@ At 339 rows every aggregation is trivial; the risk is not throughput but redrawi
 every keystroke. Derived aggregates are memoised on the filter state, and the search box is
 debounced. **The lookup index loads on demand,** not on first paint — it is more than half the
 uncompressed weight of the data file and answers a question most readers never ask.
+
+**Both size budgets are enforced**, each by a script in the web job: `check:budget` for the
+JavaScript and `check:data-budget` for the data, which measures `uwpr_publications.json`, the one
+data file first load fetches. Stage 11 of the pipeline measures that file the same way and alerts
+above the budget, because the weekly export is committed by a run that CI never sees
+([09](09-funding-impact.md) §11.9; changed 2026-09-26).
 
 `d3` is imported as individual submodules. Pulling the umbrella package in for two scale functions
 is the single easiest way to miss the bundle budget.
@@ -545,8 +563,9 @@ of the generic ones.
 
 A `web` job alongside the existing `check` job, on every push and pull request: pinned Node,
 `npm ci` from the committed lockfile, then the generated-types freshness check, lint, format,
-type-check, unit and component tests with coverage, build against the budget of §10, and
-Playwright. The job fails on a budget overrun, so the bundle cannot grow unnoticed.
+type-check, unit and component tests with coverage, build against the budgets of §10 (the
+JavaScript bundle, and the data first load fetches, on `export/` and `samples/export/`), and
+Playwright. The job fails on a budget overrun, so neither can grow unnoticed.
 
 **Playwright runs against the built app behind `vite preview`, not the dev server.** The two
 behaviours it exists to cover — the `404.html` fallback of §3 and the on-demand lookup fetch of §7

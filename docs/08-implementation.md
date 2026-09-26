@@ -319,7 +319,8 @@ a cold cache. *(Measured 2026-09-26 on a local cold cache: 6m 38s; §3.7.)*
 
 ### 3.5 The first scheduled run, 2026-09-21, and what it found
 
-The cron is Mondays 13:17 UTC. **GitHub started the first scheduled run at 18:44** — five and a
+The cron was then Mondays 13:17 UTC; it has been Saturdays 07:17 since 2026-09-26
+([09](09-funding-impact.md) §13.1). **GitHub started the first scheduled run at 18:44** — five and a
 half hours late, which GitHub's queue does not promise against — and it **failed in 25 seconds**,
 at smoke. Seven checks passed; one read `FAIL europe pmc search: 0 results; expected at least
 185`, and the verdict was `BLOCKED`. The pipeline never ran, so nothing was committed or
