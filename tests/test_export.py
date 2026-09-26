@@ -12,7 +12,7 @@ from typing import Any, cast
 
 import pytest
 
-from uwpr_pubs import __version__
+from uwpr_pubs import __version__, cli
 from uwpr_pubs.config import load_config
 from uwpr_pubs.export import (
     ExportMeta,
@@ -657,12 +657,13 @@ def test_the_override_case_asks_for_the_attribution_not_just_the_rule(built: tup
 REAL_STORE = Path("store")
 
 
-def test_the_real_store_exports_without_the_sample_cases() -> None:
-    """The case this was missing: the committed store can never satisfy two of §13's cases.
+def test_the_real_store_exports_without_the_sample_cases(tmp_path: Path) -> None:
+    """The case this was missing: the committed store cannot satisfy every one of §13's cases.
 
-    It holds no retracted work (0 of 339) and its only override is an *exclude*, which by
-    definition never reaches the export. Applying the §13 guard here made `uwpr-pubs export`
-    fail permanently against its most obvious target.
+    On 2026-09-20 it held no retracted work (0 of 339), and its only override was an *exclude*,
+    which by definition never reaches the export. Applying the §13 guard here made `uwpr-pubs
+    export` fail permanently against its most obvious target. Which cases the store lacks is up to
+    the weekly run, which can add a retraction, so this asserts only that it exports.
     """
     config = load_config()
     document, lookup = build_from_store(REAL_STORE, resource_block(config))
@@ -670,7 +671,25 @@ def test_the_real_store_exports_without_the_sample_cases() -> None:
     assert schema_problems(document, lookup) == []
     report = validate_export(document, lookup, run_year=int(document["run_id"][:4]))
     assert report.errors == []
-    assert missing_cases(document) == ["override with attribution", "retracted"]
+    assert cli.main(["export", "--store", str(REAL_STORE), "--out", str(tmp_path)]) == 0
+
+
+def test_the_case_guard_applies_only_with_the_synthetic_cases(tmp_path: Path) -> None:
+    """The guard's scope, shown on a store that is fixed rather than on one the weekly run writes.
+
+    `samples/store/` cannot hold a retracted, single-author or 50-plus-author work (`sample.py`),
+    so it misses §13 cases. Without `--cases` it must still export; with a cases file that adds
+    nothing, the guard is on and must refuse.
+    """
+    config = load_config()
+    document, _ = build_from_store(SAMPLE_STORE, resource_block(config))
+    assert missing_cases(document), "the sample store covers every case, so this proves nothing"
+    no_cases = tmp_path / "no-cases.json"
+    no_cases.write_text('{"works": [], "metrics": []}', encoding="utf-8")
+
+    export = ["export", "--store", str(SAMPLE_STORE), "--out", str(tmp_path / "out")]
+    assert cli.main(export) == 0
+    assert cli.main([*export, "--cases", str(no_cases)]) == 1
 
 
 def test_a_real_export_takes_its_period_from_the_store_not_a_constant() -> None:
