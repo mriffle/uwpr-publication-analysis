@@ -101,7 +101,8 @@
         "estimated": {"$ref": "#/$defs/nullableDecimal"},
         "obligated": {"$ref": "#/$defs/nullableDecimal"},
         "exp_date": {"$ref": "#/$defs/nullableDate"},
-        "program": {"type": ["string", "null"]}
+        "program": {"type": ["string", "null"]},
+        "type": {"description": "The award type (NSF's transType, \"Fellowship Award\"), which decides the category; optional, added 2026-09-26 (B7)", "type": ["string", "null"]}
       }
     },
     "usaspendingFacts": {

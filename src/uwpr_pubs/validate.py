@@ -389,6 +389,20 @@ def _one_line_each(
     return located
 
 
+def validate_funding(
+    store: Path, *, included: set[str], retired: Mapping[str, str], resource_code: str | None
+) -> Report:
+    """Invariants F1-F7 over one store's `funding/` alone: the funding stage's self-check (§9.4).
+
+    `store` need hold nothing but `funding/`: the stage writes its output to a scratch directory
+    and asks this before handing it on, so that anything the gate would refuse is carried
+    forward instead of stopping the run. `included` and `retired` are the run's, not the store's.
+    """
+    report = Report()
+    _validate_funding(StorePaths(store), included, retired, resource_code, report)
+    return report
+
+
 def _validate_funding(
     paths: StorePaths,
     included: set[str],

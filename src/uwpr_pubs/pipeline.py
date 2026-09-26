@@ -1,8 +1,7 @@
 """The stage machine (docs/03-retrieval-pipeline.md §5).
 
-This milestone runs stages 0-3, 5 (R1 and the R2 metadata arm), 7, 8, 9, 12 and 13. Text, the
-remaining rules, version linking and the commit step arrive with later milestones; the stage
-order and the gate are already the final ones.
+Stages 0-8, then 8b, the funding stage (docs/09 §9), then 9, 11, 12 and 13: stage 10 retired
+with Phase 4.
 
 Nothing reaches the real store until stage 9 has validated a complete copy of it.
 """
@@ -10,6 +9,7 @@ Nothing reaches the real store until stage 9 has validated a complete copy of it
 import datetime as dt
 import shutil
 import subprocess
+import tempfile
 import time
 import traceback
 from collections.abc import Mapping, Sequence
@@ -31,6 +31,7 @@ from uwpr_pubs.fulltext import (
     oldest_rule_version,
     recheck_after,
 )
+from uwpr_pubs.funding.export import FundingInput
 from uwpr_pubs.http import HttpClient, HttpError, Mode
 from uwpr_pubs.match import (
     TITLE_SIMILARITY,
@@ -78,10 +79,22 @@ from uwpr_pubs.sources.biorxiv import Biorxiv
 from uwpr_pubs.sources.crossref import Crossref
 from uwpr_pubs.sources.europepmc import EuropePmc
 from uwpr_pubs.sources.ncbi import Ncbi
+from uwpr_pubs.sources.nsf import Nsf
 from uwpr_pubs.sources.openalex import OpenAlex
 from uwpr_pubs.sources.pride import Dataset, Pride
+from uwpr_pubs.sources.reporter import Reporter
+from uwpr_pubs.sources.usaspending import UsaSpending
 from uwpr_pubs.sources.uwpr_site import UwprSite
 from uwpr_pubs.stages import export as export_stage
+from uwpr_pubs.stages.funding import (
+    FundingCheckError,
+    FundingRequest,
+    FundingResult,
+    FundingSources,
+    FundingStage,
+    WorkInput,
+    write_funding,
+)
 from uwpr_pubs.status import STATUS_OVERRIDE_ACTIONS, Status, StatusInput, decide
 from uwpr_pubs.store import io
 from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi, retired_key
@@ -108,7 +121,7 @@ from uwpr_pubs.store.models import (
 from uwpr_pubs.store.paths import StorePaths
 from uwpr_pubs.store.read import StoreSnapshot, read_store
 from uwpr_pubs.text import split_sentences, text_rules
-from uwpr_pubs.validate import validate_export, validate_store
+from uwpr_pubs.validate import validate_export, validate_funding, validate_store
 
 # The version of the code that produced a run, recorded in its manifest (docs/02 §11) and, through
 # it, in the export's `pipeline_version`. It is the package version and nothing else: it was a
@@ -137,11 +150,17 @@ class RunOptions:
     summary_out: Path | None = None
     check_clean: bool = True
     no_commit: bool = False
+    funding: FundingRequest = "auto"  # docs/09 §9.1: `auto`, `full` or `skip`
 
     @property
     def partial(self) -> bool:
         """A run of selected channels only. It must not commit, and says so in the report."""
         return tuple(self.channels) != tuple(ALL_CHANNELS)
+
+    @property
+    def funding_request(self) -> FundingRequest:
+        """A partial run must change nothing, so it decides no funding either (docs/09 §9.1)."""
+        return "skip" if self.partial else self.funding
 
     @property
     def commits(self) -> bool:
@@ -1729,6 +1748,120 @@ class Pipeline:
             )
         )
 
+    # --- stage 8b: funding (docs/09 §9) ----------------------------------------------------
+
+    def funding(self, works: Sequence[Work]) -> FundingResult:
+        """The included works' grants, for stage 9 to write and stage 11 to export.
+
+        After stage 7, so work IDs are final after merges, and before the quality checks, so its
+        degradations count towards the three-runs-running alert. **Nothing here may stop the
+        publication update** (F16): an unexpected error, or output that its own check refuses,
+        degrades `stage:funding`, alerts, and carries the stored funding forward.
+        """
+        snapshot = self.snapshot if self.snapshot is not None else read_store(self.options.store)
+        stage = FundingStage(
+            config=self.config,
+            context=self.context,
+            recorder=self.recorder,
+            snapshot=snapshot,
+            client=self.client,
+            sources=FundingSources(
+                reporter=Reporter(self.client, self.config.contact),
+                nsf=Nsf(self.client, self.config.contact),
+                usaspending=UsaSpending(self.client, self.config.contact),
+                openalex=self.openalex,
+                crossref=self.crossref,
+                ncbi=self.ncbi,
+            ),
+            unreachable=self._unreachable,
+        )
+        inputs = [self._funding_input_for(work) for work in works]
+        try:
+            result = stage.run(inputs, self.aliases, request=self.options.funding_request)
+            problems = self._funding_problems(works, result) if result.resolved else []
+            if problems:
+                raise FundingCheckError("; ".join(problems[:5]))
+        except Exception as exc:  # docs/09 §9.4: a funding bug must never block the publication update
+            result = self._funding_carried(stage, inputs, exc)
+        self.recorder.funding_run = result.manifest()
+        return result
+
+    def _funding_input_for(self, work: Work) -> WorkInput:
+        canonical = next((r for r in work["records"] if r["id"] == work["canonical"]), None)
+        draft = self.drafts.get(work["id"])
+        return WorkInput(
+            id=work["id"],
+            year=canonical["year"] if canonical else None,
+            records=tuple(work["records"]),
+            payloads=draft.payloads if draft else {},
+        )
+
+    def _funding_carried(
+        self, stage: FundingStage, inputs: Sequence[WorkInput], exc: Exception
+    ) -> FundingResult:
+        checked = isinstance(exc, FundingCheckError)
+        what = "refused its own output" if checked else f"failed with {type(exc).__name__}"
+        self.recorder.degrade(stage_source("funding"), f"{what}: {scrub(str(exc))}")
+        self.recorder.alert(
+            f"the funding stage {what}, so the stored funding was carried forward",
+            "the publication data was updated as usual; the cause is under Degradations, and the"
+            " funding stage needs fixing before its data can move again",
+        )
+        if not checked:
+            self.recorder.note("".join(traceback.format_exception(exc)).strip().splitlines()[-1])
+        return stage.carried(inputs, self.aliases)
+
+    def _funding_problems(self, works: Sequence[Work], result: FundingResult) -> list[str]:
+        """What stage 9's gate or stage 11 would refuse in the stage's output (docs/09 §9.4).
+
+        The store's invariants F1-F7, over a scratch copy of the four files, then the export
+        stage 11 would build from it — `json_number` and every funding cross-check of
+        `validate_export`. An export problem that the same export without funding also has is not
+        funding's, and is left for stage 11 to report.
+        """
+        retired = {
+            key.removeprefix("work:"): work for key, work in self.aliases.items() if key.startswith("work:")
+        }
+        with tempfile.TemporaryDirectory() as scratch:
+            write_funding(Path(scratch), result.funding)
+            report = validate_funding(
+                Path(scratch),
+                included={work["id"] for work in works},
+                retired=retired,
+                resource_code=self.resource_code,
+            )
+        if report.errors:
+            return report.errors
+        meta = export_stage.meta_for(
+            self.config,
+            self.context,
+            __version__,
+            entries=self.entries.values(),
+            degradations=self.recorder.degradations,
+        )
+
+        def problems(funding: FundingInput | None) -> list[str]:
+            document, lookup = export_stage.build(works, [], [], self.aliases, meta, funding=funding)
+            found = export_stage.schema_problems(document, lookup)
+            citations = funding.citations if funding is not None else None
+            return found + validate_export(document, lookup, funding_citations=citations).errors
+
+        found = problems(self._export_funding(result))
+        return sorted(set(found) - set(problems(None))) if found else []
+
+    def _export_funding(self, result: FundingResult) -> FundingInput:
+        """The funding stage 11 exports: the stage's, with the store's overrides and the rates."""
+        funding = result.funding
+        return FundingInput(
+            citations=funding.citations,
+            grants=funding.grants,
+            agencies=funding.agencies,
+            overrides=self.config.overrides,
+            aliases=self.aliases,
+            refreshed=result.refreshed,
+            rate_sources=self.config.exchange_rates["sources"],
+        )
+
     # --- stages 9 and 13 -------------------------------------------------------------------
 
     def stage_and_validate(
@@ -1736,6 +1869,7 @@ class Pipeline:
         works: Sequence[Work],
         candidates: Sequence[Candidate],
         metrics: Sequence[MetricsLine],
+        funding: FundingResult,
         staging: Path,
     ) -> None:
         if self.options.store.exists():
@@ -1756,6 +1890,10 @@ class Pipeline:
             monthly = staged.monthly_metrics(self.context.year_month)
             if not monthly.exists():
                 io.write_jsonl(monthly, sorted_metrics)
+        # The funding stage's output replaces the copied files (docs/09 §8.1). A store that has no
+        # `funding/` and a run that decided none leave it absent, as it was.
+        if funding.funding.present:
+            write_funding(staging, funding.funding)
 
         report = validate_store(
             staging, overrides_path=_overrides_path(self.config), resource_code=self.resource_code
@@ -1773,6 +1911,7 @@ class Pipeline:
         works: Sequence[Work],
         candidates: Sequence[Candidate],
         metrics: Sequence[MetricsLine],
+        funding: FundingResult,
         staging: Path,
     ) -> None:
         """Stage 11: the app's two files, validated before they are written (docs/05 §12).
@@ -1791,25 +1930,19 @@ class Pipeline:
             entries=self.entries.values(),
             degradations=self.recorder.degradations,
         )
-        # Funding as the store holds it (docs/09 §11): no stage writes it yet, so this carries the
-        # committed `funding/` forward, or exports "no funding data" when there is none.
-        funding = (
-            export_stage.funding_input(
-                self.snapshot,
-                overrides=self.config.overrides,
-                rate_sources=self.config.exchange_rates["sources"],
-            )
-            if self.snapshot is not None
-            else None
+        # The funding stage's output (docs/09 §9.1), which it has already built an export from, so
+        # nothing here can be refused for its funding. With none, "no funding data" (§11.1).
+        exported = self._export_funding(funding)
+        document, lookup = export_stage.build(
+            works, candidates, metrics, self.aliases, meta, funding=exported
         )
-        document, lookup = export_stage.build(works, candidates, metrics, self.aliases, meta, funding=funding)
         problems = export_stage.schema_problems(document, lookup)
         cross = validate_export(
             document,
             lookup,
             store_works={work["id"]: work for work in works},
             run_year=meta.run_year,
-            funding_citations=funding.citations if funding is not None else None,
+            funding_citations=exported.citations,
         )
         problems.extend(cross.errors)
         if problems:
@@ -1979,10 +2112,11 @@ def run_pipeline(config: Config, client: HttpClient, context: RunContext, option
         pipeline.apply_rules()
         pipeline.link_versions()
         works, candidates, metrics = pipeline.decide_status()
+        funding = pipeline.funding(works)  # stage 8b
         pipeline.measure_recall(works)
         pipeline.assess_run_quality()
-        pipeline.stage_and_validate(works, candidates, metrics, staging)
-        pipeline.export(works, candidates, metrics, staging)  # stage 11; 10 retired with Phase 4
+        pipeline.stage_and_validate(works, candidates, metrics, funding, staging)
+        pipeline.export(works, candidates, metrics, funding, staging)  # stage 11; 10 retired with Phase 4
         if not options.dry_run:
             pipeline.publish(staging)
             written = True

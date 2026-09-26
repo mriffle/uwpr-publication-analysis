@@ -547,6 +547,7 @@ class NsfFacts(TypedDict):
     obligated: DecimalString | None
     exp_date: Date | None
     program: str | None
+    type: NotRequired[str | None]  # the award type ("Fellowship Award"), for the category (B7)
 
 
 class UsaspendingFacts(TypedDict):

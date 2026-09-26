@@ -189,23 +189,38 @@ def _override_for(raw: str, overrides: Mapping[str, str | None]) -> str | _Unset
     return _UNSET
 
 
+def string_key(piece: str) -> str:
+    """What one string on a work is pooled by: its `override_match_key` once cleaned (§6.1, §6.6).
+
+    The stage matches a stored string to this run's sightings by the same key, so a string
+    written a new way is still the string it was.
+    """
+    return override_match_key(clean(piece))
+
+
+def pieces(raw: str, overrides: Mapping[str, str | None] | None = None) -> list[str]:
+    """A sighting's strings: its list split (§6.1), unless an override names it whole."""
+    whole = " ".join(raw.split())
+    return split_list(whole) if isinstance(_override_for(whole, overrides or {}), _Unset) else [whole]
+
+
 def _pool(
     sightings: Iterable[Sighting], overrides: Mapping[str, str | None], rules: FundingRules
 ) -> list[_Item]:
-    """The work's strings, split into items (§6.1) and pooled by `override_match_key`.
+    """The work's strings, split into items (§6.1) and pooled by `string_key`.
 
     Case, spacing, dashes, droppable parentheses and trailing punctuation do not make two
     strings: `NRF-2016R1A5A1010764` in one source and the same with a Unicode hyphen in another are
     one string, named by both sources' funders. The item is shown as its most frequent written
     form (the first in sort order on a tie), which is also what an override is matched on. A
-    string an override names whole is not split, so an override can name a list.
+    string an override names whole is not split, so an override can name a list. PubMed's
+    `Agency` is shown among the funders, as the source names it, but decides only as PubMed's
+    agency (§6.4).
     """
     pooled: dict[str, tuple[Counter[str], list[Sighting]]] = {}
     for sighting in sightings:
-        whole = " ".join(sighting.raw.split())
-        pieces = split_list(whole) if isinstance(_override_for(whole, overrides), _Unset) else [whole]
-        for piece in pieces:
-            forms, seen = pooled.setdefault(override_match_key(clean(piece)), (Counter(), []))
+        for piece in pieces(sighting.raw, overrides):
+            forms, seen = pooled.setdefault(string_key(piece), (Counter(), []))
             forms[piece] += 1
             seen.append(sighting)
     items: list[_Item] = []
@@ -225,6 +240,7 @@ def _pool(
                 item.funder_ids.add(sighting.funder_id)
             if sighting.pubmed_agency:
                 item.pubmed.add(sighting.pubmed_agency)
+                item.funders.add(" ".join(sighting.pubmed_agency.split()))
             if sighting.award_id:
                 item.awards.add(sighting.award_id.rsplit("/", 1)[-1])
         items.append(item)

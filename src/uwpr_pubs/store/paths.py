@@ -6,8 +6,10 @@ only if something ever generates one. So stage 13 may delete only the work files
 have left `works/`;
 everything else is carried forward. Getting this wrong would delete the audit trail.
 
-`funding/` (docs/09 §8.1) is carried forward too, byte for byte, until the funding stage (docs/09
-§9) exists to rewrite it.
+`funding/` (docs/09 §8.1) is not among them: the funding stage (docs/09 §9) writes all four of its
+files every run, from what it carried forward and what it found, so stage 13 takes the stage's
+output rather than the files it started from. The stage drops the lines of works that left and
+moves a retired work's line onto its survivor; copying the old files would put both back.
 """
 
 from dataclasses import dataclass
@@ -106,5 +108,4 @@ class StorePaths:
         kept.extend(sorted(self.runs.glob("*.json")))
         kept.extend(sorted(self.runs.glob("*.md")))
         kept.extend(sorted(self.works.glob(GENERATED_GLOB)))
-        kept.extend(path for path in self.funding_files() if path.exists())
         return kept

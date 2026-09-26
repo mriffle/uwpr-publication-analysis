@@ -94,6 +94,7 @@ def _run(args: argparse.Namespace) -> int:
         channels=tuple(args.channels.split(",")) if args.channels else ALL_CHANNELS,
         summary_out=Path(args.summary_out) if args.summary_out else None,
         no_commit=args.no_commit,
+        funding=args.funding,
     )
     result = run_pipeline(config, client, context, options)
     print(result.report)
@@ -248,6 +249,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     run.add_argument("--channels", help="comma-separated channel ids; implies no commit")
     run.add_argument("--no-commit", action="store_true", help="write the store but do not commit it")
     run.add_argument("--summary-out", help="where to write the report, even if the run fails")
+    run.add_argument(
+        "--funding",
+        choices=["auto", "full", "skip"],
+        default="auto",
+        help="the funding stage (docs/09 §9): a full refresh when due and inside RePORTER's window (auto),"
+        " one now (full), or none (skip); --channels implies skip, and so does funding.yaml's enabled: false",
+    )
 
     explain_command = subcommands.add_parser("explain", help="why one paper is, or is not, included")
     explain_command.add_argument("identifier", help="a work ID, DOI, PMID, PMCID or OpenAlex ID")

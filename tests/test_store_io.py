@@ -284,8 +284,9 @@ def test_a_funded_store_reads_into_its_snapshot(tmp_path: Path) -> None:
     assert ("reporter", "serial:094352") in funding.lookups
 
 
-def test_funding_files_are_carried_forward(tmp_path: Path) -> None:
-    """Until the funding stage exists to rewrite them, a run must not delete them (stage 13)."""
+def test_funding_files_are_the_funding_stages_to_write(tmp_path: Path) -> None:
+    """The funding stage writes all four files every run (docs/09 §8.1), so stage 13 takes its
+    output: carried forward as they were, a merged or departed work's line would come back."""
     store = funded_sample(tmp_path)
     carried = {path.relative_to(store) for path in StorePaths(store).carried_forward()}
-    assert {Path("funding") / name for name in SORTERS} <= carried
+    assert not {Path("funding") / name for name in SORTERS} & carried
