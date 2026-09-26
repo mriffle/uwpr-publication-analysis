@@ -77,7 +77,7 @@ describe('the accessor', () => {
     const legacy: Partial<ExportDocument> = withFunding();
     delete legacy.funding; // a 1.0 export, as after a rollback of the data (docs/07 O2)
     expect(fundingOf(legacy as ExportDocument)).toBeNull();
-    expect(fundingOf(withFunding())).toEqual(sampleExport().funding);
+    expect(fundingOf(withFunding())?.funding).toEqual(sampleExport().funding);
   });
 });
 

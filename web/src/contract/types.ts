@@ -23,6 +23,21 @@ export type {
   Resource,
   Exclusion,
   Ids,
+  // Contract 1.1's funding (docs/09 §11). Read them through `contract/funding.ts`, never off the
+  // document directly: an export older than the app has no `funding` block and no `grants` on
+  // its works, whatever these types say (docs/09 §12.10).
+  Funding,
+  FundingSource,
+  ExchangeRates,
+  FundingMethod,
+  FundingSummary,
+  FundingYear,
+  Agency,
+  Grant,
+  Investigator,
+  AmountSource,
+  GrantListing,
+  GrantOverride,
 } from './generated/export';
 
 export type { LookupIndexDocument } from './generated/lookup-index';

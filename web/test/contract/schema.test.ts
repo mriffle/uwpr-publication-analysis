@@ -11,24 +11,8 @@
  * `npm run check:types-fresh`, which regenerates from `schemas/` and fails on any difference.
  */
 import { describe, expect, it } from 'vitest';
-import Ajv2020, { type ValidateFunction } from 'ajv/dist/2020';
-import addFormats from 'ajv-formats';
-import { readSchema, sampleExport, sampleLookup } from '../support/fixture';
-
-function validator(entry: string): ValidateFunction {
-  const ajv = new Ajv2020({ allErrors: true, strict: false });
-  addFormats(ajv);
-  for (const name of ['common.schema.json', 'export.schema.json', 'lookup-index.schema.json']) {
-    const schema = readSchema(name);
-    // The schemas reference each other by relative path (docs/02 §18), so both the absolute $id
-    // and the relative name are registered, exactly as `uwpr_pubs.validate` does.
-    ajv.addSchema(schema, name);
-  }
-  return ajv.getSchema(entry) as ValidateFunction;
-}
-
-const report = (validate: ValidateFunction): string[] =>
-  (validate.errors ?? []).map((error) => `${error.instancePath} ${error.message ?? ''}`);
+import { sampleExport, sampleLookup } from '../support/fixture';
+import { report, validator } from '../support/schema';
 
 describe('the committed sample validates against the schemas the pipeline wrote', () => {
   it('uwpr_publications.json', () => {
