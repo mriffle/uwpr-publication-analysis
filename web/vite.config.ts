@@ -106,6 +106,9 @@ export default defineConfig(({ mode }) => {
       environment: 'jsdom',
       globals: false,
       setupFiles: ['./vitest.setup.ts'],
+      // The suite tests the app CI builds, which has the Funding impact view (`VITE_FUNDING`,
+      // src/contract/config.ts). A test of the production build without it stubs this off.
+      env: { VITE_FUNDING: '1' },
       include: ['test/**/*.test.{ts,tsx}'],
       // Playwright owns e2e/; vitest must not try to run those specs.
       exclude: ['e2e/**', 'node_modules/**', 'dist/**'],

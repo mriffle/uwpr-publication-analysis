@@ -8,11 +8,17 @@
  * publication opened from the overview keeps the query string, so going back returns to exactly
  * the filtered view the reader built (docs/06 §3); reached cold, there is no query to keep and
  * the detail offers a route to an unfiltered overview instead.
+ *
+ * **The way back is stored with the history entry** (`routing/navigation.ts`). Every in-app open
+ * pushes `{ back: <the route being left> }`, and a page offers "Back to …" only when its entry
+ * carries one, labelled with the page it returns to. So a publication opened from the lookup
+ * says "Back to the lookup", and the offer survives reload, back and forward.
  */
-import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useMemo, type ReactNode } from 'react';
 import { toggleSort, type SortKey } from './aggregate/explorer';
 import { NotIncludedAnswer } from './components/NotIncludedAnswer';
-import { basePath, exportUrl, lookupUrl } from './contract/config';
+import type { SiteView, ViewSwitch } from './components/SiteHeader';
+import { basePath, exportUrl, fundingEnabled, lookupUrl } from './contract/config';
 import { parseIdentifier } from './contract/identifier';
 import { describeFailure } from './contract/load';
 import { buildWorkIndex, resolveFromExport, resolveFromLookup } from './contract/resolve';
@@ -20,10 +26,22 @@ import { useExportDocument } from './contract/useExport';
 import { useLookupIndex } from './contract/useLookup';
 import type { ExportDocument, Work } from './contract/types';
 import type { Fetcher } from './contract/load';
-import { lookupPath, methodPath, overviewPath, parseRoute, publicationPath } from './routing/route';
+import { isPlainLeftClick } from './routing/clicks';
+import { backLabel, entryFrom, readBack, shellTitle } from './routing/navigation';
+import {
+  fundingPath,
+  lookupPath,
+  methodPath,
+  overviewPath,
+  parseRoute,
+  publicationPath,
+} from './routing/route';
 import { useLocation } from './routing/useLocation';
 import { decodeView, encodeViewToQuery } from './routing/view';
 import type { FilterState } from './filter/state';
+import { Agency } from './views/Agency';
+import { Funding } from './views/Funding';
+import { Grant } from './views/Grant';
 import { Method } from './views/Method';
 import { Lookup } from './views/Lookup';
 import { Overview } from './views/Overview';
@@ -39,10 +57,11 @@ export interface AppProps {
   searchDebounceMs?: number;
 }
 
-function Shell({ children }: { children: ReactNode }) {
+/** The page frame of a state that has no view of its own, under the route's own name. */
+function Shell({ title, children }: { title: string; children: ReactNode }) {
   return (
     <main className="page">
-      <h1>Publications</h1>
+      <h1>{title}</h1>
       {children}
     </main>
   );
@@ -58,10 +77,16 @@ export function App({
   const resolvedFetcher = fetcher ?? fetch;
   const { state, retry } = useExportDocument(url, resolvedFetcher);
 
+  // The address is known before the data is, so the loading and failure states are titled for
+  // the page the reader asked for rather than all claiming to be the publications.
+  const title = shellTitle(
+    parseRoute(window.location.pathname, basePath(), { funding: fundingEnabled() }),
+  );
+
   if (state.status === 'loading') {
     // A skeleton layout, not a spinner over an empty page (docs/06 §7).
     return (
-      <Shell>
+      <Shell title={title}>
         <div className="chart-skeleton" role="status">
           Loading the publication data…
         </div>
@@ -72,7 +97,7 @@ export function App({
   if (state.status === 'failed') {
     const { failure } = state;
     return (
-      <Shell>
+      <Shell title={title}>
         <div className="notice notice-error" role="alert">
           <p>{describeFailure(failure)}</p>
           {failure.kind === 'schema-version' ? null : (
@@ -106,16 +131,27 @@ interface RouterProps {
 
 export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: RouterProps) {
   const base = basePath();
-  const { pathname, search, navigate } = useLocation();
-  const route = parseRoute(pathname, base);
+  // Off in the production build until the Funding impact view is released: its routes are then
+  // no route at all, and nothing links to it (`contract/config.ts`).
+  const funding = fundingEnabled();
+  const { pathname, search, state, navigate } = useLocation();
+  const route = parseRoute(pathname, base, { funding });
   const view = useMemo(() => decodeView(search), [search]);
   const index = useMemo(() => buildWorkIndex(doc), [doc]);
 
-  // Whether there is an overview behind this detail to go back to (docs/06 §3). It becomes true
-  // the moment the reader has seen one, and never false again: a reader who opened the overview,
-  // opened a publication and pressed back twice is still in a session with an overview in it.
-  const [seenOverview, setSeenOverview] = useState(route.kind === 'overview');
-  if (route.kind === 'overview' && !seenOverview) setSeenOverview(true);
+  // Where this entry goes back to, if the app opened it (docs/06 §3). Closing pops the entry
+  // rather than pushing another — "otherwise opening and closing five publications leaves ten
+  // entries to press Back through" (docs/06 §6) — which is also what restores the exact view the
+  // reader left, query string and all.
+  const back = readBack(state);
+  const goBack = useCallback(() => {
+    window.history.back();
+  }, []);
+  const close: { onClose?: () => void; backLabel?: string } =
+    back === null ? {} : { onClose: goBack, backLabel: backLabel(back) };
+
+  // What an open from this page stores with the entry it pushes.
+  const leaving = route.kind;
 
   // The method page is reached from the overview and from a headline figure's definition link
   // (docs/06 §4.1, §4.2). It carries no filter of its own: it describes how the corpus was
@@ -142,42 +178,42 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
     [base, search],
   );
 
-  // True while the entry on screen is one this app pushed, so closing the detail can pop it
-  // rather than push a third entry. Without this, opening and closing five publications leaves
-  // ten entries to press Back through, and the detail docs/06 §3 describes as opening "over" the
-  // overview would never close again.
-  const openedInApp = useRef(false);
-
   const openPublication = useCallback(
     (work: Work) => {
-      openedInApp.current = true;
-      navigate({ pathname: publicationPath(work.id, base) });
+      navigate({ pathname: publicationPath(work.id, base) }, { state: entryFrom(leaving) });
     },
-    [navigate, base],
+    [navigate, base, leaving],
   );
-
-  const backToOverview = useCallback(() => {
-    if (openedInApp.current) {
-      openedInApp.current = false;
-      window.history.back();
-      return;
-    }
-    navigate({ pathname: overviewPath(base) });
-  }, [navigate, base]);
 
   // The method page carries no filter, so its URL drops the query rather than showing a filter
   // that changes nothing on it. Going back pops the entry, which restores the reader's filtered
-  // overview exactly — the same mechanism that keeps the filter across a publication detail.
+  // view exactly — the same mechanism that keeps the filter across a publication detail.
   const openMethod = useCallback(() => {
-    openedInApp.current = true;
-    navigate({ pathname: methodHref, search: '' });
-  }, [navigate, methodHref]);
+    navigate({ pathname: methodHref, search: '' }, { state: entryFrom(leaving) });
+  }, [navigate, methodHref, leaving]);
 
   const lookupRoutePath = lookupPath(base);
   const openLookup = useCallback(() => {
-    openedInApp.current = true;
-    navigate({ pathname: lookupRoutePath, search: '' });
-  }, [navigate, lookupRoutePath]);
+    navigate({ pathname: lookupRoutePath, search: '' }, { state: entryFrom(leaving) });
+  }, [navigate, lookupRoutePath, leaving]);
+
+  // The switch between the two views (docs/09): peers, so a switch keeps the query string and
+  // stores no way back — neither view opened over the other.
+  const switchView = useCallback(
+    (to: SiteView) => {
+      navigate({ pathname: to === 'funding' ? fundingPath(base) : overviewPath(base) });
+    },
+    [navigate, base],
+  );
+  const views: ViewSwitch | undefined = funding
+    ? {
+        hrefs: {
+          publications: `${overviewPath(base)}${search}`,
+          funding: `${fundingPath(base)}${search}`,
+        },
+        onSwitch: switchView,
+      }
+    : undefined;
 
   // docs/06 §7: the export's own aliases resolve retired work IDs and are already loaded; an
   // external identifier resolves only through the lookup index, which is fetched only when the
@@ -200,20 +236,41 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
         onOpenMethod={openMethod}
         lookupHref={lookupRoutePath}
         onOpenLookup={openLookup}
+        {...(views ? { views } : {})}
         {...(now ? { now } : {})}
         {...(searchDebounceMs === undefined ? {} : { searchDebounceMs })}
       />
     );
   }
 
-  if (route.kind === 'method') {
+  if (route.kind === 'funding') {
     return (
-      <Method
+      <Funding
         doc={doc}
-        overviewHref={overviewPath(base)}
-        {...(seenOverview ? { onClose: backToOverview } : {})}
+        methodHref={methodHref}
+        onOpenMethod={openMethod}
+        lookupHref={lookupRoutePath}
+        onOpenLookup={openLookup}
+        {...(views ? { views } : {})}
         {...(now ? { now } : {})}
       />
+    );
+  }
+
+  if (route.kind === 'agency' || route.kind === 'grant') {
+    // Entity pages show whole-corpus facts, like a publication; the query string is kept only
+    // so the way out returns to the funding view the reader was looking at.
+    const fundingHref = `${fundingPath(base)}${search}`;
+    return route.kind === 'agency' ? (
+      <Agency doc={doc} agencyKey={route.key} fundingHref={fundingHref} {...close} />
+    ) : (
+      <Grant doc={doc} grantKey={route.key} fundingHref={fundingHref} {...close} />
+    );
+  }
+
+  if (route.kind === 'method') {
+    return (
+      <Method doc={doc} overviewHref={overviewPath(base)} {...close} {...(now ? { now } : {})} />
     );
   }
 
@@ -228,13 +285,14 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
         methodHref={methodHref}
         publicationHref={publicationHref}
         onOpenPublication={openPublication}
+        {...close}
       />
     );
   }
 
   if (route.kind === 'unknown') {
     return (
-      <Shell>
+      <Shell title={shellTitle(route)}>
         <div className="notice" role="alert">
           <p>There is no page at this address.</p>
           <a href={`${overviewPath(base)}${search}`}>See all publications</a>
@@ -248,10 +306,10 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
       work={work}
       resource={doc.resource}
       citationsAsOf={doc.sources.citations.as_of}
-      standalone={!seenOverview}
+      standalone={back === null}
       overviewHref={`${overviewPath(base)}${search}`}
       resolvedFrom={resolvedFrom}
-      {...(seenOverview ? { onClose: backToOverview } : {})}
+      {...close}
     />
   );
 
@@ -261,7 +319,7 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
 
   if (lookup.status === 'loading' || lookup.status === 'idle') {
     return (
-      <Shell>
+      <Shell title={shellTitle(route)}>
         <div className="chart-skeleton" role="status">
           Looking up {route.id}…
         </div>
@@ -295,7 +353,7 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
               <a
                 href={lookupRoutePath}
                 onClick={(event) => {
-                  if (!event.metaKey && !event.ctrlKey && event.button === 0) {
+                  if (isPlainLeftClick(event)) {
                     event.preventDefault();
                     openLookup();
                   }
@@ -311,7 +369,7 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
   }
 
   return (
-    <Shell>
+    <Shell title={shellTitle(route)}>
       <div className="notice" role="alert">
         <p>
           No publication was found for <code>{route.id}</code>.

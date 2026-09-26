@@ -13,8 +13,10 @@
  * discipline not to add a repair.
  */
 import { useEffect, useMemo, useRef } from 'react';
+import { BackLink, useCloseOnEscape } from '../components/BackLink';
 import { EvidenceSection } from '../components/EvidenceSection';
 import type { Author, Resource, Topic, Work } from '../contract/types';
+import { BACK_LABELS } from '../routing/navigation';
 import { formatDate } from '../format/date';
 import { formatCount, formatDecimal, formatShare, pluralize } from '../format/number';
 import { staffIndex, staffPhrase } from '../format/staff';
@@ -35,8 +37,13 @@ export interface PublicationDetailProps {
    * a route back to an unfiltered overview".
    */
   standalone?: boolean;
-  /** Present when there is an overview underneath to go back to. */
+  /** Present when the app opened this over another page, which closing returns to. */
   onClose?: () => void;
+  /**
+   * The page closing returns to, in words (`routing/navigation.ts`): "Back to the lookup" for a
+   * publication opened from `/lookup`. The publications by default.
+   */
+  backLabel?: string;
   /** The overview's href, for the standalone case and for a middle-click in either. */
   overviewHref: string;
   /**
@@ -99,6 +106,7 @@ export function PublicationDetail({
   citationsAsOf,
   standalone = false,
   onClose,
+  backLabel = BACK_LABELS.overview,
   overviewHref,
   resolvedFrom = null,
 }: PublicationDetailProps) {
@@ -111,16 +119,7 @@ export function PublicationDetail({
     headingRef.current?.focus();
   }, [work.id]);
 
-  useEffect(() => {
-    if (!onClose) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => {
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, [onClose]);
+  useCloseOnEscape(onClose);
 
   const byYear = Object.entries(work.citations.by_year)
     .map(([year, count]) => ({ year: Number(year), count }))
@@ -135,15 +134,12 @@ export function PublicationDetail({
   return (
     <article className="detail" aria-labelledby="detail-heading">
       <div className="detail-head">
-        {onClose ? (
-          <button type="button" className="detail-close" onClick={onClose}>
-            Back to the publications
-          </button>
-        ) : (
-          <a className="detail-close" href={overviewHref}>
-            {standalone ? 'See all publications' : 'Back to the publications'}
-          </a>
-        )}
+        <BackLink
+          onBack={onClose}
+          backLabel={backLabel}
+          parentHref={overviewHref}
+          parentLabel={standalone ? 'See all publications' : backLabel}
+        />
       </div>
 
       {work.retracted ? (

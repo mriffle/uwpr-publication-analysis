@@ -44,6 +44,7 @@ import { ChartTable } from '../charts/ChartTable';
 import { ProportionCard } from '../charts/ProportionCard';
 import { RankedBarCard } from '../charts/RankedBarCard';
 import { otherColour, seriesColour } from '../charts/palette';
+import { BackLink } from '../components/BackLink';
 import { StalenessNotice } from '../components/StalenessNotice';
 import type { Exclusion, ExportDocument } from '../contract/types';
 import { CRITERION_LABELS } from '../filter/describe';
@@ -52,14 +53,17 @@ import { encodeFilterToQuery } from '../filter/url';
 import { formatDate } from '../format/date';
 import { formatCount, pluralize } from '../format/number';
 import { metricDefinitions, type MetricDefinition } from '../method/definitions';
+import { BACK_LABELS } from '../routing/navigation';
 import type { SourceRead } from '../aggregate/method';
 
 export interface MethodProps {
   doc: ExportDocument;
   /** The overview's route, which every "show me these publications" link is built from. */
   overviewHref: string;
-  /** In-app navigation back, when the reader arrived from the overview rather than cold. */
+  /** In-app navigation back, when the reader arrived from another page rather than cold. */
   onClose?: () => void;
+  /** The page going back returns to, in words (`routing/navigation.ts`); the publications by default. */
+  backLabel?: string;
   /** Injected in tests so the staleness threshold is exercised without freezing the clock. */
   now?: Date;
 }
@@ -144,7 +148,13 @@ function exclusionGroups(exclusions: readonly Exclusion[]): ExclusionGroup[] {
   })).filter((group) => group.items.length > 0);
 }
 
-export function Method({ doc, overviewHref, onClose, now }: MethodProps) {
+export function Method({
+  doc,
+  overviewHref,
+  onClose,
+  backLabel = BACK_LABELS.overview,
+  now,
+}: MethodProps) {
   const { method, works } = doc;
   const criteria = criteriaBars(works, CRITERION_LABELS);
   const confirmation = confirmationSplit(method);
@@ -208,15 +218,12 @@ export function Method({ doc, overviewHref, onClose, now }: MethodProps) {
           {pluralize(works.length, 'publication')} and is not affected by any filter.
         </p>
         <p>
-          {onClose ? (
-            <button type="button" className="detail-close" onClick={onClose}>
-              Back to the publications
-            </button>
-          ) : (
-            <a className="detail-close" href={overviewHref}>
-              See all publications
-            </a>
-          )}
+          <BackLink
+            onBack={onClose}
+            backLabel={backLabel}
+            parentHref={overviewHref}
+            parentLabel="See all publications"
+          />
         </p>
       </header>
 

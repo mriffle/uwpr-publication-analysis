@@ -35,6 +35,7 @@
  * the app and this view reuses it.
  */
 import { useId, useState, type FormEvent, type MouseEvent } from 'react';
+import { BackLink } from '../components/BackLink';
 import { EvidenceSection } from '../components/EvidenceSection';
 import { AnswerCard, NotIncludedAnswer } from '../components/NotIncludedAnswer';
 import { describeIdentifier, parseIdentifier, type ParsedIdentifier } from '../contract/identifier';
@@ -48,6 +49,7 @@ import {
 import type { ExportDocument, Work } from '../contract/types';
 import { useLookupIndex } from '../contract/useLookup';
 import { formatDate } from '../format/date';
+import { BACK_LABELS } from '../routing/navigation';
 
 export interface LookupProps {
   doc: ExportDocument;
@@ -61,10 +63,14 @@ export interface LookupProps {
   methodHref: string;
   publicationHref: (work: Work) => string;
   onOpenPublication?: (work: Work) => void;
+  /** In-app navigation back, when the reader arrived from another page rather than cold. */
+  onClose?: () => void;
+  /** The page going back returns to, in words (`routing/navigation.ts`); the publications by default. */
+  backLabel?: string;
 }
 
 export function Lookup(props: LookupProps) {
-  const { doc, methodHref } = props;
+  const { doc, methodHref, overviewHref, onClose, backLabel = BACK_LABELS.overview } = props;
   const [draft, setDraft] = useState('');
   const [query, setQuery] = useState<ParsedIdentifier | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
@@ -106,6 +112,14 @@ export function Lookup(props: LookupProps) {
           not. The answer comes from the record of everything this project has considered — the
           papers it includes and the papers it looked at and did not.{' '}
           <a href={methodHref}>How this was assembled</a> sets out how that record is built.
+        </p>
+        <p>
+          <BackLink
+            onBack={onClose}
+            backLabel={backLabel}
+            parentHref={overviewHref}
+            parentLabel="See all publications"
+          />
         </p>
       </header>
 

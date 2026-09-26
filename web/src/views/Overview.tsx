@@ -54,7 +54,9 @@ import { MostCitedList, MostCitedTable } from '../charts/MostCitedChart';
 import { seriesColour } from '../charts/palette';
 import { FilterBar } from '../components/FilterBar';
 import { HeadlineFigures } from '../components/HeadlineFigures';
+import { PageFooter } from '../components/PageFooter';
 import { PublicationExplorer } from '../components/PublicationExplorer';
+import { SiteHeader, type ViewSwitch } from '../components/SiteHeader';
 import { StalenessNotice } from '../components/StalenessNotice';
 import type { ExportDocument, Work } from '../contract/types';
 import { buildLabels, describeFilter, filterSentence } from '../filter/describe';
@@ -67,7 +69,6 @@ import {
   type FilterState,
 } from '../filter/state';
 import { countryName } from '../format/country';
-import { formatDate } from '../format/date';
 import { formatCount, pluralize } from '../format/number';
 
 export interface OverviewProps {
@@ -84,6 +85,8 @@ export interface OverviewProps {
   onOpenMethod: () => void;
   lookupHref: string;
   onOpenLookup: () => void;
+  /** The switch to the Funding impact view, in a build that has it (`VITE_FUNDING`). */
+  views?: ViewSwitch;
   /** Injected in tests so the staleness threshold is exercised without freezing the clock. */
   now?: Date;
   /** 0 in tests, so a keystroke in the search box does not need a timer to land. */
@@ -102,6 +105,7 @@ export function Overview({
   onOpenMethod,
   lookupHref,
   onOpenLookup,
+  views,
   now,
   searchDebounceMs,
 }: OverviewProps) {
@@ -172,44 +176,17 @@ export function Overview({
   return (
     <main className="page">
       {/* §4.1 Header. */}
-      <header className="page-header">
-        <h1>{doc.resource.name} — publications</h1>
-        <p>
-          Publications with recorded evidence that they used the resource. Each one can show why it
-          is counted.
-        </p>
-        <p>
-          Data generated {formatDate(doc.generated_at)}. Citations from {doc.sources.citations.name}{' '}
-          as of {formatDate(doc.sources.citations.as_of)}.{' '}
-          <a href={doc.resource.url}>{doc.resource.short_name}</a>
-        </p>
-        {/* §4.1: the header links to the method page and to the lookup. */}
-        <p>
-          <a
-            href={methodHref}
-            onClick={(event) => {
-              if (!event.metaKey && !event.ctrlKey && event.button === 0) {
-                event.preventDefault();
-                onOpenMethod();
-              }
-            }}
-          >
-            How this was assembled
-          </a>
-          {' · '}
-          <a
-            href={lookupHref}
-            onClick={(event) => {
-              if (!event.metaKey && !event.ctrlKey && event.button === 0) {
-                event.preventDefault();
-                onOpenLookup();
-              }
-            }}
-          >
-            Why is a paper not here?
-          </a>
-        </p>
-      </header>
+      <SiteHeader
+        title={`${doc.resource.name} — publications`}
+        lead="Publications with recorded evidence that they used the resource. Each one can show why it is counted."
+        current="publications"
+        doc={doc}
+        methodHref={methodHref}
+        onOpenMethod={onOpenMethod}
+        lookupHref={lookupHref}
+        onOpenLookup={onOpenLookup}
+        {...(views ? { views } : {})}
+      />
 
       <StalenessNotice generatedAt={doc.generated_at} {...(now ? { now } : {})} />
 
@@ -614,16 +591,7 @@ export function Overview({
       />
 
       {/* §4.9 Footer. */}
-      <footer className="page-footer">
-        <p>
-          {doc.sources.notes.join(' ')} Generated {formatDate(doc.generated_at)} by run{' '}
-          <code>{doc.run_id}</code>, pipeline {doc.pipeline_version}, rules {doc.rule_version}.
-        </p>
-        <p>
-          A mistake in this page can be corrected: the project records overrides for exactly that
-          purpose. Report one against the repository this page is built from.
-        </p>
-      </footer>
+      <PageFooter doc={doc} />
     </main>
   );
 }
