@@ -24,7 +24,8 @@ from uwpr_pubs.stages.export import read as read_export
 from uwpr_pubs.store import io
 from uwpr_pubs.validate import validate_export, validate_store
 
-FIXTURES = Path(__file__).resolve().parent / "fixtures"
+PROJECT = Path(__file__).resolve().parents[1]
+FIXTURES = PROJECT / "tests" / "fixtures"
 TODAY = "2026-09-21"
 INDEX = "https://proteomicsresource.washington.edu/publications/"
 
@@ -217,9 +218,14 @@ def context_at(store: Path, day: str = TODAY) -> RunContext:
 
 
 def do_run(
-    client: HttpClient, store: Path, day: str = TODAY, overrides: Path | None = None, **kwargs: Any
+    client: HttpClient,
+    store: Path,
+    day: str = TODAY,
+    overrides: Path | None = None,
+    config_dir: Path | None = None,
+    **kwargs: Any,
 ) -> Any:
-    config = load_config(overrides_path=overrides)
+    config = load_config(config_dir=config_dir, overrides_path=overrides)
     options = RunOptions(store=store, check_clean=False, **kwargs)
     return run_pipeline(config, client, context_at(store, day), options)
 
@@ -565,6 +571,145 @@ def test_a_candidate_is_not_read_again_every_week(tmp_path: Path, monkeypatch: p
 
     assert not [url for url in asked if "efetch" in url or "fullTextXML" in url]
     assert io.read_jsonl(store / "candidates.jsonl") == candidates
+
+
+# --- §6.1 item 4: what reads every record again ---------------------------------------------
+
+Asked = list[tuple[str, dict[str, str]]]
+EVERY_TEXT = ["1000001", "1000002", "1000003"]  # the listed papers' PMC copies; nothing else has one
+
+
+def counting_client(tmp_path: Path, cache: str, asked: Asked) -> HttpClient:
+    """A client on a cache of its own, cold as on every CI runner, that notes what it asks.
+
+    On a warm cache a text read again is answered without a request, which would hide it.
+    """
+
+    def transport(
+        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+    ) -> Response:
+        asked.append((url, dict(params)))
+        return route(url, params)
+
+    return HttpClient(
+        contact="mriffle@uw.edu",
+        user_agent="uwpr-pubs/test",
+        mode=Mode.LIVE,
+        cache=Cache(tmp_path / cache),
+        budget=Budget(max_run_usd=0.5, min_remaining_usd=0.1),
+        rate_limiter=RateLimiter({}),
+        transport=transport,
+        sleep=lambda _: None,
+        now=lambda: f"{TODAY}T00:00:00Z",
+    )
+
+
+def texts_read(asked: Asked) -> list[str]:
+    """The PMC records a run fetched the text of, and any Europe PMC full-text request."""
+    return sorted(params.get("id", url) for url, params in asked if "efetch" in url or "fullTextXML" in url)
+
+
+def channels_edited(tmp_path: Path) -> Path:
+    """A config tree whose only change is to `channels.yaml`, which no rule reads."""
+    directory = tmp_path / "config-channels"
+    shutil.copytree(PROJECT / "config", directory)
+    channels = directory / "channels.yaml"
+    text = channels.read_text(encoding="utf-8")
+    assert "max_results: 3000" in text
+    channels.write_text(text.replace("max_results: 3000", "max_results: 2500", 1), encoding="utf-8")
+    return directory
+
+
+def test_editing_channels_yaml_reads_no_text_again(tmp_path: Path) -> None:
+    """§6.1: a rule-version change or an overrides change reads every record again; nothing else.
+
+    Stage 4 compared the whole config fingerprint, which covers every `config/*.yaml`, so an edit
+    to `channels.yaml` alone read every text again (docs/08 §8 item 9). On CI's warm cache that
+    cost time; on a cold one, a request per record.
+    """
+    asked: Asked = []
+    store = tmp_path / "store"
+    do_run(counting_client(tmp_path, "first", asked), store)
+    assert texts_read(asked) == EVERY_TEXT
+    asked.clear()
+
+    edited = channels_edited(tmp_path)
+    result = do_run(counting_client(tmp_path, "second", asked), store, day="2026-09-28", config_dir=edited)
+
+    assert result.status == "ok", result.errors
+    assert load_config(edited).config_fingerprint != load_config().config_fingerprint
+    assert texts_read(asked) == []
+
+
+def test_an_exclude_override_change_reads_its_work_again(tmp_path: Path) -> None:
+    """§6.1 item 4: adding an override reads its work again, and so does lifting it.
+
+    Without the second, a work excluded by an override that is later removed would never be
+    reconsidered. In between, the same overrides read nothing: the run records the ones it ran
+    with, and the next compares against those. Every paper here is listed, so R1 keeps this one
+    included whatever the override says (Phase 1 §6.0); what is tested is only what gets read.
+    """
+    asked: Asked = []
+    store = tmp_path / "store"
+    do_run(counting_client(tmp_path, "first", asked), store)
+    target = io.read_json(store / "aliases.json")["aliases"]["pmcid:PMC1000002"]
+    overrides = tmp_path / "overrides.yaml"
+    overrides.write_text(
+        f"- target: {target}\n  action: exclude\n  reason: 'Not UWPR work.'\n"
+        "  by: mriffle\n  date: 2026-09-28\n",
+        encoding="utf-8",
+    )
+    asked.clear()
+
+    added = do_run(counting_client(tmp_path, "second", asked), store, day="2026-09-28", overrides=overrides)
+    assert added.status == "ok", added.errors
+    assert "1000002" in texts_read(asked)
+    asked.clear()
+
+    third = counting_client(tmp_path, "third", asked)
+    unchanged = do_run(third, store, day="2026-10-05", overrides=overrides)
+    assert unchanged.status == "ok", unchanged.errors
+    assert texts_read(asked) == []
+
+    lifted = do_run(
+        counting_client(tmp_path, "fourth", asked), store, day="2026-10-12", overrides=tmp_path / "none.yaml"
+    )
+    assert lifted.status == "ok", lifted.errors
+    assert "1000002" in texts_read(asked)
+
+
+@pytest.mark.parametrize(
+    ("edited", "expected"),
+    [(False, []), (True, EVERY_TEXT)],
+    ids=["config unchanged", "channels.yaml edited"],
+)
+def test_a_manifest_without_an_overrides_fingerprint_falls_back(
+    tmp_path: Path, edited: bool, expected: list[str]
+) -> None:
+    """Manifests written before 2026-09-26 lack the field, and then the config fingerprint decides.
+
+    So the first run after the change reads what the old code would have: nothing on an unchanged
+    config, and every record after any edit, because an old manifest cannot say whether the
+    overrides were among the edits. That run records the field, and the next compares it.
+    """
+    asked: Asked = []
+    store = tmp_path / "store"
+    first = do_run(counting_client(tmp_path, "first", asked), store)
+    path = store / "runs" / f"{first.run_id}.json"
+    manifest = io.read_json(path)
+    assert manifest["overrides_fingerprint"] == load_config().overrides_fingerprint
+    del manifest["overrides_fingerprint"]
+    io.write_json(path, manifest)
+    asked.clear()
+
+    config_dir = channels_edited(tmp_path) if edited else None
+    second = counting_client(tmp_path, "second", asked)
+    result = do_run(second, store, day="2026-09-28", config_dir=config_dir)
+
+    assert result.status == "ok", result.errors
+    assert texts_read(asked) == expected
+    recorded = io.read_json(store / "runs" / f"{result.run_id}.json")
+    assert recorded["overrides_fingerprint"] == load_config(config_dir).overrides_fingerprint
 
 
 def test_a_list_that_cannot_be_fetched_leaves_r1_as_it_was(

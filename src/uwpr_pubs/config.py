@@ -1,11 +1,14 @@
 """Loading, validating and fingerprinting `config/*.yaml` (docs/03-retrieval-pipeline.md §10).
 
-Two fingerprints, with different consequences:
+Three fingerprints, with different consequences:
 - the **rules fingerprint** covers `rules.yaml` (without its version) and `staff.yaml`. It may
   change only together with `rule_version`, and a change re-evaluates every work (§10.4).
 - the **config fingerprint** covers every config file and `overrides.yaml`. A change to it alone
-  re-evaluates nothing, except a change to the overrides, which re-evaluates the works they name.
-Both ignore comments and formatting, because they hash the parsed content.
+  re-evaluates nothing; it is recorded so a run says what it ran with.
+- the **overrides fingerprint** covers the work overrides alone (include, exclude, merge,
+  split). A change to it re-reads every record (§6.1 item 4), because an override that has been
+  removed names a work no remaining entry does.
+All three ignore comments and formatting, because they hash the parsed content.
 """
 
 import datetime as dt
@@ -21,6 +24,11 @@ from uwpr_pubs.schemas import project_root, schema_errors
 from uwpr_pubs.store.models import CacheRef, Override, RuleVersion, StaffKey
 
 CONFIG_FILES = ("settings", "staff", "channels", "rules", "fixtures")
+
+# The overrides that decide which works exist and what they hold, so a change to them must re-read
+# the text. Any other kind an `overrides.yaml` entry may one day take is left out on purpose: a
+# new action does not make every record worth reading again.
+WORK_OVERRIDE_ACTIONS = frozenset({"include", "exclude", "merge", "split"})
 
 
 class ConfigError(Exception):
@@ -41,6 +49,11 @@ def _iso_dates(value: Any) -> Any:
 def fingerprint(content: object) -> CacheRef:
     canonical = json.dumps(content, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
     return "sha256:" + hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def overrides_fingerprint(overrides: list[Override]) -> CacheRef:
+    """The fingerprint of the work overrides alone, in the order the file gives them."""
+    return fingerprint([entry for entry in overrides if entry["action"] in WORK_OVERRIDE_ACTIONS])
 
 
 def _load_yaml(path: Path) -> Any:
@@ -69,6 +82,7 @@ class Config:
     overrides: list[Override]
     config_fingerprint: CacheRef
     rules_fingerprint: CacheRef
+    overrides_fingerprint: CacheRef
     overrides_path: Path | None = None  # the file the overrides came from, for the validator
 
     @property
@@ -130,5 +144,6 @@ def load_config(config_dir: Path | None = None, overrides_path: Path | None = No
         overrides=overrides,
         config_fingerprint=fingerprint({**documents, "overrides": overrides}),
         rules_fingerprint=fingerprint({"rules": rules_without_version, "staff": documents["staff"]}),
+        overrides_fingerprint=overrides_fingerprint(overrides),
         overrides_path=overrides_file if overrides_file.is_file() else None,
     )

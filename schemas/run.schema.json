@@ -24,6 +24,10 @@
     "code_version": {"type": "string"},
     "config_fingerprint": {"$ref": "common.schema.json#/$defs/cacheRef"},
     "rules_fingerprint": {"$ref": "common.schema.json#/$defs/cacheRef"},
+    "overrides_fingerprint": {
+      "description": "The work overrides alone (include, exclude, merge, split); a change re-reads every record. Optional: manifests before 2026-09-26 lack it.",
+      "$ref": "common.schema.json#/$defs/cacheRef"
+    },
     "rule_version": {"$ref": "common.schema.json#/$defs/ruleVersion"},
     "note": {"type": "string"},
     "channels": {

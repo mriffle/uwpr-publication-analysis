@@ -392,6 +392,7 @@ class RunManifest(TypedDict):
     code_version: str
     config_fingerprint: CacheRef
     rules_fingerprint: CacheRef
+    overrides_fingerprint: NotRequired[CacheRef]  # added 2026-09-26; older manifests lack it
     rule_version: RuleVersion
     note: NotRequired[str]
     channels: dict[str, ChannelRun]

@@ -40,9 +40,10 @@ def _config(args: argparse.Namespace) -> int:
     except ConfigError as exc:
         print(f"ERROR {exc}")
         return 1
-    print(f"rule version:       {config.rule_version}")
-    print(f"rules fingerprint:  {config.rules_fingerprint}")
-    print(f"config fingerprint: {config.config_fingerprint}")
+    print(f"rule version:          {config.rule_version}")
+    print(f"rules fingerprint:     {config.rules_fingerprint}")
+    print(f"config fingerprint:    {config.config_fingerprint}")
+    print(f"overrides fingerprint: {config.overrides_fingerprint}")
     print(f"staff: {len(config.staff)}  channels: {len(config.enabled_channels())} enabled  ")
     print(f"fixtures: {len(config.fixtures)}  overrides: {len(config.overrides)}")
     return 0

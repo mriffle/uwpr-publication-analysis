@@ -217,6 +217,7 @@ class Pipeline:
             config_fingerprint=config.config_fingerprint,
             rules_fingerprint=config.rules_fingerprint,
             code_version=CODE_VERSION,
+            overrides_fingerprint=config.overrides_fingerprint,
         )
         openalex_key, ncbi_key = api_keys()
         self.openalex = OpenAlex(client, config.contact, openalex_key)
@@ -881,11 +882,20 @@ class Pipeline:
         return wanted
 
     def _overrides_changed(self) -> bool:
-        """A change to overrides.yaml re-evaluates the works it names (§6.1 item 4)."""
+        """Whether the work overrides changed since the last run (§6.1 item 4).
+
+        Only the overrides count. Comparing the whole config fingerprint, as this did until
+        2026-09-26, made an edit to `channels.yaml` alone read every text again (docs/08 §8 item
+        9). A manifest written before the overrides fingerprint existed lacks it, and then the
+        config fingerprint still decides, so the first run after the change behaves as before.
+        """
         latest = self.snapshot.latest_run() if self.snapshot else None
         if latest is None:
             return False
-        return bool(latest["config_fingerprint"] != self.config.config_fingerprint)
+        recorded = latest.get("overrides_fingerprint")
+        if recorded is None:
+            return bool(latest["config_fingerprint"] != self.config.config_fingerprint)
+        return recorded != self.config.overrides_fingerprint
 
     def _resolve_pmcids(self, wanted: Sequence[tuple[Draft, RecordId]]) -> None:
         """The ID converter found PMC copies for 139 candidates the search APIs missed (§7)."""

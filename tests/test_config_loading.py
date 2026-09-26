@@ -1,11 +1,13 @@
-"""Loading config/*.yaml and the two fingerprints (docs/03 §10.4)."""
+"""Loading config/*.yaml and the three fingerprints (docs/03 §10.4)."""
 
 import shutil
 from pathlib import Path
+from typing import cast
 
 import pytest
 
-from uwpr_pubs.config import ConfigError, load_config
+from uwpr_pubs.config import ConfigError, load_config, overrides_fingerprint
+from uwpr_pubs.store.models import Override
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -129,3 +131,58 @@ def test_an_override_must_name_work_ids(tmp_path: Path, action: str, target: str
     )
     with pytest.raises(ConfigError, match=r"overrides\.yaml: schema: 0/target.*does not match"):
         load_config(overrides_path=overrides)
+
+
+def test_only_a_work_override_moves_the_overrides_fingerprint(config_dir: Path, tmp_path: Path) -> None:
+    """Stage 4 reads every record again when it moves (docs/03 §6.1 item 4), so nothing else may.
+
+    Until 2026-09-26 stage 4 compared the config fingerprint instead, and an edit to
+    `channels.yaml` read every text again (docs/08 §8 item 9).
+    """
+    before = load_config(config_dir)
+    channels = config_dir / "channels.yaml"
+    channels.write_text(
+        channels.read_text(encoding="utf-8").replace("max_results: 3000", "max_results: 2500"),
+        encoding="utf-8",
+    )
+    edited = load_config(config_dir)
+    assert edited.config_fingerprint != before.config_fingerprint
+    assert edited.overrides_fingerprint == before.overrides_fingerprint
+
+    overrides = tmp_path / "overrides.yaml"
+    overrides.write_text(
+        "- target: W-000001\n  action: exclude\n  reason: 'Not UWPR work.'\n"
+        "  by: mriffle\n  date: 2026-09-26\n",
+        encoding="utf-8",
+    )
+    excluded = load_config(config_dir, overrides_path=overrides)
+    assert excluded.overrides_fingerprint != before.overrides_fingerprint
+
+    overrides.write_text(
+        "# reviewed by hand\n- {target: W-000001, action: exclude, reason: Not UWPR work., by: mriffle,"
+        " date: '2026-09-26'}\n",
+        encoding="utf-8",
+    )
+    reformatted = load_config(config_dir, overrides_path=overrides)
+    assert reformatted.overrides_fingerprint == excluded.overrides_fingerprint
+
+
+def test_an_override_of_another_kind_leaves_the_overrides_fingerprint_alone() -> None:
+    """Include, exclude, merge and split decide which works exist, so only they re-read the text.
+
+    The schema accepts no other action yet. One added later, such as a per-work correction that
+    needs no text, must not make every record worth reading again.
+    """
+    exclude = cast(
+        Override,
+        {
+            "target": "W-000001",
+            "action": "exclude",
+            "reason": "Not UWPR work.",
+            "by": "mriffle",
+            "date": "2026-09-26",
+        },
+    )
+    other = cast(Override, {**exclude, "action": "grant"})
+    assert overrides_fingerprint([exclude, other]) == overrides_fingerprint([exclude])
+    assert overrides_fingerprint([exclude]) != overrides_fingerprint([])
