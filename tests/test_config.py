@@ -14,7 +14,7 @@ from jsonschema import Draft202012Validator
 from referencing import Registry, Resource
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG_NAMES = ["settings", "staff", "channels", "rules", "fixtures"]
+CONFIG_NAMES = ["settings", "staff", "channels", "rules", "fixtures", "funding", "exchange_rates"]
 
 
 def load_config(name: str) -> Any:

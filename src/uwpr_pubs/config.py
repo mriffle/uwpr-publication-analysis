@@ -1,6 +1,6 @@
 """Loading, validating and fingerprinting `config/*.yaml` (docs/03-retrieval-pipeline.md §10).
 
-Three fingerprints, with different consequences:
+Four fingerprints, with different consequences:
 - the **rules fingerprint** covers `rules.yaml` (without its version) and `staff.yaml`. It may
   change only together with `rule_version`, and a change re-evaluates every work (§10.4).
 - the **config fingerprint** covers every config file and `overrides.yaml`. A change to it alone
@@ -8,7 +8,11 @@ Three fingerprints, with different consequences:
 - the **overrides fingerprint** covers the work overrides alone (include, exclude, merge,
   split). A change to it re-reads every record (§6.1 item 4), because an override that has been
   removed names a work no remaining entry does.
-All three ignore comments and formatting, because they hash the parsed content.
+- the **funding fingerprint** covers `funding.yaml` without its `funding_version` (docs/09 §8.4).
+  Like the rules fingerprint, it may change only together with its version, and a new version
+  schedules a full funding refresh. The exchange rates are outside it: every amount is recomputed
+  from them each run, so a new rate needs no bump. Grant overrides are outside it too (§6.6).
+All four ignore comments and formatting, because they hash the parsed content.
 """
 
 import datetime as dt
@@ -23,7 +27,7 @@ import yaml
 from uwpr_pubs.schemas import project_root, schema_errors
 from uwpr_pubs.store.models import CacheRef, Override, RuleVersion, StaffKey
 
-CONFIG_FILES = ("settings", "staff", "channels", "rules", "fixtures")
+CONFIG_FILES = ("settings", "staff", "channels", "rules", "fixtures", "funding", "exchange_rates")
 
 # The overrides that decide which works exist and what they hold, so a change to them must re-read
 # the text. Any other kind an `overrides.yaml` entry may one day take is left out on purpose: a
@@ -83,11 +87,18 @@ class Config:
     config_fingerprint: CacheRef
     rules_fingerprint: CacheRef
     overrides_fingerprint: CacheRef
+    funding: dict[str, Any]
+    exchange_rates: dict[str, Any]
+    funding_fingerprint: CacheRef
     overrides_path: Path | None = None  # the file the overrides came from, for the validator
 
     @property
     def rule_version(self) -> RuleVersion:
         return cast(RuleVersion, self.rules["rule_version"])
+
+    @property
+    def funding_version(self) -> RuleVersion:
+        return cast(RuleVersion, self.funding["funding_version"])
 
     @property
     def contact(self) -> str:
@@ -135,6 +146,8 @@ def load_config(config_dir: Path | None = None, overrides_path: Path | None = No
 
     rules = documents["rules"]
     rules_without_version = {k: v for k, v in rules.items() if k != "rule_version"}
+    funding = documents["funding"]
+    funding_without_version = {k: v for k, v in funding.items() if k != "funding_version"}
     return Config(
         settings=documents["settings"],
         staff=documents["staff"]["staff"],
@@ -145,5 +158,8 @@ def load_config(config_dir: Path | None = None, overrides_path: Path | None = No
         config_fingerprint=fingerprint({**documents, "overrides": overrides}),
         rules_fingerprint=fingerprint({"rules": rules_without_version, "staff": documents["staff"]}),
         overrides_fingerprint=overrides_fingerprint(overrides),
+        funding=funding,
+        exchange_rates=documents["exchange_rates"],
+        funding_fingerprint=fingerprint(funding_without_version),
         overrides_path=overrides_file if overrides_file.is_file() else None,
     )

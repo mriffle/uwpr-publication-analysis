@@ -1,0 +1,509 @@
+# Funding impact (docs/09 §6-§8.4). Schema: schemas/config/funding.schema.json
+#
+# ANY change to this file needs a new funding_version, or stage 0 fails the run; a new version
+# schedules a full refresh (docs/09 §8.4). Grant overrides live in overrides.yaml and need no bump
+# (§6.6); exchange rates live in exchange_rates.yaml, outside the fingerprint. The resource code,
+# which is never a grant (F1), is rules.yaml's r2.code and is not repeated here. Patterns are Python
+# regexes, case-sensitive unless they start with (?i).
+schema: 1
+funding_version: "2026-09-26.1"
+enabled: false                         # true only from the seed (B9); false means the stage is skipped
+
+refresh:
+  full_every_days: 28                  # a full refresh at least this often (§9.2)
+  active_within_days: 365              # an incremental run refreshes grants active this recently
+  recheck_unresolved_days: 90          # how long a miss is remembered before it is asked again
+reporter:                              # NIH RePORTER's terms: large jobs at weekends or 21:00-05:00 Eastern
+  window: {tz: America/New_York, weekend: true, weekday_hours: [21, 5]}
+  weekday_request_cap: 60              # incremental requests allowed outside the window
+
+# --- NIH (§6.2, §6.3, §11.4) -------------------------------------------------------------------
+nih:
+  # Every two-letter institute code RePORTER uses in a project number: NIH's list (RePORTER's data
+  # elements, appendix II), historical codes (RR, the dissolved NCRR; RM, the Roadmap; CM and HV,
+  # NCI's and NHLBI's contracts), the VA's research services (BX, CX, HX, RX: I01BX000531 is in
+  # RePORTER) and AHRQ's HS. Only these parse as NIH numbers, so R21AO129851 does not: AO is none.
+  ics: [AA, AG, AI, AR, AT, BX, CA, CC, CL, CM, CX, DA, DC, DE, DK, EB, ES, EY, GM, HD, HG, HL, HS, HV,
+        HX, LM, MD, MH, NR, NS, OD, RG, RM, RR, RX, TR, TW]
+  # A string naming either phase lists every phase RePORTER holds under that institute and serial.
+  phase_pairs: [[K99, R00], [R21, R33], [R61, R33], [UH2, UH3], [UG3, UH3], [R01, R37]]
+  # Activity code to category. An exact code wins over a prefix (CODE*), and a longer prefix over a
+  # shorter one: R24 is a centre, R25 training, and every other R code research.
+  categories:
+    instrument: [S10, G20]
+    training: [T*, F*, K*, R25, D43]
+    center: [P*, M01, U54, U19, U24, U2C, U41, U42, UL1, R24]
+    contract: [N*]
+    research: [R*, RM1, DP*, U01, UH2, UH3, UG3, UM1, RF1, SC*, Z*, I01]
+
+# --- Agencies (§6.4, §6.8-6.10) -----------------------------------------------------------------
+# A string belongs to an agency its sources name by funder ID (an OpenAlex funder, a Crossref
+# funder DOI) or by PubMed's Agency, never by a funder's name. The IDs were mined from the
+# research's OpenAlex, Crossref and PubMed records of 2026-09-26. number_prefixes are stripped from
+# the front of a number (with labels such as "grants" or "No."); number_pattern, when set, is what
+# a normalised number of that agency must look like, which also settles a string several agencies
+# are named for. year_prefix expands a two-digit year at the front of a number (FAPESP).
+agencies:
+  # NIH: its institutes, HHS and PHS count as NIH attribution (§6.4). The institutes themselves
+  # are learned from RePORTER, as each grant's administering IC.
+  - code: NIH
+    name: National Institutes of Health
+    short_name: NIH
+    group: us_federal
+    country: "US"
+    amount_source: reporter
+    openalex_funders: [F4320332161, F4320337351, F4320337472, F4320337593, F4320337375, F4320337350,
+                       F4320337338, F4320337348, F4320337355, F4320337362, F4320337363, F4320337365,
+                       F4320337357, F4320337361, F4320337354, F4320337346, F4320337359, F4320337353,
+                       F4320337337, F4320337347, F4320337611, F4320337364, F4320337349, F4320337544,
+                       F4320337901, F4320337372, F4320309123, F4320338412, F4320338421, F4320337432,
+                       F4320306085, F4320332505]
+    crossref_funder_dois: [10.13039/100000002, 10.13039/100000025, 10.13039/100000026, 10.13039/100000049,
+                           10.13039/100000050, 10.13039/100000051, 10.13039/100000052, 10.13039/100000053,
+                           10.13039/100000054, 10.13039/100000056, 10.13039/100000057, 10.13039/100000060,
+                           10.13039/100000062, 10.13039/100000065, 10.13039/100000066, 10.13039/100000069,
+                           10.13039/100000070, 10.13039/100000072, 10.13039/100000092, 10.13039/100000097,
+                           10.13039/100005440, 10.13039/100006108, 10.13039/100006492, 10.13039/100006955,
+                           10.13039/100008460, 10.13039/100009633, 10.13039/100015691, 10.13039/100016958,
+                           10.13039/100017540, 10.13039/100000016, 10.13039/100007197]
+    # "NIGMS NIH HHS", "PHS HHS", and the institutes' own names. Not "National Institute(s) of" in
+    # general: that is also the National Institute of Food and Agriculture (USDA).
+    pubmed_agency_patterns:
+      - '\b(?:NIH|HHS|PHS)\b'
+      - '^National (?:Cancer|Eye|Human Genome Research|Heart, Lung,? and Blood) Institute$'
+      - '^National Institutes? (?:on|of) (?:Aging|Alcohol Abuse and Alcoholism|Allergy and Infectious Diseases|Arthritis and Musculoskeletal and Skin Diseases|Biomedical Imaging and Bioengineering|Deafness and Other Communication Disorders|Dental and Craniofacial Research|Diabetes and Digestive and Kidney Diseases|Drug Abuse|Environmental Health Sciences|General Medical Sciences|Mental Health|Minority Health and Health Disparities|Neurological Disorders and Stroke|Nursing Research)$'
+      - '^National Institutes of Health$'
+    number_prefixes: []
+    number_pattern: null
+    year_prefix: false
+
+  # US federal: keyed USA:<AGENCY>:<NUMBER>, valued by USAspending (§6.9).
+  - code: NSF
+    name: National Science Foundation
+    short_name: NSF
+    group: us_federal
+    country: "US"
+    amount_source: nsf
+    # With its divisions and C-DEBI, an NSF Science and Technology Center that is named as a funder;
+    # and two other "NSF"s the funder registry offers, the National Sleep Foundation and Norway's
+    # nurses' union, which publishers chose for NSF's own numbers (1922871, 1933311 on W-000222).
+    # A number named for them is still an NSF number only if the NSF API knows it.
+    openalex_funders: [F4320306076, F4320337399, F4320337398, F4320337386, F4320332167, F4320337393,
+                       F4320337368, F4320314327, F4320307381, F4320322435]
+    crossref_funder_dois: [10.13039/100000001, 10.13039/100000154, 10.13039/100000153, 10.13039/100000141,
+                           10.13039/100000076, 10.13039/100000165, 10.13039/100000082, 10.13039/100013505,
+                           10.13039/100003187, 10.13039/501100004190]
+    pubmed_agency_patterns:
+      - '^National Science Foundation\b'
+      - '^(?:Division of Integrative Organismal Systems|Directorate for Biological Sciences|Center for Dark Energy Biosphere Investigations)$'
+    number_prefixes: [NSF-CDEBI, NSF]
+    number_pattern: '[0-9]{7}'             # §6.8: seven digits once the division prefix is removed
+    year_prefix: false
+    categories:                            # §11.4, on the NSF API's programme and award type
+      default: research
+      match:
+        - {category: training, field: programme, pattern: '(?i)graduate research fellowship'}
+        - {category: training, field: type, pattern: '(?i)^fellowship award$'}
+        - {category: center, field: programme, pattern: '\bSTCs?\b'}
+  - code: NASA
+    name: National Aeronautics and Space Administration
+    short_name: NASA
+    group: us_federal
+    country: "US"
+    amount_source: usaspending
+    openalex_funders: [F4320306101, F4320331934]
+    crossref_funder_dois: [10.13039/100000104, 10.13039/100012627]
+    pubmed_agency_patterns: ['\bNASA\b']
+    number_prefixes: []
+    number_pattern: null
+    year_prefix: false
+  - code: DOE
+    name: U.S. Department of Energy
+    short_name: DOE
+    group: us_federal
+    country: "US"
+    amount_source: usaspending
+    # The Office of Science and two of its programmes, and the national laboratories named as
+    # funders; their operating contracts are facility contracts, excluded below (F5).
+    openalex_funders: [F4320306084, F4320332359, F4320337480, F4320337509, F4320338289, F4320338284,
+                       F4320338354]
+    crossref_funder_dois: [10.13039/100000015, 10.13039/100006132, 10.13039/100006151, 10.13039/100006206,
+                           10.13039/100006231, 10.13039/100006224, 10.13039/100011661]
+    pubmed_agency_patterns: []
+    number_prefixes: [DOE]
+    number_pattern: null
+    year_prefix: false
+  - code: DOD
+    name: U.S. Department of Defense
+    short_name: DoD
+    group: us_federal
+    country: "US"
+    amount_source: usaspending
+    # DTRA, and IARPA (ODNI), whose TEI-REX awards are Army Research Office instruments (W911NF…).
+    openalex_funders: [F4320332186, F4320333051, F4320312530]
+    crossref_funder_dois: [10.13039/100000774, 10.13039/100011039, 10.13039/100011038]
+    pubmed_agency_patterns: ['Intelligence Advanced Research Projects Activity', '^Defense Threat Reduction Agency$']
+    number_prefixes: []
+    number_pattern: null
+    year_prefix: false
+  - code: NOAA
+    name: National Oceanic and Atmospheric Administration
+    short_name: NOAA
+    group: us_federal
+    country: "US"
+    amount_source: usaspending
+    openalex_funders: [F4320332181, F4320332292]      # with Washington Sea Grant, its programme at UW
+    crossref_funder_dois: [10.13039/100000192, 10.13039/100005799]
+    pubmed_agency_patterns: ['^National Oceanic and Atmospheric Administration$', '^Washington Sea Grant']
+    number_prefixes: []
+    # NOAA's award numbers: NA, the year, a line office (O written for 0 tolerated) and a serial.
+    # Washington Sea Grant's internal project number R/SFA-8 is not one (Appendix A.6).
+    number_pattern: 'NA[0-9]{2}[A-Z0-9]{3}[0-9]{4,7}'
+    year_prefix: false
+  - code: DOI
+    name: U.S. Department of the Interior
+    short_name: DOI
+    group: us_federal
+    country: "US"
+    amount_source: usaspending
+    openalex_funders: [F4320306116, F4320333318]      # with its Bureau of Ocean Energy Management
+    crossref_funder_dois: [10.13039/100000201, 10.13039/100012475]
+    pubmed_agency_patterns: []
+    number_prefixes: []
+    number_pattern: null
+    year_prefix: false
+  - code: USDA
+    name: U.S. Department of Agriculture
+    short_name: USDA
+    group: us_federal
+    country: "US"
+    amount_source: usaspending
+    openalex_funders: [F4320306114, F4320332299]      # with the National Institute of Food and Agriculture
+    crossref_funder_dois: [10.13039/100000199, 10.13039/100005825]
+    pubmed_agency_patterns: ['\bUSDA\b', '^National Institute of Food and Agriculture$']
+    number_prefixes: []
+    number_pattern: null
+    year_prefix: false
+  - code: VA
+    name: U.S. Department of Veterans Affairs
+    short_name: VA
+    group: us_federal
+    country: "US"
+    amount_source: usaspending                        # its RePORTER projects are keyed VA:<core>
+    openalex_funders: [F4320306127]
+    crossref_funder_dois: [10.13039/100000738]
+    pubmed_agency_patterns: ['\bVA\b']
+    number_prefixes: []
+    number_pattern: null
+    year_prefix: false
+
+  # US non-federal: amounts from OpenAlex (F5).
+  - {code: AHA, name: American Heart Association, short_name: AHA, group: us_nonfederal, country: "US",
+     amount_source: openalex, openalex_funders: [F4320306230], crossref_funder_dois: [10.13039/100000968],
+     pubmed_agency_patterns: ['^American Heart Association'], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: ALZ, name: Alzheimer's Association, group: us_nonfederal, country: "US", amount_source: openalex,
+     openalex_funders: [F4320306219], crossref_funder_dois: [10.13039/100000957], pubmed_agency_patterns: [],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: ADA, name: American Diabetes Association, short_name: ADA, group: us_nonfederal, country: "US",
+     amount_source: openalex, openalex_funders: [F4320306089], crossref_funder_dois: [10.13039/100000041],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: CPRIT, name: Cancer Prevention and Research Institute of Texas, short_name: CPRIT,
+     group: us_nonfederal, country: "US", amount_source: openalex, openalex_funders: [F4320308129],
+     crossref_funder_dois: [10.13039/100004917], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: GATES, name: Gates Foundation, group: us_nonfederal, country: "US", amount_source: openalex,
+     openalex_funders: [F4320306137], crossref_funder_dois: [10.13039/100000865], pubmed_agency_patterns: [],
+     number_prefixes: [CAVD], number_pattern: null, year_prefix: false}
+  - {code: HHMI, name: Howard Hughes Medical Institute, short_name: HHMI, group: us_nonfederal, country: "US",
+     amount_source: openalex, openalex_funders: [F4320306082], crossref_funder_dois: [10.13039/100000011],
+     pubmed_agency_patterns: ['^Howard Hughes Medical Institute$'], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: MOORE, name: Gordon and Betty Moore Foundation, group: us_nonfederal, country: "US",
+     amount_source: openalex, openalex_funders: [F4320306202], crossref_funder_dois: [10.13039/100000936],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: NFWF, name: National Fish and Wildlife Foundation, short_name: NFWF, group: us_nonfederal,
+     country: "US", amount_source: openalex, openalex_funders: [F4320309787],
+     crossref_funder_dois: [10.13039/100007430], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: PDF, name: Parkinson's Disease Foundation, group: us_nonfederal, country: "US",
+     amount_source: openalex, openalex_funders: [F4320306471], crossref_funder_dois: [10.13039/100001288],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: SIMONS, name: Simons Foundation, group: us_nonfederal, country: "US", amount_source: openalex,
+     openalex_funders: [F4320306164], crossref_funder_dois: [10.13039/100000893], pubmed_agency_patterns: [],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: STARR, name: Starr Foundation, group: us_nonfederal, country: "US", amount_source: openalex,
+     openalex_funders: [F4320311534], crossref_funder_dois: [10.13039/100009784], pubmed_agency_patterns: [],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: TRDRP, name: Tobacco-Related Disease Research Program, short_name: TRDRP, group: us_nonfederal,
+     country: "US", amount_source: openalex, openalex_funders: [F4320308294],
+     crossref_funder_dois: [10.13039/100005188], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  # The University of Washington is named beside many other funders' numbers, and as the funder of
+  # the resource code; its own awards look like A172539, and only those are its.
+  - {code: UW, name: University of Washington, short_name: UW, group: us_nonfederal, country: "US",
+     amount_source: openalex, openalex_funders: [F4320310094], crossref_funder_dois: [10.13039/100007812],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: 'A[0-9]{6}', year_prefix: false}
+
+  # Outside the US: amounts from OpenAlex (F5).
+  - {code: AEI, name: Agencia Estatal de Investigación, short_name: AEI, group: non_us, country: "ES",
+     amount_source: openalex, openalex_funders: [F4320335598, F4320315062],
+     crossref_funder_dois: [10.13039/501100011033, 10.13039/100014440], pubmed_agency_patterns: ['^MCINU$'],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: AMS, name: Academy of Medical Sciences, group: non_us, country: "GB", amount_source: openalex,
+     openalex_funders: [F4320320241], crossref_funder_dois: [10.13039/501100000691],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: ANID, name: Agencia Nacional de Investigación y Desarrollo, short_name: ANID, group: non_us,
+     country: "CL", amount_source: openalex, openalex_funders: [F4320331146, F4320338073, F4320338206],
+     crossref_funder_dois: [10.13039/501100020884, 10.13039/501100002850, 10.13039/501100018735],
+     pubmed_agency_patterns: ['\b(?:ANID|FONDECYT|FONDAP)\b'],
+     number_prefixes: [ANID/BASAL/, ANID PhD fellowship awards, ANID PhD fellowship award, FONDECYT, FONDAP, ANID],
+     number_pattern: null, year_prefix: false}
+  - {code: ANR, name: Agence Nationale de la Recherche, short_name: ANR, group: non_us, country: "FR",
+     amount_source: openalex, openalex_funders: [F4320320883], crossref_funder_dois: [10.13039/501100001665],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: ARC, name: Australian Research Council, short_name: ARC, group: non_us, country: "AU",
+     amount_source: openalex, openalex_funders: [F4320334704], crossref_funder_dois: [10.13039/501100000923],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: UKRI, name: UK Research and Innovation, short_name: UKRI, group: non_us, country: "GB",
+     amount_source: openalex, openalex_funders: [], crossref_funder_dois: [], pubmed_agency_patterns: [],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: BBSRC, name: Biotechnology and Biological Sciences Research Council, short_name: BBSRC,
+     parent: UKRI, group: non_us, country: "GB", amount_source: openalex, openalex_funders: [F4320334629],
+     crossref_funder_dois: [10.13039/501100000268],
+     pubmed_agency_patterns: ['^Biotechnology and Biological Sciences Research Council$'], number_prefixes: [],
+     number_pattern: 'BB[A-Z0-9]+', year_prefix: false}
+  - {code: EPSRC, name: Engineering and Physical Sciences Research Council, short_name: EPSRC, parent: UKRI,
+     group: non_us, country: "GB", amount_source: openalex, openalex_funders: [F4320334627],
+     crossref_funder_dois: [10.13039/501100000266],
+     pubmed_agency_patterns: ['^Engineering and Physical Sciences Research Council$'], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: MRC, name: Medical Research Council, short_name: MRC, parent: UKRI, group: non_us, country: "GB",
+     amount_source: openalex, openalex_funders: [], crossref_funder_dois: [],
+     pubmed_agency_patterns: ['^Medical Research Council$'], number_prefixes: [], number_pattern: null,
+     year_prefix: false}
+  - {code: NERC, name: Natural Environment Research Council, short_name: NERC, parent: UKRI, group: non_us,
+     country: "GB", amount_source: openalex, openalex_funders: [F4320334631],
+     crossref_funder_dois: [10.13039/501100000270], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: BMBF, name: Bundesministerium für Bildung und Forschung, short_name: BMBF, group: non_us,
+     country: "DE", amount_source: openalex, openalex_funders: [F4320321114, F4320330124],   # with de.NBI, which it funds
+     crossref_funder_dois: [10.13039/501100002347, 10.13039/501100018929], pubmed_agency_patterns: [],
+     number_prefixes: [FKZ], number_pattern: null, year_prefix: false}
+  - {code: BMWI, name: Bundesministerium für Wirtschaft und Energie, short_name: BMWi, group: non_us,
+     country: "DE", amount_source: openalex, openalex_funders: [F4320323803],
+     crossref_funder_dois: [10.13039/501100006360], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: CIHR, name: Canadian Institutes of Health Research, short_name: CIHR, group: non_us, country: "CA",
+     amount_source: openalex, openalex_funders: [F4320334506], crossref_funder_dois: [10.13039/501100000024],
+     pubmed_agency_patterns: ['^Canadian Institutes of Health Research$'], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: CRUK, name: Cancer Research UK, short_name: CRUK, group: non_us, country: "GB",
+     amount_source: openalex, openalex_funders: [F4320319985], crossref_funder_dois: [10.13039/501100000289],
+     pubmed_agency_patterns: ['^Cancer Research UK$'], number_prefixes: [], number_pattern: null,
+     year_prefix: false}
+  - {code: CSC, name: China Scholarship Council, short_name: CSC, group: non_us, country: "CN",
+     amount_source: openalex, openalex_funders: [F4320322725], crossref_funder_dois: [10.13039/501100004543],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: DFF, name: Independent Research Fund Denmark, short_name: DFF, group: non_us, country: "DK",
+     amount_source: openalex, openalex_funders: [F4320322928], crossref_funder_dois: [10.13039/501100004836],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: DFG, name: Deutsche Forschungsgemeinschaft, short_name: DFG, group: non_us, country: "DE",
+     amount_source: openalex, openalex_funders: [F4320320879], crossref_funder_dois: [10.13039/501100001659],
+     pubmed_agency_patterns: ['^Deutsche Forschungsgemeinschaft'], number_prefixes: [], number_pattern: null,
+     year_prefix: false}
+  - {code: EMBO, name: European Molecular Biology Organization, short_name: EMBO, group: non_us,
+     country: null, amount_source: openalex, openalex_funders: [F4320307844],
+     crossref_funder_dois: [10.13039/100004410], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: EU, name: European Union, short_name: EU, group: non_us, country: null, amount_source: openalex,
+     openalex_funders: [F4320320300, F4320332999, F4320334322, F4320338352],
+     crossref_funder_dois: [10.13039/501100000780, 10.13039/100010661, 10.13039/100018693, 10.13039/100011199],
+     pubmed_agency_patterns: [], number_prefixes: [IMI], number_pattern: null, year_prefix: false}
+  - {code: FAPESP, name: Fundação de Amparo à Pesquisa do Estado de São Paulo, short_name: FAPESP,
+     group: non_us, country: "BR", amount_source: openalex, openalex_funders: [F4320320997],
+     crossref_funder_dois: [10.13039/501100001807], pubmed_agency_patterns: [], number_prefixes: [FAPESP],
+     number_pattern: null, year_prefix: true}
+  - {code: FNR, name: Fonds National de la Recherche Luxembourg, short_name: FNR, group: non_us,
+     country: "LU", amount_source: openalex, openalex_funders: [F4320321038],
+     crossref_funder_dois: [10.13039/501100001866],
+     pubmed_agency_patterns: ['^Fonds National de la Recherche Luxembourg$'], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: FWO, name: Fonds Wetenschappelijk Onderzoek, short_name: FWO, group: non_us, country: "BE",
+     amount_source: openalex, openalex_funders: [F4320321730], crossref_funder_dois: [10.13039/501100003130],
+     pubmed_agency_patterns: [], number_prefixes: [FWO], number_pattern: null, year_prefix: false}
+  - {code: UGENT, name: Bijzonder Onderzoeksfonds UGent, group: non_us, country: "BE", amount_source: openalex,
+     openalex_funders: [F4320335227], crossref_funder_dois: [10.13039/501100007229], pubmed_agency_patterns: [],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: HFSP, name: Human Frontier Science Program, short_name: HFSP, group: non_us, country: "FR",
+     amount_source: openalex, openalex_funders: [F4320320338, F4320307846],
+     crossref_funder_dois: [10.13039/501100000854, 10.13039/100004412], pubmed_agency_patterns: [],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: JSPS, name: Japan Society for the Promotion of Science, short_name: JSPS, group: non_us,
+     country: "JP", amount_source: openalex, openalex_funders: [F4320334764],
+     crossref_funder_dois: [10.13039/501100001691], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: JST, name: Japan Science and Technology Agency, short_name: JST, group: non_us, country: "JP",
+     amount_source: openalex, openalex_funders: [F4320334789, F4320320907, F4320338078],   # with NBDC, part of JST
+     crossref_funder_dois: [10.13039/501100002241, 10.13039/501100001695, 10.13039/501100004696],
+     pubmed_agency_patterns: ['^Japan Science and Technology Agency$'], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: KAIST, name: Korea Advanced Institute of Science and Technology, short_name: KAIST, group: non_us,
+     country: "KR", amount_source: openalex, openalex_funders: [F4320324161],
+     crossref_funder_dois: [10.13039/501100007107], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: KBSI, name: Korea Basic Science Institute, short_name: KBSI, group: non_us, country: "KR",
+     amount_source: openalex, openalex_funders: [F4320322111], crossref_funder_dois: [10.13039/501100003716],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: KHIDI, name: Korea Health Industry Development Institute, short_name: KHIDI, group: non_us,
+     country: "KR", amount_source: openalex, openalex_funders: [F4320322107],
+     crossref_funder_dois: [10.13039/501100003710], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: 'HI[0-9]{2}C[0-9]{4}', year_prefix: false}
+  - {code: KIMS, name: Korea Institute of Materials Science, short_name: KIMS, group: non_us, country: "KR",
+     amount_source: openalex, openalex_funders: [F4320334885], crossref_funder_dois: [10.13039/501100003713],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: KAW, name: Knut och Alice Wallenbergs Stiftelse, short_name: KAW, group: non_us, country: "SE",
+     amount_source: openalex, openalex_funders: [F4320322327], crossref_funder_dois: [10.13039/501100004063],
+     pubmed_agency_patterns: ['^Knut och Alice Wallenbergs Stiftelse'], number_prefixes: [KAW],
+     number_pattern: null, year_prefix: false}
+  - {code: LUNDBECK, name: Lundbeckfonden, group: non_us, country: "DK", amount_source: openalex,
+     openalex_funders: [F4320321999], crossref_funder_dois: [10.13039/501100003554], pubmed_agency_patterns: [],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: MOST, name: Ministry of Science and Technology of the People's Republic of China, short_name: MOST,
+     group: non_us, country: "CN", amount_source: openalex, openalex_funders: [F4320321540, F4320335777],
+     crossref_funder_dois: [10.13039/501100002855, 10.13039/501100012166],
+     pubmed_agency_patterns: ['^National Key Research and Development Program of China$'], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: MSIT, name: Ministry of Science and ICT, short_name: MSIT, group: non_us, country: "KR",
+     amount_source: openalex, openalex_funders: [F4320328359], crossref_funder_dois: [10.13039/501100014188],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: MWK, name: 'Ministerium für Wissenschaft, Forschung und Kunst Baden-Württemberg', short_name: MWK,
+     group: non_us, country: "DE", amount_source: openalex, openalex_funders: [F4320321990],
+     crossref_funder_dois: [10.13039/501100003542], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: NIHR, name: National Institute for Health and Care Research, short_name: NIHR, group: non_us,
+     country: "GB", amount_source: openalex, openalex_funders: [F4320319990],
+     crossref_funder_dois: [10.13039/501100000272], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: NKFIH, name: 'National Research, Development and Innovation Office', short_name: NKFIH, group: non_us,
+     country: "HU", amount_source: openalex,
+     openalex_funders: [F4320336675, F4320326762, F4320335908, F4320328991],   # with the ministry that runs ÚNKP
+     crossref_funder_dois: [10.13039/501100018818, 10.13039/501100011019, 10.13039/501100012550,
+                            10.13039/501100015498],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: NRF, name: National Research Foundation of Korea, short_name: NRF, group: non_us, country: "KR",
+     amount_source: openalex, openalex_funders: [F4320322120], crossref_funder_dois: [10.13039/501100003725],
+     pubmed_agency_patterns: [], number_prefixes: [NRF], number_pattern: null, year_prefix: false}
+  - {code: NSFC, name: National Natural Science Foundation of China, short_name: NSFC, group: non_us,
+     country: "CN", amount_source: openalex, openalex_funders: [F4320321001],
+     crossref_funder_dois: [10.13039/501100001809], pubmed_agency_patterns: [], number_prefixes: [],
+     number_pattern: null, year_prefix: false}
+  - {code: NWO, name: Nederlandse Organisatie voor Wetenschappelijk Onderzoek, short_name: NWO, group: non_us,
+     country: "NL", amount_source: openalex, openalex_funders: [F4320321800],
+     crossref_funder_dois: [10.13039/501100003246], pubmed_agency_patterns: [],
+     number_prefixes: [Rubicon, TOPPUNT], number_pattern: '[0-9]{8,14}', year_prefix: false}   # NWO programme names
+  - {code: OGI, name: Ontario Genomics, short_name: OGI, group: non_us, country: "CA", amount_source: openalex,
+     openalex_funders: [F4320319905, F4320310787],                                   # with Genome Canada
+     crossref_funder_dois: [10.13039/501100000092, 10.13039/100008762], pubmed_agency_patterns: [],
+     number_prefixes: [], number_pattern: 'OGI[0-9]+', year_prefix: false}
+  - {code: OPENTARGETS, name: Open Targets, group: non_us, country: "GB", amount_source: openalex,
+     openalex_funders: [], crossref_funder_dois: [], pubmed_agency_patterns: ['^Open Targets$'],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: MNISW, name: Polish Ministry of Science and Higher Education, short_name: MNiSW, group: non_us,
+     country: "PL", amount_source: openalex, openalex_funders: [], crossref_funder_dois: [],
+     pubmed_agency_patterns: ['(?i)polish ministry of science'], number_prefixes: [], number_pattern: null,
+     year_prefix: false}
+  - {code: SNSF, name: Swiss National Science Foundation, short_name: SNSF, group: non_us, country: "CH",
+     amount_source: openalex, openalex_funders: [F4320320924], crossref_funder_dois: [10.13039/501100001711],
+     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: SSF, name: Stiftelsen för Strategisk Forskning, short_name: SSF, group: non_us, country: "SE",
+     amount_source: openalex, openalex_funders: [F4320320940], crossref_funder_dois: [10.13039/501100001729],
+     pubmed_agency_patterns: ['^Stiftelsen för Strategisk Forskning'], number_prefixes: [],
+     number_pattern: 'SB[0-9]{6}', year_prefix: false}
+  - {code: CANCERFONDEN, name: Cancerfonden, group: non_us, country: "SE", amount_source: openalex,
+     openalex_funders: [F4320321491], crossref_funder_dois: [10.13039/501100002794],
+     pubmed_agency_patterns: ['^Cancerfonden'], number_prefixes: [], number_pattern: null, year_prefix: false}
+  - {code: VR, name: Vetenskapsrådet, short_name: VR, group: non_us, country: "SE", amount_source: openalex,
+     openalex_funders: [F4320322581], crossref_funder_dois: [10.13039/501100004359],
+     pubmed_agency_patterns: ['^Vetenskapsrådet'], number_prefixes: [VR-RFI, VR], number_pattern: '[0-9]{9}',
+     year_prefix: false}
+  - {code: WT, name: Wellcome, short_name: Wellcome, group: non_us, country: "GB", amount_source: openalex,
+     openalex_funders: [F4320311904], crossref_funder_dois: [10.13039/100010269, 10.13039/100004440],
+     pubmed_agency_patterns: ['^Wellcome Trust$'], number_prefixes: [WT], number_pattern: null,
+     year_prefix: false}
+
+# --- Facility contracts (§6.14, Appendix C) ----------------------------------------------------
+# DOE national-laboratory operating (M&O) contracts, cited for facility use: excluded (F5). Matched
+# by number, or by the distinctive tail they are written with, O for 0 and separators tolerated;
+# the DE-AC pattern catches any other, and fragments such as DE-AC02.
+facility_contracts:
+  - {number: DE-AC02-05CH11231, tails: [05CH11231], reason: Lawrence Berkeley National Laboratory's operating contract}
+  - {number: DE-AC02-06CH11357, tails: [06CH11357], reason: Argonne National Laboratory's operating contract}
+  - {number: DE-AC05-76RL01830, tails: [76RL01830], reason: Pacific Northwest National Laboratory's operating contract}
+  - {number: DE-SC0012704, tails: [SC0012704], reason: Brookhaven National Laboratory's operating contract}
+  - {pattern: '(?<![A-Z0-9])DE[ -]*AC(?![A-Z])', reason: a DOE management and operating contract}
+
+# --- Institution-wide awards (§6.15, F4, Appendix B) -------------------------------------------
+institution_wide:
+  keys:
+    - {key: "ANID:15130011", reason: FONDAP centre}
+    - {key: "ANID:1523A0008", reason: FONDAP centre}
+    - {key: "ANID:FB210008", reason: Basal centre}
+    - {key: "ANR:ANR10IAHU0001", reason: IHU institute}
+    - {key: "ANR:ANR10LABX0062", reason: LabEx}
+    - {key: "EU:101080544", reason: EU consortium total}
+    - {key: "EU:101103253", reason: EU consortium total}
+    - {key: "EU:101195186", reason: EU consortium total}
+    - {key: "EU:115760", reason: IMI consortium}
+    - {key: "EU:115766", reason: IMI consortium (EU contribution; total cost €50.3M)}
+    - {key: "EU:722493", reason: EU consortium total}
+    - {key: "EU:733032", reason: EU consortium total}
+    - {key: "EU:823839", reason: EU consortium total}
+    - {key: "VR:201900217", reason: national infrastructure}
+    - {key: "WT:092809Z10Z", reason: SGC consortium}
+    - {key: "USA:NASA:NCC958", reason: NSBRI institute cooperative agreement}
+    - {key: "USA:NASA:NNX16AO69A", reason: TRISH institute agreement}
+    - {key: "USA:NOAA:NA14OAR4170078", reason: Washington Sea Grant omnibus award}
+    - {key: "NSF:0718124", reason: NSF GRFP institutional award}
+    - {key: "NSF:0939564", reason: NSF Science and Technology Center (C-DEBI)}
+    - {key: "NSF:1256082", reason: NSF GRFP institutional award}
+    - {key: "NSF:1762114", reason: NSF GRFP institutional award}
+    - {key: "NSF:2140004", reason: NSF GRFP institutional award}
+  # Matched on the NSF API's programme name. A fellowship to one person is not institution-wide.
+  nsf_programmes:
+    - {name: GRFP, pattern: '(?i)graduate research fellowship', reason: NSF GRFP institutional award}
+    - {name: STC, pattern: '\bSTCs?\b|(?i:science (?:and|&) technology cent)', reason: NSF Science and Technology Center}
+
+# --- Not grants (§6.12, Appendix A.6) ----------------------------------------------------------
+# Each matches the whole string after list splitting, never a part: K99/R00 is a mechanism name,
+# `K99/R00 1K99HL103768-01` a grant. Strings are compared ignoring case, spaces and dashes.
+not_grants:
+  - {pattern: '[^0-9]*', reason: 'no number: a programme or mechanism name'}
+  - {pattern: '(?:.*?[\s/.])?(?:10\.)?13039(?:[/.].*)?', reason: a Crossref funder ID or a fragment of one}
+  - {pattern: '5011000[0-9]{5}', reason: a Crossref funder ID without its prefix}
+  - {string: AEI/10, reason: a fragment of a Crossref funder ID}
+  - {pattern: '(?i)(?:RRID:\s*)?(?:SCR|AB|CVCL|IMSR)_[0-9]+', reason: an RRID}
+  - {pattern: '(?:19|20)[0-9]{2}\s*-?', reason: a year}
+  - {pattern: '(?:19|20)[0-9]{2}\s*-\s*(?:19|20)[0-9]{2}', reason: a year range}
+  - {string: N/A, reason: not applicable}
+  - {string: NA, reason: not applicable}
+  - {string: PGT121, reason: an HIV antibody name}
+  - {string: PGT145, reason: an HIV antibody name}
+  - {string: PGDM1400, reason: an HIV antibody name}
+  - {string: 35O22, reason: an HIV antibody name}
+  - {string: NIH-R01, reason: 'a mechanism name, no number'}
+  - {string: K99/R00, reason: 'a mechanism name, no number'}
+  - {string: K99-R00, reason: 'a mechanism name, no number'}
+  - {string: H2020, reason: a programme name}
+  - {string: HORIZON2020, reason: a programme name}
+  - {string: '-0001', reason: a fragment of the DTRA number on the same works}
+  - {string: Z/17/Z, reason: a fragment of a Wellcome number}
+  - {string: Project 3, reason: a sub-project label}
+
+# --- Amounts (§7) --------------------------------------------------------------------------------
+openalex_amounts:
+  exclude_provenance: [gepris]         # DFG's GEPRIS: two unrelated grants carry an identical €109,941.6654
+  corrections:
+    - {provenance: anid_github, multiply: 1000, reason: "ANID states thousands of pesos (M$); OpenAlex labels them pesos"}
+large_award_review_usd: 20000000      # untagged awards this large are listed for review (§6.15)
+total_drop_alert: 0.05                # alert when the total falls by more than this, undegraded (§9.5)

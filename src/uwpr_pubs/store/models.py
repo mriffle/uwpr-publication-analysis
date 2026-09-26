@@ -384,6 +384,21 @@ class ApiUse(TypedDict):
     cost_usd: float
 
 
+FundingMode = Literal["incremental", "full", "deferred", "skipped"]
+
+
+class FundingRun(TypedDict):
+    """The manifest's funding block (docs/09 §9.6). Every run records the version and the
+    fingerprint it ran with, for stage 0's guard; the funding stage adds the rest."""
+
+    version: RuleVersion
+    fingerprint: CacheRef
+    mode: NotRequired[FundingMode]
+    grants: NotRequired[int]
+    amount_usd: NotRequired[int]
+    requests: NotRequired[dict[str, int]]
+
+
 class RunManifest(TypedDict):
     schema: Literal[1]
     run_id: str
@@ -396,6 +411,7 @@ class RunManifest(TypedDict):
     config_fingerprint: CacheRef
     rules_fingerprint: CacheRef
     overrides_fingerprint: NotRequired[CacheRef]  # added 2026-09-26; older manifests lack it
+    funding: NotRequired[FundingRun]  # added 2026-09-26; older manifests lack it
     rule_version: RuleVersion
     note: NotRequired[str]
     channels: dict[str, ChannelRun]

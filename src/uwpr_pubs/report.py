@@ -100,6 +100,8 @@ class RunRecorder:
     rules_fingerprint: str
     code_version: str
     overrides_fingerprint: str | None = None
+    funding_version: str | None = None
+    funding_fingerprint: str | None = None
     channels: dict[str, ChannelRun] = field(default_factory=dict)
     rules: dict[str, dict[str, int]] = field(default_factory=dict)
     degradations: list[Degradation] = field(default_factory=list)
@@ -188,6 +190,8 @@ class RunRecorder:
         }
         if self.overrides_fingerprint is not None:
             manifest["overrides_fingerprint"] = self.overrides_fingerprint
+        if self.funding_version is not None and self.funding_fingerprint is not None:
+            manifest["funding"] = {"version": self.funding_version, "fingerprint": self.funding_fingerprint}
         if self.notes:
             manifest["note"] = " | ".join(self.notes)
         return cast(RunManifest, manifest)

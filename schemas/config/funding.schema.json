@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/config/funding.schema.json",
+  "title": "Funding impact: config/funding.yaml (docs/09-funding-impact.md §8.4). Any change needs a new funding_version.",
+  "description": "Patterns are Python regular expressions, matched in full where docs/09 says a whole string, and case-sensitive unless they start with (?i).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "funding_version", "enabled", "refresh", "reporter", "nih", "agencies", "facility_contracts",
+               "institution_wide", "not_grants", "openalex_amounts", "large_award_review_usd", "total_drop_alert"],
+  "properties": {
+    "schema": {"const": 1},
+    "funding_version": {
+      "description": "YYYY-MM-DD.N. Outside the funding fingerprint, so stage 0 can tell a changed file from a bumped one; a bump schedules a full refresh",
+      "$ref": "../common.schema.json#/$defs/ruleVersion"
+    },
+    "enabled": {"description": "false skips the funding stage and carries the stored lines forward", "type": "boolean"},
+    "refresh": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["full_every_days", "active_within_days", "recheck_unresolved_days"],
+      "properties": {
+        "full_every_days": {"type": "integer", "minimum": 1},
+        "active_within_days": {"type": "integer", "minimum": 1},
+        "recheck_unresolved_days": {"type": "integer", "minimum": 1}
+      }
+    },
+    "reporter": {
+      "description": "NIH RePORTER's request window for large jobs (docs/09 §9.3)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["window", "weekday_request_cap"],
+      "properties": {
+        "window": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tz", "weekend", "weekday_hours"],
+          "properties": {
+            "tz": {"type": "string", "minLength": 1},
+            "weekend": {"type": "boolean"},
+            "weekday_hours": {
+              "description": "[from, to) in local hours; from > to wraps past midnight",
+              "type": "array", "minItems": 2, "maxItems": 2,
+              "items": {"type": "integer", "minimum": 0, "maximum": 23}
+            }
+          }
+        },
+        "weekday_request_cap": {"type": "integer", "minimum": 0}
+      }
+    },
+    "nih": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ics", "phase_pairs", "categories"],
+      "properties": {
+        "ics": {
+          "description": "Two-letter institute codes as they appear in project numbers",
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-Z]{2}$"}
+        },
+        "phase_pairs": {
+          "type": "array",
+          "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/activityCode"}}
+        },
+        "categories": {
+          "description": "Category to activity codes; a code ending * is a prefix",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "research": {"$ref": "#/$defs/activityPatterns"},
+            "center": {"$ref": "#/$defs/activityPatterns"},
+            "training": {"$ref": "#/$defs/activityPatterns"},
+            "instrument": {"$ref": "#/$defs/activityPatterns"},
+            "contract": {"$ref": "#/$defs/activityPatterns"},
+            "other": {"$ref": "#/$defs/activityPatterns"}
+          }
+        }
+      }
+    },
+    "agencies": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/agency"}},
+    "facility_contracts": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["number", "tails", "reason"],
+            "properties": {
+              "number": {"type": "string", "minLength": 1},
+              "tails": {"type": "array", "items": {"type": "string", "minLength": 5}},
+              "reason": {"type": "string", "minLength": 1}
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["pattern", "reason"],
+            "properties": {"pattern": {"type": "string", "minLength": 1}, "reason": {"type": "string", "minLength": 1}}
+          }
+        ]
+      }
+    },
+    "institution_wide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["keys", "nsf_programmes"],
+      "properties": {
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["key", "reason"],
+            "properties": {
+              "key": {"$ref": "../common.schema.json#/$defs/grantKey"},
+              "reason": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "nsf_programmes": {
+          "description": "Matched on the NSF API's programme name",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "pattern", "reason"],
+            "properties": {
+              "name": {"type": "string", "minLength": 1},
+              "pattern": {"type": "string", "minLength": 1},
+              "reason": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "not_grants": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["pattern", "reason"],
+            "properties": {"pattern": {"type": "string", "minLength": 1}, "reason": {"type": "string", "minLength": 1}}
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["string", "reason"],
+            "properties": {"string": {"type": "string", "minLength": 1}, "reason": {"type": "string", "minLength": 1}}
+          }
+        ]
+      }
+    },
+    "openalex_amounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exclude_provenance", "corrections"],
+      "properties": {
+        "exclude_provenance": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "corrections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["provenance", "multiply", "reason"],
+            "properties": {
+              "provenance": {"type": "string", "minLength": 1},
+              "multiply": {"type": "number", "exclusiveMinimum": 0},
+              "reason": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "large_award_review_usd": {"type": "integer", "minimum": 0},
+    "total_drop_alert": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}
+  },
+  "$defs": {
+    "activityCode": {"type": "string", "pattern": "^[A-Z][A-Z0-9]{2}$"},
+    "activityPatterns": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9]{0,2}\\*$|^[A-Z][A-Z0-9]{2}$"}
+    },
+    "agency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "name", "group", "country", "amount_source", "openalex_funders", "crossref_funder_dois",
+                   "pubmed_agency_patterns", "number_prefixes", "number_pattern", "year_prefix"],
+      "properties": {
+        "code": {"$ref": "../common.schema.json#/$defs/agencyCode"},
+        "name": {"type": "string", "minLength": 1},
+        "short_name": {"type": "string", "minLength": 1},
+        "parent": {"$ref": "../common.schema.json#/$defs/agencyCode"},
+        "group": {"enum": ["us_federal", "us_nonfederal", "non_us"]},
+        "country": {"oneOf": [{"type": "string", "pattern": "^[A-Z]{2}$"}, {"type": "null"}]},
+        "amount_source": {
+          "description": "Where its amounts come from (docs/09 §7.1); usaspending also keys it USA:<AGENCY>:…",
+          "enum": ["reporter", "nsf", "usaspending", "openalex"]
+        },
+        "openalex_funders": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^F[0-9]+$"}},
+        "crossref_funder_dois": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^10\\.13039/[0-9]+$"}},
+        "pubmed_agency_patterns": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "number_prefixes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "number_pattern": {"description": "What its normalised numbers look like; null accepts any", "type": ["string", "null"], "minLength": 1},
+        "year_prefix": {"description": "A leading two-digit year is expanded to four (FAPESP)", "type": "boolean"},
+        "categories": {
+          "description": "docs/09 §11.4: without this, its grants are other",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["default", "match"],
+          "properties": {
+            "default": {"enum": ["research", "center", "training", "instrument", "contract", "other"]},
+            "match": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["category", "field", "pattern"],
+                "properties": {
+                  "category": {"enum": ["research", "center", "training", "instrument", "contract", "other"]},
+                  "field": {"enum": ["programme", "type"]},
+                  "pattern": {"type": "string", "minLength": 1}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -218,6 +218,8 @@ class Pipeline:
             rules_fingerprint=config.rules_fingerprint,
             code_version=CODE_VERSION,
             overrides_fingerprint=config.overrides_fingerprint,
+            funding_version=config.funding_version,
+            funding_fingerprint=config.funding_fingerprint,
         )
         openalex_key, ncbi_key = api_keys()
         self.openalex = OpenAlex(client, config.contact, openalex_key)
@@ -267,6 +269,7 @@ class Pipeline:
         if self.snapshot is None:
             self.snapshot = read_store(store)  # an empty store reads as empty collections
         self._guard_rules_fingerprint()
+        self._guard_funding_fingerprint()
         self._seed_from_snapshot()
 
     def _require_clean_store(self) -> None:
@@ -314,6 +317,22 @@ class Pipeline:
             raise RunFailureError(
                 "rules.yaml or staff.yaml changed without a new rule_version "
                 f"(still {self.config.rule_version}); bump it so every work is re-evaluated"
+            )
+
+    def _guard_funding_fingerprint(self) -> None:
+        """`funding.yaml` may change only with a new `funding_version` (docs/09 §8.4, F16).
+
+        A manifest written before the funding block existed says nothing about it, and is skipped.
+        """
+        latest = self.snapshot.latest_run() if self.snapshot else None
+        recorded = latest.get("funding") if latest else None
+        if recorded is None:
+            return
+        same_version = recorded["version"] == self.config.funding_version
+        if same_version and recorded["fingerprint"] != self.config.funding_fingerprint:
+            raise RunFailureError(
+                "funding.yaml changed without a new funding_version "
+                f"(still {self.config.funding_version}); bump it, which schedules a full funding refresh"
             )
 
     def _seed_from_snapshot(self) -> None:

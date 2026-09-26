@@ -743,6 +743,65 @@ def test_a_manifest_without_an_overrides_fingerprint_falls_back(
     assert recorded["overrides_fingerprint"] == load_config(config_dir).overrides_fingerprint
 
 
+def funding_edited(tmp_path: Path, *, bump: bool) -> Path:
+    """A config tree whose `funding.yaml` has changed, with or without a new funding_version."""
+    directory = tmp_path / ("config-funding-bumped" if bump else "config-funding")
+    shutil.copytree(PROJECT / "config", directory)
+    funding = directory / "funding.yaml"
+    text = funding.read_text(encoding="utf-8")
+    assert "weekday_request_cap: 60" in text
+    text = text.replace("weekday_request_cap: 60", "weekday_request_cap: 50", 1)
+    if bump:
+        version = load_config().funding_version
+        text = text.replace(f'funding_version: "{version}"', 'funding_version: "2099-01-01.1"', 1)
+    funding.write_text(text, encoding="utf-8")
+    return directory
+
+
+def test_a_funding_change_without_a_new_funding_version_stops_the_run(
+    client: HttpClient, tmp_path: Path
+) -> None:
+    """docs/09 §8.4: stage 0 guards the funding fingerprint as it guards the rules'.
+
+    Every run records the version and fingerprint it ran with; the next run fails when
+    `funding.yaml` has changed under the same version, and runs when the version moved too.
+    """
+    store = tmp_path / "store"
+    first = do_run(client, store)
+    manifest = io.read_json(store / "runs" / f"{first.run_id}.json")
+    config = load_config()
+    assert manifest["funding"] == {
+        "version": config.funding_version,
+        "fingerprint": config.funding_fingerprint,
+    }
+
+    unbumped = do_run(client, store, day="2026-09-28", config_dir=funding_edited(tmp_path, bump=False))
+    assert unbumped.status == "failed"
+    assert "funding.yaml changed without a new funding_version" in unbumped.errors[0]
+    assert not unbumped.written
+
+    bumped_dir = funding_edited(tmp_path, bump=True)
+    bumped = do_run(client, store, day="2026-09-28", config_dir=bumped_dir)
+    assert bumped.status == "ok", bumped.errors
+    recorded = io.read_json(store / "runs" / f"{bumped.run_id}.json")["funding"]
+    assert recorded == {"version": "2099-01-01.1", "fingerprint": load_config(bumped_dir).funding_fingerprint}
+
+
+def test_a_manifest_without_a_funding_block_skips_the_funding_guard(
+    client: HttpClient, tmp_path: Path
+) -> None:
+    """Manifests written before 2026-09-26 say nothing about funding, so there is nothing to compare."""
+    store = tmp_path / "store"
+    first = do_run(client, store)
+    path = store / "runs" / f"{first.run_id}.json"
+    manifest = io.read_json(path)
+    del manifest["funding"]
+    io.write_json(path, manifest)
+
+    result = do_run(client, store, day="2026-09-28", config_dir=funding_edited(tmp_path, bump=False))
+    assert result.status == "ok", result.errors
+
+
 def test_a_list_that_cannot_be_fetched_leaves_r1_as_it_was(
     client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:

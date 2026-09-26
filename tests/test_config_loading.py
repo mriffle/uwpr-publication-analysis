@@ -226,3 +226,57 @@ def test_a_grant_override_needs_its_string_and_its_grant(tmp_path: Path) -> None
     )
     with pytest.raises(ConfigError, match=r"overrides\.yaml: schema: 0: 'raw' is a required property"):
         load_config(overrides_path=overrides)
+
+
+def test_a_funding_change_moves_only_the_funding_and_config_fingerprints(config_dir: Path) -> None:
+    """docs/09 §8.4: the funding fingerprint, which stage 0 guards, covers funding.yaml alone.
+
+    It moves on any change to the resolver's configuration, and neither the rules nor the
+    overrides fingerprint does: a funding change must re-read no text and re-evaluate no work.
+    """
+    before = load_config(config_dir)
+    funding = config_dir / "funding.yaml"
+    funding.write_text(
+        funding.read_text(encoding="utf-8").replace("weekday_request_cap: 60", "weekday_request_cap: 50"),
+        encoding="utf-8",
+    )
+    after = load_config(config_dir)
+    assert after.funding_fingerprint != before.funding_fingerprint
+    assert after.config_fingerprint != before.config_fingerprint
+    assert after.rules_fingerprint == before.rules_fingerprint
+    assert after.overrides_fingerprint == before.overrides_fingerprint
+    assert after.funding_version == before.funding_version
+
+
+def test_the_funding_version_is_outside_the_funding_fingerprint(config_dir: Path) -> None:
+    before = load_config(config_dir)
+    funding = config_dir / "funding.yaml"
+    funding.write_text(
+        funding.read_text(encoding="utf-8").replace(
+            f'funding_version: "{before.funding_version}"', 'funding_version: "2099-01-01.1"'
+        ),
+        encoding="utf-8",
+    )
+    after = load_config(config_dir)
+    assert after.funding_version == "2099-01-01.1"
+    assert after.funding_fingerprint == before.funding_fingerprint
+
+
+def test_exchange_rates_are_outside_the_funding_fingerprint(config_dir: Path) -> None:
+    """Every amount is recomputed from the rates each run, so a new rate needs no bump (§7.3)."""
+    before = load_config(config_dir)
+    rates = config_dir / "exchange_rates.yaml"
+    text = rates.read_text(encoding="utf-8")
+    assert '"2025": "1.3192"' in text  # GBP, G.5A of 2026-01-05
+    rates.write_text(text.replace('"2025": "1.3192"', '"2025": "1.3193"'), encoding="utf-8")
+    after = load_config(config_dir)
+    assert after.funding_fingerprint == before.funding_fingerprint
+    assert after.config_fingerprint != before.config_fingerprint
+    assert after.exchange_rates["rates"]["GBP"]["2025"] == "1.3193"
+
+
+def test_the_projects_funding_config_loads_switched_off() -> None:
+    config = load_config()
+    assert config.funding["enabled"] is False
+    assert config.funding_version == "2026-09-26.1"
+    assert "UWPR95794" not in (ROOT / "config" / "funding.yaml").read_text(encoding="utf-8")

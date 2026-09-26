@@ -28,6 +28,24 @@
       "description": "The work overrides alone (include, exclude, merge, split); a change re-reads every record. Optional: manifests before 2026-09-26 lack it.",
       "$ref": "common.schema.json#/$defs/cacheRef"
     },
+    "funding": {
+      "description": "docs/09 §9.6. Every run records the funding_version and funding fingerprint it ran with, which stage 0's guard compares; the funding stage adds what it did. Optional: manifests before 2026-09-26 lack it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "fingerprint"],
+      "properties": {
+        "version": {"$ref": "common.schema.json#/$defs/ruleVersion"},
+        "fingerprint": {"$ref": "common.schema.json#/$defs/cacheRef"},
+        "mode": {"enum": ["incremental", "full", "deferred", "skipped"]},
+        "grants": {"type": "integer", "minimum": 0},
+        "amount_usd": {"type": "integer", "minimum": 0},
+        "requests": {
+          "description": "Requests made, by source",
+          "type": "object",
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
     "rule_version": {"$ref": "common.schema.json#/$defs/ruleVersion"},
     "note": {"type": "string"},
     "channels": {
