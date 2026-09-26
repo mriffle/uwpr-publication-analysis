@@ -11,7 +11,7 @@ from types import SimpleNamespace
 import pytest
 
 from uwpr_pubs import cli, smoke
-from uwpr_pubs.http import BudgetExceededError, HttpError
+from uwpr_pubs.http import BudgetExceededError, HttpError, MalformedReplyError, Response
 from uwpr_pubs.smoke import Check, Outcome, blocked, classify, verdict
 
 
@@ -52,6 +52,16 @@ def test_an_authentication_failure_is_a_problem(status: int) -> None:
 def test_any_other_4xx_is_a_problem(status: int) -> None:
     """The source answered, and refused the query: a query or a syntax we no longer share."""
     assert classify(HttpError(f"crossref: HTTP {status}", status)) is Outcome.PROBLEM
+
+
+def test_an_empty_body_is_an_outage_and_a_body_in_the_wrong_shape_a_problem() -> None:
+    """No answer at all passes with time; an answer in another shape needs a person."""
+    empty = Response("https://api.biorxiv.org/details/biorxiv/10.1101/1", 200, b"", {})
+    html = Response("https://api.example.org/x", 200, b"<!doctype html>", {})
+    for reply, outcome in ((empty, Outcome.OUTAGE), (html, Outcome.PROBLEM)):
+        with pytest.raises(MalformedReplyError) as raised:
+            reply.json()
+        assert classify(raised.value) is outcome
 
 
 @pytest.mark.parametrize("exc", [ValueError("not JSON"), KeyError("pmcid")])

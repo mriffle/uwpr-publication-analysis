@@ -13,6 +13,7 @@ from uwpr_pubs.http import (
     BudgetExceededError,
     HttpClient,
     HttpError,
+    MalformedReplyError,
     MissingRecordingError,
     Mode,
     Policy,
@@ -297,3 +298,34 @@ def test_europe_pmc_full_text_asks_once(tmp_path: Path) -> None:
 
     assert EuropePmc(client, "mriffle@uw.edu").full_text_xml("PMC1") is None
     assert len(transport.calls) == 1
+
+
+# --- a reply that arrived but will not parse (2026-09-26) ---------------------------------
+
+
+def test_an_empty_body_is_a_source_error_with_no_status() -> None:
+    """bioRxiv's `details` answered HTTP 200 with nothing, to every request, and a bare
+    `JSONDecodeError` from it failed the whole run. No answer is an outage, like a timeout.
+    """
+    reply = Response("https://api.biorxiv.org/details/biorxiv/10.1101/1", 200, b"", {})
+    with pytest.raises(MalformedReplyError) as raised:
+        reply.json()
+    assert raised.value.status is None
+    assert isinstance(raised.value, HttpError)  # so every stage that degrades on one catches it
+    assert isinstance(raised.value, ValueError)  # and so does anything that caught the old error
+    assert (
+        str(raised.value) == "https://api.biorxiv.org/details/biorxiv/10.1101/1: HTTP 200 with an empty body"
+    )
+
+
+def test_a_body_that_is_not_json_keeps_its_status() -> None:
+    """Something did answer, in the wrong shape: that reads as a changed source, not an outage."""
+    reply = Response("https://api.example.org/x", 200, b"<!doctype html><title>Maintenance</title>", {})
+    with pytest.raises(MalformedReplyError) as raised:
+        reply.json()
+    assert raised.value.status == 200
+    assert "41 bytes that are not JSON" in str(raised.value)
+
+
+def test_a_json_body_still_parses() -> None:
+    assert Response("u", 200, b'{"hitCount": 185}', {}).json() == {"hitCount": 185}

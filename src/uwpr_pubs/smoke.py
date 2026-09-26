@@ -74,13 +74,15 @@ class Check:
 def classify(exc: Exception) -> Outcome:
     """Outage or problem? Decided from `HttpError.status`, as §9 decides it during a run.
 
-    `status` is `None` when no answer ever arrived — a timeout, a DNS or connection failure — and
-    a 5xx is the source saying it is broken. Both pass with time, and the pipeline is built to
-    proceed without a source (P4), so neither blocks.
+    `status` is `None` when no answer ever arrived — a timeout, a DNS or connection failure, or
+    an empty body (`MalformedReplyError`) — and a 5xx is the source saying it is broken. Both
+    pass with time, and the pipeline is built to proceed without a source (P4), so neither
+    blocks.
 
     Everything else is a statement about us rather than about the source's health: 401 and 403
-    mean a key, another 4xx means a query the source no longer accepts, and a `KeyError` or
-    `ValueError` means a reply we could no longer parse. Those need a person, and a run spent on
+    mean a key, another 4xx means a query the source no longer accepts, and a `KeyError`, a
+    `ValueError` or a body that is there but will not parse means a reply we could no longer
+    read. Those need a person, and a run spent on
     them is wasted.
 
     The budget guard is the one `HttpError` that is not a source failure at all: it is raised

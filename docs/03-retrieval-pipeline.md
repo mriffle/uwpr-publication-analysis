@@ -88,6 +88,15 @@ was retired with it on 2026-09-20.
     control collapses too the check is an outage, and the run proceeds; if it holds, the query is
     at fault and the run is blocked. The control is asked only on a failure, so a passing smoke
     costs what it did.
+- *§9, a reply that will not parse is a source failure.* The catch-up run the same day got past
+  smoke and failed in stage 6: bioRxiv's `details` endpoint answered **HTTP 200 with an empty
+  body** to every request (both servers, by DOI and by date; `pubs` answered normally), and
+  `json.loads` raised a bare `JSONDecodeError`, which no stage catches. §9 already says a source
+  that fails degrades the run; it was only the exception's type that made this one fatal.
+  `Response.json()` now raises `MalformedReplyError`, an `HttpError` (and still a `ValueError`),
+  so every stage that degrades on a source failure degrades on this one. An empty body carries no
+  status, like a timeout, and smoke reads it as an outage; a body that is there but will not
+  parse keeps its status, and reads as a problem.
 - *The floors sit about 10% below the live counts,* re-measured the same day. Two of them had
   equalled their live counts exactly (Crossref 63, Europe PMC 185), and a live index drifts down
   as well as up — OpenAlex's award count fell from 140 to 139 between 2026-09-21 and -26 — so one

@@ -314,6 +314,29 @@ count below its floor asks a **control query** on the same source (Europe PMC `p
 exercised against live Europe PMC before committing: the unknown field reads as a `FAIL` beside a
 healthy control, and the error body as a `FAIL` carrying its `errCode 404`.
 
+**The catch-up run then failed too, one stage later** (run 36247387416, 2026-09-26). Smoke passed,
+discovery completed with no channel errors, and stage 6 stopped on `JSONDecodeError: Expecting
+value`. It reproduced locally, and the report could not say where, because the failure note keeps
+only the traceback's last line; a scratch run that printed the whole traceback found
+`Biorxiv.details`. **bioRxiv's `details` endpoint was answering HTTP 200 with an empty body to
+every request** — all 58 stored preprint DOIs, both servers, the date-range form too — while its
+documented `pubs` endpoint answered normally. The source failure was ordinary; its exception type
+was not an `HttpError`, so the stage's own degrade-and-continue never caught it. Unparseable
+replies are `MalformedReplyError` now (docs/03, changed 2026-09-26), and a pipeline test with an
+empty bioRxiv body fails on the old code (`failed`) and passes on the new (`degraded`). The same
+scratch run then completed: **DEGRADED**, 176 s, $0.0101, one degradation (`source:biorxiv`), 339
+works and no work added or removed.
+
+**That scratch run also showed that a weekly run rewrites every work file**, which Phase 2 §15
+says it must not ("weekly runs on unchanged sources change only `official_list/entries.jsonl`,
+`metrics/` and `runs/`, plus a `last_seen` refresh about once a month"). All 339 changed, six
+days after the seed, almost all of it dates: 1,325 `discovery[].last_seen`, 305 evidence
+`last_seen` (R1 copies the list's exact dates), 385 `source.retrieved`, 375 `sources.openalex`,
+80 R6 `query_date`, and `updated` on every file. Every run before this one was on the seed's own
+day, so nothing could show it: another date bug that only running on a second day finds. The
+dates are true, so nothing is wrong, only noisy; it is **left for a deliberate fix** rather than
+patched under a catch-up run, and the next scheduled run would have done the same.
+
 ## 4. Decisions taken during implementation
 
 Each is already reflected in the code, the config or a dated spec note. They are listed here

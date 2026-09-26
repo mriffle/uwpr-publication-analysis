@@ -191,6 +191,9 @@ npm test -- --run && npm run build && npm run check:budget && npm run e2e
 - **Europe PMC reports its errors inside an HTTP 200**, as `{"errCode": …, "errMsg": …}` with no
   `hitCount`. Unchecked, that reads as zero results. An unknown field also answers a well-formed
   zero, so a zero alone never says "outage"; smoke asks a control query to tell (docs/03 §8).
+- **bioRxiv's `details` endpoint can answer HTTP 200 with an empty body** — to every request, for
+  hours (2026-09-26), while `pubs` still works. An unparseable reply is `MalformedReplyError`, a
+  source failure that degrades the run; it must never escape as a bare `JSONDecodeError`.
 - **Crossref's 404 is an answer, not an outage.** `HttpError.status` carries the distinction; a
   real outage must degrade the run rather than read as "this DOI has no preprint relation".
 - **Preprint servers mint a DOI per revision** (`…-33v24-v2`, `…/v2`), so a stated relation may

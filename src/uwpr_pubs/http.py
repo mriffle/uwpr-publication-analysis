@@ -63,6 +63,19 @@ class BudgetExceededError(HttpError):
     """The OpenAlex spend guard stopped this request (§7)."""
 
 
+class MalformedReplyError(HttpError, ValueError):
+    """A reply that arrived but cannot be parsed: a source failure like any other (§9).
+
+    It used to surface as a bare `JSONDecodeError`, which no stage catches, so one unwell endpoint
+    failed the whole run. On 2026-09-26 bioRxiv's `details` answered HTTP 200 with an empty body to
+    every request, and the catch-up run stopped in stage 6 instead of degrading. As an `HttpError`
+    it is handled wherever a source failure is. An empty body is no answer at all, so like a
+    timeout it carries no status and reads as an outage; a body that is there but will not parse
+    keeps its status, and reads as a changed shape. It is still a `ValueError` for any caller that
+    catches one.
+    """
+
+
 @dataclass(frozen=True)
 class Response:
     url: str
@@ -76,7 +89,15 @@ class Response:
         return self.body.decode("utf-8", "replace")
 
     def json(self) -> Any:
-        return json.loads(self.body)
+        try:
+            return json.loads(self.body)
+        except ValueError as exc:  # a JSONDecodeError, or a body that is not UTF-8
+            empty = not self.body.strip()
+            what = "an empty body" if empty else f"{len(self.body)} bytes that are not JSON"
+            where = scrub(strip_url(self.url))
+            raise MalformedReplyError(
+                f"{where}: HTTP {self.status} with {what}", None if empty else self.status
+            ) from exc
 
 
 class Transport(Protocol):

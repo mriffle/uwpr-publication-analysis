@@ -316,6 +316,44 @@ def test_a_preprint_and_its_article_become_one_work(client: HttpClient, tmp_path
     assert article["version_link"] is None
 
 
+def test_a_source_answering_an_empty_body_degrades_the_run_instead_of_failing_it(tmp_path: Path) -> None:
+    """The catch-up run of 2026-09-26, in miniature (§9, P4).
+
+    bioRxiv's `details` answered HTTP 200 with an empty body to every request. Stage 6 asks it only
+    when Crossref states no relation, and it was reached as a bare `JSONDecodeError`, which no
+    stage catches: the run failed and wrote nothing, for a source it is built to go without.
+    """
+
+    def transport(
+        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+    ) -> Response:
+        if url.endswith(f"/works/{PREPRINT_DOI}"):
+            return Response(url, 200, b'{"message": {}}', {})  # no stated relation, so bioRxiv is asked
+        if "api.biorxiv.org" in url:
+            return Response(url, 200, b"", {"content-type": "application/json"})
+        return route(url, params)
+
+    client = HttpClient(
+        contact="mriffle@uw.edu",
+        user_agent="uwpr-pubs/test",
+        mode=Mode.LIVE,
+        cache=Cache(tmp_path / "cache"),
+        budget=Budget(max_run_usd=0.5, min_remaining_usd=0.1),
+        rate_limiter=RateLimiter({}),
+        transport=transport,
+        sleep=lambda _: None,
+        now=lambda: f"{TODAY}T00:00:00Z",
+    )
+    store = tmp_path / "store"
+    result = do_run(client, store)
+
+    assert result.status == "degraded", result.report
+    assert result.written
+    assert "source:biorxiv: published check unavailable:" in result.report
+    assert "HTTP 200 with an empty body" in result.report
+    assert validate_store(store).errors == []
+
+
 def test_a_merge_retires_the_higher_work_id_and_repoints_everything(
     client: HttpClient, tmp_path: Path
 ) -> None:
