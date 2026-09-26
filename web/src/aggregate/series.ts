@@ -30,8 +30,12 @@ export interface YearPoint {
 export const isPartialYear = (year: number, period: Period): boolean =>
   period.current_year_partial && year > period.complete_through;
 
-/** Accumulate a year→value map into a contiguous series with its running total. */
-function toSeries(
+/**
+ * Accumulate a year→value map into a contiguous series with its running total, each year
+ * flagged partial or not. Exported because the funding series accumulate the same way
+ * (`aggregate/funding.ts`), where the value is dollars rather than a count.
+ */
+export function accumulate(
   counts: ReadonlyMap<number, number>,
   first: number,
   last: number,
@@ -63,7 +67,7 @@ export function publicationsPerYear(works: readonly Work[], period: Period): Yea
 
   const first = Math.min(period.first_year, ...counts.keys());
   const last = Math.max(period.last_year, ...counts.keys());
-  return toSeries(counts, first, last, period);
+  return accumulate(counts, first, last, period);
 }
 
 /**
@@ -94,7 +98,7 @@ export function citationsPerYear(works: readonly Work[], period: Period): YearPo
   const first = period.citation_years_from ?? fallback;
   const last = Math.max(period.last_year, ...observed);
   if (last < first) return [];
-  return toSeries(counts, first, last, period);
+  return accumulate(counts, first, last, period);
 }
 
 /**
