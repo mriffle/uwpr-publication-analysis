@@ -47,9 +47,12 @@ committed is exactly what was read.
 **The store after the 2026-09-26 run:** 339 works, 477 candidates, 306 list entries and 754
 metrics lines; recall on the official list 208/253 (82%).
 
-**Rule version 2026-09-26.1** fixes §8's two data defects and lands with the next update run. It
-takes the store to 338 works, because W-000746 turned out to be a second copy of W-000237's
-preprint. Recall and the test papers are unchanged (§3.7).
+**Rule version 2026-09-26.1** fixed §8's two data defects and landed the same day (run
+36258998881, `Data update 2026-09-26T17-26-live`: DEGRADED on bioRxiv alone, 189 s, $0.0100). The
+store is now 338 works, 477 candidates, 306 list entries and 754 metrics lines, because W-000746
+turned out to be a second copy of W-000237's preprint. Recall (208/253) and the test papers are
+unchanged. The committed change matched the scratch measurement except for six cache pointers,
+which only the local cache had moved (§3.7).
 
 ## 2. What exists
 
@@ -676,6 +679,12 @@ because they are the things a reader would otherwise have to rediscover.
 - **Crossref can hold a preprint twice, and state its relation on only one copy.** ChemRxiv's
   concept DOI names the article; the `….v1` revision DOI names nothing and has a file name for a
   title. OpenAlex knew only the revision.
+- **A data update can break the test suite, and `check` will not see it until someone pushes.**
+  The bot's commit is pushed with `GITHUB_TOKEN`, which starts no workflow, so `check.yml` never
+  runs against the store it writes. A test that pinned docs/05's figures to the real store (316
+  and 322 of 339 works) failed after 2026-09-26.1 merged a UW duplicate, and CI stayed green. It
+  now asserts what the figures show, not the figures. **A test that reads `store/` must hold for
+  any store the weekly run could write.**
 
 ## 6. The approved implementation plan
 
@@ -996,7 +1005,7 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
 
 **Open:**
 1. ~~**Two data defects found while specifying Phase 5**~~ (2026-09-20). **Fixed 2026-09-26 by
-   rule version 2026-09-26.1** (§3.7), which lands with the next update run.
+   rule version 2026-09-26.1** (§3.7), which landed the same day.
    - **`W-000746`'s title was a filename**, `1_manuscript_2020-04-14.pdf`, because the work was a
      second copy of W-000237's ChemRxiv preprint under its `.v1` revision DOI. It merges into
      W-000237, whose title is the article's; the app does not show a version's own title.

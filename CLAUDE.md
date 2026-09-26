@@ -15,7 +15,7 @@ Resource (UWPR).
 **Current state: every phase is specified and built, and the whole thing is live.** Phases 1-3
 frozen, Phase 4 retired, 5-7 agreed 2026-09-20 with dated changelogs.
 - **The pipeline runs itself** weekly via `update.yml` — about $0.01 a run. `store/` is seeded and
-  committed (339 works); its work and record IDs are **permanent and must never be renumbered**.
+  committed (338 works); its work and record IDs are **permanent and must never be renumbered**.
 - **The app is built and deployed** at https://mriffle.github.io/uwpr-publication-analysis/, from
   the `gh-pages` branch. `web/` is React + TypeScript + Vite; `export/` holds the two JSON files
   it reads, rebuilt and committed by every run.

@@ -137,7 +137,7 @@ under the 28-day rule, so two exported dates are taken from where they are still
 **Changed 2026-09-26, §3.2's two data defects are fixed** by rule version 2026-09-26.1
 ([08](08-implementation.md) §3.7), in the pipeline as §3.2 said they must be. Nothing in the
 contract changed. The title that was a file name belonged to a duplicate: W-000746 was a second
-copy of W-000237's preprint, and merges into it, so the corpus is 338 works once the bump lands.
+copy of W-000237's preprint, and merged into it, so the corpus is 338 works from that run on.
 
 **Every figure in this document was measured against the committed store on 2026-09-20**
 (339 works, rule version `2026-09-20.1`). Figures move as the store grows; the definitions do
