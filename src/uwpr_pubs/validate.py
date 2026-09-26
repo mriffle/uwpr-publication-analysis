@@ -263,19 +263,18 @@ def validate_store(store: Path, overrides_path: Path | None = None) -> Report:  
         override_target = override.get("target")
         targets = override_target if isinstance(override_target, list) else [override_target]
         for item in targets:
-            if not isinstance(item, str):
+            # A target that is not a work ID is a schema error. A DOI or PMID target was once
+            # accepted here with a warning, and then ignored by the run (changed 2026-09-26).
+            if not isinstance(item, str) or not item.startswith("W-"):
                 continue
-            if item.startswith("W-"):
-                if item not in all_ids and item not in retired:
-                    report.error("overrides", f"{override.get('action')} target {item} does not resolve")
-                if override.get("action") == "merge" and item != targets[0] and item not in retired:
-                    # A merge that has not happened yet is the normal state between someone
-                    # editing overrides.yaml and the next run applying it. Treating it as an
-                    # error made stage 0 reject the very store the run was about to fix
-                    # (changed 2026-09-20); after the run, the warning is gone.
-                    report.warn("overrides", f"merge: {item} is not yet retired into {targets[0]}")
-            elif f"doi:{item}" not in aliases and f"pmid:{item}" not in aliases:
-                report.warn("overrides", f"{override.get('action')} target {item} not yet in the store")
+            if item not in all_ids and item not in retired:
+                report.error("overrides", f"{override.get('action')} target {item} does not resolve")
+            if override.get("action") == "merge" and item != targets[0] and item not in retired:
+                # A merge that has not happened yet is the normal state between someone
+                # editing overrides.yaml and the next run applying it. Treating it as an
+                # error made stage 0 reject the very store the run was about to fix
+                # (changed 2026-09-20); after the run, the warning is gone.
+                report.warn("overrides", f"merge: {item} is not yet retired into {targets[0]}")
 
     # metrics and generated content refer to included works and their records
     for name, line in metrics:

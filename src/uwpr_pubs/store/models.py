@@ -422,7 +422,7 @@ class Generated(TypedDict):
 
 
 class Override(TypedDict):
-    target: str | list[WorkId]
+    target: WorkId | list[WorkId]
     action: Literal["include", "exclude", "merge", "split"]
     reason: str
     by: str

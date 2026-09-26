@@ -95,3 +95,33 @@ def test_invalid_config_is_rejected_with_every_problem(config_dir: Path) -> None
 def test_missing_config_is_reported(tmp_path: Path) -> None:
     with pytest.raises(ConfigError, match="missing"):
         load_config(tmp_path / "config")
+
+
+def test_the_projects_overrides_load() -> None:
+    config = load_config(overrides_path=ROOT / "overrides.yaml")
+    assert [override["action"] for override in config.overrides] == ["merge", "exclude"]
+
+
+@pytest.mark.parametrize(
+    ("action", "target"),
+    [
+        ("exclude", "10.1021/acs.jproteome.5c00706"),
+        ("include", "'38665238'"),
+        ("merge", "[W-000329, 10.1101/2023.04.01.535000]"),
+    ],
+    ids=["doi", "pmid", "merge naming a doi"],
+)
+def test_an_override_must_name_work_ids(tmp_path: Path, action: str, target: str) -> None:
+    """The pipeline matches overrides by work ID alone, so any other target would do nothing.
+
+    Until 2026-09-26 the schema accepted a DOI or PMID, and such an entry was loaded, validated
+    and then silently ignored (docs/08 §8 item 2). Now the run stops before it starts.
+    """
+    overrides = tmp_path / "overrides.yaml"
+    overrides.write_text(
+        f"- target: {target}\n  action: {action}\n  reason: 'Checked by hand.'\n"
+        "  by: mriffle\n  date: 2026-09-26\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ConfigError, match=r"overrides\.yaml: schema: 0/target.*does not match"):
+        load_config(overrides_path=overrides)

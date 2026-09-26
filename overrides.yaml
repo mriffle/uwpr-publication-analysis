@@ -3,6 +3,7 @@
 # The only routine human input besides configuration. Overrides beat the rules, except R1: a
 # paper on UWPR's publications page cannot be excluded (Phase 1 §6.0). Each entry names the
 # person who decided and the date, because an override is a judgement, not a measurement.
+# Targets are work IDs; `uwpr-pubs explain <DOI|PMID>` gives a paper's.
 - target: [W-000329, W-000735]
   action: merge
   reason: >-

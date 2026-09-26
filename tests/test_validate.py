@@ -143,6 +143,11 @@ def _override_target_that_vanished(store: Path) -> None:
     (store.parent / "overrides.yaml").write_text(overrides.replace("W-000014", "W-000404"), encoding="utf-8")
 
 
+def _override_target_that_is_a_doi(store: Path) -> None:
+    overrides = (store.parent / "overrides.yaml").read_text(encoding="utf-8")
+    (store.parent / "overrides.yaml").write_text(overrides.replace("W-000014", "10.1234/x"), encoding="utf-8")
+
+
 MUTATIONS: list[tuple[str, Callable[[Path], None], str]] = [
     ("file name does not match id", _rename_work, "file name does not match id"),
     ("work in two places", _duplicate_into_candidates, "present in both works/ and candidates.jsonl"),
@@ -160,6 +165,7 @@ MUTATIONS: list[tuple[str, Callable[[Path], None], str]] = [
     ("malformed json", _malformed_json, "invalid JSON"),
     ("generated for excluded work", _generated_for_an_excluded_work, "work that is not included"),
     ("override target gone", _override_target_that_vanished, "does not resolve"),
+    ("override target a doi", _override_target_that_is_a_doi, "0/target: '10.1234/x' does not match"),
 ]
 
 
