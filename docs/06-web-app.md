@@ -127,6 +127,22 @@ deliberately, dated, and noted in this header.
   rather than a filter. It narrows no publication, so clearing the filter keeps it, and it
   travels with the query string across the switch. Every existing URL and every existing
   sentence is unchanged, since the new parameters appear only when set.
+- *2026-09-26, §11.3 and §12.1, the funding aggregates, and a second cross-check*
+  ([09](09-funding-impact.md) §11.6, §11.7, §12.5–12.7). `aggregate/` gains `funding.ts`: every
+  figure, series and page fact the Funding impact view, the agency page and the grant page will
+  show, as pure functions over the filtered works, the funding index and the selection, all
+  starting from the scope rule in `filter/funding.ts` rather than restating it. A generic
+  `stack.ts` draws "the five largest, one pinned series, then Other", which the funding charts
+  need twice; `areas.ts` keeps its own copy, unchanged. Every dollar figure carries its unknown
+  count beside it, and a view reads it through one function that gives null, never 0, when no
+  amount is known. **§12.1 gains the funding cross-check.** `summarizeFunding` must equal the
+  export's `funding.summary` field for field, and each grant's first year, recomputed from the
+  works, must equal its exported `first_year`. The summary cross-check is only worth what it
+  covers, and a second summary computed apart from the views would check itself. So
+  `summarizeFunding` is built from the same functions the views draw, and a definition that
+  drifts on the page fails the check. It runs on the sample export, whose funding is synthetic,
+  because the test builders' summaries are zeros. With no funding data it returns the summary
+  of none. Nothing on the page changes.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -575,7 +591,7 @@ web/
   src/
     main.tsx, App.tsx
     contract/        types generated from schemas/ (B3); the loader and version check
-    aggregate/       pure functions: every metric in 05 §5, and every chart's series
+    aggregate/       pure functions: every metric in 05 §5, every chart's series, 09's funding figures
     filter/          filter state, URL encoding, predicate building
     charts/          the shared kit, then one module per chart
     views/           overview, publication detail, method, lookup
@@ -601,6 +617,7 @@ of the generic ones.
 | Check | What it catches |
 |---|---|
 | **The summary cross-check.** The app's unfiltered aggregates must equal the exported `summary` block, which the pipeline computes independently ([05](05-metrics-and-data-contract.md) §1.2). | A metric implemented to a different definition than the pipeline used. This is the single highest-value test in the suite: two independent computations of the same number. |
+| **The funding cross-check.** The app's unfiltered funding figures (`summarizeFunding`) must equal the exported `funding.summary`, field for field, and every grant's first year, recomputed from the works, its `first_year` ([09](09-funding-impact.md) §11.6, §11.7). It is built from the functions the funding views draw. | The same fault in the funding figures. A grant counted twice, an unknown amount summed as $0, an investigator keyed differently, or a first year read from the export instead of recomputed would each show here. |
 | **The sample export validates against its JSON Schema**, and the app's types are generated from that schema. | Contract drift. A pipeline change the app does not handle becomes a build failure, not a broken page. |
 | **Every case in [05](05-metrics-and-data-contract.md) §13 renders.** Preprint-only; a merged pair; evidence with no excerpt, in both of its forms; an override with attribution; no open-access link; no field-weighted impact; retracted; one author; more than fifty; an unresolved affiliation; a retired identifier in the alias map. | The states that exist in the data but are rare enough that nobody meets them while developing. The retraction case in particular **has no instance in the real store**, so only the sample exercises it — and citation metadata refreshes weekly, so a real one can appear any week. |
 

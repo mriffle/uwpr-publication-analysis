@@ -277,6 +277,48 @@ plan. [08](08-implementation.md) records them as they are built.
     probes), NSF, PubMed and Crossref once each, USAspending twice and OpenAlex twice.
   - **Stage 11** exports the stage's funding with the run's aliases, and `as_of` is the run's date
     when it made a full refresh — what a rebuild from the store reads back from its manifest.
+- *2026-09-26, W5 — the funding figures and series (§12.5–12.7) as computed, where they were
+  silent.* `web/src/aggregate/funding.ts` holds them, and W6–W8 draw them:
+  - **Miscellaneous is counted apart from every grant figure but two.** An unmatched number is
+    not known to be a grant of any agency, kind or value. So "grants listed", the count with no
+    known amount beside the total, the agencies, investigators and organisations, the grant
+    types and the value over time are all over the grants not in Miscellaneous, and the
+    unmatched numbers are stated beside them. Only two figures count them. The funding
+    sentence's "*N* grants listed on *K* of …" counts every grant in scope and every publication
+    listing one, as W4 built it. And new grants by agency draws them as their pinned series. The
+    grant-types chart leaves them out of "other", although §11.4 writes their category as
+    `other`. On valid data this changes no sum, since a Miscellaneous grant has no amount (§11.7).
+  - **No series is drawn at $0.** Value by agency stacks known amounts only. An agency whose every
+    amount is unknown, and Miscellaneous, have nothing to stack and get no series. The unknown
+    count is stated beside the chart, as §12.11 rule 3 asks. It defaults to single years, the
+    Total view's frame, and new grants by agency to three-year buckets.
+  - **The agency ranking** keeps Miscellaneous out of the ranked list, as its own row. Agencies
+    tie-break on the other measure, then the label. The bars rank root agencies, which the
+    agency filter takes. The table's "parent" column reads each grant's own agency, so it ranks
+    at that level (NIGMS, with parent NIH).
+  - **Coverage follows the scope,** so it adds up with *K* of *N*. "Publications with none" means
+    none in scope, not "no funding metadata". The contract carries that only as the method
+    page's corpus-wide `works_without_funding_metadata`, so there is no fourth, "not available"
+    segment. "How many amounts start at FY1985" counts grants flagged `starts_before_fy1985`.
+  - **The institution-wide position** counts as *included* while the toggle is on, or while a
+    grant is selected, since the selection overrides it. When they are excluded, the awards "left
+    out" are what the include position would add under the same filter.
+  - **The agency page** shows an "assigned to no institute" remainder only for an agency with
+    children, and only when some grant is its own. It lists children by value, and its
+    publications newest first, as the explorer does. **The grant page** takes its partial fiscal
+    year from RePORTER's source, since `fiscal_years` is RePORTER's alone. It shows the fiscal
+    years the export holds, a null year as "no amount reported", and invents no year. It finds its
+    source by the name `amount_source` gives.
+  - **The summary is recomputed from the view's own functions.** `summarizeFunding` uses the
+    scope, figures, coverage, agency ranking and first-year increments the views use, so the
+    cross-check tests what the page shows. The app finds Miscellaneous by `group`, and the
+    summary counts `status`. So the check also holds the two equal, as the schema says they are.
+    `amount_usd_nih` and `nih_grants` read the root agency coded `NIH`, the pipeline's own
+    constant.
+  - **Names are keyed as the pipeline keys them.** JavaScript has no `casefold`, so `toLowerCase`
+    is followed by the full foldings a name plausibly carries: ß and ẞ become "ss", and final
+    sigma becomes σ. Whitespace is split as Python's `str.split()` splits it, not as `\s`. A test
+    holds the result to Python's output for each case.
 
 ---
 
