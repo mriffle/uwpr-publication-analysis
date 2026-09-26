@@ -276,28 +276,101 @@ def test_merging_is_stable_when_nothing_changed() -> None:
     assert once.evidence == twice.evidence == stored
 
 
-def test_r1_takes_its_dates_from_the_official_list_entry() -> None:
-    """The entry's exact dates, so "listed from X to Y" stays true (docs/02 §7)."""
+def detail_of(entry: Evidence) -> dict[str, Any]:
+    return cast(dict[str, Any], entry["detail"])
+
+
+def listing(first_seen: str, last_seen: str) -> Evidence:
+    """An R1 entry. Its detail carries the dates of the list entry it came from."""
     detail = {"list_key": "list:2026:abc123456789", "page": "2026"}
-    stored = evidence(
+    return evidence(
         "R1",
         section="official list",
         excerpt=None,
         criterion=1,
-        detail={**detail, "first_seen": "2026-06-01", "last_seen": "2026-09-12"},
-        first_seen="2026-06-01",
-        last_seen="2026-09-12",
+        detail={**detail, "first_seen": first_seen, "last_seen": last_seen},
+        first_seen=first_seen,
+        last_seen=last_seen,
     )
-    fresh = evidence(
-        "R1",
-        section="official list",
-        excerpt=None,
-        criterion=1,
-        detail={**detail, "first_seen": "2026-06-01", "last_seen": TODAY},
-        first_seen="2026-06-01",
-        last_seen=TODAY,
-    )
-    outcome = merge([stored], [fresh], V1)
-    entry = outcome.evidence[0]
+
+
+def test_r1_follows_the_28_day_rule_while_the_paper_is_listed() -> None:
+    """The list entry moves every week; the work file does not (docs/02 §15, changed 2026-09-26).
+
+    Copying the entry's exact dates rewrote all 306 listed work files on every run.
+    """
+    stored = listing("2026-06-01", "2026-09-12")
+    outcome = merge([stored], [listing("2026-06-01", TODAY)], V1)
+    assert outcome.evidence == [stored]
+
+    stale = listing("2026-06-01", "2026-08-01")
+    entry = merge([stale], [listing("2026-06-01", TODAY)], V1).evidence[0]
     assert entry["first_seen"] == "2026-06-01"
-    assert entry["last_seen"] == TODAY  # exact, not held back by the 28-day rule
+    assert entry["last_seen"] == detail_of(entry)["last_seen"] == TODAY
+
+
+def test_r1_takes_the_entrys_last_day_exactly_once_it_leaves_the_list() -> None:
+    """ "Listed from X to Y" is true to the day where it matters (docs/02 §7)."""
+    stored = listing("2026-06-01", "2026-08-30")  # held back by the 28-day rule
+    gone = listing("2026-06-01", "2026-09-14")  # the entry's own last day, a week before TODAY
+    entry = merge([stored], [gone], V1).evidence[0]
+    assert entry["first_seen"] == "2026-06-01"
+    assert entry["last_seen"] == detail_of(entry)["last_seen"] == "2026-09-14"
+    assert entry["source"] == stored["source"]  # nothing was retrieved for it this run
+
+
+def test_r1_is_left_alone_when_the_list_could_not_be_fetched() -> None:
+    """§9: R1 is rebuilt from the stored list, whose frozen dates must not read as a delisting."""
+    stored = listing("2026-06-01", "2026-08-30")
+    rebuilt = listing("2026-06-01", "2026-09-14")
+    outcome = merge([stored], [rebuilt], V1, degraded_rules=frozenset({"R1"}))
+    assert outcome.untouched
+    assert outcome.evidence == [stored]
+
+
+def test_r6s_query_date_is_when_we_looked_not_what_we_found() -> None:
+    """It moves with `last_seen` under P11, and never on its own (docs/02 §15)."""
+
+    def r6(query_date: str, last_seen: str) -> Evidence:
+        entry = evidence(
+            "R6",
+            section="full-text index",
+            excerpt=None,
+            detail={"phrase": "UWPR95794", "query_date": query_date},
+            criterion=2,
+            first_seen="2026-06-01",
+            last_seen=last_seen,
+        )
+        entry["source"] = {"name": "OpenAlex", "url": "https://q", "retrieved": query_date, "cache": None}
+        return entry
+
+    stored = r6("2026-09-12", "2026-09-12")
+    assert merge([stored], [r6(TODAY, TODAY)], V1).evidence == [stored]
+
+    refreshed = merge([r6("2026-08-01", "2026-08-01")], [r6(TODAY, TODAY)], V1).evidence[0]
+    assert refreshed["last_seen"] == detail_of(refreshed)["query_date"] == TODAY
+    assert refreshed["source"]["retrieved"] == TODAY
+    assert refreshed["first_seen"] == "2026-06-01"
+
+
+def test_a_refresh_keeps_the_source_a_reason_was_found_in() -> None:
+    """An R5 affiliation found in the PMC text is repeated every week by OpenAlex's strings.
+
+    Same reason, same identity, different source. The first live refresh swapped six of them from
+    PMC to OpenAlex, losing the cache pointer to the text they were read from.
+    """
+    stored = evidence("R5", section="affiliation", last_seen="2026-08-01")
+    repeated = evidence("R5", section="affiliation", last_seen=TODAY)
+    repeated["source"] = {
+        "name": "OpenAlex",
+        "url": "https://api.openalex.org/works/W1",
+        "retrieved": TODAY,
+        "cache": None,
+    }
+    entry = merge([stored], [repeated], V1).evidence[0]
+    assert entry["last_seen"] == TODAY
+    assert entry["source"] == stored["source"]
+
+    same = evidence("R5", section="affiliation", last_seen=TODAY)
+    same["source"] = {**stored["source"], "retrieved": TODAY}
+    assert merge([stored], [same], V1).evidence[0]["source"] == {**stored["source"], "retrieved": TODAY}

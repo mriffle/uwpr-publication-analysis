@@ -31,10 +31,16 @@ from uwpr_pubs.store.models import (
 EXCERPT_LIMIT = 300  # docs/02 §5.3 says "at most about 300 characters"; the schema allows 400
 ELLIPSIS = "…"
 
-# R1 is the one rule whose dates are not the run's: they are the official-list entry's own
-# first and last seen, kept exactly (docs/02 §7, as changed 2026-09-19), so that "listed from X
-# to Y" stays true to the day even though everything else follows the 28-day rule.
+# R1 is the one rule whose dates are not the run's: they are the official-list entry's own. While
+# the entry is listed its `last_seen` follows the 28-day rule like every other date in a work
+# file, and once it has gone the evidence takes the entry's exact last day (docs/02 §7), so
+# "listed from X to Y" is true to the day where it matters (changed 2026-09-26).
 DATES_FROM_SOURCE = frozenset({"R1"})
+
+# Dates inside `detail` that record when the run looked rather than what it found. They are not
+# content, and they move only when `last_seen` does, or every weekly run would rewrite every file
+# that carries them (docs/02 §15).
+LOOKED_ON = {"R1": ("last_seen",), "R6": ("query_date",)}
 
 
 def normalise_excerpt(text: str) -> str:
@@ -140,13 +146,46 @@ def advance_last_seen(stored: Date, today: Date, refresh_days: int) -> Date:
 
 def _content(entry: Mapping[str, Any]) -> tuple[Any, ...]:
     """The parts that make one entry materially different from another."""
+    looked_on = LOOKED_ON.get(entry["rule"], ())
+    detail = {name: value for name, value in (entry.get("detail") or {}).items() if name not in looked_on}
     return (
         entry.get("label"),
         entry.get("excerpt"),
         entry.get("section"),
         entry.get("criterion"),
-        tuple(sorted((entry.get("detail") or {}).items())),
+        tuple(sorted(detail.items())),
     )
+
+
+def _reproduced_last_seen(stored: Evidence, fresh: Evidence, today: Date, refresh_days: int) -> Date:
+    """P11 for every rule; R1 also takes the entry's own last day once it has left the list."""
+    if stored["rule"] in DATES_FROM_SOURCE and fresh["last_seen"] < today:
+        return fresh["last_seen"]
+    return advance_last_seen(stored["last_seen"], today, refresh_days)
+
+
+def _looked_on(merged: dict[str, Any], fresh: Evidence, *, refreshed: bool, last_seen: Date) -> None:
+    """Move the dates that say when we looked, and only with `last_seen` (docs/02 §15).
+
+    A refresh takes this run's detail dates, and its `retrieved` date when it looked at the same
+    source; otherwise the stored ones stand. One reason can arrive from two sources — an R5
+    affiliation is in the PMC text and in OpenAlex's strings — and the refresh must not trade the
+    source it was found in for the one that happened to repeat it. R1's detail carries the same
+    dates as the entry itself, so its `last_seen` is kept in step either way.
+    """
+    source, looked = merged["source"], fresh["source"]
+    if refreshed and (source["name"], source["url"]) == (looked["name"], looked["url"]):
+        merged["source"] = {**source, "retrieved": looked["retrieved"]}
+    looked_on = LOOKED_ON.get(fresh["rule"], ())
+    if not looked_on:
+        return
+    detail = dict(merged.get("detail") or {})
+    for name in looked_on:
+        if fresh["rule"] in DATES_FROM_SOURCE:
+            detail[name] = last_seen
+        elif refreshed:
+            detail[name] = (fresh.get("detail") or {}).get(name)
+    merged["detail"] = detail
 
 
 @dataclass(frozen=True)
@@ -198,14 +237,19 @@ def merge_evidence(
         fresh = derived_by_key.get(key)
         blocked = (entry.get("record") in unevaluated_records) or (entry["rule"] in degraded_rules)
 
-        if fresh is not None:
-            merged = dict(fresh) if _content(fresh) != _content(entry) else dict(entry)
-            if entry["rule"] in DATES_FROM_SOURCE:
-                merged["first_seen"] = fresh["first_seen"]
-                merged["last_seen"] = fresh["last_seen"]
-            else:
-                merged["first_seen"] = entry["first_seen"]
-                merged["last_seen"] = advance_last_seen(entry["last_seen"], today, refresh_days)
+        # A degraded rule's entries are left alone even when something re-derived them: R1 is
+        # rebuilt from the stored list when the list cannot be fetched, and its entries' frozen
+        # dates would otherwise read as every paper leaving the list (§9).
+        if fresh is not None and entry["rule"] not in degraded_rules:
+            changed = _content(fresh) != _content(entry)
+            merged = dict(fresh) if changed else dict(entry)
+            last_seen = _reproduced_last_seen(entry, fresh, today, refresh_days)
+            refreshed = not changed and last_seen == today and entry["last_seen"] != today
+            _looked_on(merged, fresh, refreshed=refreshed, last_seen=last_seen)
+            merged["first_seen"] = (
+                fresh["first_seen"] if entry["rule"] in DATES_FROM_SOURCE else entry["first_seen"]
+            )
+            merged["last_seen"] = last_seen
             merged["rule_version"] = rule_version
             merged.pop("superseded", None)
             result.append(cast(Evidence, merged))

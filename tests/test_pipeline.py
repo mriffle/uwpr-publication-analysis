@@ -15,10 +15,11 @@ from uwpr_pubs import pipeline as pipeline_module
 from uwpr_pubs.cache import Cache
 from uwpr_pubs.config import load_config
 from uwpr_pubs.context import RunContext
-from uwpr_pubs.http import Budget, HttpClient, Mode, RateLimiter, Response
+from uwpr_pubs.http import Budget, HttpClient, HttpError, Mode, RateLimiter, Response
 from uwpr_pubs.pipeline import RunOptions, run_pipeline
 from uwpr_pubs.schemas import schema_errors
-from uwpr_pubs.stages.export import export_dir
+from uwpr_pubs.sources.uwpr_site import UwprSite
+from uwpr_pubs.stages.export import build_from_store, export_dir, resource_block
 from uwpr_pubs.stages.export import read as read_export
 from uwpr_pubs.store import io
 from uwpr_pubs.validate import validate_export, validate_store
@@ -422,6 +423,137 @@ def test_a_second_run_the_same_day_changes_no_data(client: HttpClient, tmp_path:
     do_run(client, store)
     after = {p: p.read_bytes() for p in sorted(store.rglob("*")) if p.is_file() and "runs" not in p.parts}
     assert before == after
+
+
+def _weekly_data(store: Path) -> dict[Path, bytes]:
+    """What a week's run on unchanged sources must leave alone (docs/02 §15)."""
+    kept = [*(store / "works").glob("*.json"), store / "candidates.jsonl", store / "aliases.json"]
+    return {path: path.read_bytes() for path in sorted(kept)}
+
+
+def test_a_run_a_week_later_rewrites_no_work_file(client: HttpClient, tmp_path: Path) -> None:
+    """Only the list entries, metrics and runs change a week later (docs/02 §15).
+
+    Every run before 2026-09-26 was on the seed's own day, so nothing showed that each one
+    rewrote all 339 work files and all 477 candidate lines with the day's date.
+    """
+    store = tmp_path / "store"
+    do_run(client, store)
+    before = _weekly_data(store)
+
+    result = do_run(client, store, day="2026-09-28")
+
+    assert result.status == "ok", result.errors
+    assert _weekly_data(store) == before
+
+    # The export changes every run anyway, so it says the dates the work files hold back: the list
+    # entry's exact last day, and the day this run read each source. A rebuild from the store
+    # must say the same, or CI's freshness check fails (docs/07 §3).
+    document, lookup = read_export(export_dir(store))
+    listed = [e for work in document["works"] for e in work["evidence"] if e["rule"] == "R1"]
+    assert listed
+    assert {(e["last_seen"], e["detail"]["last_seen"]) for e in listed} == {("2026-09-28", "2026-09-28")}
+    assert document["method"]["sources_last_read"]["OpenAlex"] == "2026-09-28"
+    config = load_config()
+    assert build_from_store(store, resource_block(config), channels=config.channels) == (document, lookup)
+
+
+def test_the_dates_move_once_they_are_28_days_old(client: HttpClient, tmp_path: Path) -> None:
+    """P11's monthly refresh: the dates that say when we looked all move, together."""
+    store = tmp_path / "store"
+    do_run(client, store)
+    later = "2026-10-19"  # 28 days after TODAY
+
+    do_run(client, store, day=later)
+
+    works = [io.read_json(path) for path in sorted((store / "works").glob("W-*.json"))]
+    listed = [e for work in works for e in work["evidence"] if e["rule"] == "R1"]
+    assert listed
+    assert {(e["last_seen"], e["detail"]["last_seen"]) for e in listed} == {(later, later)}
+    assert {d["last_seen"] for work in works for d in work["discovery"]} == {later}
+    assert {r["sources"]["openalex"] for work in works for r in work["records"] if r["ids"]["openalex"]} == {
+        later
+    }
+    assert {work["updated"] for work in works} == {later}
+    assert {line["last_seen"] for line in io.read_jsonl(store / "candidates.jsonl")} == {later}
+
+
+def test_a_candidate_is_not_read_again_every_week(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """§6.1: text is read when a record is new, due a recheck, or the rules changed.
+
+    A candidate line keeps one text status for the line, and nothing put it back on the record, so
+    every re-nominated candidate looked new and was fetched again on every run. Reading it again
+    was also what kept its PMCID, which only the ID converter knows: once it stopped, 304 of 477
+    candidates lost theirs, until their identifiers accumulated like an included work's.
+    """
+    monkeypatch.setitem(PMCIDS, UNLISTED_PMID, "PMC1000004")
+    asked: list[str] = []
+
+    def transport(
+        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+    ) -> Response:
+        asked.append(url)
+        return route(url, params)
+
+    def fresh_client(cache: str) -> HttpClient:  # a cold cache, as on every CI runner
+        return HttpClient(
+            contact="mriffle@uw.edu",
+            user_agent="uwpr-pubs/test",
+            mode=Mode.LIVE,
+            cache=Cache(tmp_path / cache),
+            budget=Budget(max_run_usd=0.5, min_remaining_usd=0.1),
+            rate_limiter=RateLimiter({}),
+            transport=transport,
+            sleep=lambda _: None,
+            now=lambda: f"{TODAY}T00:00:00Z",
+        )
+
+    store = tmp_path / "store"
+    do_run(fresh_client("first"), store)
+    candidates = io.read_jsonl(store / "candidates.jsonl")
+    assert any((line["fulltext"] or {}).get("checked") for line in candidates)
+    assert any(
+        record["ids"].get("pmcid") == "PMC1000004" for line in candidates for record in line["records"]
+    )
+    asked.clear()
+
+    do_run(fresh_client("second"), store, day="2026-09-28")
+
+    assert not [url for url in asked if "efetch" in url or "fullTextXML" in url]
+    assert io.read_jsonl(store / "candidates.jsonl") == candidates
+
+
+def test_a_list_that_cannot_be_fetched_leaves_r1_as_it_was(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """§9: R1 is rebuilt from the stored list, and its frozen dates must not read as a delisting.
+
+    It takes two good runs to set this up: after the second, the entries say 2026-09-28 while R1,
+    held back by the 28-day rule, still says 2026-09-21. Read as a delisting, the outage would move
+    every R1 entry to the entries' last day.
+    """
+    store = tmp_path / "store"
+    do_run(client, store)
+    do_run(client, store, day="2026-09-28")
+
+    def r1_entries() -> list[Any]:
+        works = [io.read_json(path) for path in sorted((store / "works").glob("W-*.json"))]
+        return [e for work in works for e in work["evidence"] if e["rule"] == "R1"]
+
+    before = r1_entries()
+    assert {e["last_seen"] for e in before} == {TODAY}
+    assert {e["last_seen"] for e in io.read_jsonl(store / "official_list" / "entries.jsonl")} == {
+        "2026-09-28"
+    }
+
+    def down(self: Any) -> Any:
+        raise HttpError("pretend outage", status=503)
+
+    monkeypatch.setattr(UwprSite, "entries", down)
+    result = do_run(client, store, day="2026-10-05")
+
+    assert result.status == "degraded"
+    assert r1_entries() == before
 
 
 def test_a_run_never_deletes_what_it_did_not_generate(client: HttpClient, tmp_path: Path) -> None:

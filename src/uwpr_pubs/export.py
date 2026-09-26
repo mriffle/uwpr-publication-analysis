@@ -19,7 +19,7 @@ The export is a *projection* of the store, not a copy. Three rules govern what c
 
 import statistics
 from collections.abc import Iterable, Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, NotRequired, TypedDict
 
 from uwpr_pubs.store.models import (
@@ -306,6 +306,12 @@ class ExportMeta:
     citation_note: str = (
         "Citation counts come from OpenAlex and differ from Google Scholar or Web of Science."
     )
+    # The work files hold these dates under the 28-day rule, so a weekly run need not rewrite
+    # them (docs/02 §15). The export changes every run anyway, so it can say them exactly:
+    # each list entry's own first and last seen, and the day this run read each source it
+    # queries afresh (docs/05, changed 2026-09-26).
+    listings: Mapping[str, tuple[Date, Date]] = field(default_factory=dict)
+    read_on: Mapping[str, Date] = field(default_factory=dict)
 
 
 # --- helpers -----------------------------------------------------------------------------------
@@ -408,7 +414,9 @@ def _export_venue(record: Record) -> ExportVenue | None:
     return {"name": venue["name"], "issn_l": venue.get("issn_l")}
 
 
-def _export_evidence(entry: Evidence, records: Mapping[RecordId, Record]) -> ExportEvidence:
+def _export_evidence(
+    entry: Evidence, records: Mapping[RecordId, Record], listings: Mapping[str, tuple[Date, Date]]
+) -> ExportEvidence:
     source = entry["source"]
     exported: ExportEvidence = {
         "rule": entry["rule"],
@@ -425,6 +433,12 @@ def _export_evidence(entry: Evidence, records: Mapping[RecordId, Record]) -> Exp
         "first_seen": entry["first_seen"],
         "last_seen": entry["last_seen"],
     }
+    listed = listings.get(str(exported["detail"].get("list_key"))) if entry["rule"] == "R1" else None
+    if listed is not None:
+        # "First on X and most recently on Y" (docs/06 §5) is the list entry's to say, exactly.
+        first, last = listed
+        exported["detail"] = {**exported["detail"], "first_seen": first, "last_seen": last}
+        exported["first_seen"], exported["last_seen"] = first, last
     # `record` is null only on override evidence, which applies to the whole work (docs/02 §5.3),
     # so there is no version to point at and the key is omitted rather than nulled.
     record_id = entry["record"]
@@ -447,7 +461,12 @@ def _citations(record_id: RecordId, metrics: Mapping[RecordId, MetricsLine], as_
     }
 
 
-def export_work(work: Work, metrics: Mapping[RecordId, MetricsLine], as_of: Date) -> ExportWork:
+def export_work(
+    work: Work,
+    metrics: Mapping[RecordId, MetricsLine],
+    as_of: Date,
+    listings: Mapping[str, tuple[Date, Date]] | None = None,
+) -> ExportWork:
     """One work, as the app sees it (docs/05 §4.3)."""
     canonical = canonical_record(work)
     records = {record["id"]: record for record in work["records"]}
@@ -493,7 +512,7 @@ def export_work(work: Work, metrics: Mapping[RecordId, MetricsLine], as_of: Date
         "citations": _citations(work["canonical"], metrics, as_of),
         "on_official_list": any(entry["rule"] == "R1" for entry in evidence),
         "criteria": sorted({e["criterion"] for e in evidence if e["criterion"] is not None}),
-        "evidence": [_export_evidence(entry, records) for entry in evidence],
+        "evidence": [_export_evidence(entry, records, listings or {}) for entry in evidence],
         "versions": [
             {
                 "kind": record["kind"],
@@ -575,7 +594,9 @@ def build_period(works: Sequence[ExportWork], run_year: int) -> ExportPeriod:
     }
 
 
-def build_method(works: Sequence[Work], exported: Sequence[ExportWork]) -> ExportMethod:
+def build_method(
+    works: Sequence[Work], exported: Sequence[ExportWork], read_on: Mapping[str, Date] | None = None
+) -> ExportMethod:
     """The aggregates the method page states (docs/05 §10).
 
     Full-text status is deliberately not exported per work (§4.3), but the *split* between a
@@ -610,6 +631,11 @@ def build_method(works: Sequence[Work], exported: Sequence[ExportWork]) -> Expor
             name, retrieved = entry["source"]["name"], entry["source"]["retrieved"]
             if name and retrieved and retrieved > last_read.get(name, ""):
                 last_read[name] = retrieved
+    # The evidence holds its `retrieved` dates under the 28-day rule (docs/02 §15), so a source
+    # this run queried afresh says so with the run's date. Only a source that produced evidence.
+    for name, date in (read_on or {}).items():
+        if name in last_read and date > last_read[name]:
+            last_read[name] = date
 
     return {
         "criteria": dict(sorted(criteria.items())),
@@ -639,7 +665,7 @@ def build_export(
     meta: ExportMeta,
 ) -> ExportDoc:
     by_record = {line["record"]: line for line in metrics}
-    exported = sort_works(export_work(work, by_record, meta.citations_as_of) for work in works)
+    exported = sort_works(export_work(work, by_record, meta.citations_as_of, meta.listings) for work in works)
     return {
         "schema_version": SCHEMA_VERSION,
         "generated_at": meta.generated_at,
@@ -653,7 +679,7 @@ def build_export(
         },
         "period": build_period(exported, meta.run_year),
         "summary": build_summary(exported),
-        "method": build_method(works, exported),
+        "method": build_method(works, exported, meta.read_on),
         "works": exported,
     }
 

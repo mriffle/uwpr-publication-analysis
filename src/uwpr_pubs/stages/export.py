@@ -10,7 +10,7 @@ store therefore writes a scratch export, and development never touches the repos
 """
 
 import json
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, cast
@@ -31,6 +31,7 @@ from uwpr_pubs.store.models import (
     Candidate,
     Date,
     DateTime,
+    ListEntry,
     MetricsLine,
     StaffKey,
     Work,
@@ -85,7 +86,44 @@ def resource_block(config: Config) -> ExportResource:
     }
 
 
-def meta_for(config: Config, context: RunContext, pipeline_version: str) -> ExportMeta:
+# Sources every run queries afresh (a full sweep, docs/03 P1), by the name their evidence gives
+# them, each with the degradations that mean it could not. PMC and Europe PMC are not here: a text
+# is read once and kept (docs/02 §12), so the date on its evidence is when it was read.
+QUERIED_EVERY_RUN = {
+    "OpenAlex": ("source:openalex",),
+    "Crossref": ("source:crossref",),
+    "PRIDE": ("source:pride",),
+    "UWPR website": ("source:uwpr_site", "stage:official_list"),
+}
+
+
+def read_on(
+    date: Date, degradations: Iterable[Mapping[str, Any]], channels: Iterable[Mapping[str, Any]]
+) -> dict[str, Date]:
+    """The sources this run read, and the day it read them.
+
+    A failed channel degrades as `channel:<id>`, so `channels.yaml` says which source it counts
+    against. PRIDE is reached through channel J alone, so without it a PRIDE outage would still
+    be dated as read.
+    """
+    source_of = {f"channel:{channel['id']}": f"source:{channel['source']}" for channel in channels}
+    down = {source_of.get(str(item["source"]), str(item["source"])) for item in degradations}
+    return {name: date for name, sources in QUERIED_EVERY_RUN.items() if down.isdisjoint(sources)}
+
+
+def listings(entries: Iterable[ListEntry]) -> dict[str, tuple[Date, Date]]:
+    """Each list entry's own dates, which `entries.jsonl` keeps exactly (docs/02 §7)."""
+    return {entry["key"]: (entry["first_seen"], entry["last_seen"]) for entry in entries}
+
+
+def meta_for(
+    config: Config,
+    context: RunContext,
+    pipeline_version: str,
+    *,
+    entries: Iterable[ListEntry] = (),
+    degradations: Iterable[Mapping[str, Any]] = (),
+) -> ExportMeta:
     return ExportMeta(
         run_id=context.run_id,
         generated_at=context.started_at,
@@ -94,6 +132,8 @@ def meta_for(config: Config, context: RunContext, pipeline_version: str) -> Expo
         run_year=int(context.date[:4]),
         citations_as_of=context.date,
         resource=resource_block(config),
+        listings=listings(entries),
+        read_on=read_on(context.date, degradations, config.channels),
     )
 
 
@@ -147,6 +187,7 @@ class StoreIdentity:
     pipeline_version: str
     rule_version: str
     citations_as_of: Date
+    degradations: tuple[Mapping[str, Any], ...] = ()
 
     @property
     def run_year(self) -> int:
@@ -165,6 +206,7 @@ def store_identity(snapshot: StoreSnapshot) -> StoreIdentity:
         pipeline_version=str(latest["code_version"]),
         rule_version=str(latest["rule_version"]),
         citations_as_of=max(dates) if dates else latest["started"][:10],
+        degradations=tuple(latest.get("degradations") or ()),
     )
 
 
@@ -189,6 +231,7 @@ def build_from_store(
     *,
     extra: Path | None = None,
     rule_version: str | None = None,
+    channels: Iterable[Mapping[str, Any]] = (),
 ) -> tuple[ExportDoc, LookupDoc]:
     """Build the two documents from a store on disk, without running the pipeline.
 
@@ -220,5 +263,7 @@ def build_from_store(
         run_year=identity.run_year,
         citations_as_of=identity.citations_as_of,
         resource=resource,
+        listings=listings(snapshot.entries),
+        read_on=read_on(identity.generated_at[:10], identity.degradations, channels),
     )
     return build_export(works, metrics, meta), build_lookup(snapshot.candidates, aliases, meta)

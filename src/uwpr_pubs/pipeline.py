@@ -21,7 +21,7 @@ from uwpr_pubs import __version__, git, versions
 from uwpr_pubs.channels import ALL_CHANNELS, ChannelRunner, DiscoveryResult, Nomination
 from uwpr_pubs.config import Config
 from uwpr_pubs.context import RunContext
-from uwpr_pubs.evidence import MergeContext, merge_evidence, override_evidence
+from uwpr_pubs.evidence import MergeContext, advance_last_seen, merge_evidence, override_evidence
 from uwpr_pubs.fixtures import evaluate
 from uwpr_pubs.fulltext import TextFetcher, TextResult, fulltext_field, needs_evaluation, recheck_after
 from uwpr_pubs.http import HttpClient, HttpError, Mode
@@ -82,6 +82,7 @@ from uwpr_pubs.store.models import (
     Candidate,
     CandidateRecord,
     ChannelRun,
+    Date,
     Discovery,
     Evidence,
     FullText,
@@ -91,6 +92,7 @@ from uwpr_pubs.store.models import (
     MetricsLine,
     Record,
     RecordId,
+    SourceKey,
     StaffKey,
     VersionMethod,
     Work,
@@ -170,6 +172,8 @@ class Draft:
     on_official_list: bool = False
     is_new: bool = False
     evaluated: bool = False  # §6.4: a work not re-evaluated keeps the signals it had
+    stored_text: tuple[RecordId, FullText] | None = None  # a candidate line's text, and its record
+    stored_line: Candidate | None = None
 
     def record_for_ids(self, ids: Ids) -> RecordId | None:
         """The record these identifiers already belong to, if any.
@@ -235,6 +239,7 @@ class Pipeline:
         self.list_nominations: list[Nomination] = []
         self._unreachable: set[str] = set()  # sources that failed once; stage 6 stops asking
         self.crossref_payloads: dict[str, Mapping[str, Any]] = {}  # kept for stage 6's relations
+        self.list_failed = False  # stage 1 kept the stored list, so R1 must not move (§9)
 
     # --- stage 0 ---------------------------------------------------------------------------
 
@@ -325,10 +330,28 @@ class Pipeline:
                 stored_evidence=list(line.get("former_evidence") or []),
                 candidate_records=list(line["records"]),
                 stored_signals=list(line.get("signals") or []),
+                stored_text=self._stored_text(line),
+                stored_line=line,
                 created=line["first_seen"],
                 first_seen=line["first_seen"],
             )
         self.entries = {entry["key"]: entry for entry in snapshot.entries}
+
+    @property
+    def _refresh_days(self) -> int:
+        return int(self.config.settings["last_seen_refresh_days"])
+
+    @staticmethod
+    def _stored_text(line: Candidate) -> tuple[RecordId, FullText] | None:
+        """A candidate line's text status, and the record it belongs to: the lowest-numbered one.
+
+        The line keeps one status, not one per record (docs/02 §6), so the record it describes is
+        fixed by rule, and `_candidate_fulltext` writes it by the same rule.
+        """
+        fulltext = line.get("fulltext")
+        if not fulltext or not line["records"]:
+            return None
+        return min(record["id"] for record in line["records"]), fulltext
 
     # --- stage 1 ---------------------------------------------------------------------------
 
@@ -342,6 +365,7 @@ class Pipeline:
             found = site.entries()
         except HttpError as exc:
             self.recorder.degrade(stage_source("official_list"), f"fetch failed: {exc}")
+            self.list_failed = True
             return
 
         previous_total = len(self.entries)
@@ -351,6 +375,7 @@ class Pipeline:
                 stage_source("official_list"),
                 f"parsed {len(found)} entries, down from {previous_total}; keeping the stored list",
             )
+            self.list_failed = True
             return
 
         seen: set[str] = set()
@@ -497,17 +522,7 @@ class Pipeline:
             record_id = self._record_for(draft, payload)
             draft.payloads[record_id] = payload
             for nomination in group:
-                key = (nomination.channel, record_id)
-                existing = draft.discovery.get(key)
-                draft.discovery[key] = cast(
-                    Discovery,
-                    {
-                        "channel": nomination.channel,
-                        "record": record_id,
-                        "first_seen": existing["first_seen"] if existing else self.context.date,
-                        "last_seen": self.context.date,
-                    },
-                )
+                self._discovered(draft, nomination.channel, record_id)
                 if nomination.source == "crossref":
                     self._crossref_evidence(draft, record_id, nomination.payload)
                     crossref_doi = nomination.payload.get("DOI")
@@ -613,6 +628,32 @@ class Pipeline:
         self.drafts[minted] = draft
         return draft
 
+    def _discovered(self, draft: Draft, channel: str, record_id: RecordId) -> None:
+        """A channel named this record this run. `last_seen` moves under P11, not weekly."""
+        existing = draft.discovery.get((channel, record_id))
+        draft.discovery[(channel, record_id)] = cast(
+            Discovery,
+            {
+                "channel": channel,
+                "record": record_id,
+                "first_seen": existing["first_seen"] if existing else self.context.date,
+                "last_seen": (
+                    advance_last_seen(existing["last_seen"], self.context.date, self._refresh_days)
+                    if existing
+                    else self.context.date
+                ),
+            },
+        )
+
+    def _consulted(
+        self, stored: Mapping[SourceKey, Date], fresh: Mapping[SourceKey, Date]
+    ) -> dict[SourceKey, Date]:
+        """`records[].sources`: when each source was last asked, advanced under P11 like `last_seen`."""
+        return {
+            name: advance_last_seen(stored[name], date, self._refresh_days) if name in stored else date
+            for name, date in fresh.items()
+        }
+
     def _record_for(self, draft: Draft, payload: Mapping[str, Any]) -> RecordId:
         ids = ids_from_openalex(payload)
         existing = draft.record_for_ids(ids)
@@ -629,10 +670,31 @@ class Pipeline:
             record["fulltext"] = stored["fulltext"]  # stage 4 owns the text
             record["version_link"] = stored["version_link"]  # stage 6 owns the link
             record["ids"] = merge_ids(stored["ids"], record["ids"])
+            record["sources"] = self._consulted(stored["sources"], record["sources"])
+        else:
+            carried = next((c for c in draft.candidate_records if c["id"] == existing), None)
+            if carried is not None:
+                # A candidate's identifiers accumulate too. Its PMCID comes from the ID converter,
+                # which only runs on records being read, and OpenAlex does not carry it.
+                record["ids"] = merge_ids(carried["ids"], record["ids"])
+            if self._restores_text(draft, record_id):
+                # A candidate line keeps its text status, not its records' (docs/02 §6). Without it
+                # back, every re-nominated candidate looked new and was read again every week.
+                record["fulltext"] = cast(Any, draft.stored_text)[1]
         draft.records[record_id] = record
         for key in external_keys(record["ids"]):
             self.aliases[key] = draft.id
         return record_id
+
+    def _restores_text(self, draft: Draft, record_id: RecordId) -> bool:
+        """Only under the rules it was read with: a rule change re-reads every record (§6.1 item 3)."""
+        line = draft.stored_line
+        return bool(
+            draft.stored_text
+            and draft.stored_text[0] == record_id
+            and line
+            and line["rule_version"] == self.config.rule_version
+        )
 
     def _openalex_evidence(self, draft: Draft, record: RecordId, payload: Mapping[str, Any]) -> None:
         evidence = award_code_in_metadata(
@@ -723,15 +785,7 @@ class Pipeline:
         draft = self._draft_for(by_identifier(ids_from_openalex(payload), self.aliases))
         record_id = self._record_for(draft, payload)
         draft.payloads[record_id] = payload
-        draft.discovery[("A", record_id)] = cast(
-            Discovery,
-            {
-                "channel": "A",
-                "record": record_id,
-                "first_seen": self.context.date,
-                "last_seen": self.context.date,
-            },
-        )
+        self._discovered(draft, "A", record_id)
         self._openalex_evidence(draft, record_id, payload)
         self.recorder.note(f"list entry {entry['key']} identified by title search")
         return draft.id
@@ -1414,8 +1468,9 @@ class Pipeline:
         merge_context = MergeContext(
             rule_version=self.config.rule_version,
             today=self.context.date,
-            refresh_days=int(self.config.settings["last_seen_refresh_days"]),
+            refresh_days=self._refresh_days,
             unevaluated_records=frozenset(self.unevaluated),
+            degraded_rules=frozenset({"R1"}) if self.list_failed else frozenset(),
         )
         works: list[Work] = []
         candidates: list[Candidate] = []
@@ -1478,6 +1533,16 @@ class Pipeline:
         return canonical
 
     def _work_file(self, draft: Draft, evidence: list[Evidence], canonical: RecordId, status: Status) -> Work:
+        work = self._work_body(draft, evidence, canonical, status)
+        # `updated` is when the file last changed, so a run that changes nothing else leaves it.
+        stored = self.snapshot.works.get(draft.id) if self.snapshot else None
+        if stored is not None and io.canonical_json(
+            {**work, "updated": stored["updated"]}
+        ) == io.canonical_json(stored):
+            return cast(Work, {**work, "updated": stored["updated"]})
+        return work
+
+    def _work_body(self, draft: Draft, evidence: list[Evidence], canonical: RecordId, status: Status) -> Work:
         records = io.sort_records(list(draft.records.values()))
         if draft.is_new:
             self.recorder.added.append(draft.id)
@@ -1520,7 +1585,11 @@ class Pipeline:
             "fulltext": self._candidate_fulltext(draft),
             "rule_version": self.config.rule_version,
             "first_seen": draft.first_seen or self.context.date,
-            "last_seen": self.context.date,
+            "last_seen": (
+                advance_last_seen(draft.stored_line["last_seen"], self.context.date, self._refresh_days)
+                if draft.stored_line
+                else self.context.date
+            ),
         }
         if status.reason_detail:
             line["reason_detail"] = status.reason_detail
@@ -1580,9 +1649,14 @@ class Pipeline:
                 )
 
     def _candidate_fulltext(self, draft: Draft) -> FullText | None:
-        """The canonical record's text status, so "no evidence" is distinct from "unreadable"."""
-        for record_id in sorted(draft.records):
-            return draft.records[record_id]["fulltext"]
+        """The text status of the line's lowest-numbered record, so "no evidence" is distinct from
+        "unreadable". The same record `_stored_text` gives it back to when the line is read again.
+        """
+        owner = min([*draft.records, *(record["id"] for record in draft.candidate_records)], default=None)
+        if owner in draft.records:
+            return draft.records[owner]["fulltext"]
+        if draft.stored_text and draft.stored_text[0] == owner:
+            return draft.stored_text[1]
         return None
 
     def _metrics_for(self, draft: Draft) -> list[MetricsLine]:
@@ -1652,7 +1726,13 @@ class Pipeline:
         A bad export stops the run like a bad store does, so the previous one stays in place. The
         staged copy lives beside the staged store, and stage 13 moves both.
         """
-        meta = export_stage.meta_for(self.config, self.context, __version__)
+        meta = export_stage.meta_for(
+            self.config,
+            self.context,
+            __version__,
+            entries=self.entries.values(),
+            degradations=self.recorder.degradations,
+        )
         document, lookup = export_stage.build(works, candidates, metrics, self.aliases, meta)
         problems = export_stage.schema_problems(document, lookup)
         cross = validate_export(

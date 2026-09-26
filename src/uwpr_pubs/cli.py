@@ -169,7 +169,11 @@ def _export(args: argparse.Namespace) -> int:
     cases = Path(args.cases) if args.cases else None
     try:
         document, lookup = build_from_store(
-            Path(args.store), resource_block(config), extra=cases, rule_version=args.rule_version
+            Path(args.store),
+            resource_block(config),
+            extra=cases,
+            rule_version=args.rule_version,
+            channels=config.channels,
         )
     except NoRunError as exc:
         print(f"ERROR {exc}")

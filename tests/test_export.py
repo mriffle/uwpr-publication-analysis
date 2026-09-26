@@ -36,6 +36,7 @@ from uwpr_pubs.stages.export import (
     build_from_store,
     export_dir,
     read,
+    read_on,
     resource_block,
     schema_problems,
     store_identity,
@@ -733,3 +734,18 @@ def test_the_sample_store_identity_comes_from_its_own_manifest() -> None:
     assert identity.generated_at == "2026-09-19T00:00:00Z"
     assert identity.run_year == 2026
     assert identity.citations_as_of == "2026-09-19"
+
+
+def test_the_method_page_dates_a_source_the_run_read_with_the_runs_own_day() -> None:
+    """docs/05 §10, changed 2026-09-26: the evidence keeps `retrieved` under the 28-day rule, so a
+    source every run queries afresh is dated by the run, unless the run could not reach it."""
+    channels = load_config().channels
+    everything = read_on("2026-10-03", [], channels)
+    assert everything == {name: "2026-10-03" for name in ("OpenAlex", "Crossref", "PRIDE", "UWPR website")}
+
+    down = [
+        {"source": "channel:J", "cause": "PRIDE timed out"},  # PRIDE is reached through J alone
+        {"source": "stage:official_list", "cause": "fetch failed"},
+        {"source": "source:ncbi", "cause": "a text source; it has no run date to lose"},
+    ]
+    assert read_on("2026-10-03", down, channels) == {"OpenAlex": "2026-10-03", "Crossref": "2026-10-03"}
