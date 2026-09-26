@@ -5,6 +5,7 @@ import {
   EMPTY_FILTER,
   isUnfiltered,
   setOfficialList,
+  STRING_DIMENSIONS,
   setSearch,
   toggleCriterion,
   toggleString,
@@ -61,5 +62,25 @@ describe('filter state', () => {
     const state = setOfficialList(EMPTY_FILTER, false);
     expect(activeCount(state)).toBe(1);
     expect(activeCount(setOfficialList(state, null))).toBe(0);
+  });
+});
+
+describe('the funding dimensions (docs/09 §12.4)', () => {
+  it('are string dimensions, empty in the empty filter', () => {
+    expect(STRING_DIMENSIONS).toContain('agency');
+    expect(STRING_DIMENSIONS).toContain('grant');
+    expect(EMPTY_FILTER.agency).toEqual([]);
+    expect(EMPTY_FILTER.grant).toEqual([]);
+  });
+
+  it('toggle, accumulate and count like any other', () => {
+    let state = toggleString(EMPTY_FILTER, 'agency', 'NIH');
+    state = toggleString(state, 'agency', 'NSF');
+    state = toggleString(state, 'grant', 'NIH:R01GM086688');
+    expect(state.agency).toEqual(['NIH', 'NSF']);
+    expect(state.grant).toEqual(['NIH:R01GM086688']);
+    expect(activeCount(state)).toBe(3);
+    expect(toggleString(state, 'agency', 'NIH').agency).toEqual(['NSF']);
+    expect(isUnfiltered(toggleString(state, 'grant', 'NIH:R01GM086688'))).toBe(false);
   });
 });

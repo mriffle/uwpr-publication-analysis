@@ -58,6 +58,7 @@ import { PageFooter } from '../components/PageFooter';
 import { PublicationExplorer } from '../components/PublicationExplorer';
 import { SiteHeader, type ViewSwitch } from '../components/SiteHeader';
 import { StalenessNotice } from '../components/StalenessNotice';
+import { fundingOf } from '../contract/funding';
 import type { ExportDocument, Work } from '../contract/types';
 import { buildLabels, describeFilter, filterSentence } from '../filter/describe';
 import { applyFilter } from '../filter/predicate';
@@ -113,8 +114,15 @@ export function Overview({
   const [singleYears, setSingleYears] = useState(false);
   const [includeStaff, setIncludeStaff] = useState(false);
 
-  const labels = useMemo(() => buildLabels(doc), [doc]);
-  const works = useMemo(() => applyFilter(doc.works, filter), [doc.works, filter]);
+  // The agency and grant dimensions filter the publications too (docs/09 §12.4), so the switch
+  // keeps one filter meaning one thing. Null for an export with no funding data, under which an
+  // agency or grant selection matches nothing.
+  const funding = fundingOf(doc);
+  const labels = useMemo(() => buildLabels(doc, funding), [doc, funding]);
+  const works = useMemo(
+    () => applyFilter(doc.works, filter, funding),
+    [doc.works, filter, funding],
+  );
   const chips = describeFilter(filter, labels);
   const sentence = filterSentence(filter, works.length, labels);
   const lastChip = chips.at(-1);

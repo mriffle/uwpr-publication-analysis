@@ -46,3 +46,35 @@ describe('decoding', () => {
     expect(decodeView('')).toEqual({ filter: EMPTY_FILTER, sort: DEFAULT_SORT });
   });
 });
+
+describe('the institution-wide position (docs/09 §12.4, F4)', () => {
+  it('is written only when excluded, after the filter and before the ordering', () => {
+    expect(
+      encodeViewToQuery({ filter: EMPTY_FILTER, sort: DEFAULT_SORT, institutionWide: 'include' }),
+    ).toBe('');
+    expect(
+      encodeViewToQuery({
+        filter: { ...EMPTY_FILTER, year: [2020] },
+        sort: { key: 'citations', direction: 'desc' },
+        institutionWide: 'exclude',
+      }),
+    ).toBe('?year=2020&institution_wide=exclude&sort=citations');
+  });
+
+  it('round-trips an exclusion', () => {
+    const view = {
+      filter: { ...EMPTY_FILTER, agency: ['NIH'], grant: ['NIH:R01GM086688'] },
+      sort: DEFAULT_SORT,
+      institutionWide: 'exclude' as const,
+    };
+    expect(decodeView(encodeViewToQuery(view))).toEqual(view);
+  });
+
+  it('is absent when included, so the default view is one value however it was reached', () => {
+    expect(decodeView('?institution_wide=include')).toEqual({
+      filter: EMPTY_FILTER,
+      sort: DEFAULT_SORT,
+    });
+    expect('institutionWide' in decodeView('?year=2020')).toBe(false);
+  });
+});

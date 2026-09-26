@@ -1,9 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import { applyFilter, authorKey, buildPredicate, matches } from '../../src/filter/predicate';
 import { EMPTY_FILTER, type FilterState } from '../../src/filter/state';
+import { fundingOf } from '../../src/contract/funding';
 import type { Topic } from '../../src/contract/types';
 import { summarize } from '../../src/aggregate/metrics';
 import { sampleExport } from '../support/fixture';
+import { legacyDocument, listing } from '../support/funding';
+import {
+  FOUNDATION_GRANT,
+  GRFP,
+  grantsIndex,
+  listings,
+  NSF_PROJECT,
+  P01,
+  R01,
+  UNMATCHED,
+} from '../support/grants';
 import { author, work } from '../support/works';
 
 const topic = (over: Partial<Topic> = {}): Topic => ({
@@ -167,5 +179,92 @@ describe('every figure recomputes under the filter (docs/05 §1.1)', () => {
     const state = filter({ onOfficialList: true });
     const predicate = buildPredicate(state);
     expect(doc.works.filter(predicate)).toEqual(applyFilter(doc.works, state));
+  });
+});
+
+describe('the funding dimensions (docs/09 §12.4)', () => {
+  const index = grantsIndex();
+  const nigmsWork = work({ grants: listings(index, R01) });
+  const nhlbiWork = work({ grants: listings(index, P01) });
+  const nsfWork = work({ grants: listings(index, NSF_PROJECT, GRFP) });
+  const mixedWork = work({ grants: listings(index, R01, NSF_PROJECT) });
+  const miscWork = work({ grants: listings(index, UNMATCHED) });
+  const foundationWork = work({ grants: listings(index, FOUNDATION_GRANT) });
+  const bare = work({ grants: [] });
+  const works = [nigmsWork, nhlbiWork, nsfWork, mixedWork, miscWork, foundationWork, bare];
+  const selected = (state: Partial<FilterState>) => applyFilter(works, filter(state), index);
+
+  it('matches an agency anywhere in a listing’s chain: NIH matches every institute’s grant', () => {
+    expect(selected({ agency: ['NIH'] })).toEqual([nigmsWork, nhlbiWork, mixedWork]);
+    expect(selected({ agency: ['NIGMS'] })).toEqual([nigmsWork, mixedWork]);
+    expect(selected({ agency: ['NHLBI'] })).toEqual([nhlbiWork]);
+  });
+
+  it('makes Miscellaneous selectable like any agency', () => {
+    expect(selected({ agency: ['MISC'] })).toEqual([miscWork]);
+  });
+
+  it('matches a grant when the work lists it', () => {
+    expect(selected({ grant: [R01.key] })).toEqual([nigmsWork, mixedWork]);
+    expect(selected({ grant: [UNMATCHED.key] })).toEqual([miscWork]);
+    expect(selected({ grant: ['NIH:R01GM777777'] })).toEqual([]);
+  });
+
+  it('combines values within a dimension with OR', () => {
+    expect(selected({ agency: ['NHLBI', 'F4399999999'] })).toEqual([nhlbiWork, foundationWork]);
+    expect(selected({ grant: [P01.key, GRFP.key] })).toEqual([nhlbiWork, nsfWork]);
+  });
+
+  it('combines dimensions with AND, with each other and with the rest', () => {
+    expect(selected({ agency: ['NSF'], grant: [R01.key] })).toEqual([mixedWork]);
+    expect(selected({ agency: ['NSF'], grant: [P01.key] })).toEqual([]);
+    const dated = work({ year: 2015, grants: listings(index, R01) });
+    expect(
+      applyFilter([...works, dated], filter({ agency: ['NIGMS'], year: [2015] }), index),
+    ).toEqual([dated]);
+  });
+
+  it('matches a work that lists no grant to no agency or grant selection', () => {
+    expect(matches(bare, filter({ agency: ['NIH'] }), index)).toBe(false);
+    expect(matches(bare, filter({ grant: [R01.key] }), index)).toBe(false);
+    expect(matches(bare, EMPTY_FILTER, index)).toBe(true);
+  });
+
+  it('ignores a listing whose grant the index does not hold', () => {
+    const stray = work({ grants: [listing({ grant: 'NIH:R01GM777777' })] });
+    expect(matches(stray, filter({ agency: ['NIH'] }), index)).toBe(false);
+  });
+
+  it('matches nothing without the index, and leaves every other dimension alone', () => {
+    expect(matches(nigmsWork, filter({ agency: ['NIH'] }))).toBe(false);
+    expect(matches(nigmsWork, filter({ grant: [R01.key] }), null)).toBe(false);
+    expect(matches(nigmsWork, filter({ year: [nigmsWork.year] }), null)).toBe(true);
+  });
+
+  it('buildPredicate gives the same answer as matches, index and all', () => {
+    const state = filter({ agency: ['NSF'] });
+    expect(works.filter(buildPredicate(state, index))).toEqual(applyFilter(works, state, index));
+  });
+});
+
+describe('the funding dimensions on real rows', () => {
+  it('selects, on the sample, exactly the works whose listings carry the agency', () => {
+    const doc = sampleExport();
+    const funding = fundingOf(doc);
+    for (const code of doc.funding.agencies.map((item) => item.code)) {
+      const expected = doc.works.filter((item) =>
+        item.grants.some((entry) => (entry.agencies as readonly string[]).includes(code)),
+      );
+      expect(applyFilter(doc.works, filter({ agency: [code] }), funding)).toEqual(expected);
+    }
+  });
+
+  it('does not break on a 1.0 export: the selection matches nothing, the empty filter all', () => {
+    const doc = legacyDocument();
+    const funding = fundingOf(doc);
+    expect(funding).toBeNull();
+    expect(applyFilter(doc.works, filter({ agency: ['NIH'] }), funding)).toEqual([]);
+    expect(applyFilter(doc.works, filter({ grant: ['NIH:R01GM999001'] }), funding)).toEqual([]);
+    expect(applyFilter(doc.works, EMPTY_FILTER, funding)).toEqual(doc.works);
   });
 });

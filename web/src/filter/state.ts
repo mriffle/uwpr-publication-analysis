@@ -1,9 +1,13 @@
 /**
- * The filter state (docs/06 §6, dimensions from docs/05 §9).
+ * The filter state (docs/06 §6, dimensions from docs/05 §9 and docs/09 §12.4).
  *
  * Pure: no React, no URL, no rendering. "One filter state drives every figure, every chart and
  * the explorer." Filters combine with AND across dimensions and OR within one — two selected
  * journals mean either, a journal and a year mean both.
+ *
+ * The funding dimensions, `agency` and `grant`, are publication filters like the rest: both
+ * views honour them, so the switch between the views keeps one filter meaning one thing
+ * (docs/09 §12.4). What they also do to the grants a filtered view shows is `filter/funding.ts`'s.
  */
 
 /** The multi-select dimensions whose values are strings. */
@@ -18,6 +22,8 @@ export const STRING_DIMENSIONS = [
   'author',
   'oa',
   'kind',
+  'agency',
+  'grant',
 ] as const;
 
 export type StringDimension = (typeof STRING_DIMENSIONS)[number];
@@ -42,6 +48,13 @@ export interface FilterState {
   readonly oa: readonly string[];
   /** `kind`, with `is_preprint` folded in (docs/05 §9). */
   readonly kind: readonly string[];
+  /**
+   * An agency code (docs/09 §11.5): a work matches when a grant it lists is that agency's or
+   * one below it, so `NIH` matches every institute's grants. Miscellaneous is selectable.
+   */
+  readonly agency: readonly string[];
+  /** A grant key (docs/09 §8.2): a work matches when it lists that grant. */
+  readonly grant: readonly string[];
   /** "How it is known": the inclusion criteria, which overlap by design. */
   readonly criterion: readonly number[];
   /** "On UWPR's list": true, false, or unset. */
@@ -62,6 +75,8 @@ export const EMPTY_FILTER: FilterState = {
   author: [],
   oa: [],
   kind: [],
+  agency: [],
+  grant: [],
   criterion: [],
   onOfficialList: null,
   search: '',

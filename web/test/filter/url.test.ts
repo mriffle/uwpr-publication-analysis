@@ -2,8 +2,10 @@ import { describe, expect, it } from 'vitest';
 import {
   decodeFilter,
   decodeFilterFromQuery,
+  decodeInstitutionWide,
   encodeFilter,
   encodeFilterToQuery,
+  encodeInstitutionWide,
 } from '../../src/filter/url';
 import { EMPTY_FILTER, type FilterState } from '../../src/filter/state';
 
@@ -19,6 +21,8 @@ const full: FilterState = {
   author: ['A5011565192'],
   oa: ['gold', 'hybrid'],
   kind: ['preprint'],
+  agency: ['MISC', 'NIGMS'],
+  grant: ['NIH-contract:HHSN272209900002I:75N99099F00001', 'NIH:R01GM999001'],
   criterion: [2, 1],
   onOfficialList: true,
   search: 'casanovo',
@@ -80,5 +84,94 @@ describe('filter state in the URL (docs/06 B5)', () => {
       ...EMPTY_FILTER,
       year: [2019],
     });
+  });
+});
+
+describe('the funding dimensions in the URL (docs/09 §12.4)', () => {
+  it('round-trips agencies and grants as repeated parameters, sorted', () => {
+    const state: FilterState = {
+      ...EMPTY_FILTER,
+      agency: ['NSF', 'MISC', 'NIH'],
+      grant: ['NIH:R01GM086688', 'MISC:S10OD032290', 'NIH-contract:HHSN272201700059C'],
+    };
+    const decoded = decodeFilterFromQuery(encodeFilterToQuery(state));
+    expect(decoded).toEqual({
+      ...state,
+      agency: ['MISC', 'NIH', 'NSF'],
+      grant: ['MISC:S10OD032290', 'NIH-contract:HHSN272201700059C', 'NIH:R01GM086688'],
+    });
+  });
+
+  it('percent-encodes the colon of a grant key, as the entity paths do', () => {
+    const query = encodeFilterToQuery({ ...EMPTY_FILTER, grant: ['NIH:R01GM086688'] });
+    expect(query).toBe('?grant=NIH%3AR01GM086688');
+  });
+
+  it('reads back a colon typed raw', () => {
+    expect(decodeFilterFromQuery('?grant=NIH:R01GM086688&agency=NIH').grant).toEqual([
+      'NIH:R01GM086688',
+    ]);
+  });
+
+  it('round-trips a task order’s three-part key', () => {
+    const grant = ['NIH-contract:HHSN272209900002I:75N99099F00001'];
+    expect(decodeFilterFromQuery(encodeFilterToQuery({ ...EMPTY_FILTER, grant })).grant).toEqual(
+      grant,
+    );
+  });
+
+  it('writes them after the publication dimensions, so existing URLs keep their order', () => {
+    const query = encodeFilterToQuery({
+      ...EMPTY_FILTER,
+      year: [2020],
+      kind: ['article'],
+      agency: ['NIH'],
+      grant: ['NIH:R01GM086688'],
+      criterion: [2],
+    });
+    expect(query).toBe('?year=2020&kind=article&agency=NIH&grant=NIH%3AR01GM086688&criterion=2');
+  });
+
+  it('tolerates values it cannot know: kept as given, de-duplicated, empty ones dropped', () => {
+    const decoded = decodeFilterFromQuery('?agency=NOPE&agency=NOPE&agency=&grant=not-a-key');
+    expect(decoded.agency).toEqual(['NOPE']);
+    expect(decoded.grant).toEqual(['not-a-key']);
+  });
+
+  it('leaves the default URL empty', () => {
+    expect(encodeFilterToQuery(EMPTY_FILTER)).toBe('');
+  });
+});
+
+describe('the institution-wide position in the URL (docs/09 §12.4, F4)', () => {
+  const written = (value: 'include' | 'exclude') => {
+    const params = new URLSearchParams();
+    encodeInstitutionWide(params, value);
+    return params.toString();
+  };
+
+  it('is written only when the reader excludes them', () => {
+    expect(written('exclude')).toBe('institution_wide=exclude');
+    expect(written('include')).toBe('');
+  });
+
+  it('reads back exactly what it writes', () => {
+    expect(decodeInstitutionWide(new URLSearchParams(written('exclude')))).toBe('exclude');
+    expect(decodeInstitutionWide(new URLSearchParams(written('include')))).toBe('include');
+  });
+
+  it('takes anything else a URL holds as the default, included', () => {
+    for (const query of [
+      '',
+      'institution_wide=include',
+      'institution_wide=EXCLUDE',
+      'institution_wide=',
+    ]) {
+      expect(decodeInstitutionWide(new URLSearchParams(query))).toBe('include');
+    }
+  });
+
+  it('is not a filter dimension: the filter neither reads nor writes it', () => {
+    expect(decodeFilterFromQuery('?institution_wide=exclude')).toEqual(EMPTY_FILTER);
   });
 });

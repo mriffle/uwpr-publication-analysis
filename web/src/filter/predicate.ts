@@ -3,7 +3,15 @@
  *
  * "Filters are combined with AND across dimensions and OR within one — two selected journals
  * mean either, a journal and a year mean both."
+ *
+ * **The funding dimensions need the funding index**, passed in rather than found, because the
+ * rows alone cannot say which of them the export can vouch for: a 1.0 export has no `grants` on
+ * any work (docs/09 §12.10), and the listings are read only through `listingsOf`. Without an
+ * index — no funding data, or a caller that passed none — a work lists no grant, so an `agency`
+ * or `grant` selection matches nothing, which is what the reader's URL asked for: publications
+ * this export cannot show to list that grant. Every other dimension ignores the index.
  */
+import { listingsOf, type FundingIndex } from '../contract/funding';
 import type { Work } from '../contract/types';
 import type { FilterState } from './state';
 
@@ -35,7 +43,33 @@ function matchesSearch(work: Work, needle: string): boolean {
   return work.authors.some((author) => author.name.toLowerCase().includes(term));
 }
 
-export function matches(work: Work, state: FilterState): boolean {
+/**
+ * docs/09 §12.4: a work matches agency *A* when any of its listings' `agencies` chains — root
+ * first, denormalised onto the listing for exactly this — contains *A*, so `NIH` matches every
+ * institute's grant and Miscellaneous is selectable like any agency; grant *G* when it lists *G*.
+ */
+function matchesFunding(work: Work, state: FilterState, funding: FundingIndex | null): boolean {
+  if (state.agency.length === 0 && state.grant.length === 0) return true;
+  const listings = listingsOf(work, funding);
+  if (
+    !anyOf(
+      state.agency,
+      listings.flatMap((listing) => listing.agencies),
+    )
+  ) {
+    return false;
+  }
+  return anyOf(
+    state.grant,
+    listings.map((listing) => listing.grant),
+  );
+}
+
+export function matches(
+  work: Work,
+  state: FilterState,
+  funding: FundingIndex | null = null,
+): boolean {
   if (!anyOf(state.year, [work.year])) return false;
   if (
     !anyOf(
@@ -93,14 +127,19 @@ export function matches(work: Work, state: FilterState): boolean {
 
   if (!anyOf(state.criterion, work.criteria)) return false;
   if (state.onOfficialList !== null && work.on_official_list !== state.onOfficialList) return false;
+  if (!matchesFunding(work, state, funding)) return false;
 
   return matchesSearch(work, state.search);
 }
 
 export const buildPredicate =
-  (state: FilterState) =>
+  (state: FilterState, funding: FundingIndex | null = null) =>
   (work: Work): boolean =>
-    matches(work, state);
+    matches(work, state, funding);
 
-export const applyFilter = (works: readonly Work[], state: FilterState): Work[] =>
-  works.filter((work) => matches(work, state));
+/** The works the filter selects. Pass the export's `fundingOf(doc)` or `agency`/`grant` select none. */
+export const applyFilter = (
+  works: readonly Work[],
+  state: FilterState,
+  funding: FundingIndex | null = null,
+): Work[] => works.filter((work) => matches(work, state, funding));
