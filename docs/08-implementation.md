@@ -47,6 +47,10 @@ committed is exactly what was read.
 **The store after the 2026-09-26 run:** 339 works, 477 candidates, 306 list entries and 754
 metrics lines; recall on the official list 208/253 (82%).
 
+**Rule version 2026-09-26.1** fixes §8's two data defects and lands with the next update run. It
+takes the store to 338 works, because W-000746 turned out to be a second copy of W-000237's
+preprint. Recall and the test papers are unchanged (§3.7).
+
 ## 2. What exists
 
 ```
@@ -308,7 +312,7 @@ setting had to change.
 The estimate was five times high because it assumed paging through full-text searches, which
 `max_results` now stops at the first page. Only OpenAlex costs anything. The one figure still
 unmeasured is a rule-change run on a cold runner, which needs a `rule_version` bump to land on
-a cold cache.
+a cold cache. *(Measured 2026-09-26 on a local cold cache: 6m 38s; §3.7.)*
 
 ### 3.5 The first scheduled run, 2026-09-21, and what it found
 
@@ -429,6 +433,67 @@ looked moves once, together, and nothing else does. 618 `retrieved` dates moved 
 and recall (208/253) and the test papers are unchanged. Each run cost $0.0100. `tests/test_pipeline.py` now runs a week and 28 days apart. It also
 covers a failed list fetch and a candidate not being read again.
 
+### 3.7 Rule version 2026-09-26.1: the two data defects, measured 2026-09-26
+
+The bump §8 item 1 was waiting for, with the fixes it carries. Every figure below comes from a
+live run on a scratch copy of the committed store, all on the same afternoon.
+
+**What the fixes are:**
+- **W-000205:** PMC's XML for the paper escapes its funding apostrophe twice (`&amp;apos;`), so
+  the parsed text still said `&apos;`. Extracted text now decodes a character reference left
+  after parsing, but only a numeric one or a known name: `html.unescape` alone would also turn
+  `&notes;` into `¬es;`.
+- **Three works' affiliations:** OpenAlex keeps some raw strings HTML-escaped ("Computer Science
+  `&amp;` Engineering"), and the app showed them that way. Decoded where they are read, for the
+  record and for R5 alike.
+- **W-000746 was never a title problem.** It was a duplicate. W-000237, the listed ACS Chem Biol
+  article, already held the ChemRxiv preprint under its concept DOI
+  (`10.26434/chemrxiv.12148524`, with the real title). W-000746 held the same preprint under its
+  revision DOI (`….v1`), whose Crossref record carries the file name as its title and states no
+  relation. Only the concept DOI's record names the article. Stage 6 now asks about the DOI
+  without its revision when the revision's own record states nothing, and `.v1` counts as a
+  revision (it did not: only `-v2` and `/v2` did). W-000746 merges into W-000237 and becomes an
+  alias. Among included works it was the only such pair. Five more pairs are among the candidates:
+  figshare tables and datasets, excluded record types, never shown.
+
+**Measured.** A is the previous commit and B this one. Both share the warm cache, on the same
+day. C is B's code with an empty cache.
+
+| | A: before | B: the bump | C: the bump, cold cache |
+|---|---:|---:|---:|
+| Outcome | DEGRADED (bioRxiv) | DEGRADED (bioRxiv) | DEGRADED (bioRxiv) |
+| Time | 74 s | 164 s | **6m 38s** |
+| OpenAlex | $0.0100 | $0.0100 | $0.0100 |
+| Requests | — | 35 Crossref, one more than A | **703**: 604 NCBI, 35 Crossref, 28 OpenAlex, 25 Europe PMC, 6 UWPR, 4 PRIDE, 1 bioRxiv |
+| Works / candidates | 339 / 477 | **338** / 477 | 338 / 477 |
+| Recall on the list | 208/253 | 208/253 | 208/253 |
+| Test papers | 19, 2 known misses | the same | the same |
+
+- **A changed nothing** against the committed store: 0 work files and 0 candidate lines.
+- **B against A**, apart from the merge, the two decoded excerpts and the five decoded affiliation
+  strings, is what a bump must do: every file carries the new version. Evidence changed on 1,011
+  entries; 376 records were read again (137 of them unreadable, so rechecked in 90 days from
+  today). Six cache pointers also moved, because the local cache holds different copies of some
+  PMC texts from CI's (§5). No work was added or removed by the rules.
+- **C against B:** 25 cache pointers (9 works, 16 candidates) point at freshly fetched copies of
+  PMC texts whose bytes changed. No excerpt, evidence entry or inclusion changed.
+- **The cold-cache figure replaces Phase 3 §13's estimate:** 6m 38s rather than 4m 34s plus
+  ~6 minutes, and 604 NCBI requests rather than ~1,100. A record with no PMCID is never fetched.
+
+**A week later, the bump showed a bug of its own.** The same code, run on B's output as if on
+2026-10-03, read W-000205 again and rewrote its file. Stage 4 re-reads a work whose evidence has an
+older `rule_version` (Phase 3 §6.1), and it counted superseded entries. Those keep the version that
+produced them, as history, so each entry a rule change superseded made its work look out of date
+for good. The committed store held no superseded evidence at all, so no run before could show it.
+Superseded entries no longer count. The same run on the fixed code changed **0 work files and 0
+candidate lines**: only the list entries, `metrics/` and `runs/`, as Phase 2 §15 says. The bump
+itself is unaffected, because a changed config fingerprint re-reads every record anyway. A
+scenario test runs a rule change and then a week on; it fails on the old code with a dropped
+candidate read again.
+
+Both week-on runs ended **ALERT**, which is correct: bioRxiv's `details` had now failed in three
+runs in a row of that scratch store's history (§3.5).
+
 ## 4. Decisions taken during implementation
 
 Each is already reflected in the code, the config or a dated spec note. They are listed here
@@ -508,6 +573,19 @@ because they are the things a reader would otherwise have to rediscover.
   the files it commits. So the report does not name the commit it is part of; the CLI prints it.
 - **A commit that fails raises an alert rather than failing the run.** The data is already
   written by then, and what needs a person is the repository, not the run.
+
+**Made with rule version 2026-09-26.1** (§3.7; dated in `docs/01` and `docs/03`'s headers):
+- **A character reference left in text after parsing is decoded**, whether a numeric one or a
+  known name, and nothing else. It is done in extraction, not in the app: [06](06-web-app.md) §5
+  keeps the app showing what the store holds.
+- **OpenAlex's raw affiliation strings are decoded where they are read**, so the record and R5
+  see the same string.
+- **A revision DOI whose own Crossref record states no relation is asked about without its
+  revision**, and `.v1` is a revision. It is still the Crossref relation signal, read from the
+  record that states it, so the version linking trusts nothing new. It cost one request this time.
+- **Phase 1 §8's title repair is still not built.** Its one case turned out to be a duplicate,
+  and the fix above removes it. Crossref's record for that revision DOI had the same file name,
+  so "take the title from Crossref" would not have mended it anyway.
 
 ## 5. Gotchas found while building
 
@@ -590,6 +668,14 @@ because they are the things a reader would otherwise have to rediscover.
   said CI starts cold, which it does not; the 2026-09-26 run made 3 NCBI requests.)*
 - **Stage 0 and the gate read different `overrides.yaml` files** (§8, open item 4). It was found
   when that local run stopped at stage 0. *(Fixed the same day.)*
+- **Superseded evidence made its work look out of date for good** (§3.7). Stage 4 counted a
+  superseded entry's `rule_version`, which is history, so every entry a rule change superseded
+  would have had its work read again, and its file rewritten, every week. The real store held no
+  superseded evidence until its first bump, and a run on the bump's own day could not show it:
+  **run a week on after a bump, not only after a code change.**
+- **Crossref can hold a preprint twice, and state its relation on only one copy.** ChemRxiv's
+  concept DOI names the article; the `….v1` revision DOI names nothing and has a file name for a
+  title. OpenAlex knew only the revision.
 
 ## 6. The approved implementation plan
 
@@ -909,19 +995,17 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
   failure email; [07](07-operations.md) §6 says why, and what they watch instead.
 
 **Open:**
-1. **Two data defects found while specifying Phase 5** (2026-09-20). Neither affects inclusion;
-   both are visible in the committed store and surface in the app.
-   - **`W-000746`'s title is a filename**, `1_manuscript_2020-04-14.pdf` — a ChemRxiv preprint
-     included on a full-text-index match. Phase 1 §8 already says to take the title from Crossref
-     or the preprint server when this happens; it is not happening for this record. One of ~390
-     records.
-   - **`W-000205` stores an undecoded XML entity** in two evidence excerpts:
-     `University of Washington&apos;s Proteomics Resource (UWPR95794).` **Fixing it needs a
-     `rule_version` bump.** An evidence entry's identity is partly a hash of its excerpt (§6.3), so
-     a corrected excerpt is a *new* entry, while the old one — not reproduced, but not superseded
-     under an unchanged rule version — would be kept alongside it, leaving duplicates. A version
-     bump supersedes the old entry properly. That bump is also the **cold-cache rule-change run
-     that Phase 3 §13 still carries as an estimate**, so the two should be done in one go.
+1. ~~**Two data defects found while specifying Phase 5**~~ (2026-09-20). **Fixed 2026-09-26 by
+   rule version 2026-09-26.1** (§3.7), which lands with the next update run.
+   - **`W-000746`'s title was a filename**, `1_manuscript_2020-04-14.pdf`, because the work was a
+     second copy of W-000237's ChemRxiv preprint under its `.v1` revision DOI. It merges into
+     W-000237, whose title is the article's; the app does not show a version's own title.
+   - **`W-000205` stored an undecoded XML entity** in two evidence excerpts. A bump was needed,
+     because an entry's identity is partly a hash of its excerpt (§6.3). The corrected excerpts
+     are new entries, and the bump supersedes the old ones rather than leaving duplicates.
+
+   The bump was also the cold-cache rule-change run that Phase 3 §13 carried as an estimate:
+   6m 38s, 604 NCBI requests.
 2. ~~**An override that names a DOI or PMID silently does nothing**~~ (found 2026-09-20). Phase 2
    §9 allowed an `include` or `exclude` target to be "a DOI / PMID for a paper not yet in the
    store", and `overrides.schema.json` accepted one, but the pipeline matches overrides only by
@@ -942,8 +1026,15 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
 5. **Two Phase 7 exit criteria** ([07](07-operations.md) §17). The `gh-pages` rollback has not
    been rehearsed. The schedule surviving 60+ days without a human commit cannot be checked
    before late November 2026.
-6. **An `NCBI_API_KEY`** would take cold-cache runs from 3 to 10 requests a second, and every CI
-   run starts cold. Optional: a run takes 2–5 minutes without it.
+6. **An `NCBI_API_KEY`** would take NCBI from 3 to 10 requests a second. It matters only on a
+   cold cache, and CI restores its cache each run (§5). Optional: without it, a normal run takes
+   2–5 minutes and a rule change on a cold cache 6m 38s (§3.7).
 7. **Visual-regression tests** ([06](06-web-app.md) §12.2) are not written.
 8. **[07](07-operations.md) §9.1's missing-from-site list** has no report section, and nobody owns
    acting on it (07 §16 item 0).
+9. **Any config change re-reads every record** (found 2026-09-26). Stage 4's
+   `_overrides_changed` compares the whole config fingerprint, which covers every `config/*.yaml`
+   as well as `overrides.yaml`. So a change to `channels.yaml` alone re-reads every text.
+   Phase 3 §10.4 says only a rule-version change or an `overrides.yaml` change should. With CI's
+   warm cache that costs time, not requests, so it is left alone for now; the fix is to compare
+   the overrides themselves.

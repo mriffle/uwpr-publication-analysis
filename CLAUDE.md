@@ -21,7 +21,9 @@ frozen, Phase 4 retired, 5-7 agreed 2026-09-20 with dated changelogs.
   it reads, rebuilt and committed by every run.
 - **What is left** is small and listed in `docs/07` §16 and `docs/08` §8:
   - visual-regression tests (`docs/06` §12.2);
-  - two cosmetic data defects that need a `rule_version` bump to fix cleanly.
+  - the rollback rehearsal and the 60-day schedule check (`docs/07` §17);
+  - any config change re-reads every record, not just a rule or override change (`docs/08` §8
+    item 9).
 
   The fallback maintainer is Michael Hoopmann, named 2026-09-26 (`RUNBOOK.md` §1).
 

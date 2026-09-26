@@ -60,6 +60,20 @@ confirmed. The two that were not split into a rule change and an override:
   to reach it would drop papers UWPR itself lists. That one work is excluded by `overrides.yaml`
   instead, which is what an override is for.
 
+**Rule version 2026-09-26.1** (2026-09-26; [08](08-implementation.md) §3.7). Neither change is to a
+rule. Both change what the rules read, so the version moves and every work is read again:
+- *§6.1, text extraction:* a character reference left in the text after parsing is decoded, if it
+  is a numeric one or a known name, and nothing else is. PMC's XML for one listed paper escapes an
+  apostrophe twice (`&amp;apos;`), so its funding excerpt read "Washington&apos;s". OpenAlex's raw
+  affiliation strings, which R5 reads, are decoded the same way. Effect: two excerpts on one
+  listed paper; recall unchanged at 208/253.
+- *§8, versions:* `.v1` is a revision suffix, like `-v2` and `/v2`. A revision DOI whose own
+  Crossref record states no relation is also asked about without the revision. ChemRxiv's concept
+  DOI named the article, and the `….v1` revision named nothing. OpenAlex knew only the revision,
+  so one preprint had been included twice. Effect: works 339 → 338; recall unchanged. That
+  duplicate was the one case behind "broken titles" below; the title repair it asks for is still
+  not built.
+
 **Purpose:** define, precisely enough to implement, how the pipeline finds publications supported
 by the UW Proteomics Resource and decides which to include, **without human review**.
 **Basis:** [`archive/00-original-handoff.md`](archive/00-original-handoff.md), plus live measurements made on 2026-09-19

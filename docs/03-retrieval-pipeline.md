@@ -132,6 +132,18 @@ was retired with it on 2026-09-20.
 - *Stage 11 takes the exact dates from where they are kept* ([05](05-metrics-and-data-contract.md),
   changed 2026-09-26): a listing's from `entries.jsonl`, and a source's last read from the run.
 
+**Changed 2026-09-26, with rule version 2026-09-26.1** ([08](08-implementation.md) §3.7):
+- *§5 stage 6, a revision DOI:* when a preprint-only work's DOI names a revision (`-v2`, `/v2` or
+  `.v1`) and its own Crossref record states no relation, the DOI without the revision is asked
+  too. It is the same Crossref relation signal, read from the record that states it. It cost one
+  request.
+- *§6.1 item 3, which evidence counts:* only live entries. A superseded entry keeps the version
+  that produced it, as history. Counting it would have read its work again, and rewritten its
+  file, every week after the bump that superseded it. A run a week after the bump found this.
+- *§6.1 and §13, the rule-change run:* measured on a cold cache, replacing the estimate: 6m 38s,
+  $0.0100, 703 requests, 604 of them NCBI. The estimate was a normal run plus about 6 minutes, and
+  about 1,100 NCBI requests; a record with no PMCID is never fetched.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the
@@ -342,8 +354,8 @@ A record is (re)evaluated in stages 4–5 when any of the following holds:
 - R3d, from PRIDE in stage 2.
 
 **Load on a normal week:** text for a handful of new papers. **After a rule change:** text for
-every record, about 1,100 NCBI requests, roughly 6 minutes at 3 requests a second on a cold
-cache.
+every record: 604 NCBI requests, and 6m 38s for the whole run on a cold cache (measured
+2026-09-26).
 
 ### 6.2 Text for evaluation
 
@@ -759,7 +771,7 @@ the push never see them.
 | Run | Time | OpenAlex | Other APIs |
 |---|---|---|---|
 | Normal weekly | **4m 34s measured** (2026-09-20, cold cache) | **$0.0100 measured** | Free |
-| After a rule change | + ~6 min (re-fetching ~1,100 texts from NCBI on a cold cache); not yet measured, since it needs a `rule_version` bump on a cold runner | ≈ $0.0100 | Free |
+| After a rule change | **6m 38s measured** (2026-09-26, cold cache; 604 NCBI requests) | **$0.0100 measured** | Free |
 | Check workflow | 2–4 min | none | none |
 
 Well within GitHub's free minutes for public repositories, and the OpenAlex free tier. The
@@ -785,8 +797,8 @@ metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
    (§11.4). If it doesn't, add a keep-alive.
 4. **Branch protection** on `main`, and how the bot is allowed to push (§11.4).
 5. ~~Measure OpenAlex spend in the first live runs and replace the §7/§13 estimates.~~ **Done
-   2026-09-20:** $0.0100 a run, 4m 34s. The rule-change row of §13 is still an estimate, because
-   it needs a `rule_version` bump landing on a cold runner.
+   2026-09-20:** $0.0100 a run, 4m 34s. The rule-change row of §13 was measured on 2026-09-26, on
+   a local cold cache: 6m 38s.
 
 ## 16. Exit criteria
 

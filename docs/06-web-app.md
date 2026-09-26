@@ -53,6 +53,9 @@ deliberately, dated, and noted in this header.
   never happened. It also follows from §1's register, since a page arguing that its numbers are
   checkable should not misrepresent how current they are. The threshold comes from the export's
   `generated_at`.
+- *2026-09-26, §5, the stored defects it names are fixed* ([05](05-metrics-and-data-contract.md)
+  §3.2). The rule stands: the app shows what the store holds and cleans nothing up. Only the
+  "currently" was stale.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -255,12 +258,13 @@ applies to the whole work (Phase 1 §8), and a reader looking at the article sho
 guess why the quotation is not in it.
 
 **Excerpts are rendered as published, not cleaned up.** Where the pipeline has stored a defect —
-currently one work with an undecoded XML entity ([05](05-metrics-and-data-contract.md) §3.2) — it
-is visible. Decoding entities in the app would mask future extraction bugs and risks
+as it did for one work's undecoded XML entity until 2026-09-26 ([05](05-metrics-and-data-contract.md)
+§3.2) — it is visible. Decoding entities in the app would mask future extraction bugs and risks
 double-decoding text that legitimately contains an escaped character. The fix belongs in
 extraction; the app's job is to show what the store holds.
 
-The same applies to the one work whose stored title is a filename. It renders as stored.
+The same applies to a stored title that is a filename, as one was until 2026-09-26. It renders
+as stored.
 
 ## 6. Filtering
 

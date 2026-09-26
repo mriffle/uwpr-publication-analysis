@@ -134,6 +134,11 @@ under the 28-day rule, so two exported dates are taken from where they are still
   corrects Crossref, which had shown 2026-09-20 on a store last run on 2026-09-26: its evidence
   had never changed, so its `retrieved` had never moved.
 
+**Changed 2026-09-26, §3.2's two data defects are fixed** by rule version 2026-09-26.1
+([08](08-implementation.md) §3.7), in the pipeline as §3.2 said they must be. Nothing in the
+contract changed. The title that was a file name belonged to a duplicate: W-000746 was a second
+copy of W-000237's preprint, and merges into it, so the corpus is 338 works once the bump lands.
+
 **Every figure in this document was measured against the committed store on 2026-09-20**
 (339 works, rule version `2026-09-20.1`). Figures move as the store grows; the definitions do
 not. Where a number is quoted to justify a design decision, re-measure before changing that
@@ -237,12 +242,13 @@ costed as such.
 ### 3.2 Two data defects the export will expose
 
 Both were found while preparing this spec. Neither is a Phase 5 problem, but the app is what makes
-them visible, so they are recorded here and belong to the pipeline.
+them visible, so they are recorded here and belong to the pipeline. **Both were fixed on
+2026-09-26, by rule version 2026-09-26.1** ([08](08-implementation.md) §3.7).
 
 | Defect | Detail | Fix |
 |---|---|---|
-| A title that is a filename | `W-000746` is stored as `1_manuscript_2020-04-14.pdf`, a ChemRxiv preprint. Phase 1 §8 anticipated this ("take the title from Crossref or the preprint server instead") but it is not happening for this record. One of ~390 records. | Pipeline. The export must not paper over it: a placeholder would hide a real gap. |
-| An undecoded XML entity in an excerpt | `W-000205` stores `University of Washington&apos;s Proteomics Resource (UWPR95794).` on two evidence entries. | Text extraction. **Needs a rule-version bump to land cleanly:** an evidence entry's identity is partly a hash of its excerpt, so changing the excerpt creates a new entry while the old one — not reproduced, but not superseded under the same rule version — is kept, leaving duplicates. A version bump supersedes the old entry properly. This is also the cold-cache rule-change run that [03](03-retrieval-pipeline.md) §13 still has as an estimate, so the two can be done together. |
+| A title that is a filename | `W-000746` is stored as `1_manuscript_2020-04-14.pdf`, a ChemRxiv preprint. Phase 1 §8 anticipated this ("take the title from Crossref or the preprint server instead") but it is not happening for this record. One of ~390 records. | Pipeline. The export must not paper over it: a placeholder would hide a real gap. **Fixed:** the work was a second copy of W-000237's preprint, under its `.v1` revision DOI, and merges into it. |
+| An undecoded XML entity in an excerpt | `W-000205` stores `University of Washington&apos;s Proteomics Resource (UWPR95794).` on two evidence entries. | Text extraction. **Needs a rule-version bump to land cleanly:** an evidence entry's identity is partly a hash of its excerpt, so changing the excerpt creates a new entry while the old one — not reproduced, but not superseded under the same rule version — is kept, leaving duplicates. A version bump supersedes the old entry properly. This is also the cold-cache rule-change run that [03](03-retrieval-pipeline.md) §13 still has as an estimate, so the two can be done together. **Fixed:** extraction decodes a reference the source escaped twice, and the bump superseded the old entries. |
 
 ### 3.3 Coverage of the fields the app depends on
 
