@@ -21,7 +21,6 @@ frozen, Phase 4 retired, 5-7 agreed 2026-09-20 with dated changelogs.
   it reads, rebuilt and committed by every run.
 - **What is left** is small and listed in `docs/07` §16 and `docs/08` §8:
   - visual-regression tests (`docs/06` §12.2);
-  - one `schema_version` minor bump;
   - two cosmetic data defects that need a `rule_version` bump to fix cleanly;
   - a weekly run that rewrites every work file with fresh dates.
 
