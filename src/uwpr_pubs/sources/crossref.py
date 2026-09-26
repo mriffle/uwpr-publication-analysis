@@ -1,12 +1,13 @@
 """Crossref: award metadata, preprint relations and publisher titles (Phase 1 §5 B2, §8)."""
 
-from collections.abc import Iterator, Mapping
+from collections.abc import Iterable, Iterator, Mapping
 from typing import Any
 
 from uwpr_pubs.http import HttpClient, HttpError, Policy
 
 BASE = "https://api.crossref.org/works"
 ROWS = 100
+FUNDER_BATCH = 50
 NOT_FOUND = frozenset({404, 410})
 
 
@@ -51,6 +52,38 @@ class Crossref:
             if exc.status in NOT_FOUND:
                 return None
             raise
+
+    def funders_by_dois(self, dois: Iterable[str]) -> dict[str, list[dict[str, Any]]]:
+        """Each record's `funder` array, by lower-cased DOI; a DOI Crossref lacks is left out.
+
+        Asked `FUNDER_BATCH` DOIs to a request, as `filter=doi:…,doi:…` with `select=DOI,funder`:
+        the filter ORs its values (measured 2026-09-26). A DOI the batch does not return, or one
+        with a comma that would split the filter, is asked on its own through `by_doi`, so only
+        Crossref's own "not found" leaves a DOI out.
+        """
+        wanted = sorted({doi.strip().lower() for doi in dois if doi.strip()})
+        found: dict[str, list[dict[str, Any]]] = {}
+        batchable = [doi for doi in wanted if "," not in doi]
+        for start in range(0, len(batchable), FUNDER_BATCH):
+            batch = batchable[start : start + FUNDER_BATCH]
+            message = self._get(
+                BASE,
+                {
+                    "filter": ",".join(f"doi:{doi}" for doi in batch),
+                    "select": "DOI,funder",
+                    "rows": str(FUNDER_BATCH),
+                },
+            )
+            for item in message.get("items") or []:
+                doi = str(item.get("DOI") or "").lower()
+                if doi in batch:
+                    found[doi] = list(item.get("funder") or [])
+        for doi in wanted:
+            if doi not in found:
+                record = self.by_doi(doi)
+                if record is not None:
+                    found[doi] = list(record.get("funder") or [])
+        return found
 
     @staticmethod
     def award_numbers(work: Mapping[str, Any]) -> list[str]:

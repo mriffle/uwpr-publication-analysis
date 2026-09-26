@@ -13,8 +13,31 @@ from uwpr_pubs.http import HttpClient, Policy, openalex_cost
 from uwpr_pubs.sources import ResultLimitError
 
 BASE = "https://api.openalex.org"
+ENTITY_PREFIX = "https://openalex.org/"
 PER_PAGE = 200
 ID_BATCH = 50
+
+# An award's amount, its funder and its people, for the funding stage (docs/09).
+AWARD_FIELDS = ",".join(
+    (
+        "id",
+        "funder_award_id",
+        "funder",
+        "amount",
+        "currency",
+        "funding_type",
+        "funder_scheme",
+        "start_year",
+        "end_year",
+        "provenance",
+        "lead_investigator",
+        "institution_awarded",
+        "doi",
+        "display_name",
+        "funded_outputs_count",
+    )
+)
+FUNDER_FIELDS = "id,display_name,alternate_titles,country_code,ids,homepage_url"
 
 WORK_FIELDS = ",".join(
     (
@@ -101,6 +124,37 @@ class OpenAlex:
             batch = "|".join(ids[start : start + ID_BATCH])
             if batch:
                 yield from self.works(f"{key}:{batch}")
+
+    def awards_by_ids(self, gids: Sequence[str]) -> Iterator[dict[str, Any]]:
+        """Award entities by ID, `ID_BATCH` to a filter page ($0.0001 each).
+
+        The `id:` filter matches only the full URL form: `id:G2073473589` finds nothing, while
+        `id:https://openalex.org/G2073473589` finds the award (measured 2026-09-26). Each batch
+        is one page, since an ID names at most one award.
+        """
+        ids = sorted({ENTITY_PREFIX + gid.rsplit("/", 1)[-1] for gid in gids if gid.strip()})
+        for start in range(0, len(ids), ID_BATCH):
+            batch = ids[start : start + ID_BATCH]
+            payload = self._get(
+                "/awards",
+                {"filter": "id:" + "|".join(batch), "select": AWARD_FIELDS, "per-page": str(ID_BATCH)},
+            )
+            yield from cast(list[dict[str, Any]], payload.get("results") or [])
+
+    def funders_by_ids(self, fids: Sequence[str]) -> Iterator[dict[str, Any]]:
+        """Funder entities by ID, `ID_BATCH` to a filter page ($0.0001 each).
+
+        Funders have no `id:` filter (HTTP 400, measured 2026-09-26); `openalex:` takes the
+        short form.
+        """
+        ids = sorted({fid.rsplit("/", 1)[-1] for fid in fids if fid.strip()})
+        for start in range(0, len(ids), ID_BATCH):
+            batch = ids[start : start + ID_BATCH]
+            payload = self._get(
+                "/funders",
+                {"filter": "openalex:" + "|".join(batch), "select": FUNDER_FIELDS, "per-page": str(ID_BATCH)},
+            )
+            yield from cast(list[dict[str, Any]], payload.get("results") or [])
 
     def authors_by_orcid(self, orcids: Sequence[str]) -> Iterator[dict[str, Any]]:
         """The ORCID check of Phase 1 §5.1: which author IDs carry a staff member's ORCID."""
