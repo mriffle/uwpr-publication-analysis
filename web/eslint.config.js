@@ -25,6 +25,10 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      // Reports only where the React Compiler would skip optimising a component. This app is not
+      // built with the React Compiler, so nothing would be skipped; the rule's other v7 siblings
+      // (set-state-in-effect, immutability, refs, purity, ...) are general React guidance and stay.
+      'react-hooks/preserve-manual-memoization': 'off',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },

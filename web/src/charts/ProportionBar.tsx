@@ -74,13 +74,15 @@ export function ProportionBar({
     .domain([0, Math.max(1, total, sum)])
     .range([0, width]);
 
+  // A loop rather than a map, because a map callback that reassigns `offset` is a closure mutating
+  // render state (react-hooks/immutability), even though this one runs synchronously.
+  const placed: { segment: ProportionSegment; x: number; width: number }[] = [];
   let offset = 0;
-  const placed = segments.map((segment) => {
+  for (const segment of segments) {
     const x = scale(offset);
-    const segmentWidth = Math.max(0, scale(offset + segment.value) - x);
+    placed.push({ segment, x, width: Math.max(0, scale(offset + segment.value) - x) });
     offset += segment.value;
-    return { segment, x, width: segmentWidth };
-  });
+  }
 
   return (
     <div className="chart-plot">

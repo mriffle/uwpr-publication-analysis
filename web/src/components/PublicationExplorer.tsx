@@ -59,10 +59,14 @@ export function PublicationExplorer({
   const [draft, setDraft] = useState(search);
 
   // The box follows the filter when the filter changes from elsewhere — a chip removed, the back
-  // button, a shared link — without fighting the reader's own typing.
-  useEffect(() => {
+  // button, a shared link — without fighting the reader's own typing. It is adjusted while
+  // rendering, as React recommends for state that follows a prop, rather than in an effect that
+  // would first render the stale draft (react-hooks/set-state-in-effect).
+  const [followed, setFollowed] = useState(search);
+  if (search !== followed) {
+    setFollowed(search);
     setDraft(search);
-  }, [search]);
+  }
 
   useEffect(() => {
     if (draft === search) return;

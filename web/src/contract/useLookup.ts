@@ -21,16 +21,22 @@ export type LookupState =
   | { status: 'ready'; data: LookupIndexDocument }
   | { status: 'failed'; failure: LoadFailure };
 
+type Settled = Extract<LookupState, { status: 'ready' | 'failed' }>;
+
+const IDLE: LookupState = { status: 'idle' };
+const LOADING: LookupState = { status: 'loading' };
+
 export function useLookupIndex(needed: boolean, url: string, fetcher: Fetcher): LookupState {
-  const [state, setState] = useState<LookupState>({ status: 'idle' });
+  // Only the answer is state. Idle and loading follow from it and from `needed`, so the effect
+  // never has to set state before its fetch returns (react-hooks/set-state-in-effect).
+  const [settled, setSettled] = useState<Settled | null>(null);
 
   useEffect(() => {
     if (!needed) return;
     let live = true;
-    setState((previous) => (previous.status === 'idle' ? { status: 'loading' } : previous));
     void loadLookupIndex(url, fetcher).then((result) => {
       if (!live) return;
-      setState(
+      setSettled(
         result.ok
           ? { status: 'ready', data: result.data }
           : { status: 'failed', failure: result.failure },
@@ -41,5 +47,5 @@ export function useLookupIndex(needed: boolean, url: string, fetcher: Fetcher): 
     };
   }, [needed, url, fetcher]);
 
-  return state;
+  return settled ?? (needed ? LOADING : IDLE);
 }
