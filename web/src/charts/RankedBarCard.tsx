@@ -9,7 +9,12 @@
 import type { ReactNode } from 'react';
 import { ChartCard } from './ChartCard';
 import { ResponsiveChart } from './ResponsiveChart';
-import { HorizontalBarChart, HorizontalBarTable, type BarRow } from './HorizontalBarChart';
+import {
+  HorizontalBarChart,
+  HorizontalBarTable,
+  type BarRow,
+  type BarUnit,
+} from './HorizontalBarChart';
 
 export interface RankedBarCardProps {
   title: string;
@@ -18,7 +23,8 @@ export interface RankedBarCardProps {
   /** The chart's accessible name, where it differs from the heading. */
   chartLabel?: string;
   rows: readonly BarRow[];
-  unit: { one: string; many: string };
+  /** What one unit of the value is. Needed unless `describeValue` says it instead. */
+  unit?: BarUnit;
   valueAxisLabel: string;
   categoryHeader: string;
   tableCaption: string;
@@ -27,6 +33,8 @@ export interface RankedBarCardProps {
   /** Rendered instead of the chart when the current filter selects nothing (docs/06 §6). */
   empty?: ReactNode;
   formatValue?: (value: number) => string;
+  /** The value in a sentence, for each mark's accessible name (see `HorizontalBarChart`). */
+  describeValue?: (value: number) => string;
   /** Extra controls in the card, such as §7.7's "include staff" toggle. */
   controls?: ReactNode;
 }
@@ -45,6 +53,7 @@ export function RankedBarCard({
   selectVerb,
   empty,
   formatValue,
+  describeValue,
   controls,
 }: RankedBarCardProps) {
   return (
@@ -61,11 +70,12 @@ export function RankedBarCard({
               rows={rows}
               width={width}
               label={chartLabel ?? title}
-              unit={unit}
+              {...(unit === undefined ? {} : { unit })}
               valueAxisLabel={valueAxisLabel}
               {...(onSelect ? { onSelect } : {})}
               {...(selectVerb === undefined ? {} : { selectVerb })}
               {...(formatValue === undefined ? {} : { formatValue })}
+              {...(describeValue === undefined ? {} : { describeValue })}
             />
           )}
         </ResponsiveChart>

@@ -17,6 +17,7 @@ import type { Period, Work } from '../contract/types';
 import {
   YearSeriesChart,
   YearSeriesTable,
+  ignoreYear,
   yearMarkLabel,
   type SeriesUnit,
 } from './YearSeriesChart';
@@ -55,7 +56,7 @@ export function CitationsPerYearChart({
       unit={UNIT}
       valueAxisLabel="Citations received"
       selectedYears={selectedYears}
-      {...(onSelectYear ? { onSelectYear } : {})}
+      onSelectYear={onSelectYear ?? ignoreYear}
     />
   );
 }

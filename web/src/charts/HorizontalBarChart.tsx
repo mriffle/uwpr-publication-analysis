@@ -42,20 +42,32 @@ export interface BarRow {
   detail?: readonly { label: string; value: string }[];
 }
 
+/** What one unit of a bar's value is: "publication" / "publications". */
+export interface BarUnit {
+  one: string;
+  many: string;
+}
+
 export interface HorizontalBarChartProps {
   rows: readonly BarRow[];
   width: number;
   /** The chart's accessible name (docs/06 §9). */
   label: string;
-  /** What one unit of the value is: "publication" / "publications". */
-  unit: { one: string; many: string };
+  /** What one unit of the value is. Needed unless `describeValue` says it instead. */
+  unit?: BarUnit;
   /** The value axis title. */
   valueAxisLabel: string;
   onSelect?: (row: BarRow) => void;
   /** What activating the mark does, when it is not "filter by this". */
   selectVerb?: string;
   rowHeight?: number;
+  /** The value beside the bar, on the axis and in the tooltip. Defaults to a grouped integer. */
   formatValue?: (value: number) => string;
+  /**
+   * The value in a sentence, for the mark's accessible name: "26 publications",
+   * "$6,219,845,123 across 41 grants". Defaults to the count and `unit`.
+   */
+  describeValue?: (value: number) => string;
 }
 
 const ROW_HEIGHT = 26;
@@ -77,11 +89,18 @@ export function truncate(label: string, columnWidth: number): string {
   return label.length <= budget ? label : `${label.slice(0, budget - 1).trimEnd()}…`;
 }
 
+/** "26 publications" where there is a unit; the formatted value alone where there is not. */
+export const describeBarValue =
+  (unit: BarUnit | undefined, formatValue: (value: number) => string = formatCount) =>
+  (value: number): string =>
+    unit === undefined ? formatValue(value) : pluralize(value, unit.one, unit.many);
+
 export function barRowLabel(
   row: BarRow,
-  unit: { one: string; many: string },
+  unit: BarUnit | undefined,
   selectable: boolean,
   selectVerb: string,
+  describeValue: (value: number) => string = describeBarValue(unit),
 ): string {
   const tag = row.tag === undefined ? '' : ` (${row.tag})`;
   const detail = (row.detail ?? []).map((item) => `${item.label} ${item.value}`).join(', ');
@@ -90,7 +109,7 @@ export function barRowLabel(
     : row.selected
       ? ` Selected. Activate to remove this from the filter.`
       : ` Activate to ${selectVerb}.`;
-  return `${row.label}${tag}: ${pluralize(row.value, unit.one, unit.many)}${detail === '' ? '' : `, ${detail}`}.${action}`;
+  return `${row.label}${tag}: ${describeValue(row.value)}${detail === '' ? '' : `, ${detail}`}.${action}`;
 }
 
 export function HorizontalBarChart({
@@ -103,6 +122,7 @@ export function HorizontalBarChart({
   selectVerb = 'filter by this',
   rowHeight = ROW_HEIGHT,
   formatValue = formatCount,
+  describeValue = describeBarValue(unit, formatValue),
 }: HorizontalBarChartProps) {
   const [hovered, setHovered] = useState<BarRow | null>(null);
 
@@ -154,7 +174,7 @@ export function HorizontalBarChart({
                       // it carries the number in its accessible name and stays out of the tab
                       // order, where the table alternative of docs/06 §7 serves the same reader.
                       { role: 'img' })}
-                  aria-label={barRowLabel(row, unit, selectable, selectVerb)}
+                  aria-label={barRowLabel(row, unit, selectable, selectVerb, describeValue)}
                   className={`chart-bar${row.selected ? ' is-selected' : ''}${selectable ? '' : ' is-static'}`}
                   onClick={() => onSelect?.(row)}
                   onKeyDown={(event) => {
@@ -198,7 +218,7 @@ export function HorizontalBarChart({
                     {row.tag === undefined ? '' : ` · ${row.tag}`}
                   </text>
                   {/* The full label, for the reader whose pointer lands on a truncated axis. */}
-                  <title>{barRowLabel(row, unit, false, selectVerb)}</title>
+                  <title>{barRowLabel(row, unit, false, selectVerb, describeValue)}</title>
                 </g>
               );
             })}

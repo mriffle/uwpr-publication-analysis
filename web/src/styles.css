@@ -188,7 +188,8 @@ a {
 
 .chart-card-toggle,
 .chart-empty button,
-.notice button {
+.notice button,
+.download-button {
   font: inherit;
   font-size: 0.875rem;
   color: var(--text);
@@ -562,6 +563,27 @@ button.chart-legend-item.is-selected {
 .chart-legend-value {
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
+}
+
+.download-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* A sortable column header: the button reads as the header's own text, not as a chip. */
+.sort-header {
+  font: inherit;
+  font-weight: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.sort-header-arrow {
+  color: var(--text-muted);
 }
 
 /* --- the ranked list (most cited) ------------------------------------------------------- */

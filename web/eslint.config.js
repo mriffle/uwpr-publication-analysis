@@ -54,6 +54,34 @@ export default tseslint.config(
     },
   },
   {
+    // The download layer builds files and hands them over; which data goes in, and the button
+    // that asks, belong to the views. Keeping React out keeps the CSV rules unit-testable as
+    // strings, the same argument as aggregate/'s.
+    files: ['src/download/**/*.ts'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: [
+                'react',
+                'react-dom',
+                'react/*',
+                'react-dom/*',
+                '@visx/*',
+                '**/charts/*',
+                '**/components/*',
+                '**/views/*',
+              ],
+              message: 'download/ is a layer without React (docs/06 §11.3): no rendering.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
     files: ['**/*.{js,mjs}', 'vite.config.ts', 'vitest.setup.ts', 'scripts/**'],
     languageOptions: { globals: globals.node },
     extends: [tseslint.configs.disableTypeChecked],
