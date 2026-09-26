@@ -202,6 +202,11 @@
         "openalex_funders": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^F[0-9]+$"}},
         "crossref_funder_dois": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^10\\.13039/[0-9]+$"}},
         "pubmed_agency_patterns": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "funder_names": {
+          "description": "docs/09 §6.4: whole-name patterns, matched in full against a funder's name (NFKC, casefolded, whitespace collapsed, punctuation around it trimmed) only where its source gives no funder ID; written casefolded. Never for NIH, HHS or PHS",
+          "type": "array", "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1, "pattern": "^[^A-Z]+$"}
+        },
         "number_prefixes": {"type": "array", "items": {"type": "string", "minLength": 1}},
         "number_pattern": {"description": "What its normalised numbers look like; null accepts any", "type": ["string", "null"], "minLength": 1},
         "year_prefix": {"description": "A leading two-digit year is expanded to four (FAPESP)", "type": "boolean"},
@@ -227,7 +232,15 @@
             }
           }
         }
-      }
+      },
+      "if": {
+        "description": "NIH, HHS and PHS, and agencies under them, are named by funder ID and PubMed alone (docs/09 §6.4)",
+        "anyOf": [
+          {"properties": {"code": {"enum": ["NIH", "HHS", "PHS"]}}},
+          {"required": ["parent"], "properties": {"parent": {"enum": ["NIH", "HHS", "PHS"]}}}
+        ]
+      },
+      "then": {"properties": {"funder_names": {"maxItems": 0}}}
     }
   }
 }

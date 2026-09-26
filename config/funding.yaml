@@ -6,7 +6,7 @@
 # which is never a grant (F1), is rules.yaml's r2.code and is not repeated here. Patterns are Python
 # regexes, case-sensitive unless they start with (?i).
 schema: 1
-funding_version: "2026-09-26.1"
+funding_version: "2026-09-26.2"
 enabled: false                         # true only from the seed (B9); false means the stage is skipped
 
 refresh:
@@ -38,11 +38,15 @@ nih:
 
 # --- Agencies (§6.4, §6.8-6.10) -----------------------------------------------------------------
 # A string belongs to an agency its sources name by funder ID (an OpenAlex funder, a Crossref
-# funder DOI) or by PubMed's Agency, never by a funder's name. The IDs were mined from the
-# research's OpenAlex, Crossref and PubMed records of 2026-09-26. number_prefixes are stripped from
-# the front of a number (with labels such as "grants" or "No."); number_pattern, when set, is what
-# a normalised number of that agency must look like, which also settles a string several agencies
-# are named for. year_prefix expands a two-digit year at the front of a number (FAPESP).
+# funder DOI) or by PubMed's Agency. The IDs were mined from the research's OpenAlex, Crossref and
+# PubMed records of 2026-09-26. A funder's name counts only where its source gives no ID (a
+# Crossref funder entry without a registry DOI), and only matched whole against funder_names:
+# patterns written casefolded, compared with the name casefolded, whitespace collapsed and the
+# punctuation around it trimmed. NIH, HHS and PHS never have them (§6.4). number_prefixes are
+# stripped from the front of a number (with labels such as "grants" or "No."); number_pattern,
+# when set, is what a normalised number of that agency must look like, which also settles a string
+# several agencies are named for. year_prefix expands a two-digit year at the front of a number
+# (FAPESP).
 agencies:
   # NIH: its institutes, HHS and PHS count as NIH attribution (§6.4). The institutes themselves
   # are learned from RePORTER, as each grant's administering IC.
@@ -96,6 +100,9 @@ agencies:
     pubmed_agency_patterns:
       - '^National Science Foundation\b'
       - '^(?:Division of Integrative Organismal Systems|Directorate for Biological Sciences|Center for Dark Energy Biosphere Investigations)$'
+    # "NSF" without an ID names OCE 1633939 on W-000184. Whole names only: not the Swiss National
+    # Science Foundation, nor the National (Natural) Science Foundation of China.
+    funder_names: ['(?:u\.?s\.? )?national science foundation(?: \(nsf\))?', 'nsf']
     number_prefixes: [NSF-CDEBI, NSF]
     number_pattern: '[0-9]{7}'             # §6.8: seven digits once the division prefix is removed
     year_prefix: false
@@ -155,6 +162,9 @@ agencies:
     openalex_funders: [F4320332181, F4320332292]      # with Washington Sea Grant, its programme at UW
     crossref_funder_dois: [10.13039/100000192, 10.13039/100005799]
     pubmed_agency_patterns: ['^National Oceanic and Atmospheric Administration$', '^Washington Sea Grant']
+    # "Washington Sea Grant Award" without an ID names NA140AR4170078 on W-000274.
+    funder_names: ['national oceanic and atmospheric administration(?: \(noaa\))?', 'noaa',
+                   'washington sea grant(?: award| program)?(?:, university of washington)?']
     number_prefixes: []
     # NOAA's award numbers: NA, the year, a line office (O written for 0 tolerated) and a serial.
     # Washington Sea Grant's internal project number R/SFA-8 is not one (Appendix A.6).
@@ -219,6 +229,12 @@ agencies:
      amount_source: openalex, openalex_funders: [F4320306082], crossref_funder_dois: [10.13039/100000011],
      pubmed_agency_patterns: ['^Howard Hughes Medical Institute$'], number_prefixes: [],
      number_pattern: null, year_prefix: false}
+  # Named only without an ID, as "Hawaii Department of Heath" (sic) for MOA 13-502 on W-000246.
+  # Not the University of Hawaii, nor the Hawaii Institute of Marine Biology.
+  - {code: HIDOH, name: Hawaii State Department of Health, group: us_nonfederal, country: "US",
+     amount_source: openalex, openalex_funders: [], crossref_funder_dois: [], pubmed_agency_patterns: [],
+     funder_names: ['hawaii (?:state )?department of health', 'hawaii department of heath'],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
   - {code: MOORE, name: Gordon and Betty Moore Foundation, group: us_nonfederal, country: "US",
      amount_source: openalex, openalex_funders: [F4320306202], crossref_funder_dois: [10.13039/100000936],
      pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
@@ -240,10 +256,14 @@ agencies:
      crossref_funder_dois: [10.13039/100005188], pubmed_agency_patterns: [], number_prefixes: [],
      number_pattern: null, year_prefix: false}
   # The University of Washington is named beside many other funders' numbers, and as the funder of
-  # the resource code; its own awards look like A172539, and only those are its.
+  # the resource code; its own awards look like A172539, and only those are its. By name, only its
+  # Royalty Research Fund (A172539 on W-000301), never "University of Washington" alone.
   - {code: UW, name: University of Washington, short_name: UW, group: us_nonfederal, country: "US",
      amount_source: openalex, openalex_funders: [F4320310094], crossref_funder_dois: [10.13039/100007812],
-     pubmed_agency_patterns: [], number_prefixes: [], number_pattern: 'A[0-9]{6}', year_prefix: false}
+     pubmed_agency_patterns: [],
+     funder_names: ['university of washington royalty research fund',
+                    'royalty research fund, university of washington'],
+     number_prefixes: [], number_pattern: 'A[0-9]{6}', year_prefix: false}
 
   # Outside the US: amounts from OpenAlex (F5).
   - {code: AEI, name: Agencia Estatal de Investigación, short_name: AEI, group: non_us, country: "ES",
@@ -305,6 +325,13 @@ agencies:
   - {code: CSC, name: China Scholarship Council, short_name: CSC, group: non_us, country: "CN",
      amount_source: openalex, openalex_funders: [F4320322725], crossref_funder_dois: [10.13039/501100004543],
      pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
+  # Named only without an ID: its Direct Grants 4053242 and 4053364 on W-000632. Not the Chinese
+  # University of Hong Kong, Shenzhen, a university of its own.
+  - {code: CUHK, name: The Chinese University of Hong Kong, short_name: CUHK, group: non_us, country: "HK",
+     amount_source: openalex, openalex_funders: [], crossref_funder_dois: [], pubmed_agency_patterns: [],
+     funder_names: ['(?:the )?chinese university of hong kong',
+                    'direct grants? from (?:the )?chinese university of hong kong'],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
   - {code: DFF, name: Independent Research Fund Denmark, short_name: DFF, group: non_us, country: "DK",
      amount_source: openalex, openalex_funders: [F4320322928], crossref_funder_dois: [10.13039/501100004836],
      pubmed_agency_patterns: [], number_prefixes: [], number_pattern: null, year_prefix: false}
@@ -312,14 +339,26 @@ agencies:
      amount_source: openalex, openalex_funders: [F4320320879], crossref_funder_dois: [10.13039/501100001659],
      pubmed_agency_patterns: ['^Deutsche Forschungsgemeinschaft'], number_prefixes: [], number_pattern: null,
      year_prefix: false}
+  # The German Aerospace Center, named only without an ID: "DLR Space program" for 50WB1535 on
+  # W-000208. Not "DLR" alone, nor its Projektträger, which manages other ministries' grants.
+  - {code: DLR, name: Deutsches Zentrum für Luft- und Raumfahrt, short_name: DLR, group: non_us, country: "DE",
+     amount_source: openalex, openalex_funders: [], crossref_funder_dois: [], pubmed_agency_patterns: [],
+     funder_names: ['deutsches zentrum für luft- und raumfahrt(?: \(dlr\))?',
+                    'german aerospace cent(?:er|re)(?: \(dlr\))?', 'dlr space (?:program|programme|administration)'],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
   - {code: EMBO, name: European Molecular Biology Organization, short_name: EMBO, group: non_us,
      country: null, amount_source: openalex, openalex_funders: [F4320307844],
      crossref_funder_dois: [10.13039/100004410], pubmed_agency_patterns: [], number_prefixes: [],
      number_pattern: null, year_prefix: false}
+  # By name without an ID: the European Commission's H2020 programme and two consortia it funds,
+  # EPIC-XS (823839 on W-000222 and W-000277) and IMI's ZAPI (IMI115760 on W-000203).
   - {code: EU, name: European Union, short_name: EU, group: non_us, country: null, amount_source: openalex,
      openalex_funders: [F4320320300, F4320332999, F4320334322, F4320338352],
      crossref_funder_dois: [10.13039/501100000780, 10.13039/100010661, 10.13039/100018693, 10.13039/100011199],
-     pubmed_agency_patterns: [], number_prefixes: [IMI], number_pattern: null, year_prefix: false}
+     pubmed_agency_patterns: [],
+     funder_names: ['european union', 'european commission(?: h2020 program(?:me)?)?', 'h2020 eu epic-xs',
+                    'zoonoses anticipation and preparedness initiative'],
+     number_prefixes: [IMI], number_pattern: null, year_prefix: false}
   - {code: FAPESP, name: Fundação de Amparo à Pesquisa do Estado de São Paulo, short_name: FAPESP,
      group: non_us, country: "BR", amount_source: openalex, openalex_funders: [F4320320997],
      crossref_funder_dois: [10.13039/501100001807], pubmed_agency_patterns: [], number_prefixes: [FAPESP],
@@ -408,6 +447,17 @@ agencies:
      number_prefixes: [], number_pattern: 'OGI[0-9]+', year_prefix: false}
   - {code: OPENTARGETS, name: Open Targets, group: non_us, country: "GB", amount_source: openalex,
      openalex_funders: [], crossref_funder_dois: [], pubmed_agency_patterns: ['^Open Targets$'],
+     number_prefixes: [], number_pattern: null, year_prefix: false}
+  # Hong Kong's Research Grants Council, with the University Grants Committee it sits under: the
+  # research's "RGC/UGC". Named only without an ID, for 14102014 (its General Research Fund) and
+  # AoE/M-403/16 (the Area of Excellence scheme) on W-000632. Always with "Hong Kong" or the fund:
+  # not "Research Grants Council" alone, nor India's University Grants Commission.
+  - {code: RGC, name: Research Grants Council of Hong Kong, short_name: RGC, group: non_us, country: "HK",
+     amount_source: openalex, openalex_funders: [], crossref_funder_dois: [], pubmed_agency_patterns: [],
+     funder_names: ['(?:the )?research grants council of (?:the )?hong kong(?: special administrative region)?',
+                    'hong kong research grants council', 'research grants council general research fund',
+                    'hong kong university grants committee(?: area of excellence scheme)?',
+                    '(?:the )?university grants committee of (?:the )?hong kong(?: special administrative region)?'],
      number_prefixes: [], number_pattern: null, year_prefix: false}
   - {code: MNISW, name: Polish Ministry of Science and Higher Education, short_name: MNiSW, group: non_us,
      country: "PL", amount_source: openalex, openalex_funders: [], crossref_funder_dois: [],

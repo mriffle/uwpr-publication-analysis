@@ -24,6 +24,7 @@ from uwpr_pubs.funding.classify import (
     FundingRules,
     choose_agency,
     facility_contract,
+    funder_id,
     is_resource_code,
     named_agencies,
     not_a_grant,
@@ -63,7 +64,7 @@ class Sighting:
 
     raw: str
     source: FundingSource
-    funder: str | None = None  # the funder's name, as the source gives it
+    funder: str | None = None  # the funder's name, as the source gives it; decides only without an ID
     funder_id: str | None = None  # an OpenAlex funder ID or a Crossref funder DOI, in any form
     pubmed_agency: str | None = None  # PubMed's `Agency`
     award_id: str | None = None  # the OpenAlex award (`G…`), kept for amounts only (F11)
@@ -142,7 +143,12 @@ class _Item:
     funders: set[str] = field(default_factory=set)
     funder_ids: set[str] = field(default_factory=set)
     pubmed: set[str] = field(default_factory=set)
+    unidentified: set[str] = field(default_factory=set)  # funders named without an ID, by name alone
     awards: set[str] = field(default_factory=set)
+
+    def named(self, rules: FundingRules) -> frozenset[str]:
+        """The configured agencies its sources name (§6.4)."""
+        return named_agencies(self.funder_ids, self.pubmed, rules, self.unidentified)
 
     @property
     def full(self) -> list[NihNumber]:
@@ -213,6 +219,8 @@ def _pool(
             item.sources.add(sighting.source)
             if sighting.funder:
                 item.funders.add(" ".join(sighting.funder.split()))
+                if funder_id(sighting.funder_id) is None:
+                    item.unidentified.add(sighting.funder)
             if sighting.funder_id:
                 item.funder_ids.add(sighting.funder_id)
             if sighting.pubmed_agency:
@@ -441,7 +449,7 @@ def _other_agency(
     """Everything NIH did not resolve: whose it is (§6.4), then that agency's number."""
     if item.full:
         return _misc(item.full[0].number, note or "an NIH-format number RePORTER does not hold")
-    named = named_agencies(item.funder_ids, item.pubmed, rules)
+    named = item.named(rules)
     others = sorted(code for code in named if code != NIH and code in rules.agencies)
     if others:
         numbers = _numbers_for(item, others, rules, data_year)
@@ -660,7 +668,7 @@ def plan_lookups(  # noqa: PLR0913 - as `resolve_work`, with the first round's a
         for number in item.full:
             codes = [number.activity or "", *rules.partners.get(number.activity or "", ())]
             cores |= {core for code in codes for core in number.cores(code)}
-        named = named_agencies(item.funder_ids, item.pubmed, rules)
+        named = item.named(rules)
         others = sorted(code for code in named if code != NIH and code in rules.agencies)
         for code, written in _numbers_for(item, others, rules, data_year).items():
             agency = rules.agencies[code]

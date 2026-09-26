@@ -13,6 +13,7 @@ from uwpr_pubs.funding.classify import (
     choose_agency,
     facility_contract,
     funder_id,
+    funder_name_key,
     institution_wide,
     is_resource_code,
     named_agencies,
@@ -21,6 +22,7 @@ from uwpr_pubs.funding.classify import (
     unconfigured_funders,
 )
 from uwpr_pubs.funding.numbers import AGENCY_CODE, GRANT_KEY
+from uwpr_pubs.schemas import schema_errors
 
 
 @cache
@@ -312,6 +314,168 @@ def test_nih_attribution_is_by_id_and_pubmed_never_by_a_name_pattern() -> None:
     assert named_agencies([None, "F9"], [], rules()) == set()
 
 
+def test_a_name_never_names_nih_hhs_or_phs() -> None:
+    """§6.4 stands for NIH: no name pattern reaches it, its institutes, HHS or PHS, nor NIFA."""
+    names = [
+        "National Institutes of Health",
+        "NIH",
+        "NIGMS NIH HHS",
+        "PHS HHS",
+        "National Institute of General Medical Sciences",
+        "U.S. Department of Health and Human Services",
+        "Public Health Service",
+        "National Institute of Food and Agriculture",
+    ]
+    assert named_agencies([], [], rules(), names) == set()
+    assert not rules().agencies[NIH].name_patterns
+
+
+@pytest.mark.parametrize("agency", [{"code": "NIH"}, {"code": "HHS"}, {"code": "PHS"}, {"parent": "HHS"}])
+def test_nih_hhs_and_phs_may_have_no_funder_names(agency: dict[str, str]) -> None:
+    funding = load_config().funding
+    entry = {**funding["agencies"][1], **agency, "funder_names": ["national institutes of health"]}
+    entry.setdefault("code", "NIHX")
+    with pytest.raises(ValueError, match="by funder ID and PubMed alone"):
+        FundingRules.from_config({**funding, "agencies": [entry]}, "UWPR95794")
+    errors = schema_errors("config/funding", {**funding, "agencies": [entry]})
+    assert errors == [
+        "schema: agencies/0/funder_names: ['national institutes of health'] is expected to be empty"
+    ]
+
+
+def test_funder_names_are_written_casefolded() -> None:
+    funding = load_config().funding
+    entry = {**funding["agencies"][1], "funder_names": ["National Science Foundation"]}
+    with pytest.raises(ValueError, match="casefolded"):
+        FundingRules.from_config({**funding, "agencies": [entry]}, "UWPR95794")
+    assert schema_errors("config/funding", {**funding, "agencies": [entry]})
+    entry["funder_names"] = ["straße"]  # casefolds to "strasse", which a name would be compared as
+    with pytest.raises(ValueError, match="casefolded"):
+        FundingRules.from_config({**funding, "agencies": [entry]}, "UWPR95794")
+
+
+NO_BREAK_SPACE, FULLWIDTH_NSF = chr(0xA0), "".join(chr(0xFEE0 + ord(letter)) for letter in "NSF")
+APOSTROPHE, OKINA = chr(0x2019), chr(0x02BB)  # as the sources write them
+
+
+def test_a_funders_name_is_compared_normalised() -> None:
+    assert (
+        funder_name_key(f"  National{NO_BREAK_SPACE}Science   Foundation. ") == "national science foundation"
+    )
+    assert funder_name_key(FULLWIDTH_NSF) == "nsf"  # NFKC
+    assert funder_name_key("“Washington Sea Grant Award”,") == "washington sea grant award"
+    assert funder_name_key("National Science Foundation (NSF)") == "national science foundation (nsf)"
+    assert funder_name_key("(NSF)") == "(nsf)"
+    assert funder_name_key("--") == ""
+
+
+# Whole names each named agency's patterns accept (their own and the research's), and look-alikes
+# they must not: another agency's name, a longer name that starts or ends the same, a sentence.
+FUNDER_NAMES = {
+    "NSF": [
+        "National Science Foundation",
+        "NSF",
+        "U.S. National Science Foundation",
+        "US National Science Foundation",
+        "National Science Foundation (NSF)",
+    ],
+    "NOAA": [
+        "National Oceanic and Atmospheric Administration",
+        "NOAA",
+        "Washington Sea Grant Award",
+        "Washington Sea Grant, University of Washington",
+    ],
+    "EU": [
+        "European Union",
+        "European Commission",
+        "European Commission H2020 program",
+        "H2020 EU EPIC-XS",
+        "Zoonoses Anticipation and Preparedness Initiative",
+    ],
+    "UW": [
+        "University of Washington Royalty Research Fund",
+        "Royalty Research Fund, University of Washington",
+    ],
+    "HIDOH": ["Hawaii Department of Heath", "Hawaii State Department of Health"],
+    "CUHK": [
+        "Direct Grants from the Chinese University of Hong Kong",
+        "The Chinese University of Hong Kong",
+    ],
+    "DLR": [
+        "DLR Space program",
+        "German Aerospace Center",
+        "Deutsches Zentrum für Luft- und Raumfahrt (DLR)",
+    ],
+    "RGC": [
+        "Research Grants Council General Research Fund",
+        "Research Grants Council of the Hong Kong Special Administrative Region",
+        "Hong Kong University Grants Committee Area of Excellence Scheme",
+        "University Grants Committee of Hong Kong",
+    ],
+}
+LOOK_ALIKES = [
+    "Swiss National Science Foundation",
+    "National Natural Science Foundation of China",
+    "National Science Foundation of China",
+    "National Science Foundation of Sri Lanka",
+    "Swiss NSF",
+    "NSFC",
+    "National Sleep Foundation",
+    "Washington Research Foundation",
+    "Washington State Department of Health",
+    "European Molecular Biology Organization",
+    "European Research Council under the European Union's Horizon 2020 research and innovation programme",
+    "European Union's Horizon 2020 research and innovation programme under grant agreement No 823839",
+    "University of Washington",
+    "University of Washington Proteomics Resource",
+    f"Fred Hutch/University of Washington/Seattle Children{APOSTROPHE}s Cancer Consortium",
+    "Royalty Research Fund",
+    "University of Hawaii",
+    f"Hawai{OKINA}i Institute of Marine Biology",
+    "The Chinese University of Hong Kong, Shenzhen",
+    "Chinese University of Hong Kong Shenzhen",
+    "City University of Hong Kong",
+    "DLR",
+    "DLR Projektträger",
+    "Projektträger im DLR",
+    "Research Grants Council",
+    "University Grants Commission",
+    "University Grants Committee",
+    "Innovation and Technology Commission, Hong Kong Special Administrative Region Government",
+]
+
+
+@pytest.mark.parametrize(
+    ("code", "name"), [(code, name) for code, names in FUNDER_NAMES.items() for name in names]
+)
+def test_a_funder_name_names_its_agency(code: str, name: str) -> None:
+    assert named_agencies([], [], rules(), [name]) == {code}
+
+
+@pytest.mark.parametrize("name", LOOK_ALIKES)
+def test_a_look_alike_name_names_no_agency(name: str) -> None:
+    assert named_agencies([], [], rules(), [name]) == set(), name
+
+
+def test_no_agencys_names_reach_another_configured_agency() -> None:
+    """Every agency with funder names is tested above, and none of its patterns matches another
+    configured agency's name or short name: "national science foundation" is not the SNSF's."""
+    agencies = rules().agencies.values()
+    assert {agency.code for agency in agencies if agency.name_patterns} == set(FUNDER_NAMES)
+    for agency in agencies:
+        others = [
+            agency_name
+            for other in agencies
+            if other is not agency
+            for agency_name in (other.name, other.short_name)
+        ]
+        for name in filter(None, others):
+            assert not any(p.fullmatch(funder_name_key(name)) for p in agency.name_patterns), (
+                agency.code,
+                name,
+            )
+
+
 def test_unconfigured_funders_are_openalex_funders_nobody_claims() -> None:
     assert unconfigured_funders(["F4320310256", "F4320306076", "10.13039/100000865", None], rules()) == {
         "F4320310256"
@@ -353,6 +517,7 @@ def test_the_configuration_is_consistent() -> None:
     patterns = [
         *(agency["number_pattern"] for agency in funding["agencies"] if agency["number_pattern"]),
         *(p for agency in funding["agencies"] for p in agency["pubmed_agency_patterns"]),
+        *(p for agency in funding["agencies"] for p in agency.get("funder_names", [])),
         *(entry["pattern"] for entry in funding["not_grants"] if "pattern" in entry),
         *(entry["pattern"] for entry in funding["facility_contracts"] if "pattern" in entry),
     ]

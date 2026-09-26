@@ -278,5 +278,5 @@ def test_exchange_rates_are_outside_the_funding_fingerprint(config_dir: Path) ->
 def test_the_projects_funding_config_loads_switched_off() -> None:
     config = load_config()
     assert config.funding["enabled"] is False
-    assert config.funding_version == "2026-09-26.1"
+    assert config.funding_version == "2026-09-26.2"
     assert "UWPR95794" not in (ROOT / "config" / "funding.yaml").read_text(encoding="utf-8")

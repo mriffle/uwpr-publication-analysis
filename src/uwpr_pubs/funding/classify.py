@@ -3,15 +3,17 @@
 - **Not funding at all:** the resource code (`rules.r2.code`, §6.13), a not-grant (§6.12) and a
   DOE facility contract (§6.14). Each is decided by `config/funding.yaml` and the string alone.
 - **Whose it is:** the agencies a string's sources name, decided on funder IDs — an OpenAlex
-  funder or a Crossref funder DOI — and PubMed's `Agency`, never on a funder's name (§6.4). NIH
-  attribution covers NIH, its institutes, HHS and PHS. When several configured agencies are
-  named, the one whose number pattern fits decides.
+  funder or a Crossref funder DOI — and PubMed's `Agency` (§6.4). A funder's name decides only
+  where its source gives no ID, and only by an agency's whole-name patterns (`funder_names`),
+  which NIH, HHS and PHS never have. NIH attribution covers NIH, its institutes, HHS and PHS.
+  When several configured agencies are named, the one whose number pattern fits decides.
 - **What a grant is:** its category (§11.4) and whether it is institution-wide (§6.15).
 
 `FundingRules` compiles the configuration once; everything here is pure.
 """
 
 import re
+import unicodedata
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
 from decimal import Decimal
@@ -22,6 +24,7 @@ from uwpr_pubs.funding.overrides import override_match_key
 from uwpr_pubs.store.models import AgencyGroup, GrantCategory
 
 NIH = "NIH"
+ID_ONLY = frozenset({NIH, "HHS", "PHS"})  # named by funder ID and PubMed alone, never by a name (§6.4)
 AmountFrom = Literal["reporter", "nsf", "usaspending", "openalex"]  # where an agency's amounts come from
 
 _OPENALEX_ID = re.compile(r"^(?:https?://openalex\.org/)?(F[0-9]+)$", re.IGNORECASE)
@@ -54,6 +57,7 @@ class Agency:
     parent: str | None = None
     funder_ids: frozenset[str] = frozenset()
     pubmed_patterns: tuple[re.Pattern[str], ...] = ()
+    name_patterns: tuple[re.Pattern[str], ...] = ()  # whole funder names, for a sighting without an ID
     number_prefixes: tuple[str, ...] = ()
     number_pattern: re.Pattern[str] | None = None
     year_prefix: bool = False
@@ -179,6 +183,12 @@ def _agency(entry: Mapping[str, Any]) -> Agency:
     identifiers = {funder_id(value) for value in [*entry["openalex_funders"], *entry["crossref_funder_dois"]]}
     pattern = entry.get("number_pattern")
     categories = entry.get("categories") or {}
+    names = entry.get("funder_names") or []
+    if names and ID_ONLY & {entry["code"], entry.get("parent")}:
+        raise ValueError(f"{entry['code']}: NIH, HHS and PHS are named by funder ID and PubMed alone (§6.4)")
+    for name in names:
+        if name != name.casefold():
+            raise ValueError(f"{entry['code']}: funder name pattern {name!r} is not written casefolded")
     return Agency(
         code=entry["code"],
         name=entry["name"],
@@ -189,6 +199,7 @@ def _agency(entry: Mapping[str, Any]) -> Agency:
         parent=entry.get("parent"),
         funder_ids=frozenset(identifier for identifier in identifiers if identifier),
         pubmed_patterns=tuple(re.compile(p) for p in entry["pubmed_agency_patterns"]),
+        name_patterns=tuple(re.compile(name) for name in names),
         number_prefixes=tuple(entry["number_prefixes"]),
         number_pattern=re.compile(pattern) if pattern else None,
         year_prefix=bool(entry["year_prefix"]),
@@ -244,16 +255,46 @@ def facility_contract(item: str, rules: FundingRules) -> str | None:
 # --- Whose it is (§6.4) -----------------------------------------------------------------------
 
 
+def funder_name_key(name: str) -> str:
+    """A funder's name as `funder_names` patterns see it: NFKC, casefolded, whitespace collapsed,
+    and the punctuation around it trimmed, brackets apart (`(NSF)` keeps both)."""
+    text = " ".join(unicodedata.normalize("NFKC", name).casefold().split())
+    start, end = 0, len(text)
+    while start < end and _trimmed(text[start]):
+        start += 1
+    while end > start and _trimmed(text[end - 1]):
+        end -= 1
+    return text[start:end]
+
+
+def _trimmed(char: str) -> bool:
+    category = unicodedata.category(char)
+    return char == " " or (category.startswith("P") and category not in ("Ps", "Pe"))
+
+
 def named_agencies(
-    funder_ids: Iterable[str | None], pubmed_agencies: Iterable[str | None], rules: FundingRules
+    funder_ids: Iterable[str | None],
+    pubmed_agencies: Iterable[str | None],
+    rules: FundingRules,
+    names: Iterable[str | None] = (),
 ) -> frozenset[str]:
-    """The configured agencies (NIH among them) that a string's sources name, by ID and PubMed."""
+    """The configured agencies (NIH among them) that a string's sources name.
+
+    By funder ID and PubMed's `Agency`; and by `names`, the funder names of sightings that carry
+    no funder ID, each matched whole against the agencies' `funder_names` (§6.4). An agency named
+    by its name counts exactly as one named by ID. A name given beside an ID is the caller's to
+    leave out: the ID decides.
+    """
     named = {rules.by_funder_id[i] for i in map(funder_id, funder_ids) if i and i in rules.by_funder_id}
     for agency_text in pubmed_agencies:
         if not agency_text:
             continue
         for agency in rules.agencies.values():
             if any(pattern.search(agency_text) for pattern in agency.pubmed_patterns):
+                named.add(agency.code)
+    for key in {funder_name_key(name) for name in names if name}:
+        for agency in rules.agencies.values():
+            if any(pattern.fullmatch(key) for pattern in agency.name_patterns):
                 named.add(agency.code)
     return frozenset(named)
 

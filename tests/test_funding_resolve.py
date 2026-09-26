@@ -231,6 +231,70 @@ def test_a_string_with_nothing_to_key_it_by_is_no_grant() -> None:
     assert (work.strings[0].outcome, work.strings[0].method) == ("not_a_grant", None)
 
 
+def by_name(*sightings: Sighting, **answers: Any) -> Any:
+    return resolve_work(sightings, [], Answers(**answers), rules(), data_year=2026)
+
+
+def test_a_name_decides_only_where_its_source_gives_no_id() -> None:
+    """§6.4 (B3a): "NSF" in a Crossref entry without a registry DOI names NSF, as an ID would; the
+    same name beside an ID is the ID's, whether the ID's agency is configured or not."""
+    nsf = frozenset({"1633939"})
+    named = by_name(Sighting("OCE 1633939", "crossref", funder="NSF"), nsf=nsf)
+    assert (named.grants, named.strings[0].method) == (("NSF:1633939",), "agency_number")
+    gates = by_name(
+        Sighting("OCE 1633939", "crossref", funder="NSF", funder_id="10.13039/100000865"), nsf=nsf
+    )
+    assert gates.grants == ("GATES:OCE1633939",)
+    unconfigured = "https://openalex.org/F4320310256"
+    assert by_name(Sighting("OCE 1633939", "openalex", funder="NSF", funder_id=unconfigured)).grants == (
+        "F4320310256:OCE1633939",
+    )
+    beside = by_name(
+        Sighting("OCE 1633939", "crossref", funder="NSF"),
+        Sighting("OCE1633939", "openalex", funder_id=unconfigured),
+        nsf=nsf,
+    )
+    assert beside.grants == ("NSF:1633939",), "a configured agency named beats an unconfigured funder"
+    assert by_name(Sighting("OCE 1633939", "crossref", funder="Swiss NSF")).grants == ("MISC:OCE1633939",)
+
+
+def test_several_funders_named_by_name_follow_the_several_funders_rule() -> None:
+    """§6.4 applies unchanged: the pattern that fits decides, and a tie is Miscellaneous."""
+    sea_grant = by_name(
+        Sighting("NA14OAR4170078", "crossref", funder="University of Washington Royalty Research Fund"),
+        Sighting("NA14OAR4170078", "crossref", funder="Washington Sea Grant"),
+    )
+    assert sea_grant.grants == ("USA:NOAA:NA14OAR4170078",)
+    tie = by_name(
+        Sighting("1097737", "crossref", funder="European Commission"),
+        Sighting("1097737", "openalex", funder_id="F4320334506"),  # CIHR
+    )
+    assert tie.grants == ("MISC:1097737",)
+    assert tie.strings[0].note == "several agencies named (CIHR, EU)"
+
+
+def test_a_name_never_names_nih() -> None:
+    work = by_name(Sighting("AB123456", "crossref", funder="National Institutes of Health"))
+    assert (work.grants, work.strings[0].note) == (
+        ("MISC:AB123456",),
+        "no configured agency, and no one OpenAlex funder, is named",
+    )
+
+
+def test_a_name_without_an_id_is_asked_about_like_an_id() -> None:
+    plan = plan_lookups(
+        [
+            Sighting("NA140AR4170078", "crossref", funder="Washington Sea Grant Award"),
+            Sighting("OCE 1633939", "crossref", funder="NSF"),
+        ],
+        [],
+        rules(),
+        data_year=2026,
+    )
+    assert ("NOAA", "NA14OAR4170078") in plan.usaspending
+    assert plan.nsf == {"1633939"}
+
+
 def test_a_us_federal_number_usaspending_knows_stands_as_written() -> None:
     work = resolve("NNX14AJ87G", funder=NASA, usaspending=frozenset({("NASA", "NNX14AJ87G")}))
     assert (work.grants, work.strings[0].method) == (("USA:NASA:NNX14AJ87G",), "agency_number")

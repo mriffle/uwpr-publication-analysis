@@ -2,14 +2,16 @@
 
 The fixture holds the research's 397 non-NIH award entries: each entry's written forms, its
 works, the agency and grant the research gave it, and the OpenAlex, Crossref and PubMed sightings
-of those forms (tests/fixtures/funding/non_nih_entries.json, funding metadata only). Two tests:
+of those forms, each with the funder its source names — an ID, a name, or PubMed's agency
+(tests/fixtures/funding/non_nih_entries.json, funding metadata only). Two tests:
 
 - **Under its agency** (§6.8-6.10): every form of a row, named for the row's agency by funder ID,
   resolves to one key of that agency, bar the cases Appendix A.9 names as not merged. The three
   pairs the research left apart (‡) merge, TRISH's two rows are one grant, and the facility
   contracts are excluded.
 - **Under the sources' own attribution** (§6.4): with the funders the sources actually name, the
-  same keys, except where a v1 source names no configured agency by ID.
+  same keys, except where a v1 source names no configured agency, by ID or by a whole name given
+  without an ID (B3a).
 """
 
 import collections
@@ -28,9 +30,8 @@ from uwpr_pubs.funding.overrides import override_match_key
 from uwpr_pubs.funding.resolve import Answers, Sighting, WorkFunding, resolve_work
 
 FIXTURE = Path(__file__).parent / "fixtures" / "funding" / "non_nih_entries.json"
-UNCONFIGURED = "F1"  # an OpenAlex funder no agency is configured for
 
-# The research's agency names, and the configured agency each is (None: not configured).
+# The research's agency names, and the configured agency each is.
 AGENCY = {
     "AEI (Spain)": "AEI",
     "AHA": "AHA",
@@ -46,12 +47,12 @@ AGENCY = {
     "CIHR": "CIHR",
     "CIHR?": "CIHR",
     "CPRIT": "CPRIT",
-    "CUHK (internal)": None,
+    "CUHK (internal)": "CUHK",
     "Cancer Research UK": "CRUK",
     "China Scholarship Council": "CSC",
     "DFG": "DFG",
     "DFG? (looks like a BMBF FKZ)": "DFG",
-    "DLR (Germany)": None,
+    "DLR (Germany)": "DLR",
     "DOE": "DOE",
     "DOI": "DOI",
     "DoD": "DOD",
@@ -65,7 +66,7 @@ AGENCY = {
     "Ghent University BOF": "UGENT",
     "HFSP": "HFSP",
     "HHMI": "HHMI",
-    "Hawaii Dept. of Health": None,
+    "Hawaii Dept. of Health": "HIDOH",
     "Independent Research Fund Denmark": "DFF",
     "JSPS": "JSPS",
     "JST": "JST",
@@ -94,7 +95,7 @@ AGENCY = {
     "Open Targets": "OPENTARGETS",
     "Parkinson's Disease Foundation": "PDF",
     "Polish Ministry of Science": "MNISW",
-    "RGC/UGC (Hong Kong)": None,
+    "RGC/UGC (Hong Kong)": "RGC",
     "SNSF": "SNSF",
     "SSF (Sweden)": "SSF",
     "Simons Foundation": "SIMONS",
@@ -159,23 +160,23 @@ def entries() -> tuple[dict[str, Any], ...]:
 
 
 def sighting(raw: str, agency: str) -> Sighting:
-    """A form, named for the row's agency by a funder ID, else by a PubMed agency it matches."""
-    code = AGENCY[agency]
-    if code is None:
-        return Sighting(raw, "openalex", funder_id=UNCONFIGURED)
-    configured = rules().agencies[code]
+    """A form, named for the row's agency by a funder ID, else by a PubMed agency it matches, else
+    by its own name, without an ID (B3a's four agencies, which no source names otherwise)."""
+    configured = rules().agencies[AGENCY[agency]]
     ids = sorted(configured.funder_ids, key=lambda i: (not i.startswith("F"), i))
     if ids:
         return Sighting(raw, "openalex", funder_id=ids[0])
-    pubmed = configured.pubmed_patterns[0].pattern.strip("^$").replace("(?i)", "")
-    return Sighting(raw, "pubmed", pubmed_agency=pubmed)
+    if configured.pubmed_patterns:
+        pubmed = configured.pubmed_patterns[0].pattern.strip("^$").replace("(?i)", "")
+        return Sighting(raw, "pubmed", pubmed_agency=pubmed)
+    return Sighting(raw, "crossref", funder=configured.name)
 
 
 def answers() -> Answers:
     rows = [row for entry in entries() for row in entry["research_id"]]
     nsf = {row[4:] for row in rows if row.startswith("NSF:")} - {"0659680"}  # the one NSF lacks (A8.5)
     usa = {
-        (AGENCY[entry["agency"]] or "", alnum(row.split(":")[1]))
+        (AGENCY[entry["agency"]], alnum(row.split(":")[1]))
         for entry in entries()
         if entry["group"] == "us_federal" and AGENCY[entry["agency"]] not in ("NSF", "VA")
         for row in entry["research_id"]
@@ -184,14 +185,16 @@ def answers() -> Answers:
     return Answers(reporter={**REPORTER, **REPORTER_VA}, nsf=frozenset(nsf), usaspending=frozenset(usa))
 
 
-def resolve_all(sightings_by_work: dict[str, list[Sighting]]) -> dict[str, WorkFunding]:
+def resolve_all(
+    sightings_by_work: dict[str, list[Sighting]], funding_rules: FundingRules | None = None
+) -> dict[str, WorkFunding]:
     found = answers()
     return {
         work: resolve_work(
             sightings,
             LINKS.get(work, []),
             found,
-            rules(),
+            funding_rules or rules(),
             overrides={override_match_key(raw): key for raw, key in OVERRIDES.get(work, {}).items()},
             data_year=2026,
         )
@@ -211,8 +214,7 @@ def under_agency() -> dict[str, WorkFunding]:
     return resolve_all(by_work)
 
 
-@cache
-def under_sources() -> dict[str, WorkFunding]:
+def sources_sightings() -> dict[str, list[Sighting]]:
     by_work: dict[str, list[Sighting]] = collections.defaultdict(list)
     for entry in entries():
         for seen in entry["sightings"]:
@@ -220,11 +222,17 @@ def under_sources() -> dict[str, WorkFunding]:
                 Sighting(
                     seen["raw"],
                     seen["source"],
+                    funder=seen["funder"],
                     funder_id=seen["funder_id"],
                     pubmed_agency=seen["pubmed_agency"],
                 )
             )
-    return resolve_all(by_work)
+    return by_work
+
+
+@cache
+def under_sources() -> dict[str, WorkFunding]:
+    return resolve_all(sources_sightings())
 
 
 def row_outcomes(resolved: dict[str, WorkFunding]) -> dict[str, list[tuple[str, str, tuple[str, ...]]]]:
@@ -258,8 +266,6 @@ def keys_of(outcomes: Iterable[tuple[str, str, tuple[str, ...]]]) -> set[str]:
 def family_prefix(agency: str) -> str:
     """The key prefix of the row's agency's grants (§8.2)."""
     code = AGENCY[agency]
-    if code is None:
-        return f"{UNCONFIGURED}:"
     if code == "NSF" or not rules().agencies[code].us_federal or code == "VA":
         return f"{code}:"
     return f"USA:{code}:"
@@ -335,10 +341,34 @@ def test_every_appendix_b_key_is_listed_and_tagged() -> None:
 
 
 # Rows the sources' own attribution resolves differently, and why. Each difference is a
-# Miscellaneous key where the row's agency is named by no ID a v1 source gives (§6.4):
+# Miscellaneous key where no v1 source names the row's agency, by ID or by a whole name (§6.4):
 UNATTRIBUTED = {
-    # Only a Crossref funder entry without a registry DOI names the form on some or all works.
+    # Crossref's entry gives CIHR's ROR (01gavpb45) alone: no name, no registry DOI.
     "CIHR:PJT-206152",
+    # OpenAlex names only Genome Canada, Ontario Genomics and EFPIA for IMI's 115766: not an OGI number.
+    "EU:115766",
+    # PubMed's Agency for IOS-1922541 is "Forsgren", an investigator.
+    "NSF:1922541",
+    # OpenAlex names both Wellcome and CIHR, and neither agency's pattern decides (§6.4).
+    "UNK:1097737",
+}
+
+# The strings only a Crossref funder entry without a registry DOI names, by a name an agency's
+# `funder_names` match whole (B3a), and the key each now has: Miscellaneous under B3.
+NAMED = {
+    ("W-000184", "OCE 1633939"): "NSF:1633939",  # "NSF"
+    ("W-000203", "IMI115760"): "EU:115760",  # "Zoonoses Anticipation and Preparedness Initiative"
+    ("W-000208", "50WB1535"): "DLR:50WB1535",  # "DLR Space program"
+    ("W-000222", "823839"): "EU:823839",  # "H2020 EU EPIC-XS"
+    ("W-000246", "MOA 13-502"): "HIDOH:MOA13502",  # "Hawaii Department of Heath"
+    ("W-000274", "NA140AR4170078"): "USA:NOAA:NA14OAR4170078",  # "Washington Sea Grant Award"
+    ("W-000301", "A172539"): "UW:A172539",  # "University of Washington Royalty Research Fund"
+    ("W-000632", "14102014"): "RGC:14102014",  # "Research Grants Council General Research Fund"
+    ("W-000632", "4053242"): "CUHK:4053242",  # "Direct Grants from the Chinese University of Hong Kong"
+    ("W-000632", "4053364"): "CUHK:4053364",
+    ("W-000632", "AoE/M-403/16"): "RGC:AOEM40316",  # "Hong Kong University Grants Committee Area of…"
+}
+NAMED_ROWS = {
     "CUHK:4053242",
     "CUHK:4053364",
     "DLR:50WB1535",
@@ -350,12 +380,6 @@ UNATTRIBUTED = {
     "RGC/UGC:14102014",
     "RGC/UGC:AoE/M-403/16",
     "UNIVERSITY:A172539",
-    # OpenAlex names only Genome Canada, Ontario Genomics and EFPIA for IMI's 115766: not an OGI number.
-    "EU:115766",
-    # PubMed's Agency for IOS-1922541 is "Forsgren", an investigator.
-    "NSF:1922541",
-    # OpenAlex names both Wellcome and CIHR, and neither agency's pattern decides (§6.4).
-    "UNK:1097737",
 }
 
 
@@ -367,6 +391,45 @@ def test_the_sources_own_attribution_gives_the_same_keys() -> None:
     for row in differ:
         extra = keys_of(by_sources[row]) - keys_of(by_agency[row])
         assert extra and all(key.startswith("MISC:") for key in extra), (row, extra)
+
+
+def rules_without_names() -> FundingRules:
+    """B3's attribution: the configuration with every agency's `funder_names` taken out."""
+    config = load_config()
+    agencies = [
+        {name: value for name, value in agency.items() if name != "funder_names"}
+        for agency in config.funding["agencies"]
+    ]
+    return FundingRules.from_config({**config.funding, "agencies": agencies}, config.rules["r2"]["code"])
+
+
+def test_the_name_rule_moves_only_the_strings_it_names() -> None:
+    """B3a: a whole name given without an ID brings 11 rows to exactly their agency's key, and
+    moves nothing else — no other string on any work, and no other row. Under B3, 15 rows
+    differed from their agency's keys; 4 still do."""
+    before = resolve_all(sources_sightings(), rules_without_names())
+    after = under_sources()
+
+    def grants(resolved: dict[str, WorkFunding]) -> dict[tuple[str, str], tuple[str, ...]]:
+        return {
+            (work, string.raw): string.grants for work, found in resolved.items() for string in found.strings
+        }
+
+    was, now = grants(before), grants(after)
+    assert was.keys() == now.keys()
+    moved = {string: keys for string, keys in now.items() if keys != was[string]}
+    assert moved == {string: (key,) for string, key in NAMED.items()}
+    assert all(len(was[string]) == 1 and was[string][0].startswith("MISC:") for string in moved)
+
+    by_agency, rows_before, rows_after = (row_outcomes(r) for r in (under_agency(), before, after))
+    changed = {row for row in rows_after if keys_of(rows_before[row]) != keys_of(rows_after[row])}
+    assert changed == NAMED_ROWS
+    for row in changed:
+        assert keys_of(rows_after[row]) == keys_of(by_agency[row]), row
+        assert len(keys_of(rows_after[row])) == 1, row
+    differed = {row for row in by_agency if keys_of(by_agency[row]) != keys_of(rows_before[row])}
+    assert (len(differed), len(UNATTRIBUTED)) == (15, 4)
+    assert differed == UNATTRIBUTED | NAMED_ROWS
 
 
 @pytest.mark.parametrize("pattern", [None, "NSF:1922871", "NSF:1933311"])
