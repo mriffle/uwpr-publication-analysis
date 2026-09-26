@@ -110,20 +110,21 @@ def test_the_named_exclusions_stay_in_step_with_the_rules() -> None:
 def test_the_home_institution_is_what_the_real_store_actually_reports() -> None:
     """A ROR that named nothing in the data would exclude nothing and the chart would not say so.
 
-    Measured against the committed store: 316 of 339 works and 322 of 339 countries, the figures
-    docs/05 §7.8 and §7.14 quote.
+    docs/05 §7.8 and §7.14 quote 316 and 322 of 339 works, measured 2026-09-20. This asserts what
+    those figures show rather than the figures, because the weekly run changes them: exact counts
+    here broke when 2026-09-26.1 merged a duplicate, and would break again on the next new work.
     """
     config = load_config()
     document, _ = build_from_store(REAL_STORE, resource_block(config))
     home = document["resource"]["home_institution"]
     at_home = [w for w in document["works"] if any(i["ror"] == home["ror"] for i in w["institutions"])]
 
-    assert len(at_home) == 316
+    assert len(at_home) > len(document["works"]) / 2
     assert {i["name"] for w in at_home for i in w["institutions"] if i["ror"] == home["ror"]} == {
         home["name"]
     }
     country = document["resource"]["home_country"]
-    assert sum(country in w["countries"] for w in document["works"]) == 322
+    assert all(country in w["countries"] for w in at_home)
 
 
 def test_every_staff_entry_carries_the_id_that_joins_it_to_an_author() -> None:
