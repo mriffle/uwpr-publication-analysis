@@ -73,6 +73,10 @@ jobs:
         env:
           VITE_FUNDING: "1"
       - run: npm run check:budget      # JS ≤ 250 KB gzipped; the job fails on an overrun (§10)
+      # First load's data ≤ 500 KiB gzipped at level 9 (§10, docs/09 §11.9), on `export/` and
+      # `samples/export/`. The weekly run's export is committed by the bot, which starts no
+      # workflow, so stage 11 measures it the same way and alerts; this catches everything else.
+      - run: npm run check:data-budget
       # End to end, against the built app behind `vite preview`. The routing behaviours these
       # cover — the 404 fallback and the on-demand lookup fetch — do not exist in dev, so a
       # component test cannot reach them (docs/06 §12.2).

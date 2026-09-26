@@ -15,7 +15,7 @@ year** (OpenAlex; everything else is free).
 | The record | `store/` on `main` — one JSON file per included publication, committed |
 | What the page reads | `export/uwpr_publications.json` and `export/lookup_index.json`, committed |
 | The rules and the configuration | `config/*.yaml`, `overrides.yaml` |
-| The weekly run | `.github/workflows/update.yml` — Mondays 13:17 UTC |
+| The weekly run | `.github/workflows/update.yml` — Saturdays 07:17 UTC (03:17 or 02:17 in New York) |
 | The app's deploy | `.github/workflows/pages.yml` — on a change to `web/` |
 | The live site | the `gh-pages` branch, served by GitHub Pages |
 | Run reports | `store/runs/<run id>.md`, and each run's job summary in Actions |
@@ -122,6 +122,11 @@ A count below its floor is followed by a **control query** on the same source, a
 what it found. "The control query found 352521, so the source is fine and our query is not" is a
 `FAIL`: the source answers, so the query or a field name has changed, and that needs a person.
 "The control query found only 0, so the source is empty" is a `DOWN`, and the week goes ahead.
+
+**The funding sources come last, under their own heading, and never stop the week**, whatever
+they show (docs/09 F16): funding must never hold up the publication update. The verdict names any
+that are `DOWN` or `FAIL`, and the funding stage degrades without them. A `FAIL` there still needs
+a person, just not before the run: a `403` from NIH RePORTER may mean it has blocked the address.
 
 A run refuses to start if `store/` or `export/` has uncommitted changes. That is deliberate: a run
 interrupted part-way through writing would otherwise be read back as though it were the record.
@@ -300,7 +305,7 @@ are never removed**, because old papers keep the old wording.
 
 | Workflow | When | What it does | Runs npm? |
 |---|---|---|---|
-| `update.yml` | Mondays 13:17 UTC, or on demand | Runs the pipeline, commits `store/` and `export/` to `main`, pushes, then copies `export/*.json` onto `gh-pages` | **No** |
+| `update.yml` | Saturdays 07:17 UTC, or on demand | Runs the pipeline, commits `store/` and `export/` to `main`, pushes, then copies `export/*.json` onto `gh-pages` | **No** |
 | `pages.yml` | A push to `main` touching `web/`, or on demand | Builds the app and replaces the app files on `gh-pages` | Yes |
 | `check.yml` | Every push and pull request | The quality gate: Python and the web app | Yes |
 

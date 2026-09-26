@@ -21,6 +21,7 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "check:budget": "node scripts/check-bundle-budget.mjs",
+    "check:data-budget": "node scripts/check-data-budget.mjs",
     "e2e": "playwright test",
     "e2e:install": "playwright install --with-deps chromium"
   },

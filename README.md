@@ -117,9 +117,10 @@ cd web && npm run lint && npm run typecheck && npm test -- --run && npm run e2e
 
 ## Operating it
 
-A GitHub Actions workflow runs the pipeline every Monday, validates the result, commits it, and
-publishes the data to the site. It costs about **$0.01 a run** — around **$0.52 a year** — and
-needs no attention unless it raises an alert.
+A GitHub Actions workflow runs the pipeline early every Saturday (07:17 UTC, inside NIH
+RePORTER's window for large jobs), validates the result, commits it, and publishes the data to the
+site. It costs about **$0.01 a run** — around **$0.52 a year** — and needs no attention unless it
+raises an alert.
 
 A run that hits a failing source **degrades**: it reports the problem, changes nothing it cannot
 verify, and carries on. Three degraded runs in a row raise an alert. If the schedule stops
@@ -147,3 +148,12 @@ Bibliographic data, citations, topics and affiliations come from
 [OpenAlex](https://openalex.org/); full text from [PubMed Central](https://pmc.ncbi.nlm.nih.gov/)
 and [Europe PMC](https://europepmc.org/); version links from [Crossref](https://www.crossref.org/);
 dataset descriptions from [PRIDE](https://www.ebi.ac.uk/pride/).
+
+Funding data — the grants the publications list, their amounts, agencies and investigators —
+comes from public award records: [NIH RePORTER](https://reporter.nih.gov/), the
+[NSF Award API](https://resources.research.gov/common/webapi/awardapisearch-v1.htm),
+[USAspending.gov](https://www.usaspending.gov/), PubMed's grant lists (courtesy of the U.S.
+National Library of Medicine, which does not endorse this project), OpenAlex and Crossref, with
+exchange rates from the Federal Reserve Board's [G.5A](https://www.federalreserve.gov/releases/g5a/)
+release and the [OECD](https://www.oecd.org/) (CC BY 4.0). Each is used under its own terms, which
+[NOTICE](NOTICE) sets out.

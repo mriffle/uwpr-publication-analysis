@@ -32,3 +32,32 @@ repository; they live only in a local download cache that is not committed.
 Bibliographic metadata comes from OpenAlex (CC0), Crossref, Europe PMC, NCBI
 PMC, PRIDE/ProteomeXchange and bioRxiv/medRxiv, each used through its public
 API under that service's own terms.
+
+Funding data
+
+The grants these publications list, what each was awarded, and by whom, are
+read from public award records (store/funding/, and the export's funding
+block). Each source is used under its own terms, as read on 2026-09-26:
+
+- NIH RePORTER (National Institutes of Health): US government information. Its
+  API pages state no licence; questions about its use go to
+  RePORT@mail.nih.gov.
+- USAspending.gov (US Department of the Treasury, Bureau of the Fiscal
+  Service): US government information. The API's own source code is dedicated
+  to the public domain under CC0; no licence is stated for the data itself.
+- The NSF Award API: NSF open data, "made available under an open license that
+  places no restrictions on their use". Courtesy: U.S. National Science
+  Foundation.
+- PubMed/MEDLINE grant lists: Courtesy of the U.S. National Library of
+  Medicine. NLM does not endorse this project. The lists are read again at
+  least every 28 days, so they may not reflect the most current data available
+  from NLM.
+- OpenAlex award records (CC0) and Crossref funder metadata, as above.
+- Exchange rates: the Federal Reserve Board's statistical release G.5A, in the
+  public domain, with the Board cited as the source; and the OECD's annual
+  average exchange rates (CC BY 4.0). Rates are stored as US dollars per unit
+  of currency, so a rate published as units per US dollar -- every OECD rate,
+  and all but four of G.5A's -- is stored inverted.
+
+The names of principal investigators appear only as the funders' own published
+award records give them.

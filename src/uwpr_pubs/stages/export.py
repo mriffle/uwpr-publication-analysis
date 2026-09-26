@@ -9,6 +9,7 @@ so it is derived from the store path rather than carried separately. A run again
 store therefore writes a scratch export, and development never touches the repository's own.
 """
 
+import gzip
 import json
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
@@ -41,6 +42,14 @@ from uwpr_pubs.store.read import StoreSnapshot, read_store
 
 EXPORT_FILE = "uwpr_publications.json"
 LOOKUP_FILE = "lookup_index.json"
+
+# The data budget (docs/06 §10, docs/09 §11.9): what the page downloads on first load, which is
+# `EXPORT_FILE` alone — the lookup index loads on demand. 500 KiB, gzipped at level 9, the measure
+# `web/scripts/check-bundle-budget.mjs` uses for JavaScript. `web/scripts/check-data-budget.mjs`
+# enforces the same constant in CI, and a test keeps the two equal. CI never sees the weekly
+# run's export (the bot's commit starts no workflow), so stage 11 measures it too, and alerts.
+DATA_BUDGET_BYTES = 512_000
+GZIP_LEVEL = 9
 
 
 def export_dir(store: Path) -> Path:
@@ -163,6 +172,12 @@ def write(directory: Path, export: ExportDoc, lookup: LookupDoc) -> int:
 
 def read(directory: Path) -> tuple[Any, Any]:
     return io.read_json(directory / EXPORT_FILE), io.read_json(directory / LOOKUP_FILE)
+
+
+def data_size(export: ExportDoc) -> int:
+    """`EXPORT_FILE` as `write` puts it on disk, gzipped at level 9: what the budget measures."""
+    text = io.canonical_json(export).encode("utf-8")
+    return len(gzip.compress(text, compresslevel=GZIP_LEVEL, mtime=0))
 
 
 # --- building an export from a store, outside a run -----------------------------------------

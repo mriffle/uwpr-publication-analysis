@@ -1746,6 +1746,10 @@ class Pipeline:
 
         A bad export stops the run like a bad store does, so the previous one stays in place. The
         staged copy lives beside the staged store, and stage 13 moves both.
+
+        **An export over the data budget is written anyway, and alerts** (docs/09 §9.5, §11.9). A
+        page a little slower to load is no reason to withhold a week's data; a budget crossed
+        unnoticed is, since no CI run ever sees the weekly export.
         """
         meta = export_stage.meta_for(
             self.config,
@@ -1768,6 +1772,15 @@ class Pipeline:
                 "the export does not validate, so nothing was written:\n  " + "\n  ".join(problems[:20])
             )
         export_stage.write(_staged_export(staging), document, lookup)
+        size, budget = export_stage.data_size(document), export_stage.DATA_BUDGET_BYTES
+        if size > budget:
+            self.recorder.alert(
+                f"{export_stage.EXPORT_FILE} is {size:,} bytes gzipped ({size / 1024:,.1f} KiB), over"
+                f" the {budget / 1024:,.0f} KiB data budget (docs/06 §10); it is not held back for that",
+                "compare it with the last export under budget to find what grew, then trim that, or"
+                " raise the budget deliberately: docs/06 §10, stages/export.py and"
+                " web/scripts/check-data-budget.mjs",
+            )
 
     def check_fixtures(self, staging: Path) -> None:
         """The second half of the gate: the Phase 1 §12 papers must still behave (§12.2).

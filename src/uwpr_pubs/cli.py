@@ -58,11 +58,16 @@ def _smoke(args: argparse.Namespace) -> int:
     api_keys()  # reads .env for local runs, before the client is built
     client = build_client(config, mode=Mode.LIVE, cache_root=Path(args.cache) if args.cache else None)
     checks = run_smoke(config, client)
+    heading = "\nFunding sources, which never block the run (docs/09 §13.2):"
     for check in checks:
+        if not check.blocks and heading:
+            print(heading)
+            heading = ""
         print(check.line())
     spend = client.budget.spent_usd
     print(f"\nOpenAlex spend: ${spend:.4f}   calls: {sum(u.calls for u in client.usage.values())}")
-    # An outage is reported and forgiven; only a problem stops the week (docs/03 §8, §9).
+    # An outage is reported and forgiven; only a problem stops the week (docs/03 §8, §9), and
+    # never a funding source's (docs/09 F16).
     print(verdict(checks))
     return 1 if blocked(checks) else 0
 
@@ -215,7 +220,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     config.add_argument("--dir", help="default: <project root>/config")
 
     smoke = subcommands.add_parser(
-        "smoke", help="live check that each source answers as expected; an outage reports but exits 0"
+        "smoke",
+        help="live check that each source answers as expected; an outage, or any funding source, "
+        "reports but exits 0",
     )
     smoke.add_argument("--cache", help="default: <project root>/cache")
 

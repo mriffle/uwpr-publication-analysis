@@ -9,9 +9,17 @@ name: update
 
 on:
   schedule:
-    # Mondays 13:17 UTC, about 06:17 in Seattle. Off the hour: GitHub queues scheduled runs
-    # hardest on the hour, and a delayed start is a delayed weekly update.
-    - cron: "17 13 * * 1"
+    # Saturdays 07:17 UTC: 03:17 Eastern in summer and 02:17 in winter, so Saturday in New York
+    # all year, inside NIH RePORTER's window for large jobs (weekends, or 9 PM-5 AM Eastern on
+    # weekdays), which the funding refresh needs (docs/09 F12, §13.1). NCBI asks the same of any
+    # series of more than 100 E-utilities requests. Off the hour: GitHub queues scheduled runs
+    # hardest on the hour, and a delayed start is a delayed weekly update. Changing this line
+    # makes whoever commits it the recipient of the scheduled run's failure email (RUNBOOK §1).
+    #
+    # Do not try to express "the first Saturday of the month" here: when both day-of-month and
+    # day-of-week are set, cron runs when *either* matches, so `17 7 1-7 * 6` runs on days 1-7
+    # and on every Saturday. A monthly job decides in code, as the funding refresh's 28 days do.
+    - cron: "17 7 * * 6"
   workflow_dispatch:
 
 permissions:

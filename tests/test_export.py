@@ -5,7 +5,9 @@ them in the browser, so a definition implemented two different ways is a discrep
 until a funder asks why two numbers disagree. Everything here is offline.
 """
 
+import gzip
 import json
+import re
 import shutil
 from pathlib import Path
 from typing import Any, cast
@@ -30,10 +32,13 @@ from uwpr_pubs.rules.signals import NEAR_MISS_IDENTIFIER
 from uwpr_pubs.sample import CASES, missing_cases
 from uwpr_pubs.schemas import schema_errors
 from uwpr_pubs.stages.export import (
+    DATA_BUDGET_BYTES,
     EXPORT_FILE,
+    GZIP_LEVEL,
     LOOKUP_FILE,
     NoRunError,
     build_from_store,
+    data_size,
     export_dir,
     read,
     read_on,
@@ -49,6 +54,7 @@ from uwpr_pubs.validate import validate_export
 SAMPLE_STORE = Path("samples/store")
 SAMPLE_EXPORT = Path("samples/export")
 SAMPLE_CASES = Path("samples/export_cases.json")
+DATA_BUDGET_SCRIPT = Path("web/scripts/check-data-budget.mjs")
 
 
 @pytest.fixture(scope="module")
@@ -769,3 +775,31 @@ def test_the_method_page_dates_a_source_the_run_read_with_the_runs_own_day() -> 
         {"source": "source:ncbi", "cause": "a text source; it has no run date to lose"},
     ]
     assert read_on("2026-10-03", down, channels) == {"OpenAlex": "2026-10-03", "Crossref": "2026-10-03"}
+
+
+# --- the data budget (docs/06 §10, docs/09 §11.9) ---------------------------------------------
+
+
+def test_the_web_check_and_the_run_measure_one_budget_the_same_way() -> None:
+    """Two enforcements of one number: CI's script, and stage 11's alert. They must not drift.
+
+    The script is JavaScript, so its constant is read as text. It is written as `500 * 1024`,
+    the form `check-bundle-budget.mjs` uses for its own budget.
+    """
+    script = DATA_BUDGET_SCRIPT.read_text(encoding="utf-8")
+    written = re.search(r"^const BUDGET_BYTES = (\d+) \* 1024;$", script, re.MULTILINE)
+    assert written, "check-data-budget.mjs must declare `const BUDGET_BYTES = <KiB> * 1024;`"
+    assert int(written.group(1)) * 1024 == DATA_BUDGET_BYTES == 512_000
+    assert f"level: {GZIP_LEVEL}" in script
+    assert f"'{EXPORT_FILE}'" in script  # the file read on first load, and only that one
+
+
+def test_the_data_size_is_the_written_file_gzipped_at_level_9(built: tuple[Any, Any], tmp_path: Path) -> None:
+    """Stage 11 measures the document before stage 13 moves it; it must be what is served."""
+    write_export(tmp_path, *built)
+    on_disk = (tmp_path / EXPORT_FILE).read_bytes()
+    assert data_size(built[0]) == len(gzip.compress(on_disk, compresslevel=9))
+
+
+def test_the_sample_export_is_within_the_data_budget(committed: tuple[Any, Any]) -> None:
+    assert data_size(committed[0]) <= DATA_BUDGET_BYTES

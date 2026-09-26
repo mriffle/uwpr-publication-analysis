@@ -9,11 +9,18 @@ a run. It is deliberately cheap: about $0.002 of OpenAlex budget.
 patience, and a changed source needs a person. Only the second blocks (docs/03 §8, changed
 2026-09-20, after a 503 on two of nine Europe PMC queries cost a whole weekly run, and again
 2026-09-26, after Europe PMC answering "0 results" cost the first scheduled one).
+
+**The funding sources are checked too, and never block** (docs/09 §13.2, F16). Each has a known
+answer, classified like every other check, but funding must never stop the publication update: a
+funding source that is down or has changed shape degrades the funding stage, and the week goes
+ahead. The verdict names them apart, so a person can see what the funding stage will lack.
 """
 
+import re
 from collections.abc import Callable, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from enum import StrEnum
+from typing import Any
 
 from uwpr_pubs.config import Config
 from uwpr_pubs.http import BudgetExceededError, HttpClient, HttpError
@@ -21,7 +28,10 @@ from uwpr_pubs.runtime import api_keys
 from uwpr_pubs.sources.crossref import Crossref
 from uwpr_pubs.sources.europepmc import EuropePmc
 from uwpr_pubs.sources.ncbi import Ncbi
+from uwpr_pubs.sources.nsf import Nsf
 from uwpr_pubs.sources.openalex import OpenAlex
+from uwpr_pubs.sources.reporter import Reporter
+from uwpr_pubs.sources.usaspending import UsaSpending
 from uwpr_pubs.sources.uwpr_site import UwprSite
 
 # Each floor sits about 10% below what its source answered when re-measured on 2026-09-26: 306
@@ -43,6 +53,23 @@ KNOWN_PMID = "19070509"  # the sample store's oldest work
 KNOWN_PMCID = "PMC3073872"
 SERVER_ERROR_FLOOR = 500
 
+# The funding sources' known answers (docs/09 §13.2), each confirmed live on 2026-09-26. One or two
+# requests a source; RePORTER's go through its adapter, sorted and without sub-projects.
+# P41GM103533 has ended: 13 parent rows, FY2012-2021, $20,699,505, every one with an amount.
+REPORTER_CORE = "P41GM103533"
+MIN_REPORTER_ROWS = 12
+REPORTER_LINK = "S10RR017262"  # NIH links KNOWN_PMID to it, and to T32GM007750
+NSF_AWARD = "1908587"  # fundsObligatedAmt "900000"
+USASPENDING_AWARD = "NNX14AJ87G"  # NASA; total_obligation 796,089.19
+USASPENDING_OBLIGATION = 796_089.19
+AMOUNT_TOLERANCE = 0.01  # as docs/09 §17 compares a contract's amount
+PUBMED_GRANT = "RR017262"  # KNOWN_PMID's GrantList has it as "S10 RR017262" and "1S10RR-017262-01"
+OPENALEX_AWARD = "G3111500291"  # NSF 1908587 in OpenAlex: 900000.0 USD, from nsf_award_search
+# Two records whose Crossref funder metadata names the resource code; one batch must answer both.
+CROSSREF_FUNDER_DOIS = ("10.1002/pmic.200900216", "10.1002/pmic.201000616")
+RESOURCE_CODE = "UWPR95794"
+NOT_ALPHANUMERIC = re.compile(r"[^0-9A-Z]")
+
 
 class Outcome(StrEnum):
     """What a check found, and therefore what happens to the weekly run (docs/03 §8, §9).
@@ -63,9 +90,12 @@ class Outcome(StrEnum):
 
 @dataclass(frozen=True)
 class Check:
+    """One source's answer. `blocks` is false for a funding source, which never stops the run."""
+
     name: str
     outcome: Outcome
     detail: str
+    blocks: bool = True
 
     def line(self) -> str:
         return f"{self.outcome.tag}  {self.name}: {self.detail}"
@@ -97,8 +127,12 @@ def classify(exc: Exception) -> Outcome:
 
 
 def blocked(checks: Sequence[Check]) -> bool:
-    """Does anything here need a person before the run is worth starting?"""
-    return any(check.outcome is Outcome.PROBLEM for check in checks)
+    """Does anything here need a person before the run is worth starting?
+
+    A funding source never does, whatever it answered: funding must never block the publication
+    update (docs/09 F16), and the funding stage degrades on its own when a source fails (§9.4).
+    """
+    return any(check.blocks and check.outcome is Outcome.PROBLEM for check in checks)
 
 
 def _count(names: Sequence[str], singular: str, plural: str) -> str:
@@ -106,9 +140,18 @@ def _count(names: Sequence[str], singular: str, plural: str) -> str:
 
 
 def verdict(checks: Sequence[Check]) -> str:
-    """The last line: may the run proceed, and why. Written to be read without counting lines."""
-    outages = [check.name for check in checks if check.outcome is Outcome.OUTAGE]
-    problems = [check.name for check in checks if check.outcome is Outcome.PROBLEM]
+    """The last line: may the run proceed, and why. Written to be read without counting lines.
+
+    Funding sources that failed are named apart, with their state, because they mean something
+    different: what the funding stage will lack this week, never whether the week happens.
+    """
+    outages = [check.name for check in checks if check.blocks and check.outcome is Outcome.OUTAGE]
+    problems = [check.name for check in checks if check.blocks and check.outcome is Outcome.PROBLEM]
+    funding = ", ".join(
+        f"{check.name} ({check.outcome.tag})"
+        for check in checks
+        if not check.blocks and check.outcome is not Outcome.OK
+    )
     if problems:
         line = (
             f"VERDICT  BLOCKED: {_count(problems, 'check needs', 'checks need')} a person "
@@ -119,12 +162,22 @@ def verdict(checks: Sequence[Check]) -> str:
                 f" {_count(outages, 'source is', 'sources are')} also down"
                 f" ({', '.join(outages)}), which alone would not have blocked the run."
             )
+        if funding:
+            line += f" Funding sources failed as well ({funding}), which never blocks the run."
         return line
     if outages:
-        return (
+        line = (
             f"VERDICT  PROCEED: {_count(outages, 'source is', 'sources are')} down"
             f" ({', '.join(outages)}); the run degrades honestly, removes nothing, and alerts if the"
             " same source fails three runs running."
+        )
+        if funding:
+            line += f" Funding sources: {funding} — the funding stage will degrade."
+        return line
+    if funding:
+        return (
+            f"VERDICT  PROCEED: funding sources: {funding} — the funding stage will degrade; the"
+            " publication update proceeds."
         )
     return f"VERDICT  PROCEED: all {len(checks)} checks passed."
 
@@ -141,6 +194,36 @@ def _check(name: str, run: Callable[[], tuple[bool, str]]) -> Check:
     # Outside the counts (`_floor_check`), a content assertion that returns false is a problem:
     # the source answered, and the answer was not the one that was measured.
     return Check(name, Outcome.OK if ok else Outcome.PROBLEM, detail)
+
+
+def _funding_check(name: str, run: Callable[[], tuple[bool, str]]) -> Check:
+    """A funding source's check: classified as `_check` classifies, and never blocking.
+
+    Any exception at all is caught here, where `_check` lets an unexpected one through to stop the
+    command: a funding source answering in a shape nobody foresaw must not be what stops the
+    publication update, as a traceback here would (docs/09 F16).
+    """
+    try:
+        check = _check(name, run)
+    except Exception as exc:  # whatever a funding source does, the week goes ahead
+        check = _failed(name, exc)
+    return replace(check, blocks=False)
+
+
+def _amount(value: Any) -> float | None:
+    """A positive amount, whether the source sends a number or a numeral (NSF sends strings)."""
+    if isinstance(value, bool) or not isinstance(value, int | float | str):
+        return None
+    try:
+        amount = float(value)
+    except ValueError:
+        return None
+    return amount if amount > 0 else None
+
+
+def _years(rows: Sequence[dict[str, Any]]) -> str:
+    years = sorted(year for row in rows if isinstance(year := row.get("fiscal_year"), int))
+    return f"FY{years[0]}-{years[-1]}" if years else "no fiscal years"
 
 
 def _floor_check(
@@ -257,4 +340,114 @@ def run_smoke(config: Config, client: HttpClient) -> list[Check]:
         _check("europe pmc full text", europepmc_fulltext),
         _check("ncbi id converter", ncbi_converter),
         _check("ncbi pmc full text", ncbi_fulltext),
+        *funding_checks(client, config.contact, openalex_key, ncbi_key),
+    ]
+
+
+def _calls(client: HttpClient, host: str) -> int:
+    usage = client.usage.get(host)
+    return usage.calls if usage else 0
+
+
+def funding_checks(
+    client: HttpClient, contact: str, openalex_key: str | None, ncbi_key: str | None
+) -> list[Check]:
+    """One known answer per funding source (docs/09 §13.2), none of which ever blocks the run.
+
+    Eight requests in all, one OpenAlex filter page among them ($0.0001).
+    """
+    reporter = Reporter(client, contact)
+    nsf = Nsf(client, contact)
+    usaspending = UsaSpending(client, contact)
+    ncbi = Ncbi(client, contact, ncbi_key)
+    openalex = OpenAlex(client, contact, openalex_key)
+    crossref = Crossref(client, contact)
+
+    def reporter_projects() -> tuple[bool, str]:
+        rows = reporter.projects([REPORTER_CORE])
+        ours = [row for row in rows if row.get("core_project_num") == REPORTER_CORE]
+        amounts = [amount for row in ours if (amount := _amount(row.get("award_amount"))) is not None]
+        subprojects = sum(1 for row in rows if row.get("subproject_id"))
+        ok = len(rows) == len(ours) == len(amounts) >= MIN_REPORTER_ROWS and not subprojects
+        return ok, (
+            f"{len(rows)} rows for {REPORTER_CORE} ({_years(ours)}), {len(amounts)} with an award_amount"
+            f" (${sum(amounts):,.0f}), {subprojects or 'none'} a sub-project; expected at least"
+            f" {MIN_REPORTER_ROWS} parent rows, every one with an amount"
+        )
+
+    def reporter_links() -> tuple[bool, str]:
+        cores = sorted({str(link.get("coreproject") or "") for link in reporter.publications([KNOWN_PMID])})
+        return REPORTER_LINK in cores, (
+            f"PMID {KNOWN_PMID} links {', '.join(cores) or 'nothing'}; expected {REPORTER_LINK} among them"
+        )
+
+    def nsf_award() -> tuple[bool, str]:
+        award = nsf.award(NSF_AWARD)
+        if award is None:
+            return False, f"NSF knows no award {NSF_AWARD}; expected one with fundsObligatedAmt"
+        obligated = award.get("fundsObligatedAmt")
+        return _amount(obligated) is not None, (
+            f"award {NSF_AWARD}: fundsObligatedAmt {obligated!r}; expected an amount"
+        )
+
+    def usaspending_award() -> tuple[bool, str]:
+        searched = usaspending.awards([USASPENDING_AWARD])
+        rows = [row for row in searched if row.get("Award ID") == USASPENDING_AWARD]
+        generated = str(rows[0].get("generated_internal_id") or "") if len(rows) == 1 else ""
+        if not generated:
+            return False, f"{len(rows)} grants numbered {USASPENDING_AWARD}, expected 1 with an internal id"
+        detail = usaspending.award_detail(generated)
+        obligation = _amount(detail.get("total_obligation")) if detail else None
+        expected = USASPENDING_OBLIGATION
+        ok = obligation is not None and abs(obligation - expected) <= AMOUNT_TOLERANCE * expected
+        shown = "none" if obligation is None else f"${obligation:,.2f}"
+        return ok, (
+            f"{USASPENDING_AWARD}: total_obligation {shown}; expected ${expected:,.2f}"
+            f" ± {AMOUNT_TOLERANCE:.0%}"
+        )
+
+    def pubmed_grant_list() -> tuple[bool, str]:
+        found = ncbi.pubmed_grants([KNOWN_PMID]).get(KNOWN_PMID)
+        grants = found.grants if found else ()
+        numbers = [NOT_ALPHANUMERIC.sub("", (grant.grant_id or "").upper()) for grant in grants]
+        ok = any(PUBMED_GRANT in number for number in numbers)
+        return ok, (
+            f"PMID {KNOWN_PMID}: {len(numbers)} grants in its GrantList; expected {PUBMED_GRANT} among them"
+        )
+
+    def openalex_award() -> tuple[bool, str]:
+        award = next(iter(openalex.awards_by_ids([OPENALEX_AWARD])), None)
+        if award is None:
+            return False, f"no award {OPENALEX_AWARD}; expected one with an amount"
+        amount = award.get("amount")
+        return _amount(amount) is not None, (
+            f"{OPENALEX_AWARD} ({award.get('funder_award_id')}): amount {amount!r}"
+            f" {award.get('currency')}; expected an amount"
+        )
+
+    def crossref_funders() -> tuple[bool, str]:
+        # The adapter asks any DOI a batch misses on its own, which would hide a batch filter that
+        # had stopped working. So the requests are counted: both answers must come from one.
+        before = _calls(client, "crossref")
+        found = crossref.funders_by_dois(CROSSREF_FUNDER_DOIS)
+        asked = _calls(client, "crossref") - before
+        naming = [
+            doi
+            for doi in CROSSREF_FUNDER_DOIS
+            if any(RESOURCE_CODE in (funder.get("award") or []) for funder in found.get(doi, []))
+        ]
+        ok = asked == 1 and len(naming) == len(CROSSREF_FUNDER_DOIS)
+        return ok, (
+            f"{len(found)} of {len(CROSSREF_FUNDER_DOIS)} DOIs in {asked} request{'s' * (asked != 1)},"
+            f" {len(naming)} naming {RESOURCE_CODE}; expected both, in one request"
+        )
+
+    return [
+        _funding_check("nih reporter projects", reporter_projects),
+        _funding_check("nih reporter publications", reporter_links),
+        _funding_check("nsf award api", nsf_award),
+        _funding_check("usaspending award", usaspending_award),
+        _funding_check("pubmed grant list", pubmed_grant_list),
+        _funding_check("openalex award amount", openalex_award),
+        _funding_check("crossref funder batch", crossref_funders),
     ]

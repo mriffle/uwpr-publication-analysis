@@ -19,6 +19,7 @@ from uwpr_pubs.http import Budget, HttpClient, HttpError, Mode, RateLimiter, Res
 from uwpr_pubs.pipeline import RunOptions, run_pipeline
 from uwpr_pubs.schemas import schema_errors
 from uwpr_pubs.sources.uwpr_site import UwprSite
+from uwpr_pubs.stages import export as export_stage
 from uwpr_pubs.stages.export import build_from_store, export_dir, resource_block
 from uwpr_pubs.stages.export import read as read_export
 from uwpr_pubs.store import io
@@ -1137,3 +1138,30 @@ def test_a_dry_run_writes_no_export(client: HttpClient, tmp_path: Path) -> None:
     store = tmp_path / "store"
     do_run(client, store, dry_run=True)
     assert not export_dir(store).exists()
+
+
+def test_an_export_over_the_data_budget_alerts_and_is_still_written(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """docs/09 §9.5: stage 11 alerts on size and never fails on it. The weekly export is seen by
+    no CI run, so this alert is the only place its growth past the budget can show."""
+    monkeypatch.setattr(export_stage, "DATA_BUDGET_BYTES", 1024)
+    store = tmp_path / "store"
+    result = do_run(client, store)
+
+    assert result.status == "alert"
+    assert result.written
+    assert "over the 1 KiB data budget" in result.report
+    document, lookup = read_export(export_dir(store))
+    assert validate_export(document, lookup, run_year=int(TODAY[:4])).errors == []
+
+
+def test_an_export_exactly_at_the_data_budget_is_within_it(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """The budget is a ceiling, as in `check-data-budget.mjs`: over it alerts, at it does not."""
+    store = tmp_path / "store"
+    assert do_run(client, store).status == "ok"
+    document, _ = read_export(export_dir(store))
+    monkeypatch.setattr(export_stage, "DATA_BUDGET_BYTES", export_stage.data_size(document))
+    assert do_run(client, store).status == "ok"
