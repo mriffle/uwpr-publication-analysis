@@ -9,10 +9,12 @@ section.
 Pure: bytes in, dataclasses out. Nothing here fetches anything.
 """
 
+import html
 import re
 import unicodedata
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
+from html.entities import html5
 from typing import Any, Literal, cast
 from xml.etree.ElementTree import Element, ParseError  # parsing itself is defusedxml's (P14)
 
@@ -24,6 +26,9 @@ from uwpr_pubs.store.models import Section
 # An initial ("P." in "P. D. von Haller") or a run of them ("P.D.") never ends a sentence. The
 # first version split those, which hid 11 staff acknowledgements (Phase 1 §6.1).
 INITIAL = re.compile(r"(?:^|[\s(\[.])[A-Z]$")
+# A character reference still in the text after parsing, because the source escaped it twice:
+# PMC6379364's funding statement has `&amp;apos;`, which parses to the literal `&apos;`.
+LEFTOVER_REFERENCE = re.compile(r"&(?:#[0-9]{1,7}|#[xX][0-9a-fA-F]{1,6}|[A-Za-z][A-Za-z0-9]{1,31});")
 
 NormalisationForm = Literal["NFC", "NFD", "NFKC", "NFKD"]
 
@@ -112,8 +117,22 @@ def _local(tag: object) -> str:
     return tag.rsplit("}", 1)[-1]
 
 
+def unescape_leftovers(text: str) -> str:
+    """Decode the character references a source left in its text, and nothing else.
+
+    Only a numeric reference or a known name decodes. `html.unescape` alone also decodes a legacy
+    name that runs into other letters, so `&notes;` would become `¬es;`.
+    """
+
+    def decoded(found: re.Match[str]) -> str:
+        reference = found.group()
+        return html.unescape(reference) if reference[1] == "#" or reference[1:] in html5 else reference
+
+    return LEFTOVER_REFERENCE.sub(decoded, text)
+
+
 def _normalise(text: str, form: NormalisationForm) -> str:
-    return " ".join(unicodedata.normalize(form, text).split())
+    return " ".join(unicodedata.normalize(form, unescape_leftovers(text)).split())
 
 
 def _accumulate(element: Element, rules: TextRules, parts: list[str], *, stop_at_blocks: bool) -> None:

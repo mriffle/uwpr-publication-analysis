@@ -20,7 +20,7 @@ def test_the_projects_config_loads() -> None:
     config = load_config()
     assert config.contact == "mriffle@uw.edu"
     assert config.window_start == 2006
-    assert config.rule_version == "2026-09-20.1"
+    assert config.rule_version == "2026-09-26.1"
     assert {person["key"] for person in config.staff} == {
         "eng",
         "riffle",
@@ -68,18 +68,22 @@ def test_a_rule_or_staff_change_moves_both_fingerprints(config_dir: Path, name: 
 
 
 def test_the_rule_version_is_outside_the_rules_fingerprint(config_dir: Path) -> None:
-    """So the guard can tell 'rules changed' from 'version bumped' (docs/03 §10.4)."""
+    """So the guard can tell 'rules changed' from 'version bumped' (docs/03 §10.4).
+
+    It replaces whatever the version is: naming one went stale at the next bump, and the test
+    then changed nothing and passed anyway.
+    """
     before = load_config(config_dir)
     rules = config_dir / "rules.yaml"
     rules.write_text(
         rules.read_text(encoding="utf-8").replace(
-            'rule_version: "2026-09-19.2"', 'rule_version: "2026-09-20.1"'
+            f'rule_version: "{before.rule_version}"', 'rule_version: "2099-01-01.1"'
         ),
         encoding="utf-8",
     )
     after = load_config(config_dir)
+    assert after.rule_version == "2099-01-01.1"
     assert after.rules_fingerprint == before.rules_fingerprint
-    assert after.rule_version == "2026-09-20.1"
 
 
 def test_invalid_config_is_rejected_with_every_problem(config_dir: Path) -> None:

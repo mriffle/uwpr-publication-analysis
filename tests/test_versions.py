@@ -11,6 +11,7 @@ from uwpr_pubs.versions import (
     links_from_published,
     merges,
     resolve,
+    versionless,
 )
 
 PREPRINT_DOI = "10.1101/2025.07.25.666826"
@@ -69,6 +70,14 @@ def test_a_relation_naming_another_revision_of_the_preprint_still_links_it() -> 
     assert links_from_published(records, stated, "crossref_relation") == [
         Link("R-000002", "R-000001", "crossref_relation")
     ]
+
+
+def test_a_dot_v_suffix_is_a_revision_too() -> None:
+    """ChemRxiv before 2021, Preprints.org and figshare write the revision as `.v1`."""
+    assert versionless("10.26434/chemrxiv.12148524.v1") == "10.26434/chemrxiv.12148524"
+    assert versionless("10.20944/preprints202406.0285.v2") == "10.20944/preprints202406.0285"
+    assert versionless("10.21203/rs.3.rs-3059858/v1") == "10.21203/rs.3.rs-3059858"
+    assert versionless("10.1021/acschembio.0c00429") == "10.1021/acschembio.0c00429"
 
 
 def test_an_ambiguous_revision_links_nothing() -> None:

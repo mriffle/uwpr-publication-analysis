@@ -10,12 +10,13 @@ metadata". A record with no readable text is where R6 takes over (§6.5).
 """
 
 import datetime as dt
+from collections.abc import Iterable
 from dataclasses import dataclass
 
 from uwpr_pubs.cache import sha256_hex
 from uwpr_pubs.sources.europepmc import EuropePmc
 from uwpr_pubs.sources.ncbi import Ncbi
-from uwpr_pubs.store.models import CacheRef, Date, FullText, FullTextStatus, Record, SourceName
+from uwpr_pubs.store.models import CacheRef, Date, Evidence, FullText, FullTextStatus, Record, SourceName
 from uwpr_pubs.text import Document, TextRules, parse_jats
 
 PMC_ARTICLE = "https://pmc.ncbi.nlm.nih.gov/articles"
@@ -51,6 +52,19 @@ def fulltext_field(result: TextResult, *, today: Date, recheck_days: int) -> Ful
         "recheck_after": recheck_after(today, recheck_days),
         "cache": None,
     }
+
+
+def oldest_rule_version(evidence: Iterable[Evidence]) -> str | None:
+    """The oldest rule version behind a work's live, record-bound evidence.
+
+    A superseded entry keeps the version that produced it, as history, and counting it made a work
+    look out of date for good: it was read again, and its file rewritten, every week after the rule
+    change that superseded it (found 2026-09-26, at the real store's first bump).
+    """
+    versions = {
+        entry["rule_version"] for entry in evidence if entry.get("record") and "superseded" not in entry
+    }
+    return min(versions) if versions else None
 
 
 def needs_evaluation(record: Record, *, today: Date, rule_version: str, evidence_version: str | None) -> bool:

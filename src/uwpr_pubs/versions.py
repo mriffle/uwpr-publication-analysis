@@ -23,9 +23,10 @@ from uwpr_pubs.store.ids import normalise_doi
 from uwpr_pubs.store.models import RecordId, VersionMethod, WorkId
 
 YEAR_TOLERANCE = 2  # Phase 1 §8, wider than record matching because a paper can sit in review
-# Preprint servers mint one DOI per revision: Research Square appends "/v2" and ChemRxiv "-v2".
-# A relation may name a revision we do not hold, so the version is stripped as a second chance.
-DOI_REVISION = re.compile(r"[/-]v\d+$")
+# Preprint servers mint one DOI per revision: Research Square appends "/v2", ChemRxiv "-v2" (and
+# ".v1" before 2021), Preprints.org and figshare ".v1". A relation may name a revision we do not
+# hold, so the version is stripped as a second chance.
+DOI_REVISION = re.compile(r"[/.-]v\d+$")
 
 
 @dataclass(frozen=True)
@@ -69,7 +70,7 @@ def _surname(name: str) -> str:
 
 
 def versionless(doi: str) -> str:
-    """A preprint DOI without its revision number, e.g. `…-33v24-v2` → `…-33v24`."""
+    """A preprint DOI without its revision number, e.g. `…-33v24-v2` → `…-33v24`, `….v1` → `…`."""
     return DOI_REVISION.sub("", normalise_doi(doi))
 
 

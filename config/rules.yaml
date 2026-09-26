@@ -7,7 +7,7 @@
 # built from the Phase 1 and 01a example sentences, pin down each pattern's behaviour. Until the
 # first live run there is no stored evidence, so fixes made to pass those tests need no new version.
 schema: 1
-rule_version: "2026-09-20.1"          # C4 widened to cover data assembly and sharing (01a C4)
+rule_version: "2026-09-26.1"          # character references left in text are decoded (docs/08 §8)
 
 # --- Record types (Phase 1 §1, §8) --------------------------------------------------------------
 # Types not in Phase 1 §1's included list are excluded ("other"). R1 still includes a listed work

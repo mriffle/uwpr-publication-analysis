@@ -15,6 +15,7 @@ from uwpr_pubs.evidence import criterion_for
 from uwpr_pubs.rules.common import TextSource, text_evidence
 from uwpr_pubs.rules.r3 import R3Rules
 from uwpr_pubs.store.models import Date, Evidence, RecordId
+from uwpr_pubs.text import unescape_leftovers
 
 OTHER_ORG = "other_org"
 
@@ -88,8 +89,8 @@ def openalex_affiliations(payload: dict[str, object]) -> Sequence[str]:
             continue
         raw = authorship.get("raw_affiliation_strings")
         if isinstance(raw, list):
-            strings.extend(str(value) for value in raw)
+            strings.extend(unescape_leftovers(str(value)) for value in raw)
         single = authorship.get("raw_affiliation_string")
         if isinstance(single, str):
-            strings.append(single)
+            strings.append(unescape_leftovers(single))
     return strings

@@ -9,7 +9,7 @@ ever saw tidy XML would still fall over on the real thing.
 import pytest
 
 from uwpr_pubs.config import load_config
-from uwpr_pubs.text import TextRules, parse_jats, split_sentences, text_rules
+from uwpr_pubs.text import TextRules, parse_jats, split_sentences, text_rules, unescape_leftovers
 
 ARTICLE = """<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving DTD v1.2 20190208//EN"
@@ -169,6 +169,39 @@ def test_namespaced_jats_is_read_the_same_way(rules: TextRules) -> None:
     document = parse_jats(namespaced, rules)
     assert document is not None
     assert [s.text for s in document.sentences] == ["One.", "Two."]
+
+
+def test_a_reference_the_source_escaped_twice_is_decoded(rules: TextRules) -> None:
+    """PMC6379364's funding statement reads `Washington&amp;apos;s`, which parses to `&apos;`.
+
+    Its excerpt reached the app as "University of Washington&apos;s Proteomics Resource" until
+    rule version 2026-09-26.1 (docs/08 §8 item 1).
+    """
+    funded = (
+        "<article><front><article-meta><funding-group><award-group><funding-source><institution>"
+        "University of Washington&amp;apos;s Proteomics Resource (UWPR95794)."
+        "</institution></funding-source></award-group></funding-group></article-meta></front></article>"
+    )
+    document = parse_jats(funded, rules)
+    assert document is not None
+    assert [s.text for s in document.sentences] == [
+        "University of Washington's Proteomics Resource (UWPR95794)."
+    ]
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    [
+        ("Washington&apos;s", "Washington's"),
+        ("Merck &amp; Co", "Merck & Co"),
+        ("&#8217; and &#x2019;", "\u2019 and \u2019"),
+        ("AT&T and R&D", "AT&T and R&D"),  # no reference at all
+        ("&notes;", "&notes;"),  # not a name, though `html.unescape` would make it `¬es;`
+        ("&nosuch;", "&nosuch;"),
+    ],
+)
+def test_only_complete_known_references_are_decoded(text: str, expected: str) -> None:
+    assert unescape_leftovers(text) == expected
 
 
 def test_bytes_and_str_agree(rules: TextRules) -> None:

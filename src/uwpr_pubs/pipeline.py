@@ -23,7 +23,14 @@ from uwpr_pubs.config import Config
 from uwpr_pubs.context import RunContext
 from uwpr_pubs.evidence import MergeContext, advance_last_seen, merge_evidence, override_evidence
 from uwpr_pubs.fixtures import evaluate
-from uwpr_pubs.fulltext import TextFetcher, TextResult, fulltext_field, needs_evaluation, recheck_after
+from uwpr_pubs.fulltext import (
+    TextFetcher,
+    TextResult,
+    fulltext_field,
+    needs_evaluation,
+    oldest_rule_version,
+    recheck_after,
+)
 from uwpr_pubs.http import HttpClient, HttpError, Mode
 from uwpr_pubs.match import (
     TITLE_SIMILARITY,
@@ -862,14 +869,13 @@ class Pipeline:
         overrides_changed = self._overrides_changed()
         wanted: list[tuple[Draft, RecordId]] = []
         for _, draft in sorted(self.drafts.items()):
-            versions = {e["rule_version"] for e in draft.stored_evidence if e.get("record")}
-            evidence_version = min(versions) if versions else None
+            oldest = oldest_rule_version(draft.stored_evidence)
             for record_id in sorted(draft.records):
                 if overrides_changed or needs_evaluation(
                     draft.records[record_id],
                     today=self.context.date,
                     rule_version=self.config.rule_version,
-                    evidence_version=evidence_version,
+                    evidence_version=oldest,
                 ):
                     wanted.append((draft, record_id))
         return wanted
@@ -1220,6 +1226,11 @@ class Pipeline:
                 if doi in relations:
                     continue  # a channel's own metadata already said so; no request needed
                 article = self._crossref_relation(doi)
+                if article is None and versions.versionless(doi) != normalise_doi(doi):
+                    # A revision's own record may state nothing while the preprint's does: ChemRxiv's
+                    # `….v1` names no relation, and the DOI without it names the article. W-000746
+                    # was a second copy of W-000237's preprint until 2026-09-26.
+                    article = self._crossref_relation(versions.versionless(doi))
                 if article:
                     relations[doi] = normalise_doi(article)
                     continue

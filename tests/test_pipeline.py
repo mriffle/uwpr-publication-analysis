@@ -355,6 +355,50 @@ def test_a_source_answering_an_empty_body_degrades_the_run_instead_of_failing_it
     assert validate_store(store).errors == []
 
 
+def test_a_revision_doi_that_states_nothing_is_asked_about_without_its_revision(tmp_path: Path) -> None:
+    """W-000746, in miniature: a second copy of a listed paper's preprint (stage 6).
+
+    ChemRxiv's `10.26434/chemrxiv.12148524.v1` states no relation in Crossref, and OpenAlex holds
+    only that DOI, so nothing joined the preprint to its article. It was included on R6 as a work
+    of its own, titled with a file name. The DOI without `.v1` names the article.
+    """
+    revision = f"{PREPRINT_DOI}.v1"
+
+    def transport(
+        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+    ) -> Response:
+        if url.endswith(f"/works/{revision}"):
+            return Response(url, 200, b'{"message": {"relation": {}}}', {})
+        response = route(url, params)
+        if "api.openalex.org" in url:  # OpenAlex knows the preprint only by its revision's DOI
+            body = response.body.replace(PREPRINT_DOI.encode(), revision.encode())
+            return Response(url, response.status, body, response.headers)
+        return response
+
+    client = HttpClient(
+        contact="mriffle@uw.edu",
+        user_agent="uwpr-pubs/test",
+        mode=Mode.LIVE,
+        cache=Cache(tmp_path / "cache"),
+        budget=Budget(max_run_usd=0.5, min_remaining_usd=0.1),
+        rate_limiter=RateLimiter({}),
+        transport=transport,
+        sleep=lambda _: None,
+        now=lambda: f"{TODAY}T00:00:00Z",
+    )
+    store = tmp_path / "store"
+    result = do_run(client, store)
+
+    assert result.status == "ok", result.report
+    works = [io.read_json(p) for p in sorted((store / "works").glob("W-*.json"))]
+    assert len(works) == 3
+    merged = next(w for w in works if len(w["records"]) > 1)
+    preprint = next(r for r in merged["records"] if r["kind"] == "preprint")
+    article = next(r for r in merged["records"] if r["kind"] == "article")
+    assert preprint["ids"]["doi"] == revision
+    assert preprint["version_link"] == {"to": article["id"], "method": "crossref_relation"}
+
+
 def test_a_merge_retires_the_higher_work_id_and_repoints_everything(
     client: HttpClient, tmp_path: Path
 ) -> None:

@@ -24,6 +24,7 @@ from uwpr_pubs.store.models import (
     Topic,
     Venue,
 )
+from uwpr_pubs.text import unescape_leftovers
 
 YEAR_IN_TEXT = re.compile(r"\b(19[89][0-9]|20[0-9]{2})\b")
 INCLUDED_KINDS: frozenset[str] = frozenset(IncludedKind.__args__)  # type: ignore[attr-defined]
@@ -136,7 +137,8 @@ def staff_key_for(author: Mapping[str, Any], config: Config, year: int | None) -
 def _affiliations(authorship: Mapping[str, Any]) -> list[Affiliation]:
     institutions = {i.get("display_name"): i for i in authorship.get("institutions") or []}
     result: list[Affiliation] = []
-    for raw in authorship.get("raw_affiliation_strings") or []:
+    # OpenAlex keeps some strings HTML-escaped ("Computer Science &amp; Engineering").
+    for raw in map(unescape_leftovers, authorship.get("raw_affiliation_strings") or []):
         match = next((i for name, i in institutions.items() if name and str(name) in raw), None)
         # An institution may carry `ror: null`; `.get("ror", "")` then returns None, not "".
         ror = str((match or {}).get("ror") or "").rsplit("/", 1)[-1]

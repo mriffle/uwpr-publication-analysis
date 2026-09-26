@@ -11,11 +11,17 @@ from collections.abc import Sequence
 import pytest
 
 from uwpr_pubs.config import Config, load_config
+from uwpr_pubs.records import record_from_openalex
 from uwpr_pubs.rules.common import TextSource
 from uwpr_pubs.rules.r2 import award_code_in_text, contains_award_code, near_misses
 from uwpr_pubs.rules.r3 import dataset_named, mentions, r3_rules, resource_named
 from uwpr_pubs.rules.r4 import facility_named, r4_rules
-from uwpr_pubs.rules.r5 import affiliation_is_resource, is_resource_affiliation, r5_rules
+from uwpr_pubs.rules.r5 import (
+    affiliation_is_resource,
+    is_resource_affiliation,
+    openalex_affiliations,
+    r5_rules,
+)
 from uwpr_pubs.rules.r6 import phrase_found, query_url
 from uwpr_pubs.rules.r7 import R7Outcome, purpose_phrase, r7_rules, staff_thanked
 from uwpr_pubs.rules.signals import signal_rules, signals_for, text_signals
@@ -320,6 +326,20 @@ def test_r5_evidence_quotes_the_affiliation(config: Config) -> None:
     assert found[0]["criterion"] == 3
     assert found[0]["section"] == "affiliation"
     assert found[0]["excerpt"] == address
+
+
+def test_openalex_affiliation_strings_are_decoded_where_they_are_read(config: Config) -> None:
+    """OpenAlex keeps some raw strings HTML-escaped; three works showed `&amp;` in the app."""
+    raw = "Paul G. Allen School of Computer Science &amp; Engineering, University of Washington"
+    payload: dict[str, object] = {
+        "id": "https://openalex.org/W1",
+        "publication_year": 2020,
+        "authorships": [{"author": {"display_name": "A. Author"}, "raw_affiliation_strings": [raw]}],
+    }
+    decoded = "Paul G. Allen School of Computer Science & Engineering, University of Washington"
+    assert openalex_affiliations(payload) == [decoded]
+    record = record_from_openalex(payload, "R-000001", config, TODAY)
+    assert record["authors"][0]["affiliations"][0]["raw"] == decoded
 
 
 # --- R2 in the text -------------------------------------------------------------------------

@@ -312,6 +312,28 @@ def test_a_rule_change_supersedes_the_evidence_and_drops_the_work(client: HttpCl
     assert validate_store(store).errors == []
 
 
+def test_a_week_after_a_rule_change_nothing_is_read_again(client: HttpClient, tmp_path: Path) -> None:
+    """Superseded evidence keeps the version that produced it, as history, and stage 4 counted it.
+
+    So every entry a rule change superseded made its work look out of date for good, and the work
+    was read again, and its file rewritten, every week after (Phase 2 §15). The real store met this
+    at its first bump, 2026-09-26.1, in a run dated a week on (docs/08 §3.7).
+    """
+    store = tmp_path / "store"
+    go(client, store)
+    offlist = offlist_work_id(store)
+    changed = config_at(tmp_path, "2026-09-22.1", r2={"code": "OTHER99999"})
+    go(client, store, day="2026-09-22", config_dir=changed)
+    before = {p.name: p.read_bytes() for p in (store / "works").glob("W-*.json")}
+    line = candidate(store, offlist)
+
+    result = go(client, store, day="2026-09-29", config_dir=changed)
+
+    assert result.status == "ok", result.errors
+    assert candidate(store, offlist) == line
+    assert {p.name: p.read_bytes() for p in (store / "works").glob("W-*.json")} == before
+
+
 def test_restoring_the_rule_brings_the_work_back(client: HttpClient, tmp_path: Path) -> None:
     """The point of keeping superseded evidence: the decision is reversible."""
     store = tmp_path / "store"
