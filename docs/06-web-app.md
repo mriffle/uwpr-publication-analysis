@@ -94,6 +94,22 @@ deliberately, dated, and noted in this header.
   alerts above it ([09](09-funding-impact.md) §9.5); a Python test keeps the two constants equal.
   Measured 2026-09-26: 310,628 bytes (303.3 KiB) for `export/`, 15,188 (14.8 KiB) for the sample,
   and 64,736 bytes (63.2 KiB) for the lookup index; Node and Python agree to the byte.
+- *2026-09-26, §11.3 and §12.1, one accessor for funding, and test builders held to the schema*
+  ([09](09-funding-impact.md) §11, §12.10). `contract/` now reads contract 1.1's funding, and
+  only through `fundingOf(doc)`. The generated types call the block required, but the loader
+  accepts any 1.x export, so a 1.0 export after a rollback ([07](07-operations.md) O2) has none.
+  `fundingOf` returns null for that, for a block whose `version` is null, and for one missing
+  its grants or agencies; a work's listings are read through `listingsOf`, never off the work.
+  Otherwise it returns an index, built once per document by `buildFundingIndex`: grants by key,
+  agencies by code, each agency's children and its chain root first, and Miscellaneous found by
+  its `group`, never by a code. A cycle among parents, or a parent that is missing, shortens a
+  chain and never hangs or throws; the pipeline's validator refuses both, but a page must not
+  hang on a file it did not check. A grant whose key or number contains `resource.identifier`,
+  compared as the validator compares it, is dropped, so no figure can count the resource as its
+  own funder. On valid data that is a no-op, and a test holds it to one. §12.1's schema check
+  gains a second fixture: the funding builders (`test/support/funding.ts`) are validated by Ajv
+  against their own definitions in the schema, so a hand-built grant cannot be one the pipeline
+  could never write. Nothing on the page changes.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
