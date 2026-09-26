@@ -6,43 +6,43 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000064"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000064"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000064"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000064"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000064"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000064"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000064"
     }
   ],
@@ -51,14 +51,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:5fa7246f0d79",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000064",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -66,7 +66,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -94,7 +94,7 @@
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -107,7 +107,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1007%2Fs12307-010-0046-3"
       }
     },
@@ -115,7 +115,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington's Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -128,7 +128,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1007%2Fs12307-010-0046-3"
       }
     }
@@ -160,7 +160,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Baogang Xu",
+          "name": "Baogang J. Xu",
           "openalex": "A5109261405",
           "orcid": null,
           "staff": null
@@ -205,7 +205,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Aubie Shaw",
+          "name": "Aubie K. Shaw",
           "openalex": "A5061352936",
           "orcid": "0000-0002-5298-801X",
           "staff": null
@@ -314,7 +314,7 @@
       "published": "2010-04-12",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Microdialysis Combined with Proteomics for Protein Identification in Breast Tumor Microenvironment In Vivo",
       "topics": [
@@ -356,5 +356,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

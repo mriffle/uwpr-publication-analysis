@@ -6,7 +6,7 @@
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000632"
     }
   ],
@@ -15,7 +15,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -28,7 +28,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1104%2Fpp.19.01324"
       }
     }
@@ -48,7 +48,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Xiao Lin",
+          "name": "Xiao Rong Lin",
           "openalex": "A5059616081",
           "orcid": "0000-0002-2559-2343",
           "staff": null
@@ -181,7 +181,7 @@
       "published": "2019-12-27",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Analysis of Soybean Long Non-Coding RNAs Reveals a Subset of Small Peptide-Coding Transcripts",
       "topics": [
@@ -223,5 +223,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

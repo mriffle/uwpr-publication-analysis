@@ -6,19 +6,19 @@
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000585"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000585"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000585"
     }
   ],
@@ -47,7 +47,7 @@
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1101%2F2020.10.20.347278"
       }
     },
@@ -68,7 +68,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington's Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -81,7 +81,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1101%2F2020.10.20.347278"
       }
     }
@@ -101,7 +101,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Andy Lin",
+          "name": "Andy Lai Lin",
           "openalex": "A5035859876",
           "orcid": "0000-0003-0072-612X",
           "staff": null
@@ -180,7 +180,7 @@
       "published": "2020-10-21",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Improving power while controlling the false discovery rate when only a subset of peptides are relevant",
       "topics": [
@@ -222,5 +222,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

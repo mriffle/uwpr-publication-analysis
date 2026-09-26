@@ -6,43 +6,43 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000320"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000320"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000320"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000320"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000320"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000320"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000320"
     }
   ],
@@ -51,14 +51,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:2025:6f7ef3dab5be",
         "page": "2025"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000320",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -66,7 +66,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/2025/"
       }
     },
@@ -211,7 +211,7 @@
           "corresponding": false,
           "name": "Archana Einstein",
           "openalex": "A5054037728",
-          "orcid": null,
+          "orcid": "0009-0002-6170-0943",
           "staff": null
         },
         {
@@ -300,7 +300,7 @@
       "published": "2025-07-02",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Extensive citrullination of human serum albumin is physiological and not inherently immunogenic in rheumatoid arthritis",
       "topics": [
@@ -342,5 +342,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

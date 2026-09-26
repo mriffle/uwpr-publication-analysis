@@ -8,55 +8,55 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000310"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000310"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000310"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000310"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000310"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000310"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000310"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000310"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000607"
     }
   ],
@@ -65,14 +65,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:2025:1ad724fb3a86",
         "page": "2025"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000310",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -80,7 +80,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/2025/"
       }
     },
@@ -198,7 +198,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -300,7 +300,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Trisha N. Davis",
+          "name": "Trisha Nell Davis",
           "openalex": "A5022826364",
           "orcid": "0000-0003-4797-3152",
           "staff": null
@@ -358,7 +358,7 @@
       "published": "2025-03-04",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Limelight: An Open, Web-Based Tool for Visualizing, Sharing, and Analyzing Mass Spectrometry Data from DDA Pipelines",
       "topics": [
@@ -411,7 +411,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -525,7 +525,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Trisha N. Davis",
+          "name": "Trisha Nell Davis",
           "openalex": "A5022826364",
           "orcid": "0000-0003-4797-3152",
           "staff": null
@@ -595,7 +595,7 @@
       "published": "2024-11-03",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Limelight - An open, web-based tool for visualizing, sharing, and analyzing mass spectrometry data from DDA pipelines",
       "topics": [
@@ -633,5 +633,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

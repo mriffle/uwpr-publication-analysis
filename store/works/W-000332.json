@@ -6,37 +6,37 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000332"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000332"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000332"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000332"
     },
     {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000332"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000332"
     }
   ],
@@ -45,14 +45,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:2026:d47dd87289ff",
         "page": "2026"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000332",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/"
       }
     },
@@ -188,7 +188,7 @@
           "corresponding": false,
           "name": "Jesse D. Canterbury",
           "openalex": "A5016116051",
-          "orcid": null,
+          "orcid": "0009-0000-5533-1710",
           "staff": null
         },
         {
@@ -222,7 +222,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Qing Yu",
+          "name": "Qing Hua Yu",
           "openalex": "A5040242042",
           "orcid": "0000-0003-0468-5353",
           "staff": null
@@ -243,9 +243,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Meagan Gadzuk-Shea",
-          "openalex": "A5138767131",
-          "orcid": null,
+          "name": "Meagan M. Gadzuk-Shea",
+          "openalex": "A5053598414",
+          "orcid": "0000-0001-9496-529X",
           "staff": null
         },
         {
@@ -319,8 +319,8 @@
           ],
           "corresponding": true,
           "name": "Devin K. Schweppe",
-          "openalex": "A5136788988",
-          "orcid": null,
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
           "staff": null
         }
       ],
@@ -346,7 +346,7 @@
       "published": "2026-06-17",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Corona: A Virtual Mass Spectrometer for the Development of Real-Time Mass Spectrometry Software",
       "topics": [
@@ -388,5 +388,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

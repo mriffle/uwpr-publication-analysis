@@ -6,37 +6,37 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000175"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000175"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000175"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000175"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000175"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000175"
     }
   ],
@@ -45,14 +45,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:67762f9a816a",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000175",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -159,9 +159,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Lisa A. Lai",
+          "name": "Lisa Ann Lai",
           "openalex": "A5067799153",
-          "orcid": null,
+          "orcid": "0000-0002-7465-2250",
           "staff": null
         },
         {
@@ -189,9 +189,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Melissa Wong",
-          "openalex": "A5025483498",
-          "orcid": "0000-0002-8354-514X",
+          "name": "Melissa H. Y. Wong",
+          "openalex": "A5113799699",
+          "orcid": "0000-0001-9628-0884",
           "staff": null
         },
         {
@@ -219,7 +219,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Jonah Riddell",
+          "name": "Jonah R. Riddell",
           "openalex": "A5048427860",
           "orcid": null,
           "staff": null
@@ -234,7 +234,7 @@
             }
           ],
           "corresponding": false,
-          "name": "L. S. Jung",
+          "name": "Linda S. Jung",
           "openalex": "A5112307461",
           "orcid": null,
           "staff": null
@@ -249,7 +249,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Venu G. Pillarisetty",
+          "name": "Venu Gopal Pillarisetty",
           "openalex": "A5025523782",
           "orcid": "0000-0002-1162-9643",
           "staff": null
@@ -287,7 +287,7 @@
           "corresponding": true,
           "name": "Sheng Pan",
           "openalex": "A5006210822",
-          "orcid": null,
+          "orcid": "0000-0003-3500-9745",
           "staff": null
         }
       ],
@@ -313,7 +313,7 @@
       "published": "2017-08-07",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Disrupting glutamine metabolic pathways to sensitize gemcitabine-resistant pancreatic cancer",
       "topics": [
@@ -355,5 +355,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

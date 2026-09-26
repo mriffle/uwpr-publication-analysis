@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000166"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000166"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000166"
     }
   ],
@@ -27,14 +27,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:d184a54bb122",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000166",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -42,7 +42,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -175,7 +175,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Douglas Galasko",
+          "name": "Douglas R Galasko",
           "openalex": "A5072592799",
           "orcid": "0000-0001-6195-3241",
           "staff": null
@@ -232,7 +232,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Min Shi",
+          "name": "Min Yan Shi",
           "openalex": "A5016122096",
           "orcid": "0000-0002-6901-2558",
           "staff": null
@@ -281,7 +281,7 @@
       "published": "2017-01-23",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Mass-Spectrometry-Based Method To Quantify in Parallel Tau and Amyloid β 1–42 in CSF for the Diagnosis of Alzheimer’s Disease",
       "topics": [
@@ -323,5 +323,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

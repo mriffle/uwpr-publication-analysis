@@ -627,6 +627,7 @@
     "doi:10.1186/s13100-025-00371-y": "W-000689",
     "doi:10.1186/s13104-015-1009-z": "W-000127",
     "doi:10.1186/s13229-017-0174-4": "W-000690",
+    "doi:10.1186/s13321-026-01302-6": "W-000737",
     "doi:10.1186/s40425-019-0763-1": "W-000691",
     "doi:10.1186/s40793-021-00376-z": "W-000249",
     "doi:10.1194/jlr.m059089": "W-000129",
@@ -760,7 +761,27 @@
     "doi:10.5281/zenodo.18913248": "W-000791",
     "doi:10.5281/zenodo.18913249": "W-000792",
     "doi:10.5281/zenodo.20519535": "W-000793",
+    "doi:10.5281/zenodo.21690545": "W-000848",
     "doi:10.5281/zenodo.21897215": "W-000794",
+    "doi:10.5281/zenodo.21986418": "W-000849",
+    "doi:10.5281/zenodo.21986421": "W-000850",
+    "doi:10.5281/zenodo.21986628": "W-000851",
+    "doi:10.5281/zenodo.21986891": "W-000852",
+    "doi:10.5281/zenodo.21987072": "W-000853",
+    "doi:10.5281/zenodo.21987149": "W-000854",
+    "doi:10.5281/zenodo.22005760": "W-000855",
+    "doi:10.5281/zenodo.22005825": "W-000856",
+    "doi:10.5281/zenodo.22005863": "W-000857",
+    "doi:10.5281/zenodo.22006064": "W-000858",
+    "doi:10.5281/zenodo.22013510": "W-000859",
+    "doi:10.5281/zenodo.22013679": "W-000860",
+    "doi:10.5281/zenodo.22014098": "W-000861",
+    "doi:10.5281/zenodo.22015132": "W-000862",
+    "doi:10.5281/zenodo.22016287": "W-000863",
+    "doi:10.5281/zenodo.22018442": "W-000864",
+    "doi:10.5281/zenodo.22018777": "W-000865",
+    "doi:10.5281/zenodo.22050006": "W-000866",
+    "doi:10.5281/zenodo.22116191": "W-000867",
     "doi:10.5281/zenodo.3569762": "W-000795",
     "doi:10.5281/zenodo.3569763": "W-000796",
     "doi:10.5281/zenodo.3595577": "W-000797",
@@ -1647,17 +1668,39 @@
     "openalex:W7169511116": "W-000824",
     "openalex:W7170209259": "W-000769",
     "openalex:W7171348049": "W-000416",
+    "openalex:W7171674660": "W-000848",
     "openalex:W7172483687": "W-000503",
     "openalex:W7196930742": "W-000826",
     "openalex:W7196960225": "W-000825",
     "openalex:W7196960879": "W-000827",
     "openalex:W7197044792": "W-000828",
     "openalex:W7202300527": "W-000794",
+    "openalex:W7203613133": "W-000851",
+    "openalex:W7203621966": "W-000852",
+    "openalex:W7203637826": "W-000849",
+    "openalex:W7203641101": "W-000850",
+    "openalex:W7203735103": "W-000859",
+    "openalex:W7203744244": "W-000855",
+    "openalex:W7203745282": "W-000862",
+    "openalex:W7203755689": "W-000860",
+    "openalex:W7203764057": "W-000863",
+    "openalex:W7203773561": "W-000856",
+    "openalex:W7203777302": "W-000861",
+    "openalex:W7203788974": "W-000858",
+    "openalex:W7203791191": "W-000857",
     "openalex:W7204180384": "W-000499",
     "openalex:W7204836489": "W-000714",
     "openalex:W7208794779": "W-000031",
     "openalex:W7210984832": "W-000032",
     "openalex:W7212108724": "W-000829",
+    "openalex:W7212492053": "W-000867",
+    "openalex:W7212784842": "W-000865",
+    "openalex:W7212911517": "W-000854",
+    "openalex:W7212985674": "W-000853",
+    "openalex:W7213018734": "W-000866",
+    "openalex:W7213104871": "W-000864",
+    "openalex:W7213238526": "W-000737",
+    "openalex:W7213483729": "W-000847",
     "openalex:W768464191": "W-000134",
     "openalex:W784462454": "W-000378",
     "openalex:W818589921": "W-000033",
@@ -2995,7 +3038,7 @@
     "work:W-000837": "W-000608",
     "work:W-000839": "W-000608"
   },
-  "generated_at": "2026-09-20T22:15:18Z",
+  "generated_at": "2026-09-26T14:25:15Z",
   "not_included": [
     {
       "id": "W-000001",
@@ -3933,8 +3976,8 @@
         "pmcid": "PMC3517139",
         "pmid": "21656683"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -5293,8 +5336,8 @@
         "pmcid": "PMC10243106",
         "pmid": "37093777"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6254,8 +6297,8 @@
         "pmcid": "PMC8831450",
         "pmid": "34862502"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6398,8 +6441,8 @@
         "pmcid": "PMC7244511",
         "pmid": "32444788"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6519,8 +6562,8 @@
         "pmcid": "PMC151416",
         "pmid": "12601166"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "before_window",
+      "reason_label": "Published before 2006, where the project's search window opens",
       "signal_labels": [],
       "signals": [],
       "title": "Quantitative proteomic analysis indicates increased synthesis of a quinolone by Pseudomonas aeruginosa isolates from cystic fibrosis airways",
@@ -6636,8 +6679,8 @@
         "pmcid": "PMC3083184",
         "pmid": "21372125"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [],
       "signals": [],
       "title": "Lipoxygenase-mediated Oxidation of Polyunsaturated N-Acylethanolamines in Arabidopsis",
@@ -6779,8 +6822,8 @@
         "pmcid": "PMC4563719",
         "pmid": "26100116"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [],
       "signals": [],
       "title": "Using Data Independent Acquisition (DIA) to Model High-responding Peptides for Targeted Proteomics Experiments",
@@ -7598,8 +7641,8 @@
         "pmcid": "PMC515325",
         "pmid": "15342561"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "before_window",
+      "reason_label": "Published before 2006, where the project's search window opens",
       "signal_labels": [],
       "signals": [],
       "title": "De Novo Repeat Classification and Fragment Assembly",
@@ -8266,8 +8309,8 @@
         "pmcid": "PMC4168248",
         "pmid": "25220473"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [],
       "signals": [],
       "title": "Medical and non-medical complications among children and adolescents with excessive body weight",
@@ -8336,8 +8379,8 @@
         "pmcid": "PMC549070",
         "pmid": "15642101"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "before_window",
+      "reason_label": "Published before 2006, where the project's search window opens",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -9096,8 +9139,8 @@
     {
       "id": "W-000737",
       "ids": {
-        "doi": "10.21203/rs.3.rs-9517980/v1",
-        "openalex": "W7155681358",
+        "doi": "10.1186/s13321-026-01302-6",
+        "openalex": "W7213238526",
         "pmcid": null,
         "pmid": null
       },
@@ -9105,7 +9148,7 @@
       "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [],
       "signals": [],
-      "title": "patRoon 3.0: Enhanced non-target analysis workflows with ion mobility separation and other major improvements",
+      "title": "patRoon 3.0: enhanced non-target analysis workflows with ion mobility separation and other major improvements",
       "year": 2026
     },
     {
@@ -9349,8 +9392,8 @@
         "pmcid": "PMC10185886",
         "pmid": "37205196"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -9402,8 +9445,8 @@
         "pmcid": "PMC11772424",
         "pmid": "39877741"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [],
       "signals": [],
       "title": "Phytolith assemblages from palm leaves and palm-leaf manuscripts: what is the difference and what it could mean?",
@@ -9646,8 +9689,8 @@
         "pmcid": "PMC5088702",
         "pmid": "27829797"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [],
       "signals": [],
       "title": "Oenanthe millefolia (Umbelliferae), a new species record for the Turkish and Greek Flora",
@@ -10055,8 +10098,8 @@
         "pmcid": "PMC4677742",
         "pmid": "26672472"
       },
-      "reason": "excluded_record_type",
-      "reason_label": "Not a publication type this project counts",
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [],
       "signals": [],
       "title": "Systemic Infection of Maize, Sorghum, Rice, and Beet Seedlings with Fumonisin-Producing and Nonproducing Fusarium verticillioides Strains",
@@ -10586,6 +10629,401 @@
       "signals": [],
       "title": "The kinesin motor Kif9 regulates centriolar satellite positioning during interphase",
       "year": 2025
+    },
+    {
+      "id": "W-000847",
+      "ids": {
+        "doi": null,
+        "openalex": "W7213483729",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [],
+      "signals": [],
+      "title": "12: Anatomy and morphology of trees",
+      "year": 2025
+    },
+    {
+      "id": "W-000848",
+      "ids": {
+        "doi": "10.5281/zenodo.21690545",
+        "openalex": "W7171674660",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Helios v1.0.0.16, July 2026",
+      "year": 2026
+    },
+    {
+      "id": "W-000849",
+      "ids": {
+        "doi": "10.5281/zenodo.21986418",
+        "openalex": "W7203637826",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.1",
+      "year": 2026
+    },
+    {
+      "id": "W-000850",
+      "ids": {
+        "doi": "10.5281/zenodo.21986421",
+        "openalex": "W7203641101",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Latest dev build",
+      "year": 2026
+    },
+    {
+      "id": "W-000851",
+      "ids": {
+        "doi": "10.5281/zenodo.21986628",
+        "openalex": "W7203613133",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.2",
+      "year": 2026
+    },
+    {
+      "id": "W-000852",
+      "ids": {
+        "doi": "10.5281/zenodo.21986891",
+        "openalex": "W7203621966",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.3",
+      "year": 2026
+    },
+    {
+      "id": "W-000853",
+      "ids": {
+        "doi": "10.5281/zenodo.21987072",
+        "openalex": "W7212985674",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.4",
+      "year": 2026
+    },
+    {
+      "id": "W-000854",
+      "ids": {
+        "doi": "10.5281/zenodo.21987149",
+        "openalex": "W7212911517",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.5",
+      "year": 2026
+    },
+    {
+      "id": "W-000855",
+      "ids": {
+        "doi": "10.5281/zenodo.22005760",
+        "openalex": "W7203744244",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Nova: Dev build 1.1.0-dev.1",
+      "year": 2026
+    },
+    {
+      "id": "W-000856",
+      "ids": {
+        "doi": "10.5281/zenodo.22005825",
+        "openalex": "W7203773561",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Nova: Latest dev build",
+      "year": 2026
+    },
+    {
+      "id": "W-000857",
+      "ids": {
+        "doi": "10.5281/zenodo.22005863",
+        "openalex": "W7203791191",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Nova: Dev build 1.1.0-dev.2",
+      "year": 2026
+    },
+    {
+      "id": "W-000858",
+      "ids": {
+        "doi": "10.5281/zenodo.22006064",
+        "openalex": "W7203788974",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Nova: Dev build 1.1.0-dev.3",
+      "year": 2026
+    },
+    {
+      "id": "W-000859",
+      "ids": {
+        "doi": "10.5281/zenodo.22013510",
+        "openalex": "W7203735103",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Nova: Dev build 1.1.0-dev.4",
+      "year": 2026
+    },
+    {
+      "id": "W-000860",
+      "ids": {
+        "doi": "10.5281/zenodo.22013679",
+        "openalex": "W7203755689",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Nova: Dev build 1.1.0-dev.5",
+      "year": 2026
+    },
+    {
+      "id": "W-000861",
+      "ids": {
+        "doi": "10.5281/zenodo.22014098",
+        "openalex": "W7203777302",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Nova: Dev build 1.1.0-dev.6",
+      "year": 2026
+    },
+    {
+      "id": "W-000862",
+      "ids": {
+        "doi": "10.5281/zenodo.22015132",
+        "openalex": "W7203745282",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Nova: Dev build 1.1.0-dev.7",
+      "year": 2026
+    },
+    {
+      "id": "W-000863",
+      "ids": {
+        "doi": "10.5281/zenodo.22016287",
+        "openalex": "W7203764057",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Nova: Dev build 1.1.0-dev.8",
+      "year": 2026
+    },
+    {
+      "id": "W-000864",
+      "ids": {
+        "doi": "10.5281/zenodo.22018442",
+        "openalex": "W7213104871",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.6",
+      "year": 2026
+    },
+    {
+      "id": "W-000865",
+      "ids": {
+        "doi": "10.5281/zenodo.22018777",
+        "openalex": "W7212784842",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.7",
+      "year": 2026
+    },
+    {
+      "id": "W-000866",
+      "ids": {
+        "doi": "10.5281/zenodo.22050006",
+        "openalex": "W7213018734",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.8",
+      "year": 2026
+    },
+    {
+      "id": "W-000867",
+      "ids": {
+        "doi": "10.5281/zenodo.22116191",
+        "openalex": "W7212492053",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:hoopmann"
+      ],
+      "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.9",
+      "year": 2026
     }
   ],
   "schema_version": "1.0"

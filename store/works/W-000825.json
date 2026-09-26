@@ -6,13 +6,13 @@
     {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000825"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000825"
     }
   ],
@@ -51,8 +51,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Celeste C. Ptak",
-          "openalex": "A5144482659",
+          "name": "Celeste Ptak",
+          "openalex": "A5125665745",
           "orcid": null,
           "staff": null
         },
@@ -139,7 +139,7 @@
       "published": "2026-08-06",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "A Spatiotemporal Atlas of the Androgen Receptor Proximal Interactome",
       "topics": [
@@ -181,5 +181,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

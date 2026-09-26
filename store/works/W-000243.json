@@ -8,56 +8,62 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000243"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000243"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000582"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000243"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000243"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000582"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000243"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000243"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000582"
+    },
+    {
+      "channel": "J",
+      "first_seen": "2026-09-26",
+      "last_seen": "2026-09-26",
+      "record": "R-000243"
     }
   ],
   "evidence": [
@@ -65,14 +71,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:30bfad85b09e",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000243",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -80,7 +86,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -181,10 +187,30 @@
       }
     },
     {
+      "criterion": 4,
+      "detail": {
+        "dataset": "PXD013262"
+      },
+      "excerpt": "Resulting peptides were analyzed using the high resolution and accurate Orbitrap Fusion Lumos Mass Spectrometer at the University of Washington Proteomics Resource.",
+      "first_seen": "2026-09-26",
+      "label": "The paper's public dataset record says the work was done at the UW Proteomics Resource",
+      "last_seen": "2026-09-26",
+      "record": "R-000243",
+      "rule": "R3d",
+      "rule_version": "2026-09-20.1",
+      "section": "dataset description",
+      "source": {
+        "cache": null,
+        "name": "PRIDE",
+        "retrieved": "2026-09-26",
+        "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD013262"
+      }
+    },
+    {
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -197,7 +223,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1101%2F2020.06.05.137059"
       }
     },
@@ -205,7 +231,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -218,7 +244,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1101%2F2020.06.05.137059"
       }
     },
@@ -226,7 +252,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington's Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -239,7 +265,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1101%2F2020.06.05.137059"
       }
     }
@@ -383,7 +409,7 @@
       "published": "2020-10-19",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Temporal proteomic profiling reveals insight into critical developmental processes and temperature-influenced physiological response differences in a bivalve mollusc",
       "topics": [
@@ -590,7 +616,7 @@
       "published": "2020-06-07",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Temporal proteomic profiling reveals insight into critical developmental processes and temperature-influenced physiological response differences in a bivalve mollusc",
       "topics": [
@@ -635,5 +661,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

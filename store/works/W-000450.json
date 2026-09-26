@@ -6,13 +6,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000450"
     },
     {
       "channel": "E",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000450"
     }
   ],
@@ -55,7 +55,7 @@
           "corresponding": false,
           "name": "Chris D McGann",
           "openalex": "A5110699303",
-          "orcid": null,
+          "orcid": "0000-0001-9379-1910",
           "staff": null
         },
         {
@@ -85,7 +85,7 @@
           "corresponding": false,
           "name": "Jesse D. Canterbury",
           "openalex": "A5016116051",
-          "orcid": null,
+          "orcid": "0009-0000-5533-1710",
           "staff": null
         },
         {
@@ -173,7 +173,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Rafael D. Melani",
+          "name": "Rafael Donadelli Melani",
           "openalex": "A5080143820",
           "orcid": "0000-0002-0349-235X",
           "staff": null
@@ -205,7 +205,7 @@
           "corresponding": false,
           "name": "Graeme C. McAlister",
           "openalex": "A5024827021",
-          "orcid": null,
+          "orcid": "0009-0008-5623-2077",
           "staff": null
         },
         {
@@ -246,7 +246,7 @@
       "published": "2023-08-09",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Real-Time Spectral Library Matching for Sample Multiplexed Quantitative Proteomics",
       "topics": [
@@ -288,5 +288,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

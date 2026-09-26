@@ -6,37 +6,37 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000213"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000213"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000213"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000213"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000213"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000213"
     }
   ],
@@ -45,14 +45,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:b8b89cb42f05",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000213",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -165,7 +165,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Hilary I. Palevsky",
+          "name": "Hilary Ilana Palevsky",
           "openalex": "A5059853998",
           "orcid": "0000-0002-0488-4531",
           "staff": null
@@ -201,7 +201,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Megan Duffy",
+          "name": "Megan E. Duffy",
           "openalex": "A5039970247",
           "orcid": "0000-0002-3212-4927",
           "staff": null
@@ -222,7 +222,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Carlson",
+          "name": "Michael C G Carlson",
           "openalex": "A5091776919",
           "orcid": "0000-0003-2881-0534",
           "staff": null
@@ -237,7 +237,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Jacquelyn Neibauer",
+          "name": "Jacquelyn A. Neibauer",
           "openalex": "A5048627551",
           "orcid": "0000-0001-9920-2558",
           "staff": null
@@ -325,7 +325,7 @@
       "published": "2019-06-27",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Cyanobacteria and cyanophage contributions to carbon and nitrogen cycling in an oligotrophic oxygen-deficient zone",
       "topics": [
@@ -367,5 +367,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

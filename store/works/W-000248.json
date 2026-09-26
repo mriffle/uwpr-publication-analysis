@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000248"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000248"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000248"
     }
   ],
@@ -27,14 +27,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:d1c95d082196",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000248",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -42,7 +42,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -174,7 +174,7 @@
           "corresponding": false,
           "name": "Erin Firth",
           "openalex": "A5041582952",
-          "orcid": null,
+          "orcid": "0000-0002-3735-9418",
           "staff": null
         },
         {
@@ -289,7 +289,7 @@
             }
           ],
           "corresponding": false,
-          "name": "J. D. Toner",
+          "name": "Jonathan D. Toner",
           "openalex": "A5024326866",
           "orcid": "0000-0003-1681-6189",
           "staff": null
@@ -359,7 +359,7 @@
       "published": "2021-03-24",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Subzero, saline incubations of Colwellia psychrerythraea reveal strategies and biomarkers for sustained life in extreme icy environments",
       "topics": [
@@ -401,5 +401,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

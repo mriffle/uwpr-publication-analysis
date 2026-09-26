@@ -6,25 +6,25 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000259"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000259"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000259"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000259"
     }
   ],
@@ -33,14 +33,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:9db09f79421a",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000259",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -48,7 +48,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -162,7 +162,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Matthew P. Padula",
+          "name": "Matthew Paul Padula",
           "openalex": "A5030916597",
           "orcid": "0000-0002-8283-0643",
           "staff": null
@@ -183,7 +183,7 @@
             }
           ],
           "corresponding": false,
-          "name": "David J. Miller",
+          "name": "David John Miller",
           "openalex": "A5029029931",
           "orcid": "0000-0003-0291-9531",
           "staff": null
@@ -198,7 +198,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Daniel A. Nielsen",
+          "name": "Daniel Aagren Nielsen",
           "openalex": "A5041458913",
           "orcid": "0000-0001-6678-5937",
           "staff": null
@@ -226,7 +226,7 @@
       "published": "2021-09-24",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Broad scale proteomic analysis of heat-destabilised symbiosis in the hard coral Acropora millepora",
       "topics": [
@@ -268,5 +268,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

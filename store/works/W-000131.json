@@ -6,31 +6,31 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000131"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000131"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000131"
     },
     {
       "channel": "E",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000131"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000131"
     }
   ],
@@ -39,14 +39,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:3efe02f24d69",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000131",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -54,7 +54,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -101,7 +101,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Kiara Held",
+          "name": "Kiara G. Held",
           "openalex": "A5054978955",
           "orcid": null,
           "staff": null
@@ -215,7 +215,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Pradeep K. Singh",
+          "name": "Pradeep Kumar Singh",
           "openalex": "A5100780176",
           "orcid": "0000-0001-9281-0219",
           "staff": null
@@ -291,7 +291,7 @@
       "published": "2015-05-28",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Dynamic Proteome Response of Pseudomonas aeruginosa to Tobramycin Antibiotic Treatment",
       "topics": [
@@ -333,5 +333,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

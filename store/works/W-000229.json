@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000229"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:16b3cdd68510",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000229",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -300,8 +300,8 @@
           ],
           "corresponding": false,
           "name": "Shey‐Shing Sheu",
-          "openalex": "A5084620328",
-          "orcid": "0000-0003-3838-3601",
+          "openalex": "A5112031056",
+          "orcid": null,
           "staff": null
         },
         {
@@ -348,7 +348,7 @@
       "published": "2020-01-03",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Increased Drp1 Acetylation by Lipid Overload Induces Cardiomyocyte Death and Heart Dysfunction",
       "topics": [
@@ -390,5 +390,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

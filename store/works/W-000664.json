@@ -6,7 +6,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000664"
     }
   ],
@@ -165,7 +165,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Albina Gosmanova",
+          "name": "Albina K. Gosmanova",
           "openalex": "A5110945128",
           "orcid": null,
           "staff": null
@@ -194,7 +194,7 @@
           "corresponding": false,
           "name": "Jessica O. Becker",
           "openalex": "A5023836759",
-          "orcid": null,
+          "orcid": "0009-0000-7910-6235",
           "staff": null
         },
         {
@@ -237,7 +237,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Ellen M. Wijsman",
+          "name": "Ellen Marie Wijsman",
           "openalex": "A5003873348",
           "orcid": "0000-0002-2725-6669",
           "staff": null
@@ -464,7 +464,7 @@
           "corresponding": false,
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         }
       ],
@@ -490,7 +490,7 @@
       "published": "2010-09-17",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Low Clusterin Levels in High-Density Lipoprotein Associate With Insulin Resistance, Obesity, and Dyslipoproteinemia",
       "topics": [
@@ -532,5 +532,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

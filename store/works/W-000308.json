@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000308"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:2025:09e5d3bffdca",
         "page": "2025"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000308",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/2025/"
       }
     }
@@ -52,7 +52,7 @@
           "corresponding": false,
           "name": "Anais S. Gentilhomme",
           "openalex": "A5009459257",
-          "orcid": null,
+          "orcid": "0009-0000-0235-5559",
           "staff": null
         },
         {
@@ -96,7 +96,7 @@
           ],
           "corresponding": false,
           "name": "Matthew Chaw",
-          "openalex": "A5116296424",
+          "openalex": "A5104797989",
           "orcid": null,
           "staff": null
         },
@@ -112,7 +112,7 @@
           "corresponding": false,
           "name": "Erin Firth",
           "openalex": "A5041582952",
-          "orcid": null,
+          "orcid": "0000-0002-3735-9418",
           "staff": null
         },
         {
@@ -168,7 +168,7 @@
       "published": "2025-02-17",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Proteomic Insights into Psychrophile Growth in Perchlorate-Amended Subzero Conditions: Implications for Martian Life Detection",
       "topics": [
@@ -210,5 +210,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

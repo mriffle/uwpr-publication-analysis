@@ -6,31 +6,31 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000200"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000200"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000200"
     },
     {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000200"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000200"
     }
   ],
@@ -39,14 +39,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:9a7469e8a024",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000200",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -54,7 +54,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -178,7 +178,7 @@
             }
           ],
           "corresponding": false,
-          "name": "David Shteynberg",
+          "name": "David D. Shteynberg",
           "openalex": "A5016220289",
           "orcid": "0000-0001-7982-0498",
           "staff": null
@@ -192,14 +192,14 @@
               "ror": null
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Global Infectious Disease Research, Seattle Children's Research Institute, Seattle, Washington 98101, United States",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
-          "name": "Vladimir Vigdorovich",
+          "name": "Vladimir I. Vigdorovich",
           "openalex": "A5013636673",
           "orcid": "0000-0003-4195-4858",
           "staff": null
@@ -249,10 +249,10 @@
               "ror": null
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Global Infectious Disease Research, Seattle Children's Research Institute, Seattle, Washington 98101, United States",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -285,10 +285,10 @@
               "ror": null
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Global Infectious Disease Research, Seattle Children's Research Institute, Seattle, Washington 98101, United States",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -335,7 +335,7 @@
       "published": "2018-12-07",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "A Tandem Mass Spectrometry Sequence Database Search Method for Identification of O-Fucosylated Proteins by Mass Spectrometry",
       "topics": [
@@ -377,5 +377,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

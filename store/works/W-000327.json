@@ -8,67 +8,67 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000327"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000327"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000817"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000327"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000327"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000817"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000327"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000327"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000817"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000327"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000817"
     }
   ],
@@ -77,14 +77,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:2026:f9ba0a1c226f",
         "page": "2026"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000327",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -92,7 +92,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/"
       }
     },
@@ -281,7 +281,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Yue Wen",
+          "name": "Yue Winnie Wen",
           "openalex": "A5100570341",
           "orcid": "0000-0002-2942-1226",
           "staff": null
@@ -296,7 +296,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -377,7 +377,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Aaron Maurais",
+          "name": "Aaron J. Maurais",
           "openalex": "A5013806060",
           "orcid": "0000-0003-3489-9117",
           "staff": null
@@ -407,7 +407,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Saurabh Khandelwal",
+          "name": "Saurabh G. KHANDELWAL",
           "openalex": "A5109444393",
           "orcid": null,
           "staff": null
@@ -452,7 +452,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Zoe Parr",
+          "name": "Zoe E. Parr",
           "openalex": "A5011020801",
           "orcid": null,
           "staff": null
@@ -513,8 +513,8 @@
           ],
           "corresponding": true,
           "name": "Nina Isoherranen",
-          "openalex": "A5128161333",
-          "orcid": null,
+          "openalex": "A5036636635",
+          "orcid": "0000-0002-9548-3126",
           "staff": null
         }
       ],
@@ -540,7 +540,7 @@
       "published": "2026-03-05",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Proteomic profiling of human omental and subcutaneous adipose tissue in individuals with a broad range of BMI",
       "topics": [
@@ -602,7 +602,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Yue Wen",
+          "name": "Yue Winnie Wen",
           "openalex": "A5100570341",
           "orcid": "0000-0002-2942-1226",
           "staff": null
@@ -617,7 +617,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -698,7 +698,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Aaron Maurais",
+          "name": "Aaron J. Maurais",
           "openalex": "A5013806060",
           "orcid": "0000-0003-3489-9117",
           "staff": null
@@ -728,7 +728,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Saurabh Khandelwal",
+          "name": "Saurabh G. KHANDELWAL",
           "openalex": "A5109444393",
           "orcid": null,
           "staff": null
@@ -773,7 +773,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Zoe Parr",
+          "name": "Zoe E. Parr",
           "openalex": "A5011020801",
           "orcid": null,
           "staff": null
@@ -834,8 +834,8 @@
           ],
           "corresponding": true,
           "name": "Nina Isoherranen",
-          "openalex": "A5123198604",
-          "orcid": null,
+          "openalex": "A5036636635",
+          "orcid": "0000-0002-9548-3126",
           "staff": null
         }
       ],
@@ -861,7 +861,7 @@
       "published": "2026-01-15",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Proteomic Profiling of Human Omental and Subcutaneous Adipose Tissue in Individuals with a Broad Range of BMI",
       "topics": [
@@ -906,5 +906,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

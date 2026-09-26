@@ -6,13 +6,13 @@
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000432"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000432"
     }
   ],
@@ -74,8 +74,8 @@
           ],
           "corresponding": false,
           "name": "Yonghan Jo",
-          "openalex": "A5124990668",
-          "orcid": null,
+          "openalex": "A5030605555",
+          "orcid": "0000-0002-8456-5484",
           "staff": null
         },
         {
@@ -90,7 +90,7 @@
           "corresponding": false,
           "name": "Jin Hee Bae",
           "openalex": "A5125053560",
-          "orcid": null,
+          "orcid": "0000-0003-3399-434X",
           "staff": null
         },
         {
@@ -204,7 +204,7 @@
           "corresponding": true,
           "name": "Sanghoo Park",
           "openalex": "A5125097920",
-          "orcid": null,
+          "orcid": "0000-0002-4180-7455",
           "staff": null
         }
       ],
@@ -230,7 +230,7 @@
       "published": "2026-02-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Plasma-driven disassembly of amyloid-β aggregates by the interplay of physicochemical stimuli",
       "topics": [
@@ -272,5 +272,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

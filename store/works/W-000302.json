@@ -6,49 +6,49 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000302"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000302"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000302"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000302"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000302"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000302"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000302"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000302"
     }
   ],
@@ -57,14 +57,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:2024:578a7a3e424d",
         "page": "2024"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000302",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -72,7 +72,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/2024/"
       }
     },
@@ -205,7 +205,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -226,7 +226,7 @@
             }
           ],
           "corresponding": false,
-          "name": "David Shteynberg",
+          "name": "David D. Shteynberg",
           "openalex": "A5016220289",
           "orcid": "0000-0001-7982-0498",
           "staff": null
@@ -241,7 +241,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Guo Zhong",
+          "name": "Guo Gan Zhong",
           "openalex": "A5036416416",
           "orcid": "0000-0002-6056-9472",
           "staff": null
@@ -328,7 +328,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Trisha N. Davis",
+          "name": "Trisha Nell Davis",
           "openalex": "A5022826364",
           "orcid": "0000-0003-4797-3152",
           "staff": null
@@ -386,7 +386,7 @@
       "published": "2024-10-23",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Detection and Quantification of Drug–Protein Adducts in Human Liver",
       "topics": [
@@ -428,5 +428,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

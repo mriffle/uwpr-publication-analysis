@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000091"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000091"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000091"
     }
   ],
@@ -27,14 +27,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:a023e08a6e37",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000091",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -42,7 +42,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -160,7 +160,7 @@
             }
           ],
           "corresponding": false,
-          "name": "J. Scott Edgar",
+          "name": "John Scott Edgar",
           "openalex": "A5028499054",
           "orcid": "0000-0002-3783-205X",
           "staff": null
@@ -181,7 +181,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Ying S. Ting",
+          "name": "Ying Sonia Ting",
           "openalex": "A5036254727",
           "orcid": "0000-0003-2492-3718",
           "staff": null
@@ -335,7 +335,7 @@
       "published": "2012-06-28",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Surface Acoustic Wave Nebulization Facilitating Lipid Mass Spectrometric Analysis",
       "topics": [
@@ -377,5 +377,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

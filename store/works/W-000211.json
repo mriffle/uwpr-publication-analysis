@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000211"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000211"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000211"
     }
   ],
@@ -27,14 +27,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:a312774e20f2",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000211",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -42,7 +42,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -205,7 +205,7 @@
             }
           ],
           "corresponding": false,
-          "name": "W. Sean Davidson",
+          "name": "William Sean Davidson",
           "openalex": "A5008316828",
           "orcid": "0000-0003-2756-2989",
           "staff": null
@@ -291,7 +291,7 @@
           "corresponding": false,
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         }
       ],
@@ -317,7 +317,7 @@
       "published": "2019-05-16",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Albuminuria, the High-Density Lipoprotein Proteome, and Coronary Artery Calcification in Type 1 Diabetes Mellitus",
       "topics": [
@@ -359,5 +359,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

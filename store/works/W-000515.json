@@ -8,31 +8,31 @@
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000734"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000734"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000734"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000515"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000734"
     }
   ],
@@ -41,14 +41,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:2025:624c5992a7f8",
         "page": "2025"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000515",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -56,7 +56,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/2025/"
       }
     },
@@ -84,7 +84,7 @@
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -97,7 +97,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.21203%2Frs.3.rs-4566379%2Fv1"
       }
     },
@@ -105,7 +105,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington's Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -118,7 +118,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.21203%2Frs.3.rs-4566379%2Fv1"
       }
     }
@@ -204,7 +204,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -249,7 +249,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Carly D. Kenkel",
+          "name": "Carly Danielle Kenkel",
           "openalex": "A5075848516",
           "orcid": "0000-0003-1126-4311",
           "staff": null
@@ -322,7 +322,7 @@
       "published": "2025-03-08",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Protein signatures predict coral resilience and survival to thermal bleaching events",
       "topics": [
@@ -452,7 +452,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -515,7 +515,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Carly D. Kenkel",
+          "name": "Carly Danielle Kenkel",
           "openalex": "A5075848516",
           "orcid": "0000-0003-1126-4311",
           "staff": null
@@ -606,7 +606,7 @@
       "published": "2024-07-03",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Resilience in a time of stress: revealing the molecular underpinnings of coral survival following thermal bleaching events",
       "topics": [
@@ -637,5 +637,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

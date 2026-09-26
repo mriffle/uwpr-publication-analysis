@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000260"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000260"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000260"
     }
   ],
@@ -27,14 +27,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:87da9dfbc890",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000260",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -42,7 +42,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -121,7 +121,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Anna V. Mathew",
+          "name": "Anna Vachaparampil Mathew",
           "openalex": "A5078173193",
           "orcid": "0000-0002-7043-4221",
           "staff": null
@@ -195,7 +195,7 @@
         {
           "affiliations": [],
           "corresponding": false,
-          "name": "Crystal A. Gadegbeku",
+          "name": "Crystal Ann Gadegbeku",
           "openalex": "A5111993425",
           "orcid": null,
           "staff": null
@@ -203,7 +203,7 @@
         {
           "affiliations": [],
           "corresponding": false,
-          "name": "Keith Bellovich",
+          "name": "Keith A. Bellovich",
           "openalex": "A5051134237",
           "orcid": null,
           "staff": null
@@ -211,7 +211,7 @@
         {
           "affiliations": [],
           "corresponding": false,
-          "name": "Zeenat Bhat",
+          "name": "Zeenat Yousuf Bhat",
           "openalex": "A5077773891",
           "orcid": "0000-0003-1960-1730",
           "staff": null
@@ -255,7 +255,7 @@
       "published": "2021-01-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Altered HDL proteome predicts incident CVD in chronic kidney disease patients",
       "topics": [
@@ -297,5 +297,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

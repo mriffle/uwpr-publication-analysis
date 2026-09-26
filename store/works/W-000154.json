@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000154"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000154"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000154"
     }
   ],
@@ -27,14 +27,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:d3ca1717e318",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000154",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -42,7 +42,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -93,10 +93,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Immunity and Immunotherapies, Seattle Children's Research Institute, Seattle, Wash",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -108,25 +108,25 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Immunity and Immunotherapies, Seattle Children's Research Institute, Seattle, Wash",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
-          "name": "Veronika Glukhova",
+          "name": "Veronika A. Glukhova",
           "openalex": "A5040676733",
-          "orcid": null,
+          "orcid": "0000-0001-7611-5419",
           "staff": null
         },
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Immunity and Immunotherapies, Seattle Children's Research Institute, Seattle, Wash",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -138,10 +138,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Immunity and Immunotherapies, Seattle Children's Research Institute, Seattle, Wash",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -217,7 +217,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Gail Deutsch",
+          "name": "Gail H. Deutsch",
           "openalex": "A5015600871",
           "orcid": "0000-0002-0571-0285",
           "staff": null
@@ -231,10 +231,10 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Immunity and Immunotherapies, Seattle Children's Research Institute, Seattle, Wash",
-              "ror": null
+              "ror": "00cz0md82"
             },
             {
               "country": "US",
@@ -267,10 +267,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Immunity and Immunotherapies, Seattle Children's Research Institute, Seattle, Wash",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -288,10 +288,10 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Center for Immunity and Immunotherapies, Seattle Children's Research Institute, Seattle, Wash",
-              "ror": null
+              "ror": "00cz0md82"
             },
             {
               "country": "US",
@@ -301,7 +301,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Adrian M. Piliponsky",
+          "name": "Adrian Martin Piliponsky",
           "openalex": "A5081507149",
           "orcid": "0000-0003-4945-1809",
           "staff": null
@@ -329,7 +329,7 @@
       "published": "2016-05-13",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Proteome analysis of mast cell releasates reveals a role for chymase in the regulation of coagulation factor XIIIA levels via proteolytic degradation",
       "topics": [
@@ -371,5 +371,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

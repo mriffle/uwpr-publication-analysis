@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000113"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000113"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000113"
     }
   ],
@@ -27,14 +27,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:52d862555450",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000113",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -42,7 +42,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -136,9 +136,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Catherine Pan",
+          "name": "Catherine Qiurong Pan",
           "openalex": "A5110273966",
-          "orcid": null,
+          "orcid": "0009-0004-6755-1429",
           "staff": null
         },
         {
@@ -157,7 +157,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Yong Zhou",
+          "name": "Yong Feng Zhou",
           "openalex": "A5102765163",
           "orcid": "0000-0001-7643-5455",
           "staff": null
@@ -222,7 +222,7 @@
           "corresponding": false,
           "name": "Yanchun Zhao",
           "openalex": "A5108302967",
-          "orcid": null,
+          "orcid": "0000-0002-2726-3965",
           "staff": null
         },
         {
@@ -391,7 +391,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Min Shi",
+          "name": "Min Yan Shi",
           "openalex": "A5016122096",
           "orcid": "0000-0002-6901-2558",
           "staff": null
@@ -440,7 +440,7 @@
       "published": "2014-05-22",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Targeted Discovery and Validation of Plasma Biomarkers of Parkinson’s Disease",
       "topics": [
@@ -482,5 +482,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

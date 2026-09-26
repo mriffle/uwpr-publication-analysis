@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000220"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:2d2314bea0be",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000220",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -110,7 +110,7 @@
             }
           ],
           "corresponding": false,
-          "name": "J Gauthier",
+          "name": "John Gauthier",
           "openalex": "A5110400667",
           "orcid": null,
           "staff": null
@@ -227,7 +227,7 @@
             }
           ],
           "corresponding": false,
-          "name": "George L. King",
+          "name": "George Liang King",
           "openalex": "A5009528569",
           "orcid": "0000-0002-0335-5881",
           "staff": null
@@ -244,7 +244,7 @@
           "corresponding": false,
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         },
         {
@@ -291,7 +291,7 @@
       "published": "2019-10-09",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "High Concentration of Medium-Sized HDL Particles and Enrichment in HDL Paraoxonase 1 Associate With Protection From Vascular Complications in People With Long-standing Type 1 Diabetes",
       "topics": [
@@ -333,5 +333,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

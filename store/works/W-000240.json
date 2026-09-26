@@ -6,7 +6,7 @@
     {
       "channel": "J",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000240"
     }
   ],
@@ -220,7 +220,7 @@
           "corresponding": false,
           "name": "Thomas J. DiChristina",
           "openalex": "A5035503732",
-          "orcid": null,
+          "orcid": "0000-0002-8459-4138",
           "staff": null
         },
         {
@@ -312,7 +312,7 @@
       "published": "2020-07-02",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Novel insights into the taxonomic diversity and molecular mechanisms of bacterial Mn( III ) reduction",
       "topics": [
@@ -354,5 +354,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

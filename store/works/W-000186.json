@@ -6,31 +6,31 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000186"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000186"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000186"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000186"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000186"
     }
   ],
@@ -39,14 +39,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:fc3e63bc23df",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000186",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -54,7 +54,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -82,7 +82,7 @@
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -95,7 +95,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1093%2Fcercor%2Fbhx333"
       }
     }
@@ -160,7 +160,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Aaron M. Robitaille",
+          "name": "Aaron Mark Robitaille",
           "openalex": "A5051620732",
           "orcid": "0000-0003-2774-2066",
           "staff": null
@@ -175,7 +175,7 @@
             }
           ],
           "corresponding": false,
-          "name": "J.A. Gray",
+          "name": "John Archibald Browne Gray",
           "openalex": "A5102947423",
           "orcid": "0000-0002-7287-0748",
           "staff": null
@@ -196,7 +196,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Benjamin Cheyette",
+          "name": "Benjamin N. R. Cheyette",
           "openalex": "A5042728620",
           "orcid": "0000-0001-9934-7941",
           "staff": null
@@ -224,7 +224,7 @@
       "published": "2017-11-29",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Sestd1 Encodes a Developmentally Dynamic Synapse Protein That Complexes With BCR Rac1-GAP to Regulate Forebrain Dendrite, Spine and Synapse Formation",
       "topics": [
@@ -266,5 +266,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

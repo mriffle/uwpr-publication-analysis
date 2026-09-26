@@ -6,7 +6,7 @@
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000757"
     }
   ],
@@ -15,7 +15,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -28,7 +28,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.3389%2Ffmars.2021.757245"
       }
     }
@@ -48,7 +48,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Megan Duffy",
+          "name": "Megan E. Duffy",
           "openalex": "A5039970247",
           "orcid": "0000-0002-3212-4927",
           "staff": null
@@ -99,7 +99,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Jacquelyn Neibauer",
+          "name": "Jacquelyn A. Neibauer",
           "openalex": "A5048627551",
           "orcid": "0000-0001-9920-2558",
           "staff": null
@@ -157,7 +157,7 @@
       "published": "2022-01-21",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Degradation of Diatom Protein in Seawater: A Peptide-Level View",
       "topics": [
@@ -199,5 +199,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

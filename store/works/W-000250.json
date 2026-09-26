@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000250"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:4d73abea0ba9",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000250",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -92,7 +92,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Xu Tang",
+          "name": "Xu Anna Tang",
           "openalex": "A5102712807",
           "orcid": "0000-0003-1070-9745",
           "staff": null
@@ -290,7 +290,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Ernst Lengyel",
+          "name": "Ernst R. Lengyel",
           "openalex": "A5027620152",
           "orcid": "0000-0001-8624-1507",
           "staff": null
@@ -402,7 +402,7 @@
       "published": "2021-05-07",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Neutrophil elastase selectively kills cancer cells and attenuates tumorigenesis",
       "topics": [
@@ -444,5 +444,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

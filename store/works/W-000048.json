@@ -6,31 +6,31 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000048"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000048"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000048"
     },
     {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000048"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000048"
     }
   ],
@@ -39,14 +39,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:53fe03035731",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000048",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -54,7 +54,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -80,7 +80,7 @@
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -93,7 +93,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1002%2Fpmic.200900619"
       }
     },
@@ -101,7 +101,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington's Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -114,7 +114,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1002%2Fpmic.200900619"
       }
     }
@@ -127,22 +127,22 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Bioinformatics & High-throughput Analysis Laboratory, Seattle Children's Research Institute, Seattle, WA 98101, USA",
-              "ror": null
+              "ror": "00cz0md82"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Bioinformatics & High-throughput Analysis Laboratory, Seattle Children's Research Institute, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cz0md82"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "High-throughput Analysis Core, Seattle Children's Research Institute, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -154,16 +154,16 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Bioinformatics & High-throughput Analysis Laboratory, Seattle Children's Research Institute, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cz0md82"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "High-throughput Analysis Core, Seattle Children's Research Institute, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cz0md82"
             },
             {
               "country": "US",
@@ -181,16 +181,16 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Bioinformatics & High-throughput Analysis Laboratory, Seattle Children's Research Institute, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cz0md82"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "High-throughput Analysis Core, Seattle Children's Research Institute, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -223,10 +223,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Bioinformatics & High-throughput Analysis Laboratory, Seattle Children's Research Institute, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cz0md82"
             },
             {
               "country": "US",
@@ -235,10 +235,10 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "High-throughput Analysis Core, Seattle Children's Research Institute, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cz0md82"
             },
             {
               "country": "US",
@@ -276,7 +276,7 @@
       "published": "2010-04-13",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Estimating false discovery rates for peptide and protein identification using randomized databases",
       "topics": [
@@ -318,5 +318,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

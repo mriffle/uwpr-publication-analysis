@@ -6,49 +6,49 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000242"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000242"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000242"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000242"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000242"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000242"
     },
     {
       "channel": "D3",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000242"
     },
     {
       "channel": "E",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000242"
     }
   ],
@@ -57,14 +57,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:6e3c5a3817cf",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000242",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -72,7 +72,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -239,7 +239,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Gail P. Jarvik",
+          "name": "Gail Pairitz Jarvik",
           "openalex": "A5059340927",
           "orcid": "0000-0002-6710-8708",
           "staff": null
@@ -260,7 +260,7 @@
             }
           ],
           "corresponding": false,
-          "name": "W. Sean Davidson",
+          "name": "William Sean Davidson",
           "openalex": "A5008316828",
           "orcid": "0000-0003-2756-2989",
           "staff": null
@@ -281,7 +281,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Vishal Kothari",
+          "name": "Vishal M Kothari",
           "openalex": "A5069920186",
           "orcid": "0000-0002-3612-8810",
           "staff": null
@@ -302,7 +302,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Hyun D. Song",
+          "name": "Hyun Deok Song",
           "openalex": "A5049572208",
           "orcid": "0000-0002-9768-5055",
           "staff": null
@@ -361,7 +361,7 @@
           "corresponding": true,
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         }
       ],
@@ -387,7 +387,7 @@
       "published": "2020-08-21",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Diabetes Impairs Cellular Cholesterol Efflux From ABCA1 to Small HDL Particles",
       "topics": [
@@ -429,5 +429,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

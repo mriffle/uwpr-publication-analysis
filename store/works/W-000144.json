@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000144"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:045858856cf7",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000144",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -80,7 +80,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Myriam Guevara",
+          "name": "Myriam E. Guevara",
           "openalex": "A5016702904",
           "orcid": "0000-0003-0078-950X",
           "staff": null
@@ -155,7 +155,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Mohamed Omer",
+          "name": "Mohamed A. Omer",
           "openalex": "A5059075405",
           "orcid": "0000-0002-5438-4105",
           "staff": null
@@ -172,7 +172,7 @@
           "corresponding": false,
           "name": "Shari Wang",
           "openalex": "A5014231656",
-          "orcid": null,
+          "orcid": "0000-0002-1789-8983",
           "staff": null
         },
         {
@@ -275,7 +275,7 @@
             }
           ],
           "corresponding": false,
-          "name": "William Osborne",
+          "name": "William R. A. Osborne",
           "openalex": "A5102798530",
           "orcid": "0000-0003-3564-1441",
           "staff": null
@@ -333,7 +333,7 @@
       "published": "2015-12-06",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Serum amyloid A impairs the antiinflammatory properties of HDL",
       "topics": [
@@ -375,5 +375,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

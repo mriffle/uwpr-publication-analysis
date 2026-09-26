@@ -6,7 +6,7 @@
     {
       "channel": "E",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000548"
     }
   ],
@@ -83,7 +83,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Wendy Law",
+          "name": "Wendy A. Law",
           "openalex": "A5083907546",
           "orcid": null,
           "staff": null
@@ -98,7 +98,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Vítor M. Faça",
+          "name": "Vitor Marcel Faça",
           "openalex": "A5048066768",
           "orcid": "0000-0003-3205-7944",
           "staff": null
@@ -128,7 +128,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Nathalie Hamel",
+          "name": "Nathalie J. Hamel",
           "openalex": "A5059238094",
           "orcid": null,
           "staff": null
@@ -278,7 +278,7 @@
             }
           ],
           "corresponding": false,
-          "name": "John Bergeron",
+          "name": "John J.M. Bergeron",
           "openalex": "A5061780796",
           "orcid": "0000-0003-0279-6041",
           "staff": null
@@ -368,9 +368,9 @@
             }
           ],
           "corresponding": true,
-          "name": "Martin McIntosh",
+          "name": "Martin W. McIntosh",
           "openalex": "A5109208118",
-          "orcid": null,
+          "orcid": "0009-0007-3672-7489",
           "staff": null
         }
       ],
@@ -396,7 +396,7 @@
       "published": "2008-11-04",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Brain-specific Proteins Decline in the Cerebrospinal Fluid of Humans with Huntington Disease",
       "topics": [
@@ -438,5 +438,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

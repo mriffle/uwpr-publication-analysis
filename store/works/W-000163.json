@@ -6,37 +6,37 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000163"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000163"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000163"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000163"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000163"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000163"
     }
   ],
@@ -45,14 +45,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:6c72bcab3307",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000163",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -214,10 +214,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Boyce Thompson Institute",
               "raw": "Boyce Thompson Institute for Plant Research, Ithaca, NY, United States of America",
-              "ror": null
+              "ror": "016tr2327"
             },
             {
               "country": "US",
@@ -248,7 +248,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Keith Rivera",
+          "name": "Keith D. Rivera",
           "openalex": "A5036658040",
           "orcid": "0000-0003-2979-9576",
           "staff": null
@@ -340,7 +340,7 @@
           "corresponding": false,
           "name": "Athanasios Lampropoulos",
           "openalex": "A5036491397",
-          "orcid": null,
+          "orcid": "0000-0003-1663-131X",
           "staff": null
         },
         {
@@ -503,8 +503,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Katherine Tyson",
-          "openalex": "A5082252863",
+          "name": "Katherine E. Tyson",
+          "openalex": "A5031641584",
           "orcid": null,
           "staff": null
         },
@@ -561,7 +561,7 @@
       "published": "2016-12-20",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "A General Method for Targeted Quantitative Cross-Linking Mass Spectrometry",
       "topics": [
@@ -603,5 +603,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

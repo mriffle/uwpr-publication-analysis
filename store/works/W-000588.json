@@ -6,19 +6,19 @@
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000588"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000588"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000588"
     }
   ],
@@ -47,7 +47,7 @@
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1101%2F2022.04.06.487405"
       }
     },
@@ -68,7 +68,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington's Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -81,7 +81,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1101%2F2022.04.06.487405"
       }
     }
@@ -116,7 +116,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Kyle Hess",
+          "name": "Kyle N. Hess",
           "openalex": "A5023127989",
           "orcid": "0000-0003-2096-0626",
           "staff": null
@@ -146,7 +146,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Ian R. Smith",
+          "name": "Ian R.L. Smith",
           "openalex": "A5035241621",
           "orcid": "0000-0002-4966-9333",
           "staff": null
@@ -264,7 +264,7 @@
       "published": "2022-04-09",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Proteome-wide identification of amino acid substitutions deleterious for protein function",
       "topics": [
@@ -306,5 +306,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

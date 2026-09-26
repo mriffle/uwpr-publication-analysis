@@ -6,31 +6,31 @@
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000416"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000416"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000416"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000416"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000416"
     }
   ],
@@ -106,7 +106,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Hyun D. Song",
+          "name": "Hyun Deok Song",
           "openalex": "A5049572208",
           "orcid": "0000-0002-9768-5055",
           "staff": null
@@ -181,7 +181,7 @@
             }
           ],
           "corresponding": false,
-          "name": "W. Sean Davidson",
+          "name": "William Sean Davidson",
           "openalex": "A5008316828",
           "orcid": "0000-0003-2756-2989",
           "staff": null
@@ -198,7 +198,7 @@
           "corresponding": false,
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         },
         {
@@ -239,7 +239,7 @@
       "published": "2026-07-27",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "A model of human APOA2 on HDL",
       "topics": [
@@ -281,5 +281,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

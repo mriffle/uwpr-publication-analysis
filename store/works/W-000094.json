@@ -6,37 +6,37 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000094"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000094"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000094"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000094"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000094"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000094"
     }
   ],
@@ -45,14 +45,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:0df1eae934ea",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000094",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -144,7 +144,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Shane Neph",
+          "name": "Shane J. Neph",
           "openalex": "A5077099192",
           "orcid": "0000-0003-2962-8777",
           "staff": null
@@ -159,7 +159,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Jeff Vierstra",
+          "name": "Jeff D. Vierstra",
           "openalex": "A5027054450",
           "orcid": "0000-0001-6406-8563",
           "staff": null
@@ -189,7 +189,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Alex Reynolds",
+          "name": "Alex P. Reynolds",
           "openalex": "A5042642744",
           "orcid": "0000-0003-0382-4921",
           "staff": null
@@ -204,7 +204,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Eric Haugen",
+          "name": "Eric N. Haugen",
           "openalex": "A5026268911",
           "orcid": "0000-0001-7444-8981",
           "staff": null
@@ -264,7 +264,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Richard Sandstrom",
+          "name": "Richard S. Sandstrom",
           "openalex": "A5015944898",
           "orcid": "0000-0002-3356-1547",
           "staff": null
@@ -341,7 +341,7 @@
           "corresponding": false,
           "name": "Hao Wang",
           "openalex": "A5011231655",
-          "orcid": "0009-0004-7510-3984",
+          "orcid": "0000-0002-5270-9463",
           "staff": null
         },
         {
@@ -384,7 +384,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Daniel Bates",
+          "name": "Daniel L. Bates",
           "openalex": "A5046943348",
           "orcid": null,
           "staff": null
@@ -587,7 +587,7 @@
           "corresponding": false,
           "name": "Gayathri Balasundaram",
           "openalex": "A5079772669",
-          "orcid": null,
+          "orcid": "0000-0003-1428-2515",
           "staff": null
         },
         {
@@ -651,9 +651,9 @@
             }
           ],
           "corresponding": false,
-          "name": "M. A. Bender",
+          "name": "Michael A. Bender",
           "openalex": "A5103139303",
-          "orcid": null,
+          "orcid": "0000-0001-5330-6255",
           "staff": null
         },
         {
@@ -672,7 +672,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Mark Groudine",
+          "name": "Mark T. Groudine",
           "openalex": "A5062846476",
           "orcid": "0000-0002-1116-2588",
           "staff": null
@@ -714,7 +714,7 @@
             }
           ],
           "corresponding": true,
-          "name": "J Stamatoyannopoulos",
+          "name": "John A. Stamatoyannopoulos",
           "openalex": "A5006847496",
           "orcid": "0000-0002-2664-5769",
           "staff": null
@@ -742,7 +742,7 @@
       "published": "2012-09-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "An expansive human regulatory lexicon encoded in transcription factor footprints",
       "topics": [
@@ -784,5 +784,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

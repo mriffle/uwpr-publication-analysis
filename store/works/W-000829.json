@@ -6,7 +6,7 @@
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000829"
     }
   ],
@@ -191,7 +191,7 @@
             }
           ],
           "corresponding": false,
-          "name": "John C. Whitney",
+          "name": "John C. C. Whitney",
           "openalex": "A5008093410",
           "orcid": "0000-0002-4517-8836",
           "staff": null
@@ -227,7 +227,7 @@
             }
           ],
           "corresponding": false,
-          "name": "S. Brook Peterson",
+          "name": "Snow Brook Peterson",
           "openalex": "A5019964117",
           "orcid": "0000-0003-2648-0965",
           "staff": null
@@ -276,7 +276,7 @@
       "published": "2026-09-09",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Oral Actinobacteria sense and defend against parasitic epibionts",
       "topics": [
@@ -318,5 +318,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

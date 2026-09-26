@@ -6,13 +6,13 @@
     {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000639"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000639"
     }
   ],
@@ -156,7 +156,7 @@
             }
           ],
           "corresponding": true,
-          "name": "David K. Han",
+          "name": "David K. M. Han",
           "openalex": "A5103581000",
           "orcid": null,
           "staff": null
@@ -184,7 +184,7 @@
       "published": "2009-08-18",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Quantitative Phosphoproteomic Analysis of T Cell Receptor Signaling Reveals System-Wide Modulation of Protein-Protein Interactions",
       "topics": [
@@ -226,5 +226,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

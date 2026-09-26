@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000208"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:c3d737810258",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000208",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -137,7 +137,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Brandon R. Macias",
+          "name": "Brandon Richard Macias",
           "openalex": "A5022200003",
           "orcid": "0000-0003-2527-5089",
           "staff": null
@@ -284,7 +284,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Lynn Taylor",
+          "name": "Lynn E. Taylor",
           "openalex": "A5103230320",
           "orcid": "0000-0002-2074-7262",
           "staff": null
@@ -505,7 +505,7 @@
           "corresponding": false,
           "name": "Marisa D. Covington",
           "openalex": "A5035401835",
-          "orcid": null,
+          "orcid": "0000-0002-4587-1008",
           "staff": null
         },
         {
@@ -518,7 +518,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Brian Crucian",
+          "name": "Brian E. Crucian",
           "openalex": "A5045172445",
           "orcid": null,
           "staff": null
@@ -563,7 +563,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Douglas Ebert",
+          "name": "Douglas J. Ebert",
           "openalex": "A5041354061",
           "orcid": "0000-0001-9489-9229",
           "staff": null
@@ -593,7 +593,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Jorge Gandara",
+          "name": "Jorge A. Gandara",
           "openalex": "A5102765097",
           "orcid": "0000-0002-7720-9676",
           "staff": null
@@ -608,7 +608,7 @@
             }
           ],
           "corresponding": false,
-          "name": "K. George",
+          "name": "Kerry A. George",
           "openalex": "A5022856162",
           "orcid": "0000-0002-9318-9839",
           "staff": null
@@ -623,7 +623,7 @@
             }
           ],
           "corresponding": false,
-          "name": "John Goutsias",
+          "name": "John I. Goutsias",
           "openalex": "A5040506666",
           "orcid": "0000-0002-0192-3857",
           "staff": null
@@ -668,7 +668,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Martina Heer",
+          "name": "Martina A. Heer",
           "openalex": "A5087443620",
           "orcid": "0000-0001-5534-911X",
           "staff": null
@@ -713,7 +713,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Vivian Hook",
+          "name": "VIVIAN Y. H. HOOK",
           "openalex": "A5075467879",
           "orcid": "0000-0001-6461-7024",
           "staff": null
@@ -818,7 +818,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Matthew MacKay",
+          "name": "Matthew J. MacKay",
           "openalex": "A5070423571",
           "orcid": "0000-0002-1848-0829",
           "staff": null
@@ -848,7 +848,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Ari Melnick",
+          "name": "Ari M. Melnick",
           "openalex": "A5019770989",
           "orcid": "0000-0002-8074-2287",
           "staff": null
@@ -880,7 +880,7 @@
           "corresponding": false,
           "name": "Kiichi Nakahira",
           "openalex": "A5046990519",
-          "orcid": null,
+          "orcid": "0000-0003-4871-0178",
           "staff": null
         },
         {
@@ -910,7 +910,7 @@
           "corresponding": false,
           "name": "Robert A. Pietrzyk",
           "openalex": "A5032796033",
-          "orcid": null,
+          "orcid": "0000-0002-6837-4581",
           "staff": null
         },
         {
@@ -953,7 +953,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Denis Salins",
+          "name": "Denis N. Salins",
           "openalex": "A5034779103",
           "orcid": "0000-0002-3416-3487",
           "staff": null
@@ -968,7 +968,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Jan M. Schilling",
+          "name": "Jan Mirko Schilling",
           "openalex": "A5071630280",
           "orcid": "0000-0002-8038-7473",
           "staff": null
@@ -998,7 +998,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Caroline Sheridan",
+          "name": "Caroline K. Sheridan",
           "openalex": "A5045538361",
           "orcid": "0000-0003-4621-7507",
           "staff": null
@@ -1043,7 +1043,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Alexander E. Urban",
+          "name": "Alexander Eckehart Urban",
           "openalex": "A5003270170",
           "orcid": "0000-0001-9772-933X",
           "staff": null
@@ -1277,7 +1277,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Emmanuel Mignot",
+          "name": "Emmanuel Jean-Marie Mignot",
           "openalex": "A5073040042",
           "orcid": "0000-0002-6928-5310",
           "staff": null
@@ -1322,7 +1322,7 @@
             }
           ],
           "corresponding": true,
-          "name": "M Snyder",
+          "name": "Michael Snyder",
           "openalex": "A5024120181",
           "orcid": "0000-0003-0784-7987",
           "staff": null
@@ -1337,7 +1337,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Fred W. Turek",
+          "name": "Fred William Turek",
           "openalex": "A5084820716",
           "orcid": "0000-0002-4031-4229",
           "staff": null
@@ -1365,7 +1365,7 @@
       "published": "2019-04-12",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "The NASA Twins Study: A multidimensional analysis of a year-long human spaceflight",
       "topics": [
@@ -1407,5 +1407,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000256"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:b71f6e6a5f64",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000256",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -79,7 +79,7 @@
           "corresponding": false,
           "name": "Scott E Street",
           "openalex": "A5027578450",
-          "orcid": null,
+          "orcid": "0009-0006-9403-1861",
           "staff": null
         },
         {
@@ -107,7 +107,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Rachel Hart",
+          "name": "Rachel C. Hart",
           "openalex": "A5037019470",
           "orcid": "0009-0005-3454-7922",
           "staff": null
@@ -123,7 +123,7 @@
           ],
           "corresponding": false,
           "name": "Jay Jerome",
-          "openalex": "A5055693201",
+          "openalex": "A5037874029",
           "orcid": null,
           "staff": null
         },
@@ -197,7 +197,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Amy S. Shah",
+          "name": "AMY SANGHAVI SHAH",
           "openalex": "A5047114937",
           "orcid": "0000-0001-7297-139X",
           "staff": null
@@ -229,7 +229,7 @@
           "corresponding": false,
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         },
         {
@@ -248,7 +248,7 @@
             }
           ],
           "corresponding": true,
-          "name": "W. Sean Davidson",
+          "name": "William Sean Davidson",
           "openalex": "A5008316828",
           "orcid": "0000-0003-2756-2989",
           "staff": null
@@ -276,7 +276,7 @@
       "published": "2021-01-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Apolipoprotein A-I modulates HDL particle size in the absence of apolipoprotein A-II",
       "topics": [
@@ -318,5 +318,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

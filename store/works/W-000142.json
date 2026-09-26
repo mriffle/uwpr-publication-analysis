@@ -6,25 +6,25 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000142"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000142"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000142"
     },
     {
       "channel": "E",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000142"
     }
   ],
@@ -33,14 +33,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:30f3c36e5a47",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000142",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -48,7 +48,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -171,7 +171,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Andrey V. Malkovskiy",
+          "name": "Andrey Victorovich Malkovskiy",
           "openalex": "A5051486148",
           "orcid": "0000-0002-5648-8602",
           "staff": null
@@ -186,9 +186,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Daniel Lazzareschi",
+          "name": "Daniel V. Lazzareschi",
           "openalex": "A5031620744",
-          "orcid": null,
+          "orcid": "0000-0003-1512-9686",
           "staff": null
         },
         {
@@ -203,7 +203,7 @@
           "corresponding": false,
           "name": "Ethan Katznelson",
           "openalex": "A5016363228",
-          "orcid": null,
+          "orcid": "0000-0003-4641-9168",
           "staff": null
         },
         {
@@ -321,7 +321,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Pradeep K. Singh",
+          "name": "Pradeep Kumar Singh",
           "openalex": "A5100780176",
           "orcid": "0000-0001-9281-0219",
           "staff": null
@@ -379,7 +379,7 @@
       "published": "2015-11-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Filamentous Bacteriophage Promote Biofilm Assembly and Function",
       "topics": [
@@ -421,5 +421,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000303"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:2024:fad0fe4331ad",
         "page": "2024"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000303",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/2024/"
       }
     }
@@ -65,7 +65,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Jamie Morris",
+          "name": "Jamie B. Morris",
           "openalex": "A5083486805",
           "orcid": "0000-0002-3887-9386",
           "staff": null
@@ -97,7 +97,7 @@
           "corresponding": false,
           "name": "Hannah Sexmith",
           "openalex": "A5046826846",
-          "orcid": null,
+          "orcid": "0000-0002-6440-5790",
           "staff": null
         },
         {
@@ -112,7 +112,7 @@
           "corresponding": false,
           "name": "Scott E Street",
           "openalex": "A5027578450",
-          "orcid": null,
+          "orcid": "0009-0006-9403-1861",
           "staff": null
         },
         {
@@ -125,7 +125,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Stephanie Thibert",
+          "name": "Stephanie M. Thibert",
           "openalex": "A5134873759",
           "orcid": "0000-0002-9971-2301",
           "staff": null
@@ -140,7 +140,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Isaac Attah",
+          "name": "Isaac Kwame Attah",
           "openalex": "A5018160871",
           "orcid": "0000-0002-9626-2069",
           "staff": null
@@ -170,7 +170,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Irina Novikova",
+          "name": "Irina Vasilievna Novikova",
           "openalex": "A5101877022",
           "orcid": "0000-0001-5503-0213",
           "staff": null
@@ -206,7 +206,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Amy S. Shah",
+          "name": "AMY SANGHAVI SHAH",
           "openalex": "A5047114937",
           "orcid": "0000-0001-7297-139X",
           "staff": null
@@ -283,7 +283,7 @@
           "corresponding": false,
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         },
         {
@@ -296,7 +296,7 @@
             }
           ],
           "corresponding": true,
-          "name": "W. Sean Davidson",
+          "name": "William Sean Davidson",
           "openalex": "A5008316828",
           "orcid": "0000-0003-2756-2989",
           "staff": null
@@ -339,7 +339,7 @@
       "published": "2024-10-30",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "APOA2 increases cholesterol efflux capacity to plasma HDL by displacing the C-terminus of resident APOA1",
       "topics": [
@@ -381,5 +381,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

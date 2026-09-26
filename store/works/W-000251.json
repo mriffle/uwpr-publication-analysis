@@ -8,49 +8,49 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000251"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000251"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000583"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000251"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000251"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000583"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000251"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000583"
     }
   ],
@@ -59,14 +59,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:137040cbc4ea",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000251",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -74,7 +74,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -200,7 +200,7 @@
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -213,7 +213,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1101%2F2020.07.14.202937"
       }
     },
@@ -221,7 +221,7 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington Proteomics Resource",
-        "query_date": "2026-09-20"
+        "query_date": "2026-09-26"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
@@ -234,7 +234,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1101%2F2020.07.14.202937"
       }
     }
@@ -299,7 +299,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Rene Boiteau",
+          "name": "Rene Maurice Boiteau",
           "openalex": "A5087968079",
           "orcid": "0000-0002-4127-4417",
           "staff": null
@@ -314,7 +314,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Daniel J. Repeta",
+          "name": "Daniel James Repeta",
           "openalex": "A5086775765",
           "orcid": "0000-0003-1927-0599",
           "staff": null
@@ -417,7 +417,7 @@
       "published": "2021-05-12",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Bacterial Quorum-Sensing Signal Arrests Phytoplankton Cell Division and Impacts Virus-Induced Mortality",
       "topics": [
@@ -527,7 +527,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Rene Boiteau",
+          "name": "Rene Maurice Boiteau",
           "openalex": "A5087968079",
           "orcid": "0000-0002-4127-4417",
           "staff": null
@@ -548,7 +548,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Daniel J. Repeta",
+          "name": "Daniel James Repeta",
           "openalex": "A5086775765",
           "orcid": "0000-0003-1927-0599",
           "staff": null
@@ -675,7 +675,7 @@
       "published": "2020-07-15",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Bacterial quorum sensing signal arrests phytoplankton cell division and protects against virus-induced mortality",
       "topics": [
@@ -720,5 +720,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }

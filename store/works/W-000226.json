@@ -6,37 +6,37 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000226"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000226"
     },
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000226"
     },
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000226"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000226"
     },
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000226"
     }
   ],
@@ -45,14 +45,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-20",
+        "last_seen": "2026-09-26",
         "list_key": "list:older:b4e200c3fc0e",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-09-26",
       "record": "R-000226",
       "rule": "R1",
       "rule_version": "2026-09-20.1",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -180,7 +180,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Josephine Trichka",
+          "name": "Josephine J. Trichka",
           "openalex": "A5049705126",
           "orcid": "0000-0002-1997-3502",
           "staff": null
@@ -210,7 +210,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Connor Weidle",
+          "name": "Connor E. Weidle",
           "openalex": "A5012310621",
           "orcid": "0000-0002-9354-2276",
           "staff": null
@@ -255,7 +255,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Brittany Takushi",
+          "name": "Brittany N. Takushi",
           "openalex": "A5042988141",
           "orcid": "0000-0002-9632-6229",
           "staff": null
@@ -272,7 +272,7 @@
           "corresponding": false,
           "name": "Parul Agrawal",
           "openalex": "A5091574060",
-          "orcid": null,
+          "orcid": "0000-0002-2968-3197",
           "staff": null
         },
         {
@@ -395,16 +395,16 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Vaccine Research Center",
               "raw": "Vaccines and Infectious Diseases Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA; Vaccine Research Center, National Institutes of Allergy and Infectious Diseases, NIH, Bethesda, MD, USA. Electronic address: mpancera@fredhutch.org",
-              "ror": null
+              "ror": "02fve6a73"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Vaccine Research Center",
               "raw": "Vaccine Research Center, National Institutes of Allergy and Infectious Diseases, NIH, Bethesda, MD, USA",
-              "ror": null
+              "ror": "02fve6a73"
             },
             {
               "country": null,
@@ -496,7 +496,7 @@
       "published": "2019-12-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-20"
+        "openalex": "2026-09-26"
       },
       "title": "Overcoming Steric Restrictions of VRC01 HIV-1 Neutralizing Antibodies through Immunization",
       "topics": [
@@ -538,5 +538,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-20"
+  "updated": "2026-09-26"
 }
