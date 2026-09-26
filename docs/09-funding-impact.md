@@ -44,6 +44,14 @@ plan. [08](08-implementation.md) records them as they are built.
   funding cannot be enabled before the seed. *§15, `RUNBOOK.md`'s funding sections (§13.4) move
   from B10 to B7*, whose report section, `--funding full` and alerts they describe; B10 updates
   the schedule and the smoke checks there.
+- *2026-09-26, B4 — the store's line shapes, where §8.3 was silent.* §8.3 now states every field's
+  type and vocabulary as the schemas hold them. Two are additions, not choices between readings:
+  **an NIH link carries the key it lists** (`grant`), because a VA grant's key is `VA:…` and a
+  contract's `NIH-contract:…`, so the key cannot be derived from RePORTER's core; and a string's
+  `method` is **null** for a resource code, a facility contract, or a not-grant no override named,
+  which no listed method describes. Invariant F1 also requires one line per work, grant, probe
+  and agency (§8.6), and §6.6's warning is skipped, with one warning, in a store with no
+  `funding/` yet.
 
 ---
 
@@ -691,6 +699,13 @@ not seen on its work (like a merge not yet applied), and the stage alerts when R
 know an override's NIH grant. The nine seeded overrides — five NIH grants and four non-NIH
 typos — are in Appendix E.
 
+The match key is `unicodedata.normalize("NFKC", raw).upper()` with every whitespace character
+and every dash (U+002D, U+2010–U+2015, U+2212) removed — `uwpr_pubs.funding.overrides`, which the
+validator and the stage share. An override on a work a merge has since retired follows it to the
+survivor. In a store with no `funding/` yet there are no strings to look in, so the check is
+skipped and one warning says how many overrides went unchecked. Two overrides that answer one
+string on one work differently are an error, since the stage could honour only one.
+
 ### 6.7 NIH contracts and task orders
 
 `HHSN` followed by 12 digits and a letter, `75N` numbers, and `N01…` are NIH contracts, whatever
@@ -881,7 +896,8 @@ New schemas `funding-citation`, `grant`, `funding-lookup` and `agency`, register
               "outcome": "grant", "grants": ["NIH:P01HL092969"], "method": "corrected",
               "note": "one digit dropped at the end; NIH links this paper to P01HL092969"},
              …],
- "nih_links": [{"core": "P01HL092969", "first_seen": "2026-10-03", "last_seen": "2026-10-03"}, …],
+ "nih_links": [{"core": "P01HL092969", "grant": "NIH:P01HL092969", "first_seen": "2026-10-03",
+                "last_seen": "2026-10-03"}, …],
  "jats_checked": {"R-000147": "2026-10-03"},
  "grants": ["AHA:13SDG16940064", "MISC:P01HL0996", "NIH:P01HL092969", "NIH:P30DK017047",
             "NIH:R01HL108897", "NIH:R01HL112625"]}
@@ -895,6 +911,16 @@ placeholders.) Sources are `openalex`, `crossref`, `pubmed` and `jats`.
   serial, zero-fill, a bare serial), `corrected`, `override`, `agency_number`, `openalex_award`,
   `miscellaneous`.
 - `grants` (top level) is derived: the union of the strings' grants and the NIH links' keys.
+- *(B4)* A string's `method` is null for `resource_code`, `facility_contract`, and a `not_a_grant`
+  no override named; `override` for one an override named. `grant` needs a method other than
+  `miscellaneous` and at least one key, none `MISC:`; `unresolved` exactly one `MISC:` key, by
+  `miscellaneous` or `override`. `funders` may be empty (JATS prose names none); `sources` may
+  not. `note` is a string or null.
+- *(B4)* **An NIH link carries its `grant` key.** RePORTER's `core` alone cannot give it: a VA
+  project is `VA:…` and a contract `NIH-contract:…`. `core` is RePORTER's `core_project_num` as
+  given, uppercase letters and digits.
+- *(B4)* `jats_checked` maps record IDs to dates; every array is sorted, and so are the lines (by
+  work).
 
 **`grants.jsonl`:**
 ```json
@@ -914,11 +940,37 @@ placeholders.) Sources are `openalex`, `crossref`, `pubmed` and `jats`.
 - `amount` is recomputed every run (§7.3). `original` and `rate` are decimal strings.
 - **The export's `amount_source` is derived, not stored twice** (§11.4): its `url` is the
   exported grant's `url`, and its `as_of` is this line's `checked` date.
+- *(B4) The types, as the schemas hold them:*
+  - `family` says where facts and amount come from: `reporter` (NIH's and other RePORTER
+    agencies' grants), `nih_contract`, `nih_task_order`, `nsf`, `us_federal` (USAspending),
+    `agency` (another configured agency), `openalex_funder` (`F<digits>`) or `miscellaneous`.
+  - `activity` is an NIH activity code or null; `category`, `scope`, `status` and `flags` take the
+    values of §11.4. `scope_reason` is a string exactly when `scope` is `institution-wide`, else
+    null. A `MISC:` key has `status: unresolved`, family `miscellaneous` and a null amount, and
+    only a `MISC:` key is unresolved.
+  - `pis[].id` is a string (RePORTER's `profile_id`) or null; `pis` is sorted by name.
+    `organization` and `title` may be null. `start` and `end` are a date, a year alone (OpenAlex
+    gives only years), or null.
+  - `facts.reporter`: `fiscal_years` `{"YYYY": whole dollars, or null for a year whose rows
+    report no amount}` (parent rows only; for a contract or task order, its rows),
+    `application_types` (sorted codes), `first_support_year` (the earliest row's support year, or
+    null) and `latest_appl_id` (an integer, for the project link). `facts.nsf`: `estimated`,
+    `obligated` (decimal strings or null), `exp_date`, `program`. `facts.usaspending`:
+    `total_obligation` (a decimal string or null), `type`, `pop_start`, `pop_end`,
+    `generated_id`. `facts.openalex`: `[{id: "G…", amount, currency, provenance, start_year}]`,
+    sorted by id. Every key of `facts` is optional; a `MISC:` grant's is `{}`.
+  - `amount` is null when there is no amount. Inside it, `usd` is whole dollars and is null only
+    for a currency no rate table covers, exactly when `rate` is; `rate_year` is null for US
+    dollars. `basis` is one of §7.1's; `source` is `NIH RePORTER`, `NSF Award API`,
+    `USAspending` or `OpenAlex`. `openalex_awards` holds OpenAlex's `G…` ids, sorted.
 
 **`lookups.jsonl`:**
 ```json
 {"schema": 1, "source": "reporter", "query": "near_miss:P01:HL:000996", "found": [], "checked": "…", "recheck_after": "…"}
 ```
+*(B4)* `source` is `reporter`, `nsf`, `usaspending` or `openalex`; `query` is the stage's own
+notation, one line per (source, query); `found` is what the source answered, none or more than
+one, sorted; `recheck_after` is a date, or null for an answer that will not change.
 
 **`agencies.jsonl`:**
 ```json
@@ -966,7 +1018,9 @@ Grant overrides are not in this fingerprint (§6.6).
 ### 8.5 The `grant` override
 
 `overrides.schema.json` adds `grant` to the action enum, with an `if/then` requiring `raw` and
-`grant` (a `grantKey` or `null`) and a work-ID target:
+`grant` (a `grantKey` or `null`) and a work-ID target; neither field is allowed on any other action
+(B4). A `raw` of digits alone must be quoted, or YAML reads it as a number, which the schema
+rejects:
 
 ```yaml
 - target: W-000222
@@ -987,9 +1041,11 @@ comes first.
 ### 8.6 Invariants
 
 Checked by `validate_store` and numbered F1–F7. **They are always cited as "invariant F1" and so
-on, to keep them apart from decisions F1–F16.**
+on, to keep them apart from decisions F1–F16.** Each error the validator reports names the
+invariant it breaks ("invariant F4: …"), and a store without `funding/` is checked as before.
 
-- **Invariant F1.** Every funding file validates against its schema.
+- **Invariant F1.** Every funding file validates against its schema. *(B4: and holds one line
+  per work, grant, probe (source and query) and agency, since the stage looks each up by that.)*
 - **Invariant F2.** Every citations line names an included work. A retired ID is an error.
 - **Invariant F3.** A line's `grants` equals the union of its strings' grants and its NIH links.
 - **Invariant F4.** Every listed key is in `grants.jsonl`, and every grant there is listed.
@@ -1709,7 +1765,9 @@ unconverted-currency rules tested; `funding/` branch coverage ≥ 95%; the guard
 
 **B4** — byte-identical round trip; seven mutation stores fail for the intended reason; stores
 without `funding/` validate.
-- [ ] Accepted.
+- [x] Accepted 2026-09-26 (cc929ec): a synthetic fixture over the sample's works round-trips
+      byte-identically; eight mutation stores each fail for their own invariant alone; both
+      committed stores validate unchanged and the export is byte-identical.
 
 **B5** — the funding summary matches the rows; references resolve; types fresh; export diff green;
 sample size recorded.

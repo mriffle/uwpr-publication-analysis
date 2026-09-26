@@ -72,6 +72,23 @@ lines, with nothing changed but dates:
   again, which the config fingerprint had decided, so an edit to any config file did. The field
   is optional, so every manifest written before it stays valid.
 
+**Changed 2026-09-26, funding** ([09](09-funding-impact.md) §8; Phase 9 milestone B4). Additive:
+a store without `funding/` is valid and checked exactly as before, and no work file changes:
+- *§3:* `store/funding/` holds four line files — the grants each included work lists, the
+  grants, the probes that found nothing, and the agencies — beside the work files, never in them,
+  as `metrics/` is. Their schemas are `funding-citation`, `grant`, `funding-lookup` and `agency`;
+  `common.schema.json` gains `grantKey` and `agencyCode`. Until the funding stage exists, a run
+  carries them forward byte for byte.
+- *§9 and `overrides.schema.json`:* a fifth action, `grant`, says what one string on one work is:
+  `raw` (the string as written) and `grant` (a key, or null for "not a grant"), both required,
+  and allowed on no other action. It decides nothing about inclusion. Stage 7 had mapped every
+  override with a single target to its action, so a grant override written after an exclude would
+  have undone it; status now reads only include and exclude overrides.
+- *§14:* invariants F1–F7 for `funding/`, cited as "invariant F1" and so on to keep them apart
+  from the eight above and from docs/09's decisions F1–F16. A grant override whose string is not
+  on its work is a warning, as an unapplied merge is.
+- *§15:* a funding line changes only when its data does.
+
 **Purpose:** define how the pipeline stores what it finds between runs, precisely enough to
 implement.
 **Depends on:** [01-discovery-strategy.md](01-discovery-strategy.md) (frozen). This spec uses its
@@ -123,7 +140,7 @@ config/                         human-maintained; rules.yaml or staff.yaml chang
   rules.yaml                    rule vocabularies: patterns, exclusion terms, disqualifiers,
                                 record-type filters (Phase 1 §6, §8)
   fixtures.yaml                 positive and negative test papers (Phase 1 §12)
-overrides.yaml                  forced include/exclude, merge/split (§9)
+overrides.yaml                  forced include/exclude, merge/split, and grant corrections (§9)
 schemas/                        JSON Schemas for every file type below
 store/                          machine-written, committed
   works/
@@ -137,6 +154,12 @@ store/                          machine-written, committed
   metrics/
     latest.jsonl                citation figures from the most recent run (§10)
     <YYYY-MM>.jsonl             the first run of each month, kept as history
+  funding/                      optional (added 2026-09-26; docs/09 §8.1)
+    citations.jsonl             one line per included work: the grant strings it lists, and what
+                                each resolved to, its NIH links, and the grants they come to
+    grants.jsonl                one line per grant some included work lists: facts and amount
+    lookups.jsonl               one line per probe that found nothing, or more than one thing
+    agencies.jsonl              every agency a grant names, and every parent
   runs/<run-id>.json            one manifest per run (§11)
 export/                         generated app input, committed (Phase 5)
 cache/                          NOT committed: raw downloads and full text (§12)
@@ -362,7 +385,7 @@ The only routine human input besides configuration. Used when someone reports a 
 
 ```yaml
 - target: W-000210            # a work ID; `uwpr-pubs explain <DOI|PMID>` gives a paper's
-  action: include             # include | exclude | merge | split
+  action: include             # include | exclude | merge | split | grant (below)
   reason: "PI confirmed samples were run at UWPR."
   by: mriffle
   date: 2026-09-20
@@ -383,6 +406,30 @@ The only routine human input besides configuration. Used when someone reports a 
 - A `split` override lists the records that leave: `records: [R-000123]`.
 - Dates may be written quoted or unquoted; YAML reads an unquoted date as a date object, and the
   validator treats it as the same ISO string.
+
+**Grant overrides** (added 2026-09-26; [09](09-funding-impact.md) §6.6, §8.5). A `grant` override
+says what one string on one work is — the grant it names, or `null` for "not a grant":
+
+```yaml
+- target: W-000222
+  action: grant
+  raw: U19AG02312              # the string as the work writes it
+  grant: NIH:U19AG023122       # a grant key (docs/09 §8.2), or null
+  reason: "The only RePORTER core one edit away; seven corpus papers are NIH-linked to it."
+  by: mriffle
+  date: 2026-10-03
+```
+
+- `raw` and `grant` are required, and allowed on no other action. `raw` is matched ignoring case,
+  whitespace and dashes, and nothing else. A string of digits alone must be quoted, or YAML reads
+  it as a number and the schema rejects it.
+- **It decides nothing about inclusion.** Status reads only `include` and `exclude` overrides, so
+  a grant override on a work, excluded or not, changes nothing about whether it is included; nor
+  does it re-read any text (§11's overrides fingerprint leaves it out).
+- Its target resolves like any other (§14, invariant 7). A string not seen on its work is a
+  warning, like a merge not yet applied: it is the normal state until the next run reads the
+  string, and in a store with no `funding/` yet the check is skipped with one warning. Two
+  grant overrides answering one string on one work differently are an error.
 
 ## 10. Metrics (`store/metrics/`)
 
@@ -474,6 +521,24 @@ Two things can change evidence, with different effects:
 
 A failed invariant stops the run before anything is exported (Phase 3).
 
+**`store/funding/`** (added 2026-09-26; [09](09-funding-impact.md) §8.6) has seven more, checked
+only where the directory exists, and always cited as "invariant F1" and so on — never "F1" alone,
+which is one of docs/09's decisions. Each error the validator reports names its invariant.
+
+- **Invariant F1.** Every funding file validates against its schema, and holds one line per work,
+  grant, probe (source and query) or agency.
+- **Invariant F2.** Every citations line names an included work. A retired ID is an error.
+- **Invariant F3.** A line's `grants` equals the union of its strings' grants and its NIH links'.
+- **Invariant F4.** Every listed key is in `grants.jsonl`, and every grant there is listed.
+- **Invariant F5.** Every grant's agency, and every parent, is in `agencies.jsonl`; no cycles.
+- **Invariant F6.** Each amount agrees with itself: `usd == round(original × rate)`, halves to
+  even, and `usd == Σ fiscal_years` for `reporter_fiscal_years`. It reads no config, so editing
+  the rates cannot turn committed data red.
+- **Invariant F7.** No `resource_code`, `facility_contract` or `not_a_grant` string lists a
+  grant, and no grant's key or number contains the resource code (`rules.r2.code`).
+
+A work with no citations line is allowed: a new work in a degraded run has none yet.
+
 ## 15. File conventions
 
 - UTF-8 JSON with 2-space indentation, sorted keys, and a trailing newline.
@@ -487,6 +552,10 @@ A failed invariant stops the run before anything is exported (Phase 3).
   rebuild from live sources was byte-identical.
 - Weekly runs on unchanged sources change only `official_list/entries.jsonl`, `metrics/` and
   `runs/`, plus a `last_seen` refresh about once a month (§5.3; changed 2026-09-19).
+- **A funding line changes only when its data does** (added 2026-09-26): a new string, link,
+  grant, fact or probe, or a date moved by the same 28-day rule (docs/09 §8.1). Every array in a
+  line is sorted, so writing the lines back, in whatever order they were built, gives the same
+  bytes: citations by work, grants by key, lookups by source and query, agencies by code.
 
 ## 16. Left to later phases
 
@@ -516,8 +585,9 @@ Building a real sample store exposed several gaps. All are now fixed in this spe
 
 | Path | What it is |
 |---|---|
-| `schemas/*.schema.json` | JSON Schemas (draft 2020-12) for every file type: work, candidate line, list entry, generated envelope, metrics line, run manifest, overrides and aliases. `common.schema.json` holds shared definitions. |
-| `uwpr_pubs.validate` (`uwpr-pubs validate`) | Checks a store against the schemas and the §14 invariants, plus cross-file references. Mutation-tested: 16 deliberately broken stores in `tests/test_validate.py`, all caught for the right reason. |
+| `schemas/*.schema.json` | JSON Schemas (draft 2020-12) for every file type: work, candidate line, list entry, generated envelope, metrics line, run manifest, overrides and aliases, and the four funding lines (2026-09-26). `common.schema.json` holds shared definitions. |
+| `uwpr_pubs.validate` (`uwpr-pubs validate`) | Checks a store against the schemas and the §14 invariants, plus cross-file references. Mutation-tested: deliberately broken stores in `tests/test_validate.py`, all caught for the right reason, and one or more per funding invariant F1–F7, each failing for that invariant alone. |
+| `tests/fixtures/funding/` | A synthetic `funding/` over the sample store's works (2026-09-26): every key family, outcome and method of docs/09 §8.2–§8.3. |
 | `samples/sample_works.yaml` | The sample definition: real papers and excerpts, plus synthetic scenarios marked SAMPLE |
 | `samples/build_sample_store.py` | Builds `samples/store/` from live sources |
 | `samples/store/`, `samples/overrides.yaml` | The sample store: 13 included works, 7 works not included, 4 official-list entries |
