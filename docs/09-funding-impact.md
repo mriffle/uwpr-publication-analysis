@@ -126,6 +126,57 @@ plan. [08](08-implementation.md) records them as they are built.
   string on every work is as B3 left it, and exactly 11 strings move, one for each of the 11
   rows, each from a Miscellaneous key to its agency's one key. Appendix A's 187 cases pass as
   before, and Appendix F's rows still come to 267 keys; `funding_version` is `2026-09-26.2`.
+- *2026-09-26, B5 — the export as built (§11), where it was silent.* The contract's shape is
+  §11's exactly; these are the readings W3 and B7 build on:
+  - **What counts is a projection.** Only exported works' citations lines count, only the grants
+    they list cross, and only those grants' agencies, with every parent. There is **no funding
+    data** exactly when no exported work has a line, whatever `enabled` says: the export reads no
+    configuration but the rate sources and the store's own `overrides.yaml`, so turning funding
+    off after the seed leaves the committed data showing until `funding/` is removed. `version` is
+    the newest `funding_version` among those lines.
+  - **`as_of`** is the newest manifest whose `funding.mode` is `full`. No manifest records a mode
+    until B7, so until then it is the latest `checked` of any exported grant; `export` prints the
+    date it used.
+  - **`sources[]`** lists a source when an exported grant's facts, or an exported work's strings,
+    NIH links or JATS checks, come from it, dated by the latest of those dates; in §11.3's order.
+    The four amount sources keep the names `amount_source` gives them (`NSF Award API`,
+    `USAspending`); JATS is `pmc`, "PubMed Central". Only RePORTER reports by fiscal year, so only
+    it has a `partial_year`. **`exchange_rates[]`** is every configured rate source whenever
+    there is funding data, its currencies sorted and `through_year` its last year.
+  - **`fiscal_years`** keeps a null year (§8.3), and the check is that the years with amounts sum
+    to `amount_usd`, or, with no amount, that every year is null. It is exported for every grant
+    with RePORTER facts, contracts and task orders included (their years are their rows), while
+    the amount is RePORTER's or there is none; beside an amount from OpenAlex it would not sum,
+    and is null. **`start_year`** and `end_year` are the first four digits of `start` and `end`,
+    except an NIH grant's `start_year`, the first fiscal year RePORTER holds.
+  - **`amount_original`** leaves the stored decimal through `Decimal`: an integer when whole, a
+    float only when its shortest form is the same decimal, and otherwise refused.
+  - **Links:** RePORTER's project page for any grant with RePORTER facts (NIH grants, contracts
+    and task orders), NSF's award page (`https://www.nsf.gov/awardsearch/show-award/?AWD_ID=<id>`)
+    for an NSF grant, USAspending's award page for a `us_federal` one with its facts; null
+    otherwise. One real page of each form was fetched on 2026-09-26 and answered 200. **NSF's
+    older `showAward?AWD_ID=` form now answers with two redirects to `show-award/?AWD_ID=`**, so
+    the export writes the form NSF serves directly (changed at merge).
+  - **`override`** comes from the `grant` entry that decided one of the work's override strings
+    for that grant (the first in sorted order, if several), matched through the aliases. The
+    `export` command now reads the overrides beside the store, as `validate` does, not the
+    project's: the sample's work IDs are not the real store's. An override string no entry
+    attributes is a validation error, not a listing without its attribution.
+  - **`method.resolution`** counts every pair by its method, so an override saying "not a grant"
+    counts under `override`; `works_without_funding_metadata` is exported works with no line or
+    no strings.
+  - **The validator** also refuses a `schema_version` other than the contract's, a `url` without
+    its `url_name`, and fiscal years with an amount beside a null `amount_usd`; given the store's
+    citations lines (the pipeline passes them) it checks each listing's `how`, `cited_as` and
+    `override` against the strings and links exactly. `grants[].agencies` and `cited_as` have at
+    least one item, so the generated TypeScript types them as non-empty tuples.
+  - `lookup_index.json` shares the one `schema_version`, so it reads 1.1 too; its shape is
+    unchanged.
+  - **§11.8 gains one synthetic case**, a corrected form beside an exact one (`cited_as` with
+    `how: listed`), which is the shape §11.2 exists for and the one the real data shows. The
+    synthetic funding sits in `samples/export_cases.json` beside two more SAMPLE works (2019 and
+    2021), so that a grant can be listed in two years; its grant override is there too, since
+    `samples/overrides.yaml` must name only the sample store's works.
 
 ---
 
@@ -389,6 +440,13 @@ roughly 420–450 KiB at level 9** — an estimate, to be measured in B5 (the sa
 export). Planning's "427 KB" is not comparable: it mixed decimal kilobytes and compression levels.
 Against the 500 KiB budget (512,000 bytes, F14), the estimate leaves about **two years' headroom**
 at the export's growth of about 35 KiB a year (an estimate from planning).
+
+**Measured by B5** (2026-09-26, `stages/export.data_size`, the budget's measure). Contract 1.1 with
+no funding data — the empty block and an empty `grants` on each of 338 works — takes the real
+export from 310,628 to **311,014 bytes (303.7 KiB)**. The sample export goes from 15,188 to
+**18,099 bytes (17.7 KiB)**: two more SAMPLE works and the nine synthetic grants of §11.8, whose
+`funding` block alone is about 2,500 bytes gzipped. Nine grants say little about 480, so the
+estimate above stands until B9 measures the real export with funding.
 
 ## 4. Definitions
 
@@ -1351,7 +1409,7 @@ it — with `cited_as: ["P01 HL09296"]`, the form in its JATS text, PubMed and O
 | `rate_year` | int\|null | The rate's year, when converted |
 | `amount_source` | object\|null | `{name, url, as_of, basis}`: the source's name, a page a reader can open to check the figure, the date its facts were last confirmed (under the 28-day rule, so up to 27 days behind the latest read), and the basis of §7.1. **Derived, not stored twice:** `url` is the grant's `url`, and `as_of` the store line's `checked` date (§8.3). Null when there is no amount. *(`basis` added to the plan's list: NSF's rule makes one source mean two things.)* |
 | `fiscal_years` | object\|null | `{"YYYY": int}` parent-row sums, RePORTER grants only; they sum to `amount_usd` |
-| `url` | string\|null | An outbound link built by the pipeline, so the app holds no source URL pattern: RePORTER's project page (`https://reporter.nih.gov/project-details/<appl_id>`, latest application), NSF's award page (`https://www.nsf.gov/awardsearch/showAward?AWD_ID=<id>`), USAspending's award page; exact forms verified in B6 |
+| `url` | string\|null | An outbound link built by the pipeline, so the app holds no source URL pattern: RePORTER's project page (`https://reporter.nih.gov/project-details/<appl_id>`, latest application), NSF's award page (`https://www.nsf.gov/awardsearch/show-award/?AWD_ID=<id>`; the older `showAward?AWD_ID=` redirects there), USAspending's award page (`https://www.usaspending.gov/award/<generated_id>`); each form fetched and answering 200 on 2026-09-26 (B5) |
 | `url_name` | string\|null | The link's label, naming the page it opens ("NIH RePORTER project page", "NSF award page", "USAspending award page"); null exactly when `url` is null. So the link can be labelled without `amount_source`, which is null for a grant with no amount (VA, `N01HV028179`) |
 | `flags` | array | From: `active`, `starts_before_fy1985`, `starts_before_fy2008`, `no_amount_reported`, `amount_not_found`, `amount_from_openalex`, `amount_corrected`, `amounts_disagree`, `unconverted_currency`, `rate_year_estimated` |
 
@@ -1451,7 +1509,9 @@ de-duplication); a grant with a null amount; a sub-agency with a parent.
 The budget rises to **500 KiB gzipped: 512,000 bytes (500 × 1,024) at gzip level 9**, the measure
 `web/scripts/check-bundle-budget.mjs` already uses for JavaScript, so both budgets mean the same
 thing. Today's export is 303 KiB by it, and the export with funding is estimated at 420–450 KiB,
-to be measured in B5 and B9 (§3.5), which leaves about two years' headroom.
+to be measured in B9 (§3.5), which leaves about two years' headroom. *(B5 measured contract 1.1
+without funding data: 311,014 bytes, 303.7 KiB, for the real export, and 18,099 bytes for the
+sample with its synthetic funding; §3.5.)*
 [06](06-web-app.md) §10's row changes, `web/scripts/check-data-budget.mjs` enforces it in the web
 CI job against `export/` and `samples/export/`, a Python test asserts the script's constant
 equals `stages/export.DATA_BUDGET_BYTES`, and stage 11 alerts above it (§9.5), measuring the same
@@ -1861,7 +1921,10 @@ without `funding/` validate.
 
 **B5** — the funding summary matches the rows; references resolve; types fresh; export diff green;
 sample size recorded.
-- [ ] Accepted.
+- [x] Accepted 2026-09-26 (29ef435): contract 1.1 with every §11.7 check its own error; the sample
+      exhibits all 12 synthetic `FUNDING_CASES` and its summary equals the rows; B4's fixture
+      store exports and validates; `export/` is the no-data shape, its top-level `summary`
+      unchanged; sample 18,099 bytes, real export 311,014 (§3.5).
 
 **B6** (live, in the window; compare FY ≤ 2026) — **260 ± 2** works linked; **454** cores; **5,437 ±
 1%** parent rows; **$6,217.3M ± 0.1%**; NSF ≥ 56 of 57; USAspending **21 of 27** rows (20 grants)

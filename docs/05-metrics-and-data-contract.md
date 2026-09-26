@@ -154,6 +154,21 @@ cross-check (§1.1, principle 2) is unaffected. The original text below is kept 
 why funding was out of scope; the further notes this contract needs (§4.1, §4.4, §12, §13) land
 with milestone B5.
 
+**Changed 2026-09-26, contract 1.1 is built** (milestone B5; [09](09-funding-impact.md) §11 and
+its B5 note, which records every reading §11 left open):
+- *§4.1 and §4.2, the funding block.* Every export now carries `funding` and each work `grants`.
+  A store without funding exports the block's "no funding data" shape rather than omitting it, so
+  the committed `export/` is 1.1 with a null `funding.version` until the seed. Both files carry
+  the one `schema_version`, so `lookup_index.json` reads 1.1 with its shape unchanged.
+- *§4.4, the size.* Measured by the budget's measure: 311,014 bytes for the real export without
+  funding data, 386 more than 1.0; 18,099 for the sample with its synthetic funding.
+- *§12, the version and the funding cross-checks.* The validator now refuses a `schema_version`
+  other than the contract's, and checks every promise of [09](09-funding-impact.md) §11.7 with its
+  own message, and the listings against the store's lines where it has them.
+- *§13, the funding cases.* The sample must also cover [09](09-funding-impact.md) §11.8's cases,
+  synthetic now, in `samples/export_cases.json` with two more SAMPLE works; the real ones come with
+  the sample store's funding (B8).
+
 **Every figure in this document was measured against the committed store on 2026-09-20**
 (339 works, rule version `2026-09-20.1`). Figures move as the store grows; the definitions do
 not. Where a number is quoted to justify a design decision, re-measure before changing that
@@ -314,11 +329,19 @@ Both are deterministic: keys sorted, two-space indent, trailing newline, arrays 
 with explicit tie-breakers, exactly as the store is written ([02](02-data-model.md) §15). Two runs
 on unchanged sources produce no diff in `export/`.
 
+**From contract 1.1 (2026-09-26), `uwpr_publications.json` also carries funding**
+([09](09-funding-impact.md) §11): each work's `grants[]`, and a top-level `funding` block with the
+grants, their agencies and a `funding.summary` of its own, built from `store/funding/` by
+`funding/export.py`. It is a projection like the rest: only exported works' funding counts. A
+store without funding exports the block's **"no funding data" shape** — `version` null, every list
+empty, every count zero, every `grants` empty — which is what `export/` holds until the funding
+seed. `lookup_index.json` is unchanged; it shares the one `schema_version`, so it reads 1.1 too.
+
 ### 4.2 Top-level structure
 
 ```json
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "generated_at": "2026-09-20T17:07:00Z",
   "run_id": "2026-09-20T17-07-live",
   "pipeline_version": "0.1.0",
@@ -350,6 +373,7 @@ on unchanged sources produce no diff in `export/`.
   },
   "summary": {},
   "method": {},
+  "funding": {},
   "works": []
 }
 ```
@@ -465,6 +489,13 @@ Growth is 30–50 works a year ([02](02-data-model.md) §1), so about 0.4 MB a y
 roughly 0.03 MB gzipped. **This is why A8 caps nothing:** what matters is the compressed transfer,
 0.31 MB today against [06](06-web-app.md) §10's budget, and capping authors and evidence would buy
 a fraction of that in exchange for an app that can show less than it can prove.
+
+**Contract 1.1, measured 2026-09-26** by `stages/export.data_size` — gzip level 9, the measure of
+[09](09-funding-impact.md) §11.9's 500 KiB budget. The real export with no funding data, the empty
+block and an empty `grants` on each of 338 works, goes from 310,628 to **311,014 bytes (303.7
+KiB)**. The sample export, with two more SAMPLE works and nine synthetic grants (§13), goes from
+15,188 to **18,099 bytes (17.7 KiB)**. The real export with funding is measured at the seed;
+[09](09-funding-impact.md) §3.5 estimates 420–450 KiB.
 
 ### 4.5 The `summary` block
 
@@ -703,7 +734,7 @@ browsable list (A4).
 
 ```json
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "generated_at": "2026-09-20T17:07:00Z",
   "aliases": {"doi:10.1021/…": "W-000457", "pmid:…": "W-000457", "work:W-000735": "W-000457"},
   "not_included": [
@@ -871,6 +902,24 @@ These apply to every string the app displays and to the explanatory text in the 
   work's `criteria` matches its evidence; the `summary` block equals a recomputation from the
   rows; `period.complete_through` is the year before the run's year; every exported work is
   included in the store; no exported work carries a superseded evidence entry.
+- **Contract 1.1** (2026-09-26, [09](09-funding-impact.md) §11) is the additive bump that adds
+  funding; both files carry it. The validator refuses a document whose `schema_version` is not the
+  contract's, so a 1.0-shaped document fails on its version and on the `funding` block and
+  `grants` it lacks, and on nothing else. The app still accepts any 1.x, and treats a 1.0 export,
+  or a 1.1 export whose `funding.version` is null, as one with no funding data.
+- **Funding cross-checks** ([09](09-funding-impact.md) §11.7), each with its own message: every
+  listed grant is in `funding.grants`, and every grant is listed by an exported work; every
+  grant's agency, and every parent, is in `funding.agencies`, with no cycle, and each listing's
+  `agencies` is its grant's chain, root first; `funding.summary` equals `funding/summary.py`'s
+  recomputation from the rows, the function the export itself uses; a grant's `first_year` is the
+  year of the earliest exported work listing it; the fiscal years with amounts sum to
+  `amount_usd`, and a grant with no amount has only null years; `how: corrected` or `override`
+  carries `cited_as`, `how: override` its attribution, and an attribution `cited_as`; a `MISC:`
+  grant is unresolved, in the Miscellaneous group and has no amount; a `url` has its `url_name`;
+  the resource code is in no key, number or `cited_as`; and a null `version` means every list
+  empty and every count zero. Given the store's citations lines, which the pipeline passes, each
+  listing's `how`, `cited_as` and `override` are also checked against what the work's strings and
+  NIH links say.
 
 ## 13. The sample export
 
@@ -916,6 +965,23 @@ works instead live in their own file, validate against `work.schema.json` like a
 `SAMPLE` in every title and the unassigned `10.0000` test DOI prefix, and are merged with the
 sample store's works before the one export function sees them. The export code has a single path;
 only its input is a union.
+
+**Funding cases** ([09](09-funding-impact.md) §11.8, from 2026-09-26). `FUNDING_CASES` in
+`uwpr_pubs.sample` holds a predicate per case over the whole document, because a funding case is a
+relation between works, grants and agencies rather than a property of one work, and
+`missing_cases` requires them with the twelve above. **The synthetic half is in
+`samples/export_cases.json`**: a `funding` object of store lines (citations, grants, agencies) and
+the one `grant` override that attributes them, merged with the sample store's funding the way its
+works are merged, beside two more SAMPLE works (2019 and 2021) so that a grant can be listed in two
+years. It covers a contract; a task order; an unresolved NIH-format string in Miscellaneous; a
+grant override with its attribution; a corrected near-miss; a corrected form beside an exact one
+(`cited_as` with `how: listed`); a CLP amount converted at OECD's 2020 rate from
+`config/exchange_rates.yaml`; an amount in a currency no rate table covers, left unconverted; a
+work with no grants; one grant listed by two works in different years; a grant with a null amount;
+and a sub-agency with a parent. Every synthetic grant's title says SAMPLE or it has none, its
+numbers hold a 999 serial or a 2099 contract year, and its override is by `sample`. **The real
+half** — cases the sample store's own papers show — arrives with the sample store's live funding
+at milestone B8.
 
 ## 14. Open items
 
