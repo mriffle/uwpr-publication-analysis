@@ -34,6 +34,21 @@ dated, and noted in this header.
   does not receive the weekly run's email. Their signals are the Actions tab and O3's staleness
   notice. Found on GitHub's page about notifications for workflow runs while recording the
   fallback.
+
+**Changed 2026-09-26, when the download cache began holding POSTs:**
+- *§3 and §11, the cache key is `dlcache-v2-`.* NIH RePORTER and USAspending are asked with a POST
+  ([03](03-retrieval-pipeline.md) §7, changed 2026-09-26), and a POST's line in the cache index
+  carries two fields, `method` and `body_sha256`. Code from before then reads a line strictly, so
+  one of those lines would fail its whole run. A rollback restores the old `update.yml` with the
+  old code, and that asks for `dlcache-v1-`, so under the new prefix it never meets a line it
+  cannot read. New code reads a v1 cache perfectly well, so `dlcache-v1-` is its fallback restore
+  key and the first v2 run starts warm; v1 then ages out under GitHub's 7-day rule. The same change
+  adds three rate limits to `settings.yaml`. The latest committed manifest predates the overrides
+  fingerprint ([08](08-implementation.md) §8 item 9, fixed the same day), so that first run falls
+  back to the config fingerprint, sees the change, and reads every record again — from the warm
+  cache, so it costs time rather than requests. Every run after it records the overrides
+  fingerprint and reads nothing extra.
+
 **Purpose:** define where this runs, how the app is published, how a failure becomes visible, and
 who is responsible when it does.
 **Depends on:** [03](03-retrieval-pipeline.md) (frozen), which already specifies the run, its
@@ -103,6 +118,9 @@ run sits near that boundary, so the cache may or may not survive from one week t
 **This does not matter**, and the measurement is why: a full cold-cache run is 4m 34s and $0.0100.
 The pipeline is required to be correct with an empty cache
 ([03](03-retrieval-pipeline.md) §1), and the cost of being wrong about the cache is four minutes.
+**Its key carries a format version** (`dlcache-v2-` since 2026-09-26), which moves whenever the
+index gains lines that older code cannot load, so a rollback is never handed a cache it would
+fail on.
 
 **A source being down does not stop the run** (changed 2026-09-20, [03](03-retrieval-pipeline.md)
 §8). The smoke check reports an outage and lets the run proceed to degrade honestly; it still
@@ -301,6 +319,7 @@ the app has not accounted for fails the build rather than reaching the page.
 | UWPR changes its acknowledgement wording or identifier | Update `rules.yaml`; **old terms are kept forever**, since old papers keep the old wording |
 | UWPR's publications page changes structure | The parser breaks loudly: every page must yield entries and the total may not fall more than 10%. Fix the parser; the page snapshots in `official_list/pages/` show what changed |
 | A source API changes | `uwpr-pubs smoke` catches it at the start of the run, before anything is written |
+| The cache index gains lines older code cannot load | Move `update.yml`'s cache prefix (`dlcache-vN-`, in both the restore and the save) in the same commit (§3) |
 | Dependencies | Dependabot monthly for Actions, npm and `uv.lock` (O8); uv's own minor version moved by hand (RUNBOOK §11) |
 | Annual | Re-read the open items in each spec; confirm the recall baseline still reflects reality; confirm notification routing still works |
 

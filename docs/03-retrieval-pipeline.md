@@ -166,6 +166,33 @@ was retired with it on 2026-09-20.
   of the field falls back both ways: nothing read on an unchanged config, everything after an
   edit.
 
+**Changed 2026-09-26, so the funding sources can be asked** (Phase 9; §7, §11.3, §12.3):
+- *§7, the client can POST.* NIH RePORTER and USAspending answer only a JSON body, so
+  `post_json` sends one through the same retries, spacing, budget guard, cache and three modes as
+  a GET. The body is canonical — sorted keys, no spaces — so a payload built in another order is
+  the same request. A POST's cache key covers its method, URL, query and the hash of its body,
+  taken after any key value in it is redacted. **A GET's key is unchanged**, pinned by a test
+  against real cache lines, so no cache entry or recording made before is lost. A POST's index
+  line adds `method` and `body_sha256`; a GET's line is byte for byte what it was, and the loader
+  ignores fields it does not know.
+- *§7, three hosts and their rates:* NIH RePORTER 1/s, as its API documentation asks; NSF's award
+  search 2/s; USAspending 2/s. Each is required by the settings schema.
+- *§7, USAspending's certificate verifies under httpx.* The funding research called it with
+  urllib, which failed TLS verification there, and fell back to curl. Measured 2026-09-26 with one
+  request through `post_json` and httpx's default verification — its bundled `certifi` roots,
+  under uv's Python and OpenSSL 3.5, with no system trust store involved, as on a runner: HTTP 200,
+  verified. So `truststore` is not added (§3.1), and verification is never turned off. The same
+  check against RePORTER answered HTTP 200: 13 rows for P41GM103533 without its subprojects, the
+  first (FY2012) awarded $2,078,690.
+- *§12.3, what a recording loses:* RePORTER's `abstract_text` and `phr_text` join the stripped
+  fields, and PubMed's XML loses its `<Abstract>` and `<OtherAbstract>` elements. XML that still
+  holds an `<AbstractText>` after that is not recorded at all, and the guard test flags one.
+- *§11.3, the download cache's key is `dlcache-v2-`.* Code from before POST reads an index line
+  strictly and fails on the two new fields, so a rolled-back workflow, which asks for
+  `dlcache-v1-`, must never restore a cache this code wrote. This code reads a v1 cache, so
+  `dlcache-v1-` is its fallback restore key and the first v2 run starts warm
+  ([07](07-operations.md), changed 2026-09-26).
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the
@@ -453,10 +480,16 @@ that the rules deliberately don't count:
 | PRIDE | 2/s |
 | bioRxiv | 2/s |
 | UWPR site | 1/s |
+| NIH RePORTER (added 2026-09-26) | 1/s |
+| NSF award search (added 2026-09-26) | 2/s |
+| USAspending (added 2026-09-26) | 2/s |
 
 - **Retries:** exponential backoff with jitter on timeouts, 429 and 5xx, honouring
   `Retry-After`. At most 4 attempts, then the request fails and the channel or stage is marked
   failed (§9).
+- **POST** (added 2026-09-26): `post_json` sends a canonical JSON body (sorted keys, no spaces)
+  with the same retries, spacing, budget guard, cache and modes as a GET. Its cache key adds the
+  method and the hash of the body; a GET's key and index line are unchanged.
 - **Identification:** `User-Agent: uwpr-pubs/<version> (mailto:<contact>)`. OpenAlex and
   Crossref also get `mailto=<contact>`, and NCBI gets `tool=uwpr-pubs&email=<contact>`. The
   contact comes from `config/settings.yaml`.
@@ -699,14 +732,14 @@ permissions: {contents: write}
 concurrency: {group: update, cancel-in-progress: false}
 timeout-minutes: 60
 steps:                                   # after §11.1; no job-level secrets
-  - actions/cache/restore  key: dlcache-v1-${{ github.run_id }}  restore-keys: dlcache-v1-
+  - actions/cache/restore  key: dlcache-v2-${{ github.run_id }}  restore-keys: dlcache-v2-   # v2: 2026-09-26
   - uv run uwpr-pubs smoke                                 # env: OPEN_ALEX_API_KEY, NCBI_API_KEY
   - id: run
     uv run uwpr-pubs run --mode live     # stages 0–13; commits locally; env: the same two secrets
   - append store/runs/<run-id>.md to $GITHUB_STEP_SUMMARY   (always, even on failure)
   - secret check: fail if the new commit contains either key's value   # env: the same two secrets
   - git pull --rebase && git push        # as github-actions[bot]; only if a commit was made
-  - actions/cache/save  key: dlcache-v1-${{ github.run_id }}   (if the run wrote a store)
+  - actions/cache/save  key: dlcache-v2-${{ github.run_id }}   (if the run wrote a store)
   - fail the job if steps.run.outputs.status == 'alert'   # GitHub emails the maintainer
 ```
 
@@ -773,10 +806,13 @@ the push never see them.
 - **Metadata responses** (OpenAlex, Crossref, Europe PMC, PRIDE, bioRxiv) are recorded, but
   scrubbed when recorded:
   - OpenAlex `abstract_inverted_index`, Europe PMC `abstractText` and Crossref `abstract` are
-    removed;
+    removed, and since 2026-09-26 NIH RePORTER's `abstract_text` and `phr_text`, and PubMed
+    XML's `<Abstract>` and `<OtherAbstract>` elements; XML still holding an `<AbstractText>` is
+    not recorded;
   - full-text responses (`efetch`, `fullTextXML`) are never recorded; a test that needs one is
     pointed at a synthetic document instead;
-  - a test fails if any recording contains one of those fields or a JATS `<body>`.
+  - a test fails if any recording contains one of those fields, an `<AbstractText>` or a JATS
+    `<body>`.
 - **Refreshing:** `uwpr-pubs run --mode record` rebuilds the recordings. Updates are reviewed in
   the pull request diff.
 
