@@ -337,6 +337,12 @@ day, so nothing could show it: another date bug that only running on a second da
 dates are true, so nothing is wrong, only noisy; it is **left for a deliberate fix** rather than
 patched under a catch-up run, and the next scheduled run would have done the same.
 
+**The catch-up then landed** (run 36248419286, on `10e364a`): smoke `PROCEED`, the run
+**DEGRADED** in 150 s for $0.0101 with the one expected degradation (`source:biorxiv`), data commit
+`Data update 2026-09-26T14-25-live` pushed, and the export on `gh-pages` and live. 339 works, no
+work added or removed, 477 candidates (456 before), recall 208/253, fixtures unchanged. If
+bioRxiv's `details` stays empty for three runs, §9's alert will say so.
+
 ## 4. Decisions taken during implementation
 
 Each is already reflected in the code, the config or a dated spec note. They are listed here
