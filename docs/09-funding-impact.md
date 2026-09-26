@@ -19,7 +19,9 @@ session scratchpad, as [08](08-implementation.md)'s own spec-phase scripts did. 
 therefore the only durable record of that research.** Its appendices transcribe the case tables
 and the per-grant measurements; no later milestone may depend on the scratch files. Where two of
 the research's own files disagreed, the section says so rather than choosing silently. Figures
-that are estimates, not measurements, say so and name the milestone that measures them.
+that are estimates, not measurements, say so and name the milestone that measures them. **Before
+landing, the figures were checked again against the research's saved files** and corrected where
+they differed; B6's live measurements of the same day are folded into §5 and §17.
 
 The milestones named here — M0, B1–B10, W1–W10 and R — are those of the approved implementation
 plan. [08](08-implementation.md) records them as they are built.
@@ -81,11 +83,11 @@ informed it.
 | F7 | **Currency:** a non-USD amount is converted at the award start year's annual average rate, and the original amount is kept. Rates come from the **Federal Reserve G.5A** table; **OECD** annual averages cover currencies G.5A lacks (CLP). An amount neither covers is shown in its own currency, flagged, and left out of USD totals. *(maintainer: the start-year rule; the sources were recommended)* | 56 of the 147 non-NIH amounts the research found are not in USD; 13 are Chilean pesos, which G.5A does not publish (Appendix D). |
 | F8 | **Conservative resolution.** Automatic only for exact matches, parse fixes, and near-misses **NIH links to the same paper**. **Whether a number is NIH's is decided by RePORTER, not by the funder a source names.** *(maintainer)* | Of 17 NIH grants unresolved after parsing, 11 were confirmed by NIH's own link to the same paper (Appendix A.4). IC plus serial alone produced 5 matches with the wrong activity code (A.3). About 125 strings name a non-NIH funder for a real NIH grant (§6.4). |
 | F9 | **Not-grants are excluded and reported; Miscellaneous holds unmatched grant numbers.** Strings that are positively not grants (antibody names, RRIDs, programme names, funder DOIs) are listed in the run report and counted nowhere. A grant number nothing resolves is kept, under a **Miscellaneous** agency, with no amount. | A Miscellaneous bucket that also held "PGT121" and "H2020" would mix real unmatched grants with noise (Appendix A.6). |
-| F10 | **Grant overrides.** A `grant` override in `overrides.yaml` maps a (work, string as written) to a grant, or to "not a grant". **Five are seeded** (Appendix E). `S10OD032290` stays Miscellaneous until a person confirms it. **New unresolved strings are listed in every run report.** *(maintainer)* | The five have independent support but no NIH link to the paper, so F8 does not reach them (Appendix A.5). |
+| F10 | **Grant overrides.** A `grant` override in `overrides.yaml` maps a (work, string as written) to a grant, or to "not a grant". **Nine are seeded** (Appendix E). `S10OD032290` stays Miscellaneous until a person confirms it. **New unresolved strings are listed in every run report.** *(maintainer)* | The nine have independent support but no NIH link to the paper, so F8 does not reach them: five NIH grants (Appendix A.4–A.5) and four non-NIH typos (A.8). |
 | F11 | **Storage in `store/funding/`, never in work files**, like `metrics/`. **Grant keys are this project's own grammar** (§8.2), not OpenAlex award IDs. | No work file is rewritten and `work.schema.json` does not change. OpenAlex mints one award ID per funder-and-string pair: one grant can have several (§5.4). |
 | F12 | **Results are stored, and sources are asked on a schedule:** an incremental refresh every run, a full refresh every 28 days. **The weekly run moves to Saturday 07:17 UTC** (`17 7 * * 6`), inside RePORTER's window for large jobs (weekends, or 9 PM–5 AM Eastern) at no more than one request a second. *(maintainer)* | RePORTER asks for both (§5.1). Monday 13:17 UTC ([03](03-retrieval-pipeline.md) C4) is 8:17 or 9:17 AM Eastern, a weekday morning. |
 | F13 | **PI names are exported and shown** where the funder's public award record gives them. [07](07-operations.md) §15 gets a dated note. *(maintainer)* | They are part of the public award record, and a grant without its investigators is hard to recognise. |
-| F14 | **Funding is part of the main export**, `schema_version` **1.1** (additive): `works[].grants[]` and a top-level `funding` block. The top-level `summary` is untouched. **The data budget rises from 400 to 500 KB gzipped, enforced twice:** a web CI script, and a stage-11 alert. *(maintainer: main export, 500 KB; recommended: the double enforcement)* | The export is 327 KB gzipped today (§3.5). The bot's weekly commit starts no workflow ([07](07-operations.md) §6), so a CI check alone would never see weekly growth. |
+| F14 | **Funding is part of the main export**, `schema_version` **1.1** (additive): `works[].grants[]` and a top-level `funding` block. The top-level `summary` is untouched. **The data budget rises from 400 to 500 KiB gzipped, enforced twice:** a web CI script, and a stage-11 alert. It is measured as `web/scripts/check-bundle-budget.mjs` measures JavaScript: gzip level 9, in KiB of 1,024 bytes. *(maintainer: main export, 500 KB; recommended: the double enforcement and the measure)* | The export is 303 KiB gzipped today, and about 420–450 KiB with funding (an estimate, §3.5). The bot's weekly commit starts no workflow ([07](07-operations.md) §6), so a CI check alone would never see weekly growth. |
 | F15 | **The app** gains a Publications \| Funding impact switch, agency and grant pages, a grants table with CSV download, and a Funding section on each publication. **Agency and grant selections narrow the grants shown, not only the publications.** It ships behind a build flag, **`VITE_FUNDING`**, on in CI and e2e and off in the production build until release. *(maintainer: the views; recommended: the scope rule and the flag)* | As a pure publication filter, `agency=NSF` would show NIH dollars from papers that list both. The flag lets commits go straight to `main` without deploying a half-built view ([07](07-operations.md) §4). |
 | F16 | **Versioning and failure.** `funding_version` (`YYYY-MM-DD.N`) with a stage-0 fingerprint guard like the rules'. **A source outage never removes a grant, a listing or an amount**; an unexpected error in the funding stage carries the stored funding forward and alerts, and never blocks the publication update. JATS full text is harvested **once per record**. | Mirrors [03](03-retrieval-pipeline.md) P4 and P6. Full text adds 5 NIH work–grant pairs on 5 works (§3.1): worth reading once, not weekly. |
 
@@ -119,14 +121,17 @@ grant** (§3.2).
   (2015–19), 0 of 88 (2020–24), 1 of 39 (2025–).
 - **Full text adds little.** Of 233 works with a readable PMC body, 5 have an NIH grant in the text
   that no metadata source has (5 work–grant pairs, 1,247 → 1,252). None has a body and no metadata
-  funding. Two of the five matter: `P01HL12803` (an override, Appendix E) and `3U01AI42001-02S1` (a
-  correction) exist **only** in JATS text. Hence F16: read once, not weekly.
+  funding. **Only one of the five adds a grant:** `P01HL12803` (an override, Appendix E), which
+  exists **only** in JATS text. `3U01AI42001-02S1` (a correction) is also only in the text, but
+  its core, U01AI142001, is already on W-000244 through OpenAlex, PubMed and NIH's link. Hence F16:
+  read once, not weekly.
 - **What each source alone adds**, in NIH work–grant pairs (IC + serial) no other source has:
   RePORTER 13, OpenAlex 9, JATS text 5, Crossref 2, Europe PMC 0, PubMed 0, JATS award groups 0.
   **Europe PMC adds nothing**, so v1 does not read it for funding (§5.7).
-- **OpenAlex:** 293 distinct funders; 253 works name at least one non-NIH funder. The works name
-  **1,534 award entities**; 181 carry an amount, 193 a start year, 171 a lead investigator, 11 an
-  awarded institution. Reading them all takes 31 filter pages of 50 (about $0.003).
+- **OpenAlex:** 294 distinct funder IDs (293 distinct names); 253 works name at least one non-NIH
+  funder. The works name **1,534 award entities**; 182 carry an amount, one of them 0 (181
+  non-zero), 193 a start year, 171 a lead investigator, 11 an awarded institution. Reading them
+  all takes 31 filter pages of 50 (about $0.003).
 - **Crossref:** 195 of 377 records carry funder metadata. Of its funder entries, 903 were asserted
   by the publisher, 57 by Crossref, 128 by neither.
 - **UWPR's own code:** 131 works' award lists name `UWPR95794` (F1).
@@ -142,7 +147,8 @@ grant** (§3.2).
 ### 3.2 NIH
 
 **RePORTER's publication links:** 268 PMIDs linked (1,230 link rows), which is **260 works** and
-**454 distinct core projects**, every one found in RePORTER's project search.
+**454 distinct core projects**, every one found in RePORTER's project search. B6 measured the
+links and rows again live, through its adapters, and found the same figures (§5.1).
 
 **Their award rows** (parent rows only, `exclude_subprojects`, sorted):
 
@@ -158,7 +164,8 @@ grant** (§3.2).
 | Grants whose first row is FY1985 with a support year above 1 (they began earlier; lifetime understated) | 27 |
 | Rows co-funded by several ICs; rows where `award_amount` equals the sum of the IC fundings | 108; 108 |
 | Rows with no amount | 5: four VA rows (`I01BX000531`, FY2009–2013) and contract `N01HV028179` (FY2002) |
-| Principal investigators; organisations; grants held at UW (latest row of each grant) | 365; 86; 212 |
+| Principal investigators; organisations; grants held at UW, counted on each grant's latest row | 365; 86; 212 |
+| Principal investigators; organisations, counted across all rows | 522; 100 |
 | **Cumulative by first-paper year:** lifetime totals / only the dollars awarded up to that year | $6,217M / $4,307M |
 
 Most frequent activity codes among the 454 (first row): R01 172, T32 32, P30 28, P01 25, U01 18,
@@ -178,6 +185,9 @@ as its funder (6,362), the text around it said NIH (634), or it was a full NIH-f
 | Matched by an IC + serial lookup with an agreeing activity code | 90 | **19 cores no paper link names** (Appendix A.2) |
 | Unresolved | 72 | **17 grants** (Appendix A.4) |
 | IC + serial matched, activity code disagreed, refused | 19 | 5 strings (Appendix A.3) |
+
+The 19 refused strings are a subset of the 72 unresolved — refused on IC and serial, they stayed
+unresolved — so the rows sum to 7,419, not 7,400.
 
 Parse fixes used: O or I for 0 or 1 in 53 strings (39 in the activity code, 14 in the serial); a
 serial run into its support year in 21 (7, 8 or 9 digits: 7, 11 and 3); digits split by a space,
@@ -200,7 +210,7 @@ The research collected every non-NIH award entry (397), merged duplicates, and c
 
 | Class | Entries → grants |
 |---|---|
-| Real grants | **270** (of which 4 are M&O facility contracts, and 2 rows are one NASA grant — §6.9) |
+| Real grants | **270** (of which 4 are M&O facility contracts, 2 rows are one NASA grant — §6.9 — and three pairs of rows are one grant each — §6.10, Appendix F) |
 | NIH grants the NIH pass had missed | 5 (Appendix A.7) |
 | Junk | 32 (Appendix A.6) |
 
@@ -218,20 +228,21 @@ non-US 148. Where an amount came from, and how many were found:
 | AHA | 16 | 18 | OpenAlex only | 9 of 16 | only 2015-on grants; AHA's portal refused scripts (read, not measured) |
 | Gates Foundation | 7 | 8 | committed-grants CSV (41,387 rows) | 2 of 7 | five OPP numbers are not in the file |
 | Moore Foundation | 2 | 2 | moore.org grant pages | 2 of 2 | |
-| BBSRC / EPSRC (UKRI) | 13 | 5 | Gateway to Research | 10 of 13 | 12 of 13 with OpenAlex |
+| BBSRC / EPSRC (UKRI) | 13 | 4 | Gateway to Research | 10 of 13 | 12 of 13 with OpenAlex |
 | EU (CORDIS) | 10 | 8 | CORDIS | 9 of 10 | 8 are consortium-wide totals |
 | Swedish Research Council | 7 | 2 | Swecris | 7 of 7 | |
 | ANID (Chile) | 18 | 2 | ANID's GitHub CSV | 13 of 18 | |
 | Wellcome | 6 | 8 | 360Giving GrantNav | 6 of 6 | |
 | DFG | 7 | 4 | none | 0 reliable | §5.4 |
-| MOST (China), FWO, Korean funders (13), NKFIH, EMBO, NWO, JST, AEI, CRUK and others | about 50 | — | none found | 0 | NWO's API found 1 of 3, with no amount |
-| SNSF, NSFC, JSPS, CIHR, CPRIT, SSF, ANR | 10 | — | OpenAlex only | 10 of 10 | ANR's two are institute-level awards |
+| MOST (China), FWO, Korean funders (15 rows, 14 distinct grants), NKFIH, EMBO, NWO, JST, AEI, CRUK and others | about 50 | — | none found | 0 | NWO's API found 1 of 3, with no amount |
+| SNSF, NSFC, JSPS, CIHR, CPRIT, SSF, ANR | 11 | — | OpenAlex only | 10 of 11 | ANR's two are institute-level awards; CIHR's `PJT-206152` has no amount |
 
-**Amounts found:** **147 of 270** (54%), not counting the 4 M&O contracts: 126 from the agency's
-own source, 21 from OpenAlex only. By group: **US federal 77 of 80**, US non-federal 14 of 38,
-non-US 56 of 148. By source: NSF API 56, USAspending 21, OpenAlex only 21, ANID CSV 13, Gateway
-to Research 10, CORDIS 9, Swecris 7, GrantNav 6, Gates CSV 2, moore.org 2. The research counted
-the two NASA TRISH rows separately; as one grant (§6.9) it is 76 of 79 US-federal grants.
+**Amounts found:** **147 of 266** (55%) — the 270 less the 4 M&O contracts (80 + 38 + 148): 126
+from the agency's own source, 21 from OpenAlex only. By group: **US federal 77 of 80**, US
+non-federal 14 of 38, non-US 56 of 148. By source: NSF API 56, USAspending 21, OpenAlex only 21,
+ANID CSV 13, Gateway to Research 10, CORDIS 9, Swecris 7, GrantNav 6, Gates CSV 2, moore.org 2.
+The research counted the two NASA TRISH rows separately; as one grant (§6.9) it is 76 of 79
+US-federal grants.
 
 **What v1 will find** (F5 uses OpenAlex, not the agencies' own sources, outside US federal):
 derived from the same table, OpenAlex carries an amount for **48 of the 148 non-US grants** and
@@ -240,9 +251,9 @@ non-US amounts v1 will lack are two ANID grants, five EU consortium totals (all 
 and one Wellcome grant; the two US non-federal are a Gates and a Moore grant. B9 measures it.
 
 **The US-federal total is $993.5M with institution-wide awards and $71.5M without** (TRISH counted
-once). The difference, $922.0M, is five awards: the NASA space-biomedicine institute NSBRI
-($583.5M), its successor TRISH ($139.6M), four NSF GRFP awards to UW ($138.0M together), the NSF
-centre C-DEBI ($47.5M) and Washington Sea Grant ($13.4M).
+once). The difference, $922.0M, is eight awards of five kinds: the NASA space-biomedicine
+institute NSBRI ($583.5M), its successor TRISH ($139.6M), four NSF GRFP awards to UW ($138.0M
+together), the NSF centre C-DEBI ($47.5M) and Washington Sea Grant ($13.4M).
 
 **Works:** 147 have a non-NIH entry; 141 a real non-NIH grant; **136** one that is not an M&O
 contract; 92 a non-NIH grant with a known total (81 without institution-wide awards); 64 a known
@@ -269,9 +280,13 @@ linked grants, before the 19 found from strings, the contracts, corrections and 
 
 ### 3.5 Sizes
 
-The committed export is **334,504 bytes gzipped (327 KB)** at gzip's default level, measured
-2026-09-26. Planning estimated **427 KB** with funding added; B5 measures the sample and B9 the
-real export against the 500 KB budget (F14).
+The committed export is **310,651 bytes gzipped at level 9 (303 KiB)**, the measure the budget
+uses (§11.9), and 334,504 bytes (327 KiB) at gzip's default level; both measured on the committed
+export on 2026-09-26. **With funding added it is estimated at roughly 420–450 KiB at level 9** —
+an estimate, to be measured in B5 (the sample) and B9 (the real export). Planning's "427 KB" is
+not comparable: it mixed decimal kilobytes and compression levels. Against the 500 KiB budget
+(512,000 bytes, F14), the estimate leaves about **two years' headroom** at the export's growth of
+about 35 KiB a year (an estimate from planning).
 
 ## 4. Definitions
 
@@ -323,8 +338,14 @@ blocked, which is the main operational risk of this phase (§13.7).
 
 **Always send `sort_field`.** Without it, paged results repeat and drop rows. Measured: P30CA015704
 fetched unsorted gave 1,105 rows of which 1,097 were distinct, and **a $4.94M renewal year was
-lost**. Every body sends `sort_field: "appl_id"`, `sort_order: "asc"` and `limit` ≤ 500; an offset
-beyond 14,999 is refused, and the adapter raises rather than truncating.
+lost**. Every body sends a `sort_field`, `sort_order: "asc"` and `limit` ≤ 500:
+- **Project searches sort by `appl_id`**, which is unique.
+- **Publication searches sort by `coreproject`.** `publications/search` answers HTTP 500 to
+  `sort_field: "appl_id"`, and to anything but `coreproject` or `pmid` (B6). `coreproject` orders
+  rows totally only within one paper, so a batch of papers that needs more than one page is split
+  in half and asked again, and only a single paper is paged.
+- **Offsets are capped:** 14,999 for projects and 9,999 for publications, as RePORTER's API page
+  gives them (read, not measured). Paging that would pass the cap raises rather than truncating.
 
 **Send `exclude_subprojects: true`** and an explicit `include_fields` **without `AbstractText` and
 `PhrText`** (P10: no abstracts in the repository, including recordings).
@@ -369,12 +390,16 @@ FY2007, per the data dictionary.
 **Contracts.** RePORTER drops the `HHSN` prefix (`272201700059C-0-0-1`) and truncates the core
 number to 11 characters (`27220170005`). **A contract is keyed by its contract number, never by
 RePORTER's core,** and the prefix is restored when RePORTER shows 12 digits and a letter. Contracts
-are found with `project_nums: ["272201700059C*"]`. The older `N01` contracts keep their core
-(`N01HV028179`, which RePORTER reports with no amount).
+are found with `project_nums: ["272201700059C*"]` and read by full project number. Newer `75N`
+contracts keep their prefix, but their core is truncated the same way (`75N93019D00` for
+`75N93019D00003-0-759301900131-1`). The older `N01` contracts keep their core (`N01HV028179`,
+which RePORTER reports with no amount). **A contract's rows are line items**, several in a fiscal
+year: 56 for `HHSN272201700059C` (B6). All count.
 
 **Task orders.** An IDIQ contract's task orders are separate rows: `272201700036I-0-759302000001-1`
-is task order `75N93020F00001` with its letters removed. The cited task order is **$1.47M of the
-IDIQ's $10.14M**, so a paper citing the task order lists the task order only.
+is task order `75N93020F00001` with its letters removed, and an amendment to it appears as
+`…-P00004-759302000001-1`. The cited task order is **$1.47M of the IDIQ's $10.14M**, so a paper
+citing the task order lists the task order only.
 
 **VA projects** (`I01BX…`) appear in RePORTER, with `agency_code` VA, and **no amounts**.
 
@@ -384,15 +409,26 @@ lists a grant, never *when* the grant supported it.
 
 **IC + serial lookups** use `project_num_split: {ic_code, serial_num}`.
 
+**Measured live by B6** (2026-09-26, through its adapters, FY ≤ 2026): **260 works** linked, **454
+cores**, **5,437 parent rows**, none a sub-project, totalling **$6,217,332,093** — the research's
+figures exactly. Contracts: `HHSN272201700059C` $24,791,405, `HHSN268201000033C` $10,781,559,
+`HHSN272201800004C` $18,117,838, and task order `75N93020F00001` $1,471,125.
+
 **Terms.** RePORTER's data is US government information. No explicit licence was found on the API
 pages, which point to a data access policy; §13.3 says how it is attributed and whom to ask
 (RePORT@mail.nih.gov).
 
 ### 5.2 NSF Award API
 
-`GET https://api.nsf.gov/services/v1/awards.json?id=<7 digits>`, one award per request
-(`printFields` no longer works). It covers every era, and gives both amounts, the dates, the
-division (`divAbbr`), the programme and the PI (`pdPIName`, a name only).
+`GET https://api.nsf.gov/services/v1/awards.json?id=<7 digits>`, one award per request. It covers
+every era, and gives both amounts, the dates, the division (`divAbbr`), the programme and the PI
+(`pdPIName`, a name only).
+
+**What B6 found live** (2026-09-26): an award NSF does not know is answered with **HTTP 200 and an
+empty list**, not an error. `printFields` does not narrow the reply, which carries the award's
+abstract and the PI's and programme officer's e-mail addresses and telephone numbers, so **the
+adapter keeps named fields only**. 56 of the 57 were found; `0659680` is the one NSF does not know
+(A8.5).
 
 **Estimated against obligated.** `estimatedTotalAmt` is the plan at award time and is never
 updated; `fundsObligatedAmt` is what has actually been awarded so far, supplements included. They
@@ -415,21 +451,32 @@ institution's share.
 `GET /api/v2/awards/<id>/` for **`total_obligation`**, which is the amount used. The search
 **reaches only awards with activity since 2007-10-01 (FY2008)**, and says so in its reply.
 
+**What it finds.** With award types 02–05, USAspending finds **20 grants**: 21 of the research's
+27 non-NSF US-federal rows, TRISH's two rows being one grant. B6 measured the same 21 of 27 live.
+Of the other six, the four DOE M&O contracts are reachable only with contract types A–D, which v1
+does not ask for — they are excluded anyway (F5) — and the USDA and VA numbers are not found
+(§3.3).
+
 - **Not `total_funding`**, which adds non-federal matching money: Washington Sea Grant is $20.8M
   there against $13.4M obligated. Outlay figures are incomplete.
 - **Sub-award suffixes** (`NNX16AO69A:0061`, `:0107`) name parts of one award: dropped from the
   key, so TRISH counts once.
-- **TLS.** Python's default certificate verification rejected USAspending's chain during the
-  research, which fell back to curl. B2 measures httpx on `ubuntu-latest`; if it fails, the
-  `truststore` dependency is added, with the reason recorded in [03](03-retrieval-pipeline.md)
-  §3.1. **Never `verify=False`.**
+- **The request** (B6): `award_ids` match exactly, not as substrings; one request may name award
+  types of one group only (grants, or contracts), and mixing groups is refused with HTTP 422; the
+  search's end date is fixed at 2100-09-30, so the request, and its cache key, stay the same from
+  week to week.
+- **TLS.** The research's urllib client failed to verify USAspending's certificate and fell back to
+  curl. **httpx with its default verification succeeds** (B2, 2026-09-26, recorded in
+  [03](03-retrieval-pipeline.md) §7), so `truststore` is not added. **Never `verify=False`.**
 - Public domain (US government work); the API's data is offered under CC0 (§13.3).
 
 ### 5.4 OpenAlex awards
 
 The stage-3 work payload already carries `awards[]` (`funder_award_id`, `funder_display_name`, the
 award ID) and `funders[]`, so listings cost nothing extra. Award entities are read by
-`/awards?filter=id:G…|G…` at a filter page's price ($0.0001).
+`/awards?filter=id:G…|G…` at a filter page's price ($0.0001), **with full-URL IDs**
+(`https://openalex.org/G…`). Funders are read by `/funders?filter=openalex:F…|F…` with short
+IDs: `/funders` has no `id:` filter and answers one with HTTP 400 (B6).
 
 - **Not keys.** OpenAlex mints one award ID per funder and raw string. The research found the same
   award under two funders (VR/Umeå, VR/SSF), and 397 non-NIH entries collapsing to 275 grants. IDs
@@ -440,8 +487,9 @@ award ID) and `funders[]`, so listings cost nothing extra. Award entities are re
   `nsf_award_search` 52, `datacite_work_funders` 44, `crossref_work.grants` 32,
   `gateway_to_research` 13, `anid_github` 11, `usaspending` 10, `gtr_legacy` 10,
   `aha_report_builder` 9, `swedish_research_council` 7, `wellcome_trust` 5, `gepris` 4, `fwo_fris`
-  4, `cordis` 3, and 1–3 each for 15 more. The 181 amounts by funder, largest first: NIH 54, NSF
-  52, ANID 11, BBSRC 11, NASA 10, AHA 9, Swedish Research Council 7, Wellcome 5.
+  4, `cordis` 3, and 1–3 each for 15 more. The 181 non-zero amounts by funder, largest first: NIH
+  54, NSF 52, ANID 11, BBSRC 11, NASA 10, AHA 9, Swedish Research Council 7, Wellcome 5. (The 182nd
+  amount is NIHR's `NF-SI-0512-10105`, stated as 0.)
 - **DFG's `gepris` amounts are excluded.** GEPRIS is now a JavaScript-only site, and OpenAlex's
   amounts from it look invented: two unrelated grants carry the identical €109,941.6654.
 - **ANID's amounts are multiplied by 1,000.** ANID's CSV states its currency as "Miles de pesos
@@ -458,8 +506,9 @@ records every run and for all records at a full refresh.
 ### 5.6 Crossref
 
 `funder[]` with `name`, `DOI` (a Crossref funder-registry ID) and `award[]`. 190 works. Read in
-batches of 50 (`filter=doi:…,doi:…&select=DOI,funder`), **which B6 verifies live** and falls back
-to one DOI per request if the filter misbehaves.
+batches of 50 (`filter=doi:…,doi:…&select=DOI,funder`). **B6 verified the batch live:** it
+answered 376 of the 377 DOIs in 8 requests. The one missing, `10.21220/s2-jfyf-3r27`, is a
+DataCite DOI Crossref does not hold; any DOI a batch misses is asked alone.
 
 ### 5.7 Europe PMC
 
@@ -472,6 +521,13 @@ does not read it for funding.
 numbers found in `<funding-statement>`, `<ack>` and funding footnotes. Parsed with `defusedxml`
 (P14). Read **once per record**, the date stored, never re-read (F16).
 
+**From prose, only full-format numbers are taken:** an NIH activity code, IC and serial, or an
+`HHSN` or `75N` contract. An IC and serial alone (`GM086688`) is dropped by design, because in
+running text a pattern cannot tell it from a catalogue number. Measured by B6 over the 237 cached
+PMC XMLs: 341 award IDs in `<award-group>`s of 74 records, and from prose 726 full-format NIH
+numbers and 11 contract numbers. All 110 prose keys the research's looser pattern found that
+these miss are IC and serial only; no full-format number is missed.
+
 ### 5.9 Agencies' own sources — measured, not v1 sources
 
 The research reached Gateway to Research (`gtr.ukri.org`, project → fund → `valuePounds`), CORDIS
@@ -483,10 +539,11 @@ for all of these, at the cost measured in §3.3. Adding any one later is a `fund
 ### 5.10 Exchange rates
 
 - **Federal Reserve G.5A** (annual averages of daily noon buying rates in New York), released each
-  January for the year before. The release of 2026-01-05 lists 23 currencies for 2022–2025, and
-  historical releases go back further (the euro from 1999). **Four are quoted in US dollars per
-  unit — AUD, EUR, NZD, GBP — and the rest in units per US dollar;** the table stores every rate as
-  US dollars per unit, inverting the latter.
+  January for the year before. The release of 2026-01-05, read from the Federal Reserve's page on
+  2026-09-26 while writing this spec, lists 23 currencies for 2022–2025, and historical releases
+  go back further (the euro from 1999). **Four are quoted in US dollars per unit — AUD, EUR, NZD,
+  GBP — and the rest in units per US dollar;** the table stores every rate as US dollars per unit,
+  inverting the latter.
 - **OECD annual average exchange rates** (national currency per US dollar), for currencies G.5A
   lacks. The only one seen is CLP. B3 records the exact dataset and URL.
 
@@ -495,10 +552,11 @@ for all of these, at the cost measured in §3.3. Adding any one later is a `fund
 ### 6.1 Order
 
 For each work, the stage gathers **sightings** — a string, its source, and the funder the source
-names — from OpenAlex, Crossref, PubMed and JATS, plus the work's **RePORTER links**. Lists are
-split first (on commas, semicolons and " and ", keeping `K99/R00` whole); Unicode dashes and
-no-break spaces are normalised, and trailing punctuation and parenthetical initials or years are
-dropped. Then each string is resolved in this order, and the first step that decides wins:
+names — from OpenAlex, Crossref, PubMed and JATS (from JATS prose, full-format numbers only,
+§5.8), plus the work's **RePORTER links**. Lists are split first (on commas, semicolons and
+" and ", keeping `K99/R00` whole); Unicode dashes and no-break spaces are normalised, and trailing
+punctuation and parenthetical initials or years are dropped. Then each string is resolved in this
+order, and the first step that decides wins:
 
 1. **Resource code** — the string contains `rules.r2.code` → `resource_code`. Never a grant (F1).
 2. **Not a grant** (§6.12) → `not_a_grant`.
@@ -592,13 +650,14 @@ the same work** that share its IC. A linked core is a match when:
    more digits added at the end** — each variant zero-filled to six; or
 2. it has the **same zero-filled serial under a different activity code.**
 
-**Exactly one match is accepted** (`how: corrected`, the written string kept as `cited_as`); none
-or several leave the string unresolved. Measured on all 17 unresolved NIH grants (Appendix A.4):
-**11 are corrected** — 10 by clause 1, among them `F32 GM801262` by a deletion then zero-fill (a
-dropped leading zero and a stray final digit), and `P41GM103551` by clause 2 — and none of the
-other 6 is matched. **`P01 HL0996` is refused** although its paper's only linked P01 is
-P01HL092969 (no single edit of `0996` reaches `092969`), and stays Miscellaneous, as it should.
-Because only unresolved strings reach this rule, those 17 are its whole measured behaviour.
+**Exactly one match is accepted** (method `corrected`, the written string kept in the listing's
+`cited_as`, §11.2); none or several leave the string unresolved. Measured on all 17 unresolved
+NIH grants (Appendix A.4): **11 are corrected** — 10 by clause 1, among them `F32 GM801262` by a
+deletion then zero-fill (a dropped leading zero and a stray final digit), and `P41GM103551` by
+clause 2 — and none of the other 6 is matched. **`P01 HL0996` is refused** although its paper's
+only linked P01 is P01HL092969 (no single edit of `0996` reaches `092969`), and stays
+Miscellaneous, as it should. Because only unresolved strings reach this rule, those 17 are its
+whole measured behaviour.
 
 **A correction never adds a grant outside the NIH-linked set:** the corrected core is, by
 construction, one NIH links to the paper.
@@ -609,7 +668,8 @@ A `grant` override (§8.5) names a work, the string as written (matched after no
 spaces, dashes) and a grant key, or `null` for "not a grant". Applied every run as a pure step,
 at step 4, so it needs no `funding_version` bump. The validator warns when an override's string is
 not seen on its work (like a merge not yet applied), and the stage alerts when RePORTER does not
-know an override's NIH grant. The seeded five are in Appendix E.
+know an override's NIH grant. The nine seeded overrides — five NIH grants and four non-NIH
+typos — are in Appendix E.
 
 ### 6.7 NIH contracts and task orders
 
@@ -628,7 +688,8 @@ the NSF API knows** (`NSF OCE‐0939564`, `DBI-193331.1`, `DGE-214-0004` all nor
 prefix never decides the agency: `OPP1156262` is a Gates Foundation number (Appendix A.6). **An
 NSF number the API does not know goes to Miscellaneous**, because NSF's registry is complete. The
 four such strings the research found, and the corrections it proposed for three of them, are in
-Appendix A.8; none is automatic under F8.
+Appendix A.8. None is automatic under F8; the three corrections are seeded as grant overrides
+(Appendix E).
 
 ### 6.9 Other US federal agencies
 
@@ -649,6 +710,19 @@ digits left after the agency's configured prefixes are stripped (`VR-RFI 2019-00
 prefix or suffix, of at least three characters, of another number of the same agency is a
 fragment of it** and lists the longer number: `HDTRA1` and `HDTRA1-18` beside `HDTRA1‐18‐1‐0001`;
 `PID2023` beside `PID2023-153058OB-I00`; `100576` beside `PRE2021-100576`.
+
+**The same number written differently is one grant.** Three pairs the research left apart merge
+under these rules (Appendix F, ‡):
+- **Whitespace and dashes:** EMBO's `ALTF933-2015`, `ALTF 933-2015` and `ALTF 933–2015` are one
+  number, `ALTF9332015`.
+- **One funder under two names:** `2016R1A5A1010764` and `NRF-2016R1A5A1010764`, which the
+  research filed under `NRF` and `NRFK`, are both the National Research Foundation of Korea. The
+  agency is decided by funder ID (§6.4), not by the name written, and the configured prefix `NRF`
+  is stripped.
+- **A year prefix:** FAPESP's process numbers begin with the year, written with two digits or four
+  (`16/00696-3`, `FAPESP 2016/00696-3`). An agency configured with `year_prefix` has a two-digit
+  year expanded to four — `20YY`, or `19YY` when `20YY` would be after the data year — so both
+  are `FAPESP:2016006963`.
 
 What no rule reaches: the same grant under a second identifier (a DFG training-group number
 beside its project ID, a project acronym beside its number, a zero-padding difference). Each
@@ -818,6 +892,8 @@ placeholders.) Sources are `openalex`, `crossref`, `pubmed` and `jats`.
   `exp_date`, `program`); `usaspending` (`total_obligation`, `type`, `pop_start`, `pop_end`,
   `generated_id`); `openalex` (`[{id, amount, currency, provenance, start_year}]`).
 - `amount` is recomputed every run (§7.3). `original` and `rate` are decimal strings.
+- **The export's `amount_source` is derived, not stored twice** (§11.4): its `url` is the
+  exported grant's `url`, and its `as_of` is this line's `checked` date.
 
 **`lookups.jsonl`:**
 ```json
@@ -848,7 +924,8 @@ nih:
   phase_pairs: [[K99, R00], [R21, R33], [R61, R33], [UH2, UH3], [UG3, UH3], [R01, R37]]
   categories: {…}                   # activity code → category (§11.4)
 agencies:                           # {code, name, group, country, openalex_funders, crossref_funder_dois,
-  - …                               #  pubmed_agency_patterns, number_prefixes, number_pattern, amount_source}
+  - …                               #  pubmed_agency_patterns, number_prefixes, number_pattern,
+                                    #  year_prefix, amount_source}
 facility_contracts: [{number, tails, reason}, …]   # plus the DE-AC pattern
 institution_wide: {keys: [{key, reason}, …], nsf_programmes: [GRFP, STC]}
 not_grants: [{pattern | string, reason}, …]
@@ -974,7 +1051,7 @@ protects hand-started runs.
 - The **total drops by more than 5%** in a run with no funding degradation.
 - An override's NIH grant is unknown to RePORTER.
 - The stage carried forward after an error or a failed self-validation.
-- The export exceeds **500 KB gzipped** (stage 11; it alerts, never fails, on size).
+- The export exceeds **500 KiB gzipped** at level 9 (stage 11; it alerts, never fails, on size).
 
 ### 9.6 Report, manifest and `explain`
 
@@ -1031,7 +1108,7 @@ funding data" (§12.10). Everything is sorted: `grants` by key, `agencies` by co
 ### 11.2 `works[].grants[]` (required, possibly empty)
 
 ```json
-[{"grant": "NIH:P01HL092969", "how": "corrected", "cited_as": ["P01 HL09296"], "agencies": ["NIH", "NHLBI"]},
+[{"grant": "NIH:P01HL092969", "how": "listed", "cited_as": ["P01 HL09296"], "agencies": ["NIH", "NHLBI"]},
  {"grant": "NIH:U19AG023122", "how": "override", "cited_as": ["U19AG02312"],
   "override": {"reason": "…", "by": "mriffle", "date": "2026-10-03"}, "agencies": ["NIH", "NIA"]},
  {"grant": "MISC:S10OD032290", "how": "listed", "agencies": ["MISC"]}]
@@ -1041,9 +1118,17 @@ funding data" (§12.10). Everything is sorted: `grants` by key, `agencies` by co
 |---|---|
 | `grant` | A key in `funding.grants`. **Never null**: an unresolved number is a `MISC:` grant. |
 | `how` | `listed` (a string names it, exactly or after a parse fix), `nih_link` (only a RePORTER link names it), `corrected` (§6.5), `override` (§6.6). When several apply, the first of `listed`, `corrected`, `override`, `nih_link` — the strongest evidence that the paper itself names the grant. |
-| `cited_as` | The strings as written (whitespace collapsed, sorted). **Present exactly when `how` is `corrected` or `override`**, so the app can say "written in the paper as …". |
-| `override` | `{reason, by, date}`, present exactly when `how` is `override` — the same attribution rule as override evidence ([05](05-metrics-and-data-contract.md) §6). |
+| `cited_as` | **The written forms on that work that resolved to this grant only by correction (§6.5) or override (§6.6)**, whitespace collapsed, sorted. **Present exactly when that list is non-empty, whatever `how` is**, so the app can say "also written in the paper as …". |
+| `override` | `{reason, by, date}`, **present exactly when an override applied to any of that work's strings for this grant** — the same attribution rule as override evidence ([05](05-metrics-and-data-contract.md) §6). |
 | `agencies` | The grant's agency chain, **root first** (`["NIH", "NHLBI"]`). Denormalised so a filter predicate needs nothing but the row ([05](05-metrics-and-data-contract.md) §1.1). |
+
+**`cited_as` does not depend on `how`.** On the real data every corrected core is also written
+exactly by another source of the same work, so under the precedence rule `how` is never
+`corrected` there; were `cited_as` tied to `how`, the app would never show what a paper wrote.
+On W-000147, P01HL092969 is `how: listed` — PubMed and OpenAlex write it exactly, and NIH links
+it — with `cited_as: ["P01 HL09296"]`, the form in its JATS text, PubMed and OpenAlex that only
+§6.5's correction resolves. U19AG023122 on W-000222 is written only as `U19AG02312`, so there
+`how` is `override` and `cited_as` holds that one string.
 
 ### 11.3 The top-level `funding` block (required)
 
@@ -1073,9 +1158,12 @@ funding data" (§12.10). Everything is sorted: `grants` by key, `agencies` by co
 - **`exchange_rates[]`:** `{name, url, currencies, through_year}` per rate source. *(A list, where
   the plan sketched one object, because F7 names two sources.)*
 - **`method`:** `{strings: {grant, unresolved, not_a_grant, resource_code, facility_contract},
-  listings: {listed, nih_link, corrected, override}, works_without_funding_metadata,
-  last_full_refresh}` — distinct (work, string) pairs by outcome and work–grant pairs by `how`,
-  over the exported works. For the method page only.
+  resolution: {exact, normalised, corrected, override}, works_without_funding_metadata}`, over the
+  exported works. `strings` counts distinct (work, string) pairs by `outcome`, and `resolution`
+  the same pairs by `method` (§8.3), for the four methods the method page states — pairs, not
+  work–grant listings, because a listing's `how` hides its corrections (§11.2). For the method
+  page only. (The date of the last full refresh is `as_of`, so the method block does not repeat
+  it.)
 
 ### 11.4 A grant
 
@@ -1089,7 +1177,7 @@ funding data" (§12.10). Everything is sorted: `grants` by key, `agencies` by co
 | `scope_reason` | string\|null | Why it is institution-wide ("NSF GRFP institutional award"). *(Added to the plan's list, so the page can say why.)* |
 | `status` | enum | `resolved`, or `unresolved` for a `MISC:` grant |
 | `title` | string\|null | As the source gives it (RePORTER titles are often capitals; not re-cased) |
-| `pis` | array | `[{name, id}]` as the funder's public record gives them (F13): RePORTER names with the `profile_id` as `id`; NSF's `pdPIName` and OpenAlex's lead investigator with `id: null`; empty where the source has none (USAspending) |
+| `pis` | array | `[{name, id}]` as the funder's public record gives them (F13): RePORTER's latest row's names with the `profile_id` as `id`; NSF's `pdPIName` and OpenAlex's lead investigator with `id: null`; empty where the source has none (USAspending) |
 | `organization` | string\|null | The awardee as the source names it (RePORTER's latest row, NSF `awardeeName`, USAspending recipient, OpenAlex institution) |
 | `start_year`, `end_year` | int\|null | The award's years as the source gives them; for NIH, the first fiscal year RePORTER holds and the year of the latest project end date |
 | `first_year` | int\|null | §4; null only for a grant no exported work lists, which cannot occur |
@@ -1097,9 +1185,10 @@ funding data" (§12.10). Everything is sorted: `grants` by key, `agencies` by co
 | `amount_original` | number\|null | In `currency` |
 | `currency` | string\|null | ISO 4217 |
 | `rate_year` | int\|null | The rate's year, when converted |
-| `amount_source` | object\|null | `{name, url, as_of, basis}`: the source's name, a page a reader can open to check the figure, the date its facts were last confirmed (under the 28-day rule, so up to 27 days behind the latest read), and the basis of §7.1. *(`basis` added to the plan's list: NSF's rule makes one source mean two things.)* |
+| `amount_source` | object\|null | `{name, url, as_of, basis}`: the source's name, a page a reader can open to check the figure, the date its facts were last confirmed (under the 28-day rule, so up to 27 days behind the latest read), and the basis of §7.1. **Derived, not stored twice:** `url` is the grant's `url`, and `as_of` the store line's `checked` date (§8.3). Null when there is no amount. *(`basis` added to the plan's list: NSF's rule makes one source mean two things.)* |
 | `fiscal_years` | object\|null | `{"YYYY": int}` parent-row sums, RePORTER grants only; they sum to `amount_usd` |
 | `url` | string\|null | An outbound link built by the pipeline, so the app holds no source URL pattern: RePORTER's project page (`https://reporter.nih.gov/project-details/<appl_id>`, latest application), NSF's award page (`https://www.nsf.gov/awardsearch/showAward?AWD_ID=<id>`), USAspending's award page; exact forms verified in B6 |
+| `url_name` | string\|null | The link's label, naming the page it opens ("NIH RePORTER project page", "NSF award page", "USAspending award page"); null exactly when `url` is null. So the link can be labelled without `amount_source`, which is null for a grant with no amount (VA, `N01HV028179`) |
 | `flags` | array | From: `active`, `starts_before_fy1985`, `starts_before_fy2008`, `no_amount_reported`, `amount_not_found`, `amount_from_openalex`, `amount_corrected`, `amounts_disagree`, `unconverted_currency`, `rate_year_estimated` |
 
 **Flags:** `starts_before_fy1985` — NIH amounts begin FY1985, earlier years missing;
@@ -1139,6 +1228,8 @@ the excluded view is checkable too:
 | `grants_unconverted` | … flagged `unconverted_currency` |
 | `grants_institution_wide` | … with `scope: institution-wide` |
 | `agencies` | Distinct **root** agencies of resolved grants (Miscellaneous is not one) |
+| `investigators` | Distinct principal investigators over the `pis` of resolved grants, each keyed by its `id` when present, else by its name normalised: NFKC, casefolded, whitespace collapsed |
+| `organizations` | Distinct `organization`s of resolved grants, keyed by the name normalised the same way; a null organisation counts for nothing |
 | `amount_usd` | Σ `amount_usd` over all grants — **the headline, unfiltered** |
 | `amount_usd_institution_wide` | Σ `amount_usd` over institution-wide grants |
 | `amount_usd_nih` | Σ `amount_usd` over grants whose root agency is NIH |
@@ -1147,6 +1238,11 @@ the excluded view is checkable too:
 | `works_with_listings` | Exported works listing at least one grant, Miscellaneous included |
 | `first_year`, `last_year` | Min and max `first_year` over resolved grants; null if none |
 | `by_first_year` | `{"YYYY": {grants, grants_institution_wide, amount_usd, amount_usd_institution_wide}}` over resolved grants, keyed by `first_year` — the cumulative rule's increments (F3) |
+
+**Investigators and organisations are keyed partly on names.** RePORTER gives a person
+identifier and the other sources do not, so one person under two spellings, or once with an `id`
+and once without, counts twice; the method page says so. For the 454 NIH-linked grants alone the
+counts on each grant's latest row are 365 and 86 (§3.2).
 
 ### 11.7 Validator cross-checks (`validate_export`)
 
@@ -1157,14 +1253,17 @@ the excluded view is checkable too:
 - `funding.summary` equals a recomputation from the rows.
 - Each grant's `first_year` equals the minimum `year` of the exported works listing it.
 - `Σ fiscal_years == amount_usd` wherever `fiscal_years` is present.
-- `cited_as` present exactly for `corrected` and `override`; `override` exactly for `override`.
+- `cited_as` present, and non-empty, exactly when a string of that work resolved to the grant by
+  `corrected` or `override`; `override` present exactly when an override applied to one of them;
+  `how` the first of `listed`, `corrected`, `override`, `nih_link` that applies (§11.2).
 - A `MISC:` grant has `status: unresolved`, group `miscellaneous` and no amount.
 - **The resource code appears nowhere** — not as a key, a number, or in `cited_as`.
 - Every key matches the grant-key grammar.
 - With `version` null, every list is empty and every count zero.
 
 **The app's cross-check:** `summarizeFunding(works, funding)` equals `funding.summary` field for
-field, and each grant's unfiltered first year equals its `first_year`.
+field — `investigators` and `organizations` included, with the same keys — and each grant's
+unfiltered first year equals its `first_year`.
 
 ### 11.8 Sample cases
 
@@ -1185,10 +1284,14 @@ de-duplication); a grant with a null amount; a sub-agency with a parent.
 
 ### 11.9 Size
 
-The budget rises to **500 KB gzipped** (500 × 1,024 bytes, gzip's default level, the conservative
-measure): [06](06-web-app.md) §10's row changes, `web/scripts/check-data-budget.mjs` enforces it in
-the web CI job against `export/` and `samples/export/`, a Python test asserts the script's constant
-equals `stages/export.DATA_BUDGET_BYTES`, and stage 11 alerts above it (§9.5).
+The budget rises to **500 KiB gzipped: 512,000 bytes (500 × 1,024) at gzip level 9**, the measure
+`web/scripts/check-bundle-budget.mjs` already uses for JavaScript, so both budgets mean the same
+thing. Today's export is 303 KiB by it, and the export with funding is estimated at 420–450 KiB,
+to be measured in B5 and B9 (§3.5), which leaves about two years' headroom.
+[06](06-web-app.md) §10's row changes, `web/scripts/check-data-budget.mjs` enforces it in the web
+CI job against `export/` and `samples/export/`, a Python test asserts the script's constant
+equals `stages/export.DATA_BUDGET_BYTES`, and stage 11 alerts above it (§9.5), measuring the same
+way.
 
 ## 12. The app
 
@@ -1253,9 +1356,11 @@ In order:
 1. **Header** (`SiteHeader`), the staleness notice, and the filter bar with the funding sentence.
 2. **Headline figures:** *Total value of grants listed*, with its as-of date and definition link
    (F2), and beneath it how many grants have no known amount and are not in it; grants listed (and
-   how many more are unmatched numbers, in Miscellaneous); agencies; publications listing a grant,
-   *K* of *N*. **The institution-wide switch sits here**, and the figure always states its
-   position: "including *M* institution-wide awards worth $*Y*", or what was left out.
+   how many more are unmatched numbers, in Miscellaneous); agencies; principal investigators and
+   organisations (`funding.summary`'s `investigators` and `organizations`, so the cross-check
+   covers them); publications listing a grant, *K* of *N*. **The institution-wide switch sits
+   here**, and the figure always states its position: "including *M* institution-wide awards
+   worth $*Y*", or what was left out.
 3. **Grant funding over time:** bars for the value entering each year and a cumulative line, a
    Total / By agency switch to a stacked view, and the note: "each grant's full lifetime total
    enters in the year of the first publication shown that lists it; this is a publication year, not
@@ -1297,27 +1402,32 @@ The `h1` is the title, or the number when there is none; an identity line gives 
 A facts list: the lifetime total with its source, basis and as-of date; the original currency and
 conversion year; the FY1985 caveat; "active — the total still grows"; PIs; organisation; years;
 scope and its reason. A per-fiscal-year chart and table, static, labelled "Fiscal year (October to
-September)", with the partial fiscal year marked. The publications listing it, each with "listed as
-…" where the reference was corrected or overridden. The outbound `url`, labelled with the source's
-name. Not-found, and Escape closing only when opened in-app.
+September)", with the partial fiscal year marked. The publications listing it, each with "also
+written in the paper as …" wherever its listing carries `cited_as`. The outbound `url`, labelled
+with `url_name` (§11.4), whether or not the grant has an amount. Not-found, and Escape closing only
+when opened in-app.
 
 ### 12.8 The publication's Funding section
 
 An `h2` "Funding listed in this publication", after "Why this is a UWPR publication" and before
 "Other versions". Each grant: agency (in-app link), number (in-app link, plus the outbound link),
-title, PIs, years, total or "amount not known", and a tag for institution-wide awards. A corrected
-reference says "written in the paper as 'P01 HL09296'"; an override gives its reason, by whom and
-when. Unmatched numbers appear quoted under an `h3` "Miscellaneous (not matched to a grant
-record)". When the work has R2 evidence, a sentence says the resource's own award is shown above
-as evidence and is not a grant. The section is omitted when there is no funding data.
+title, PIs, years, total or "amount not known", and a tag for institution-wide awards. **Whenever
+a listing carries `cited_as`, it says "also written in the paper as 'P01 HL09296'"**, whatever its
+`how` — a corrected core is usually also written exactly by another source (§11.2); an override
+gives its reason, by whom and when. Unmatched numbers appear quoted under an `h3` "Miscellaneous
+(not matched to a grant record)". When the work has R2 evidence, a sentence says the resource's
+own award is shown above as evidence and is not a grant. The section is omitted when there is no
+funding data.
 
 ### 12.9 The method page
 
 A section `#funding`: the sources with their as-of dates; the resolution rules with the counts from
-`funding.method` (exact, corrected, override, unresolved, not-grants); how sub-projects and
-supplements are handled; what a total means per source; currency conversion; that `UWPR95794` is
-evidence and never a grant; the FY1985 start; partial fiscal and publication years; active grants;
-the first-year definition; institution-wide awards; Miscellaneous. The definitions list gains
+`funding.method` (exact, normalised, corrected and override from `resolution`; unresolved and
+not-grants from `strings`); that investigators and organisations are counted partly by name
+(§11.6); how sub-projects and supplements are handled; what a total means per source; currency
+conversion; that `UWPR95794` is evidence and never a grant; the FY1985 start; partial fiscal and
+publication years; active grants; the first-year definition; institution-wide awards;
+Miscellaneous. The definitions list gains
 entries for the funding figures, each with its corpus value.
 
 ### 12.10 No funding data
@@ -1340,7 +1450,8 @@ These extend [05](05-metrics-and-data-contract.md) §11 to every funding string:
 5. **A converted amount shows its original** and the rate year.
 6. **Partial fiscal years and active grants are marked.**
 7. **A grant is counted once,** however many papers list it, and the page says so.
-8. **A corrected or overridden reference shows what the paper wrote.**
+8. **A reference resolved by correction or override shows what the paper wrote** ("also written
+   in the paper as …", from `cited_as`), whatever the listing's `how`.
 9. **PI names as the funder publishes them,** with no link to any profile of a person.
 10. **The resource's own code is never shown as a grant.**
 
@@ -1348,10 +1459,10 @@ These extend [05](05-metrics-and-data-contract.md) §11 to every funding string:
 
 **`VITE_FUNDING`**, on in CI builds and e2e and off in `pages.yml`'s production build: with it off,
 every funding entry point is absent. Release (R) removes the flag. The JavaScript budget stays at
-**250 KB gzipped**, and no dependency is added: currency formatting uses `Intl`, CSV is written
-by hand. One `h1` per route; `nav` with `aria-current`; every table with a caption, `th scope` and
-`aria-sort` on sortable headers; a labelled search box; only the filter bar is a live region; every
-static mark `role="img"`.
+**250 KiB gzipped** (level 9), and no dependency is added: currency formatting uses `Intl`, CSV
+is written by hand. One `h1` per route; `nav` with `aria-current`; every table with a caption,
+`th scope` and `aria-sort` on sortable headers; a labelled search box; only the filter bar is a
+live region; every static mark `role="img"`.
 
 ## 13. Operations and legal
 
@@ -1401,26 +1512,27 @@ RePORTER 403; the January exchange-rate update (G.5A is released in early Januar
 
 ### 13.5 Budgets
 
-- **Data: 500 KB gzipped**, enforced by the web script in CI and by the stage-11 alert (§11.9).
+- **Data: 500 KiB gzipped** at level 9 (512,000 bytes), enforced by the web script in CI and by
+  the stage-11 alert (§11.9). About two years' headroom, estimated (§3.5).
 - **RePORTER:** at most one request a second always; at most 60 on a weekday outside the window.
-- **JavaScript:** unchanged, 250 KB gzipped.
+- **JavaScript:** unchanged, 250 KiB gzipped at level 9.
 
 ### 13.6 Cost
 
 OpenAlex is the only paid source: award entities at filter-page prices, **about $0.004 for a full
-refresh** (estimate) against a $1/day allowance; the rest is free. [07](07-operations.md) §14's
-"under a dollar a year" still holds. B9 measures run time: *incremental ≤ +1 minute and full ≤ +5
-minutes are the acceptance limits.*
+refresh** against a $1/day allowance (B6 read all 1,534 award entities for $0.0043); the rest is
+free. [07](07-operations.md) §14's "under a dollar a year" still holds. B9 measures run time:
+*incremental ≤ +1 minute and full ≤ +5 minutes are the acceptance limits.*
 
 ### 13.7 Risks
 
 | Risk | Mitigation |
 |---|---|
 | **RePORTER blocks the address** | One request a second, the window guard, the weekday cap, an alert on 403 and a RUNBOOK entry |
-| USAspending's TLS under httpx | Measured in B2; `truststore` if needed, never `verify=False` |
+| USAspending's TLS under httpx | Verified in B2 with httpx's default verification, so no `truststore`; never `verify=False` |
 | OpenAlex amounts wrong for some funders | Provenance rules (gepris, ANID), agency sources first, the disagreement report |
 | FY2027 rows appear from 2026-10-01 | Acceptance compares FY ≤ 2026 on the same cores |
-| The export outgrows its budget | Two checks (§11.9) |
+| The export outgrows its budget | Two checks (§11.9); about two years' headroom, estimated (§3.5) |
 | Merges and removals reach funding lines | Mapped through aliases; stage tests (§14) |
 | A funding bug stops the weekly publication update | Carry-forward and self-validation (§9.4) |
 
@@ -1470,12 +1582,12 @@ Each lands, dated, with the milestone that makes it true.
 | 05 | §4.1 and §4.4 (the funding block and size); §12 (1.1 and the new cross-checks); §13 (the funding cases) | B5 |
 | [02](02-data-model.md) (frozen) | §3 `store/funding/`; §9 the `grant` action; §11 the optional manifest fields; §14 invariants F1–F7; §15 funding lines change only when their data changes | B4 (B1 for `overrides_fingerprint`) |
 | [03](03-retrieval-pipeline.md) (frozen) | §6.1 and §10.4 the re-read trigger | B1 |
-| 03 | §7 POST, the new hosts and rate limits; §11.3 cache v2; §3.1 `truststore` if needed | B2 |
+| 03 | §7 POST, the new hosts and rate limits, USAspending's TLS verified (no `truststore`); §11.3 cache v2 | B2 |
 | 03 | §10 the new config files | B3 |
 | 03 | §5 stage 8b; §8 `--funding`; §9 failure rows; P1 read against the scheduled refresh | B7 |
 | 03 | C4 and §11.3 the Saturday schedule; §8 smoke | B10 |
 | 03 | §13 time and cost | B9 |
-| [06](06-web-app.md) (agreed) | Header ("Replaces" said funder data does not exist); §3 routes, the switch, history-state back; the funding view and its honesty rules; §5 the Funding section; §6 the new dimensions, the scope rule, `institution_wide`; §7 CSV, the no-data state; §9 `nav` and `aria-current`; §10 500 KB; §11.3 `download/` and `VITE_FUNDING`; §12 the new checks | W1–W10, R |
+| [06](06-web-app.md) (agreed) | Header ("Replaces" said funder data does not exist); §3 routes, the switch, history-state back; the funding view and its honesty rules; §5 the Funding section; §6 the new dimensions, the scope rule, `institution_wide`; §7 CSV, the no-data state; §9 `nav` and `aria-current`; §10 500 KiB at gzip level 9; §11.3 `download/` and `VITE_FUNDING`; §12 the new checks | W1–W10, R |
 | [07](07-operations.md) (agreed) | §1 and C4 the schedule; §3 a normal week (`store/funding/`); §11 January rates; §12 the RePORTER risk; §14 cost; §15 PI names and attribution | B10 |
 | [08](08-implementation.md) | The Phase 9 record; §8 item 9 closed | B1, R |
 | `CLAUDE.md` | Phases table, commands, gotchas (`sort_field`, `exclude_subprojects`, HHSN, task orders, VA without amounts, USAspending `total_obligation` and TLS, the NSF amount rule, gepris, ANID ×1,000, the G.5A currency list, PubMed abstracts in recordings, cron's day-of-month/day-of-week OR) | R |
@@ -1488,14 +1600,17 @@ Each lands, dated, with the milestone that makes it true.
    Miscellaneous (F10).
 2. **`R01GM122864`** (W-000183, W-000224) and **`P01 HL0996`** (W-000147) are unmatchable
    (Appendix A.4). Miscellaneous.
-3. **The four non-NIH typos** the research resolved (Appendix A.8) are not automatic under F8. B9's
-   review of the unresolved list decides whether they become grant overrides; so do the research's
-   hand merges in Appendix A.9, and `DOE-SC10010566` (probably DE-SC0010566, the one real DOE
-   grant).
+3. **Override candidates for B9.** B9's review of the unresolved list decides whether the
+   research's hand merges in Appendix A.9, and `DOE-SC10010566` (probably DE-SC0010566, the one
+   real DOE grant), become grant overrides. (The four non-NIH typos the research resolved,
+   Appendix A.8, are not automatic under F8 but have independent support, and are seeded:
+   Appendix E.)
 4. **Should NIH centre grants be institution-wide?** P30, P41, UL1 and similar grants fund an
    institution's shared cores, and some are large. They are categorised `center` and counted as
    project-scope (§4); the category chart shows them apart. A policy call for the maintainer.
-5. **USAspending TLS under httpx** (B2), and **Crossref's batch filter** (B6), are unverified.
+5. **Closed:** USAspending's TLS is verified under httpx with its default verification (B2,
+   2026-09-26; no `truststore`), and Crossref's batch filter works (B6, 2026-09-26; 376 of 377
+   DOIs, §5.6).
 6. **RePORTER's licence:** none found; ask RePORT@mail.nih.gov if the attribution is ever
    questioned.
 7. **Documented against measured:** RePORTER's direct/indirect split (documented from FY2012,
@@ -1505,8 +1620,10 @@ Each lands, dated, with the milestone that makes it true.
    federal — measured, 56 non-US amounts against OpenAlex's 48.
 9. **USAspending totals for awards begun before FY2008** (NSBRI began 1999) may omit earlier
    obligations; not measured, flagged `starts_before_fy2008`.
-10. **A PI count** is not a headline figure: three of the four amount sources have no person
-    identifier, so a count across funders would be keyed on names.
+10. **PI and organisation counts are headline figures, keyed partly on names** (§11.6): three of
+    the four amount sources have no person identifier, so one person under two spellings counts
+    twice. The count is still worth showing, cross-checked like every other figure; the method
+    page states the caveat.
 11. **The OECD dataset** and the G.5A currencies' first years are fixed in B3.
 12. **The sample cases' work IDs** (§11.8) are verified in B8.
 
@@ -1519,12 +1636,13 @@ Each lands, dated, with the milestone that makes it true.
 
 **B1** — editing `channels.yaml` re-reads no text; an exclude-override change re-reads its work; a
 manifest without `overrides_fingerprint` falls back.
-- [ ] Accepted.
+- [x] Accepted 2026-09-26 (3c3cae8, 3771504).
 
 **B2** — GET keys unchanged (pinned); POST keys depend on method and canonical body; POST retried,
 spaced, recorded, replayed; old cache lines load; abstracts stripped; USAspending TLS measured and
 recorded; `dlcache-v2-`.
-- [ ] Accepted.
+- [x] Accepted 2026-09-26 (c3b3684, eecae09): USAspending verifies under httpx's default
+      verification, so no `truststore`.
 
 **B3** — Appendix A passes 100% as a parametrised test; P30CA015704 FY2024 = $10,090,142 from
 sub-projects, never added; P30DK017047 $52.8M not $86.0M; NSF, ANID, gepris, quote direction and
@@ -1540,10 +1658,12 @@ sample size recorded.
 - [ ] Accepted.
 
 **B6** (live, in the window; compare FY ≤ 2026) — **260 ± 2** works linked; **454** cores; **5,437 ±
-1%** parent rows; **$6,217.3M ± 0.1%**; NSF ≥ 56 of 57; USAspending ≥ 25; PubMed `GrantList` on ≥ 276
-works; **1,534** OpenAlex award entities; every RePORTER request sorted and excluding sub-projects;
-Crossref batching verified.
-- [ ] Accepted.
+1%** parent rows; **$6,217.3M ± 0.1%**; NSF ≥ 56 of 57; USAspending **21 of 27** rows (20 grants)
+with award types 02–05 (§5.3); PubMed `GrantList` on ≥ 276 works; **1,534** OpenAlex award
+entities; every RePORTER request sorted and excluding sub-projects; Crossref batching verified.
+- [x] Accepted 2026-09-26 (59536c7): 260 works, 454 cores, 5,437 rows, $6,217,332,093; NSF 56 of
+      57; USAspending 21 of 27; PubMed on 276 works; 1,534 of 1,534 award entities; Crossref 376
+      of 377 DOIs (§5).
 
 **B7** — every stage test of §14 passes; `enabled: false` leaves the weekly run unchanged.
 - [ ] Accepted.
@@ -1559,19 +1679,20 @@ none, §6.5; overrides add at most two), exact figure recorded; the 454 linked c
 **$18.12M**, task order `75N93020F00001` **$1.47M** (± 1%); NIH-format strings left in Miscellaneous
 exactly `S10OD032290`, `R01GM122864`, `P01 HL0996` plus any new ones the report names; no M&O
 contract and no `UWPR95794` as a grant; every Appendix B key listed is tagged; OpenAlex agrees with
-the agency source in ≥ 99% of comparable grants; CLP converted by OECD; export ≤ 500 KB gzipped
-(estimate 427 KB); a same-day rerun changes nothing and a +7-day replay rewrites no file; an
-incremental run adds ≤ 1 minute and a full run ≤ 5.
+the agency source in ≥ 99% of comparable grants; CLP converted by OECD; export ≤ 500 KiB gzipped
+at level 9 (estimated 420–450 KiB; the figure recorded); a same-day rerun changes nothing and
+a +7-day replay rewrites no file; an incremental run adds ≤ 1 minute and a full run ≤ 5.
 - [ ] Accepted.
 
 **B10** — `smoke` shows PASS for every new source and DOWN on a simulated 503;
-`check:data-budget` passes and fails on a planted 501 KB file; one `workflow_dispatch` run succeeds
-with funding enabled.
+`check:data-budget` passes and fails on a planted file of 501 KiB gzipped; one `workflow_dispatch`
+run succeeds with funding enabled.
 - [ ] Accepted.
 
 **W1–W10** — as §12 and §14 specify; the existing router, overview, method and e2e tests pass
-unchanged; the flag hides every funding entry point; JavaScript ≤ 250 KB.
-- [ ] Accepted.
+unchanged; the flag hides every funding entry point; JavaScript ≤ 250 KiB.
+- [ ] Accepted. *W1 (c281d39, 475373c) and W2 (d9a3271, e8cb8da) landed 2026-09-26; the box is
+      ticked when all ten are accepted.*
 
 **R** — the web gate green against the real export; the flag removed; data published before the
 app; the live `/funding`, an agency page, a grant page and a publication's Funding section checked
@@ -1806,14 +1927,14 @@ order sends each to the NIH steps.
 `NIH-contract:HHSN272201700036I:75N93020F00001`. `N01HV028179` is linked by RePORTER, with no
 amount.
 
-### A.8 Non-NIH typos the research resolved (not automatic under F8)
+### A.8 Non-NIH typos the research resolved (not automatic under F8; seeded, Appendix E)
 
 | # | Written | Work | Research's resolution and evidence | Outcome under §6 |
 |---|---|---|---|---|
-| A8.1 | `OPP 144374` | W-000287 | **NSF 1443474.** Six digits as written; the padded 1443740 does not exist (0144374 was not checked). 1443474 is in division OPP, matching the prefix: "Collaborative Research: Investigating Iron-binding Ligands in Southern Ocean…", University of Rhode Island, 2015–2020, $400,430. Another work cites 1443474 correctly | **unresolved** `MISC:OPP144374`; candidate override → `NSF:1443474` (§16) |
-| A8.2 | `IOS‐1922781` | W-000233 | **NSF 1922871.** No award 1922781; adjacent digits exchanged; 1922871 is in IOS: "TRTech-PGR: A PeptideAtlas for Arabidopsis thaliana…", Cornell, $1,697,365 obligated. **The same work already lists 1922871** through another source | **unresolved** `MISC:IOS1922781`; candidate override → `NSF:1922871` |
-| A8.3 | `DGE‐071824` | W-000094 | **NSF 0718124.** Six digits; 0071824 does not exist. 0718124 is in DGE: the GRFP award to UW, 2007–2013, $17,862,240 obligated (institution-wide). Assumes one dropped "1" | **unresolved** `MISC:DGE071824`; candidate override → `NSF:0718124` |
-| A8.4 | `NN13AJ12G` | W-000208 | **NASA NNX13AJ12G.** NASA numbers of this era are `NNX13…`; USAspending has NNX13AJ12G: UC San Diego, 2013–2022, $1,634,410, on body fluid distribution. W-000208 is the NASA Twins Study, listing 12 NASA grants, two described by USAspending as Twins Study consortium projects. *That the UCSD PI (Hargens) was a Twins Study investigator is the researcher's knowledge, not measured* | grant `USA:NASA:NN13AJ12G` (stands, §6.9), amount not found; candidate override → `USA:NASA:NNX13AJ12G` |
+| A8.1 | `OPP 144374` | W-000287 | **NSF 1443474.** Six digits as written; the padded 1443740 does not exist (0144374 was not checked). 1443474 is in division OPP, matching the prefix: "Collaborative Research: Investigating Iron-binding Ligands in Southern Ocean…", University of Rhode Island, 2015–2020, $400,430. Another work cites 1443474 correctly | **unresolved** `MISC:OPP144374` without override; **override** → `NSF:1443474` (E.6) |
+| A8.2 | `IOS‐1922781` | W-000233 | **NSF 1922871.** No award 1922781; adjacent digits exchanged; 1922871 is in IOS: "TRTech-PGR: A PeptideAtlas for Arabidopsis thaliana…", Cornell, $1,697,365 obligated. **The same work already lists 1922871** through another source | **unresolved** `MISC:IOS1922781` without override; **override** → `NSF:1922871` (E.7) |
+| A8.3 | `DGE-071824` | W-000094 | **NSF 0718124.** Six digits; 0071824 does not exist. 0718124 is in DGE: the GRFP award to UW, 2007–2013, $17,862,240 obligated (institution-wide). Assumes one dropped "1" | **unresolved** `MISC:DGE071824` without override; **override** → `NSF:0718124` (E.8) |
+| A8.4 | `NN13AJ12G` | W-000208 | **NASA NNX13AJ12G.** NASA numbers of this era are `NNX13…`; USAspending has NNX13AJ12G: UC San Diego, 2013–2022, $1,634,410, on body fluid distribution. W-000208 is the NASA Twins Study, listing 12 NASA grants, two described by USAspending as Twins Study consortium projects. *That the UCSD PI (Hargens) was a Twins Study investigator is the researcher's knowledge, not measured* | grant `USA:NASA:NN13AJ12G` without override (it stands, §6.9, with no amount found); **override** → `USA:NASA:NNX13AJ12G` (E.9) |
 | A8.5 | `DBI 659680` | W-000199 | NSF 0659680 by zero-padding; **the NSF API does not know 0659680** — this is the one NSF grant of 57 not found | **unresolved** `MISC:DBI659680` |
 
 ### A.9 Other non-NIH normalisation cases
@@ -1834,7 +1955,7 @@ amount.
 | A9.12 | `2021-02468`, `2021–02468` | W-000329 | `VR:202102468` |
 | A9.13 | `PID2023`, `PID2023-153058OB-I00` | W-000330 | one grant (fragment) |
 | A9.14 | `100576`, `PRE2021-100576` | W-000330 | one grant (fragment, suffix) |
-| A9.15 | `208391`, `208391/Z/17/Z`, and `08391/Z/17/Z` inside a list | W-000210, W-000314 | one grant `WT:208391Z17Z` (fragments) |
+| A9.15 | `208391`, `208391/Z/17/Z`, and `08391/Z/17/Z` inside a list | W-000210, W-000314; `208391/Z/17/Z` also on W-000222 and W-000277 | one grant `WT:208391Z17Z` (fragments) |
 | A9.16 | `FKZ 031`, `FKZ 031 A`, `A 534A`, `031 A 534A`, `FKZ 031 A 534A` | W-000210 | one grant `BMBF:031A534A` (prefix `FKZ` stripped; fragments) |
 | A9.17 | `ANR-10`, `ANR-10-IAHU-0001` | W-000156 | one grant `ANR:ANR10IAHU0001` (institution-wide) |
 | A9.18 | `10-IAHU-01`, `ANR-10-IAHU- 01` | W-000156 | **not merged** (zero-padding differs): stand without amounts; reported; override candidates → `ANR:ANR10IAHU0001` |
@@ -1876,7 +1997,7 @@ writes them into `config/funding.yaml`.
 | `USA:NASA:NCC958` | NASA:NCC958 | NASA | 583,518,208 | USD | NSBRI institute cooperative agreement (from 1999) |
 | `USA:NASA:NNX16AO69A` | NASA:NNX16AO69A:0061 and :0107 | NASA | 139,591,379.50 | USD | TRISH institute agreement; the two suffixes are sub-awards |
 | `USA:NOAA:NA14OAR4170078` | NOAA:NA14OAR4170078 | NOAA | 13,408,673 | USD | Washington Sea Grant omnibus award |
-| `NSF:0718124` | NSF:0718124 | NSF | 17,862,240 | USD | NSF GRFP institutional award (listed only via A8.3's typo, so tagged only if that override is added) |
+| `NSF:0718124` | NSF:0718124 | NSF | 17,862,240 | USD | NSF GRFP institutional award (listed only via A8.3's typo, through override E.8) |
 | `NSF:0939564` | NSF:0939564 | NSF | 47,474,312 | USD | NSF Science and Technology Center (C-DEBI) |
 | `NSF:1256082` | NSF:1256082 | NSF | 50,184,868 | USD | NSF GRFP institutional award |
 | `NSF:1762114` | NSF:1762114 | NSF | 24,605,190 | USD | NSF GRFP institutional award |
@@ -1900,7 +2021,7 @@ cannot be counted.
 ## Appendix D — Currencies
 
 **Seen among the research's amounts** (§3.3), against the Federal Reserve G.5A release of
-2026-01-05, which lists 23 currencies:
+2026-01-05, which lists 23 currencies (read from the Federal Reserve's page on 2026-09-26, §5.10):
 
 | Currency | Amounts | In G.5A | G.5A quotes | Converted by |
 |---|---:|---|---|---|
@@ -1921,9 +2042,12 @@ without amounts. **Not in G.5A, if they appear:** CLP is the only one seen; any 
 CZK and so on) uses OECD if OECD publishes it — *to verify in B3* — and is otherwise left
 unconverted (F7).
 
-## Appendix E — The five seeded grant overrides
+## Appendix E — The nine seeded grant overrides
 
-Added at the seed (B9), each `by: mriffle` and dated that day. Evidence in Appendix A.
+Added at the seed (B9), each `by: mriffle` and dated that day. Evidence in Appendix A. E.1–E.5
+are NIH grants (A.4–A.5). E.6–E.9 are the non-NIH typos the research resolved (A.8): three NSF
+numbers, each confirmed because the corrected award sits in the NSF division the written prefix
+names, and one NASA number, confirmed by USAspending's recipient and description.
 
 | # | Work | Written | Grant | Reason |
 |---|---|---|---|---|
@@ -1932,6 +2056,10 @@ Added at the seed (B9), each `by: mriffle` and dated that day. Evidence in Appen
 | E.3 | W-000100 | `S10RR02510` | `NIH:S10RR025107` | The only corpus-linked candidate; its PI, James Bruce, is an author (A4.17) |
 | E.4 | W-000208 | `R21AO129851` | `NIH:R21AI129851` | `AO` for `AI`; the grant is at Cornell, the authors' institution (A5.1) |
 | E.5 | W-000144 | `094352` | `NIH:R01HL094352` | Alan Chait's grant, whose lab wrote the paper (A5.2) |
+| E.6 | W-000287 | `OPP 144374` | `NSF:1443474` | Six digits as written, and the padded 1443740 does not exist; 1443474 is in NSF's Office of Polar Programs, matching the `OPP` prefix, and another work (W-000808) cites it correctly (A8.1) |
+| E.7 | W-000233 | `IOS‐1922781` | `NSF:1922871` | NSF has no award 1922781; two adjacent digits exchanged give 1922871, in IOS, matching the prefix, which the same work already lists through another source (A8.2) |
+| E.8 | W-000094 | `DGE-071824` | `NSF:0718124` | Six digits, and 0071824 does not exist; 0718124 is in DGE, matching the prefix — UW's GRFP award, 2007–2013, institution-wide (Appendix B). Assumes one dropped "1" (A8.3) |
+| E.9 | W-000208 | `NN13AJ12G` | `USA:NASA:NNX13AJ12G` | NASA numbers of this era are `NNX13…`; USAspending's recipient for NNX13AJ12G is UC San Diego (2013–2022, on body fluid distribution), and the paper is the NASA Twins Study, two of whose other NASA grants USAspending describes as Twins Study consortium projects (A8.4) |
 
 ## Appendix F — The non-NIH grants as measured
 
@@ -1940,7 +2068,11 @@ an oracle. **The research IDs are not grant keys** — §8.2 forms those — and
 research's own doubt. Group: US federal, US non-federal, non-US. "Amount from" is the research's
 best source, which for non-US-federal grants is often not a v1 source (§3.3). "OpenAlex" is the
 award entity's amount before any correction (ANID's are ×1,000 short; DFG's `gepris` excluded).
-"Written as" lists up to four distinct written forms, shortest first. 270 rows.
+"Written as" lists up to four distinct written forms, shortest first. 270 rows. **‡ marks three
+pairs of rows that are one grant each**, which the research left unmerged and §6.10's
+normalisation merges: EMBO's two `ALTF 933-2015` rows (spacing and dash), NRF Korea's
+`2016R1A5A1010764` under `NRF` and `NRFK` (one funder, two names), and FAPESP's `16/00696-3` and
+`2016/00696-3` (a two-digit year).
 
 | Research ID | Agency | Group | Works | Amount | Cur. | Amount from | OpenAlex | Agrees | Flag | Written as |
 |---|---|---|---:|---:|---|---|---:|---|---|---|
@@ -2126,8 +2258,8 @@ award entity's amount before any correction (ANID's are ×1,000 short; DFG's `ge
 | `DFG:16LW0243K` | DFG? (looks like a BMBF FKZ) | non-US | 1 |  |  |  |  |  |  | `16LW0243K` |
 | `DLR:50WB1535` | DLR (Germany) | non-US | 1 |  |  |  |  |  |  | `50WB1535` |
 | `EMBO:ALTF 481-2020` | EMBO | non-US | 2 |  |  |  |  |  |  | `ALTF481-2020`, `ALTF 481-2020` |
-| `EMBO:ALTF 933-2015` | EMBO | non-US | 2 |  |  |  |  |  |  | `ALTF933-2015`, `ALTF 933-2015` |
-| `EMBO:ALTF933-2015` | EMBO | non-US | 4 |  |  |  |  |  |  | `ALTF 933–2015` |
+| `EMBO:ALTF 933-2015` ‡ | EMBO | non-US | 2 |  |  |  |  |  |  | `ALTF933-2015`, `ALTF 933-2015` |
+| `EMBO:ALTF933-2015` ‡ | EMBO | non-US | 4 |  |  |  |  |  |  | `ALTF 933–2015` |
 | `UKRI:EP/Y035984/1` | EPSRC | non-US | 1 | 131,896 | GBP | UKRI GtR | 131,896 | yes |  | `EP/Y035984/1` |
 | `EU:101080544` | EU (CORDIS) | non-US | 1 | 9,458,801.25 | EUR | CORDIS (EU contribution) |  |  | EU consortium total | `101080544` |
 | `EU:101103253` | EU (CORDIS) | non-US | 1 | 5,185,037.5 | EUR | CORDIS (EU contribution) |  |  | EU consortium total | `101103253` |
@@ -2139,8 +2271,8 @@ award entity's amount before any correction (ANID's are ×1,000 short; DFG's `ge
 | `EU:722493` | EU (CORDIS) | non-US | 1 | 3,976,833.96 | EUR | CORDIS (EU contribution) | 3,976,833.96 | yes | EU consortium total | `722493` |
 | `EU:733032` | EU (CORDIS) | non-US | 1 | 49,933,776 | EUR | CORDIS (EU contribution) | 49,933,776 | yes | EU consortium total | `733032`, `HBM4EU` |
 | `EU:823839` | EU (CORDIS) | non-US | 3 | 9,986,185.75 | EUR | CORDIS (EU contribution) | 9,986,185.75 | yes | EU consortium total | `823839` |
-| `FAPESP:16/00696-3` | FAPESP (Brazil) | non-US | 1 |  |  |  |  |  |  | `16/00696-3` |
-| `FAPESP:FAPESP 2016/00696-3` | FAPESP (Brazil) | non-US | 1 |  |  |  |  |  |  | `FAPESP 2016/00696-3` |
+| `FAPESP:16/00696-3` ‡ | FAPESP (Brazil) | non-US | 1 |  |  |  |  |  |  | `16/00696-3` |
+| `FAPESP:FAPESP 2016/00696-3` ‡ | FAPESP (Brazil) | non-US | 1 |  |  |  |  |  |  | `FAPESP 2016/00696-3` |
 | `FNR:12341006` | FNR (Luxembourg) | non-US | 1 |  |  |  |  |  |  | `12341006`, `A18/BM/12341006` |
 | `FNR:C19/BM/13684739` | FNR (Luxembourg) | non-US | 2 |  |  |  |  |  |  | `C19/BM/13684739` |
 | `FWO:12A6L24N` | FWO | non-US | 1 |  |  |  |  |  |  | `12A6L24N` |
@@ -2181,10 +2313,10 @@ award entity's amount before any correction (ANID's are ×1,000 short; DFG's `ge
 | `NKFIH:2018-1.2.1-NKP-2018-00005` | NKFIH (Hungary) | non-US | 1 |  |  |  |  |  |  | `2018-1.2.1-NKP-2018-00005`, `2018‐1.2.1‐NKP‐2018‐00005` |
 | `NKFIH:FK 131603` | NKFIH (Hungary) | non-US | 1 |  |  |  |  |  |  | `FK131603`, `FK 131603` |
 | `NKFIH:ÚNKP-21-3` | NKFIH (Hungary) | non-US | 1 |  |  |  |  |  |  | `ÚNKP-21-3` |
-| `NRF:2016R1A5A1010764` | NRF Korea | non-US | 1 |  |  |  |  |  |  | `2016R1A5A1010764` |
+| `NRF:2016R1A5A1010764` ‡ | NRF Korea | non-US | 1 |  |  |  |  |  |  | `2016R1A5A1010764` |
 | `NRF:NRF-2012M3A9B9036669` | NRF Korea | non-US | 1 |  |  |  |  |  |  | `NRF-2012M3A9B9036669` |
 | `NRF:NRF-2015M3A9B6073840` | NRF Korea | non-US | 1 |  |  |  |  |  |  | `NRF-2015M3A9B6073840` |
-| `NRFK:2016R1A5A1010764` | NRF Korea | non-US | 1 |  |  |  |  |  |  | `NRF-2016R1A5A1010764`, `NRF‐2016R1A5A1010764` |
+| `NRFK:2016R1A5A1010764` ‡ | NRF Korea | non-US | 1 |  |  |  |  |  |  | `NRF-2016R1A5A1010764`, `NRF‐2016R1A5A1010764` |
 | `NSFC:31200105` | NSFC (China) | non-US | 1 | 230,000 | CNY | OpenAlex only (nsfc_kd) | 230,000 |  |  | `31200105` |
 | `NSFC:31470238` | NSFC (China) | non-US | 1 | 860,000 | CNY | OpenAlex only (nsfc_kd) | 860,000 |  |  | `31470238` |
 | `NWO:019.2015.2.310.006` | NWO | non-US | 5 |  |  |  |  |  |  | `019.2015.2.310.006`, `Rubicon 019.2015.2.310.006` |
