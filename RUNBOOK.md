@@ -388,7 +388,11 @@ Ten minutes, reading the latest run report (§3):
 - Anything under Degradations.
 - Dependabot's pull requests — Actions and npm, monthly. Merging them is also what keeps the
   repository looking active to GitHub, which is part of what keeps the schedule running
-  (docs/07 §12). Review `uv.lock` at the same time.
+  (docs/07 §12). Review `uv.lock` at the same time. A green check does not prove an npm bump is
+  safe: `npm ci` installs the lockfile as it stands and ignores a peer-dependency conflict, so
+  also run `npm install --package-lock-only --ignore-scripts` on the branch, which fails with
+  `ERESOLVE` if the bump breaks a peer. Some majors are held back on purpose in
+  `.github/dependabot.yml`, each with its reason; remove an entry when its reason goes away.
 
 ## 12. Once a year
 

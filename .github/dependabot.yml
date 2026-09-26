@@ -15,3 +15,22 @@ updates:
     directory: /web # package.json and package-lock.json live in web/ (docs/06 B11)
     schedule:
       interval: monthly
+    ignore:
+      # @types/node describes the Node the app is built and tested on: the major in web/.nvmrc
+      # (24). Raise this bound together with .nvmrc, never ahead of it (#2 proposed 26).
+      - dependency-name: "@types/node"
+        versions: [">=25"]
+      # ESLint 10 waits for eslint-plugin-jsx-a11y, whose latest (6.10.2) allows eslint <= 9 only
+      # (jsx-eslint/eslint-plugin-jsx-a11y#1075). @eslint/js 10 declares a peer on eslint ^10, so
+      # on its own (#5) it made every `npm install` fail with ERESOLVE while `npm ci`, and so CI,
+      # stayed green. Remove both entries together.
+      - dependency-name: "eslint"
+        versions: [">=10"]
+      - dependency-name: "@eslint/js"
+        versions: [">=10"]
+    groups:
+      # Released together from one repository, and @eslint/js N declares a peer on eslint N.
+      eslint:
+        patterns:
+          - "eslint"
+          - "@eslint/js"
