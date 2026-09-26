@@ -683,8 +683,10 @@ because they are the things a reader would otherwise have to rediscover.
   The bot's commit is pushed with `GITHUB_TOKEN`, which starts no workflow, so `check.yml` never
   runs against the store it writes. A test that pinned docs/05's figures to the real store (316
   and 322 of 339 works) failed after 2026-09-26.1 merged a UW duplicate, and CI stayed green. It
-  now asserts what the figures show, not the figures. **A test that reads `store/` must hold for
-  any store the weekly run could write.**
+  now asserts what the figures show, not the figures. A second test pinned which §13 cases the
+  store lacks, which the first retraction a run finds would change; it now asserts only that the
+  store exports, and the guard's scope is tested on the fixed sample store instead. **A test that
+  reads `store/` must hold for any store the weekly run could write.**
 
 ## 6. The approved implementation plan
 
