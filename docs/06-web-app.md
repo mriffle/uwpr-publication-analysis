@@ -56,6 +56,18 @@ deliberately, dated, and noted in this header.
 - *2026-09-26, §5, the stored defects it names are fixed* ([05](05-metrics-and-data-contract.md)
   §3.2). The rule stands: the app shows what the store holds and cleans nothing up. Only the
   "currently" was stale.
+- *2026-09-26, §7, how a CSV cell is written, now that the writer exists.* §7 asked for CSV
+  downloads without saying how a cell is written, and what goes in one — titles, author names,
+  grant numbers — is third-party metadata. A spreadsheet runs a cell beginning `=`, `+`, `-` or
+  `@` as a formula (OWASP's "CSV injection"), so a string cell starting with one of those, or
+  with a tab or a CR, gets a leading `'`. Numbers are written as numbers and never guarded, and an
+  unknown value is an empty cell, never 0. Built for the grants table the funding work needs;
+  nothing on the page uses it yet. The publications CSV, BibTeX, and the SVG and PNG chart
+  downloads remain unbuilt, as before.
+- *2026-09-26, §11.3, a `download/` directory.* It builds files and saves them in the page — a
+  Blob and an object URL, so no request leaves it (B10). Like `aggregate/` and `filter/` it
+  imports no React, enforced by a lint rule, so what a spreadsheet receives is unit-tested as
+  strings.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -305,6 +317,12 @@ because the aggregation layer already produced the rows.
 SVG and PNG. This audience writes reports and grant renewals; a page they cannot get numbers out
 of will be retyped by hand, with errors.
 
+**Every CSV is written by one utility,** `download/csv.ts`: RFC 4180 quoting and CRLF line
+ends; an unknown value is an empty cell, never 0; numeric columns carry unformatted numbers, so a
+spreadsheet can sum them; and a string cell beginning `=`, `+`, `-`, `@`, a tab or a CR is
+prefixed with `'`, because titles, names and grant numbers are third-party text a spreadsheet
+would otherwise run as a formula. Files are built and saved in the page, with no request (B10).
+
 **Print.** A stylesheet that renders the current filtered view as a clean static document: figures,
 charts and the publication list, with the filter stated and the data date on the page.
 
@@ -445,13 +463,15 @@ web/
     views/           overview, publication detail, method, lookup
     components/      figures, filter chips, publication list, evidence, tables
     format/          numbers, dates, names, author lists
+    download/        CSV writing and the in-page save; no React
   test/              unit and component tests
   e2e/               Playwright specs
 ```
 
 The `aggregate/` and `filter/` layers import nothing from React. That boundary is what makes the
 metric definitions testable as arithmetic, and it is enforced by a lint rule rather than by
-intention.
+intention. `download/` is held to the same rule, so what a spreadsheet receives is tested as
+strings.
 
 ## 12. Testing
 
