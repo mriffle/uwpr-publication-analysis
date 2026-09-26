@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/agency.schema.json",
+  "title": "One line of store/funding/agencies.jsonl: an agency some grant names, or the parent of one (docs/09 §8.3, §11.5)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "code", "name", "short_name", "parent", "group", "country", "origin"],
+  "properties": {
+    "schema": {"const": 1},
+    "code": {"$ref": "common.schema.json#/$defs/agencyCode"},
+    "name": {"type": "string", "minLength": 1},
+    "short_name": {"type": ["string", "null"], "minLength": 1},
+    "parent": {"oneOf": [{"$ref": "common.schema.json#/$defs/agencyCode"}, {"type": "null"}]},
+    "group": {"enum": ["us_federal", "us_nonfederal", "non_us", "miscellaneous"]},
+    "country": {"description": "ISO 3166 alpha-2", "oneOf": [{"type": "string", "pattern": "^[A-Z]{2}$"}, {"type": "null"}]},
+    "origin": {"description": "Where it was learned: RePORTER's agency_ic_admin, config/funding.yaml, or an OpenAlex funder record", "enum": ["reporter", "config", "openalex"]}
+  }
+}

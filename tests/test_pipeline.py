@@ -1165,3 +1165,213 @@ def test_an_export_exactly_at_the_data_budget_is_within_it(
     document, _ = read_export(export_dir(store))
     monkeypatch.setattr(export_stage, "DATA_BUDGET_BYTES", export_stage.data_size(document))
     assert do_run(client, store).status == "ok"
+
+
+# --- funding (docs/09): grant overrides and store/funding/ ------------------------------------
+
+
+def award_on_the_unlisted_work(tmp_path: Path) -> HttpClient:
+    """The unlisted paper states the award code too, so R2 alone includes it.
+
+    Every other paper here is listed, and R1 beats an exclude override (Phase 1 §6.0); this is the
+    one work an exclude override can actually take out.
+    """
+
+    def transport(
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
+    ) -> Response:
+        response = route(url, params)
+        if "api.openalex.org/works" not in url:
+            return response
+        payload = json.loads(response.body)
+        for work in payload["results"]:
+            if work["id"].endswith("/W4"):
+                work["awards"] = [{"funder_award_id": "UWPR95794", "funder_display_name": "UW"}]
+        return Response(url, response.status, json.dumps(payload).encode(), response.headers)
+
+    return HttpClient(
+        contact="mriffle@uw.edu",
+        user_agent="uwpr-pubs/test",
+        mode=Mode.LIVE,
+        cache=Cache(tmp_path / "cache-award"),
+        budget=Budget(max_run_usd=0.5, min_remaining_usd=0.1),
+        rate_limiter=RateLimiter({}),
+        transport=transport,
+        sleep=lambda _: None,
+        now=lambda: f"{TODAY}T00:00:00Z",
+    )
+
+
+def override_yaml(target: str, action: str, extra: str = "") -> str:
+    return (
+        f"- target: {target}\n  action: {action}\n{extra}"
+        "  reason: 'Checked by hand.'\n  by: mriffle\n  date: 2026-09-28\n"
+    )
+
+
+def stored_data(store: Path) -> dict[Path, bytes]:
+    return {
+        path.relative_to(store): path.read_bytes()
+        for path in sorted(store.rglob("*"))
+        if path.is_file() and "runs" not in path.parts
+    }
+
+
+def test_a_grant_override_changes_nothing_about_inclusion(tmp_path: Path) -> None:
+    """Status reads only include and exclude overrides (docs/09 §6.6, decided for B4).
+
+    Stage 7 mapped every override with a single target to its action, so whichever came last in
+    the file stood for the work: a grant override written after an exclude override put the work
+    back. Two copies of one store, run the same day with and without grant overrides, must come
+    out byte for byte the same — for an excluded work and for an included one.
+    """
+    client = award_on_the_unlisted_work(tmp_path)
+    plain = tmp_path / "plain" / "store"
+    do_run(client, plain)
+    aliases = io.read_json(plain / "aliases.json")["aliases"]
+    unlisted, listed = aliases[f"pmid:{UNLISTED_PMID}"], aliases[f"pmid:{LISTED_PMIDS[1]}"]
+    assert (plain / "works" / f"{unlisted}.json").exists()  # included by R2 alone
+    granted = tmp_path / "granted" / "store"
+    shutil.copytree(plain, granted)
+
+    exclude = override_yaml(unlisted, "exclude")
+    (tmp_path / "exclude.yaml").write_text(exclude, encoding="utf-8")
+    (tmp_path / "grants.yaml").write_text(
+        exclude
+        + override_yaml(unlisted, "grant", "  raw: R01 GM086688\n  grant: NIH:R01GM086688\n")
+        + override_yaml(listed, "grant", "  raw: PGT121\n  grant: null\n"),
+        encoding="utf-8",
+    )
+    without = do_run(client, plain, day="2026-09-28", overrides=tmp_path / "exclude.yaml")
+    with_grants = do_run(client, granted, day="2026-09-28", overrides=tmp_path / "grants.yaml")
+
+    assert without.status == with_grants.status == "ok", (without.errors, with_grants.errors)
+    assert stored_data(granted) == stored_data(plain)
+    candidates = {line["id"]: line for line in io.read_jsonl(granted / "candidates.jsonl")}
+    assert candidates[unlisted]["reason"] == "override_exclude"
+    assert (granted / "works" / f"{listed}.json").exists()
+
+
+def funding_for(works: list[str]) -> dict[str, list[Any]]:
+    """A small, valid `store/funding/` over these works: each lists one NIH grant."""
+    key = "NIH:R01GM086688"
+    listed = {
+        "raw": "R01 GM086688",
+        "funders": ["NIGMS NIH HHS"],
+        "sources": ["pubmed"],
+        "first_seen": TODAY,
+        "last_seen": TODAY,
+        "outcome": "grant",
+        "grants": [key],
+        "method": "exact",
+        "note": None,
+    }
+    citations: list[Any] = [
+        {
+            "schema": 1,
+            "work": work,
+            "funding_version": "2026-09-21.1",
+            "strings": [listed],
+            "nih_links": [{"core": "R01GM086688", "grant": key, "first_seen": TODAY, "last_seen": TODAY}],
+            "jats_checked": {},
+            "grants": [key],
+        }
+        for work in works
+    ]
+    years = {"2009": 290000, "2010": 295000}
+    grant: Any = {
+        "schema": 1,
+        "key": key,
+        "agency": "NIGMS",
+        "family": "reporter",
+        "number": "R01GM086688",
+        "activity": "R01",
+        "category": "research",
+        "status": "resolved",
+        "scope": "project",
+        "scope_reason": None,
+        "title": "SAMPLE: RESEARCH PROJECT",
+        "pis": [],
+        "organization": None,
+        "start": "2009-04-01",
+        "end": "2019-03-31",
+        "facts": {
+            "reporter": {
+                "fiscal_years": years,
+                "application_types": ["1", "5"],
+                "first_support_year": 1,
+                "latest_appl_id": 8000001,
+            }
+        },
+        "amount": {
+            "usd": 585000,
+            "original": "585000",
+            "currency": "USD",
+            "rate": "1",
+            "rate_year": None,
+            "basis": "reporter_fiscal_years",
+            "source": "NIH RePORTER",
+        },
+        "flags": [],
+        "openalex_awards": [],
+        "first_seen": TODAY,
+        "checked": TODAY,
+    }
+    agencies: list[Any] = [
+        {
+            "schema": 1,
+            "code": code,
+            "name": name,
+            "short_name": code,
+            "parent": parent,
+            "group": "us_federal",
+            "country": "US",
+            "origin": origin,
+        }
+        for code, name, parent, origin in [
+            ("NIH", "National Institutes of Health", None, "config"),
+            ("NIGMS", "National Institute of General Medical Sciences", "NIH", "reporter"),
+        ]
+    ]
+    lookup: Any = {
+        "schema": 1,
+        "source": "reporter",
+        "query": "near_miss:P01:HL:000996",
+        "found": [],
+        "checked": TODAY,
+        "recheck_after": "2026-12-20",
+    }
+    return {
+        "citations.jsonl": io.sort_funding_citations(citations),
+        "grants.jsonl": io.sort_grants([grant]),
+        "lookups.jsonl": io.sort_funding_lookups([lookup]),
+        "agencies.jsonl": io.sort_agencies(agencies),
+    }
+
+
+def test_a_run_leaves_store_funding_as_it_was(client: HttpClient, tmp_path: Path) -> None:
+    """Until the funding stage exists, a run carries `funding/` through untouched (docs/09 §8.1).
+
+    Stage 0 and the gate validate it (invariants F1-F7) and stage 13 copies it; neither may change a
+    byte — the same day, or a week later, when the store's own dates move.
+    """
+    store = tmp_path / "store"
+    do_run(client, store)
+    works = sorted(path.stem for path in (store / "works").glob("W-*.json"))
+    for name, lines in funding_for(works).items():
+        io.write_jsonl(store / "funding" / name, lines)
+    before = {path.name: path.read_bytes() for path in sorted((store / "funding").iterdir())}
+    assert validate_store(store).counts["grants"] == 1
+
+    for day in (TODAY, "2026-09-28"):
+        result = do_run(client, store, day=day)
+        assert result.status == "ok", result.errors
+        assert {path.name: path.read_bytes() for path in sorted((store / "funding").iterdir())} == before
+    manifest = io.read_json(store / "runs" / f"{result.run_id}.json")
+    assert manifest["status"] == "ok"

@@ -1,0 +1,5 @@
+{"checked": "2026-09-26", "found": [], "query": "award:0659680", "recheck_after": "2026-12-25", "schema": 1, "source": "nsf"}
+{"checked": "2026-09-26", "found": [], "query": "award:G1000000007", "recheck_after": "2026-12-25", "schema": 1, "source": "openalex"}
+{"checked": "2026-09-26", "found": [], "query": "near_miss:R01:GM:122864", "recheck_after": "2026-12-25", "schema": 1, "source": "reporter"}
+{"checked": "2026-09-26", "found": ["DP3DK094352", "R01HL094352"], "query": "serial:094352", "recheck_after": null, "schema": 1, "source": "reporter"}
+{"checked": "2026-09-26", "found": [], "query": "award:NASA:NN13AJ12G", "recheck_after": "2026-12-25", "schema": 1, "source": "usaspending"}

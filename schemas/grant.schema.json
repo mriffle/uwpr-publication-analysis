@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/grant.schema.json",
+  "title": "One line of store/funding/grants.jsonl: a grant some included work lists (docs/09 §8.3)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "key", "agency", "family", "number", "activity", "category", "status", "scope",
+               "scope_reason", "title", "pis", "organization", "start", "end", "facts", "amount", "flags",
+               "openalex_awards", "first_seen", "checked"],
+  "properties": {
+    "schema": {"const": 1},
+    "key": {"$ref": "common.schema.json#/$defs/grantKey"},
+    "agency": {"description": "The most specific agency: an NIH grant's administering IC", "$ref": "common.schema.json#/$defs/agencyCode"},
+    "family": {
+      "description": "Which of docs/09 §8.2's families the key is in, which says where its facts and amount come from (§7.1)",
+      "enum": ["reporter", "nih_contract", "nih_task_order", "nsf", "us_federal", "agency", "openalex_funder", "miscellaneous"]
+    },
+    "number": {"description": "The display form (docs/09 §11.4)", "type": "string", "minLength": 1},
+    "activity": {"description": "An NIH activity code; null outside RePORTER", "oneOf": [{"type": "string", "pattern": "^[A-Z][A-Z0-9]{2}$"}, {"type": "null"}]},
+    "category": {"enum": ["research", "center", "training", "instrument", "contract", "other"]},
+    "status": {"enum": ["resolved", "unresolved"]},
+    "scope": {"enum": ["project", "institution-wide"]},
+    "scope_reason": {"type": ["string", "null"], "minLength": 1},
+    "title": {"type": ["string", "null"]},
+    "pis": {"type": "array", "items": {"$ref": "#/$defs/investigator"}},
+    "organization": {"type": ["string", "null"]},
+    "start": {"$ref": "#/$defs/dateOrYear"},
+    "end": {"$ref": "#/$defs/dateOrYear"},
+    "facts": {
+      "description": "The source's own numbers, one shape per source; the amount is recomputed from them every run (docs/09 §7.3)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reporter": {"$ref": "#/$defs/reporterFacts"},
+        "nsf": {"$ref": "#/$defs/nsfFacts"},
+        "usaspending": {"$ref": "#/$defs/usaspendingFacts"},
+        "openalex": {"type": "array", "items": {"$ref": "#/$defs/openalexAward"}}
+      }
+    },
+    "amount": {"oneOf": [{"$ref": "#/$defs/amount"}, {"type": "null"}]},
+    "flags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["active", "starts_before_fy1985", "starts_before_fy2008", "no_amount_reported",
+                         "amount_not_found", "amount_from_openalex", "amount_corrected", "amounts_disagree",
+                         "unconverted_currency", "rate_year_estimated"]}
+    },
+    "openalex_awards": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/openalexAwardId"}},
+    "first_seen": {"$ref": "common.schema.json#/$defs/date"},
+    "checked": {"description": "When the facts were last confirmed, under the 28-day rule", "$ref": "common.schema.json#/$defs/date"}
+  },
+  "allOf": [
+    {"if": {"properties": {"key": {"pattern": "^MISC:"}}},
+     "then": {"properties": {"status": {"const": "unresolved"}, "family": {"const": "miscellaneous"}, "amount": {"const": null}}}},
+    {"if": {"properties": {"status": {"const": "unresolved"}}},
+     "then": {"properties": {"key": {"pattern": "^MISC:"}}}},
+    {"if": {"properties": {"scope": {"const": "institution-wide"}}},
+     "then": {"properties": {"scope_reason": {"type": "string"}}},
+     "else": {"properties": {"scope_reason": {"const": null}}}}
+  ],
+  "$defs": {
+    "decimal": {"description": "A decimal number as a string, so no amount passes through a float", "type": "string", "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$"},
+    "nullableDecimal": {"oneOf": [{"$ref": "#/$defs/decimal"}, {"type": "null"}]},
+    "nullableDate": {"oneOf": [{"$ref": "common.schema.json#/$defs/date"}, {"type": "null"}]},
+    "dateOrYear": {
+      "description": "A date, or a year alone where the source gives only a year (OpenAlex)",
+      "oneOf": [{"type": "string", "pattern": "^[0-9]{4}(-[0-9]{2}-[0-9]{2})?$"}, {"type": "null"}]
+    },
+    "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+    "openalexAwardId": {"type": "string", "pattern": "^G[0-9]+$"},
+    "investigator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "id"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "id": {"description": "RePORTER's profile_id, as a string; null where the source gives no identifier", "type": ["string", "null"], "minLength": 1}
+      }
+    },
+    "reporterFacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fiscal_years", "application_types", "first_support_year", "latest_appl_id"],
+      "properties": {
+        "fiscal_years": {
+          "description": "Σ award_amount per fiscal year over parent rows only (the rows of the contract or the task order, for those); null for a year whose rows report no amount",
+          "type": "object",
+          "propertyNames": {"pattern": "^[0-9]{4}$"},
+          "additionalProperties": {"type": ["integer", "null"]}
+        },
+        "application_types": {"description": "The rows' application types", "type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[0-9]$"}},
+        "first_support_year": {"description": "The support year of the earliest row: above 1 in FY1985 means the grant began before RePORTER's amounts do", "type": ["integer", "null"], "minimum": 1},
+        "latest_appl_id": {"description": "For the project page link", "type": "integer", "minimum": 1}
+      }
+    },
+    "nsfFacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["estimated", "obligated", "exp_date", "program"],
+      "properties": {
+        "estimated": {"$ref": "#/$defs/nullableDecimal"},
+        "obligated": {"$ref": "#/$defs/nullableDecimal"},
+        "exp_date": {"$ref": "#/$defs/nullableDate"},
+        "program": {"type": ["string", "null"]}
+      }
+    },
+    "usaspendingFacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total_obligation", "type", "pop_start", "pop_end", "generated_id"],
+      "properties": {
+        "total_obligation": {"$ref": "#/$defs/nullableDecimal"},
+        "type": {"description": "The award type code (02-05 for grants)", "type": ["string", "null"]},
+        "pop_start": {"$ref": "#/$defs/nullableDate"},
+        "pop_end": {"$ref": "#/$defs/nullableDate"},
+        "generated_id": {"description": "generated_unique_award_id, for the award page link", "type": "string", "minLength": 1}
+      }
+    },
+    "openalexAward": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "amount", "currency", "provenance", "start_year"],
+      "properties": {
+        "id": {"$ref": "#/$defs/openalexAwardId"},
+        "amount": {"$ref": "#/$defs/nullableDecimal"},
+        "currency": {"oneOf": [{"$ref": "#/$defs/currency"}, {"type": "null"}]},
+        "provenance": {"type": ["string", "null"]},
+        "start_year": {"type": ["integer", "null"]}
+      }
+    },
+    "amount": {
+      "description": "Derived from facts every run (docs/09 §7). usd = round(original × rate), halves to even (invariant F6)",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["usd", "original", "currency", "rate", "rate_year", "basis", "source"],
+      "properties": {
+        "usd": {"description": "Whole US dollars; null only when the currency could not be converted", "type": ["integer", "null"]},
+        "original": {"$ref": "#/$defs/decimal"},
+        "currency": {"$ref": "#/$defs/currency"},
+        "rate": {"description": "US dollars per unit; null exactly when usd is", "$ref": "#/$defs/nullableDecimal"},
+        "rate_year": {"description": "The rate's year when converted; null for US dollars", "type": ["integer", "null"]},
+        "basis": {"enum": ["reporter_fiscal_years", "reporter_contract", "reporter_task_order", "nsf_obligated",
+                           "nsf_estimated", "usaspending_obligation", "openalex_amount"]},
+        "source": {"enum": ["NIH RePORTER", "NSF Award API", "USAspending", "OpenAlex"]}
+      },
+      "allOf": [
+        {"if": {"properties": {"usd": {"type": "null"}}}, "then": {"properties": {"rate": {"type": "null"}}}},
+        {"if": {"properties": {"rate": {"type": "null"}}}, "then": {"properties": {"usd": {"type": "null"}}}}
+      ]
+    }
+  }
+}

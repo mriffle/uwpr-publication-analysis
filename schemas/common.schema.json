@@ -21,6 +21,12 @@
     "listKey": {"type": "string", "pattern": "^list:[a-z0-9]+:[0-9a-f]{12}$"},
     "staffKey": {"enum": ["eng", "sharma", "riffle", "hoopmann", "vonhaller"]},
     "channel": {"enum": ["A", "B1", "B2", "C1", "C2", "D1", "D2", "D3", "E", "F", "G", "J"]},
+    "grantKey": {
+      "description": "docs/09 §8.2: a family prefix and one or two segments of uppercase letters and digits, so a key is safe in a path once URL-encoded and never ends like a file name",
+      "type": "string",
+      "pattern": "^(NIH-contract|[A-Z][A-Z0-9-]*)(:[A-Z0-9]+){1,2}$"
+    },
+    "agencyCode": {"type": "string", "pattern": "^[A-Z][A-Z0-9-]*$"},
 
     "ids": {
       "type": "object",

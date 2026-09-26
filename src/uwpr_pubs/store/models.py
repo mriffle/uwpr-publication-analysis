@@ -16,6 +16,9 @@ DateTime = str  # YYYY-MM-DDTHH:MM:SSZ
 RuleVersion = str  # YYYY-MM-DD.N
 CacheRef = str  # sha256:<64 hex>
 ListKey = str  # list:<page>:<12 hex>
+GrantKey = str  # NIH:R01GM086688, NIH-contract:HHSN272201700059C, USA:NASA:NNX14AJ87G (docs/09 §8.2)
+AgencyCode = str  # NIH, NIGMS, NSF, WT, F4320332161, MISC
+DecimalString = str  # "52843525", "0.1057207838": amounts never pass through a float
 
 StaffKey = Literal["eng", "sharma", "riffle", "hoopmann", "vonhaller"]
 Channel = Literal["A", "B1", "B2", "C1", "C2", "D1", "D2", "D3", "E", "F", "G", "J"]
@@ -424,8 +427,184 @@ class Generated(TypedDict):
 
 class Override(TypedDict):
     target: WorkId | list[WorkId]
-    action: Literal["include", "exclude", "merge", "split"]
+    action: Literal["include", "exclude", "merge", "split", "grant"]
     reason: str
     by: str
     date: Date
-    records: NotRequired[list[RecordId]]
+    records: NotRequired[list[RecordId]]  # split only
+    raw: NotRequired[str]  # grant only: the string as the work writes it (docs/09 §6.6)
+    grant: NotRequired[GrantKey | None]  # grant only: None means "not a grant"
+
+
+# --- store/funding/ (docs/09 §8) ----------------------------------------------------------------
+# Kept beside the work files, never in them, like metrics: no work file is rewritten when a grant's
+# amount moves. The vocabularies are docs/09's own (§8.3, §7.1, §11.4, §11.5).
+
+FundingSource = Literal["openalex", "crossref", "pubmed", "jats"]
+FundingOutcome = Literal["grant", "unresolved", "not_a_grant", "resource_code", "facility_contract"]
+FundingMethod = Literal[
+    "exact", "normalised", "corrected", "override", "agency_number", "openalex_award", "miscellaneous"
+]
+GrantFamily = Literal[
+    "reporter",  # NIH:, VA: and other RePORTER agencies' grants
+    "nih_contract",
+    "nih_task_order",
+    "nsf",
+    "us_federal",  # USA:<AGENCY>:…, amounts from USAspending
+    "agency",  # another configured agency
+    "openalex_funder",  # F<digits>:…, a funder learned from OpenAlex
+    "miscellaneous",  # MISC:…
+]
+GrantCategory = Literal["research", "center", "training", "instrument", "contract", "other"]
+GrantScope = Literal["project", "institution-wide"]
+GrantStatus = Literal["resolved", "unresolved"]
+GrantFlag = Literal[
+    "active",
+    "starts_before_fy1985",
+    "starts_before_fy2008",
+    "no_amount_reported",
+    "amount_not_found",
+    "amount_from_openalex",
+    "amount_corrected",
+    "amounts_disagree",
+    "unconverted_currency",
+    "rate_year_estimated",
+]
+AmountBasis = Literal[
+    "reporter_fiscal_years",
+    "reporter_contract",
+    "reporter_task_order",
+    "nsf_obligated",
+    "nsf_estimated",
+    "usaspending_obligation",
+    "openalex_amount",
+]
+AmountSource = Literal["NIH RePORTER", "NSF Award API", "USAspending", "OpenAlex"]
+LookupSource = Literal["reporter", "nsf", "usaspending", "openalex"]
+AgencyGroup = Literal["us_federal", "us_nonfederal", "non_us", "miscellaneous"]
+AgencyOrigin = Literal["reporter", "config", "openalex"]
+
+
+class FundingString(TypedDict):
+    raw: str
+    funders: list[str]
+    sources: list[FundingSource]
+    first_seen: Date
+    last_seen: Date
+    outcome: FundingOutcome
+    grants: list[GrantKey]
+    method: FundingMethod | None  # None for a resource code, a facility contract or a plain not-grant
+    note: str | None
+
+
+class NihLink(TypedDict):
+    core: str  # RePORTER's core_project_num, as it gives it
+    grant: GrantKey  # not always NIH:<core>: VA's grants and NIH's contracts are keyed otherwise
+    first_seen: Date
+    last_seen: Date
+
+
+class FundingCitation(TypedDict):
+    schema: Literal[1]
+    work: WorkId
+    funding_version: RuleVersion
+    strings: list[FundingString]
+    nih_links: list[NihLink]
+    jats_checked: dict[RecordId, Date]
+    grants: list[GrantKey]  # derived: the strings' grants and the links' (invariant F3)
+
+
+class Investigator(TypedDict):
+    name: str
+    id: str | None  # RePORTER's profile_id; None where the source has no identifier
+
+
+class ReporterFacts(TypedDict):
+    fiscal_years: dict[str, int | None]  # parent rows' Σ award_amount per year; None: rows, no amount
+    application_types: list[str]
+    first_support_year: int | None
+    latest_appl_id: int
+
+
+class NsfFacts(TypedDict):
+    estimated: DecimalString | None
+    obligated: DecimalString | None
+    exp_date: Date | None
+    program: str | None
+
+
+class UsaspendingFacts(TypedDict):
+    total_obligation: DecimalString | None
+    type: str | None
+    pop_start: Date | None
+    pop_end: Date | None
+    generated_id: str
+
+
+class OpenalexAward(TypedDict):
+    id: str  # G2073473589
+    amount: DecimalString | None
+    currency: str | None
+    provenance: str | None
+    start_year: int | None
+
+
+class GrantFacts(TypedDict, total=False):
+    reporter: ReporterFacts
+    nsf: NsfFacts
+    usaspending: UsaspendingFacts
+    openalex: list[OpenalexAward]
+
+
+class Amount(TypedDict):
+    usd: int | None  # None only for a currency no rate table covers
+    original: DecimalString
+    currency: str
+    rate: DecimalString | None  # US dollars per unit; None exactly when usd is
+    rate_year: int | None
+    basis: AmountBasis
+    source: AmountSource
+
+
+class Grant(TypedDict):
+    schema: Literal[1]
+    key: GrantKey
+    agency: AgencyCode
+    family: GrantFamily
+    number: str
+    activity: str | None
+    category: GrantCategory
+    status: GrantStatus
+    scope: GrantScope
+    scope_reason: str | None
+    title: str | None
+    pis: list[Investigator]
+    organization: str | None
+    start: str | None  # a date, or a year alone where the source gives only that
+    end: str | None
+    facts: GrantFacts
+    amount: Amount | None
+    flags: list[GrantFlag]
+    openalex_awards: list[str]
+    first_seen: Date
+    checked: Date
+
+
+class FundingLookup(TypedDict):
+    schema: Literal[1]
+    source: LookupSource
+    query: str
+    found: list[str]
+    checked: Date
+    recheck_after: Date | None
+
+
+class Agency(TypedDict):
+    schema: Literal[1]
+    code: AgencyCode
+    name: str
+    short_name: str | None
+    parent: AgencyCode | None
+    group: AgencyGroup
+    country: str | None
+    origin: AgencyOrigin

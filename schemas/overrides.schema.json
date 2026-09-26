@@ -12,16 +12,21 @@
         "description": "Work IDs only: the pipeline matches overrides by work ID, so a DOI or PMID would be ignored. `uwpr-pubs explain <DOI|PMID>` gives a paper's.",
         "type": ["string", "array"]
       },
-      "action": {"enum": ["include", "exclude", "merge", "split"]},
+      "action": {"enum": ["include", "exclude", "merge", "split", "grant"]},
       "reason": {"type": "string", "minLength": 1},
       "by": {"type": "string", "minLength": 1},
       "date": {"$ref": "common.schema.json#/$defs/date"},
-      "records": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/recordId"}, "minItems": 1}
+      "records": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/recordId"}, "minItems": 1},
+      "raw": {"description": "grant only: the string as the work writes it, matched ignoring case, spaces and dashes (docs/09 §6.6)", "type": "string", "minLength": 1},
+      "grant": {"description": "grant only: the grant it is, or null for 'not a grant'", "oneOf": [{"$ref": "common.schema.json#/$defs/grantKey"}, {"type": "null"}]}
     },
     "allOf": [
       {"if": {"properties": {"action": {"const": "merge"}}}, "then": {"properties": {"target": {"type": "array", "minItems": 2, "items": {"$ref": "common.schema.json#/$defs/workId"}}}}},
-      {"if": {"properties": {"action": {"enum": ["include", "exclude", "split"]}}}, "then": {"properties": {"target": {"$ref": "common.schema.json#/$defs/workId"}}}},
-      {"if": {"properties": {"action": {"const": "split"}}}, "then": {"required": ["records"]}}
+      {"if": {"properties": {"action": {"enum": ["include", "exclude", "split", "grant"]}}}, "then": {"properties": {"target": {"$ref": "common.schema.json#/$defs/workId"}}}},
+      {"if": {"properties": {"action": {"const": "split"}}}, "then": {"required": ["records"]}},
+      {"if": {"properties": {"action": {"const": "grant"}}},
+       "then": {"required": ["raw", "grant"]},
+       "else": {"not": {"anyOf": [{"required": ["raw"]}, {"required": ["grant"]}]}}}
     ]
   }
 }

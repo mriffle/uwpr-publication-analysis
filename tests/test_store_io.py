@@ -2,16 +2,20 @@
 
 import datetime as dt
 import json
+import random
+import shutil
 from pathlib import Path
+from typing import Any
 
 import pytest
 
 from uwpr_pubs.context import RunContext
 from uwpr_pubs.store import ids, io
 from uwpr_pubs.store.paths import StorePaths
-from uwpr_pubs.store.read import read_store
+from uwpr_pubs.store.read import FundingSnapshot, read_store
 
 SAMPLE = Path(__file__).resolve().parent.parent / "samples" / "store"
+FUNDING = Path(__file__).resolve().parent / "fixtures" / "funding"  # synthetic, over the sample's works
 
 
 def sample_files() -> list[Path]:
@@ -150,3 +154,138 @@ def test_sample_store_reads_into_typed_snapshot() -> None:
     assert latest is not None
     assert latest["mode"] == "sample"
     assert json.loads(json.dumps(snapshot.aliases))["work:W-000005"] == "W-000004"
+
+
+# --- store/funding/ (docs/09 §8) ----------------------------------------------------------------
+
+
+def funded_sample(tmp_path: Path) -> Path:
+    store = tmp_path / "store"
+    shutil.copytree(SAMPLE, store)
+    shutil.copytree(FUNDING, store / "funding")
+    return store
+
+
+SORTERS: dict[str, Any] = {
+    "citations.jsonl": io.sort_funding_citations,
+    "grants.jsonl": io.sort_grants,
+    "lookups.jsonl": io.sort_funding_lookups,
+    "agencies.jsonl": io.sort_agencies,
+}
+
+
+@pytest.mark.parametrize("name", sorted(SORTERS))
+def test_the_funding_fixture_round_trips_byte_identically(name: str) -> None:
+    """Read and write back, through the sorter the stage will write with (docs/02 §15)."""
+    original = (FUNDING / name).read_text(encoding="utf-8")
+    lines = io.read_jsonl(FUNDING / name)
+    assert io.canonical_jsonl(lines) == original
+    assert io.canonical_jsonl(SORTERS[name](lines)) == original
+
+
+def write_funding(paths: StorePaths, funding: FundingSnapshot) -> None:
+    io.write_jsonl(paths.funding_citations, io.sort_funding_citations(list(funding.citations.values())))
+    io.write_jsonl(paths.funding_grants, io.sort_grants(list(funding.grants.values())))
+    io.write_jsonl(paths.funding_lookups, io.sort_funding_lookups(list(funding.lookups.values())))
+    io.write_jsonl(paths.funding_agencies, io.sort_agencies(list(funding.agencies.values())))
+
+
+def test_funding_writes_then_reads_then_writes_the_same_bytes(tmp_path: Path) -> None:
+    """Through the typed snapshot, as the stage will: its dicts must lose nothing and add nothing."""
+    first = read_store(funded_sample(tmp_path)).funding
+    assert first.present
+    once = StorePaths(tmp_path / "once")
+    write_funding(once, first)
+    twice = StorePaths(tmp_path / "twice")
+    write_funding(twice, read_store(once.root).funding)
+    for name in SORTERS:
+        assert (once.funding / name).read_bytes() == (FUNDING / name).read_bytes(), name
+        assert (twice.funding / name).read_bytes() == (FUNDING / name).read_bytes(), name
+
+
+def shuffled(value: Any, rng: random.Random) -> Any:
+    """Every list at every depth in another order, as a stage building lines in any order gives."""
+    if isinstance(value, list):
+        items = [shuffled(item, rng) for item in value]
+        rng.shuffle(items)
+        return items
+    if isinstance(value, dict):
+        return {key: shuffled(item, rng) for key, item in value.items()}
+    return value
+
+
+@pytest.mark.parametrize("seed", range(5))
+def test_the_funding_sorters_put_everything_back_in_order(seed: int) -> None:
+    rng = random.Random(seed)  # noqa: S311 - a shuffle, not a secret
+    for name, sort in SORTERS.items():
+        lines = io.read_jsonl(FUNDING / name)
+        assert io.canonical_jsonl(sort(shuffled(lines, rng))) == (FUNDING / name).read_text(encoding="utf-8")
+
+
+def test_the_fixture_covers_what_the_store_must_hold() -> None:
+    """Every family of docs/09 §8.2, and every outcome and method of §8.3.
+
+    So a shape the resolver or the stage produces that this fixture never showed the schemas
+    fails where the fixture is, not in a weekly run.
+    """
+    grants = io.read_jsonl(FUNDING / "grants.jsonl")
+    strings = [s for line in io.read_jsonl(FUNDING / "citations.jsonl") for s in line["strings"]]
+    assert {g["family"] for g in grants} == {
+        "reporter",
+        "nih_contract",
+        "nih_task_order",
+        "nsf",
+        "us_federal",
+        "agency",
+        "openalex_funder",
+        "miscellaneous",
+    }
+    assert {s["outcome"] for s in strings} == {
+        "grant",
+        "unresolved",
+        "not_a_grant",
+        "resource_code",
+        "facility_contract",
+    }
+    assert {s["method"] for s in strings} == {
+        "exact",
+        "normalised",
+        "corrected",
+        "override",
+        "agency_number",
+        "openalex_award",
+        "miscellaneous",
+        None,
+    }
+    assert {g["key"].split(":")[0] for g in grants} >= {"NIH", "VA", "NIH-contract", "NSF", "USA", "MISC"}
+    assert any(g["key"].count(":") == 2 and g["family"] == "nih_task_order" for g in grants)
+    assert any(g["scope"] == "institution-wide" for g in grants)
+    assert any(g["amount"] is None for g in grants)
+    assert any(g["amount"] and g["amount"]["usd"] is None for g in grants)  # an unconverted currency
+    assert any(None in g["facts"].get("reporter", {}).get("fiscal_years", {}).values() for g in grants)
+    agencies = {a["code"]: a for a in io.read_jsonl(FUNDING / "agencies.jsonl")}
+    assert agencies["NIGMS"]["parent"] == "NIH"
+    assert agencies["NIH"]["parent"] is None
+
+
+def test_a_store_without_funding_reads_as_empty() -> None:
+    funding = read_store(SAMPLE).funding
+    assert funding == FundingSnapshot()
+    assert not funding.present
+
+
+def test_a_funded_store_reads_into_its_snapshot(tmp_path: Path) -> None:
+    funding = read_store(funded_sample(tmp_path)).funding
+    assert funding.present
+    assert len(funding.citations) == 12
+    assert funding.citations["W-000007"]["grants"] == ["NIH:P01HL092969", "NIH:P30DK017047"]
+    assert funding.grants["NIH:P30DK017047"]["amount"] is not None
+    assert funding.agencies["NIDDK"]["parent"] == "NIH"
+    assert ("reporter", "serial:094352") in funding.lookups
+
+
+def test_funding_files_are_carried_forward(tmp_path: Path) -> None:
+    """Until the funding stage exists to rewrite them, a run must not delete them (stage 13)."""
+    store = funded_sample(tmp_path)
+    carried = {path.relative_to(store) for path in StorePaths(store).carried_forward()}
+    assert {Path("funding") / name for name in SORTERS} <= carried

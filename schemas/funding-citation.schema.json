@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/funding-citation.schema.json",
+  "title": "One line of store/funding/citations.jsonl: the grants one included work lists (docs/09 §8.3)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "work", "funding_version", "strings", "nih_links", "jats_checked", "grants"],
+  "properties": {
+    "schema": {"const": 1},
+    "work": {"$ref": "common.schema.json#/$defs/workId"},
+    "funding_version": {"$ref": "common.schema.json#/$defs/ruleVersion"},
+    "strings": {"type": "array", "items": {"$ref": "#/$defs/string"}},
+    "nih_links": {"type": "array", "items": {"$ref": "#/$defs/nihLink"}},
+    "jats_checked": {
+      "description": "When each record's JATS was read for grant numbers: once per record (docs/09 F16)",
+      "type": "object",
+      "propertyNames": {"pattern": "^R-[0-9]{6}$"},
+      "additionalProperties": {"$ref": "common.schema.json#/$defs/date"}
+    },
+    "grants": {
+      "description": "Derived: the union of the strings' grants and the NIH links' grants (invariant F3)",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "common.schema.json#/$defs/grantKey"}
+    }
+  },
+  "$defs": {
+    "string": {
+      "description": "A string the sources attribute to the work, as written, and what it resolved to",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw", "funders", "sources", "first_seen", "last_seen", "outcome", "grants", "method", "note"],
+      "properties": {
+        "raw": {"type": "string", "minLength": 1},
+        "funders": {
+          "description": "The funders the sources name for it, as they name them",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["openalex", "crossref", "pubmed", "jats"]}
+        },
+        "first_seen": {"$ref": "common.schema.json#/$defs/date"},
+        "last_seen": {"$ref": "common.schema.json#/$defs/date"},
+        "outcome": {"enum": ["grant", "unresolved", "not_a_grant", "resource_code", "facility_contract"]},
+        "grants": {"type": "array", "uniqueItems": true, "items": {"$ref": "common.schema.json#/$defs/grantKey"}},
+        "method": {
+          "description": "How it resolved; null for a resource code, a facility contract, or a not-grant no override named",
+          "oneOf": [
+            {"enum": ["exact", "normalised", "corrected", "override", "agency_number", "openalex_award", "miscellaneous"]},
+            {"type": "null"}
+          ]
+        },
+        "note": {"type": ["string", "null"]}
+      },
+      "allOf": [
+        {"if": {"properties": {"outcome": {"const": "grant"}}},
+         "then": {"properties": {"grants": {"minItems": 1, "items": {"not": {"pattern": "^MISC:"}}},
+                                 "method": {"enum": ["exact", "normalised", "corrected", "override", "agency_number", "openalex_award"]}}}},
+        {"if": {"properties": {"outcome": {"const": "unresolved"}}},
+         "then": {"properties": {"grants": {"minItems": 1, "maxItems": 1, "items": {"pattern": "^MISC:"}},
+                                 "method": {"enum": ["miscellaneous", "override"]}}}},
+        {"if": {"properties": {"outcome": {"const": "not_a_grant"}}},
+         "then": {"properties": {"method": {"enum": ["override", null]}}}},
+        {"if": {"properties": {"outcome": {"enum": ["resource_code", "facility_contract"]}}},
+         "then": {"properties": {"method": {"const": null}}}}
+      ]
+    },
+    "nihLink": {
+      "description": "A RePORTER publication link: NIH's own statement that the grant supported this paper",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["core", "grant", "first_seen", "last_seen"],
+      "properties": {
+        "core": {"description": "RePORTER's core_project_num, as it gives it", "type": "string", "pattern": "^[A-Z0-9]+$"},
+        "grant": {"description": "The key it lists: VA's and contracts' keys are not NIH:<core>", "$ref": "common.schema.json#/$defs/grantKey"},
+        "first_seen": {"$ref": "common.schema.json#/$defs/date"},
+        "last_seen": {"$ref": "common.schema.json#/$defs/date"}
+      }
+    }
+  }
+}

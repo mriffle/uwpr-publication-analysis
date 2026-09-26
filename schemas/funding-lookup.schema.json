@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uwpr-pubs.local/schemas/funding-lookup.schema.json",
+  "title": "One line of store/funding/lookups.jsonl: a negative or ambiguous probe, so a miss is not asked again weekly (docs/09 §8.3)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "source", "query", "found", "checked", "recheck_after"],
+  "properties": {
+    "schema": {"const": 1},
+    "source": {"enum": ["reporter", "nsf", "usaspending", "openalex"]},
+    "query": {"description": "What was asked, in the stage's own notation (near_miss:P01:HL:000996)", "type": "string", "minLength": 1},
+    "found": {"description": "What the source answered: nothing, or more than one", "type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "checked": {"$ref": "common.schema.json#/$defs/date"},
+    "recheck_after": {
+      "description": "Moves only when the probe is repeated; null for an answer that will not change",
+      "oneOf": [{"$ref": "common.schema.json#/$defs/date"}, {"type": "null"}]
+    }
+  }
+}

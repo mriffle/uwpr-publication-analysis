@@ -4,18 +4,27 @@ Ported from the spec-phase `tools/validate_store.py` with the same checks, plus 
 missing or empty store is an error rather than a silent pass, malformed JSON is reported instead
 of raising, and the invariant pass never assumes a field the schema might have rejected, so schema
 errors are always printed.
+
+`store/funding/` has invariants of its own, F1-F7 (docs/09 §8.6). Each of their errors names its
+invariant ("invariant F4: …"), so neither a test nor a person can mistake one for the store's
+invariants 1-8, or for docs/09's decisions F1-F16. A store without `funding/` is checked exactly
+as before it existed.
 """
 
 import json
-from collections.abc import Mapping, Sequence
+import re
+import unicodedata
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field
+from decimal import ROUND_HALF_EVEN, Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
 import yaml
 
 from uwpr_pubs.export import build_summary
-from uwpr_pubs.schemas import schema_errors
+from uwpr_pubs.funding.overrides import override_match_key
+from uwpr_pubs.schemas import project_root, schema_errors
 from uwpr_pubs.store.ids import external_keys
 from uwpr_pubs.store.models import IncludedKind
 from uwpr_pubs.store.paths import StorePaths
@@ -73,7 +82,10 @@ def _check(name: str, instance: object, where: str, report: Report) -> bool:
     return not errors
 
 
-def validate_store(store: Path, overrides_path: Path | None = None) -> Report:  # noqa: PLR0912, PLR0915
+def validate_store(  # noqa: PLR0912, PLR0915
+    store: Path, overrides_path: Path | None = None, *, resource_code: str | None = None
+) -> Report:
+    """`resource_code` is `rules.r2.code`; left out, it is read from the project's `rules.yaml`."""
     paths = StorePaths(store)
     overrides_file = overrides_path if overrides_path else store.parent / "overrides.yaml"
     report = Report()
@@ -276,6 +288,11 @@ def validate_store(store: Path, overrides_path: Path | None = None) -> Report:  
                 # (changed 2026-09-20); after the run, the warning is gone.
                 report.warn("overrides", f"merge: {item} is not yet retired into {targets[0]}")
 
+    # store/funding/ (docs/09 §8.6): invariants F1-F7, then whether each grant override's string
+    # is on its work (§6.6)
+    citations = _validate_funding(paths, set(works), retired, resource_code, report)
+    _check_grant_overrides(overrides, citations, retired, report)
+
     # metrics and generated content refer to included works and their records
     for name, line in metrics:
         historical = name != "latest.jsonl"
@@ -294,6 +311,279 @@ def validate_store(store: Path, overrides_path: Path | None = None) -> Report:  
             report.error(f"{work_id}.generated.json", "generated content for a work that is not included")
 
     return report
+
+
+# --- store/funding/ (docs/09 §8.6) ------------------------------------------------------------
+
+Located = dict[Any, tuple[str, dict[str, Any]]]  # a line's identity -> (where it is, the line)
+NO_GRANT_OUTCOMES = frozenset({"resource_code", "facility_contract", "not_a_grant"})
+
+
+def _resource_code() -> str | None:
+    """`rules.r2.code`, read where it lives: the resource code is never written twice (docs/09 §4)."""
+    path = project_root() / "config" / "rules.yaml"
+    if not path.is_file():
+        return None
+    code = ((yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("r2") or {}).get("code")
+    return str(code) if code else None
+
+
+def _letters_and_digits(text: str) -> str:
+    return re.sub(r"[^A-Z0-9]", "", unicodedata.normalize("NFKC", text).upper())
+
+
+def _strings_of(values: object) -> set[str]:
+    """The strings in a list the schema may already have rejected, so hashing never raises."""
+    return {value for value in values if isinstance(value, str)} if isinstance(values, list) else set()
+
+
+def _dicts_of(values: object) -> list[dict[str, Any]]:
+    return [value for value in values if isinstance(value, dict)] if isinstance(values, list) else []
+
+
+def _hashable(value: object) -> object:
+    """An identity usable as a dict key, even from a line the schema has rejected."""
+    try:
+        hash(value)
+    except TypeError:
+        return json.dumps(value, sort_keys=True, ensure_ascii=False)
+    return value
+
+
+def _funding_lines(path: Path, schema: str, report: Report) -> list[tuple[str, dict[str, Any]]]:
+    """Invariant F1: every line parses and validates. Lines that are objects go on to F2-F7."""
+    rows: list[tuple[str, dict[str, Any]]] = []
+    if not path.exists():
+        return rows
+    for number, text in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not text.strip():
+            continue
+        where = f"funding/{path.name}:{number}"
+        try:
+            line = json.loads(text)
+        except json.JSONDecodeError as exc:
+            report.error(where, f"invariant F1: invalid JSON: {exc}")
+            continue
+        for message in schema_errors(schema, line):
+            report.error(where, f"invariant F1: {message}")
+        if isinstance(line, dict):
+            rows.append((where, line))
+    return rows
+
+
+def _one_line_each(
+    rows: Sequence[tuple[str, dict[str, Any]]],
+    identity: Callable[[dict[str, Any]], Any],
+    what: str,
+    report: Report,
+) -> Located:
+    """Invariant F1 again: one line per work, grant, probe or agency, or a lookup picks one."""
+    located: Located = {}
+    for where, line in rows:
+        key = _hashable(identity(line))
+        if key in located:
+            report.error(where, f"invariant F1: a second line for {what} {key} (first at {located[key][0]})")
+        else:
+            located[key] = (where, line)
+    return located
+
+
+def _validate_funding(
+    paths: StorePaths,
+    included: set[str],
+    retired: Mapping[str, str],
+    resource_code: str | None,
+    report: Report,
+) -> dict[str, dict[str, Any]] | None:
+    """Invariants F1-F7. Returns the citations lines by work, or None when there is no `funding/`."""
+    if not paths.funding.is_dir():
+        return None
+    citation_rows = _funding_lines(paths.funding_citations, "funding-citation", report)
+    grant_rows = _funding_lines(paths.funding_grants, "grant", report)
+    lookup_rows = _funding_lines(paths.funding_lookups, "funding-lookup", report)
+    agency_rows = _funding_lines(paths.funding_agencies, "agency", report)
+    report.counts.update(
+        {
+            "funding citations": len(citation_rows),
+            "grants": len(grant_rows),
+            "funding lookups": len(lookup_rows),
+            "agencies": len(agency_rows),
+        }
+    )
+    citations = _one_line_each(citation_rows, lambda line: line.get("work"), "work", report)
+    grants = _one_line_each(grant_rows, lambda line: line.get("key"), "grant", report)
+    _one_line_each(lookup_rows, lambda line: (line.get("source"), line.get("query")), "probe", report)
+    agencies = _one_line_each(agency_rows, lambda line: line.get("code"), "agency", report)
+
+    _check_citations(citations, included, retired, grants, report)
+    _check_agencies(grants, agencies, report)
+    _check_amounts(grants, report)
+    _check_no_grant_outcomes(citations, grants, resource_code or _resource_code(), report)
+    return {work: line for work, (_, line) in citations.items() if isinstance(work, str)}
+
+
+def _check_citations(
+    citations: Located, included: set[str], retired: Mapping[str, str], grants: Located, report: Report
+) -> None:
+    """Invariants F2, F3 and F4."""
+    listed: set[str] = set()
+    for work, (where, line) in citations.items():
+        # F2. A retired ID is an error, not a redirect: the stage moves a merged work's line onto
+        # the work that survives (docs/09 §8.1), so one left behind was never moved.
+        if work in retired:
+            report.error(where, f"invariant F2: {work} is a retired work ID, merged into {retired[work]}")
+        elif work not in included:
+            report.error(where, f"invariant F2: {work} is not an included work")
+        # F3: the line's grants are exactly what its strings and its NIH links list.
+        strings = _dicts_of(line.get("strings"))
+        from_strings = {key for string in strings for key in _strings_of(string.get("grants"))}
+        from_links = _strings_of([link.get("grant") for link in _dicts_of(line.get("nih_links"))])
+        stated = _strings_of(line.get("grants"))
+        if stated != from_strings | from_links:
+            report.error(
+                where,
+                f"invariant F3: {work}'s grants are not those of its strings and NIH links"
+                f" (missing {sorted((from_strings | from_links) - stated)},"
+                f" listed by no string or link {sorted(stated - from_strings - from_links)})",
+            )
+        # F4, first half: every key a work lists is a grant.
+        mine = stated | from_strings | from_links
+        listed |= mine
+        for key in sorted(mine - set(grants)):
+            report.error(where, f"invariant F4: {work} lists {key}, which grants.jsonl lacks")
+    # F4, second half: every grant is listed by some work.
+    for key, (where, _) in grants.items():
+        if key not in listed:
+            report.error(where, f"invariant F4: {key} is listed by no work")
+
+
+def _check_agencies(grants: Located, agencies: Located, report: Report) -> None:
+    """Invariant F5: every grant's agency, and every parent, is an agency; no chain loops."""
+    for key, (where, grant) in grants.items():
+        if _hashable(grant.get("agency")) not in agencies:
+            report.error(
+                where, f"invariant F5: {key}'s agency {grant.get('agency')} is not in agencies.jsonl"
+            )
+    for code, (where, agency) in agencies.items():
+        parent = _hashable(agency.get("parent"))
+        if parent is not None and parent not in agencies:
+            report.error(where, f"invariant F5: {code}'s parent {parent} is not in agencies.jsonl")
+    cycles: set[frozenset[Any]] = set()
+    for code in agencies:
+        chain: list[Any] = []
+        current = code
+        while current in agencies and current not in chain:
+            chain.append(current)
+            current = _hashable(agencies[current][1].get("parent"))
+        if current not in chain:
+            continue
+        cycle = chain[chain.index(current) :]
+        if frozenset(cycle) not in cycles:
+            cycles.add(frozenset(cycle))
+            path = " -> ".join(str(member) for member in [*cycle, current])
+            report.error(agencies[current][0], f"invariant F5: the agencies' parents form a cycle: {path}")
+
+
+def _check_amounts(grants: Located, report: Report) -> None:
+    """Invariant F6: an amount agrees with itself.
+
+    It reads no config, so editing the rates cannot turn committed data red (docs/09 §8.6): a new
+    rate changes the next run's amounts, not the validity of the last one's.
+    """
+    for key, (where, grant) in grants.items():
+        amount = grant.get("amount")
+        if not isinstance(amount, dict):
+            continue
+        usd, original, rate = amount.get("usd"), amount.get("original"), amount.get("rate")
+        if isinstance(usd, int) and isinstance(original, str) and isinstance(rate, str):
+            try:
+                converted = (Decimal(original) * Decimal(rate)).quantize(Decimal(1), rounding=ROUND_HALF_EVEN)
+            except InvalidOperation:
+                converted = None  # not a decimal, which invariant F1 has already said
+            if converted is not None and usd != int(converted):
+                report.error(
+                    where, f"invariant F6: {key}'s usd {usd} is not round({original} * {rate}) = {converted}"
+                )
+        if amount.get("basis") == "reporter_fiscal_years":
+            years = ((grant.get("facts") or {}).get("reporter") or {}).get("fiscal_years")
+            if not isinstance(years, dict):
+                report.error(where, f"invariant F6: {key}'s amount is by fiscal year, but it has none")
+                continue
+            total = sum(value for value in years.values() if isinstance(value, int))
+            if usd != total:
+                report.error(
+                    where, f"invariant F6: {key}'s usd {usd} is not the sum of its fiscal years, {total}"
+                )
+
+
+def _check_no_grant_outcomes(
+    citations: Located, grants: Located, resource_code: str | None, report: Report
+) -> None:
+    """Invariant F7: what is not a grant lists none, and the resource code is never a grant."""
+    for work, (where, line) in citations.items():
+        for string in _dicts_of(line.get("strings")):
+            listed = sorted(_strings_of(string.get("grants")))
+            if string.get("outcome") in NO_GRANT_OUTCOMES and listed:
+                outcome, raw = string.get("outcome"), string.get("raw")
+                report.error(where, f"invariant F7: {work}'s {outcome} string '{raw}' lists {listed}")
+    if not resource_code:
+        return
+    code = _letters_and_digits(resource_code)
+    for key, (where, grant) in grants.items():
+        for name in ("key", "number"):
+            value = grant.get(name)
+            if isinstance(value, str) and code in _letters_and_digits(value):
+                report.error(
+                    where, f"invariant F7: {key}'s {name} contains the resource code {resource_code}"
+                )
+
+
+def _check_grant_overrides(
+    overrides: Sequence[Mapping[str, Any]],
+    citations: Mapping[str, Mapping[str, Any]] | None,
+    retired: Mapping[str, str],
+    report: Report,
+) -> None:
+    """A grant override whose string its work does not show is a warning, like an unapplied merge.
+
+    That is the normal state between someone adding an override and the run that reads the
+    string, and after a source stops showing it. A store with no `funding/` has nowhere to look
+    yet (the real store, until the seed), which is said once rather than once per override. Two
+    overrides giving one string on one work different answers are an error: the stage can honour
+    only one of them.
+    """
+    entries = [
+        o
+        for o in overrides
+        if o.get("action") == "grant" and isinstance(o.get("target"), str) and isinstance(o.get("raw"), str)
+    ]
+    answers: dict[tuple[str, str], Any] = {}
+    for override in entries:
+        work = retired.get(override["target"], override["target"])
+        slot = (work, override_match_key(override["raw"]))
+        if slot in answers and answers[slot] != override.get("grant"):
+            report.error(
+                "overrides",
+                f"grant: two overrides for '{override['raw']}' on {work} disagree"
+                f" ({answers[slot]} and {override.get('grant')})",
+            )
+        answers.setdefault(slot, override.get("grant"))
+    if not entries:
+        return
+    if citations is None:
+        report.warn("overrides", f"{len(entries)} grant override(s) not checked: the store has no funding/")
+        return
+    for override in entries:
+        target = override["target"]
+        work = retired.get(target, target)
+        seen = {
+            override_match_key(string["raw"])
+            for string in _dicts_of((citations.get(work) or {}).get("strings"))
+            if isinstance(string.get("raw"), str)
+        }
+        if override_match_key(override["raw"]) not in seen:
+            merged = f" (merged into {work})" if work != target else ""
+            report.warn("overrides", f"grant override: '{override['raw']}' is not seen on {target}{merged}")
 
 
 def _check_aliases_resolve(lookup: Any, by_id: Mapping[str, Any], report: Report) -> None:

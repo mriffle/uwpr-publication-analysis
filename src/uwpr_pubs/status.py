@@ -11,6 +11,9 @@ from uwpr_pubs.evidence import active
 from uwpr_pubs.store.models import CandidateReason, Date, Evidence, IncludedKind
 
 INCLUDED_KINDS: frozenset[str] = frozenset(IncludedKind.__args__)  # type: ignore[attr-defined]
+# The overrides that decide status. Merge, split and grant overrides name works too, but say
+# nothing about whether one is included.
+STATUS_OVERRIDE_ACTIONS = frozenset({"include", "exclude"})
 
 
 @dataclass(frozen=True)

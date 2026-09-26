@@ -16,6 +16,7 @@ from referencing import Registry, Resource
 
 SCHEMA_BASE = "https://uwpr-pubs.local/schemas/"
 STORE_SCHEMAS = ("work", "candidate", "list-entry", "generated", "metrics", "run", "overrides", "aliases")
+FUNDING_SCHEMAS = ("funding-citation", "grant", "funding-lookup", "agency")  # store/funding/ (docs/09 §8.3)
 CONFIG_SCHEMAS = ("settings", "staff", "channels", "rules", "fixtures")
 
 

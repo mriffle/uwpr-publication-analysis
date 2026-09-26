@@ -11,12 +11,18 @@ import os
 import tempfile
 from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from uwpr_pubs.store.models import (
+    Agency,
     Candidate,
     Discovery,
     Evidence,
+    FundingCitation,
+    FundingLookup,
+    FundingString,
+    Grant,
+    GrantFacts,
     ListEntry,
     MetricsLine,
     Record,
@@ -105,3 +111,81 @@ def sort_entries(entries: Sequence[ListEntry]) -> list[ListEntry]:
 
 def sort_metrics(metrics: Sequence[MetricsLine]) -> list[MetricsLine]:
     return sorted(metrics, key=lambda m: (m["work"], m["record"]))
+
+
+# --- store/funding/ (docs/09 §8.3) ------------------------------------------------------------
+# Each sorter puts the lines in order *and* every array inside a line, so writing what one returns
+# is canonical whatever order the stage built things in. Nothing is dropped or merged: a duplicate
+# is the validator's to report (invariant F1), not the writer's to hide.
+
+
+def _json_key(value: object) -> str:
+    return json.dumps(value, sort_keys=True, ensure_ascii=False)
+
+
+def _canonical_string(string: FundingString) -> FundingString:
+    return cast(
+        FundingString,
+        {
+            **string,
+            "funders": sorted(string["funders"]),
+            "sources": sorted(string["sources"]),
+            "grants": sorted(string["grants"]),
+        },
+    )
+
+
+def _canonical_citation(line: FundingCitation) -> FundingCitation:
+    strings = [_canonical_string(s) for s in line["strings"]]
+    return cast(
+        FundingCitation,
+        {
+            **line,
+            "strings": sorted(strings, key=lambda s: (s["raw"], _json_key(s))),
+            "nih_links": sorted(line["nih_links"], key=lambda n: (n["core"], n["grant"], _json_key(n))),
+            "grants": sorted(line["grants"]),
+        },
+    )
+
+
+def _canonical_facts(facts: GrantFacts) -> GrantFacts:
+    canonical = cast(GrantFacts, dict(facts))
+    if "reporter" in facts:
+        reporter = facts["reporter"]
+        canonical["reporter"] = {**reporter, "application_types": sorted(reporter["application_types"])}
+    if "openalex" in facts:
+        canonical["openalex"] = sorted(facts["openalex"], key=lambda a: (a["id"], _json_key(a)))
+    return canonical
+
+
+def _canonical_grant(grant: Grant) -> Grant:
+    return cast(
+        Grant,
+        {
+            **grant,
+            "pis": sorted(grant["pis"], key=lambda p: (p["name"], p["id"] or "")),
+            "facts": _canonical_facts(grant["facts"]),
+            "flags": sorted(grant["flags"]),
+            "openalex_awards": sorted(grant["openalex_awards"]),
+        },
+    )
+
+
+def sort_funding_citations(lines: Sequence[FundingCitation]) -> list[FundingCitation]:
+    """By work; each line's strings by what they say, links by core, keys alphabetically."""
+    return sorted((_canonical_citation(line) for line in lines), key=lambda c: (c["work"], _json_key(c)))
+
+
+def sort_grants(grants: Sequence[Grant]) -> list[Grant]:
+    """By key; each grant's people by name, its flags and OpenAlex awards alphabetically."""
+    return sorted((_canonical_grant(grant) for grant in grants), key=lambda g: (g["key"], _json_key(g)))
+
+
+def sort_funding_lookups(lookups: Sequence[FundingLookup]) -> list[FundingLookup]:
+    """By source, then query; what each found, alphabetically."""
+    canonical = [cast(FundingLookup, {**lookup, "found": sorted(lookup["found"])}) for lookup in lookups]
+    return sorted(canonical, key=lambda f: (f["source"], f["query"], _json_key(f)))
+
+
+def sort_agencies(agencies: Sequence[Agency]) -> list[Agency]:
+    return sorted(agencies, key=lambda a: (a["code"], _json_key(a)))

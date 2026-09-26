@@ -5,6 +5,9 @@ metrics when a month turns over, run manifests accumulate, and a `.generated.jso
 only if something ever generates one. So stage 13 may delete only the work files of works that
 have left `works/`;
 everything else is carried forward. Getting this wrong would delete the audit trail.
+
+`funding/` (docs/09 §8.1) is carried forward too, byte for byte, until the funding stage (docs/09
+§9) exists to rewrite it.
 """
 
 from dataclasses import dataclass
@@ -54,6 +57,29 @@ class StorePaths:
     def runs(self) -> Path:
         return self.root / "runs"
 
+    @property
+    def funding(self) -> Path:
+        return self.root / "funding"
+
+    @property
+    def funding_citations(self) -> Path:
+        return self.funding / "citations.jsonl"
+
+    @property
+    def funding_grants(self) -> Path:
+        return self.funding / "grants.jsonl"
+
+    @property
+    def funding_lookups(self) -> Path:
+        return self.funding / "lookups.jsonl"
+
+    @property
+    def funding_agencies(self) -> Path:
+        return self.funding / "agencies.jsonl"
+
+    def funding_files(self) -> tuple[Path, Path, Path, Path]:
+        return (self.funding_citations, self.funding_grants, self.funding_lookups, self.funding_agencies)
+
     def work_file(self, work_id: str) -> Path:
         return self.works / f"{work_id}.json"
 
@@ -80,4 +106,5 @@ class StorePaths:
         kept.extend(sorted(self.runs.glob("*.json")))
         kept.extend(sorted(self.runs.glob("*.md")))
         kept.extend(sorted(self.works.glob(GENERATED_GLOB)))
+        kept.extend(path for path in self.funding_files() if path.exists())
         return kept

@@ -1,0 +1,14 @@
+{"code": "ANID", "country": "CL", "group": "non_us", "name": "Agencia Nacional de Investigación y Desarrollo", "origin": "config", "parent": null, "schema": 1, "short_name": "ANID"}
+{"code": "EU", "country": null, "group": "non_us", "name": "European Commission", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "F4320321001", "country": "CN", "group": "non_us", "name": "National Key Research and Development Program of China", "origin": "openalex", "parent": null, "schema": 1, "short_name": null}
+{"code": "F4320322085", "country": "HU", "group": "non_us", "name": "National Research, Development and Innovation Office", "origin": "openalex", "parent": null, "schema": 1, "short_name": null}
+{"code": "MISC", "country": null, "group": "miscellaneous", "name": "Miscellaneous", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "NASA", "country": "US", "group": "us_federal", "name": "National Aeronautics and Space Administration", "origin": "config", "parent": null, "schema": 1, "short_name": "NASA"}
+{"code": "NHLBI", "country": "US", "group": "us_federal", "name": "National Heart, Lung, and Blood Institute", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NHLBI"}
+{"code": "NIAID", "country": "US", "group": "us_federal", "name": "National Institute of Allergy and Infectious Diseases", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIAID"}
+{"code": "NIDDK", "country": "US", "group": "us_federal", "name": "National Institute of Diabetes and Digestive and Kidney Diseases", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIDDK"}
+{"code": "NIGMS", "country": "US", "group": "us_federal", "name": "National Institute of General Medical Sciences", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIGMS"}
+{"code": "NIH", "country": "US", "group": "us_federal", "name": "National Institutes of Health", "origin": "config", "parent": null, "schema": 1, "short_name": "NIH"}
+{"code": "NSF", "country": "US", "group": "us_federal", "name": "National Science Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": "NSF"}
+{"code": "VA", "country": "US", "group": "us_federal", "name": "Department of Veterans Affairs", "origin": "reporter", "parent": null, "schema": 1, "short_name": "VA"}
+{"code": "VR", "country": "SE", "group": "non_us", "name": "Swedish Research Council", "origin": "config", "parent": null, "schema": 1, "short_name": "VR"}

@@ -82,7 +82,7 @@ from uwpr_pubs.sources.openalex import OpenAlex
 from uwpr_pubs.sources.pride import Dataset, Pride
 from uwpr_pubs.sources.uwpr_site import UwprSite
 from uwpr_pubs.stages import export as export_stage
-from uwpr_pubs.status import Status, StatusInput, decide
+from uwpr_pubs.status import STATUS_OVERRIDE_ACTIONS, Status, StatusInput, decide
 from uwpr_pubs.store import io
 from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi, retired_key
 from uwpr_pubs.store.models import (
@@ -255,7 +255,9 @@ class Pipeline:
         store = self.options.store
         self._require_clean_store()
         if store.exists():
-            report = validate_store(store, overrides_path=_overrides_path(self.config))
+            report = validate_store(
+                store, overrides_path=_overrides_path(self.config), resource_code=self.resource_code
+            )
             if not report.ok and any("store is empty" not in e for e in report.errors):
                 raise RunFailureError(
                     "the committed store does not validate; fix it before running:\n  "
@@ -348,6 +350,11 @@ class Pipeline:
     @property
     def _refresh_days(self) -> int:
         return int(self.config.settings["last_seen_refresh_days"])
+
+    @property
+    def resource_code(self) -> str:
+        """`UWPR95794`: evidence of use (R2), and never a grant (docs/09 F1, invariant F7)."""
+        return str(self.config.rules["r2"]["code"])
 
     @staticmethod
     def _stored_text(line: Candidate) -> tuple[RecordId, FullText] | None:
@@ -1475,8 +1482,13 @@ class Pipeline:
     # --- stages 7 and 8 --------------------------------------------------------------------
 
     def decide_status(self) -> tuple[list[Work], list[Candidate], list[MetricsLine]]:
+        # Only the two actions status decides by. A `split` or `grant` override names a work too,
+        # and a map of every string target let whichever came last in the file stand for the
+        # work, so a grant override written after an exclude would have undone the exclusion.
         overrides = {
-            str(o["target"]): str(o["action"]) for o in self.config.overrides if isinstance(o["target"], str)
+            str(o["target"]): str(o["action"])
+            for o in self.config.overrides
+            if o["action"] in STATUS_OVERRIDE_ACTIONS and isinstance(o["target"], str)
         }
         # An include override is a reason, and is recorded as evidence like any other (docs/02 §9).
         # Without it a work included by override would carry no evidence at all, which the export
@@ -1726,7 +1738,9 @@ class Pipeline:
             if not monthly.exists():
                 io.write_jsonl(monthly, sorted_metrics)
 
-        report = validate_store(staging, overrides_path=_overrides_path(self.config))
+        report = validate_store(
+            staging, overrides_path=_overrides_path(self.config), resource_code=self.resource_code
+        )
         if not report.ok:
             raise RunFailureError(
                 "the new store does not validate, so nothing was written:\n  "

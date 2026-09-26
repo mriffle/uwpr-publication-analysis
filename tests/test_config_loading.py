@@ -170,8 +170,8 @@ def test_only_a_work_override_moves_the_overrides_fingerprint(config_dir: Path, 
 def test_an_override_of_another_kind_leaves_the_overrides_fingerprint_alone() -> None:
     """Include, exclude, merge and split decide which works exist, so only they re-read the text.
 
-    The schema accepts no other action yet. One added later, such as a per-work correction that
-    needs no text, must not make every record worth reading again.
+    A grant override (docs/09 §6.6) corrects what one string on one work is, and needs no text: it
+    must not make every record worth reading again.
     """
     exclude = cast(
         Override,
@@ -183,6 +183,46 @@ def test_an_override_of_another_kind_leaves_the_overrides_fingerprint_alone() ->
             "date": "2026-09-26",
         },
     )
-    other = cast(Override, {**exclude, "action": "grant"})
+    other = cast(Override, {**exclude, "action": "grant", "raw": "U19AG02312", "grant": "NIH:U19AG023122"})
     assert overrides_fingerprint([exclude, other]) == overrides_fingerprint([exclude])
     assert overrides_fingerprint([exclude]) != overrides_fingerprint([])
+
+
+def test_a_grant_override_loads_and_moves_only_the_config_fingerprint(tmp_path: Path) -> None:
+    """Recorded, so a run says what it ran with; but it re-reads nothing (docs/09 §8.5).
+
+    Appendix E.1's shape, loaded as a run loads it: `grant` may be a key or null.
+    """
+    overrides = tmp_path / "overrides.yaml"
+    exclude = (
+        "- target: W-000001\n  action: exclude\n  reason: 'Not UWPR work.'\n"
+        "  by: mriffle\n  date: 2026-09-26\n"
+    )
+    overrides.write_text(exclude, encoding="utf-8")
+    before = load_config(overrides_path=overrides)
+
+    overrides.write_text(
+        exclude + "- target: W-000222\n  action: grant\n  raw: U19AG02312\n  grant: NIH:U19AG023122\n"
+        "  reason: >-\n    The only RePORTER core one edit away.\n  by: mriffle\n  date: 2026-09-26\n"
+        "- target: W-000270\n  action: grant\n  raw: PGT121\n  grant: null\n"
+        "  reason: An HIV antibody.\n  by: mriffle\n  date: 2026-09-26\n",
+        encoding="utf-8",
+    )
+    after = load_config(overrides_path=overrides)
+
+    assert [o["action"] for o in after.overrides] == ["exclude", "grant", "grant"]
+    assert after.overrides[1]["grant"] == "NIH:U19AG023122"
+    assert after.overrides[2]["grant"] is None
+    assert after.overrides_fingerprint == before.overrides_fingerprint
+    assert after.config_fingerprint != before.config_fingerprint
+
+
+def test_a_grant_override_needs_its_string_and_its_grant(tmp_path: Path) -> None:
+    overrides = tmp_path / "overrides.yaml"
+    overrides.write_text(
+        "- target: W-000222\n  action: grant\n  grant: NIH:U19AG023122\n"
+        "  reason: Checked.\n  by: mriffle\n  date: 2026-09-26\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ConfigError, match=r"overrides\.yaml: schema: 0: 'raw' is a required property"):
+        load_config(overrides_path=overrides)
