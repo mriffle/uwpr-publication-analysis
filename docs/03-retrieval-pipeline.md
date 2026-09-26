@@ -97,6 +97,10 @@ was retired with it on 2026-09-20.
   so every stage that degrades on a source failure degrades on this one. An empty body carries no
   status, like a timeout, and smoke reads it as an outage; a body that is there but will not
   parse keeps its status, and reads as a problem.
+- *§11.1, uv is pinned to a minor version.* `setup-uv` installed the newest uv on every run, so a
+  uv release could change what the weekly run does with no commit here. `pyproject.toml` now
+  carries `[tool.uv] required-version = ">=0.12,<0.13"`, which `setup-uv` reads, and the
+  `uv_build` bound moves with it (docs/07, changed 2026-09-26).
 - *The floors sit about 10% below the live counts,* re-measured the same day. Two of them had
   equalled their live counts exactly (Crossref 63, Europe PMC 185), and a live index drifts down
   as well as up — OpenAlex's award count fell from 140 to 139 between 2026-09-21 and -26 — so one
@@ -589,7 +593,8 @@ from the finished store, so a run that fails at the gate still produces one (wri
 A fresh runner has only git and a system Python. Each workflow:
 
 1. `actions/checkout`
-2. `astral-sh/setup-uv` with its own dependency cache enabled
+2. `astral-sh/setup-uv` with its own dependency cache enabled, installing the newest uv that
+   `[tool.uv] required-version` in `pyproject.toml` allows
 3. `uv python install 3.12`
 4. `uv sync --locked --all-groups`, which creates `.venv` and fails if `uv.lock` is stale
 

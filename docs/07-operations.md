@@ -14,6 +14,16 @@ dated, and noted in this header.
   code, with a CI check that the committed export matches the committed store.
 - *§16, §9.1's missing-from-site list has nowhere to appear.* The run report has no such section;
   only the count exists, and only in the export.
+
+**Changed 2026-09-26, after the first dependency catch-up:**
+- *O8 and §11, Dependabot covers `uv.lock` too.* Dependabot has supported uv since this was
+  agreed, so the monthly by-hand review of the Python lockfile becomes Dependabot pull requests
+  like the npm and Actions ones, with the same insurance against §12's inactivity risk.
+- *§11, uv itself is pinned to a minor version* (`[tool.uv] required-version = ">=0.12,<0.13"` in
+  `pyproject.toml`). `setup-uv` had been installing the newest uv on every run, so a uv release
+  with breaking changes (0.12 had several) would have reached the weekly run unannounced; it now
+  installs the newest uv inside the range, and a local uv outside it refuses to run. A new uv
+  minor is taken deliberately (RUNBOOK §11).
 **Purpose:** define where this runs, how the app is published, how a failure becomes visible, and
 who is responsible when it does.
 **Depends on:** [03](03-retrieval-pipeline.md) (frozen), which already specifies the run, its
@@ -57,7 +67,7 @@ Agreed 2026-09-20.
 | O5 | **A bad data commit is fixed forward with an override, not reverted.** Reverting is reserved for a corrupted store and is the one genuinely dangerous operation here. | §8. Reverting can cause a permanent work ID to be re-minted against a different paper. |
 | O6 | **A major `schema_version` change ships the pipeline and the app together,** app first. | §10. |
 | O7 | **`RUNBOOK.md` is written before the schedule is relied upon**, and its rollback path is rehearsed once. | §13. An untested rollback is not a rollback. |
-| O8 | **Dependabot covers npm as well as Actions**, monthly. | §11, and it incidentally mitigates §12's inactivity risk. |
+| O8 | **Dependabot covers npm and uv as well as Actions**, monthly (uv added 2026-09-26). | §11, and it incidentally mitigates §12's inactivity risk. |
 
 ## 3. The weekly data update
 
@@ -278,7 +288,7 @@ the app has not accounted for fails the build rather than reaching the page.
 | UWPR changes its acknowledgement wording or identifier | Update `rules.yaml`; **old terms are kept forever**, since old papers keep the old wording |
 | UWPR's publications page changes structure | The parser breaks loudly: every page must yield entries and the total may not fall more than 10%. Fix the parser; the page snapshots in `official_list/pages/` show what changed |
 | A source API changes | `uwpr-pubs smoke` catches it at the start of the run, before anything is written |
-| Dependencies | Dependabot monthly for Actions and npm (O8); `uv.lock` reviewed at the same time |
+| Dependencies | Dependabot monthly for Actions, npm and `uv.lock` (O8); uv's own minor version moved by hand (RUNBOOK §11) |
 | Annual | Re-read the open items in each spec; confirm the recall baseline still reflects reality; confirm notification routing still works |
 
 ## 12. Risks

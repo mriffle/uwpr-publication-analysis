@@ -57,7 +57,7 @@ in `docs/archive/`.
 
 ## Commands
 
-`pyproject.toml` + `uv.lock` define the `uwpr_pubs` package (in `src/`) and its tools. `uv sync` creates `.venv` (Python 3.12, from `.python-version`):
+`pyproject.toml` + `uv.lock` define the `uwpr_pubs` package (in `src/`) and its tools. uv is pinned to 0.12.x (`[tool.uv] required-version`; an older uv refuses to run). `uv sync` creates `.venv` (Python 3.12, from `.python-version`):
 
 ```
 uv sync --locked --all-groups                                  # setup; fails if uv.lock is stale

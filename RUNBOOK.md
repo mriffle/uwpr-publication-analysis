@@ -386,13 +386,18 @@ Ten minutes, reading the latest run report (§3):
 - Status, spend and duration.
 - **The channel table first.** Then recall against 82%, then the per-rule counts.
 - Anything under Degradations.
-- Dependabot's pull requests — Actions and npm, monthly. Merging them is also what keeps the
-  repository looking active to GitHub, which is part of what keeps the schedule running
-  (docs/07 §12). Review `uv.lock` at the same time. A green check does not prove an npm bump is
-  safe: `npm ci` installs the lockfile as it stands and ignores a peer-dependency conflict, so
-  also run `npm install --package-lock-only --ignore-scripts` on the branch, which fails with
-  `ERESOLVE` if the bump breaks a peer. Some majors are held back on purpose in
-  `.github/dependabot.yml`, each with its reason; remove an entry when its reason goes away.
+- Dependabot's pull requests — Actions, npm and `uv.lock`, monthly. Merging them is also what
+  keeps the repository looking active to GitHub, which is part of what keeps the schedule running
+  (docs/07 §12). A green check does not prove an npm bump is safe: `npm ci` installs the lockfile
+  as it stands and ignores a peer-dependency conflict, so also run
+  `npm install --package-lock-only --ignore-scripts` on the branch, which fails with `ERESOLVE` if
+  the bump breaks a peer. Some majors are held back on purpose in `.github/dependabot.yml`, each
+  with its reason; remove an entry when its reason goes away.
+- **uv itself is not in those pull requests.** Its minor version is pinned by
+  `[tool.uv] required-version` in `pyproject.toml`, which CI's `setup-uv` reads. When a new minor
+  appears (`uv self update --dry-run`, or `brew info uv`), read its release notes for breaking
+  changes, then move `required-version` and the `uv_build` bound in `[build-system]` together,
+  upgrade uv locally, and run `uv sync --locked --all-groups` and the checks before pushing.
 
 ## 12. Once a year
 

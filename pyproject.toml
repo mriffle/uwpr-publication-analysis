@@ -30,6 +30,12 @@ dev = [
 requires = ["uv_build>=0.11.30,<0.13"]
 build-backend = "uv_build"
 
+[tool.uv]
+# uv refuses to run outside this range, and CI's setup-uv installs the newest uv inside it, so a new
+# uv minor (0.12 had breaking changes) is adopted by editing this line, not by whichever weekly run
+# happens to start after its release. Move it together with the uv_build bound in [build-system].
+required-version = ">=0.12,<0.13"
+
 [tool.ruff]
 line-length = 110
 target-version = "py312"
