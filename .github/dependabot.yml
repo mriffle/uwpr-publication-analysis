@@ -28,6 +28,10 @@ updates:
         versions: [">=10"]
       - dependency-name: "@eslint/js"
         versions: [">=10"]
+      # typescript-eslint (8.70.1, the latest) supports typescript < 6.1.0, so TypeScript 7 (#11)
+      # failed `npm ci` with ERESOLVE. Remove this when typescript-eslint's peer range widens.
+      - dependency-name: "typescript"
+        versions: [">=6.1"]
     groups:
       # Released together from one repository, and @eslint/js N declares a peer on eslint N.
       eslint:
