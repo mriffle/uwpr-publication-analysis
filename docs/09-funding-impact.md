@@ -80,7 +80,8 @@ plan. [08](08-implementation.md) records them as they are built.
     (`tests/test_funding_appendix_f.py` lists them, each with its reason); the report lists every
     one, for an override. The registry's other "NSF"s, the National Sleep Foundation and Norway's
     nurses' union, which publishers chose for NSF's own numbers, are configured under NSF, whose
-    API still decides.
+    API still decides. *Amended by B3a, below: for agencies other than NIH, HHS and PHS, a whole
+    name given without an ID now names the agency, and 4 of the 15 rows remain.*
   - **A Miscellaneous key** keeps an NIH-format string's written number without type or suffix
     (`MISC:R01GM122864`), and otherwise the letters and digits left once labels are stripped; every
     key segment is folded to ASCII (`ÚNKP-21-3` is `NKFIH:UNKP213`).
@@ -98,6 +99,33 @@ plan. [08](08-implementation.md) records them as they are built.
     RM, CM and HV, the VA's BX, CX, HX and RX, and AHRQ's HS; not CDC's.
   - **Rates:** G.5A's Venezuelan bolívar is left out, because one series spans four currencies
     (VEB, VEF, VES, VED); the other 22 of G.5A's 23 have 1999-2025 (§5.10, Appendix D).
+- *2026-09-26, B3a — a whole funder name, where its source gives no ID, names a non-NIH agency.*
+  B3's ID-only attribution sent 15 of Appendix F's 270 rows to Miscellaneous on some work, 11 of
+  them because the only source naming their funder is a Crossref funder entry with no registry
+  DOI: Washington Sea Grant's `NA14OAR4170078` and the EU consortia `823839` and `115760`, all on
+  Appendix B, NSF's `OCE 1633939`, and grants of funders not configured at all. **An agency may
+  now carry `funder_names`** (§8.4): patterns matched against the whole of a funder's name — NFKC,
+  casefolded, whitespace collapsed, the punctuation around it trimmed — never a part of it, and
+  only for a sighting that carries no funder ID; a name given beside an ID is ignored, and the ID
+  decides. An agency named so counts exactly as one named by ID, in planning and in resolving,
+  and §6.4's several-funders rule applies unchanged. **NIH, HHS and PHS never have them**, and the
+  schema and the rules both refuse them: a name pattern is what once swept USDA numbers into NIH
+  (§6.4), and an NIH-format number is NIH's whatever is named. Names are configured for NSF, NOAA
+  (Washington Sea Grant), the EU (the Commission's H2020 programme, EPIC-XS and IMI's ZAPI) and
+  UW's Royalty Research Fund, and four agencies are configured by name alone, amounts from
+  OpenAlex: the Chinese University of Hong Kong, Hong Kong's Research Grants Council (with the
+  UGC's Area of Excellence scheme, the research's "RGC/UGC"), the Hawaii State Department of
+  Health and DLR. Every pattern is tested against look-alikes — the Swiss National Science
+  Foundation, the National Natural Science Foundation of China, CUHK-Shenzhen, DLR's
+  Projektträger, India's University Grants Commission — and against every other configured
+  agency's name. Under the sources' own attribution, **the rows that differ from their agency's
+  keys fall from 15 to 4**: CIHR's `PJT-206152` (Crossref gives CIHR's ROR alone, with no name),
+  IMI's `115766` (OpenAlex names only Genome Canada, Ontario Genomics and EFPIA), NSF's
+  `IOS-1922541` (PubMed's agency is an investigator's name) and `1097737` (Wellcome and CIHR both
+  named, neither pattern deciding). Nothing else moves: resolved with the names taken out, every
+  string on every work is as B3 left it, and exactly 11 strings move, one for each of the 11
+  rows, each from a Miscellaneous key to its agency's one key. Appendix A's 187 cases pass as
+  before, and Appendix F's rows still come to 267 keys; `funding_version` is `2026-09-26.2`.
 
 ---
 
@@ -714,7 +742,9 @@ number (activity code, IC and serial). Otherwise it continues to step 7 under th
 sources name. Match NIH attribution on **funder IDs** (OpenAlex funder, Crossref funder DOI) and
 PubMed's `Agency`, not on a name pattern: the research's name pattern "national institute(s) of"
 also caught the National Institute of Food and Agriculture, and two USDA numbers (`1008590`,
-`80622200002120`) went into the NIH pass by mistake.
+`80622200002120`) went into the NIH pass by mistake. *Another agency may also be named by a funder
+name its source gives without an ID, when the whole name matches one of the agency's
+`funder_names` patterns; NIH, HHS and PHS have none (B3a, header).*
 
 **When a string's sources name several funders** and NIH has declined it, the non-NIH agency
 named decides. If more than one configured agency is named, the one whose configured number
@@ -1050,8 +1080,8 @@ nih:
   phase_pairs: [[K99, R00], [R21, R33], [R61, R33], [UH2, UH3], [UG3, UH3], [R01, R37]]
   categories: {…}                   # activity code → category (§11.4)
 agencies:                           # {code, name, group, country, openalex_funders, crossref_funder_dois,
-  - …                               #  pubmed_agency_patterns, number_prefixes, number_pattern,
-                                    #  year_prefix, amount_source}
+  - …                               #  pubmed_agency_patterns, funder_names, number_prefixes,
+                                    #  number_pattern, year_prefix, amount_source}
 facility_contracts: [{number, tails, reason}, …]   # plus the DE-AC pattern
 institution_wide: {keys: [{key, reason}, …], nsf_programmes: [GRFP, STC]}
 not_grants: [{pattern | string, reason}, …]
