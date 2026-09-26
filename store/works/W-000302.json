@@ -67,7 +67,7 @@
       "last_seen": "2026-09-26",
       "record": "R-000302",
       "rule": "R1",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "official list",
       "source": {
         "cache": null,
@@ -87,7 +87,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000302",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:d612383539b3128bf82b7bed8e833f42658ca621043b9f41bb02bd15a1d520dd",
@@ -107,7 +107,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000302",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "funding",
       "source": {
         "cache": "sha256:d612383539b3128bf82b7bed8e833f42658ca621043b9f41bb02bd15a1d520dd",
@@ -127,7 +127,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000302",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -147,7 +147,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000302",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -165,7 +165,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000302",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:d612383539b3128bf82b7bed8e833f42658ca621043b9f41bb02bd15a1d520dd",
@@ -366,7 +366,7 @@
       ],
       "fulltext": {
         "cache": "sha256:d612383539b3128bf82b7bed8e833f42658ca621043b9f41bb02bd15a1d520dd",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -421,7 +421,7 @@
       "year": 2024
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

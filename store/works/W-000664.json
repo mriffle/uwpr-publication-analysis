@@ -20,7 +20,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000664",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:a59ab86bd0b9a3a429d53dc6442177baa5e640eb1f0d78a1520ffc4e5501815e",
@@ -470,7 +470,7 @@
       ],
       "fulltext": {
         "cache": "sha256:a59ab86bd0b9a3a429d53dc6442177baa5e640eb1f0d78a1520ffc4e5501815e",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -525,7 +525,7 @@
       "year": 2010
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

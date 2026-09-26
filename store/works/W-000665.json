@@ -32,7 +32,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000665",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:254b7f06e95374ea15e4a64bc301bad66e7440ee365d7248110e751797c1568b",
@@ -293,7 +293,7 @@
       ],
       "fulltext": {
         "cache": "sha256:254b7f06e95374ea15e4a64bc301bad66e7440ee365d7248110e751797c1568b",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -348,7 +348,7 @@
       "year": 2017
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

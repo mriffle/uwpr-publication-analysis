@@ -22,7 +22,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000843",
       "rule": "R7",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:4c405dd9afd6e19522466b789714affc872050d04e43c7e02a60a6ca5725ee92",
@@ -130,7 +130,7 @@
       ],
       "fulltext": {
         "cache": "sha256:4c405dd9afd6e19522466b789714affc872050d04e43c7e02a60a6ca5725ee92",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -185,7 +185,7 @@
       "year": 2020
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

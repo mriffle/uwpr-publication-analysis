@@ -43,7 +43,7 @@
       "last_seen": "2026-09-26",
       "record": "R-000316",
       "rule": "R1",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "official list",
       "source": {
         "cache": null,
@@ -63,7 +63,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000316",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:26946b6a751aa6a3b1850ef5c0f7657f48451f8517a9c6f80e307cc1a39e0f50",
@@ -83,7 +83,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000316",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "funding",
       "source": {
         "cache": "sha256:26946b6a751aa6a3b1850ef5c0f7657f48451f8517a9c6f80e307cc1a39e0f50",
@@ -103,7 +103,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000316",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -121,7 +121,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000316",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:26946b6a751aa6a3b1850ef5c0f7657f48451f8517a9c6f80e307cc1a39e0f50",
@@ -139,7 +139,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000316",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "funding",
       "source": {
         "cache": "sha256:26946b6a751aa6a3b1850ef5c0f7657f48451f8517a9c6f80e307cc1a39e0f50",
@@ -298,7 +298,7 @@
       ],
       "fulltext": {
         "cache": "sha256:26946b6a751aa6a3b1850ef5c0f7657f48451f8517a9c6f80e307cc1a39e0f50",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -353,7 +353,7 @@
       "year": 2025
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

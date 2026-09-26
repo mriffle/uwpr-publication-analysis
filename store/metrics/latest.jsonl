@@ -207,6 +207,7 @@
 {"citation_percentile": 0.79827002, "cited_by": 13, "cites_by_year": {"2020": 4, "2021": 1, "2022": 4, "2023": 1, "2024": 2, "2026": 1}, "date": "2026-09-26", "fwci": 1.2976, "record": "R-000236", "schema": 1, "source": "OpenAlex", "work": "W-000236"}
 {"citation_percentile": 0.80047535, "cited_by": 27, "cites_by_year": {"2020": 2, "2021": 6, "2022": 2, "2023": 8, "2024": 5, "2025": 3, "2026": 1}, "date": "2026-09-26", "fwci": 1.3591, "record": "R-000237", "schema": 1, "source": "OpenAlex", "work": "W-000237"}
 {"citation_percentile": null, "cited_by": 0, "cites_by_year": {}, "date": "2026-09-26", "fwci": null, "record": "R-000745", "schema": 1, "source": "OpenAlex", "work": "W-000237"}
+{"citation_percentile": null, "cited_by": 0, "cites_by_year": {}, "date": "2026-09-26", "fwci": null, "record": "R-000746", "schema": 1, "source": "OpenAlex", "work": "W-000237"}
 {"citation_percentile": 0.8350921, "cited_by": 39, "cites_by_year": {"2020": 1, "2021": 6, "2022": 6, "2023": 5, "2024": 9, "2025": 5, "2026": 7}, "date": "2026-09-26", "fwci": 1.3948, "record": "R-000238", "schema": 1, "source": "OpenAlex", "work": "W-000238"}
 {"citation_percentile": 0.67668601, "cited_by": 19, "cites_by_year": {"2020": 1, "2021": 5, "2022": 3, "2023": 1, "2024": 2, "2025": 4, "2026": 3}, "date": "2026-09-26", "fwci": 0.755, "record": "R-000239", "schema": 1, "source": "OpenAlex", "work": "W-000239"}
 {"citation_percentile": 0.52172055, "cited_by": 12, "cites_by_year": {"2019": 1, "2021": 1, "2022": 1, "2023": 2, "2024": 2, "2025": 2, "2026": 3}, "date": "2026-09-26", "fwci": 0.3338, "record": "R-000240", "schema": 1, "source": "OpenAlex", "work": "W-000240"}
@@ -364,7 +365,6 @@
 {"citation_percentile": null, "cited_by": 1, "cites_by_year": {"2024": 1}, "date": "2026-09-26", "fwci": null, "record": "R-000731", "schema": 1, "source": "OpenAlex", "work": "W-000731"}
 {"citation_percentile": 0.46299948, "cited_by": 1, "cites_by_year": {"2025": 1}, "date": "2026-09-26", "fwci": 0.1499, "record": "R-000770", "schema": 1, "source": "OpenAlex", "work": "W-000731"}
 {"citation_percentile": 0.12197148, "cited_by": 0, "cites_by_year": {}, "date": "2026-09-26", "fwci": 0.0, "record": "R-000738", "schema": 1, "source": "OpenAlex", "work": "W-000738"}
-{"citation_percentile": null, "cited_by": 0, "cites_by_year": {}, "date": "2026-09-26", "fwci": null, "record": "R-000746", "schema": 1, "source": "OpenAlex", "work": "W-000746"}
 {"citation_percentile": 0.49400558, "cited_by": 6, "cites_by_year": {"2022": 1, "2023": 1, "2024": 1, "2025": 2, "2026": 1}, "date": "2026-09-26", "fwci": 0.4723, "record": "R-000757", "schema": 1, "source": "OpenAlex", "work": "W-000757"}
 {"citation_percentile": 0.89752514, "cited_by": 21, "cites_by_year": {"2023": 4, "2024": 8, "2025": 6, "2026": 3}, "date": "2026-09-26", "fwci": 2.7378, "record": "R-000758", "schema": 1, "source": "OpenAlex", "work": "W-000758"}
 {"citation_percentile": 0.74454625, "cited_by": 2, "cites_by_year": {"2014": 1, "2020": 1}, "date": "2026-09-26", "fwci": 0.3881, "record": "R-000787", "schema": 1, "source": "OpenAlex", "work": "W-000787"}

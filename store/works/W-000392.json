@@ -66,7 +66,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000392",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:deb3bebf43daee2dd416718a13c50d5cab7a255620ab693c5a7d31ad5618c1a5",
@@ -86,7 +86,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000392",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -106,7 +106,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000593",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -124,7 +124,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000392",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:deb3bebf43daee2dd416718a13c50d5cab7a255620ab693c5a7d31ad5618c1a5",
@@ -145,7 +145,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000593",
       "rule": "R6",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "full-text index",
       "source": {
         "cache": null,
@@ -166,7 +166,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000593",
       "rule": "R6",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "full-text index",
       "source": {
         "cache": null,
@@ -424,7 +424,7 @@
       ],
       "fulltext": {
         "cache": "sha256:deb3bebf43daee2dd416718a13c50d5cab7a255620ab693c5a7d31ad5618c1a5",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -724,8 +724,8 @@
       ],
       "fulltext": {
         "cache": null,
-        "checked": "2026-09-20",
-        "recheck_after": "2026-12-19",
+        "checked": "2026-09-26",
+        "recheck_after": "2026-12-25",
         "status": "unavailable"
       },
       "id": "R-000593",
@@ -782,7 +782,7 @@
       "year": 2023
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

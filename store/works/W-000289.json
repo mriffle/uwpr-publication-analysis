@@ -57,7 +57,7 @@
       "last_seen": "2026-09-26",
       "record": "R-000289",
       "rule": "R1",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "official list",
       "source": {
         "cache": null,
@@ -77,7 +77,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000289",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:7332023cc9d36334e4e2eef73073beee94a53c6785f5366732c5f0898d5f8d40",
@@ -97,7 +97,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000666",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:90225d6455574dae6bd05554f2e048e96422319a5b6365c8652bd0fcc2f0f82c",
@@ -117,7 +117,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000666",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -137,7 +137,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000289",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:7332023cc9d36334e4e2eef73073beee94a53c6785f5366732c5f0898d5f8d40",
@@ -155,7 +155,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000666",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:90225d6455574dae6bd05554f2e048e96422319a5b6365c8652bd0fcc2f0f82c",
@@ -175,7 +175,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000289",
       "rule": "R7",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:7332023cc9d36334e4e2eef73073beee94a53c6785f5366732c5f0898d5f8d40",
@@ -547,7 +547,7 @@
       ],
       "fulltext": {
         "cache": "sha256:90225d6455574dae6bd05554f2e048e96422319a5b6365c8652bd0fcc2f0f82c",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -943,7 +943,7 @@
       ],
       "fulltext": {
         "cache": "sha256:7332023cc9d36334e4e2eef73073beee94a53c6785f5366732c5f0898d5f8d40",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -1001,7 +1001,7 @@
       "year": 2023
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

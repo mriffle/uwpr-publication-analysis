@@ -49,7 +49,7 @@
       "last_seen": "2026-09-26",
       "record": "R-000186",
       "rule": "R1",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "official list",
       "source": {
         "cache": null,
@@ -69,7 +69,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000186",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -90,7 +90,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000186",
       "rule": "R6",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "full-text index",
       "source": {
         "cache": null,
@@ -204,8 +204,8 @@
       ],
       "fulltext": {
         "cache": null,
-        "checked": "2026-09-20",
-        "recheck_after": "2026-12-19",
+        "checked": "2026-09-26",
+        "recheck_after": "2026-12-25",
         "status": "unavailable"
       },
       "id": "R-000186",
@@ -259,7 +259,7 @@
       "year": 2017
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

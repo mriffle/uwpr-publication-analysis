@@ -55,7 +55,7 @@
       "last_seen": "2026-09-26",
       "record": "R-000205",
       "rule": "R1",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "official list",
       "source": {
         "cache": null,
@@ -75,7 +75,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000205",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:187a1423837f567499e5ae5980cc6554e791fcefec062a206526547867cc9cae",
@@ -102,6 +102,30 @@
         "name": "PMC",
         "retrieved": "2026-09-20",
         "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6379364/"
+      },
+      "superseded": {
+        "by_rule_version": "2026-09-26.1",
+        "date": "2026-09-26"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "match": "text"
+      },
+      "excerpt": "University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-26",
+      "label": "UWPR award code (UWPR95794) stated in the paper",
+      "last_seen": "2026-09-26",
+      "record": "R-000205",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:187a1423837f567499e5ae5980cc6554e791fcefec062a206526547867cc9cae",
+        "name": "PMC",
+        "retrieved": "2026-09-26",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6379364/"
       }
     },
     {
@@ -115,7 +139,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000205",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -133,7 +157,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000205",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:187a1423837f567499e5ae5980cc6554e791fcefec062a206526547867cc9cae",
@@ -157,6 +181,28 @@
         "cache": "sha256:187a1423837f567499e5ae5980cc6554e791fcefec062a206526547867cc9cae",
         "name": "PMC",
         "retrieved": "2026-09-20",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6379364/"
+      },
+      "superseded": {
+        "by_rule_version": "2026-09-26.1",
+        "date": "2026-09-26"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {},
+      "excerpt": "University of Washington's Proteomics Resource (UWPR95794).",
+      "first_seen": "2026-09-26",
+      "label": "The paper names the UW Proteomics Resource",
+      "last_seen": "2026-09-26",
+      "record": "R-000205",
+      "rule": "R3",
+      "rule_version": "2026-09-26.1",
+      "section": "funding",
+      "source": {
+        "cache": "sha256:187a1423837f567499e5ae5980cc6554e791fcefec062a206526547867cc9cae",
+        "name": "PMC",
+        "retrieved": "2026-09-26",
         "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6379364/"
       }
     }
@@ -478,7 +524,7 @@
       ],
       "fulltext": {
         "cache": "sha256:187a1423837f567499e5ae5980cc6554e791fcefec062a206526547867cc9cae",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -533,7 +579,7 @@
       "year": 2019
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

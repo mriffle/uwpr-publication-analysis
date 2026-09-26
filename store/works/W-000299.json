@@ -93,7 +93,7 @@
       "last_seen": "2026-09-26",
       "record": "R-000299",
       "rule": "R1",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "official list",
       "source": {
         "cache": null,
@@ -113,7 +113,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000299",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:93e69db6ac750bcfa6d653ae8aaa2d1d31b30a2fcb96f2541a82c32007fae689",
@@ -133,7 +133,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000299",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -153,7 +153,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000299",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -173,7 +173,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000601",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:5626e3726c49a558adfaad103898a7687724362d499c9f0551ae3eadb900f8dc",
@@ -193,7 +193,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000601",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -211,7 +211,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000299",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:93e69db6ac750bcfa6d653ae8aaa2d1d31b30a2fcb96f2541a82c32007fae689",
@@ -229,7 +229,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000601",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:5626e3726c49a558adfaad103898a7687724362d499c9f0551ae3eadb900f8dc",
@@ -502,7 +502,7 @@
       ],
       "fulltext": {
         "cache": "sha256:93e69db6ac750bcfa6d653ae8aaa2d1d31b30a2fcb96f2541a82c32007fae689",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -901,7 +901,7 @@
       ],
       "fulltext": {
         "cache": "sha256:5626e3726c49a558adfaad103898a7687724362d499c9f0551ae3eadb900f8dc",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -959,7 +959,7 @@
       "year": 2024
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

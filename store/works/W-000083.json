@@ -31,7 +31,7 @@
       "last_seen": "2026-09-26",
       "record": "R-000083",
       "rule": "R1",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "official list",
       "source": {
         "cache": null,
@@ -220,7 +220,7 @@
       ],
       "fulltext": {
         "cache": "sha256:352d5fabf7843b9dd7f26efaddf127845044a24776e4bd7892e9f33a25b21ac7",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -275,7 +275,7 @@
       "year": 2012
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",

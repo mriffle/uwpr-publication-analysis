@@ -1,0 +1,196 @@
+{
+  "api": {
+    "biorxiv": {
+      "calls": 1,
+      "cost_usd": 0.0
+    },
+    "crossref": {
+      "calls": 35,
+      "cost_usd": 0.0
+    },
+    "europepmc": {
+      "calls": 22,
+      "cost_usd": 0.0
+    },
+    "ncbi": {
+      "calls": 2,
+      "cost_usd": 0.0
+    },
+    "openalex": {
+      "calls": 28,
+      "cost_usd": 0.01
+    },
+    "pride": {
+      "calls": 4,
+      "cost_usd": 0.0
+    },
+    "uwpr_site": {
+      "calls": 6,
+      "cost_usd": 0.0
+    }
+  },
+  "changes": {
+    "added": [],
+    "list_appeared": [],
+    "list_disappeared": [],
+    "merged": [
+      {
+        "into": "W-000237",
+        "retired": "W-000746"
+      }
+    ],
+    "removed": []
+  },
+  "channels": {
+    "A": {
+      "errors": [],
+      "new": 0,
+      "nominated": 298,
+      "queries": 1
+    },
+    "B1": {
+      "errors": [],
+      "new": 0,
+      "nominated": 139,
+      "queries": 1
+    },
+    "B2": {
+      "errors": [],
+      "new": 0,
+      "nominated": 63,
+      "queries": 1
+    },
+    "C1": {
+      "errors": [],
+      "new": 0,
+      "nominated": 255,
+      "queries": 1
+    },
+    "C2": {
+      "errors": [],
+      "new": 0,
+      "nominated": 105,
+      "queries": 1
+    },
+    "D1": {
+      "errors": [],
+      "new": 0,
+      "nominated": 349,
+      "queries": 2
+    },
+    "D2": {
+      "errors": [],
+      "new": 0,
+      "nominated": 222,
+      "queries": 3
+    },
+    "D3": {
+      "errors": [],
+      "new": 0,
+      "nominated": 133,
+      "queries": 6
+    },
+    "E": {
+      "errors": [],
+      "new": 0,
+      "nominated": 128,
+      "queries": 9
+    },
+    "F": {
+      "errors": [],
+      "new": 0,
+      "nominated": 100,
+      "queries": 2
+    },
+    "G": {
+      "errors": [],
+      "new": 0,
+      "nominated": 328,
+      "queries": 5
+    },
+    "J": {
+      "errors": [],
+      "new": 0,
+      "nominated": 4,
+      "queries": 2
+    }
+  },
+  "code_version": "0.1.0",
+  "config_fingerprint": "sha256:3ee308aa833f334eb960a848b15d634175c6740d7604b08b0ce0671ea2abba82",
+  "degradations": [
+    {
+      "cause": "published check unavailable: https://api.biorxiv.org/details/biorxiv/10.1101/2023.03.16.533031: HTTP 200 with an empty body",
+      "source": "source:biorxiv"
+    }
+  ],
+  "ended": "2026-09-26T17:29:29Z",
+  "fixtures": {
+    "A": "pass",
+    "B": "known_miss",
+    "B2": "known_miss",
+    "C": "pass",
+    "D": "pass",
+    "E": "pass",
+    "F": "pass",
+    "G": "pass",
+    "H": "pass",
+    "I": "pass",
+    "J": "pass",
+    "neg-calculator": "pass",
+    "neg-comet-url": "pass",
+    "neg-core-only": "pass",
+    "neg-fred-hutch": "pass",
+    "neg-hunt-lab-guide": "pass",
+    "neg-isb": "pass",
+    "neg-nanospray": "pass",
+    "neg-panorama": "pass",
+    "neg-peer-review": "pass",
+    "neg-sawn": "pass"
+  },
+  "mode": "live",
+  "note": "OpenAlex has 3 records for doi:10.1136/jnnp.73.2.213 (W2611546935, W2622106973, W4293529577); taking the lowest id | unmapped record type 'book'; treated as excluded | unmapped record type 'conference-paper'; treated as excluded | no metadata for pmcid:PMC10187017; skipped this run | no metadata for pmcid:PMC1082671; skipped this run | no metadata for pmcid:PMC7123294; skipped this run | no metadata for pmcid:PMC7167816; skipped this run | no metadata for pmid:42201957; skipped this run | unmapped record type 'other'; treated as excluded | unmapped record type 'book-review'; treated as excluded | unmapped record type 'editorial'; treated as excluded | unmapped record type 'conference-abstract'; treated as excluded | unmapped record type 'report'; treated as excluded | unmapped record type 'software'; treated as excluded",
+  "official_list_recall": {
+    "assessable": 253,
+    "with_evidence": 208
+  },
+  "rule_version": "2026-09-26.1",
+  "rules": {
+    "R1": {
+      "new": 0,
+      "works": 306
+    },
+    "R2": {
+      "new": 0,
+      "works": 360
+    },
+    "R3": {
+      "new": 0,
+      "works": 188
+    },
+    "R3d": {
+      "new": 0,
+      "works": 2
+    },
+    "R4": {
+      "new": 0,
+      "works": 1
+    },
+    "R5": {
+      "new": 0,
+      "works": 61
+    },
+    "R6": {
+      "new": 0,
+      "works": 83
+    },
+    "R7": {
+      "new": 0,
+      "works": 21
+    }
+  },
+  "rules_fingerprint": "sha256:5113e791113befc50258ddadb5a531c8d9603f9fea7585b7fd4955ef960ffa47",
+  "run_id": "2026-09-26T17-26-live",
+  "schema": 1,
+  "started": "2026-09-26T17:26:20Z",
+  "status": "degraded"
+}

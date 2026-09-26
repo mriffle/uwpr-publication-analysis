@@ -75,7 +75,7 @@
       "last_seen": "2026-09-26",
       "record": "R-000310",
       "rule": "R1",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "official list",
       "source": {
         "cache": null,
@@ -95,7 +95,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000310",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:029efe860ae308a85142f7d77e53c0dfc8f21015c7b62797df6f9392864d97ea",
@@ -115,7 +115,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000310",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "funding",
       "source": {
         "cache": "sha256:029efe860ae308a85142f7d77e53c0dfc8f21015c7b62797df6f9392864d97ea",
@@ -135,7 +135,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000310",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -155,7 +155,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000310",
       "rule": "R2",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "metadata",
       "source": {
         "cache": null,
@@ -173,7 +173,7 @@
       "last_seen": "2026-09-20",
       "record": "R-000310",
       "rule": "R3",
-      "rule_version": "2026-09-20.1",
+      "rule_version": "2026-09-26.1",
       "section": "acknowledgements",
       "source": {
         "cache": "sha256:029efe860ae308a85142f7d77e53c0dfc8f21015c7b62797df6f9392864d97ea",
@@ -338,7 +338,7 @@
       ],
       "fulltext": {
         "cache": "sha256:029efe860ae308a85142f7d77e53c0dfc8f21015c7b62797df6f9392864d97ea",
-        "checked": "2026-09-20",
+        "checked": "2026-09-26",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -575,8 +575,8 @@
       ],
       "fulltext": {
         "cache": null,
-        "checked": "2026-09-20",
-        "recheck_after": "2026-12-19",
+        "checked": "2026-09-26",
+        "recheck_after": "2026-12-25",
         "status": "unavailable"
       },
       "id": "R-000607",
@@ -626,7 +626,7 @@
       "year": 2024
     }
   ],
-  "rule_version": "2026-09-20.1",
+  "rule_version": "2026-09-26.1",
   "schema": 1,
   "status": {
     "basis": "rules",
