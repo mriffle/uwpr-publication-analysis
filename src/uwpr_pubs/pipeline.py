@@ -247,7 +247,7 @@ class Pipeline:
         store = self.options.store
         self._require_clean_store()
         if store.exists():
-            report = validate_store(store)
+            report = validate_store(store, overrides_path=_overrides_path(self.config))
             if not report.ok and any("store is empty" not in e for e in report.errors):
                 raise RunFailureError(
                     "the committed store does not validate; fix it before running:\n  "
@@ -1873,11 +1873,12 @@ def _staged_export(staging: Path) -> Path:
 
 
 def _overrides_path(config: Config) -> Path | None:
-    """The overrides the run actually loaded, so the gate validates against the same file.
+    """The overrides the run actually loaded, so stage 0 and the gate validate against that file.
 
     There is deliberately no second fallback here. Looking the file up again meant the gate could
     validate against a different one from the run — which is exactly what happened the first time
-    the project had a real `overrides.yaml`.
+    the project had a real `overrides.yaml`. Stage 0 went on looking beside the store until
+    2026-09-26, so a scratch copy of the real store stopped there.
     """
     return config.overrides_path
 

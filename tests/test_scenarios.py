@@ -217,6 +217,32 @@ def test_an_exclude_override_removes_a_work_but_never_a_listed_one(
     assert validate_store(store, overrides).errors == []
 
 
+def test_stage_0_validates_against_the_overrides_the_run_loaded(client: HttpClient, tmp_path: Path) -> None:
+    """Not whichever `overrides.yaml` happens to sit beside the store.
+
+    Stage 0 looked beside the store while the gate used the file the run had loaded. For the real
+    store they are the same file; for a scratch copy of it they were not, so a run applied an
+    exclusion and the next rejected the store it had written (docs/08 §8 item 4).
+    """
+    store = tmp_path / "store"
+    go(client, store)
+    offlist = offlist_work_id(store)
+    (tmp_path / "elsewhere").mkdir()
+    overrides = tmp_path / "elsewhere" / "overrides.yaml"
+    overrides.write_text(
+        f"- target: {offlist}\n  action: exclude\n  reason: 'Not UWPR work.'\n"
+        f"  by: mriffle\n  date: 2026-09-22\n",
+        encoding="utf-8",
+    )
+
+    first = go(client, store, day="2026-09-22", overrides=overrides)
+    second = go(client, store, day="2026-09-23", overrides=overrides)
+
+    assert first.status == "ok", first.errors
+    assert second.status == "ok", second.errors
+    assert candidate(store, offlist)["reason"] == "override_exclude"
+
+
 def test_an_include_override_reaches_the_app_with_its_reason_and_attribution(
     client: HttpClient, tmp_path: Path
 ) -> None:
