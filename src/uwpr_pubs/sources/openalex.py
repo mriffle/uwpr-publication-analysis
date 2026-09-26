@@ -112,6 +112,6 @@ class OpenAlex:
                     yield from page
 
     def count(self, filter_expr: str) -> int:
+        """Strict: a reply without `meta.count` has changed shape, and is not zero works."""
         payload = self._get("/works", {"filter": filter_expr, "per-page": "1"})
-        meta = cast(dict[str, Any], payload.get("meta") or {})
-        return int(meta.get("count", 0))
+        return int(payload["meta"]["count"])

@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 from uwpr_pubs.cache import Cache
-from uwpr_pubs.http import Budget, HttpClient, Mode, RateLimiter, Response
+from uwpr_pubs.http import Budget, HttpClient, HttpError, Mode, RateLimiter, Response
 from uwpr_pubs.sources import ResultLimitError
 from uwpr_pubs.sources.crossref import Crossref
 from uwpr_pubs.sources.europepmc import EuropePmc
@@ -276,6 +276,61 @@ def test_europepmc_search_stops_at_the_last_cursor(tmp_path: Path) -> None:
     results = list(EuropePmc(client, "c@x.y").search('"UWPR95794"'))
     assert [r["id"] for r in results] == ["1"]
     assert seen == ["*", "b"]
+
+
+# Europe PMC's own error reply, verbatim from a request with no query (2026-09-26). It is an
+# HTTP 200, and it has no `hitCount` and no results.
+EUROPEPMC_ERROR = {
+    "errCode": 404,
+    "errMsg": (
+        "No search criteria provided. Please provide a search criteria which is less than 1500 characters."
+    ),
+}
+
+
+@pytest.mark.parametrize(("code", "status"), [(404, 404), (503, 503), ("500", 500)])
+def test_an_error_inside_a_europepmc_reply_is_an_http_error(
+    tmp_path: Path, code: object, status: int
+) -> None:
+    """Read unchecked, this reply was "0 results": smoke blocked on it, and a channel shrank."""
+    client, _ = client_for(lambda url, params: json_response({**EUROPEPMC_ERROR, "errCode": code}), tmp_path)
+    europepmc = EuropePmc(client, "mriffle@uw.edu")
+
+    with pytest.raises(HttpError) as counted:
+        europepmc.count('"UWPR95794"')
+    assert counted.value.status == status
+    assert "No search criteria provided" in str(counted.value)
+
+    # The same reply mid-run is a failed channel query — a degradation — not an empty channel.
+    with pytest.raises(HttpError) as searched:
+        list(europepmc.search('ACK_FUND:"Jimmy Eng"'))
+    assert searched.value.status == status
+
+
+def test_a_count_without_its_total_has_changed_shape_and_is_not_zero(tmp_path: Path) -> None:
+    """Each count used to default to zero, which hid a changed reply inside a small number."""
+    client, _ = client_for(lambda url, params: json_response({"version": "7.0", "resultList": {}}), tmp_path)
+    with pytest.raises(KeyError):
+        EuropePmc(client, "c@x.y").count('"UWPR95794"')
+
+    client, _ = client_for(lambda url, params: json_response({"results": []}), tmp_path)
+    with pytest.raises(KeyError):
+        OpenAlex(client, "mriffle@uw.edu").count("awards.funder_award_id:UWPR95794")
+
+    client, _ = client_for(lambda url, params: json_response({"message": {"items": []}}), tmp_path)
+    with pytest.raises(KeyError):
+        Crossref(client, "c@x.y").count("award.number:UWPR95794")
+
+
+def test_the_counts_read_each_sources_total(tmp_path: Path) -> None:
+    client, _ = client_for(lambda url, params: json_response({"hitCount": 185}), tmp_path)
+    assert EuropePmc(client, "c@x.y").count('"UWPR95794"') == 185
+
+    client, _ = client_for(lambda url, params: json_response({"meta": {"count": 139}}), tmp_path)
+    assert OpenAlex(client, "mriffle@uw.edu").count("awards.funder_award_id:UWPR95794") == 139
+
+    client, _ = client_for(lambda url, params: json_response({"message": {"total-results": 63}}), tmp_path)
+    assert Crossref(client, "c@x.y").count("award.number:UWPR95794") == 63
 
 
 def test_europepmc_full_text_returns_none_for_non_open_access(tmp_path: Path) -> None:

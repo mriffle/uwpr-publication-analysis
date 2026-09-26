@@ -66,6 +66,33 @@ was retired with it on 2026-09-20.
   The distinction matters because the two need opposite responses: an outage needs patience, and a
   changed source needs a person. Conflating them is what made a transient 503 cost a week.
 
+**Changed 2026-09-26, after the first scheduled weekly run** (§8, §9):
+- *The run of 2026-09-21 was blocked by "Europe PMC search: 0 results; expected at least 185".*
+  Europe PMC answered 185 on the days either side. The 2026-09-20 change above could not help,
+  because nothing failed: the source answered, and a failed content assertion was always a
+  problem. Three things were wrong, and each is fixed:
+  - **Europe PMC reports its errors inside an HTTP 200** — `{"errCode": 404, "errMsg": …}`, with
+    no `hitCount` and no results (measured 2026-09-26). `count()` read the missing total as zero,
+    and `search()` read the missing results as an empty page, so a Europe PMC failure during a
+    run was an empty channel, never a degradation, and the three-runs alert could not count it.
+    The adapter now raises `HttpError` with `errCode` as the status, so a 5xx there is an outage
+    and a 4xx a problem, exactly as a real one would be. Which of the two the 2026-09-21 reply
+    was, the log cannot say.
+  - **Every count defaulted a missing total to zero** (Europe PMC, OpenAlex, Crossref). A reply
+    of a changed shape read as a small number. They are strict now: no total is a changed shape,
+    which is a problem.
+  - **A count below its floor asks a control query** on the same source, one it answers in the
+    millions. Below its floor a count cannot say whether our query stopped matching (a problem)
+    or the source is answering empty for everything (an outage), and a zero is no evidence
+    either way: Europe PMC answers an unknown field with an ordinary, well-formed zero. If the
+    control collapses too the check is an outage, and the run proceeds; if it holds, the query is
+    at fault and the run is blocked. The control is asked only on a failure, so a passing smoke
+    costs what it did.
+- *The floors sit about 10% below the live counts,* re-measured the same day. Two of them had
+  equalled their live counts exactly (Crossref 63, Europe PMC 185), and a live index drifts down
+  as well as up — OpenAlex's award count fell from 140 to 139 between 2026-09-21 and -26 — so one
+  withdrawn record would have blocked a week. A floor is there to catch a collapse, not a dip.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the

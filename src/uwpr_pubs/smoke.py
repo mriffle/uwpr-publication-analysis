@@ -1,13 +1,14 @@
 """`uwpr-pubs smoke`: do the sources still answer in the expected shape? (docs/03 §8, §11.3)
 
-The only live test. Each check is measured against what Phase 1 §4.1 and §4.4 found, so a source
-that changes its syntax, or quietly starts returning nothing, fails here rather than silently
-shrinking a run. It is deliberately cheap: about $0.002 of OpenAlex budget.
+The only live test. Each check is measured against what the source last answered, so a source
+that changes its syntax, or stops matching our queries, fails here rather than silently shrinking
+a run. It is deliberately cheap: about $0.002 of OpenAlex budget.
 
 **A failure is not automatically a reason to skip the week.** Smoke classifies each one the way
 §9 classifies a failure during a run, because the two need opposite responses: an outage needs
 patience, and a changed source needs a person. Only the second blocks (docs/03 §8, changed
-2026-09-20, after a 503 on two of nine Europe PMC queries cost a whole weekly run).
+2026-09-20, after a 503 on two of nine Europe PMC queries cost a whole weekly run, and again
+2026-09-26, after Europe PMC answering "0 results" cost the first scheduled one).
 """
 
 from collections.abc import Callable, Sequence
@@ -23,12 +24,21 @@ from uwpr_pubs.sources.ncbi import Ncbi
 from uwpr_pubs.sources.openalex import OpenAlex
 from uwpr_pubs.sources.uwpr_site import UwprSite
 
-# Floors from Phase 1's measurements (§4.1 official list, §4.4 per channel). They are minimums:
-# the corpus grows, so a number below these means something broke.
-MIN_LIST_ENTRIES = 300
-MIN_OPENALEX_AWARD = 135
-MIN_CROSSREF_AWARD = 63
-MIN_EUROPEPMC_IDENTIFIER = 185
+# Each floor sits about 10% below what its source answered when re-measured on 2026-09-26: 306
+# list entries, 139 OpenAlex works, 63 Crossref works and 185 Europe PMC results. A floor is there
+# to catch a query that has stopped matching, which is a collapse, not a dip. Two of them used to
+# equal their live counts exactly, and a live index drifts down as well as up — OpenAlex's count
+# fell from 140 to 139 in five days — so a single withdrawn record would have blocked a week.
+MIN_LIST_ENTRIES = 275
+MIN_OPENALEX_AWARD = 125
+MIN_CROSSREF_AWARD = 56
+MIN_EUROPEPMC_IDENTIFIER = 166
+# What a source's control query must reach for the source to count as answering at all
+# (`_floor_check`). Measured 2026-09-26: 352,521, 11,473,447 and 124,067,625.
+CONTROL_FLOOR = 100_000
+EUROPEPMC_CONTROL = "proteomics"
+OPENALEX_CONTROL = "publication_year:2020"
+CROSSREF_CONTROL = "type:journal-article"
 KNOWN_PMID = "19070509"  # the sample store's oldest work
 KNOWN_PMCID = "PMC3073872"
 SERVER_ERROR_FLOOR = 500
@@ -117,14 +127,55 @@ def verdict(checks: Sequence[Check]) -> str:
     return f"VERDICT  PROCEED: all {len(checks)} checks passed."
 
 
+def _failed(name: str, exc: Exception) -> Check:
+    return Check(name, classify(exc), f"{type(exc).__name__}: {exc}")
+
+
 def _check(name: str, run: Callable[[], tuple[bool, str]]) -> Check:
     try:
         ok, detail = run()
     except (HttpError, KeyError, ValueError) as exc:
-        return Check(name, classify(exc), f"{type(exc).__name__}: {exc}")
-    # A content assertion that returns false is always a problem: the source answered, and the
-    # answer was not the one Phase 1 measured.
+        return _failed(name, exc)
+    # Outside the counts (`_floor_check`), a content assertion that returns false is a problem:
+    # the source answered, and the answer was not the one that was measured.
     return Check(name, Outcome.OK if ok else Outcome.PROBLEM, detail)
+
+
+def _floor_check(
+    name: str, count: Callable[[], int], floor: int, unit: str, control: Callable[[], int]
+) -> Check:
+    """A count that must reach its floor, and a control query when it does not (docs/03 §8).
+
+    Below its floor, a count means one of two opposite things and cannot say which: the source has
+    stopped matching our query, which needs a person, or it is answering empty for everything,
+    which needs patience. A zero is no evidence either way, because Europe PMC answers a field it
+    does not know with an ordinary, well-formed zero (measured 2026-09-26). So the same source is
+    asked something it answers in the millions. If that collapses too, the source is down; if it
+    holds, the fault is in our query. It is asked only on a failure, so a passing check costs
+    nothing extra.
+    """
+    try:
+        found = count()
+    except (HttpError, KeyError, ValueError) as exc:
+        return _failed(name, exc)
+    detail = f"{found} {unit}; expected at least {floor}"
+    if found >= floor:
+        return Check(name, Outcome.OK, detail)
+    try:
+        baseline = control()
+    except (HttpError, KeyError, ValueError) as exc:
+        # A control that fails outright is one more failure, and `classify` reads it as any other.
+        why = f"{type(exc).__name__}: {exc}"
+        return Check(name, classify(exc), f"{detail}; the control query failed too: {why}")
+    if baseline < CONTROL_FLOOR:
+        return Check(
+            name, Outcome.OUTAGE, f"{detail}; the control query found only {baseline}, so the source is empty"
+        )
+    return Check(
+        name,
+        Outcome.PROBLEM,
+        f"{detail}; the control query found {baseline}, so the source is fine and our query is not",
+    )
 
 
 def run_smoke(config: Config, client: HttpClient) -> list[Check]:
@@ -139,6 +190,15 @@ def run_smoke(config: Config, client: HttpClient) -> list[Check]:
         config.settings["official_list"]["page_link_pattern"],
     )
 
+    def europepmc_control() -> int:
+        return europepmc.count(EUROPEPMC_CONTROL)
+
+    def openalex_control() -> int:
+        return openalex.count(OPENALEX_CONTROL)
+
+    def crossref_control() -> int:
+        return crossref.count(CROSSREF_CONTROL)
+
     def official_list() -> tuple[bool, str]:
         entries = site.entries()
         pages: dict[str, int] = {}
@@ -147,23 +207,6 @@ def run_smoke(config: Config, client: HttpClient) -> list[Check]:
         shape = ", ".join(f"{page}: {count}" for page, count in sorted(pages.items()))
         ok = len(entries) >= MIN_LIST_ENTRIES and all(count > 0 for count in pages.values())
         return ok, f"{len(entries)} entries ({shape}); expected at least {MIN_LIST_ENTRIES}"
-
-    def openalex_award() -> tuple[bool, str]:
-        count = openalex.count("awards.funder_award_id:UWPR95794")
-        return count >= MIN_OPENALEX_AWARD, f"{count} works; expected at least {MIN_OPENALEX_AWARD}"
-
-    def openalex_fulltext() -> tuple[bool, str]:
-        count = openalex.count("fulltext.search:UWPR95794")
-        return count > 0, f"{count} works with the code in OpenAlex full text"
-
-    def crossref_award() -> tuple[bool, str]:
-        count = crossref.count("award.number:UWPR95794")
-        return count >= MIN_CROSSREF_AWARD, f"{count} works; expected at least {MIN_CROSSREF_AWARD}"
-
-    def europepmc_identifier() -> tuple[bool, str]:
-        count = europepmc.count('"UWPR95794" OR "UWPR 95794"')
-        ok = count >= MIN_EUROPEPMC_IDENTIFIER
-        return ok, f"{count} results; expected at least {MIN_EUROPEPMC_IDENTIFIER}"
 
     def europepmc_fulltext() -> tuple[bool, str]:
         body = europepmc.full_text_xml(KNOWN_PMCID)
@@ -181,10 +224,34 @@ def run_smoke(config: Config, client: HttpClient) -> list[Check]:
 
     return [
         _check("official list", official_list),
-        _check("openalex award filter", openalex_award),
-        _check("openalex full-text search", openalex_fulltext),
-        _check("crossref award filter", crossref_award),
-        _check("europe pmc search", europepmc_identifier),
+        _floor_check(
+            "openalex award filter",
+            lambda: openalex.count("awards.funder_award_id:UWPR95794"),
+            MIN_OPENALEX_AWARD,
+            "works",
+            openalex_control,
+        ),
+        _floor_check(
+            "openalex full-text search",
+            lambda: openalex.count("fulltext.search:UWPR95794"),
+            1,
+            "works with the code in OpenAlex full text",
+            openalex_control,
+        ),
+        _floor_check(
+            "crossref award filter",
+            lambda: crossref.count("award.number:UWPR95794"),
+            MIN_CROSSREF_AWARD,
+            "works",
+            crossref_control,
+        ),
+        _floor_check(
+            "europe pmc search",
+            lambda: europepmc.count('"UWPR95794" OR "UWPR 95794"'),
+            MIN_EUROPEPMC_IDENTIFIER,
+            "results",
+            europepmc_control,
+        ),
         _check("europe pmc full text", europepmc_fulltext),
         _check("ncbi id converter", ncbi_converter),
         _check("ncbi pmc full text", ncbi_fulltext),

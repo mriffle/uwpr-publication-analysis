@@ -110,6 +110,11 @@ person. The last line says which it was and whether the run may proceed, and the
 `update.yml` reads. So a green smoke step does **not** mean every source answered: read its
 verdict line, or the run's own Degradations section, for that.
 
+A count below its floor is followed by a **control query** on the same source, and the line says
+what it found. "The control query found 352521, so the source is fine and our query is not" is a
+`FAIL`: the source answers, so the query or a field name has changed, and that needs a person.
+"The control query found only 0, so the source is empty" is a `DOWN`, and the week goes ahead.
+
 A run refuses to start if `store/` or `export/` has uncommitted changes. That is deliberate: a run
 interrupted part-way through writing would otherwise be read back as though it were the record.
 Commit the changes, or discard them with `git checkout -- store export && git clean -fd store export`.

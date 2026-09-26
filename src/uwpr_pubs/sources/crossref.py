@@ -35,8 +35,9 @@ class Crossref:
                 break
 
     def count(self, filter_expr: str) -> int:
+        """Strict: a reply without `total-results` has changed shape, and is not zero works."""
         message = self._get(BASE, {"filter": filter_expr, "rows": "0"})
-        return int(message.get("total-results", 0))
+        return int(message["total-results"])
 
     def by_doi(self, doi: str) -> dict[str, Any] | None:
         """One record, or None when Crossref has no such DOI.

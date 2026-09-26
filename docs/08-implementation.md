@@ -1,6 +1,6 @@
 # Phase 8 — Implementation: status and handoff
 
-**Status:** in progress · last updated 2026-09-20
+**Status:** in progress · last updated 2026-09-26
 **Purpose:** everything needed to pick this work up: where the build has got to, what was decided
 along the way, and the approved plan in full (§6).
 **Depends on:** the frozen specs [01](01-discovery-strategy.md), [01a](01a-discovery-calibration.md),
@@ -283,6 +283,36 @@ The estimate was five times high because it assumed paging through full-text sea
 `max_results` now stops at the first page. Only OpenAlex costs anything. The one figure still
 unmeasured is a rule-change run on a cold runner, which needs a `rule_version` bump to land on
 a cold cache.
+
+### 3.5 The first scheduled run, 2026-09-21, and what it found
+
+The cron is Mondays 13:17 UTC. **GitHub started the first scheduled run at 18:44** — five and a
+half hours late, which GitHub's queue does not promise against — and it **failed in 25 seconds**,
+at smoke. Seven checks passed; one read `FAIL europe pmc search: 0 results; expected at least
+185`, and the verdict was `BLOCKED`. The pipeline never ran, so nothing was committed or
+published that week, and GitHub's failure email reached the maintainer.
+
+**It was not a changed query.** Europe PMC answered exactly 185 on 2026-09-20 and 2026-09-26.
+The 2026-09-20 smoke change could not have saved the week, because nothing had failed: the source
+answered 200, and a content assertion that failed was always a problem. Measuring Europe PMC
+directly on 2026-09-26 found why the check could not tell:
+- **Europe PMC reports its errors inside an HTTP 200**, as `{"errCode": …, "errMsg": …}` with no
+  `hitCount`, and `count()` read the missing total as zero. `search()` had the same blind spot, so
+  the same reply during a run was an empty channel rather than a degradation. Which the
+  2026-09-21 reply was — an error body, or a well-formed empty answer — the log cannot say.
+- **An unknown field answers a well-formed zero** (`NOSUCHFIELD:"UWPR95794"` → `hitCount: 0`), so
+  a zero is exactly what a renamed field looks like. Treating every zero as an outage would have
+  swapped a blocked week for a channel that could die silently.
+- **Two floors equalled their live counts** (Crossref 63, Europe PMC 185), and OpenAlex's count
+  fell from 140 to 139 in the same five days. One withdrawn record would have blocked a week.
+
+The fix is recorded in [03](03-retrieval-pipeline.md)'s header (changed 2026-09-26): errors in the
+body become `HttpError`, counts are strict, the floors sit about 10% below the live counts, and a
+count below its floor asks a **control query** on the same source (Europe PMC `proteomics`
+352,521; OpenAlex `publication_year:2020` 11,473,447; Crossref `type:journal-article`
+124,067,625) to tell an empty source from a query that has stopped matching. Both paths were
+exercised against live Europe PMC before committing: the unknown field reads as a `FAIL` beside a
+healthy control, and the error body as a `FAIL` carrying its `errCode 404`.
 
 ## 4. Decisions taken during implementation
 

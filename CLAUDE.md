@@ -188,6 +188,9 @@ npm test -- --run && npm run build && npm run check:budget && npm run e2e
   Resource" in Seattle.
 - **Hand-written YAML dates** (`date: 2026-09-20`) load as date objects; normalise them to ISO
   strings before schema validation.
+- **Europe PMC reports its errors inside an HTTP 200**, as `{"errCode": …, "errMsg": …}` with no
+  `hitCount`. Unchecked, that reads as zero results. An unknown field also answers a well-formed
+  zero, so a zero alone never says "outage"; smoke asks a control query to tell (docs/03 §8).
 - **Crossref's 404 is an answer, not an outage.** `HttpError.status` carries the distinction; a
   real outage must degrade the run rather than read as "this DOI has no preprint relation".
 - **Preprint servers mint a DOI per revision** (`…-33v24-v2`, `…/v2`), so a stated relation may

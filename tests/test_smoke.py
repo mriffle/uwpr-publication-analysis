@@ -1,4 +1,4 @@
-"""How `uwpr-pubs smoke` tells an outage from a problem (docs/03 §8, changed 2026-09-20).
+"""How `uwpr-pubs smoke` tells an outage from a problem (docs/03 §8, changed 2026-09-20 and -26).
 
 The checks themselves are live and unreachable offline, but the decision they feed is not: it is
 a function of one exception and one boolean, and it decides whether a week's run happens at all.
@@ -79,6 +79,102 @@ def test_a_failure_keeps_its_exception_in_the_detail() -> None:
     check = failing(HttpError("https://www.ebi.ac.uk/…: HTTP 503", 503))
     assert check.outcome is Outcome.OUTAGE
     assert check.line().startswith("DOWN  a source: HttpError: ")
+
+
+# --- a count below its floor, and the control that decides what it means ----------------
+
+
+def floor_check(found: int | Exception, control: int | Exception, asked: list[str] | None = None) -> Check:
+    """`_floor_check` against a floor of 100, with each answer either a count or a raise."""
+
+    def answer(value: int | Exception, which: str) -> int:
+        if asked is not None:
+            asked.append(which)
+        if isinstance(value, Exception):
+            raise value
+        return value
+
+    return smoke._floor_check(
+        "europe pmc search",
+        lambda: answer(found, "count"),
+        100,
+        "results",
+        lambda: answer(control, "control"),
+    )
+
+
+def test_a_count_at_its_floor_passes_without_asking_the_control() -> None:
+    asked: list[str] = []
+    check = floor_check(100, 0, asked)
+    assert check.outcome is Outcome.OK
+    assert check.detail == "100 results; expected at least 100"
+    assert asked == ["count"]
+
+
+def test_a_collapse_beside_a_healthy_control_is_a_problem() -> None:
+    """The source answers everything else, so it is our query that has stopped matching.
+
+    Europe PMC answers a field it does not know with a well-formed zero, so this is what a
+    renamed field looks like, and it needs a person.
+    """
+    check = floor_check(0, 352_521)
+    assert check.outcome is Outcome.PROBLEM
+    assert "the control query found 352521, so the source is fine" in check.detail
+
+
+def test_a_zero_beside_an_empty_control_is_an_outage() -> None:
+    """The source is answering empty for everything: an index outage, which passes with time.
+
+    The first scheduled run (2026-09-21) was blocked by a zero like this, from a source that
+    answered 185 the day before and the day after.
+    """
+    check = floor_check(0, 0)
+    assert check.outcome is Outcome.OUTAGE
+    assert check.line().startswith("DOWN  europe pmc search: 0 results; expected at least 100;")
+
+
+def test_a_dip_below_the_floor_still_asks_the_control() -> None:
+    assert floor_check(99, 352_521).outcome is Outcome.PROBLEM
+    assert floor_check(99, 12).outcome is Outcome.OUTAGE
+
+
+@pytest.mark.parametrize(
+    ("status", "outcome"), [(503, Outcome.OUTAGE), (None, Outcome.OUTAGE), (401, Outcome.PROBLEM)]
+)
+def test_a_control_that_fails_is_classified_like_any_failure(status: int | None, outcome: Outcome) -> None:
+    check = floor_check(0, HttpError(f"europepmc: HTTP {status}", status))
+    assert check.outcome is outcome
+    assert "the control query failed too: HttpError:" in check.detail
+
+
+@pytest.mark.parametrize(
+    ("exc", "outcome"),
+    [
+        (HttpError("europepmc: HTTP 503", 503), Outcome.OUTAGE),
+        (HttpError("europepmc: the query is malformed (errCode 400)", 400), Outcome.PROBLEM),
+        (KeyError("hitCount"), Outcome.PROBLEM),
+    ],
+)
+def test_a_count_that_fails_outright_never_asks_the_control(exc: Exception, outcome: Outcome) -> None:
+    """A failure already says what it is. The control is only for an answer that is too small."""
+    asked: list[str] = []
+    assert floor_check(exc, 352_521, asked).outcome is outcome
+    assert asked == ["count"]
+
+
+def test_each_floor_leaves_room_for_a_live_index_to_drift() -> None:
+    """Two floors once equalled their live counts, so one withdrawn record would block a week.
+
+    The figures are the counts measured on 2026-09-26. A floor catches a collapse, not a dip.
+    """
+    measured = {
+        smoke.MIN_LIST_ENTRIES: 306,
+        smoke.MIN_OPENALEX_AWARD: 139,
+        smoke.MIN_CROSSREF_AWARD: 63,
+        smoke.MIN_EUROPEPMC_IDENTIFIER: 185,
+    }
+    for floor, count in measured.items():
+        assert 0.85 * count <= floor <= 0.92 * count
 
 
 # --- what the three states look like ------------------------------------------------------

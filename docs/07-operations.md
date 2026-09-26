@@ -355,6 +355,7 @@ keeping the thing running.
 - [x] Rollback policy decided, including the one operation that must not be routine.
 - [ ] Maintainer and fallback named.
 - [ ] `gh-pages` publishing implemented and a deploy rolled back once in rehearsal.
-- [ ] Notification routing confirmed by deliberately failing a run.
-- [ ] `RUNBOOK.md` written.
+- [x] Notification routing confirmed by a failing run — not a deliberate one: the first scheduled
+  run failed on 2026-09-21 (docs/08 §3.5), and GitHub's email reached the maintainer.
+- [x] `RUNBOOK.md` written.
 - [ ] The schedule confirmed to still fire after 60+ days without a human commit.
