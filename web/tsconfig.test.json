@@ -1,0 +1,11 @@
+{
+  // The tests, e2e specs and Playwright config run in Node, so they get Node's types; the app in
+  // src/ does not, so browser code cannot reach for `process` or `node:fs` unnoticed. src/ is
+  // included again because the tests import it, and a composite project must list its files.
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "types": ["vite/client", "node"],
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.test.tsbuildinfo"
+  },
+  "include": ["src", "test", "vitest.setup.ts", "e2e", "playwright.config.ts"]
+}

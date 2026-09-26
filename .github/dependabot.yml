@@ -34,3 +34,8 @@ updates:
         patterns:
           - "eslint"
           - "@eslint/js"
+      # @vitest/coverage-v8 N pins vitest N exactly, so vitest alone (#8) failed `npm ci`.
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
