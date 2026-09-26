@@ -1,8 +1,9 @@
 # UWPR Publication Impact — Project Phases
 
-**Status:** the pipeline is built and running weekly; the app is not. See 08.
-**Last updated:** 2026-09-20 (Phase 4 retired; **every remaining phase is agreed** — 5, 6 and 7
-are specified, and all that is left is to build them)
+**Status:** the pipeline, export and app are built and live (see 08). Phase 9, funding impact, is
+agreed and being built.
+**Last updated:** 2026-09-26 (Phase 9 added and agreed: the funding behind the publications, in
+[09](09-funding-impact.md)). Before that, 2026-09-20: Phase 4 retired, and 5, 6 and 7 agreed.
 
 ## Goal
 
@@ -45,7 +46,8 @@ is shown, it is labelled as a preprint.
 | 5 | Metrics & app data contract *(added)* | Exactly what is in the JSON that drives the app, and how is each number defined? | [05-metrics-and-data-contract.md](05-metrics-and-data-contract.md) | **Agreed** 2026-09-20 |
 | 6 | Web app | What does the single-page app show, how does it behave, and how does data get into it? | [06-web-app.md](06-web-app.md) | **Agreed** 2026-09-20 |
 | 7 | Operations *(added)* | Where does it run, how often, where is it hosted, and how do we know it is still correct? | [07-operations.md](07-operations.md) | **Agreed** 2026-09-20 |
-| 8 | Implementation | Build to the specs, in the order below. | [08-implementation.md](08-implementation.md) | **In progress** — M0–M5 done; the store is seeded and the weekly run works |
+| 8 | Implementation | Build to the specs, in the order below. | [08-implementation.md](08-implementation.md) | **Done** — the pipeline, export, app and publishing are built and live; the record is appended to as later phases are built |
+| 9 | Funding impact *(added)* | Which grants do the supported publications list, what are they worth, and who awards them? | [09-funding-impact.md](09-funding-impact.md) | **Agreed** 2026-09-26 |
 
 ### Why Phase 4 was retired (2026-09-20)
 
@@ -82,6 +84,16 @@ wanted, it has a home, a regeneration trigger and an owned-paths rule already.
   input changes" a checkable promise (schema version + validation).
 - **Operations (7).** "Re-runs regularly" needs an owner, a schedule, a host, API budgets and a
   way to notice breakage (a source changing its markup, an API changing its terms).
+- **Funding impact (9), added 2026-09-26.** UWPR wants to show the funding behind the
+  publications it supports: the grants those papers list, what the grants are worth, which
+  agencies award them, and how that accumulates over time. [05](05-metrics-and-data-contract.md)
+  A7 had left funders and grants out of v1 as a deliberate omission. Measured on 2026-09-26, 329
+  of 338 works carry funding metadata and NIH's RePORTER links 260 of them to 454 grants, so the
+  data exists; the difficulty is resolving what papers write, which is why the phase is mostly
+  about resolution rules and honest wording. Its headline is "Total value of grants listed" —
+  lifetime award totals of the grants the papers list, **not money spent on this work and not
+  money UWPR caused** — and it never affects inclusion. Funding is stored beside the work files,
+  in `store/funding/`, so `work.schema.json` does not change and no work file is rewritten.
 
 ## Dependencies and order of work
 
@@ -89,6 +101,10 @@ wanted, it has a home, a regeneration trigger and an owned-paths rule already.
 and carries the publication detail Phase 4 was to hold, 6 is the app, and 7 is how both are
 published and kept running. **Every phase is now specified, and what remains is implementation**,
 starting with the sample export, which the app cannot be developed or tested without (05 §13).
+
+**9 was added on 2026-09-26**, after everything above was built and live. It depends on all of
+them and changes 02, 03, 05, 06 and 07, each by a dated note as its milestone lands
+([09](09-funding-impact.md) §15).
 
 Suggested implementation order once specs are agreed:
 
@@ -129,6 +145,7 @@ Suggested implementation order once specs are agreed:
 | D11 | ~~How are summaries generated, and may abstracts be quoted?~~ | **Answered 2026-09-20: no summaries, and no abstracts.** A summary is the one thing on a publication page that could not be traced to a source, and abstracts are copyrighted, which is why they stay in the cache and out of the repository | — |
 | D12 | ~~Own subject vocabulary, or reuse an existing one?~~ | **Answered 2026-09-20:** use OpenAlex topics as reported — domain, field, subfield, topic — which cover 100% of included works. No vocabulary of our own | 05 |
 | D13 | ~~Embed knowledge-base content, or load pages on click?~~ | **Obsolete** — there is no separate knowledge base to embed or load. Publication detail is part of the app's data contract | 05 |
+| D14 | Show the funding behind the publications, and how? | **Answered 2026-09-26:** yes, as "Total value of grants listed" — lifetime totals, as of the data date, of the distinct grants the publications list, not money spent on this work. Institution-wide awards counted and tagged; UWPR's own funding is the code `UWPR95794` alone; PI names shown as funders publish them | 09 |
 
 ## Glossary
 
@@ -140,3 +157,22 @@ Suggested implementation order once specs are agreed:
 - **Rule:** an automatic test on metadata or text that, when it fires, includes a work (01 §6).
 - **Official list:** the publications pages on proteomicsresource.washington.edu.
 - **Knowledge-base entry:** the markdown page for one publication (work family).
+
+Funding (Phase 9, added 2026-09-26; [09](09-funding-impact.md) §4 has the full definitions):
+
+- **Core project:** an NIH grant as a whole — activity code, institute and serial, such as
+  `R01GM086688` — across all its fiscal years, renewals and supplements. The unit a grant is
+  counted in.
+- **IC:** an NIH institute or centre (NIGMS, NHLBI, …), the agency that administers a grant. Its
+  parent is NIH.
+- **Sub-project:** one component of a multi-project NIH grant (P01, P30, P41…). RePORTER lists it as
+  its own row, whose cost is already inside the parent's; adding it counts that money twice.
+- **Supplement:** extra money added to a grant within a year (application type 3). A parent-level
+  row, and counted.
+- **Task order:** an order placed under an NIH IDIQ contract, with its own number and amount; a
+  paper that cites it lists the task order, not the whole contract.
+- **Institution-wide award:** an award to an institution or consortium to run a programme for many
+  unrelated projects — a fellowship programme, a national institute, a consortium total. Counted in
+  full and tagged, so the view can leave it out.
+- **Miscellaneous:** where a grant number that matches no funder's record is kept. It has no amount
+  and is never counted as an agency.

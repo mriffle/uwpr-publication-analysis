@@ -139,6 +139,21 @@ under the 28-day rule, so two exported dates are taken from where they are still
 contract changed. The title that was a file name belonged to a duplicate: W-000746 was a second
 copy of W-000237's preprint, and merged into it, so the corpus is 338 works from that run on.
 
+**Changed 2026-09-26, funders and grants enter the contract** ([09](09-funding-impact.md), agreed
+that day). **A7, §3.1 and §14 item 2 are superseded.** They left funders and grants out of v1 as a
+deliberate omission, on the grounds that the store did not hold them and that holding them meant a
+frozen-schema change and a re-fetch of every record. Research on 2026-09-26 measured that 329 of
+338 works carry funding metadata and that NIH's RePORTER links 260 of them to 454 grants, and the
+maintainer asked for the funding behind the publications to be shown. It costs less than §3.1
+feared: funding is stored beside the work files, in `store/funding/`, so `work.schema.json` does
+not change and no work file is rewritten ([09](09-funding-impact.md) §8). The export becomes
+**`schema_version` 1.1**, an additive minor bump (§12): each work gains `grants[]`, and a
+top-level `funding` block carries the grants, the agencies and an independent `funding.summary`
+([09](09-funding-impact.md) §11). **The top-level `summary` is untouched**, so the summary
+cross-check (§1.1, principle 2) is unaffected. The original text below is kept as the record of
+why funding was out of scope; the further notes this contract needs (§4.1, §4.4, §12, §13) land
+with milestone B5.
+
 **Every figure in this document was measured against the committed store on 2026-09-20**
 (339 works, rule version `2026-09-20.1`). Figures move as the store grows; the definitions do
 not. Where a number is quoted to justify a design decision, re-measure before changing that
@@ -195,7 +210,7 @@ informed it.
 | A4 | **Rejected candidates are not browsable.** They are exported as a lookup index answering "why is paper X not here?" on request. The file is public and this is a choice about what the app claims, not a way of withholding data. |
 | A5 | **Works absent from UWPR's own list are shown as ordinary publications.** The count appears on the method page. The per-paper report stays an operations artifact. |
 | A6 | **No UW branding** (D8, answered 2026-09-20). Clean and modern, visually neutral. The resource is named and linked. |
-| A7 | **Funders and grants are not exported.** The store does not hold them (§3.1). |
+| A7 | **Funders and grants are not exported.** The store does not hold them (§3.1). *Superseded 2026-09-26 by [09](09-funding-impact.md): funders and grants are exported from schema 1.1.* |
 | A8 | **Author and evidence lists are not capped.** Measured: the full export is 3.48 MB as written, **0.31 MB gzipped** (§4.4), which is what the transfer costs. Capping saves a fraction of that and hides the evidence the project exists to show. |
 
 ### 2.1 Why the year is the article's date (A2)
@@ -238,6 +253,12 @@ field to a frozen schema and re-fetching every record.
 **Decided: out of scope for v1, and recorded as a deliberate omission rather than an oversight.**
 If it is wanted, it is a Phase 2 schema change plus a Phase 3 fetch change, and it should be
 costed as such.
+
+**Superseded 2026-09-26** by [09](09-funding-impact.md), which brings funders and grants into
+scope. It was costed as this section asked, and came out smaller: the funding lives in
+`store/funding/`, beside the work files, so the record schema is not changed, and the funding
+sources are read by a pipeline stage of their own on a schedule ([09](09-funding-impact.md) §9)
+rather than by re-fetching the records.
 
 ### 3.2 Two data defects the export will expose
 
@@ -901,7 +922,8 @@ only its input is a union.
 1. **Two pipeline defects** (§3.2) are recorded but not fixed. The entity fix needs a rule-version
    bump, which is also the unmeasured cold-cache scenario in [03](03-retrieval-pipeline.md) §13.
 2. **Funders and grants** (§3.1) are out of scope for v1 as a deliberate decision, not an
-   oversight. Reopening it is a frozen-schema change.
+   oversight. Reopening it is a frozen-schema change. *Superseded 2026-09-26: reopened by
+   [09](09-funding-impact.md).*
 3. **A co-authorship network** (§7.15) is supported by the data and deferred to Phase 6.
 4. **Hosting** is Phase 7's, and constrains Phase 6. GitHub Pages published from the weekly
    workflow is the assumption; this contract assumes only that two static JSON files are served

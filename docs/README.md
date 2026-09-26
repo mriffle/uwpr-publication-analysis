@@ -21,6 +21,7 @@ Status is not decoration. It says what you are allowed to do with the document.
 | [06-web-app.md](06-web-app.md) | What does the app show, how does it behave, and how is it built and tested? | **Agreed** 2026-09-20 |
 | [07-operations.md](07-operations.md) | Where does it run, how is it published, and how do we know it still works? | **Agreed** 2026-09-20 |
 | [08-implementation.md](08-implementation.md) | What was actually built, what was measured, and what did building it teach us? | **Record** — appended to, not rewritten |
+| [09-funding-impact.md](09-funding-impact.md) | Which grants do the publications list, what are they worth, and how is each resolved, stored and shown? | **Agreed** 2026-09-26 |
 | [archive/](archive/) | Superseded documents, kept because they are cited | — |
 
 **Frozen** means the document is the authority and changes to it are deliberate: dated, explained
@@ -28,9 +29,11 @@ in the header's "Changes since freezing" note, and accompanied by a re-measureme
 change affects. Several rules were changed after freezing, and each carries the recall figure
 before and after.
 
-**Agreed** means the same, except these three were settled later and their headers carry a
-"Changes since agreement" changelog instead. Building the app corrected the contract a dozen
-times; each correction says what was wrong and how it was found.
+**Agreed** means the same, except these were settled later and their headers carry a "Changes
+since agreement" changelog instead. Building the app corrected the contract a dozen times; each
+correction says what was wrong and how it was found. 09 was agreed on 2026-09-26, after the rest
+was live, and is also the only durable record of the research it rests on: its appendices
+transcribe the case tables, because the scripts that produced them were not kept.
 
 **Record** means 08 is not a specification at all. It is the implementation's own account:
 milestones, measured costs and timings, decisions taken while building, and a list of things that
@@ -49,6 +52,10 @@ only went wrong once. Read §4 and §5 before changing pipeline code.
 6. **[06](06-web-app.md)** — the app itself.
 7. **[07](07-operations.md)** — running and publishing it, and how a failure becomes visible.
 8. **[08](08-implementation.md)** — what happened when all of that was built.
+9. **[09](09-funding-impact.md)** — funding impact, added once the rest was live: the grants the
+   publications list, how each written number resolves to one grant and one amount, and how the
+   app shows it without claiming more than it shows. It extends 02, 03, 05, 06 and 07, and §15
+   lists every change it makes to them.
 
 ## Phase 4 is missing on purpose
 
