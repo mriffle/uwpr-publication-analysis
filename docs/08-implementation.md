@@ -589,7 +589,7 @@ because they are the things a reader would otherwise have to rediscover.
   committed store even with the same code on the same day. *(Corrected the same day: this first
   said CI starts cold, which it does not; the 2026-09-26 run made 3 NCBI requests.)*
 - **Stage 0 and the gate read different `overrides.yaml` files** (§8, open item 4). It was found
-  when that local run stopped at stage 0.
+  when that local run stopped at stage 0. *(Fixed the same day.)*
 
 ## 6. The approved implementation plan
 
@@ -922,15 +922,14 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
      under an unchanged rule version — would be kept alongside it, leaving duplicates. A version
      bump supersedes the old entry properly. That bump is also the **cold-cache rule-change run
      that Phase 3 §13 still carries as an estimate**, so the two should be done in one go.
-2. **An override that names a DOI or PMID silently does nothing** (found 2026-09-20, still true
-   2026-09-26). Phase 2 §9 allows an `include` or `exclude` target to be "a DOI / PMID for a paper
-   not yet in the store", and `overrides.schema.json` accepts one, but the pipeline matches
-   overrides only by work ID. Such an entry is accepted, validated and ignored — the worst shape
-   for a correction tool, since the person who wrote it gets no signal that it did not take
-   effect. Both current overrides name work IDs, so nothing is currently wrong. **Needs a
-   decision:** either resolve such a target through `aliases.json` before matching, or reject it
-   at config load so it fails loudly. The second is cheaper and arguably better, since an
-   override for a paper the pipeline has never seen has nothing to attach to.
+2. ~~**An override that names a DOI or PMID silently does nothing**~~ (found 2026-09-20). Phase 2
+   §9 allowed an `include` or `exclude` target to be "a DOI / PMID for a paper not yet in the
+   store", and `overrides.schema.json` accepted one, but the pipeline matches overrides only by
+   work ID, so such an entry was accepted, validated and ignored. **Fixed 2026-09-26 by rejecting
+   it** rather than resolving it through `aliases.json`: every paper the pipeline has seen has a
+   work ID, candidates included, and one it has never seen has nothing to attach to. The schema
+   now takes work IDs only, so config load stops the run, and the validator reports it (Phase 2's
+   header has the change). Both current overrides name work IDs and still load.
 3. ~~**A weekly run rewrites every work file**~~ (§3.5). **Fixed 2026-09-26** (§3.6): a week on,
    no work file or candidate line changes.
 4. ~~**Stage 0 validates against a different `overrides.yaml` from the gate**~~ (found

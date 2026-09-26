@@ -58,6 +58,14 @@ lines, with nothing changed but dates:
   entry's `source.retrieved`, R6's query date — move only with `last_seen`.
 - *§5.1, `updated`* changes only when something else in the file does.
 
+**Changed 2026-09-26, override targets** (docs/08 §8 item 2):
+- *§9 and `overrides.schema.json`:* a target is a work ID, or a list of them for `merge`. §9
+  allowed "a DOI / PMID for a paper not yet in the store", but nothing ever resolved one: the
+  pipeline matches overrides by work ID, so such an entry was loaded, validated with a warning
+  and ignored. A paper the pipeline has seen has a work ID, candidates included, and one it has
+  not seen has nothing for an override to attach to. The schema now rejects any other target,
+  so config load stops the run instead of the entry doing nothing.
+
 **Purpose:** define how the pipeline stores what it finds between runs, precisely enough to
 implement.
 **Depends on:** [01-discovery-strategy.md](01-discovery-strategy.md) (frozen). This spec uses its
@@ -347,7 +355,7 @@ ever wanted. Subjects come from `records[].topics` instead, as OpenAlex reports 
 The only routine human input besides configuration. Used when someone reports a mistake.
 
 ```yaml
-- target: W-000210            # or a DOI / PMID for a paper not yet in the store
+- target: W-000210            # a work ID; `uwpr-pubs explain <DOI|PMID>` gives a paper's
   action: include             # include | exclude | merge | split
   reason: "PI confirmed samples were run at UWPR."
   by: mriffle

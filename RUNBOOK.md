@@ -231,7 +231,7 @@ and every entry is attributed and dated, because an override asserts a judgement
 measurement.
 
 ```yaml
-- target: W-000686           # a work id. See the warning below.
+- target: W-000686           # a work ID, never a DOI or PMID
   action: exclude            # include | exclude | merge | split
   reason: >-
     One or two sentences saying what was checked and why the rules do not reach it. Written for
@@ -244,9 +244,9 @@ measurement.
   survives** and the rest become aliases.
 - `split` also needs `records:`.
 - **An override cannot beat R1.** A paper on UWPR's own publications page cannot be excluded.
-- **Name a work ID, not a DOI or a PMID.** The schema accepts a DOI or PMID target, but the
-  pipeline matches overrides by work ID only, so such an entry is accepted, validated and then
-  **silently ignored** (docs/08 §8 item 2). Find the work ID with `uwpr-pubs explain <doi>`.
+- **Name a work ID, not a DOI or a PMID.** The pipeline matches overrides by work ID only, so
+  any other target is rejected when the config loads, and the run stops (`does not match
+  '^W-[0-9]{6}$'`). Find the work ID with `uwpr-pubs explain <doi>`; a candidate has one too.
 
 Then run and confirm. `overrides.yaml` is part of the config fingerprint, so the next run
 re-evaluates every work:
