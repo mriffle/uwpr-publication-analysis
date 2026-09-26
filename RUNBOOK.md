@@ -248,8 +248,8 @@ measurement.
   any other target is rejected when the config loads, and the run stops (`does not match
   '^W-[0-9]{6}$'`). Find the work ID with `uwpr-pubs explain <doi>`; a candidate has one too.
 
-Then run and confirm. `overrides.yaml` is part of the config fingerprint, so the next run
-re-evaluates every work:
+Then run and confirm. Each run records a fingerprint of the overrides it ran with, so the next
+run sees the change and re-evaluates every work:
 
 ```bash
 uv run uwpr-pubs run --store /tmp/scratch-store   # check it does what you meant

@@ -66,6 +66,12 @@ lines, with nothing changed but dates:
   not seen has nothing for an override to attach to. The schema now rejects any other target,
   so config load stops the run instead of the entry doing nothing.
 
+**Changed 2026-09-26, the run manifest** (docs/08 §8 item 9; docs/03's header has the detail):
+- *§11 and `run.schema.json`:* a manifest may carry `overrides_fingerprint`, the fingerprint of
+  the work overrides alone. Stage 4 compares it to decide whether every record must be read
+  again, which the config fingerprint had decided, so an edit to any config file did. The field
+  is optional, so every manifest written before it stays valid.
+
 **Purpose:** define how the pipeline stores what it finds between runs, precisely enough to
 implement.
 **Depends on:** [01-discovery-strategy.md](01-discovery-strategy.md) (frozen). This spec uses its
@@ -396,7 +402,8 @@ The only routine human input besides configuration. Used when someone reports a 
 
 Each manifest records:
 - the run ID (start time plus mode: `live`, `replay`, `record` or `sample`), start and end, code
-  version, and the config and rules fingerprints (changed 2026-09-19);
+  version, the config and rules fingerprints (changed 2026-09-19), and the overrides fingerprint
+  (added 2026-09-26; older manifests lack it);
 - the run status: `ok`, `degraded` or `alert` (Phase 3 §9). A failed run writes nothing, so it
   has no manifest;
 - each degradation, with its source and cause;

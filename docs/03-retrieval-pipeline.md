@@ -144,6 +144,28 @@ was retired with it on 2026-09-20.
   $0.0100, 703 requests, 604 of them NCBI. The estimate was a normal run plus about 6 minutes, and
   about 1,100 NCBI requests; a record with no PMCID is never fetched.
 
+**Changed 2026-09-26, so only an overrides change reads every record again**
+([08](08-implementation.md) §8 item 9):
+- *§6.1 item 4 and §10.4, what stage 4 compares.* It compared the whole config fingerprint,
+  which covers every `config/*.yaml` as well as `overrides.yaml`, so an edit to `channels.yaml`
+  alone read every text again. The 2026-09-19 note above put the overrides in the config
+  fingerprint so that they would count; it made everything else count too. Stage 4 now compares
+  an **overrides fingerprint**, over the `include`, `exclude`, `merge` and `split` entries alone,
+  which every run manifest records (an optional field; [02](02-data-model.md) §11). An override
+  of any other kind, which none is yet, will read nothing again.
+- *A manifest written before this has no such field,* and then the config fingerprint decides,
+  as it did. The committed store's latest manifest carries today's config fingerprint, so the
+  first run after the change reads nothing it would not have read anyway.
+- *§10.4 said an overrides change re-evaluates "the works the overrides name".* The code has
+  always read every record, and it has to: a lifted override is gone from the file, so nothing
+  left in it names the work that now needs reading. The text now says so.
+- *Verified offline* (`tests/test_pipeline.py`), each run on a cold cache so that a text read
+  again shows as a request. After an edit to `channels.yaml` a run reads no text, where the old
+  comparison fetched all three test papers' PMC texts again. Adding an exclusion reads its work;
+  the same overrides a week on read nothing; lifting it reads the work again. A manifest stripped
+  of the field falls back both ways: nothing read on an unchanged config, everything after an
+  edit.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the
@@ -340,8 +362,10 @@ A record is (re)evaluated in stages 4–5 when any of the following holds:
 2. its `fulltext.recheck_after` date has passed (90 days after an unreadable result);
 3. its evidence has a `rule_version` older than the current one. For a work that is not
    included, the `rule_version` on its `candidates.jsonl` line plays this role;
-4. `overrides.yaml` changed since the last run (§10.4). Without this, a work excluded by an
-   override that is later removed would never be reconsidered.
+4. the work overrides in `overrides.yaml` changed since the last run: their fingerprint differs
+   from the latest manifest's (§10.4; changed 2026-09-26). Every record is read, not only the
+   works the overrides name. Without this, a work excluded by an override that is later removed
+   would never be reconsidered, and once removed, the override no longer names it.
 
 **Evidence that needs no text is refreshed every run for every record:**
 - R1, from the official list (stage 1);
@@ -588,12 +612,15 @@ the schemas are unchanged.
 - The **rules fingerprint** is the SHA-256 of the canonical JSON of the parsed `rules.yaml`
   (without `rule_version`) and `staff.yaml`. Comments and formatting don't count.
 - The **config fingerprint** covers every `config/*.yaml` and `overrides.yaml`. A change to it
-  alone does not re-evaluate anything, except a change to `overrides.yaml`, which re-evaluates the
-  works the overrides name (§6.1).
+  alone re-evaluates nothing (changed 2026-09-26).
 - Each run manifest records it (`rules_fingerprint`). Stage 0 compares it with the latest
   manifest: a changed fingerprint with an unchanged `rule_version` fails the run. An offline
   test runs the same check against the committed store, so the mistake is caught on push.
 - The first run after a version bump re-evaluates every work (§6.1).
+- The **overrides fingerprint** covers the `include`, `exclude`, `merge` and `split` overrides
+  alone. Each run manifest records it (`overrides_fingerprint`), and a change re-reads every
+  record (§6.1 item 4). A manifest from before 2026-09-26 lacks it, and then a changed config
+  fingerprint does instead.
 
 ### 10.5 `fixtures.yaml`
 

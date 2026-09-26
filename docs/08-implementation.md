@@ -1043,9 +1043,14 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
 7. **Visual-regression tests** ([06](06-web-app.md) §12.2) are not written.
 8. **[07](07-operations.md) §9.1's missing-from-site list** has no report section, and nobody owns
    acting on it (07 §16 item 0).
-9. **Any config change re-reads every record** (found 2026-09-26). Stage 4's
-   `_overrides_changed` compares the whole config fingerprint, which covers every `config/*.yaml`
-   as well as `overrides.yaml`. So a change to `channels.yaml` alone re-reads every text.
-   Phase 3 §10.4 says only a rule-version change or an `overrides.yaml` change should. With CI's
-   warm cache that costs time, not requests, so it is left alone for now; the fix is to compare
-   the overrides themselves.
+9. ~~**Any config change re-reads every record**~~ (found 2026-09-26). Stage 4's
+   `_overrides_changed` compared the whole config fingerprint, which covers every `config/*.yaml`
+   as well as `overrides.yaml`. So a change to `channels.yaml` alone re-read every text.
+   Phase 3 §10.4 says only a rule-version change or an `overrides.yaml` change should. **Fixed
+   2026-09-26** by comparing the overrides themselves: an overrides fingerprint over the
+   `include`, `exclude`, `merge` and `split` entries alone, which every run manifest now records.
+   A later kind of override will not count. A manifest from before the fix lacks the field and
+   falls back to the config fingerprint; the committed store's latest one matches today's config,
+   so the first run after reads nothing extra. A test edits `channels.yaml` and runs again on a
+   cold cache; it fails on the old code with all three PMC texts fetched again. Phase 3's header
+   has the change, and Phase 2's the optional manifest field.
