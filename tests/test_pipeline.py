@@ -739,6 +739,32 @@ def test_duplicate_openalex_records_for_one_doi_are_chosen_the_same_way(tmp_path
     assert pipeline_module._preferred([]) is None
 
 
+def test_one_record_fetched_twice_is_not_reported_as_a_duplicate(client: HttpClient, tmp_path: Path) -> None:
+    """A paper nominated once by DOI and once by PMID alone comes back from both batches.
+
+    That is the same OpenAlex record twice, and each of its identifiers was noted as having
+    "2 records (W1, W1)" — 222 such notes on the 2026-09-26 run, and not one a real duplicate.
+    """
+    store = tmp_path / "store"
+    run = pipeline_module.Pipeline(
+        load_config(), client, context_at(store), RunOptions(store=store, check_clean=False)
+    )
+    same = {"id": "https://openalex.org/W2782300612", "doi": "https://doi.org/10.1/x", "ids": {"pmid": "1"}}
+    other = {"id": "https://openalex.org/W4375844275", "doi": "https://doi.org/10.1/x"}
+
+    payloads: dict[str, Mapping[str, Any]] = {}
+    run._choose_payloads([same, dict(same)], payloads)
+    assert run.recorder.notes == []
+    assert set(payloads) == {"doi:10.1/x", "pmid:1", "openalex:W2782300612"}
+
+    payloads = {}
+    run._choose_payloads([other, same, dict(same)], payloads)
+    assert run.recorder.notes == [
+        "OpenAlex has 2 records for doi:10.1/x (W2782300612, W4375844275); taking the lowest id"
+    ]
+    assert payloads["doi:10.1/x"]["id"] == same["id"]
+
+
 def test_a_run_writes_the_export_beside_its_store(client: HttpClient, tmp_path: Path) -> None:
     """Stage 11 runs in the pipeline, and stage 13 publishes it outside the store (docs/02 §3)."""
     store = tmp_path / "store"

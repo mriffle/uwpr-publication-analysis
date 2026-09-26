@@ -575,13 +575,18 @@ class Pipeline:
     def _choose_payloads(
         self, fetched: Sequence[Mapping[str, Any]], payloads: dict[str, Mapping[str, Any]]
     ) -> None:
-        by_identity: dict[str, list[Mapping[str, Any]]] = {}
+        # Keyed by OpenAlex id, because the same work can arrive twice: once from the DOI batch
+        # and again from the PMID batch, when one paper was nominated under each. That is one
+        # record, not a duplicate, and reporting it as one buried the real duplicates.
+        by_identity: dict[str, dict[str, Mapping[str, Any]]] = {}
         for work in fetched:
-            for identity in external_keys(ids_from_openalex(work)):
-                by_identity.setdefault(identity, []).append(work)
-        for identity, works in by_identity.items():
+            ids = ids_from_openalex(work)
+            for identity in external_keys(ids):
+                by_identity.setdefault(identity, {}).setdefault(str(ids.get("openalex")), work)
+        for identity, distinct in by_identity.items():
             if identity in payloads:
                 continue
+            works = list(distinct.values())
             if len(works) > 1:
                 self._note_duplicate(identity, works)
             chosen = _preferred(works)
