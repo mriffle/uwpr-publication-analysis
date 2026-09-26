@@ -118,7 +118,13 @@ def _wanted(candidate: Mapping[str, Any], expression: str) -> bool:
 @pytest.fixture
 def client(tmp_path: Path) -> HttpClient:
     def transport(
-        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response:
         return route(url, params)
 

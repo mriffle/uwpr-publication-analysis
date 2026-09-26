@@ -7,6 +7,11 @@ behind a `Transport`, so tests drive the whole client without a socket.
 Costs are classified from the request rather than read from a response header, because replay has
 no headers to read: an OpenAlex lookup by ID is free, a filter page is $0.0001 and a search page
 is $0.001 (CLAUDE.md). The header is used only to see how much budget is left.
+
+Most sources are asked with a GET. NIH RePORTER and USAspending take a JSON body, so `post_json`
+sends one through the same retries, spacing, budget, cache and modes (docs/03 §7, changed
+2026-09-26). Its body is canonical — sorted keys, no spaces — so one question is always one
+cache key.
 """
 
 import contextlib
@@ -21,7 +26,7 @@ from typing import Any, Protocol
 
 import httpx
 
-from uwpr_pubs.cache import Cache, Fetched, request_key
+from uwpr_pubs.cache import Cache, Fetched, body_digest, request_key
 from uwpr_pubs.recording import prepare_recording
 from uwpr_pubs.secrets import scrub, strip_url
 
@@ -101,8 +106,15 @@ class Response:
 
 
 class Transport(Protocol):
-    def __call__(
-        self, url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+    def __call__(  # noqa: PLR0913 - one request: where, what, how long, and its method and body
+        self,
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response: ...
 
 
@@ -112,10 +124,19 @@ class HttpxTransport:
     def __init__(self) -> None:
         self._client = httpx.Client(follow_redirects=True)
 
-    def __call__(
-        self, url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+    def __call__(  # noqa: PLR0913 - the Transport signature
+        self,
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response:
-        reply = self._client.get(url, params=dict(params), headers=dict(headers), timeout=timeout)
+        reply = self._client.request(
+            method, url, params=dict(params), headers=dict(headers), content=body, timeout=timeout
+        )
         return Response(
             url=strip_url(str(reply.url)),
             status=reply.status_code,
@@ -251,18 +272,54 @@ class HttpClient:
         backoff costs about 14 seconds each, on hundreds of records, for a reply that will not
         change.
         """
-        request_params = dict(params or {})
-        key = request_key(url, request_params)
+        return self._send(
+            "GET", url, dict(params or {}), None, host=host, policy=policy, cost=cost, attempts=attempts
+        )
+
+    def post_json(  # noqa: PLR0913 - as `get`, with a JSON payload in place of query parameters
+        self,
+        url: str,
+        payload: Any,
+        *,
+        host: str,
+        policy: Policy = Policy.REFRESH,
+        cost: float = 0.0,
+        attempts: int | None = None,
+    ) -> Response:
+        """POST `payload` as JSON, retried, spaced, cached, recorded and replayed as a GET is.
+
+        The body is canonical, so a payload built in a different key order is the same request
+        and finds the same cache entry and recording.
+        """
+        body = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+        return self._send("POST", url, {}, body, host=host, policy=policy, cost=cost, attempts=attempts)
+
+    def _send(  # noqa: PLR0913 - the request, then how to treat it
+        self,
+        method: str,
+        url: str,
+        request_params: dict[str, str],
+        body: bytes | None,
+        *,
+        host: str,
+        policy: Policy,
+        cost: float,
+        attempts: int | None,
+    ) -> Response:
+        key = request_key(url, request_params, method, body)
         self.last_key = key
+        # A GET's messages read exactly as they always have; anything else names its method,
+        # since its URL alone does not say which request it was.
+        what = scrub(strip_url(url)) if method == "GET" else f"{method} {scrub(strip_url(url))}"
 
         if policy is Policy.IMMUTABLE or self.mode is Mode.REPLAY:
             source = self.recordings if self.mode is Mode.REPLAY else self.cache
             hit = source.get(key) if source else None
             if hit is not None:
-                record, body = hit
-                return Response(record.url, record.status, body, {}, from_cache=True)
+                record, cached = hit
+                return Response(record.url, record.status, cached, {}, from_cache=True)
         if self.mode is Mode.REPLAY:
-            raise MissingRecordingError(f"no recording for {scrub(strip_url(url))} ({key[:12]})")
+            raise MissingRecordingError(f"no recording for {what} ({key[:12]})")
 
         if not self.budget.allows(cost):
             self.budget.tripped = True
@@ -271,13 +328,17 @@ class HttpClient:
             )
 
         headers = {"User-Agent": f"{self.user_agent} (mailto:{self.contact})"}
+        if body is not None:
+            headers["Content-Type"] = "application/json"
         last_error = ""
         last_status: int | None = None
         max_attempts = self.max_attempts if attempts is None else max(1, attempts)
         for attempt in range(max_attempts):
             self.rate_limiter.wait(host)
             try:
-                response = self.transport(url, request_params, headers, self.timeout)
+                response = self.transport(
+                    url, request_params, headers, self.timeout, method=method, body=body
+                )
             except Exception as exc:  # every transport failure is retried alike
                 last_error = f"{type(exc).__name__}: {scrub(str(exc))}"
             else:
@@ -285,7 +346,7 @@ class HttpClient:
                 if response.status < HTTP_ERROR_FLOOR:
                     self.budget.charge(cost)
                     self._account(host, cost)
-                    self._store(key, url, request_params, response)
+                    self._store(key, url, request_params, response, method=method, body=body)
                     return response
                 last_error = f"HTTP {response.status}"
                 last_status = response.status
@@ -296,11 +357,29 @@ class HttpClient:
                 continue
             if attempt + 1 < max_attempts:
                 self._sleep(self._backoff(attempt, None))
-        raise HttpError(f"{scrub(strip_url(url))}: {last_error}", last_status)
+        raise HttpError(f"{what}: {last_error}", last_status)
 
-    def _store(self, key: str, url: str, params: dict[str, str], response: Response) -> None:
+    def _store(  # noqa: PLR0913 - the request and its response
+        self,
+        key: str,
+        url: str,
+        params: dict[str, str],
+        response: Response,
+        *,
+        method: str,
+        body: bytes | None,
+    ) -> None:
         content_type = response.headers.get("content-type", "")
-        fetched = Fetched(url, params, response.status, content_type, response.body, self._now())
+        fetched = Fetched(
+            url,
+            params,
+            response.status,
+            content_type,
+            response.body,
+            self._now(),
+            method=method,
+            body_sha256=None if body is None else body_digest(body),
+        )
         self.cache.put(key, fetched)
         if self.mode is Mode.RECORD and self.recordings is not None:
             scrubbed = prepare_recording(content_type, response.body)

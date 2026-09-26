@@ -86,6 +86,9 @@ rate_limits:                         # requests per second (§7)
   pride: 2
   biorxiv: 2
   uwpr_site: 1
+  reporter: 1                        # NIH RePORTER asks for no more than one request a second
+  nsf: 2                             # the NSF award search
+  usaspending: 2
 max_attempts: 4                      # per request, with backoff (§7)
 recheck_days: 90                     # unreadable text is looked for again after this (P9)
 last_seen_refresh_days: 28           # P11

@@ -190,7 +190,13 @@ def route(url: str, params: Mapping[str, str]) -> Response:  # noqa: PLR0911, PL
 @pytest.fixture
 def client(tmp_path: Path) -> HttpClient:
     def transport(
-        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response:
         return route(url, params)
 
@@ -332,7 +338,13 @@ def test_a_source_answering_an_empty_body_degrades_the_run_instead_of_failing_it
     """
 
     def transport(
-        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response:
         if url.endswith(f"/works/{PREPRINT_DOI}"):
             return Response(url, 200, b'{"message": {}}', {})  # no stated relation, so bioRxiv is asked
@@ -371,7 +383,13 @@ def test_a_revision_doi_that_states_nothing_is_asked_about_without_its_revision(
     revision = f"{PREPRINT_DOI}.v1"
 
     def transport(
-        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response:
         if url.endswith(f"/works/{revision}"):
             return Response(url, 200, b'{"message": {"relation": {}}}', {})
@@ -540,7 +558,13 @@ def test_a_candidate_is_not_read_again_every_week(tmp_path: Path, monkeypatch: p
     asked: list[str] = []
 
     def transport(
-        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response:
         asked.append(url)
         return route(url, params)
@@ -586,7 +610,13 @@ def counting_client(tmp_path: Path, cache: str, asked: Asked) -> HttpClient:
     """
 
     def transport(
-        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response:
         asked.append((url, dict(params)))
         return route(url, params)

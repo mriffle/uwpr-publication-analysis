@@ -29,7 +29,13 @@ def client_for(handler: Handler, tmp_path: Path, mode: Mode = Mode.LIVE) -> tupl
     seen: list[str] = []
 
     def transport(
-        url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response:
         seen.append(url)
         return handler(url, dict(params))

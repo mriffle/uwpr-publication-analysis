@@ -38,13 +38,20 @@ jobs:
 
       # The download cache is an accelerator only (§11.4), and the run must be correct without
       # it. The key is unique per run, so the restore always misses and falls back to the newest
-      # dlcache-v1-*, and the save below always writes a fresh one.
+      # dlcache-v2-*, and the save below always writes a fresh one.
+      #
+      # v2 since 2026-09-26, when the cache began holding POSTs (docs/07 §3). Their index lines
+      # carry `method` and `body_sha256`, which code from before then cannot load, so a rolled-back
+      # workflow (which asks for v1) must never be handed a cache this code wrote. This code reads
+      # a v1 cache perfectly well, so v1 is the fallback: the first v2 run starts warm.
       - name: Restore the download cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: cache
-          key: dlcache-v1-${{ github.run_id }}
-          restore-keys: dlcache-v1-
+          key: dlcache-v2-${{ github.run_id }}
+          restore-keys: |
+            dlcache-v2-
+            dlcache-v1-
 
       # A runner has no git identity, and the pipeline commits for itself in stage 13.
       - name: Identify the committer
@@ -126,7 +133,7 @@ jobs:
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: cache
-          key: dlcache-v1-${{ github.run_id }}
+          key: dlcache-v2-${{ github.run_id }}  # the prefix above, and why
 
       # Last, so the data is already written and pushed. An alert means something needs a person,
       # not that the run was wrong (§9), and a failed job is how GitHub tells them.

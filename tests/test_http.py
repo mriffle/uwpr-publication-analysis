@@ -1,13 +1,15 @@
 """The HTTP client: secrets, retries, rate limits, the budget guard, caching and modes."""
 
+import hashlib
 import json
 from collections.abc import Mapping
 from pathlib import Path
+from typing import Any
 
 import pytest
 
 from uwpr_pubs import recording
-from uwpr_pubs.cache import Cache, Fetched, request_key
+from uwpr_pubs.cache import Cache, CacheRecord, Fetched, request_key
 from uwpr_pubs.http import (
     Budget,
     BudgetExceededError,
@@ -39,11 +41,20 @@ class FakeTransport:
     def __init__(self, *replies: Response | Exception) -> None:
         self.replies = list(replies)
         self.calls: list[tuple[str, dict[str, str]]] = []
+        self.sent: list[tuple[str, bytes | None, dict[str, str]]] = []  # method, body, headers
 
     def __call__(
-        self, url: str, params: Mapping[str, str], headers: Mapping[str, str], timeout: float
+        self,
+        url: str,
+        params: Mapping[str, str],
+        headers: Mapping[str, str],
+        timeout: float,
+        *,
+        method: str = "GET",
+        body: bytes | None = None,
     ) -> Response:
         self.calls.append((url, dict(params)))
+        self.sent.append((method, body, dict(headers)))
         reply = self.replies.pop(0) if len(self.replies) > 1 else self.replies[0]
         if isinstance(reply, Exception):
             raise reply
@@ -252,6 +263,9 @@ def test_record_mode_refuses_to_record_full_text(tmp_path: Path) -> None:
     [
         (b'{"abstractText": "x"}', ["contains abstractText"]),
         (b'{"abstract_inverted_index": {}}', ["contains abstract_inverted_index"]),
+        (b'{"abstract_text": "x"}', ["contains abstract_text"]),  # NIH RePORTER
+        (b'{"phr_text": "x"}', ["contains phr_text"]),
+        (b"<Abstract><AbstractText>x</AbstractText></Abstract>", ["contains AbstractText"]),  # PubMed
         (b"<article><body>x</body></article>", ["looks like full text"]),
         (b'{"id": "W1"}', []),
     ],
@@ -329,3 +343,185 @@ def test_a_body_that_is_not_json_keeps_its_status() -> None:
 
 def test_a_json_body_still_parses() -> None:
     assert Response("u", 200, b'{"hitCount": 185}', {}).json() == {"hitCount": 185}
+
+
+# --- POST, for the sources that take a JSON body (docs/03 §7, changed 2026-09-26) -----------------
+
+# Two lines of the main checkout's `cache/index.jsonl`, as the code before POST wrote them on
+# 2026-09-19. Every cache entry and recording made before POST is found by keys like these.
+OLD_INDEX = Path(__file__).resolve().parent / "fixtures" / "cache-index-2026-09-19.jsonl"
+REPORTER = "https://api.reporter.nih.gov/v2/projects/search"
+REPORTER_QUERY = {
+    "criteria": {"project_nums": ["P41GM103533"], "exclude_subprojects": True},
+    "include_fields": ["ApplId", "FiscalYear", "AwardAmount"],
+    "limit": 5,
+}
+
+
+def old_lines() -> list[dict[str, Any]]:
+    return [json.loads(line) for line in OLD_INDEX.read_text(encoding="utf-8").splitlines()]
+
+
+@pytest.mark.parametrize("line", old_lines(), ids=lambda line: str(line["url"]))
+def test_get_request_keys_are_unchanged(line: dict[str, Any]) -> None:
+    """A GET's key may not move, or every cache entry and recording made before POST is lost."""
+    url, params = line["url"], dict(line["params"])
+    if "api_key" in params:
+        params["api_key"] = FAKE_KEY  # the key as sent; it is redacted before hashing
+    assert request_key(url, params) == line["key"]
+    assert request_key(url, params, "GET", None) == line["key"]
+
+
+def test_post_keys_depend_on_method_and_canonical_body(tmp_path: Path) -> None:
+    transport = FakeTransport(ok(b'{"results": []}'))
+    client, _ = make_client(transport, tmp_path)
+
+    client.post_json(REPORTER, REPORTER_QUERY, host="reporter")
+    first = client.last_key
+    reordered = {"limit": 5, "include_fields": REPORTER_QUERY["include_fields"]}
+    reordered["criteria"] = {"exclude_subprojects": True, "project_nums": ["P41GM103533"]}
+    client.post_json(REPORTER, reordered, host="reporter")
+    assert client.last_key == first  # built in another order, it is the same question
+    client.post_json(REPORTER, {**REPORTER_QUERY, "limit": 6}, host="reporter")
+    assert client.last_key != first
+
+    method, body, headers = transport.sent[0]
+    assert method == "POST"
+    assert body == transport.sent[1][1]
+    assert body is not None
+    assert body.startswith(b'{"criteria":{"exclude_subprojects":true,')  # sorted, no spaces
+    assert headers["Content-Type"] == "application/json"
+    assert "mriffle@uw.edu" in headers["User-Agent"]
+
+    # The method is part of the key: a POST with no body is not the GET of the same URL.
+    assert request_key(REPORTER, {}, "POST", b"") != request_key(REPORTER)
+    assert request_key(REPORTER, {}, "POST", b"{}") != request_key(REPORTER, {}, "PUT", b"{}")
+    # A key value in a body is redacted before hashing, so a recording made with the real key
+    # answers a replay made with a fake one.
+    assert request_key(REPORTER, {}, "POST", f'{{"k":"{FAKE_KEY}"}}'.encode()) == request_key(
+        REPORTER, {}, "POST", f'{{"k":"{REDACTED}"}}'.encode()
+    )
+
+
+@pytest.mark.parametrize(
+    "replies",
+    [
+        [Response("u", 429, b"", {"retry-after": "3"}), Response("u", 503, b"", {}), ok()],
+        [RuntimeError("connection reset"), ok()],
+        [Response("u", 503, b"", {})],
+        [Response("u", 400, b"", {})],
+    ],
+    ids=["429-then-503-then-ok", "a-transport-error", "503-forever", "a-400-is-an-answer"],
+)
+def test_post_is_retried_and_spaced_like_get(tmp_path: Path, replies: list[Response | Exception]) -> None:
+    """The same replies bring the same retries, backoff and spacing, whichever the method."""
+    outcomes = []
+    for method in ("GET", "POST"):
+        transport = FakeTransport(*replies)
+        client, sleeps = make_client(transport, tmp_path / method, rates={"reporter": 0.5})
+        try:
+            if method == "GET":
+                client.get(REPORTER, host="reporter")
+            else:
+                client.post_json(REPORTER, REPORTER_QUERY, host="reporter")
+        except HttpError as exc:
+            status: int | str | None = exc.status
+            assert str(exc).startswith("POST " if method == "POST" else REPORTER)
+        else:
+            status = "ok"
+        assert {sent[0] for sent in transport.sent} == {method}
+        outcomes.append((status, len(transport.calls), sleeps, client.usage.get("reporter")))
+    assert outcomes[0] == outcomes[1]
+    assert outcomes[1][2], "the limiter and the backoff both slept"
+
+
+def test_post_replays_from_recordings(tmp_path: Path) -> None:
+    project = {"appl_id": 1, "award_amount": 1_000_000, "abstract_text": "An abstract.", "phr_text": "Why."}
+    reply = {"meta": {"total": 1}, "results": [project]}
+    recordings = Cache(tmp_path / "recordings")
+    recorder, _ = make_client(
+        FakeTransport(ok(json.dumps(reply).encode(), {"content-type": "application/json"})),
+        tmp_path,
+        mode=Mode.RECORD,
+        recordings=recordings,
+    )
+    recorder.post_json(REPORTER, REPORTER_QUERY, host="reporter")
+    line = json.loads((tmp_path / "recordings" / "index.jsonl").read_text(encoding="utf-8"))
+    assert line["method"] == "POST"
+    canonical = json.dumps(REPORTER_QUERY, sort_keys=True, separators=(",", ":")).encode()
+    assert line["body_sha256"] == hashlib.sha256(canonical).hexdigest()
+    assert line["params"] == {}
+
+    transport = FakeTransport(ok(b"never used"))
+    replayer, _ = make_client(
+        transport, tmp_path / "replay", mode=Mode.REPLAY, recordings=Cache(tmp_path / "recordings")
+    )
+    reordered = dict(reversed(list(REPORTER_QUERY.items())))
+    replayed = replayer.post_json(REPORTER, reordered, host="reporter")
+    assert replayed.from_cache
+    assert replayed.json() == {"meta": {"total": 1}, "results": [{"appl_id": 1, "award_amount": 1_000_000}]}
+    assert transport.calls == []
+
+    with pytest.raises(MissingRecordingError, match=f"no recording for POST {REPORTER}"):
+        replayer.post_json(REPORTER, {**REPORTER_QUERY, "limit": 6}, host="reporter")
+    with pytest.raises(MissingRecordingError):
+        replayer.get(REPORTER, host="reporter")  # the GET of the same URL is another request
+
+
+def test_an_old_cache_line_still_loads(tmp_path: Path) -> None:
+    root = tmp_path / "cache"
+    root.mkdir()
+    future = {**old_lines()[1], "key": "f" * 64, "added_by_a_later_format": True}
+    lines = OLD_INDEX.read_text(encoding="utf-8") + json.dumps(future, sort_keys=True) + "\n"
+    (root / "index.jsonl").write_text(lines, encoding="utf-8")
+    for line in old_lines():
+        blob = Cache(root).blob_path(str(line["sha256"]))
+        blob.parent.mkdir(parents=True, exist_ok=True)
+        blob.write_bytes(b"a stand-in body")
+
+    cache = Cache(root)
+    for line in [*old_lines(), future]:
+        hit = cache.get(str(line["key"]))
+        assert hit is not None
+        assert (hit[0].method, hit[0].body_sha256) == ("GET", None)
+        assert hit[0].url == line["url"]
+
+    # What this code writes for a GET is what the old code wrote, byte for byte.
+    for text in OLD_INDEX.read_text(encoding="utf-8").splitlines(keepends=True):
+        assert CacheRecord.from_line(json.loads(text)).to_line() == text
+    fetched = Fetched("https://example.org/x", {"a": "1"}, 200, "text/plain", b"body", "2026-09-26T00:00:00Z")
+    cache.put("0" * 64, fetched)
+    written = json.loads((root / "index.jsonl").read_text(encoding="utf-8").splitlines()[-1])
+    assert list(written) == list(old_lines()[0])  # no new fields, in the same order
+
+
+def test_record_mode_strips_pubmed_abstract_xml(tmp_path: Path) -> None:
+    """PubMed's efetch XML carries the abstract, which a public repository may not (P10)."""
+    body = (
+        b'<?xml version="1.0" ?>\n<!DOCTYPE PubmedArticleSet>\n<PubmedArticleSet><PubmedArticle>'
+        b"<MedlineCitation><PMID>123</PMID><Article><ArticleTitle>A title</ArticleTitle>"
+        b'<Abstract>\n<AbstractText Label="BACKGROUND">Secret words.</AbstractText>'
+        b"<AbstractText>More secret words.</AbstractText><CopyrightInformation>c</CopyrightInformation>"
+        b'</Abstract></Article><OtherAbstract Type="Publisher" Language="spa">'
+        b"<AbstractText>Palabras secretas.</AbstractText></OtherAbstract>"
+        b"<GrantList><Grant><GrantID>P41 GM103533</GrantID></Grant></GrantList>"
+        b"</MedlineCitation></PubmedArticle></PubmedArticleSet>"
+    )
+    transport = FakeTransport(ok(body, {"content-type": "text/xml; charset=UTF-8"}))
+    recordings = Cache(tmp_path / "recordings")
+    client, _ = make_client(transport, tmp_path, mode=Mode.RECORD, recordings=recordings)
+    client.get("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi", {"db": "pubmed"}, host="ncbi")
+
+    recorded = recordings.get(client.last_key or "")
+    assert recorded is not None
+    assert recording.violations(recorded[1]) == []
+    assert b"secret" not in recorded[1].lower()
+    assert b"Palabras" not in recorded[1]
+    assert b"<ArticleTitle>A title</ArticleTitle>" in recorded[1]
+    assert b"<GrantID>P41 GM103533</GrantID>" in recorded[1]  # what the funding stage reads
+    cached = Cache(tmp_path / "cache").get(client.last_key or "")
+    assert cached is not None
+    assert b"Secret words." in cached[1]  # the cache is git-ignored, and keeps the whole reply
+
+    # Abstract text in a shape the pattern does not know is not recorded at all.
+    assert recording.prepare_recording("text/xml", b"<X><AbstractText>t</AbstractText></X>") is None

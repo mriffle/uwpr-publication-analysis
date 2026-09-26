@@ -38,6 +38,17 @@ def test_config_matches_its_schema(name: str) -> None:
     assert errors == []
 
 
+@pytest.mark.parametrize(("host", "rate"), [("reporter", 1), ("nsf", 2), ("usaspending", 2)])
+def test_the_funding_hosts_have_a_required_rate_limit(host: str, rate: int) -> None:
+    """NIH RePORTER, NSF and USAspending are spaced like every other source (docs/03 §7)."""
+    settings = load_config("settings")
+    assert settings["rate_limits"][host] == rate
+    schema = json.loads((ROOT / "schemas" / "config" / "settings.schema.json").read_text(encoding="utf-8"))
+    validator = Draft202012Validator(schema, registry=schema_registry())
+    del settings["rate_limits"][host]
+    assert [e.message for e in validator.iter_errors(settings)] == [f"'{host}' is a required property"]
+
+
 def rule_patterns(rules: Any) -> list[str]:
     """Every regex in rules.yaml (the plain-substring lists are not regexes)."""
     types = rules["record_types"]
