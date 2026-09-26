@@ -202,6 +202,81 @@ plan. [08](08-implementation.md) records them as they are built.
     as the publications sentence does.
   - **Chips** read "Funding agency: *name*" and "Grant: *agency short name, else its name*
     *number*" ("Grant: NIGMS R01GM086688"); a code or key the export lacks shows raw.
+- *2026-09-26, B7a — the stage (§9) as built, where §9 was silent or the build differs.* Stage 8b is
+  `stages/funding.py`, called as `Pipeline.funding(works)` between stages 8 and 9; with
+  `enabled: false` it carries the stored funding forward and asks nothing, and every earlier
+  pipeline test passes unchanged. These are its readings:
+  - **A string is decided afresh only when every source that has shown it was read in this run.**
+    Otherwise it keeps its stored decision, unless the new one needs no funder — an override, a
+    not-grant, the resource code, a facility contract, or an NIH grant or contract RePORTER
+    resolves — or the override that made it has been lifted. PubMed and Crossref are read only for
+    new records and at a full refresh, and JATS once (F16), so without this a string OpenAlex and
+    PubMed both write would be decided from both at a full refresh and from OpenAlex alone the
+    week after, and could move between agencies every month. A string no source showed this run
+    stands for itself in its work's company (a bare serial, a fragment, a task order), keeps its
+    sources, funders and dates, and is never removed (§9.4). **Its stored `raw` stays its display
+    form**; the most frequent form (B3) names only a new string. PubMed's `Agency` is shown among
+    its `funders`, as §8.3's example has it, and still decides only as PubMed's agency.
+  - **A new record** is one of a work that had no citations line after the last run; its PubMed and
+    Crossref are read then, and a record whose first read failed waits for the next full refresh.
+    A PMC record whose XML cannot be fetched is not marked in `jats_checked`, so it is asked again;
+    `jats_checked` keeps only the work's current records.
+  - **Which failures keep a work's stored line.** A sighting source down (PubMed, Crossref)
+    degrades, and the work is decided from the sources that answered. An answer source down or
+    deferred — RePORTER's links or probes, NSF, USAspending, OpenAlex's awards — keeps the stored
+    line of any work that needed an answer neither this run nor the store gives (a held grant's
+    facts, or any lookup), and a new work gets no line yet. A fact refresh that fails keeps the
+    stored facts. A reply of a changed shape is a failure like an outage, including a RePORTER row
+    without an application ID or fiscal year, or an amount that is not a number.
+  - **The memo.** `lookups.jsonl` holds each miss, and each institute-and-serial probe whatever it
+    found (the bare-serial rule needs the answer again); a probe now answered positively is
+    dropped, since the grant's facts remember it. A probe asked again gets `recheck_after` today +
+    90 days, and its `checked` moves under P11 while the answer is the same, to today when it
+    changes. An incremental refresh never asks a miss again before its date, or its line would move
+    every week. The questions are written `core:<CORE>`, `split:<IC>:<SERIAL>` and
+    `contract:<NUMBER>` (RePORTER), `award:<ID>` (NSF), `award:<AGENCY>:<NUMBER>` (USAspending) and
+    `award:<G…>` (OpenAlex). USAspending is asked for the number as keyed, its letters and digits;
+    whether that misses a number USAspending writes with a dash is B9's to see.
+  - **When a full refresh is due:** there is no manifest with `funding.mode: full`, 28 days have
+    passed since the newest one started, or that one's `version` is not the current
+    `funding_version` — so a bump whose refresh was deferred stays due. **The window** is a Saturday
+    or Sunday in New York, or the configured hours there; a naive time is UTC. **The cap** is
+    checked before each RePORTER question, counting every RePORTER request of the run, links
+    included, so one question's pages are never split. **Active within 365 days** is an end (a
+    date, or a year's last day) or a RePORTER fiscal year on or after that date; a grant with no
+    facts is asked as a new key would be, the memo applying.
+  - **A link to a contract** names RePORTER's truncated core (`27220170005`), which `resolve_work`
+    cannot key: the stage asks for rows under that core as a prefix, takes the one whose application
+    is the link's, and keys the contract from its project number, restoring `HHSN`, and a task
+    order's letter as F (FAR 4.1603). The stored link keys it thereafter. Not yet seen live.
+  - **A grant's record** comes from its latest parent row (title, investigators by `profile_id`,
+    organisation), with the earliest start and latest end of its rows; an NIH grant's agency is
+    that row's `agency_ic_admin` abbreviation, under NIH, and another RePORTER agency's grant (VA)
+    is that agency's. NSF gives `pdPIName` and `awardeeName`, USAspending the recipient, and an
+    OpenAlex-valued grant its lowest-numbered award. `number`'s written form (§11.4) counts the
+    strings whose letters and digits contain the key's number, so a fragment is not its display
+    form. `checked` moves under P11 when the grant's facts were fetched in this run. **A grant's
+    OpenAlex awards** are those its strings carried this run and those it already had.
+  - **Agency lines:** a configured agency's from the config; an institute learned from RePORTER
+    (`origin: reporter`, parent NIH, `us_federal`, `US`); an unconfigured OpenAlex funder from its
+    funder record, fetched when new and at a full refresh (a US country makes it `us_nonfederal`,
+    any other `non_us`), else named as its sighting names it; and one fixed `MISC` line.
+  - **NSF's award type is stored** (`facts.nsf.type`, §8.3), where B3 above read it as decided when
+    the facts are fetched: the category is recomputed every run from stored facts (§7.3), so the
+    type must be kept. Optional in `grant.schema.json`, so B4's fixture validates unchanged.
+  - **The manifest** (§9.6): with funding disabled the block holds only `version` and
+    `fingerprint`, as before; a skipped run, or one that carried its funding forward after an
+    error, records `mode: skipped`; `requests` counts requests sent, not cache hits, by source —
+    `reporter`, `nsf`, `usaspending`, `openalex`, `crossref`, `pubmed` and `pmc` (PMC's JATS, which
+    stage 4 has usually fetched already); `amount_usd` is every known US-dollar amount, never below
+    zero, which the run schema refuses.
+  - **The self-check** (§9.4) writes the four files to a scratch directory and runs invariants
+    F1–F7 on them, then builds the export stage 11 would; an export problem that the same export
+    without funding also has is not funding's, and is left for stage 11. On the test fixture a
+    first run asks RePORTER 5 times (links, one batch of cores, three institute-and-serial
+    probes), NSF, PubMed and Crossref once each, USAspending twice and OpenAlex twice.
+  - **Stage 11** exports the stage's funding with the run's aliases, and `as_of` is the run's date
+    when it made a full refresh — what a rebuild from the store reads back from its manifest.
 
 ---
 
@@ -1122,7 +1197,9 @@ placeholders.) Sources are `openalex`, `crossref`, `pubmed` and `jats`.
     report no amount}` (parent rows only; for a contract or task order, its rows),
     `application_types` (sorted codes), `first_support_year` (the earliest row's support year, or
     null) and `latest_appl_id` (an integer, for the project link). `facts.nsf`: `estimated`,
-    `obligated` (decimal strings or null), `exp_date`, `program`. `facts.usaspending`:
+    `obligated` (decimal strings or null), `exp_date`, `program`, and *(B7)* `type`, the API's
+    award type ("Fellowship Award"), which decides the category (§11.4); optional, a string or
+    null. `facts.usaspending`:
     `total_obligation` (a decimal string or null), `type`, `pop_start`, `pop_end`,
     `generated_id`. `facts.openalex`: `[{id: "G…", amount, currency, provenance, start_year}]`,
     sorted by id. Every key of `facts` is optional; a `MISC:` grant's is `{}`.

@@ -231,6 +231,35 @@ C4, §8, §11.3; [09](09-funding-impact.md) F12, §13):
   the rules or the overrides fingerprint, so an edit to one re-reads no text and re-evaluates no
   work; like any config file, both are in the config fingerprint.
 
+**Changed 2026-09-26, the funding stage, 8b, off by default** (Phase 9, B7; P1, §5, §8, §9;
+[09](09-funding-impact.md) §9):
+- *§5, stage 8b.* Between stages 8 and 9, after status so that work IDs are final after merges,
+  and before the quality checks so that its degradations count towards the three-runs alert. It
+  decides the grants each included work lists and what each is worth, and hands the four files of
+  `store/funding/` to stage 9, which writes them in place of the copied ones, and to stage 11,
+  which exports them; stage 13 no longer carries `funding/` forward. It first checks its own
+  output against the store's funding invariants (F1–F7) and builds from it the export stage 11
+  would, so nothing in it can stop the run at the gate or at the export. `funding.yaml` ships
+  with `enabled: false`, and then the stage carries the stored funding forward and asks nothing:
+  a run is the run it was.
+- *§8, `run --funding auto|full|skip`.* `auto`, the default, makes a full refresh when one is
+  due and the run started inside NIH RePORTER's window; `full` makes one now, inside the window or
+  not; `skip` decides nothing. `--channels` implies `skip`, since a partial run must change
+  nothing, and so does `enabled: false`. A skipped run still moves a merged work's funding line
+  onto the work that survives and drops a departed work's, or the gate would refuse the store.
+- *§9, the failure rows below.* Each funding source degrades on its own, a reply of a changed
+  shape included, since `smoke` does not stop the run for them; a work whose answers are
+  incomplete keeps its stored funding, and a new one gets none until a source answers. RePORTER's
+  HTTP 403 is an alert: a possible block of the runner's address. An unexpected error in the
+  stage, or output its own check refuses, degrades `stage:funding`, alerts, and carries the
+  stored funding forward, and the publication data is written as usual.
+- *P1, "search everything on every run", governs discovery.* Funding facts are asked on a
+  schedule instead ([09](09-funding-impact.md) §9.2): RePORTER's links and OpenAlex's awards every
+  run, PubMed and Crossref for new records and every 28 days, JATS once per record, and a miss
+  again only after 90 days. A missed week of discovery is a missed paper; a grant's lifetime total
+  moves slowly, and RePORTER asks for restraint. It is the same reading as unreadable text's
+  recheck under P9.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the
@@ -291,7 +320,7 @@ Agreed 2026-09-19 (Draft 2):
 
 | # | Decision |
 |---|---|
-| P1 | **Search everything on every run.** No date watermarks. Text is downloaded only when a record needs evaluating (§6). |
+| P1 | **Search everything on every run.** No date watermarks. Text is downloaded only when a record needs evaluating (§6). *Discovery only: funding facts are refreshed on a schedule ([09](09-funding-impact.md) §9.2; changed 2026-09-26).* |
 | P2 | **Fixed stage order with a validation gate** (§5). Nothing after validation runs if validation fails. |
 | P3 | **The pipeline commits each successful run.** The update workflow pushes it. |
 | P4 | **A failing source degrades the run, never shrinks the data** (§9). |
@@ -407,11 +436,12 @@ their outputs to the staging directory. Only stage 13 touches the real `store/` 
 | 6 | **Versions** | Link preprints and articles; merge works (lower ID survives); apply merge and split overrides. **Check every preprint-only work for a published version** (bioRxiv `published`, Crossref relation, OpenAlex locations). Create the article's record even if no channel nominated it. The article needs no text of its own, because evidence applies to the whole work. | Phase 1 §8; Phase 2 §4, §9 |
 | 7 | **Status** | Compute inclusion (Phase 2 §13). Move works between `works/` and `candidates.jsonl`. Record reasons and signals. | Phase 2 §6, §13 |
 | 8 | **Citations** | Build the metrics for every record of every included work from the stage 3 refresh. Write `latest.jsonl`; copy it to `<YYYY-MM>.jsonl` on the month's first run. | Phase 2 §10 |
+| 8b | **Funding** | The grants each included work lists and what each is worth: the lines of `store/funding/`, which stage 9 writes and stage 11 exports. Checked against the funding invariants and the export before it is handed on; on failure the stored funding is carried forward. Off (`enabled: false`) until the seed. *Added 2026-09-26.* | [09](09-funding-impact.md) §9 |
 | 9 | **Validate (gate)** | Write the new store to a staging directory and run the same validator as stage 0 on it (schemas and invariants). The positive test papers present in the store must still be included (§12.2). **Failure ⇒ stop; nothing is written.** | Phase 2 §14 |
 | 10 | ~~Knowledge base~~ | **Retired 2026-09-20** with Phase 4. The number is not reused, so stages 11–13 keep their identities in every manifest written before then. | — |
 | 11 | App export | Write `export/` (Phase 5). No-op until Phase 5 is specified. | Phase 5 |
 | 12 | Report | Build the run report and manifest (§10.6, Phase 2 §11), including the run status (§9). | |
-| 13 | Write and commit | Move the staged files into place, one atomic rename per file. Delete only work files whose works have left `works/`; everything else the pipeline did not regenerate this run (page snapshots, monthly metrics, earlier run manifests, `.generated.json`) is carried forward untouched. `git commit` with a summary message (skipped with `--dry-run` or `--no-commit`). | Phase 2 §15 |
+| 13 | Write and commit | Move the staged files into place, one atomic rename per file. Delete only work files whose works have left `works/`; everything else the pipeline did not regenerate this run (page snapshots, monthly metrics, earlier run manifests, `.generated.json`) is carried forward untouched. `funding/` is stage 8b's to write, every run. `git commit` with a summary message (skipped with `--dry-run` or `--no-commit`). | Phase 2 §15 |
 
 **`last_seen` (P11).** Wherever a stage "updates `last_seen`" in a work file or
 `candidates.jsonl`, it advances the date only when the stored value is at least
@@ -553,7 +583,7 @@ that the rules deliberately don't count:
 
 ```
 uwpr-pubs run [--mode live|replay|record] [--dry-run] [--no-commit] [--channels A,B1,…]
-              [--store DIR] [--summary-out PATH]
+              [--store DIR] [--summary-out PATH] [--funding auto|full|skip]
 uwpr-pubs validate [STORE]            schemas + invariants (Phase 2 §14)
 uwpr-pubs fixtures                    evaluate the Phase 1 test papers; exit non-zero on regression
 uwpr-pubs smoke                       live check that each source still answers in the expected shape
@@ -573,6 +603,11 @@ failed. It writes its status and run id to `$GITHUB_OUTPUT` when that variable i
 `--summary-out` receives the report even when the run fails before stage 13, so the workflow can
 post it without guessing a filename. `--channels` implies `--no-commit`: a partial run must not
 mark the channels it skipped as failed, advance any `last_seen`, or remove anything.
+
+`--funding` (added 2026-09-26) chooses what stage 8b does: `auto` makes a full refresh when one is
+due and the run started inside RePORTER's window, `full` makes one now, and `skip` carries the
+stored funding forward. `--channels` implies `skip`, and so does `funding.yaml`'s
+`enabled: false` ([09](09-funding-impact.md) §9.1–9.3).
 
 ## 9. Failure handling
 
@@ -599,6 +634,10 @@ Four outcomes:
 | Rules fingerprint changed without a new `rule_version` (§10.4) | Stop in stage 0 | **Failed** |
 | A known-miss test paper starts passing (e.g. OpenAlex indexes its text) | Reported as good news | OK |
 | An unexpected error | Stop before writing | **Failed** |
+| A funding source fails, or answers in a changed shape ([09](09-funding-impact.md) §9.4) | Not asked again this run; a work whose answers are incomplete keeps its stored funding line, facts and all; nothing is removed | Degraded |
+| NIH RePORTER answers HTTP 403 | As above; "possible IP block — RUNBOOK" | **Alert** |
+| An error in the funding stage, or output its own check refuses (§5 stage 8b) | The stored funding is carried forward; the publication data is written as usual | **Alert** |
+| A grant override names an NIH grant RePORTER does not hold | Reported; the override still applies | **Alert** |
 
 - Consecutive degradations are counted from the `degradations` recorded in earlier run
   manifests (Phase 2 §11). Their `source` field uses a controlled vocabulary — `channel:<id>`,
