@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-26T14:25:15Z",
+  "generated_at": "2026-09-26T17:26:20Z",
   "method": {
-    "beyond_official_list": 33,
+    "beyond_official_list": 32,
     "criteria": {
       "1": 306,
       "2": 190,
       "3": 67,
-      "4": 185
+      "4": 184
     },
     "independently_confirmed": 215,
     "listing_only": 91,
@@ -14,9 +14,9 @@
     "listing_only_text_unavailable": 47,
     "official_list_total": 306,
     "sources_last_read": {
-      "Crossref": "2026-09-20",
+      "Crossref": "2026-09-26",
       "OpenAlex": "2026-09-26",
-      "PMC": "2026-09-20",
+      "PMC": "2026-09-26",
       "PRIDE": "2026-09-26",
       "UWPR website": "2026-09-26"
     },
@@ -127,8 +127,8 @@
     ],
     "url": "https://proteomicsresource.washington.edu/"
   },
-  "rule_version": "2026-09-20.1",
-  "run_id": "2026-09-26T14-25-live",
+  "rule_version": "2026-09-26.1",
+  "run_id": "2026-09-26T17-26-live",
   "schema_version": "1.0",
   "sources": {
     "citations": {
@@ -140,7 +140,7 @@
     ]
   },
   "summary": {
-    "beyond_official_list": 33,
+    "beyond_official_list": 32,
     "citations": 29708,
     "citations_in_window": 29250,
     "countries": 34,
@@ -149,13 +149,13 @@
     "fwci_median": 2.6648,
     "h_index": 84,
     "institutions": 246,
-    "journals": 130,
+    "journals": 129,
     "last_authors": 153,
     "last_year": 2026,
     "on_official_list": 306,
-    "open_access": 307,
-    "preprint_only": 14,
-    "publications": 339,
+    "open_access": 306,
+    "preprint_only": 13,
+    "publications": 338,
     "research_groups": 213
   },
   "works": [
@@ -38905,226 +38905,6 @@
     },
     {
       "aliases": [],
-      "author_count": 7,
-      "authors": [
-        {
-          "affiliations_raw": [
-            "University of Washington"
-          ],
-          "corresponding": false,
-          "institutions": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "ror": "00cvxb145"
-            }
-          ],
-          "name": "Linglan Fang",
-          "openalex": "A5003432548",
-          "orcid": "0000-0003-2637-090X",
-          "staff": null
-        },
-        {
-          "affiliations_raw": [
-            "Department of Pharmacological Sciences , Stony Brook University , Stony Brook , NY 11794-8651 , USA"
-          ],
-          "corresponding": false,
-          "institutions": [
-            {
-              "country": "US",
-              "name": "Stony Brook University",
-              "ror": "05qghxh33"
-            }
-          ],
-          "name": "Jessica Vilas-Boas",
-          "openalex": "A5007812813",
-          "orcid": null,
-          "staff": null
-        },
-        {
-          "affiliations_raw": [
-            "Department of Chemistry and § Biochemistry , University of Washington , Seattle , Washington 98125 , USA"
-          ],
-          "corresponding": false,
-          "institutions": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "ror": "00cvxb145"
-            }
-          ],
-          "name": "sujata chakraborty",
-          "openalex": "A5014219228",
-          "orcid": null,
-          "staff": null
-        },
-        {
-          "affiliations_raw": [
-            "Department of Chemistry and § Biochemistry , University of Washington , Seattle , Washington 98125 , USA"
-          ],
-          "corresponding": false,
-          "institutions": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "ror": "00cvxb145"
-            }
-          ],
-          "name": "zachary potter",
-          "openalex": "A5082101583",
-          "orcid": null,
-          "staff": null
-        },
-        {
-          "affiliations_raw": [
-            "Department of Chemistry and § Biochemistry , University of Washington , Seattle , Washington 98125 , USA"
-          ],
-          "corresponding": false,
-          "institutions": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "ror": "00cvxb145"
-            }
-          ],
-          "name": "Ames C. Register",
-          "openalex": "A5060345055",
-          "orcid": "0000-0002-6167-9980",
-          "staff": null
-        },
-        {
-          "affiliations_raw": [
-            "Department of Pharmacological Sciences , Stony Brook University , Stony Brook , NY 11794-8651 , USA"
-          ],
-          "corresponding": false,
-          "institutions": [
-            {
-              "country": "US",
-              "name": "Stony Brook University",
-              "ror": "05qghxh33"
-            }
-          ],
-          "name": "Markus A. Seeliger",
-          "openalex": "A5008590226",
-          "orcid": "0000-0003-0990-1756",
-          "staff": null
-        },
-        {
-          "affiliations_raw": [
-            "Department of Chemistry and § Biochemistry , University of Washington , Seattle , Washington 98125 , USA"
-          ],
-          "corresponding": false,
-          "institutions": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "ror": "00cvxb145"
-            }
-          ],
-          "name": "Dustin J. Maly",
-          "openalex": "A5054397869",
-          "orcid": "0000-0003-0094-0177",
-          "staff": null
-        }
-      ],
-      "citations": {
-        "as_of": "2026-09-26",
-        "by_year": {},
-        "fwci": null,
-        "percentile": null,
-        "total": 0
-      },
-      "corresponding_authors": [],
-      "countries": [
-        "US"
-      ],
-      "criteria": [
-        4
-      ],
-      "date": "2020-04-20",
-      "evidence": [
-        {
-          "criterion": 4,
-          "detail": {
-            "phrase": "Washington Proteomics Resource",
-            "query_date": "2026-09-26"
-          },
-          "excerpt": null,
-          "first_seen": "2026-09-20",
-          "found_on": {
-            "doi": "10.26434/chemrxiv.12148524.v1",
-            "kind": "preprint"
-          },
-          "label": "Phrase found in OpenAlex's full-text index of the paper",
-          "last_seen": "2026-09-20",
-          "rule": "R6",
-          "section": "full-text index",
-          "source": {
-            "name": "OpenAlex",
-            "retrieved": "2026-09-26",
-            "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.26434%2Fchemrxiv.12148524.v1"
-          }
-        }
-      ],
-      "first_version_date": "2020-04-20",
-      "id": "W-000746",
-      "ids": {
-        "doi": "10.26434/chemrxiv.12148524.v1",
-        "openalex": "W3199602060",
-        "pmcid": null,
-        "pmid": null
-      },
-      "institutions": [
-        {
-          "country": "US",
-          "name": "University of Washington",
-          "ror": "00cvxb145"
-        },
-        {
-          "country": "US",
-          "name": "Stony Brook University",
-          "ror": "05qghxh33"
-        }
-      ],
-      "is_preprint": true,
-      "kind": "preprint",
-      "oa": {
-        "license": "cc-by-nc-nd",
-        "status": "green",
-        "url": "https://doi.org/10.26434/chemrxiv.12148524.v1"
-      },
-      "on_official_list": false,
-      "retracted": false,
-      "staff_authors": [],
-      "title": "1_manuscript_2020-04-14.pdf",
-      "topics": [
-        {
-          "domain": "Physical Sciences",
-          "field": "Computer Science",
-          "primary": true,
-          "score": 0.926800012588501,
-          "subfield": "Computational Theory and Mathematics",
-          "topic": "Computational Drug Discovery Methods"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "primary": false,
-          "score": 0.9089000225067139,
-          "subfield": "Cell Biology",
-          "topic": "Microtubule and mitosis dynamics"
-        }
-      ],
-      "url": "https://doi.org/10.26434/chemrxiv.12148524.v1",
-      "venue": {
-        "issn_l": "2573-2293",
-        "name": "ChemRxiv"
-      },
-      "versions": [],
-      "year": 2020
-    },
-    {
-      "aliases": [],
       "author_count": 9,
       "authors": [
         {
@@ -39616,7 +39396,8 @@
     },
     {
       "aliases": [
-        "W-000745"
+        "W-000745",
+        "W-000746"
       ],
       "author_count": 7,
       "authors": [
@@ -39846,6 +39627,28 @@
           }
         },
         {
+          "criterion": 4,
+          "detail": {
+            "phrase": "Washington Proteomics Resource",
+            "query_date": "2026-09-26"
+          },
+          "excerpt": null,
+          "first_seen": "2026-09-20",
+          "found_on": {
+            "doi": "10.26434/chemrxiv.12148524.v1",
+            "kind": "preprint"
+          },
+          "label": "Phrase found in OpenAlex's full-text index of the paper",
+          "last_seen": "2026-09-20",
+          "rule": "R6",
+          "section": "full-text index",
+          "source": {
+            "name": "OpenAlex",
+            "retrieved": "2026-09-26",
+            "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.26434%2Fchemrxiv.12148524.v1"
+          }
+        },
+        {
           "criterion": 3,
           "detail": {
             "staff": "vonhaller"
@@ -39867,7 +39670,7 @@
           }
         }
       ],
-      "first_version_date": "2020-04-21",
+      "first_version_date": "2020-04-20",
       "id": "W-000237",
       "ids": {
         "doi": "10.1021/acschembio.0c00429",
@@ -39930,6 +39733,13 @@
         "name": "ACS Chemical Biology"
       },
       "versions": [
+        {
+          "date": "2020-04-20",
+          "doi": "10.26434/chemrxiv.12148524.v1",
+          "kind": "preprint",
+          "url": "https://doi.org/10.26434/chemrxiv.12148524.v1",
+          "year": 2020
+        },
         {
           "date": "2020-04-21",
           "doi": "10.26434/chemrxiv.12148524",
@@ -45487,19 +45297,19 @@
           "detail": {
             "match": "text"
           },
-          "excerpt": "University of Washington&apos;s Proteomics Resource (UWPR95794).",
-          "first_seen": "2026-09-20",
+          "excerpt": "University of Washington's Proteomics Resource (UWPR95794).",
+          "first_seen": "2026-09-26",
           "found_on": {
             "doi": "10.1038/s41598-018-37489-4",
             "kind": "article"
           },
           "label": "UWPR award code (UWPR95794) stated in the paper",
-          "last_seen": "2026-09-20",
+          "last_seen": "2026-09-26",
           "rule": "R2",
           "section": "funding",
           "source": {
             "name": "PMC",
-            "retrieved": "2026-09-20",
+            "retrieved": "2026-09-26",
             "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6379364/"
           }
         },
@@ -45546,19 +45356,19 @@
         {
           "criterion": 4,
           "detail": {},
-          "excerpt": "University of Washington&apos;s Proteomics Resource (UWPR95794).",
-          "first_seen": "2026-09-20",
+          "excerpt": "University of Washington's Proteomics Resource (UWPR95794).",
+          "first_seen": "2026-09-26",
           "found_on": {
             "doi": "10.1038/s41598-018-37489-4",
             "kind": "article"
           },
           "label": "The paper names the UW Proteomics Resource",
-          "last_seen": "2026-09-20",
+          "last_seen": "2026-09-26",
           "rule": "R3",
           "section": "funding",
           "source": {
             "name": "PMC",
-            "retrieved": "2026-09-20",
+            "retrieved": "2026-09-26",
             "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6379364/"
           }
         }
@@ -61050,7 +60860,7 @@
         },
         {
           "affiliations_raw": [
-            "Department of Computer Science &amp; Engineering, Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, WA 98109;"
+            "Department of Computer Science & Engineering, Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, WA 98109;"
           ],
           "corresponding": false,
           "institutions": [
@@ -65554,7 +65364,7 @@
         {
           "affiliations_raw": [
             "Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, WA 98109;",
-            "Paul G. Allen School of Computer Science &amp; Engineering, University of Washington, Seattle, WA 98195;"
+            "Paul G. Allen School of Computer Science & Engineering, University of Washington, Seattle, WA 98195;"
           ],
           "corresponding": false,
           "institutions": [
@@ -109417,7 +109227,7 @@
         },
         {
           "affiliations_raw": [
-            "Rosetta Inpharmatics, LLC, Merck &amp; Co Inc., 401 Terry Avenue N, Seattle, WA 98109, USA"
+            "Rosetta Inpharmatics, LLC, Merck & Co Inc., 401 Terry Avenue N, Seattle, WA 98109, USA"
           ],
           "corresponding": false,
           "institutions": [],
@@ -109617,7 +109427,7 @@
         },
         {
           "affiliations_raw": [
-            "Rosetta Inpharmatics, LLC, Merck &amp; Co Inc., 401 Terry Avenue N, Seattle, WA 98109, USA"
+            "Rosetta Inpharmatics, LLC, Merck & Co Inc., 401 Terry Avenue N, Seattle, WA 98109, USA"
           ],
           "corresponding": false,
           "institutions": [],
@@ -109628,7 +109438,7 @@
         },
         {
           "affiliations_raw": [
-            "Rosetta Inpharmatics, LLC, Merck &amp; Co Inc., 401 Terry Avenue N, Seattle, WA 98109, USA"
+            "Rosetta Inpharmatics, LLC, Merck & Co Inc., 401 Terry Avenue N, Seattle, WA 98109, USA"
           ],
           "corresponding": false,
           "institutions": [],
