@@ -361,6 +361,47 @@ plan. [08](08-implementation.md) records them as they are built.
     whose dates are the build's; and, it turned out, in `works/`. Six days after the last build,
     OpenAlex had revised author names, ORCIDs or affiliations in 12 of the 13 work files, and one
     PMC article's XML had changed. The sample export is 26,989 bytes (§11.9).
+- *2026-09-26, B7b — the report's Funding section, the total-drop alert and `explain` (§9.5, §9.6),
+  where they were silent.* `uwpr_pubs.funding.report` writes the section from the stage's result
+  beside the store the run started from, and it changes no decision, amount or file. §13.4's
+  additions are `RUNBOOK.md` §15. These are its readings:
+  - **A review list names an entry once**, in the run that first finds it, and counts it after:
+    OpenAlex disagreeing by more than 1%, untagged awards of $20M or more, and grants seen only
+    beside another. They stay true for as long as nobody acts, and repeating them weekly would
+    bury what is new. A week with nothing new says so in one line. **A first run counts its grants
+    by agency** rather than list hundreds as new, which on the seed is the useful view.
+  - **The nearest RePORTER candidates** are cores the stage already knows. They come from
+    RePORTER's answer to an institute-and-serial probe (`split:` in `lookups.jsonl`), the work's
+    NIH links and the store's held grants. A core counts if it has the string's institute and
+    either its serial or one a single edit away (§6.5). Nothing is asked to list them, and
+    `explain` shows the same for an unresolved string or `MISC:` key.
+  - **"Seen only beside another" (§6.10)** reads as: two grants of one agency valued by OpenAlex
+    alone (a configured agency or an OpenAlex funder), where every work listing the one lists the
+    other. NIH's, NSF's and USAspending's numbers are confirmed by the agency's own records, so two
+    of them are two grants. A pair always seen together is named once.
+  - **"Outside NIH's centre mechanisms" (§6.15)** means that a RePORTER grant of category `center`
+    is left out. NIH contracts and every other agency's awards are listed, if project-scoped and
+    of $20M or more.
+  - **An override not applied** is a grant override whose string is not on its work's line, a
+    merge followed, or whose work has no line. It is the validator's not-seen warning, in the
+    report.
+  - **A run that decides no funding says so in one line in the Store section**, not a Funding
+    section. It is disabled, skipped (`--funding skip`, or any `--channels` run), or carried
+    forward after the stage failed. So a disabled run's report differs from the one before B7 by
+    that line alone. The stage's notes move into the section, beside its figures. The manifest's
+    `note` keeps them, prefixed `funding:`. Writing the section cannot fail the run (F16).
+  - **The total-drop alert** compares `amount_usd` with the last manifest that records a funding
+    `mode`, a skipped run's included, in exact decimal arithmetic. It fires above
+    `total_drop_alert`, never at it. §9.5's "no funding degradation" is read as the stage's own
+    (`stage:funding`) or a source the stage asked (its causes begin `funding:`); a source that
+    failed for discovery alone does not silence it, because the next run compares with this
+    run's total and a real fall would then never be reported *(narrowed at merge from any
+    `source:*`)*. A source that is down never removes a grant (§9.4). A work that leaves can fire
+    it: excluding one paper takes 11.5% of the stage test's small total.
+  - **`explain <grant key>`** takes any key in any case, trying an identifier as a work first. On
+    a store without `funding/` it says so, and a key exits 1. The CLI reads NIH's institute codes
+    from `config/funding.yaml`, so an unresolved string can show its nearest cores. If the config
+    does not load, only those lines are lost.
 
 ---
 
@@ -2128,7 +2169,8 @@ entities; every RePORTER request sorted and excluding sub-projects; Crossref bat
       of 377 DOIs (§5).
 
 **B7** — every stage test of §14 passes; `enabled: false` leaves the weekly run unchanged.
-- [ ] Accepted.
+- [x] Accepted 2026-09-26 (b8e35bb, f3f2830). Stage 8b (B7a), and its report section, total-drop alert and
+      `explain` (B7b): 1,438 Python tests; a disabled run changes nothing but one report line.
 
 **B8** — every `FUNDING_CASES` predicate holds; the committed sample matches a fresh build; the
 sample rebuilds byte-identically except `metrics/` and `funding/` (documented).

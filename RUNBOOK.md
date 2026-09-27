@@ -15,6 +15,7 @@ year** (OpenAlex; everything else is free).
 | The record | `store/` on `main` — one JSON file per included publication, committed |
 | What the page reads | `export/uwpr_publications.json` and `export/lookup_index.json`, committed |
 | The rules and the configuration | `config/*.yaml`, `overrides.yaml` |
+| The grants the papers list, and their amounts | `store/funding/` — four files, committed (§15) |
 | The weekly run | `.github/workflows/update.yml` — Saturdays 07:17 UTC (03:17 or 02:17 in New York) |
 | The app's deploy | `.github/workflows/pages.yml` — on a change to `web/` |
 | The live site | the `gh-pages` branch, served by GitHub Pages |
@@ -153,7 +154,8 @@ anything. Read it in this order:
    2026-09-20), and the test papers: 19 as expected, 2 known misses, 0 failing.
 5. **Store counts**, then **new works**, **works removed**, **works merged** and **official list**
    changes. A normal week changes very little.
-6. **Degradations** and **Notes**.
+6. **Funding** — the grants, their total and what moved, and what needs a person. See §15.
+7. **Degradations** and **Notes**.
 
 ## 4. `degraded` and `alert`
 
@@ -188,6 +190,11 @@ of the report names the reason and the suggested action. The usual causes:
 | A channel deviated sharply from its trailing average | Usually an API change | Compare the channel table with the previous run's report |
 | OpenAlex spend approaching the ceiling | Something is querying far more than it should | The measured figure is $0.0100 against a $0.50 per-run ceiling and a $1/day key allowance |
 | The data could not be committed | The run wrote the store but git refused | Commit `store/` and `export/` by hand, then check the repository state |
+| NIH RePORTER answered HTTP 403: possible IP block | RePORTER may have blocked the address | Stop and wait: §15, "NIH RePORTER answered 403" |
+| The funding total fell more than 5% | Grants left in a run where every funding source answered | Read the Funding section's grants no longer listed: §15 |
+| A grant override names an NIH grant RePORTER does not hold | A typo in the override's `grant` | Check the number in RePORTER, then correct `overrides.yaml`: §15 |
+| The funding stage failed, or refused its own output | A funding bug; the stored funding was carried forward and the publication data updated as usual | The cause is under Degradations; fix the stage. Funding never holds up the week |
+| The export is over its data budget | `export/uwpr_publications.json` passed 500 KiB gzipped | It was published anyway; docs/09 §13.5 has the budget and the headroom |
 
 ### The run failed outright
 
@@ -237,7 +244,7 @@ measurement.
 
 ```yaml
 - target: W-000686           # a work ID, never a DOI or PMID
-  action: exclude            # include | exclude | merge | split
+  action: exclude            # include | exclude | merge | split | grant (§15)
   reason: >-
     One or two sentences saying what was checked and why the rules do not reach it. Written for
     a stranger reading it in five years.
@@ -419,6 +426,7 @@ Ten minutes, reading the latest run report (§3):
 - Re-read the open items in each spec in `docs/`.
 - Confirm the recall baseline still reflects reality.
 - Confirm notification routing still works (§7).
+- **In January**, add the year just ended to the exchange rates (§15).
 
 ## 13. Regenerating the export by hand
 
@@ -437,3 +445,171 @@ twice produces byte-identical files.
 
 Git is the record and GitHub is the backup. Clone it. Keep a local clone; permanent IDs make the
 history worth more than a cache would be.
+
+## 15. Funding
+
+Each run also records the grants the included papers list and what each is worth
+([docs/09-funding-impact.md](docs/09-funding-impact.md)). It happens after inclusion is decided,
+and **it never holds up the publication update**: a funding source that fails degrades the run,
+a funding bug alerts, and either way the stored funding is carried forward (docs/09 F16).
+
+- `store/funding/citations.jsonl` — every string each paper's sources write as a grant number, and
+  what it was decided to be; `grants.jsonl` — each grant, its facts and its amount;
+  `lookups.jsonl` — what the sources were asked and did not have, remembered so it is not asked
+  weekly; `agencies.jsonl`.
+- `config/funding.yaml` — agencies, patterns, exclusions and thresholds, versioned by
+  `funding_version`. `config/exchange_rates.yaml` — not versioned. **Grant overrides** live in
+  `overrides.yaml` with the others.
+
+### Reading the Funding section
+
+It follows the works' changes in the report (§3):
+
+- **mode.** `incremental` most weeks: RePORTER's links for every paper, PubMed and Crossref for new
+  papers only, new strings, and the facts of grants still active. `full refresh` every 28 days,
+  after a `funding_version` bump, or with `--funding full`: everything re-read and re-decided.
+  "a full refresh is due, and waits for RePORTER's window" appears only on a run started by hand
+  outside that window; the next Saturday run does the refresh.
+- **grants** and **total**, with the change since the last run. The total usually moves a little,
+  as active grants add fiscal years. **It falling by more than 5% in a run where every source
+  answered raises an alert**: read *Grants no longer listed*. A grant goes when the last paper
+  listing it leaves — an exclusion, a rule change, a merge — and the list names the papers. To see
+  what the store held before, `git show HEAD~1:store/funding/grants.jsonl | grep '"NIH:R21AI123456"'`.
+  A fall in a degraded run raises nothing, because a source that is down never removes anything.
+- **strings excluded** — counted, never funding: things that are not grants (an antibody name, a
+  year, a funder's ID), the resource code `UWPR95794` (evidence the paper used UWPR, never a
+  grant), and DOE facility contracts.
+- **requests** — how many requests each source was sent. RePORTER's is the one to watch: at most
+  one a second always, at most 60 on a weekday outside its window.
+- The stage's own notes, such as a refresh deferred or questions left for next week.
+
+Then what needs a person, each list stopping at 50 with "and N more":
+
+- **New unresolved strings** — below.
+- **Grant overrides not applied** — an override whose string its paper does not show. Usually a
+  typo in `raw`, or the wrong work; `explain` the work to see its strings as written.
+- **Review lists.** Each entry is listed once, by the run that first finds it, and counted after.
+  - *OpenAlex and the agency disagree by more than 1%.* The agency's own figure is used anyway.
+    Nothing to do unless the agency's is plainly wrong.
+  - *Untagged awards of $20,000,000 or more* (NIH's centre grants aside). If one funds a centre or
+    a consortium rather than a project, add its key to `institution_wide.keys` in
+    `config/funding.yaml` with a reason, and bump `funding_version` (below). The app then lets
+    a reader leave it out.
+  - *Grants seen only beside another of their agency.* Often one grant under two identifiers — a
+    training-group number beside its project number. If so, a grant override on each paper maps
+    the second string to the first grant's key.
+
+A run that decided no funding says so in one line under **Store** instead: disabled
+(`enabled: false`), skipped (`--funding skip`, and every `--channels` run), or carried forward
+because the stage failed, which also alerts.
+
+### A new unresolved string, and a grant override
+
+A number nothing resolves is kept as a `MISC:` grant: counted, never valued, and shown in the app
+as unmatched. Every new one is listed with its paper, the string as written, its sources and the
+funders they name. For an NIH-format one, **nearest in RePORTER** lists the cores the store
+already knows that it could have meant: one RePORTER holds under the same institute and serial,
+one a single digit away, and whether NIH links the paper to it. Nothing is asked to make that list.
+
+1. **Look at the paper's funding.**
+
+   ```bash
+   uv run uwpr-pubs explain W-000222 --store store         # every string, how each was decided
+   uv run uwpr-pubs explain MISC:U19AG02312 --store store  # the unmatched grant, and its nearest cores
+   uv run uwpr-pubs explain NIH:U19AG023122 --store store  # any grant key: facts, amount, who lists it
+   ```
+
+2. **Decide what it is.** Look the candidate up on reporter.nih.gov — does its title, investigator
+   or institution fit the paper? For another agency's number, that agency's own award search. If
+   you cannot tell, leave it: Miscellaneous is an honest answer.
+3. **Add a `grant` override** to `overrides.yaml`:
+
+   ```yaml
+   - target: W-000222         # the work, never a DOI or a PMID
+     action: grant
+     raw: U19AG02312          # the string as the report shows it; quote it if it is all digits
+     grant: NIH:U19AG023122   # a grant key, or null for "this is not a grant"
+     reason: >-
+       The string drops the last digit of U19AG023122, and RePORTER's record of that award fits
+       the paper: its investigator is the senior author.
+     by: mriffle
+     date: 2026-10-03
+   ```
+
+   The string is matched ignoring case, spaces and dashes, and nothing else: a digit that differs
+   is a different string. No `funding_version` bump is needed; overrides apply on every run.
+4. **Check it.** `uv run uwpr-pubs validate store` warns
+   `grant override: 'U19AG02312' is not seen on W-000222` when the paper does not show that
+   string — a typo, or the wrong work. Commit, push, and let the weekly run apply it, or run for
+   real (§3). The next report lists it under *Grant overrides not applied* if it still matches
+   nothing, and **alerts** if it names an NIH grant RePORTER does not hold. Then
+   `explain W-000222` shows the string as `grant, override → NIH:U19AG023122`.
+
+### A full refresh by hand
+
+The weekly run makes one every 28 days and after a `funding_version` bump. Make one by hand only
+when the data should not wait: after a source was down for weeks, say, or to see a configuration
+change take effect now.
+
+```bash
+uv run uwpr-pubs run --funding full        # against the real store, as in §3; then push and publish
+```
+
+**Start it only inside RePORTER's window: a Saturday or Sunday, or between 21:00 and 05:00 New
+York time.** A full refresh sends RePORTER 100–150 requests, and RePORTER's terms ask that large
+jobs keep to those hours; an address that ignores them can be blocked. `--funding full` is an
+instruction, so it skips the window guard and the weekday cap of 60 requests: nothing will stop
+you on a Tuesday morning. Without it, a refresh that falls due outside the window is deferred and
+the run goes ahead incrementally. The workflow's *Run workflow* button has no funding input; it
+does what the schedule does.
+
+### NIH RePORTER answered 403
+
+The alert reads "NIH RePORTER answered HTTP 403: possible IP block — RUNBOOK". The run finished;
+RePORTER was not asked again, and every grant it holds kept its stored facts and amount.
+
+1. **Stop.** Start no more runs by hand, and do not retry to see whether it has cleared: more
+   requests from a blocked address can only make it look worse.
+2. **Wait for the next Saturday run.** If RePORTER answers, it was passing, and there is nothing
+   more to do. If it keeps answering 403, the three-runs-in-a-row alert follows.
+3. **Then write to RePORT@mail.nih.gov.** Say what the project is and who runs it (mriffle@uw.edu,
+   the contact every request carries), that it sends at most one request a second and keeps large
+   jobs to their window, and ask whether the address is blocked and what they need.
+
+Nothing is lost meanwhile: the stored NIH grants keep their facts and amounts, and new NIH strings
+wait for an answer. The publication data goes on updating every week.
+
+### The January exchange-rate update
+
+Amounts in other currencies are converted at the annual average rate for the award's start year,
+from `config/exchange_rates.yaml`: the Federal Reserve's G.5A release for the currencies it lists,
+and OECD's annual rates for the rest (the Chilean peso among them). The Federal Reserve publishes
+G.5A for the year just ended in early January. Until the year is added, an award that started in
+it is converted at the latest year the table has, and says so.
+
+1. Read the new release at https://www.federalreserve.gov/releases/g5a/ and add the year to each
+   currency, as a quoted decimal string in **US dollars per unit**. G.5A quotes the Australian
+   dollar, the euro, the New Zealand dollar and the pound that way; **every other currency it
+   quotes per US dollar, and must be inverted**: one divided by the rate, to ten significant
+   digits, halves to even. A release revises the years before it, so take those too.
+2. Do the same for the currencies that come from OECD, from the dataset and URL in the file's
+   `sources`, inverting each.
+3. Update `sources` — `retrieved`, `years`, the release named in `dataset`.
+4. `uv run uwpr-pubs config` loads the file against its schema; then the checks (§6 step 4).
+
+**No `funding_version` bump.** The rates file is outside the funding fingerprint, and every run
+recomputes every amount from the stored facts and the rates. Commit and push; the next run
+revalues everything, and the total moves a little.
+
+### Bumping `funding_version`
+
+`config/funding.yaml` carries `funding_version`, `YYYY-MM-DD.N` like `rule_version`. **Any edit to
+the file needs a bump** — an agency, a pattern, a not-grant, an institution-wide key, a threshold
+— or the run refuses to start: "funding.yaml changed without a new funding_version". The exchange
+rates and grant overrides are outside it and need none.
+
+**A bump schedules a full refresh.** Every stored decision was made under the old configuration,
+so the next run inside RePORTER's window re-reads everything and decides every string again. The
+Saturday run is inside the window; a run by hand on a weekday defers it (and says so). Read that
+run's Funding section: the grants new and no longer listed, and the total, are what the change
+did. `uv run uwpr-pubs config` prints the version and fingerprint in force.
