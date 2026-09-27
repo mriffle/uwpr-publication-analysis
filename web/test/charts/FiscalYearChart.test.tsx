@@ -36,7 +36,7 @@ const draw = () =>
 
 describe('the grant’s amount by fiscal year', () => {
   it('names each year by its amount, a missing one in words and the partial one as so far', () => {
-    expect(YEARS.map(describeFiscalYear)).toEqual([
+    expect(YEARS.map((year) => describeFiscalYear(year))).toEqual([
       'no amount reported',
       '$400,000 awarded',
       '$300,000 awarded',
@@ -114,6 +114,96 @@ describe('the grant’s amount by fiscal year', () => {
 
   it('passes axe', async () => {
     const { container } = draw();
+    await expectNoAxeViolations(container);
+  });
+});
+
+/**
+ * The years the totals count (docs/09 F17), marked where a reader reads the years: a column of the
+ * table, with a sentence in its caption, and each bar's description and tooltip. The bars are
+ * drawn alike, so the picture itself is unchanged.
+ */
+describe('the fiscal years counted in the totals', () => {
+  const COUNTED = new Set([2024, 2025]);
+
+  it('says in each year’s sentence whether it is counted', () => {
+    expect(YEARS.map((year) => describeFiscalYear(year, COUNTED))).toEqual([
+      'no amount reported, not counted in the totals',
+      '$400,000 awarded, counted in the totals',
+      '$300,000 awarded, counted in the totals',
+      '$200,000 awarded so far, not counted in the totals',
+    ]);
+  });
+
+  it('names each bar so, and adds the tooltip row, leaving the bars alike', async () => {
+    render(
+      <FiscalYearChart
+        years={YEARS}
+        width={640}
+        height={280}
+        sourceName="NIH RePORTER"
+        counted={COUNTED}
+      />,
+    );
+    expect(
+      screen.getByRole('img', { name: '2024: $400,000 awarded, counted in the totals.' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', {
+        name: '2026, a partial year: $200,000 awarded so far, not counted in the totals.',
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId('bar-2024').getAttribute('fill')).toBe(
+      screen.getByTestId('bar-2025').getAttribute('fill'),
+    );
+    await userEvent.hover(screen.getByRole('img', { name: /^2024:/ }));
+    expect(screen.getByTestId('chart-tooltip')).toHaveTextContent('In the totalsCounted');
+    await userEvent.hover(screen.getByRole('img', { name: /^2023:/ }));
+    expect(screen.getByTestId('chart-tooltip')).toHaveTextContent('In the totalsNot counted');
+  });
+
+  it('marks each row of the table, and says so in its caption', () => {
+    render(<FiscalYearTable years={YEARS} sourceName="NIH RePORTER" counted={COUNTED} />);
+    const table = screen.getByRole('table', {
+      name: /The years counted in the totals are marked: the site’s totals count only those\.$/,
+    });
+    expect(
+      within(table)
+        .getAllByRole('columnheader')
+        .map((cell) => cell.textContent),
+    ).toEqual(['Fiscal year', 'Awarded', 'In the totals']);
+    expect(
+      within(table)
+        .getAllByRole('row')
+        .slice(1)
+        .map((row) => row.textContent),
+    ).toEqual([
+      '2023no amount reportedNot counted',
+      '2024$400,000Counted',
+      '2025$300,000Counted',
+      '2026 (partial)$200,000Not counted',
+    ]);
+  });
+
+  it('adds nothing when it is not told which years are counted', () => {
+    render(<FiscalYearTable years={YEARS} sourceName="NIH RePORTER" />);
+    expect(screen.queryByRole('columnheader', { name: 'In the totals' })).toBeNull();
+    expect(screen.getByRole('table')).not.toHaveAccessibleName(/counted in the totals/);
+  });
+
+  it('passes axe, marked', async () => {
+    const { container } = render(
+      <>
+        <FiscalYearChart
+          years={YEARS}
+          width={640}
+          height={280}
+          sourceName="NIH RePORTER"
+          counted={COUNTED}
+        />
+        <FiscalYearTable years={YEARS} sourceName="NIH RePORTER" counted={COUNTED} />
+      </>,
+    );
     await expectNoAxeViolations(container);
   });
 });

@@ -3,12 +3,16 @@
  *
  * In order: the way back, the agency's name as the one `h1`, its facts (parent, country), the two
  * ways into a view with this agency added to the reader's filter, its figures, a breakdown by
- * the agencies within it, its grants' value over time, its grants, and its publications.
+ * the agencies within it, its grants' counted funding by the year awarded, its grants, and its
+ * publications.
  *
  * **Whole corpus, and it says so.** Like a publication, an agency is a fact about the data, not
  * about the reader's selection, so every figure here is over every publication and states that it
- * is "not affected by the filter". The query string is kept only for the ways out: the parent
- * link a cold reader gets, and the two links that add this agency to the filter the reader had.
+ * is "not affected by the filter". Its dollars are counted funding (docs/09 F17), each grant from
+ * `from_year` through the latest publication listing it — any publication, so the export's own
+ * `counted_usd` — and the grants table says so. The query string is kept only for the ways out:
+ * the parent link a cold reader gets, and the two links that add this agency to the filter the
+ * reader had.
  * Institution-wide awards are included, and the figures say how many (§12.11 rule 4).
  *
  * **Miscellaneous is a page too**, found by its `group` and never by a code (§11.5). It is not an
@@ -28,12 +32,12 @@ import {
   agencyDetail,
   agencyLabel,
   keptUnmatched,
-  knownAmount,
+  knownCounted,
   type AgencyDetail,
   type AgencyShare,
 } from '../aggregate/funding';
 import { ChartCard } from '../charts/ChartCard';
-import { FundingOverTimeChart, FundingOverTimeTable } from '../charts/FundingOverTimeChart';
+import { CountedOverTimeChart, CountedOverTimeTable } from '../charts/FundingOverTimeChart';
 import { ResponsiveChart } from '../charts/ResponsiveChart';
 import { AgencyFullName } from '../components/AgencyTable';
 import { BackLink, useCloseOnEscape } from '../components/BackLink';
@@ -44,10 +48,11 @@ import { AgencyLink, InAppLink, type FundingLinks } from '../components/FundingL
 import { GrantsTable } from '../components/GrantsTable';
 import { NlmAttribution } from '../components/NlmAttribution';
 import type { SiteView, ViewSwitch } from '../components/SiteHeader';
-import { fundingOf, type FundingIndex } from '../contract/funding';
+import { countingOf, fundingOf, type FundingIndex } from '../contract/funding';
 import type { Agency as AgencyRecord, ExportDocument, Work } from '../contract/types';
 import { countryName } from '../format/country';
 import { formatCount, formatUsd, pluralize } from '../format/number';
+import { COUNTING_SECTION_ID } from '../method/funding';
 import { BACK_LABELS } from '../routing/navigation';
 
 export interface AgencyProps {
@@ -263,8 +268,9 @@ function AgencyBody({
   links: FundingLinks;
   methodHref: string;
 }) {
-  const { figures, overTime } = detail;
+  const { figures, countedOverTime: over } = detail;
   const breakdown = detail.children.length > 0 || detail.unassigned !== null;
+  const from = String(countingOf(detail.scope.index)?.from_year ?? '');
 
   return (
     <>
@@ -273,12 +279,17 @@ function AgencyBody({
         Over every publication here, so these figures are not affected by the filter. They include
         institution-wide awards, and count each grant once, however many publications list it.
       </p>
-      <FundingFigures scope={detail.scope} corpus definitionHref={(id) => `${methodHref}#${id}`} />
+      <FundingFigures
+        scope={detail.scope}
+        corpus
+        resource={doc.resource.short_name}
+        definitionHref={(id) => `${methodHref}#${id}`}
+      />
 
       {breakdown ? (
         <>
           <h2>By the agencies within it</h2>
-          <Breakdown detail={detail} label={label} links={links} />
+          <Breakdown detail={detail} label={label} links={links} from={from} />
         </>
       ) : null}
 
@@ -290,25 +301,31 @@ function AgencyBody({
         </p>
       ) : (
         <ChartCard
-          title="Grant funding over time"
-          description={`The known value of ${label}’s grants first listed in each year, over every publication, with the running total as a line on the right-hand axis. The bars are not filters.`}
+          title="Grant funding by year awarded"
+          description={`The counted funding of ${label}’s grants, over every publication, in the year it was awarded, with the running total as a line on the right-hand axis. The bars are not filters.`}
           note={
             <>
-              Each grant’s full lifetime total enters in the year of the first publication that
-              lists it; this is a publication year, not an award year.{' '}
-              {figures.withoutAmount === 0
+              Each grant’s counted funding is shown in the year it was awarded: NIH’s by fiscal year
+              (October to September), other funders’ amounts spread evenly over the award’s years.
+              Amounts with no years, and grants that ended before {from}, enter in the year of the
+              first publication that lists them.{' '}
+              {over.withoutAmount === 0
                 ? 'Every grant listed has a known amount.'
-                : `${pluralize(figures.withoutAmount, 'grant')} with no known amount ${figures.withoutAmount === 1 ? 'is' : 'are'} not in this chart.`}
+                : `${pluralize(over.withoutAmount, 'grant')} with no known amount ${over.withoutAmount === 1 ? 'is' : 'are'} not in this chart.`}
+              {over.beganAfter === 0
+                ? ''
+                : ` ${pluralize(over.beganAfter, 'grant')} began after the latest publication that lists ${over.beganAfter === 1 ? 'it, and counts' : 'them, and count'} nothing.`}{' '}
+              <a href={`${methodHref}#${COUNTING_SECTION_ID}`}>How grant funding is counted</a>
             </>
           }
           chart={
             <ResponsiveChart height={300}>
               {({ width, height }) => (
-                <FundingOverTimeChart over={overTime} width={width} height={height} />
+                <CountedOverTimeChart over={over} width={width} height={height} />
               )}
             </ResponsiveChart>
           }
-          table={<FundingOverTimeTable over={overTime} />}
+          table={<CountedOverTimeTable over={over} />}
         />
       )}
 
@@ -318,26 +335,43 @@ function AgencyBody({
         links={links}
         csvFilename={csvName(doc, detail.agency.code)}
         caption={`Every grant of ${label} listed on a publication here, whatever the filter`}
+        countedNote={CORPUS_COUNTED_NOTE}
       />
     </>
   );
 }
 
-/** A known total as a cell: the sum, or "not known" — never $0 (§12.11 rule 3). */
-const totalCell = (share: AgencyShare): string => {
-  const known = knownAmount(share);
-  return known === null ? 'not known' : formatUsd(known);
+/**
+ * What the grants table's counted amounts are counted over on an agency's page: every
+ * publication, since the page ignores the filter (docs/09 §12.6), not "the publications shown".
+ */
+const CORPUS_COUNTED_NOTE = 'for every publication listing it';
+
+/**
+ * A counted total as a cell: the sum, or "not known" — never $0 for an unknown (§12.11 rule 3).
+ * A known $0 says why: none of its grants' funding falls in the years counted (F17).
+ */
+const countedCell = (share: AgencyShare): string => {
+  const known = knownCounted(share);
+  if (known === null) return 'not known';
+  return known === 0 ? '$0: none of its funding falls in the years counted' : formatUsd(known);
 };
 
-/** The grants by the agency within it that awarded them, with the remainder that none did. */
+/**
+ * The grants by the agency within it that awarded them, with the remainder that none did, largest
+ * counted funding first (`agencyDetail`'s order), over every publication.
+ */
 function Breakdown({
   detail,
   label,
   links,
+  from,
 }: {
   detail: AgencyDetail;
   label: string;
   links: FundingLinks;
+  /** The first year counted (`funding.counting.from_year`), as the caption says it. */
+  from: string;
 }) {
   const rows: { share: AgencyShare; own: boolean }[] = [
     ...detail.children.map((share) => ({ share, own: false })),
@@ -347,9 +381,11 @@ function Breakdown({
     <div className="table-scroll">
       <table className="chart-table funding-table">
         <caption>
-          {label}’s grants by the agency within it that awards them, largest known total first, over
-          every publication. A grant is counted once, under its own agency. A known total leaves out
-          the grants with no amount, which are counted beside it, never as $0.
+          {label}’s grants by the agency within it that awards them, largest counted funding first,
+          over every publication. A grant is counted once, under its own agency. Counted is the
+          grant funding the totals count: each grant’s funding from {from} through the year of the
+          latest publication listing it. It leaves out the grants with no amount, which are counted
+          beside it, never as $0.
         </caption>
         <thead>
           <tr>
@@ -358,7 +394,7 @@ function Breakdown({
               Grants
             </th>
             <th scope="col" className="numeric">
-              Known total
+              Counted
             </th>
             <th scope="col" className="numeric">
               Without an amount
@@ -384,7 +420,7 @@ function Breakdown({
                 )}
               </th>
               <td className="numeric">{formatCount(share.grants)}</td>
-              <td className="numeric">{totalCell(share)}</td>
+              <td className="numeric">{countedCell(share)}</td>
               <td className="numeric">{formatCount(share.withoutAmount)}</td>
               <td className="numeric">{formatCount(share.publications)}</td>
             </tr>
@@ -441,6 +477,7 @@ function Unmatched({
         csvFilename={csvName(doc, detail.agency.code)}
         caption="Every unmatched number given on a publication here, whatever the filter"
         noun={UNMATCHED_NOUN}
+        countedNote={CORPUS_COUNTED_NOTE}
       />
     </>
   );

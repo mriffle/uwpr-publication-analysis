@@ -61,9 +61,10 @@ export interface PublicationDetailProps {
   /**
    * "Funding listed in this publication" (docs/09 §12.8): the export's funding index —
    * `fundingOf(doc)`, null when it has no funding data — and the agency and grant links. The app
-   * always gives both; a test that renders the page without them gets no section.
+   * always gives both; a test that renders the page without them gets no section. `methodHref`
+   * is the method page, whose "How grant funding is counted" the section links to.
    */
-  funding?: { index: FundingIndex | null; links: FundingLinks };
+  funding?: { index: FundingIndex | null; links: FundingLinks; methodHref?: string };
 }
 
 const doiUrl = (doi: string): string => `https://doi.org/${doi}`;
@@ -347,6 +348,7 @@ export function PublicationDetail({
           index={funding.index}
           resource={resource}
           links={funding.links}
+          methodHref={funding.methodHref}
         />
       )}
 

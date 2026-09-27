@@ -1,8 +1,10 @@
 /**
  * The agency page (docs/09 §12.6): an agency across the whole corpus — its facts, its figures
  * "not affected by the filter", a breakdown by the agencies within it with the remainder
- * assigned to none, its value over time (static), its grants, its publications, and the two ways
- * into a view with the agency added to the reader's filter. Miscellaneous is a page too.
+ * assigned to none, its counted funding by the year awarded (static), its grants, its
+ * publications, and the two ways into a view with the agency added to the reader's filter.
+ * Miscellaneous is a page too. Its dollars are counted funding (docs/09 F17), a known $0 saying
+ * why, and NIH's total is the pipeline's own `summary.counted_usd_nih` on whichever export.
  *
  * Rendered directly, with the handlers the Router gives it recorded, so each case says exactly
  * what a link opens; `test/routing/entity-chain.test.tsx` walks the same pages through the Router.
@@ -16,7 +18,7 @@ import { agencyDetail } from '../../src/aggregate/funding';
 import type { SiteView } from '../../src/components/SiteHeader';
 import { fundingOf } from '../../src/contract/funding';
 import type { ExportDocument, Work } from '../../src/contract/types';
-import { formatCount } from '../../src/format/number';
+import { formatCount, formatUsd } from '../../src/format/number';
 import { Agency } from '../../src/views/Agency';
 import { expectNoAxeViolations } from '../support/axe';
 import { isSampleExport, sampleExport } from '../support/fixture';
@@ -184,6 +186,133 @@ describe('an agency with institutes, one grant its own', () => {
 });
 
 /* ------------------------------------------------------------------------------------------------
+ * Counted funding (docs/09 F17): a hand-built NIH whose NHLBI grant began after the work listing
+ * it, so counts a known $0, and whose NIGMS grant counts in full.
+ * --------------------------------------------------------------------------------------------- */
+
+const LATE = grant({
+  key: 'NIH:P01HL000009',
+  agency: 'NHLBI',
+  number: 'P01HL000009',
+  title: 'A PROGRAMME BEGUN LATER',
+  category: 'center',
+  start_year: 2022,
+  end_year: 2024,
+  amount_usd: 3_000_000,
+  amount_original: 3_000_000,
+  fiscal_years: { '2022': 1_000_000, '2023': 1_000_000, '2024': 1_000_000 },
+  counted_usd: 0,
+  counted_rule: 'began_after',
+});
+
+/** NIH over one work of 2020, listing `grant()` (FY2019–2020, NIGMS) and LATE (FY2022–, NHLBI). */
+function countedDocument(): ExportDocument {
+  const works = sampleExport().works.map((work, position) => ({
+    ...work,
+    ...(position === 0 ? { year: 2020 } : {}),
+    grants:
+      position === 0 ? [listing(), listing({ grant: LATE.key, agencies: ['NIH', 'NHLBI'] })] : [],
+  }));
+  return fundingDocument({
+    funding: fundingBlock({
+      agencies: [
+        agency(),
+        nigms(),
+        agency({
+          code: 'NHLBI',
+          name: 'National Heart, Lung, and Blood Institute',
+          short_name: 'NHLBI',
+          parent: 'NIH',
+        }),
+      ],
+      grants: [grant(), LATE],
+    }),
+    works,
+  });
+}
+
+describe('an agency’s counted funding (docs/09 F17)', () => {
+  const doc = countedDocument();
+
+  it('heads its figures with the grant funding counted, defined from the export', () => {
+    show('NIH', { doc });
+    const figures = screen.getByRole('list', { name: 'Funding figures' });
+    // $1,000,000 counted of the $4,000,000 its two lifetime totals come to.
+    expect(within(figures).getByText('$1,000,000')).toBeInTheDocument();
+    expect(figures).not.toHaveTextContent('$4,000,000');
+    expect(figures).toHaveTextContent(
+      'from 2006, when UWPR began, through the year of the latest publication listing each grant.',
+    );
+    expect(figures).not.toHaveTextContent('when the resource began');
+  });
+
+  it('breaks it down by counted funding, a known $0 saying why', () => {
+    show('NIH', { doc });
+    const table = screen.getByRole('table', { name: /by the agency within it/ });
+    expect(table).toHaveAccessibleName(/largest counted funding first/);
+    expect(table).toHaveAccessibleName(
+      /Counted is the grant funding the totals count: each grant’s funding from 2006 through the year of the latest publication listing it\./,
+    );
+    expect(
+      within(table)
+        .getAllByRole('columnheader')
+        .map((cell) => cell.textContent),
+    ).toEqual(['Agency', 'Grants', 'Counted', 'Without an amount', 'Publications']);
+    const rows = within(table).getAllByRole('row').slice(1);
+    expect(rows.map((row) => within(row).getByRole('rowheader').textContent)).toEqual([
+      'NIGMS National Institute of General Medical Sciences',
+      'NHLBI National Heart, Lung, and Blood Institute',
+    ]);
+    expect(rows[0]).toHaveTextContent('$1,000,000');
+    expect(rows[1]).toHaveTextContent('$0: none of its funding falls in the years counted');
+    expect(rows[1]).not.toHaveTextContent('$3,000,000');
+  });
+
+  it('draws its counted funding by the year awarded, and says what it leaves out', async () => {
+    show('NIH', { doc });
+    const card = screen.getByRole('region', { name: 'Grant funding by year awarded' });
+    expect(card).toHaveTextContent(
+      'Each grant’s counted funding is shown in the year it was awarded: NIH’s by fiscal year (October to September), other funders’ amounts spread evenly over the award’s years. Amounts with no years, and grants that ended before 2006, enter in the year of the first publication that lists them.',
+    );
+    expect(card).toHaveTextContent(
+      '1 grant began after the latest publication that lists it, and counts nothing.',
+    );
+    expect(
+      within(card).getByRole('link', { name: 'How grant funding is counted' }),
+    ).toHaveAttribute('href', '/method#funding-counting');
+    expect(within(card).queryAllByRole('button', { name: /Activate/ })).toHaveLength(0);
+    await userEvent.click(within(card).getByRole('button', { name: 'View as table' }));
+    const cells = within(within(card).getByRole('table'))
+      .getAllByRole('row')
+      .slice(1)
+      .map((row) => row.textContent);
+    // Its axis starts at 2006 whatever the export's first year; FY2019 and FY2020 hold it all.
+    expect(cells[0]).toMatch(/^2006—/);
+    expect(cells.find((row) => row.startsWith('2019'))).toBe('2019$500,000$500,0001');
+    expect(cells.find((row) => row.startsWith('2020'))).toBe('2020$500,000$1,000,0001');
+  });
+
+  it('labels the grants table’s counted amounts as over every publication listing each', () => {
+    show('NIH', { doc });
+    const grants = screen.getByRole('table', { name: /Every grant of NIH/ });
+    expect(grants).toHaveAccessibleName(
+      /Counted is the grant funding the totals count, for every publication listing it:/,
+    );
+    expect(
+      within(grants).getByRole('columnheader', {
+        name: /Counted for every publication listing it/,
+      }),
+    ).toBeInTheDocument();
+    expect(grants).not.toHaveTextContent('for the publications shown');
+  });
+
+  it('passes axe', async () => {
+    const { container } = show('NIH', { doc });
+    await expectNoAxeViolations(container);
+  }, 30_000);
+});
+
+/* ------------------------------------------------------------------------------------------------
  * The committed sample's agencies.
  * --------------------------------------------------------------------------------------------- */
 
@@ -231,11 +360,12 @@ describe.runIf(isSampleExport)('an agency in the sample (NSF)', () => {
     ).toHaveAttribute('href', '/method#funding-total');
   });
 
-  it('draws its value over time as static bars', () => {
+  it('draws its counted funding by the year awarded as static bars, ending at its total', () => {
     show('NSF');
-    const card = screen.getByRole('region', { name: 'Grant funding over time' });
+    const card = screen.getByRole('region', { name: 'Grant funding by year awarded' });
     expect(within(card).queryAllByRole('button', { name: /Activate/ })).toHaveLength(0);
     expect(within(card).getAllByRole('img').length).toBeGreaterThan(1);
+    expect(detail.countedOverTime.points.at(-1)?.cumulative).toBe(detail.figures.countedUsd);
   });
 
   it('lists its grants once each, and opens one in place', async () => {
@@ -301,6 +431,15 @@ describe.runIf(isSampleExport)('an institute in the sample (NIGMS)', () => {
       within(parent as HTMLElement).getByRole('link', { name: 'National Institutes of Health' }),
     );
     expect(opened).toEqual(['agency:NIH']);
+  });
+});
+
+describe('NIH over whichever export is loaded', () => {
+  it('heads its figures with the counted total the pipeline computed, summary.counted_usd_nih', () => {
+    show('NIH');
+    const figures = screen.getByRole('list', { name: 'Funding figures' });
+    const total = figures.querySelector('.funding-figure-total .figure-value');
+    expect(total).toHaveTextContent(formatUsd(sample.funding.summary.counted_usd_nih));
   });
 });
 

@@ -11,6 +11,11 @@
  * the grants themselves is counted from the grants listed by the scope the Funding impact view
  * draws (`method/funding.ts`). No figure is written into a string.
  *
+ * **It says how grant funding is counted** (docs/09 F17), at `#funding-counting`, right after what
+ * a grant's lifetime total means: the rule, each exception with its reason and its count, and the
+ * corpus's lifetime and counted sums side by side. The rule's years and kinds are the export's
+ * `funding.counting`, so a change to the constants changes the words.
+ *
  * **The register is docs/09 §12.11's**, and a test holds the section to it: nothing here says the
  * resource had a part in any grant — a grant is one a publication lists, and the section says
  * that before anything else — a total is what an award is worth and not money spent on this
@@ -30,9 +35,11 @@ import type { ReactNode } from 'react';
 import { NlmAttribution } from '../components/NlmAttribution';
 import type { ExportDocument, FundingSource } from '../contract/types';
 import { formatDate } from '../format/date';
+import { CATEGORY_LABELS, countInWords } from '../format/funding';
 import { formatCount, formatUsd, pluralize } from '../format/number';
 import { fundingDefinitions, type MetricDefinition } from '../method/definitions';
 import {
+  COUNTING_SECTION_ID,
   fundingMethodFacts,
   sourceById,
   type AmountBasis,
@@ -162,14 +169,139 @@ function inWords(items: readonly ReactNode[]): ReactNode {
   ));
 }
 
-/** "6 awards, worth $135,503,058 in all" — with an unknown value never given a figure. */
+/**
+ * "6 awards, counted at $126,823,172 in all" — their grant funding counted (F17), as the headline
+ * counts it — with an unknown value never given a figure.
+ */
 function institutionWideWorth(facts: FundingMethodFacts): string {
-  const { grants, withAmount, withoutAmount, amountUsd } = facts.institutionWide;
+  const { grants, withAmount, withoutAmount, countedUsd } = facts.institutionWide;
   const awards = pluralize(grants, 'institution-wide award');
   if (grants === 0) return 'no institution-wide awards';
   if (withAmount === 0) return `${awards}, none with a known amount`;
-  if (withoutAmount === 0) return `${awards}, worth ${formatUsd(amountUsd)} in all`;
-  return `${awards}, worth ${formatUsd(amountUsd)} for the ${formatCount(withAmount)} with a known amount, and ${formatCount(withoutAmount)} with none known`;
+  if (withoutAmount === 0) return `${awards}, counted at ${formatUsd(countedUsd)} in all`;
+  return `${awards}, counted at ${formatUsd(countedUsd)} for the ${formatCount(withAmount)} with a known amount, and ${formatCount(withoutAmount)} with none known`;
+}
+
+/** "15 grants, $11,512,331" — or "none here" — for a rule's line in the counting section. */
+function grantsAndDollars(entry: { grants: number; usd: number }, dollars = true): string {
+  if (entry.grants === 0) return 'none here';
+  const grants = pluralize(entry.grants, 'grant');
+  return dollars ? `${grants}, ${formatUsd(entry.usd)}` : grants;
+}
+
+/**
+ * "How grant funding is counted" (docs/09 F17): the rule, each exception with its reason and its
+ * corpus count, what NIH's years are, and the lifetime and counted sums side by side. Every year,
+ * count of years and kind counted in full is the export's `funding.counting`; every count and sum
+ * is the unfiltered corpus's (`method/funding.ts`). No "$0" is written: a grant that counts
+ * nothing "counts nothing".
+ */
+function CountingSection({
+  facts,
+  resource,
+  withoutAmount,
+}: {
+  facts: FundingMethodFacts;
+  resource: string;
+  /** Grants listed with no known amount: in neither sum. */
+  withoutAmount: number;
+}) {
+  const { constants, rules, estimated } = facts.counting;
+  const from = String(constants.from_year);
+  const last = constants.last_years;
+  const lastYears = last === 1 ? 'its last year' : `its last ${countInWords(last)} years`;
+  const kinds = constants.full_amount_categories.map((category) =>
+    CATEGORY_LABELS[category].toLowerCase(),
+  );
+  const instrumentsOnly = kinds.length === 1 && kinds[0] === 'instrument';
+  return (
+    <>
+      <h3 id={COUNTING_SECTION_ID} tabIndex={-1}>
+        How grant funding is counted
+      </h3>
+      <p>
+        The totals on this site do not add up each grant’s lifetime award. A lifetime total can run
+        from long before {resource} began to long after the last publication that lists the grant,
+        and the resource could not have touched that money. So the totals count only part of each
+        grant.
+      </p>
+      <p>
+        <strong>
+          The rule: each grant counts its funding from {from}, when {resource} began, through the
+          year of the latest publication listing it.
+        </strong>{' '}
+        The years between its publications count too. Under a filter, the last year counted is that
+        of the latest publication shown that lists the grant, so a filter can count less of it.{' '}
+        {rules.window.grants === 0
+          ? 'No grant here is counted this way.'
+          : `${pluralize(rules.window.grants, 'grant')} ${rules.window.grants === 1 ? 'is' : 'are'} counted this way.`}
+      </p>
+      <p>Where the rule does not fit a grant as it stands:</p>
+      <ul className="method-list">
+        <li>
+          <strong>
+            {instrumentsOnly
+              ? 'Instrument grants count in full'
+              : `Grants of the kinds ${kinds.join(' and ')} count in full`}
+            : {grantsAndDollars(rules.full_amount)}.
+          </strong>{' '}
+          An instrument is bought once and used for years, so all of it counts, whenever it was
+          awarded.
+        </li>
+        <li>
+          <strong>
+            A grant whose funding ended before {from} counts {lastYears}:{' '}
+            {grantsAndDollars(rules.ended_before)}.
+          </strong>{' '}
+          The publication lists the grant as funding its work, perhaps the work’s early stages, so
+          the end of the grant is counted rather than none of it.
+        </li>
+        <li>
+          <strong>
+            A grant that began after the latest publication listing it counts nothing:{' '}
+            {grantsAndDollars(rules.began_after, false)}.
+          </strong>{' '}
+          It cannot have paid for work already published. Such a listing usually comes from a grant
+          list updated after the publication, and each grant’s page says why it counts nothing.
+        </li>
+        <li>
+          <strong>
+            Other funders’ amounts are spread evenly over their years:{' '}
+            {estimated.grants === 0
+              ? 'none here'
+              : `${pluralize(estimated.grants, 'grant')}, ${formatUsd(estimated.usd)} of the counted total`}
+            .
+          </strong>{' '}
+          Only NIH reports what it awarded year by year; the other sources give one total. A total
+          with a start and an end year is spread evenly over those years and then counted by the
+          rule, so what is counted of it is an estimate, and is marked as one wherever it is shown.
+          An amount that is money obligated so far — NSF’s obligated amount, and USAspending’s — is
+          spread only to the year it was read, so that an award still running is not spread into
+          years not yet paid.
+        </li>
+        <li>
+          <strong>
+            An amount with no end year counts whole: {grantsAndDollars(rules.undated)}.
+          </strong>{' '}
+          With no yearly breakdown and no end year, there is nothing to divide it by.
+        </li>
+      </ul>
+      <p>
+        NIH’s years are fiscal years, October to September, each named by the year it ends in, and
+        are compared with publication years as they are: fiscal year {from} is the first counted.
+      </p>
+      <p>
+        Each grant’s own page shows both figures: its lifetime total, and what the totals count of
+        it, with the reason. Across every grant listed, the lifetime totals come to{' '}
+        <strong>{formatUsd(facts.counting.lifetimeUsd)}</strong> and the counted amounts to{' '}
+        <strong>{formatUsd(facts.counting.countedUsd)}</strong>
+        {withoutAmount === 0
+          ? ''
+          : `; the ${pluralize(withoutAmount, 'grant')} with no known amount ${withoutAmount === 1 ? 'is' : 'are'} in neither`}
+        . Neither is money spent on this work.
+      </p>
+    </>
+  );
 }
 
 function Definitions({ definitions }: { definitions: readonly MetricDefinition[] }) {
@@ -213,6 +345,7 @@ export function FundingMethodSection({ doc }: FundingMethodSectionProps) {
   const resource = doc.resource.short_name;
   const { method, grants } = facts;
   const reporter = sourceById(facts, 'reporter');
+  const countedFrom = String(facts.counting.constants.from_year);
   const families = AMOUNT_FAMILIES.map((family) => ({
     ...family,
     count: family.bases.reduce((sum, basis) => sum + (facts.byBasis.get(basis) ?? 0), 0),
@@ -340,11 +473,13 @@ export function FundingMethodSection({ doc }: FundingMethodSectionProps) {
 
       <h3 id="funding-amounts">What a grant’s total means</h3>
       <p>
-        A grant’s total is its lifetime award total as its funder records it, on the date its record
-        was last confirmed. It is what the award is worth, not money spent on this work: a total is
-        the whole award’s, not the part of it spent on the research these publications report. A
-        grant still active has a total that still grows. What a total adds up depends on where it
-        comes from:
+        A grant’s lifetime total is a fact about the grant: its whole award as its funder records
+        it, on the date its record was last confirmed. It is what the award is worth, not money
+        spent on this work: a total is the whole award’s, not the part of it spent on the research
+        these publications report. A grant still active has a lifetime total that still grows. The
+        totals on this site do not add up lifetime totals: they add the part of each grant that is
+        counted, as <a href={`#${COUNTING_SECTION_ID}`}>how grant funding is counted</a> sets out
+        below. What a lifetime total adds up depends on where it comes from:
       </p>
       <ul className="method-list">
         {families.map((family) => (
@@ -368,6 +503,8 @@ export function FundingMethodSection({ doc }: FundingMethodSectionProps) {
         )}{' '}
         A grant with no known amount is counted beside every total, and never in it as $0.
       </p>
+
+      <CountingSection facts={facts} resource={resource} withoutAmount={grants.withoutAmount} />
 
       <h3 id="funding-currency">Amounts in other currencies</h3>
       <p>
@@ -410,7 +547,7 @@ export function FundingMethodSection({ doc }: FundingMethodSectionProps) {
           : `${pluralize(grants.unconverted, 'grant')} listed ${grants.unconverted === 1 ? 'is' : 'are'} in a currency these rates do not cover: shown in that currency, and left out of every total in US dollars.`}
       </p>
 
-      <h3 id="funding-years">Fiscal years, partial years and the first year</h3>
+      <h3 id="funding-years">Fiscal years, award years, partial years and the first year</h3>
       <ul className="method-list">
         <li>
           <strong>Fiscal years</strong> are NIH’s and the US government’s: 1 October to 30
@@ -429,28 +566,39 @@ export function FundingMethodSection({ doc }: FundingMethodSectionProps) {
             <strong>
               {reporter.name}’s amounts begin in fiscal year {String(reporter.amounts_from)}.
             </strong>{' '}
-            It holds nothing earlier, so a grant already running then is short of its earlier years.{' '}
+            It holds nothing earlier, so a grant already running then is short of its earlier years.
+            That matters only to lifetime totals, since the counting starts in {countedFrom}.{' '}
             {startedEarlier(grants.startsBeforeFy1985, reporter.amounts_from)}
           </li>
         )}
         <li>
           <strong>Active grants: {formatCount(grants.active)}.</strong> Each ends after the date its
-          record was read, or has an award in the fiscal year in progress. Its total still grows,
-          and it is tagged “active”.
+          record was read, or has an award in the fiscal year in progress. Its lifetime total still
+          grows, and it is tagged “active”; what the totals count of it stops at the year of the
+          latest publication listing it.
         </li>
         <li>
-          <strong>The first year.</strong> Over time, each grant enters once, with its whole
-          lifetime total, in its first year: the publication year of the earliest publication here
-          that lists it, or under a filter the earliest one the filter shows. It is a publication
-          year, not the year of the award, so the value over time shows when grants first appear on
-          these publications, not when they were awarded or spent.
+          <strong>Funding over time is by the year awarded.</strong> The chart of grant funding over
+          time places each grant’s counted funding in the year it was awarded: NIH’s by fiscal year,
+          other funders’ amounts spread evenly over the award’s years. Amounts with no years, and
+          grants whose funding ended before {countedFrom}, go to the year of the first publication
+          listing them, and an instrument’s years after the latest publication listing it go to that
+          year. So every dollar drawn falls between {countedFrom} and the latest publication year
+          shown, and the chart starts at {countedFrom} whatever the filter.
         </li>
         {doc.period.current_year_partial ? (
           <li>
-            <strong>{String(doc.period.last_year)} is a partial publication year</strong> here too,
-            so the grants first listed in it are those listed so far.
+            <strong>{String(doc.period.last_year)} is partial.</strong> On the chart by year awarded
+            it is the year in progress, whose awards are not all made or recorded. It is also a
+            partial publication year here, so the grants first listed in it are those listed so far.
           </li>
         ) : null}
+        <li>
+          <strong>The first year.</strong> A grant’s first year is the publication year of the
+          earliest publication here that lists it, or under a filter the earliest one the filter
+          shows. It is a publication year, not the year of the award, and it places no dollars: it
+          is used only to count new grants by agency, and as a grant’s “First listed”.
+        </li>
       </ul>
 
       <h3 id="funding-institution-wide-awards">Institution-wide awards</h3>

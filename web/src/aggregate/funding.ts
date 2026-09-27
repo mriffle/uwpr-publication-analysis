@@ -940,9 +940,7 @@ export interface AgencyDetail {
    * be assigned to. Null when it has no children, or when every grant is under one.
    */
   unassigned: AgencyShare | null;
-  /** Value over time, as the Funding view draws it; static on the page. */
-  overTime: CumulativeDollars;
-  /** Its counted funding by the year awarded (F17), as `countedOverTime` draws it. */
+  /** Its counted funding by the year awarded (F17), as `countedOverTime` draws it; static. */
   countedOverTime: CountedOverTime;
   /** The publications listing one of its grants, newest first. */
   publications: Work[];
@@ -1005,7 +1003,6 @@ export function agencyDetail(
     figures: fundingFigures(scope),
     children,
     unassigned,
-    overTime: cumulativeDollars(scope, period),
     countedOverTime: countedOverTime(scope, period, countingOf(index)),
     publications: sortWorks(
       works.filter((work) => listing.has(work.id)),

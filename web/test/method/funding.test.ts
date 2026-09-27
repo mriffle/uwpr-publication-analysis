@@ -6,8 +6,9 @@
  * the Funding impact view and the pipeline disagree with. The rest are held to the rows.
  */
 import { describe, expect, it } from 'vitest';
+import { COUNTED_RULES } from '../../src/aggregate/counting';
 import type { Grant } from '../../src/contract/types';
-import { fundingMethodFacts, sourceById } from '../../src/method/funding';
+import { COUNTING_SECTION_ID, fundingMethodFacts, sourceById } from '../../src/method/funding';
 import { sampleExport } from '../support/fixture';
 import { legacyDocument, noFundingBlock } from '../support/funding';
 
@@ -58,6 +59,42 @@ describe('fundingMethodFacts', () => {
     expect(facts?.rateYearEstimated).toBe(
       converted.filter((grant) => grant.flags.includes('rate_year_estimated')).length,
     );
+  });
+
+  it('counts the grants under each counting rule as funding.summary does (F17)', () => {
+    const counting = facts?.counting;
+    expect(counting?.constants).toEqual(doc.funding.counting);
+    for (const rule of COUNTED_RULES) {
+      expect(counting?.rules[rule].grants, rule).toBe(summary.grants_by_counted_rule[rule] ?? 0);
+      // Each rule's dollars are the exported counted amounts of the grants it counted.
+      const counted = resolved.filter((grant) => grant.counted_rule === rule);
+      expect(counting?.rules[rule].usd, rule).toBe(
+        counted.reduce((sum, grant) => sum + (grant.counted_usd ?? 0), 0),
+      );
+    }
+    const byRule = COUNTED_RULES.reduce((sum, rule) => sum + (counting?.rules[rule].usd ?? 0), 0);
+    expect(byRule).toBe(summary.counted_usd);
+    expect(counting?.countedUsd).toBe(summary.counted_usd);
+    expect(counting?.lifetimeUsd).toBe(summary.amount_usd);
+  });
+
+  it('counts the estimates: the amounts spread evenly, and their counted dollars', () => {
+    const spread = resolved.filter(
+      (grant) =>
+        grant.amount_usd !== null &&
+        (grant.fiscal_years === null || Object.keys(grant.fiscal_years).length === 0) &&
+        grant.spread_years !== null &&
+        Object.keys(grant.spread_years).length > 0,
+    );
+    expect(spread.length).toBeGreaterThan(0);
+    expect(facts?.counting.estimated).toEqual({
+      grants: spread.length,
+      usd: spread.reduce((sum, grant) => sum + (grant.counted_usd ?? 0), 0),
+    });
+  });
+
+  it('names the counting section’s anchor', () => {
+    expect(COUNTING_SECTION_ID).toBe('funding-counting');
   });
 
   it('carries the method block, and totals its strings over every outcome', () => {

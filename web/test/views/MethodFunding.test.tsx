@@ -142,7 +142,8 @@ describe('the funding definitions the Funding impact view links to (docs/09 §12
     const unknown = summary.grants_resolved - summary.grants_with_amount;
     const text = (id: string) => document.getElementById(id)?.textContent ?? '';
 
-    expect(text('funding-total')).toContain(formatUsd(summary.amount_usd));
+    expect(text('funding-total')).toContain(formatUsd(summary.counted_usd));
+    expect(text('funding-lifetime')).toContain(formatUsd(summary.amount_usd));
     if (unknown > 0) {
       expect(text('funding-total')).toContain(`${pluralize(unknown, 'grant')} without a known`);
     }
@@ -154,7 +155,7 @@ describe('the funding definitions the Funding impact view links to (docs/09 §12
       `${formatCount(summary.works_with_grants)} of ${formatCount(doc.works.length)}`,
     );
     expect(text('funding-institution-wide')).toContain(
-      `${pluralize(summary.grants_institution_wide, 'award')}, ${formatUsd(summary.amount_usd_institution_wide)}`,
+      `${pluralize(summary.grants_institution_wide, 'award')}, ${formatUsd(summary.counted_usd_institution_wide)}`,
     );
     expect(text('funding-unmatched')).toContain(
       `${formatCount(summary.grants - summary.grants_resolved)}, on`,
@@ -358,7 +359,7 @@ describe('the rules and what they decided (docs/09 §6, §11.3 method)', () => {
     const text = prose();
     expect(text).toContain(`Active grants: ${formatCount(facts?.grants.active ?? -1)}.`);
     expect(text).toContain(
-      `${pluralize(doc.funding.summary.grants_institution_wide, 'institution-wide award')}, worth ${formatUsd(doc.funding.summary.amount_usd_institution_wide)}`,
+      `${pluralize(doc.funding.summary.grants_institution_wide, 'institution-wide award')}, counted at ${formatUsd(doc.funding.summary.counted_usd_institution_wide)}`,
     );
     expect(text).toContain('Institution-wide awards are included in every total by default');
     expect(text).toContain('never inferred from its size');
@@ -367,17 +368,164 @@ describe('the rules and what they decided (docs/09 §6, §11.3 method)', () => {
     );
   });
 
-  it('states the first-year rule as a publication year, not an award year', () => {
+  it('states the first-year rule as a publication year, used only for new grants', () => {
     show();
     expect(prose()).toContain('It is a publication year, not the year of the award');
     expect(prose()).toContain('under a filter the earliest one the filter shows');
+    expect(prose()).toContain(
+      'it places no dollars: it is used only to count new grants by agency, and as a grant’s “First listed”.',
+    );
   });
 
-  it('names the partial publication year when the export says it is one', () => {
+  it('says funding over time is by the year awarded, from the first year counted', () => {
+    show();
+    const from = String(doc.funding.counting.from_year);
+    expect(prose()).toContain('Funding over time is by the year awarded.');
+    expect(prose()).toContain(`the chart starts at ${from} whatever the filter`);
+    // FY1985 now matters only to lifetime totals; active grants' counted part stops.
+    expect(prose()).toContain(
+      `That matters only to lifetime totals, since the counting starts in ${from}.`,
+    );
+    expect(prose()).toContain(
+      'Its lifetime total still grows, and it is tagged “active”; what the totals count of it stops at the year of the latest publication listing it.',
+    );
+  });
+
+  it('names the partial year on each axis when the export says it is one', () => {
     show();
     expect(doc.period.current_year_partial).toBe(true);
-    expect(prose()).toContain(`${String(doc.period.last_year)} is a partial publication year`);
+    const year = String(doc.period.last_year);
+    expect(prose()).toContain(
+      `${year} is partial. On the chart by year awarded it is the year in progress, whose awards are not all made or recorded. It is also a partial publication year here`,
+    );
   });
+});
+
+/* ------------------------------------------------------------------------------------------------
+ * How grant funding is counted (docs/09 F17): the maintainer's ask, that the site say how.
+ * --------------------------------------------------------------------------------------------- */
+
+describe('how grant funding is counted (docs/09 F17)', () => {
+  const HEADING = 'How grant funding is counted';
+
+  it('is an h3 at #funding-counting, right after what a grant’s total means', () => {
+    show();
+    const heading = within(section()).getByRole('heading', { level: 3, name: HEADING });
+    expect(heading).toHaveAttribute('id', 'funding-counting');
+    const h3s = within(section())
+      .getAllByRole('heading', { level: 3 })
+      .map((h) => h.textContent);
+    expect(h3s.indexOf(HEADING)).toBe(h3s.indexOf('What a grant’s total means') + 1);
+  });
+
+  it('is linked from what a grant’s total means, and focused when a link lands on it', () => {
+    show('/method#funding-counting');
+    expect(document.activeElement).toBe(document.getElementById('funding-counting'));
+    expect(
+      within(section()).getByRole('link', { name: 'how grant funding is counted' }),
+    ).toHaveAttribute('href', '#funding-counting');
+    expect(prose()).toContain(
+      'The totals on this site do not add up lifetime totals: they add the part of each grant that is counted',
+    );
+  });
+
+  it('gives the rule and each exception with its reason and its count, all the export’s', () => {
+    show();
+    const facts = fundingMethodFacts(doc);
+    const { rules, estimated } = facts?.counting ?? { rules: undefined, estimated: undefined };
+    const summary = doc.funding.summary;
+    const byRule = summary.grants_by_counted_rule;
+    const from = String(doc.funding.counting.from_year);
+    const resource = doc.resource.short_name;
+    const text = prose();
+    const grantsAnd = (count: number | undefined, usd: number | undefined) =>
+      `${pluralize(count ?? 0, 'grant')}, ${formatUsd(usd ?? 0)}`;
+
+    expect(text).toContain(
+      'The totals on this site do not add up each grant’s lifetime award. A lifetime total can run from long before',
+    );
+    expect(text).toContain(
+      `The rule: each grant counts its funding from ${from}, when ${resource} began, through the year of the latest publication listing it.`,
+    );
+    expect(text).toContain('The years between its publications count too.');
+    expect(text).toContain(
+      'Under a filter, the last year counted is that of the latest publication shown',
+    );
+    expect(text).toContain(`${pluralize(byRule.window ?? 0, 'grant')} are counted this way.`);
+    expect(text).toContain(
+      `Instrument grants count in full: ${grantsAnd(byRule.full_amount, rules?.full_amount.usd)}. An instrument is bought once and used for years`,
+    );
+    expect(text).toContain(
+      `A grant whose funding ended before ${from} counts its last five years: ${grantsAnd(byRule.ended_before, rules?.ended_before.usd)}. The publication lists the grant as funding its work, perhaps the work’s early stages`,
+    );
+    expect(text).toContain(
+      `A grant that began after the latest publication listing it counts nothing: ${pluralize(byRule.began_after ?? 0, 'grant')}. It cannot have paid for work already published. Such a listing usually comes from a grant list updated after the publication`,
+    );
+    expect(text).toContain(
+      `Other funders’ amounts are spread evenly over their years: ${pluralize(estimated?.grants ?? 0, 'grant')}, ${formatUsd(estimated?.usd ?? 0)} of the counted total.`,
+    );
+    expect(text).toContain('so what is counted of it is an estimate');
+    expect(text).toContain(
+      'An amount that is money obligated so far — NSF’s obligated amount, and USAspending’s — is spread only to the year it was read',
+    );
+    expect(text).toContain(
+      `An amount with no end year counts whole: ${grantsAnd(byRule.undated, rules?.undated.usd)}.`,
+    );
+    expect(text).toContain(
+      `NIH’s years are fiscal years, October to September, each named by the year it ends in, and are compared with publication years as they are: fiscal year ${from} is the first counted.`,
+    );
+    expect(text).toContain(
+      `Across every grant listed, the lifetime totals come to ${formatUsd(summary.amount_usd)} and the counted amounts to ${formatUsd(summary.counted_usd)}`,
+    );
+    expect(text).toContain('Neither is money spent on this work.');
+  });
+
+  it('follows the export’s constants: another first year, count of years and kinds', () => {
+    const moved = {
+      ...doc,
+      funding: {
+        ...doc.funding,
+        counting: {
+          from_year: 2004,
+          last_years: 3,
+          full_amount_categories: ['instrument', 'contract'] as const,
+        },
+      },
+    } as unknown as ExportDocument;
+    page(moved);
+    const text = prose();
+    expect(text).toContain(
+      `The rule: each grant counts its funding from 2004, when ${doc.resource.short_name} began,`,
+    );
+    expect(text).toContain('Grants of the kinds instrument and contract count in full:');
+    expect(text).toContain('A grant whose funding ended before 2004 counts its last three years:');
+    expect(text).toContain('fiscal year 2004 is the first counted.');
+    expect(text).toContain('the chart starts at 2004 whatever the filter');
+    expect(text).not.toContain(`from ${String(doc.funding.counting.from_year)}, when`);
+  });
+
+  it('says "none here" for a rule no grant falls under, rather than a count of nothing', () => {
+    page(
+      fundingDocument({
+        funding: fundingBlock({ grants: [grant()] }),
+        works: sampleExport().works.map((entry, position) => ({
+          ...entry,
+          grants: position === 0 ? [listing()] : [],
+        })),
+      }),
+    );
+    const text = prose();
+    expect(text).toContain('1 grant is counted this way.');
+    expect(text).toContain('Instrument grants count in full: none here.');
+    expect(text).toContain('counts nothing: none here.');
+    expect(text).toContain('spread evenly over their years: none here.');
+    expect(text).not.toContain('are in neither');
+  });
+
+  it('passes axe, focused', async () => {
+    const { container } = show('/method#funding-counting');
+    await expectNoAxeViolations(container);
+  }, 30_000);
 });
 
 describe('an export with no funding data (docs/09 §12.10)', () => {
@@ -506,8 +654,9 @@ describe('funding data that varies what the section can say', () => {
       works: firstLists(['NIH:R01GM000002', NIGMS_CHAIN], ['NIH:R01GM000003', NIGMS_CHAIN]),
     });
     page(exported);
+    // Its FY2019–2020 lie within 2006 and its listing work's year, so all of it is counted.
     expect(prose()).toContain(
-      `2 institution-wide awards, worth ${formatUsd(known.amount_usd ?? 0)} for the 1 with a known amount, and 1 with none known`,
+      `2 institution-wide awards, counted at ${formatUsd(known.amount_usd ?? 0)} for the 1 with a known amount, and 1 with none known`,
     );
     expect(prose()).toContain('1 grant listed has no known amount in US dollars');
   });

@@ -86,32 +86,45 @@
  * |                                                               | title is headed by its number (DFG)    |
  * | "a sub-agency with a parent"                                  | views/Agency › an institute in the     |
  * |                                                               | sample (NIGMS); › NIH in the sample    |
- * | "funding that ended before 2006, counted by its last five     | here › funding that ended before 2006, |
- * | years"                                                        | counted by its last five years (the    |
+ * | "funding that ended before 2006, counted by its last five     | views/Grant › a grant whose funding    |
+ * | years"                                                        | ended before 2006… (its counted fact); |
+ * |                                                               | here › funding that ended before 2006… |
+ * |                                                               | (the grant page’s counted fact, the    |
  * |                                                               | grants table, the award-year table,    |
  * |                                                               | the CSV); aggregate/counting › the     |
  * |                                                               | sample’s synthetic grants (T32GM999003)|
- * | "an instrument counted in full, with years after its latest   | here › an instrument counted in full…  |
- * | listing work"                                                 | (the same three); aggregate/counting › |
- * |                                                               | the sample’s grants (S10OD999001)      |
- * | "a grant that began after its latest listing work, counted as | here › a grant that began after… (the  |
- * | zero"                                                         | same three, and the chart's note);     |
- * |                                                               | components/GrantsTable › a grant that  |
- * |                                                               | began after…; aggregate/counting ›     |
- * |                                                               | the sample’s grants (R01GM999004)      |
- * | "an amount spread evenly with a remainder, on works in two    | here › an amount spread evenly… (the   |
- * | years"                                                        | same three, "estimate" and a Year      |
- * |                                                               | filter); aggregate/counting › the      |
- * |                                                               | sample’s grants (SMRF99901)            |
+ * | "an instrument counted in full, with years after its latest   | views/Grant › an instrument, counted   |
+ * | listing work"                                                 | in full…; here › an instrument counted |
+ * |                                                               | in full… (the same four);              |
+ * |                                                               | aggregate/counting › the sample’s      |
+ * |                                                               | grants (S10OD999001)                   |
+ * | "a grant that began after its latest listing work, counted as | views/Grant › a grant that began after |
+ * | zero"                                                         | its latest listing publication: $0,    |
+ * |                                                               | and why; here › a grant that began     |
+ * |                                                               | after… (the same four, and the chart's |
+ * |                                                               | note); components/GrantsTable › a      |
+ * |                                                               | grant that began after…;               |
+ * |                                                               | aggregate/counting › the sample’s      |
+ * |                                                               | grants (R01GM999004)                   |
+ * | "an amount spread evenly with a remainder, on works in two    | views/Grant › an amount spread evenly… |
+ * | years"                                                        | (an estimate); here › an amount spread |
+ * |                                                               | evenly… (the same four, "estimate" and |
+ * |                                                               | a Year filter); aggregate/counting ›   |
+ * |                                                               | the sample’s grants (SMRF99901)        |
  * | "an obligation to date spread only to its as-of year"         | here › an obligation to date… (the     |
- * |                                                               | same three); aggregate/counting › the  |
+ * |                                                               | same four); aggregate/counting › the   |
  * |                                                               | sample’s grants (NSF:2299901)          |
- * | "a start year and no end year, counted whole"                 | here › a start year and no end year…   |
- * |                                                               | (the same three); aggregate/counting › |
- * |                                                               | the sample’s grants (SMRF99902)        |
- * | "a grant funded past its latest listing work, counted to that | here › a grant funded past… (the same  |
- * | year"                                                         | three); aggregate/counting › the       |
- * |                                                               | sample’s grants (ANID:1599A0999)       |
+ * | "a start year and no end year, counted whole"                 | views/Grant › an amount with no end    |
+ * |                                                               | year, counted whole; here › a start    |
+ * |                                                               | year and no end year… (the same four); |
+ * |                                                               | aggregate/counting › the sample’s      |
+ * |                                                               | grants (SMRF99902)                     |
+ * | "a grant funded past its latest listing work, counted to that | views/Grant › a grant counted from     |
+ * | year"                                                         | 2006 through its latest listing        |
+ * |                                                               | publication (P30DK017047); here › a    |
+ * |                                                               | grant funded past… (the same four);    |
+ * |                                                               | aggregate/counting › the sample’s      |
+ * |                                                               | grants (ANID:1599A0999)                |
  * | "real: a multi-project grant valued from its parent rows      | views/Grant › an active grant through  |
  * | alone"                                                        | the fiscal year in progress            |
  * |                                                               | (P30DK017047)                          |
@@ -137,8 +150,9 @@
  * rendered through `Router` at the address a reader would open, as `FundingImpact.test.tsx` does.
  * The seven counting cases (docs/09 F17) are held where a reader sees them: each grant, found by
  * how the app counts it, is counted as the pipeline counted it and for the reason the case names,
- * and shows that amount in the grants table's "Counted" column, in the award-year chart's table
- * with the view filtered to the grant alone, and in the CSV's "Counted (USD)" and "How counted".
+ * and shows that amount first where it is most directly stated, its own page's "Counted in the
+ * totals", then in the grants table's "Counted" column, in the award-year chart's table with the
+ * view filtered to the grant alone, and in the CSV's "Counted (USD)" and "How counted".
  * The honesty rules of §12.11 that no view test held on the committed sample are held here too,
  * on whichever export is loaded.
  */
@@ -481,7 +495,7 @@ describe.runIf(isSampleExport)('every §11.8 case renders where a reader would s
 
 /* ------------------------------------------------------------------------------------------------
  * The counting cases (docs/09 F17), each found by how the app counts it and counted as the
- * pipeline counted it. The views show lifetime totals until they switch to counted ones.
+ * pipeline counted it, and shown so on its own page first.
  * --------------------------------------------------------------------------------------------- */
 
 describe.runIf(isSampleExport)(
@@ -492,13 +506,20 @@ describe.runIf(isSampleExport)(
     const reasons = countedRuleText(counting);
 
     /**
-     * Where a reader sees a grant's counted amount (the views, F17): its Counted cell in the
-     * grants table — "$0" with its reason for a began-after grant, "estimate" beside a spread
-     * one — its award years in the chart's table with the view filtered to it alone, and its
-     * CSV row. The award years found are returned, year by year, for the case to read.
+     * Where a reader sees a grant's counted amount (the views, F17): its own page's "Counted in
+     * the totals", the amount first and an estimate said so; its Counted cell in the grants
+     * table — "$0" with its reason for a began-after grant, "estimate" beside a spread one — its
+     * award years in the chart's table with the view filtered to it alone, and its CSV row. The
+     * award years found are returned, year by year, for the case to read.
      */
     function shown(entry: ScopedGrant): Map<number, number> {
       const usd = entry.counted.usd ?? 0;
+      const page = grantPage(entry.grant);
+      const stated = fact('Counted in the totals') ?? '';
+      expect(stated.startsWith(formatUsd(usd)), `${entry.grant.key}: ${stated}`).toBe(true);
+      expect(stated.includes(': an estimate.'), entry.grant.key).toBe(isSpread(entry.grant));
+      page.unmount();
+
       const view = at(`/funding?grant=${encodeURIComponent(entry.grant.key)}`);
       const [row] = rowOf(entry.grant);
       const cell = cells(row!)[COUNTED];

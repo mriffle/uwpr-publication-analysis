@@ -13,26 +13,58 @@
  *   included, by the same scope the Funding impact view draws (`fundingScope`), so a count here
  *   and a count there cannot disagree. Miscellaneous is counted apart, as everywhere (§4).
  *
+ * - **How the counting rule counted them** (docs/09 F17) — the constants, the grants and dollars
+ *   under each rule, the estimates, and the lifetime and counted sums beside each other — comes
+ *   from the same scope, so the counts per rule are `funding.summary.grants_by_counted_rule` and
+ *   the counted sum is its `counted_usd`.
+ *
  * Null when the export has no funding data (§12.10): the section then says so and states nothing.
  */
+import { COUNTED_RULES } from '../aggregate/counting';
 import {
   UNFILTERED,
+  countedRules,
   coverage,
   fundingFigures,
   fundingScope,
   type FundingCoverage,
   type InstitutionWideFigures,
 } from '../aggregate/funding';
-import { fundingOf } from '../contract/funding';
+import { countingOf, fundingOf } from '../contract/funding';
 import type {
   AmountSource,
+  CountedRule,
   ExchangeRates,
   ExportDocument,
+  FundingCounting,
   FundingMethod,
   FundingSource,
 } from '../contract/types';
 
 export type AmountBasis = AmountSource['basis'];
+
+/**
+ * The anchor of "How grant funding is counted" on the method page, which a grant's page, an
+ * agency's and a publication's Funding section link to.
+ */
+export const COUNTING_SECTION_ID = 'funding-counting';
+
+/** How the counting rule counted the grants listed, over the whole corpus (docs/09 F17). */
+export interface CountingFacts {
+  /** The export's constants: the first year counted, the years an ended grant counts, and more. */
+  constants: FundingCounting;
+  /**
+   * Grants listed with a known amount, by the rule that counted them, and their counted dollars.
+   * Every rule is present, a rule no grant falls under with zeros.
+   */
+  rules: Readonly<Record<CountedRule, { grants: number; usd: number }>>;
+  /** Grants whose amount is spread evenly over its years, and the counted dollars that are so. */
+  estimated: { grants: number; usd: number };
+  /** The lifetime totals of the grants listed with a known amount, added up. */
+  lifetimeUsd: number;
+  /** Their counted amounts, added up: the headline's figure, unfiltered. */
+  countedUsd: number;
+}
 
 export interface FundingMethodFacts {
   /** The last full refresh: every amount was read then or later (docs/09 §11.3). */
@@ -58,6 +90,8 @@ export interface FundingMethodFacts {
   byBasis: ReadonlyMap<AmountBasis, number>;
   /** The institution-wide awards among the grants listed, included, as the summary counts them. */
   institutionWide: InstitutionWideFigures;
+  /** How the counting rule counted the grants listed. */
+  counting: CountingFacts;
 }
 
 /** The source a fact comes from, by the contract's id, or undefined when the export has none. */
@@ -73,6 +107,19 @@ export function fundingMethodFacts(doc: ExportDocument): FundingMethodFacts | nu
   const scope = fundingScope(doc.works, index, UNFILTERED);
   const listed = scope.grants.filter((entry) => !entry.miscellaneous).map((entry) => entry.grant);
   const covered = coverage(scope);
+  const figures = fundingFigures(scope);
+
+  // The dollars under each rule, over the grants `countedRules` counts: those listed.
+  const counts = countedRules(scope);
+  const dollars = new Map<CountedRule, number>();
+  for (const entry of scope.grants) {
+    const { rule, usd } = entry.counted;
+    if (entry.miscellaneous || rule === null || usd === null) continue;
+    dollars.set(rule, (dollars.get(rule) ?? 0) + usd);
+  }
+  const rules = Object.fromEntries(
+    COUNTED_RULES.map((rule) => [rule, { grants: counts[rule] ?? 0, usd: dollars.get(rule) ?? 0 }]),
+  ) as Record<CountedRule, { grants: number; usd: number }>;
 
   const byBasis = new Map<AmountBasis, number>();
   for (const grant of listed) {
@@ -102,6 +149,13 @@ export function fundingMethodFacts(doc: ExportDocument): FundingMethodFacts | nu
     rateYearEstimated: converted.filter((grant) => grant.flags.includes('rate_year_estimated'))
       .length,
     byBasis,
-    institutionWide: fundingFigures(scope).institutionWide,
+    institutionWide: figures.institutionWide,
+    counting: {
+      constants: countingOf(index),
+      rules,
+      estimated: { grants: covered.grants.estimated, usd: figures.estimatedUsd },
+      lifetimeUsd: figures.amountUsd,
+      countedUsd: figures.countedUsd,
+    },
   };
 }

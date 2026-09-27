@@ -4,7 +4,10 @@
  *
  * Each grant the work lists, with its agency and number (each an in-app link, the number with the
  * funder's own page beside it, labelled as the export labels it), title, principal investigators,
- * years, and total or "amount not known". Its words are §12.11's:
+ * years, and total or "amount not known", then what the site's totals count of it (docs/09 F17):
+ * the export's `counted_usd`, over every publication listing it, with its reason, an estimate
+ * marked. The opening says the totals count only part of each grant, and links to how. Its words
+ * are §12.11's:
  *
  * - **Whenever a listing carries `cited_as`, it says "also written in the paper as “…”"**, whatever
  *   the listing's `how` (rule 8). A corrected number is usually also written exactly by another
@@ -26,12 +29,15 @@
  * grant".
  */
 import { useId } from 'react';
+import { isSpread } from '../aggregate/counting';
 import { agencyLabel } from '../aggregate/funding';
-import { listingsOf, type FundingIndex } from '../contract/funding';
-import type { Grant, GrantListing, Resource, Work } from '../contract/types';
+import { countingOf, listingsOf, type FundingIndex } from '../contract/funding';
+import type { FundingCounting, Grant, GrantListing, Resource, Work } from '../contract/types';
 import { isMiscellaneous } from '../filter/funding';
 import { formatDate } from '../format/date';
 import {
+  COUNTED_FACT_LABEL,
+  countedLine,
   grantAmount,
   grantTags,
   grantYears,
@@ -39,6 +45,7 @@ import {
   originalAmount,
   unknownAmountReason,
 } from '../format/funding';
+import { COUNTING_SECTION_ID } from '../method/funding';
 import { AgencyLink, GrantLink, type FundingLinks } from './FundingLinks';
 import { NlmAttribution } from './NlmAttribution';
 
@@ -49,6 +56,11 @@ export interface FundingSectionProps {
   /** The resource, for its own award code and name (§6.13). */
   resource: Pick<Resource, 'identifier' | 'short_name'>;
   links: FundingLinks;
+  /**
+   * The method page, whose "How grant funding is counted" the section's opening links to. Left
+   * out, the opening says the same with no link.
+   */
+  methodHref?: string | undefined;
 }
 
 /** “P01 HL99900” and “P01-HL99900”: the forms the paper wrote, each quoted. */
@@ -138,17 +150,21 @@ function GrantItem({
   grant,
   index,
   links,
+  counting,
 }: {
   listing: GrantListing;
   grant: Grant;
   index: FundingIndex;
   links: FundingLinks;
+  counting: FundingCounting;
 }) {
   const amount = grantAmount(grant);
   const original = originalAmount(grant);
   const years = grantYears(grant);
   const people = investigatorNames(grant);
   const tags = grantTags(grant, false);
+  // What the totals count of it, over every publication listing it (F17): the export's own.
+  const counted = countedLine(grant, isSpread(grant), counting);
 
   return (
     <li className="funding-item">
@@ -190,6 +206,12 @@ function GrantItem({
             {grant.flags.includes('active') ? '. Active: the total still grows' : ''}
           </dd>
         </div>
+        {counted === null ? null : (
+          <div>
+            <dt>{COUNTED_FACT_LABEL}</dt>
+            <dd>{counted}</dd>
+          </div>
+        )}
         {grant.scope === 'institution-wide' ? (
           <div>
             <dt>Institution-wide</dt>
@@ -212,9 +234,10 @@ function GrantItem({
   );
 }
 
-export function FundingSection({ work, index, resource, links }: FundingSectionProps) {
+export function FundingSection({ work, index, resource, links, methodHref }: FundingSectionProps) {
   const headingId = useId();
   if (index === null) return null;
+  const counting = countingOf(index);
 
   const grants: { listing: GrantListing; grant: Grant }[] = [];
   const unmatched: { listing: GrantListing; grant: Grant }[] = [];
@@ -238,7 +261,16 @@ export function FundingSection({ work, index, resource, links }: FundingSectionP
         <p className="chart-card-description">
           The grants this publication’s funding statements name, as the sources record them. A total
           is the grant’s lifetime award as its funder records it: what the award is worth, not money
-          spent on this work.
+          spent on this work. The totals elsewhere on this site count only part of each grant: its
+          funding from {String(counting.from_year)}, when {resource.short_name} began, through the
+          year of the latest publication listing it. What they count of each is given below as “
+          {COUNTED_FACT_LABEL}”.
+          {methodHref === undefined ? null : (
+            <>
+              {' '}
+              <a href={`${methodHref}#${COUNTING_SECTION_ID}`}>How grant funding is counted</a>
+            </>
+          )}
         </p>
       )}
 
@@ -251,6 +283,7 @@ export function FundingSection({ work, index, resource, links }: FundingSectionP
               grant={grant}
               index={index}
               links={links}
+              counting={counting}
             />
           ))}
         </ul>

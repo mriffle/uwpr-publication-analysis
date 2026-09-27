@@ -49,6 +49,9 @@ interface ExportDocument {
       title: string | null;
       scope: string;
       fiscal_years: Record<string, number | null> | null;
+      /** Contract 1.2: what the totals count of it over every publication, and why (F17). */
+      counted_usd?: number | null;
+      counted_rule?: string | null;
     }[];
     /** Contract 1.2's counting rule and counted totals (docs/09 F17). */
     counting?: { from_year: number };
@@ -558,6 +561,71 @@ test.describe('the Funding impact view', () => {
     // Arrived cold, Escape has nowhere in the site to go back to, so it goes nowhere.
     await page.keyboard.press('Escape');
     await expect(page).toHaveURL(grantPath);
+  });
+
+  test('a grant page states what the totals count of it, by each rule the export uses (F17)', async ({
+    page,
+  }) => {
+    const doc = await readExport(page);
+    test.skip(!hasFunding(doc), 'No funding data is served.');
+    const grants = doc.funding?.grants ?? [];
+    const rules = [...new Set(grants.map((grant) => grant.counted_rule ?? null))].filter(
+      (rule): rule is string => rule !== null,
+    );
+    expect(rules.length).toBeGreaterThan(0);
+    const counted = page
+      .locator('dt', { hasText: /^Counted in the totals$/ })
+      .locator('xpath=following-sibling::dd[1]');
+    for (const rule of rules) {
+      const grant = grants.find((entry) => entry.counted_rule === rule)!;
+      await page.goto(`/funding/grant/${encodeURIComponent(grant.key)}`);
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText(grant.title ?? grant.number);
+      // The amount first, the export's own over every publication listing it, and the filter
+      // said not to move it.
+      await expect(counted, `${rule}: ${grant.key}`).toContainText(
+        new RegExp(`^\\${usd(grant.counted_usd ?? -1)}[ :,]`),
+      );
+      await expect(counted).toContainText(
+        'It counts every publication listing the grant, whatever the filter',
+      );
+    }
+
+    // Its link lands on the method page's section, which takes focus.
+    await counted.getByRole('link', { name: 'How grant funding is counted' }).click();
+    await expect(page).toHaveURL(/\/method#funding-counting$/);
+    await expect(page.locator('#funding-counting')).toBeFocused();
+  });
+
+  test('a grant page’s fiscal-year table marks the years counted in the totals (F17)', async ({
+    page,
+  }) => {
+    const doc = await readExport(page);
+    const grant = (doc.funding?.grants ?? []).find(
+      (entry) =>
+        entry.counted_rule === 'window' &&
+        Object.values(entry.fiscal_years ?? {}).some((amount) => amount !== null) &&
+        Object.keys(entry.fiscal_years ?? {}).some(
+          (year) => Number(year) < (doc.funding?.counting?.from_year ?? 0),
+        ),
+    );
+    test.skip(grant === undefined, 'The served export has no grant funded before the first year.');
+    await page.goto(`/funding/grant/${encodeURIComponent(grant!.key)}`);
+    const card = page.getByRole('region', { name: 'Amount by fiscal year' });
+    await expect(card).toContainText('counted in the totals');
+    await card.getByRole('button', { name: 'View as table' }).click();
+    const table = card.getByRole('table');
+    await expect(table.getByRole('columnheader', { name: 'In the totals' })).toBeVisible();
+    const from = doc.funding?.counting?.from_year ?? 0;
+    const years = Object.keys(grant!.fiscal_years ?? {}).map(Number);
+    const before = Math.min(...years);
+    await expect(table.getByRole('row', { name: new RegExp(`^${String(before)} `) })).toContainText(
+      'Not counted',
+    );
+    if (years.includes(from)) {
+      await expect(table.getByRole('row', { name: new RegExp(`^${String(from)} `) })).toContainText(
+        /Counted$/,
+      );
+    }
   });
 
   test('a corrected reference shows what the paper wrote on the publication (§12.11)', async ({

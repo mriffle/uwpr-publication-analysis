@@ -9,8 +9,13 @@
  *   (FY1985 for NIH RePORTER); "active — the total still grows"; the principal investigators as
  *   the funder publishes them, with no link to any person; the organisation; the years; the type;
  *   and the scope, with the reason an award is institution-wide.
+ * - **What the totals count of it** (docs/09 F17), "Counted in the totals", beside the lifetime
+ *   total: over every publication listing it, whatever the filter, with the reason in the
+ *   rule's own terms — the years counted, when an ended grant's funding ended, when a late one
+ *   began, why an instrument counts in full — and a spread amount said to be an estimate.
  * - **The amount by fiscal year**, static, "Fiscal year (October to September)", the fiscal year in
- *   progress marked, and a year whose source reports no amount shown as "no amount reported".
+ *   progress marked, and a year whose source reports no amount shown as "no amount reported". The
+ *   years counted in the totals are marked in its table and named in each bar's description.
  * - **The publications listing it**, each with what the paper wrote wherever its listing carries
  *   `cited_as` ("also written in the paper as …"), and an override's reason, by whom and when.
  * - **The funder's own page**, labelled as the export labels it (`url_name`), whether or not the
@@ -25,6 +30,7 @@
  * An unknown key, or an export with no funding data (§12.10), is the designed not-found state.
  */
 import { useEffect, useMemo, useRef, type ReactNode } from 'react';
+import { isSpread, yearly } from '../aggregate/counting';
 import { agencyLabel, grantDetail, type GrantDetail } from '../aggregate/funding';
 import { ChartCard } from '../charts/ChartCard';
 import { FiscalYearChart, FiscalYearTable } from '../charts/FiscalYearChart';
@@ -35,20 +41,24 @@ import { EntityPublications } from '../components/EntityPublications';
 import { AgencyLink, type FundingLinks } from '../components/FundingLinks';
 import { ListingNotes, otherForms } from '../components/FundingSection';
 import { NlmAttribution } from '../components/NlmAttribution';
-import { fundingOf, type FundingIndex } from '../contract/funding';
-import type { ExportDocument, Work } from '../contract/types';
+import { countingOf, fundingOf, type FundingIndex } from '../contract/funding';
+import type { ExportDocument, FundingCounting, Work } from '../contract/types';
 import { formatDate } from '../format/date';
 import {
   AMOUNT_BASIS_TEXT,
   CATEGORY_LABELS,
+  COUNTED_FACT_LABEL,
+  countedFact,
   grantAmount,
   grantTags,
   grantYears,
   investigatorNames,
   originalAmount,
+  spreadSentence,
   unknownAmountReason,
 } from '../format/funding';
 import { formatCount, pluralize } from '../format/number';
+import { COUNTING_SECTION_ID } from '../method/funding';
 import { BACK_LABELS } from '../routing/navigation';
 
 export interface GrantProps {
@@ -66,6 +76,11 @@ export interface GrantProps {
   /** A publication's page, keeping the reader's query, and opening it in place. */
   publicationHref: (work: Work) => string;
   onOpenPublication?: (work: Work) => void;
+  /**
+   * The method page, whose "How grant funding is counted" the counted amount links to. Left out,
+   * the fact still says how it was counted, with no link.
+   */
+  methodHref?: string;
 }
 
 export function Grant({
@@ -77,6 +92,7 @@ export function Grant({
   links,
   publicationHref,
   onOpenPublication,
+  methodHref,
 }: GrantProps) {
   const index = fundingOf(doc);
   const detail = useMemo(
@@ -106,6 +122,8 @@ export function Grant({
       links={links}
       publicationHref={publicationHref}
       onOpenPublication={onOpenPublication}
+      resource={doc.resource.short_name}
+      countingHref={methodHref === undefined ? null : `${methodHref}#${COUNTING_SECTION_ID}`}
     />
   );
 }
@@ -119,6 +137,10 @@ interface GrantPageProps {
   links: FundingLinks;
   publicationHref: (work: Work) => string;
   onOpenPublication: ((work: Work) => void) | undefined;
+  /** The resource's short name, whose start the counted amount's reason names. */
+  resource: string;
+  /** The method page's "How grant funding is counted", or null with no method page to link. */
+  countingHref: string | null;
 }
 
 function Fact({ term, children }: { term: string; children: ReactNode }) {
@@ -139,6 +161,8 @@ function GrantPage({
   links,
   publicationHref,
   onOpenPublication,
+  resource,
+  countingHref,
 }: GrantPageProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const { grant } = detail;
@@ -190,7 +214,11 @@ function GrantPage({
         ))}
       </p>
 
-      {detail.miscellaneous ? <p>{unmatchedSentence(detail)}</p> : <GrantFacts detail={detail} />}
+      {detail.miscellaneous ? (
+        <p>{unmatchedSentence(detail)}</p>
+      ) : (
+        <GrantFacts detail={detail} index={index} resource={resource} countingHref={countingHref} />
+      )}
 
       {grant.url === null || grant.url_name === null ? null : (
         <p className="entity-source">
@@ -251,8 +279,59 @@ export function unmatchedSentence(detail: Pick<GrantDetail, 'listings'>): string
   return `No funder’s record matched this number, and where a publication below says so, a recorded decision kept it unmatched; ${kept} the publications wrote it, in Miscellaneous.`;
 }
 
+/** The first and last of some years, or null for none. */
+function span(years: Iterable<number>): { first: number; last: number } | null {
+  const all = [...years];
+  return all.length === 0 ? null : { first: Math.min(...all), last: Math.max(...all) };
+}
+
+/**
+ * What the totals count of the grant, and why (docs/09 F17): over every publication listing it,
+ * whatever the filter, so its exported `counted_usd`. Unknown when its amount is: counted beside
+ * every total, never in one. A spread amount says it is an estimate.
+ */
+function countedText(detail: GrantDetail, counting: FundingCounting, resource: string): string {
+  const { grant, counted } = detail;
+  if (
+    counted === null ||
+    counted.usd === null ||
+    counted.rule === null ||
+    detail.lastYear === null
+  ) {
+    return 'Not known, since its amount is not: it is counted beside every total, never in one.';
+  }
+  const breakdown = span(yearly(grant)?.keys() ?? []);
+  const spread = isSpread(grant);
+  const reason = countedFact(
+    {
+      usd: counted.usd,
+      rule: counted.rule,
+      category: grant.category,
+      breakdown,
+      counted: span(detail.countedYears),
+      lastListed: detail.lastYear,
+      fiscal: !spread && breakdown !== null,
+    },
+    counting,
+    resource,
+  );
+  const estimate =
+    spread && breakdown !== null ? ` ${spreadSentence(breakdown.first, breakdown.last)}` : '';
+  return `${reason}.${estimate} It counts every publication listing the grant, whatever the filter, and is not money spent on the work that lists it.`;
+}
+
 /** The facts list (§12.7): amount, its source and caveats, people, organisation, years, scope. */
-function GrantFacts({ detail }: { detail: GrantDetail }) {
+function GrantFacts({
+  detail,
+  index,
+  resource,
+  countingHref,
+}: {
+  detail: GrantDetail;
+  index: FundingIndex;
+  resource: string;
+  countingHref: string | null;
+}) {
   const { grant, source } = detail;
   const amount = grantAmount(grant);
   const original = originalAmount(grant);
@@ -287,6 +366,15 @@ function GrantFacts({ detail }: { detail: GrantDetail }) {
             </>
           )}{' '}
           It is counted once, however many publications list it.
+        </Fact>
+        <Fact term={COUNTED_FACT_LABEL}>
+          {countedText(detail, countingOf(index), resource)}
+          {countingHref === null ? null : (
+            <>
+              {' '}
+              <a href={countingHref}>How grant funding is counted</a>
+            </>
+          )}
         </Fact>
         {original === null ? null : <Fact term="Original amount">{original}</Fact>}
         {before === null ? null : (
@@ -332,10 +420,24 @@ function noYearsReason(detail: GrantDetail): string {
     : `${name} reports a lifetime total for this grant, not an amount for each fiscal year.`;
 }
 
-/** §12.7's per-fiscal-year chart and table, or why there is none. */
+/** Which of a grant's fiscal years the totals count, in a sentence: the table marks them. */
+export function countedYearsSentence(all: number, counted: number): string {
+  if (counted === 0) return 'No fiscal year shown is counted in the totals, as the table marks.';
+  if (counted === all)
+    return 'Every fiscal year shown is counted in the totals, as the table marks.';
+  return `The ${pluralize(counted, 'fiscal year')} counted in the totals ${counted === 1 ? 'is' : 'are'} marked in the table.`;
+}
+
+/**
+ * §12.7's per-fiscal-year chart and table, or why there is none. The fiscal years the totals count
+ * (`countedYears`, F17) are marked in the table and named in each bar's description.
+ */
 function FiscalYears({ detail }: { detail: GrantDetail }) {
   const years = detail.fiscalYears;
   const sourceName = detail.source?.name ?? detail.grant.amount_source?.name ?? 'NIH RePORTER';
+  // A grant whose amount is unknown counts no year, and is not marked as if it were known.
+  const counted =
+    detail.counted === null || detail.counted.usd === null ? undefined : detail.countedYears;
 
   let body: ReactNode;
   if (years === null || years.length === 0) {
@@ -349,7 +451,7 @@ function FiscalYears({ detail }: { detail: GrantDetail }) {
           amount for any of them, so there is nothing to draw. The grant’s amount is not known; it
           is not $0.
         </p>
-        <FiscalYearTable years={years} sourceName={sourceName} />
+        <FiscalYearTable years={years} sourceName={sourceName} counted={counted} />
       </>
     );
   } else {
@@ -367,7 +469,10 @@ function FiscalYears({ detail }: { detail: GrantDetail }) {
             {missing === 0
               ? 'Every fiscal year shown reports an amount.'
               : `${pluralize(missing, 'fiscal year')} ${missing === 1 ? 'reports' : 'report'} no amount and ${missing === 1 ? 'is' : 'are'} drawn with no bar, which is not $0.`}{' '}
-            {`The ${formatCount(years.length - missing)} with an amount add up to the lifetime total.`}
+            {years.length - missing === 1
+              ? 'The one with an amount is the lifetime total.'
+              : `The ${formatCount(years.length - missing)} with an amount add up to the lifetime total.`}
+            {counted === undefined ? '' : ` ${countedYearsSentence(years.length, counted.size)}`}
           </>
         }
         chart={
@@ -378,11 +483,12 @@ function FiscalYears({ detail }: { detail: GrantDetail }) {
                 width={width}
                 height={height}
                 sourceName={sourceName}
+                counted={counted}
               />
             )}
           </ResponsiveChart>
         }
-        table={<FiscalYearTable years={years} sourceName={sourceName} />}
+        table={<FiscalYearTable years={years} sourceName={sourceName} counted={counted} />}
       />
     );
   }

@@ -39,15 +39,18 @@ import {
 import { citationsInWindow } from '../aggregate/metrics';
 import {
   UNFILTERED,
+  countedByAwardYear,
   coverage,
   fundingFigures,
   fundingScope,
   knownAmount,
+  knownCounted,
   type DollarTotal,
 } from '../aggregate/funding';
-import { fundingOf } from '../contract/funding';
+import { countingOf, fundingOf } from '../contract/funding';
 import type { ExportDocument } from '../contract/types';
 import { formatDate } from '../format/date';
+import { COUNTED_LABEL } from '../format/funding';
 import {
   formatCount,
   formatDecimal,
@@ -216,6 +219,11 @@ export function metricDefinitions(doc: ExportDocument): MetricDefinition[] {
  * The anchors Funding impact's headline figures link to, in the order `FundingFigures` shows
  * them: the six figures, then the institution-wide position the total always states (§12.11
  * rule 4). A test asserts the component carries exactly these, as for the overview's five.
+ *
+ * `funding-total` is the grant funding counted (docs/09 F17): its anchor kept its name when the
+ * headline stopped adding lifetime totals, so every link to it still lands. The definitions that
+ * no headline figure links to — the lifetime total, funding by year awarded, the unmatched
+ * numbers and a grant's first year — are `fundingDefinitions`' too, but not here.
  */
 export const FUNDING_DEFINITION_IDS = [
   'funding-total',
@@ -229,13 +237,20 @@ export const FUNDING_DEFINITION_IDS = [
 
 export type FundingDefinitionId = (typeof FUNDING_DEFINITION_IDS)[number];
 
-/** "$1,234,567; 11 grants without a known amount": a total never stands without its unknowns. */
-function dollarsWithUnknowns(total: DollarTotal): string {
-  const known = knownAmount(total);
+/**
+ * "$1,234,567; 11 grants without a known amount": a total never stands without its unknowns. The
+ * counted sum by default (F17), or the lifetime totals'.
+ */
+function dollarsWithUnknowns(total: DollarTotal, sum: 'counted' | 'lifetime' = 'counted'): string {
+  const known = sum === 'counted' ? knownCounted(total) : knownAmount(total);
   const unknown = `${pluralize(total.withoutAmount, 'grant')} without a known amount`;
   if (known === null) return total.withoutAmount === 0 ? 'none' : `not known; ${unknown}`;
   return total.withoutAmount === 0 ? formatUsd(known) : `${formatUsd(known)}; ${unknown}`;
 }
+
+/** "from 2006, when UWPR began," — or, with no counting rule to read, "from when UWPR began,". */
+const countedFrom = (from: number | null, resource: string): string =>
+  from === null ? `from when ${resource} began,` : `from ${String(from)}, when ${resource} began,`;
 
 /**
  * The funding figures' definitions, each with its value over the whole corpus — unfiltered, with
@@ -259,16 +274,27 @@ export function fundingDefinitions(doc: ExportDocument): MetricDefinition[] {
   const years = scope.grants
     .filter((entry) => !entry.miscellaneous)
     .map((entry) => entry.firstYear);
+  const awarded = [...countedByAwardYear(scope).keys()];
   const asOf = index?.funding.as_of ?? null;
   const dated = asOf === null ? '' : `, as of ${formatDate(asOf)}`;
   const valued = (value: string): { value?: string } => (index === null ? {} : { value });
+  const from = countingOf(index)?.from_year ?? null;
+  const resource = doc.resource.short_name;
+  const run = (all: readonly number[]): string =>
+    all.length === 0 ? 'none' : `${String(Math.min(...all))}–${String(Math.max(...all))}`;
 
   return [
     {
       id: 'funding-total',
-      term: 'Total value of grants listed',
+      term: COUNTED_LABEL,
       ...valued(dollarsWithUnknowns(figures)),
-      definition: `The sum, in US dollars, of the lifetime award totals of the distinct grants the publications list, each as its funder records it${dated}. It is what the awards are worth, not money spent on this work: a total is the whole award’s, not the part of it spent on the research these publications report. A grant counts once however many publications list it. A grant with no known amount is counted beside the total, never in it as zero. Institution-wide awards are included unless the reader excludes them, and the page always says which.`,
+      definition: `The sum, in US dollars, of the part of each distinct grant the publications list that the totals count: its funding ${countedFrom(from, resource)} through the year of the latest publication listing it, with the exceptions set out under “How grant funding is counted”. Each grant’s amounts are as its funder records them${dated}. It is not money spent on this work: a grant’s funding is the award’s, not the part of it spent on the research these publications report. A grant counts once however many publications list it. A grant with no known amount is counted beside the total, never in it as zero. Institution-wide awards are included unless the reader excludes them, and the page always says which.`,
+    },
+    {
+      id: 'funding-lifetime',
+      term: 'Lifetime total of the grants listed',
+      ...valued(dollarsWithUnknowns(figures, 'lifetime')),
+      definition: `The sum, in US dollars, of the lifetime award totals of the same grants, each as its funder records it${dated}: every year of each award, before ${resource} began and after the last publication listing it. It is given for comparison, here and on each grant’s own page, and no total on the site adds it up. It is what the awards are worth, not money spent on this work.`,
     },
     {
       id: 'funding-grants',
@@ -312,7 +338,7 @@ export function fundingDefinitions(doc: ExportDocument): MetricDefinition[] {
         `${pluralize(figures.institutionWide.grants, 'award')}, ${dollarsWithUnknowns(figures.institutionWide)}`,
       ),
       definition:
-        'Awards made to an institution or a consortium to run a programme for many unrelated projects — a fellowship programme, a national institute, a consortium-wide total — whose value bears no relation to one research project. They are tagged from an explicit list and never inferred from size. They are included in the total by default; a reader may exclude them, and the page states which.',
+        'Awards made to an institution or a consortium to run a programme for many unrelated projects — a fellowship programme, a national institute, a consortium-wide total — whose value bears no relation to one research project. They are tagged from an explicit list and never inferred from size. The value is their grant funding counted, as every grant’s is. They are included in the total by default; a reader may exclude them, and the page states which.',
     },
     {
       id: 'funding-unmatched',
@@ -324,13 +350,17 @@ export function fundingDefinitions(doc: ExportDocument): MetricDefinition[] {
         'Numbers the publications give as funding that no funder’s record matched, or that a recorded decision kept unmatched because the record matched does not fit the paper. They are kept apart, under Miscellaneous, with no agency, kind or amount, and are not counted as grants.',
     },
     {
+      id: 'funding-award-year',
+      term: 'Grant funding by year awarded',
+      ...valued(run(awarded)),
+      definition: `The counted funding of the grants listed, placed in the year it was awarded: NIH’s by fiscal year, other funders’ amounts spread evenly over the award’s years. Amounts with no years, and grants whose funding ended before ${from === null ? `${resource} began` : String(from)}, go to the year of the first publication listing them, and an instrument’s years after the latest publication listing it go to that year. So every year falls between ${from === null ? `the year ${resource} began` : String(from)} and the latest publication year, and the years add up to the counted total. The value is the span of years with counted funding.`,
+    },
+    {
       id: 'funding-first-year',
       term: 'A grant’s first year',
-      ...valued(
-        years.length === 0 ? 'none' : `${String(Math.min(...years))}–${String(Math.max(...years))}`,
-      ),
+      ...valued(run(years)),
       definition:
-        'The publication year of the earliest publication shown that lists the grant. Over time, each grant’s whole lifetime total enters in its first year, which is a publication year, not the year of the award.',
+        'The publication year of the earliest publication shown that lists the grant: a publication year, not the year of the award. It places a grant among the new grants by agency, and is the “First listed” on its page; no dollars are placed by it.',
     },
   ];
 }

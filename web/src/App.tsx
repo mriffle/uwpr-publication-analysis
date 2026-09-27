@@ -334,6 +334,7 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
           links={fundingLinks}
           publicationHref={publicationHref}
           onOpenPublication={openPublication}
+          methodHref={methodHref}
           {...close}
         />
       );
@@ -416,7 +417,7 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
       resolvedFrom={resolvedFrom}
       // The Funding section's agency and grant links open as the view's do, recording the
       // publication as the way back (docs/09 §12.8).
-      funding={{ index: fundingOf(doc), links: fundingLinks }}
+      funding={{ index: fundingOf(doc), links: fundingLinks, methodHref }}
       {...close}
     />
   );

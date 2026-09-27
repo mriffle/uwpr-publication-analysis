@@ -14,12 +14,28 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 interface ExportDocument {
+  resource: { short_name: string };
   /** Absent in a 1.0 export; its `version` is null in a 1.1 export with no funding data. */
   funding?: {
     version: string | null;
     sources: { id: string; name: string; as_of: string }[];
+    /** Contract 1.2's counting rule and counted totals (docs/09 F17). */
+    counting?: { from_year: number };
+    summary?: {
+      amount_usd: number;
+      counted_usd: number;
+      grants_by_counted_rule?: Record<string, number>;
+    };
   } | null;
 }
+
+/** Whole US dollars, as the app writes them: "$5,139,499,698". */
+const usd = (value: number): string =>
+  new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(value);
 
 async function readExport(page: Page): Promise<ExportDocument> {
   const response = await page.request.get('/data/uwpr_publications.json');
@@ -70,25 +86,51 @@ test.describe('the funding section', () => {
     }
   });
 
+  test('how grant funding is counted resolves by fragment from cold, with the export’s figures', async ({
+    page,
+  }) => {
+    const doc = await readExport(page);
+    test.skip(!hasFunding(doc), 'This export carries no funding data, so nothing is counted.');
+    const summary = doc.funding?.summary;
+    const from = String(doc.funding?.counting?.from_year ?? '');
+
+    await page.goto('/method#funding-counting');
+    const heading = page.locator('#funding-counting');
+    await expect(heading).toBeVisible();
+    await expect(heading).toBeFocused();
+    await expect(heading).toHaveText('How grant funding is counted');
+    await expect(section(page)).toContainText(
+      `The rule: each grant counts its funding from ${from}, when ${doc.resource.short_name} began, through the year of the latest publication listing it.`,
+    );
+    const window = summary?.grants_by_counted_rule?.window ?? 0;
+    if (window > 0) await expect(section(page)).toContainText(`${String(window)} grant`);
+    await expect(section(page)).toContainText(
+      `the lifetime totals come to ${usd(summary?.amount_usd ?? 0)} and the counted amounts to ${usd(summary?.counted_usd ?? 0)}`,
+    );
+  });
+
   for (const theme of ['light', 'dark'] as const) {
     test.describe(`${theme} theme`, () => {
       test.use({ colorScheme: theme });
 
-      test('the method page, funding section and all, passes axe', async ({ page }) => {
-        await page.goto('/method#funding');
-        await expect(section(page)).toBeVisible();
-        const { violations } = await new AxeBuilder({ page })
-          .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-          .analyze();
-        expect(
-          violations.map(
-            (violation) =>
-              `${violation.id}: ${violation.help} (${violation.nodes
-                .map((node) => JSON.stringify(node.target))
-                .join(', ')})`,
-          ),
-        ).toEqual([]);
-      });
+      for (const fragment of ['funding', 'funding-counting']) {
+        test(`the method page, opened at #${fragment}, passes axe`, async ({ page }) => {
+          test.setTimeout(30_000);
+          await page.goto(`/method#${fragment}`);
+          await expect(section(page)).toBeVisible();
+          const { violations } = await new AxeBuilder({ page })
+            .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+            .analyze();
+          expect(
+            violations.map(
+              (violation) =>
+                `${violation.id}: ${violation.help} (${violation.nodes
+                  .map((node) => JSON.stringify(node.target))
+                  .join(', ')})`,
+            ),
+          ).toEqual([]);
+        });
+      }
     });
   }
 });

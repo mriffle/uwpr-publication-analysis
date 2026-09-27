@@ -4,7 +4,8 @@
  * years with one, a converted amount, a grant older than FY1985, an institution-wide award, an
  * override and a corrected reference among its publications, an unmatched number, a grant with
  * no title, and a key the export does not have — each with axe — and the way out, cold and
- * opened in the app.
+ * opened in the app. Beside the lifetime total, what the totals count of each (docs/09 F17): every
+ * rule in its own terms, a spread amount as an estimate, and the counted fiscal years marked.
  *
  * The committed sample's real and synthetic grants are the cases (docs/09 §11.8). The failures
  * this guards against are §12.11's: a "$0" for unknown, a person's name made a link, a grant
@@ -23,10 +24,14 @@ import { recordingLinks } from '../support/fundingWorld';
 
 const sample = sampleExport();
 
-function show(key: string, options: { doc?: ExportDocument; inApp?: boolean } = {}) {
+function show(
+  key: string,
+  options: { doc?: ExportDocument; inApp?: boolean; methodHref?: string | null } = {},
+) {
   const { links, opened } = recordingLinks();
   const publications: string[] = [];
   const onClose = vi.fn();
+  const methodHref = options.methodHref === undefined ? '/method' : options.methodHref;
   const view = render(
     <Grant
       doc={options.doc ?? sample}
@@ -37,11 +42,21 @@ function show(key: string, options: { doc?: ExportDocument; inApp?: boolean } = 
       onOpenPublication={(work: Work) => {
         publications.push(work.id);
       }}
+      {...(methodHref === null ? {} : { methodHref })}
       {...(options.inApp ? { onClose, backLabel: 'Back to the agency' } : {})}
     />,
   );
   return { ...view, opened, publications, onClose };
 }
+
+/** The counted fact's words, less the link to the method page that ends it. */
+const COUNTED = 'Counted in the totals';
+const LINK = ' How grant funding is counted';
+const counted = (): string => (fact(COUNTED) ?? '').replace(LINK, '');
+
+/** What every counted fact ends with: the page ignores the filter, and it is not money spent. */
+const OVER_EVERY =
+  'It counts every publication listing the grant, whatever the filter, and is not money spent on the work that lists it.';
 
 /** A fact of the facts list: the text of the `dd` its term names, or undefined without one. */
 function fact(term: string): string | null | undefined {
@@ -86,12 +101,17 @@ const BUILT = grant({
   flags: ['active'],
 });
 
+/**
+ * BUILT listed by two works, of 2024 and 2025: its fiscal years through 2025 are counted, the one
+ * in progress, 2026, is not. The years are set here so that the case holds on any export.
+ */
 function builtDocument(): ExportDocument {
   const base = sampleExport();
   return fundingDocument({
     funding: fundingBlock({ grants: [BUILT], sources: [reporterSource({ partial_year: 2026 })] }),
     works: base.works.map((work, position) => ({
       ...work,
+      ...(position < 2 ? { year: 2025 - position } : {}),
       grants: position < 2 ? [listing()] : [],
     })),
   });
@@ -125,46 +145,76 @@ describe('a grant with fiscal years, one in progress and one with no amount', ()
     expect(fact('Status')).toBe('Active — the total still grows');
   });
 
+  it('states what the totals count of it, over every publication, beside the lifetime total', () => {
+    show(BUILT.key, { doc });
+    // FY2023 (no amount) to FY2025, the year of the later of its two works: not FY2026.
+    expect(counted()).toBe(
+      `$700,000 for FY2023–FY2025, its fiscal years from 2006, when UWPR began, through 2025, the year of the latest publication listing it. ${OVER_EVERY}`,
+    );
+    const terms = screen.getAllByRole('term').map((term) => term.textContent);
+    expect(terms.indexOf(COUNTED)).toBe(terms.indexOf('Lifetime total') + 1);
+    expect(screen.getByRole('link', { name: 'How grant funding is counted' })).toHaveAttribute(
+      'href',
+      '/method#funding-counting',
+    );
+  });
+
+  it('says how it was counted with no link when there is no method page to link', () => {
+    show(BUILT.key, { doc, methodHref: null });
+    expect(fact(COUNTED)).toMatch(/^\$700,000 for FY2023–FY2025/);
+    expect(screen.queryByRole('link', { name: 'How grant funding is counted' })).toBeNull();
+  });
+
   it('draws the fiscal years as static bars, the partial year and the missing amount in words', () => {
     show(BUILT.key, { doc });
     const card = screen.getByRole('region', { name: 'Amount by fiscal year' });
     expect(card).toHaveTextContent('Fiscal year (October to September)');
     expect(within(card).queryAllByRole('button', { name: /Activate/ })).toHaveLength(0);
     expect(
-      within(card).getByRole('img', { name: '2023: no amount reported.' }),
+      within(card).getByRole('img', {
+        name: '2023: no amount reported, counted in the totals.',
+      }),
     ).toBeInTheDocument();
-    expect(within(card).getByRole('img', { name: '2024: $400,000 awarded.' })).toBeInTheDocument();
     expect(
-      within(card).getByRole('img', { name: '2026, a partial year: $200,000 awarded so far.' }),
+      within(card).getByRole('img', { name: '2024: $400,000 awarded, counted in the totals.' }),
+    ).toBeInTheDocument();
+    expect(
+      within(card).getByRole('img', {
+        name: '2026, a partial year: $200,000 awarded so far, not counted in the totals.',
+      }),
     ).toBeInTheDocument();
     expect(card).toHaveTextContent('2026 is partial: the fiscal year is not over');
     expect(card).toHaveTextContent('Fiscal year 2026 is still in progress');
     expect(card).toHaveTextContent('1 fiscal year reports no amount');
+    expect(card).toHaveTextContent(
+      'The 3 with an amount add up to the lifetime total. The 3 fiscal years counted in the totals are marked in the table.',
+    );
     // No running total, whose "$0 so far" would read as a figure.
     expect(within(card).queryByTestId('cumulative-line')).not.toBeInTheDocument();
   });
 
-  it('says the same in its table, the missing year never $0', async () => {
+  it('says the same in its table, the missing year never $0, the counted years marked', async () => {
     show(BUILT.key, { doc });
     const card = screen.getByRole('region', { name: 'Amount by fiscal year' });
     await userEvent.click(within(card).getByRole('button', { name: 'View as table' }));
     const table = within(card).getByRole('table');
+    expect(table).toHaveAccessibleName(/The years counted in the totals are marked/);
     const rows = within(table)
       .getAllByRole('row')
       .slice(1)
       .map((row) => row.textContent);
     expect(rows).toEqual([
-      '2023no amount reported',
-      '2024$400,000',
-      '2025$300,000',
-      '2026 (partial)$200,000',
+      '2023no amount reportedCounted',
+      '2024$400,000Counted',
+      '2025$300,000Counted',
+      '2026 (partial)$200,000Not counted',
     ]);
   });
 
   it('shows the tooltip’s value in words for a year with no amount', async () => {
     show(BUILT.key, { doc });
     const card = screen.getByRole('region', { name: 'Amount by fiscal year' });
-    await userEvent.hover(within(card).getByRole('img', { name: '2023: no amount reported.' }));
+    await userEvent.hover(within(card).getByRole('img', { name: /^2023: no amount reported/ }));
     const tooltip = screen.getByTestId('chart-tooltip');
     expect(tooltip).toHaveTextContent('no amount reported');
     expect(tooltip.textContent).not.toMatch(ZERO_DOLLARS);
@@ -319,6 +369,11 @@ describe.runIf(isSampleExport)('the sample’s grants', () => {
     expect(fact('Lifetime total')).toBe(
       'Not known: the funder’s record holds the grant but reports no amount. It is counted once, however many publications list it.',
     );
+    expect(counted()).toBe(
+      'Not known, since its amount is not: it is counted beside every total, never in one.',
+    );
+    // No year is marked as counted or not: with no amount, none is counted.
+    expect(screen.queryByRole('columnheader', { name: 'In the totals' })).toBeNull();
     expect(screen.getByText(/reports no amount for any of them/)).toBeInTheDocument();
     // Nothing to draw: a chart of empty bars would read as $0 a year.
     expect(screen.queryByRole('region', { name: 'Amount by fiscal year' })).toBeNull();
@@ -375,7 +430,7 @@ describe.runIf(isSampleExport)('the sample’s grants', () => {
     // A fiscal year with no amount, beside years with one.
     const card = screen.getByRole('region', { name: 'Amount by fiscal year' });
     expect(
-      within(card).getByRole('img', { name: '2016: no amount reported.' }),
+      within(card).getByRole('img', { name: '2016: no amount reported, counted in the totals.' }),
     ).toBeInTheDocument();
   });
 
@@ -419,6 +474,8 @@ describe.runIf(isSampleExport)('the sample’s grants', () => {
     'NIH:P01HL999001',
     'NIH:U19AG999002',
     'MISC:R01GM999999',
+    'NIH:R01GM999004',
+    'F4399999998:SMRF99901',
   ])(
     '%s passes axe',
     async (key) => {
@@ -427,6 +484,94 @@ describe.runIf(isSampleExport)('the sample’s grants', () => {
     },
     30_000,
   );
+});
+
+/* ------------------------------------------------------------------------------------------------
+ * What the totals count of a grant (docs/09 F17): each rule on the sample's real and synthetic
+ * grants, in the rule's own terms. Each amount is the export's own `counted_usd`.
+ * --------------------------------------------------------------------------------------------- */
+
+describe.runIf(isSampleExport)('what the totals count of each of the sample’s grants', () => {
+  const exported = (key: string) => sample.funding.grants.find((entry) => entry.key === key);
+
+  it.each([
+    ['NIH:P30DK017047', 'window'],
+    ['NIH:R01GM999004', 'began_after'],
+    ['NIH:S10OD999001', 'full_amount'],
+    ['NIH:T32GM999003', 'ended_before'],
+    ['F4399999998:SMRF99902', 'undated'],
+    ['F4399999998:SMRF99901', 'window'],
+  ])('%s is counted by its rule, %s, as the pipeline counted it', (key, rule) => {
+    expect(exported(key)?.counted_rule).toBe(rule);
+  });
+
+  it('a grant counted from 2006 through its latest listing publication, by fiscal year', () => {
+    show('NIH:P30DK017047');
+    // FY1986–FY2027 in all; FY2006–FY2026 counted, 2026 being its latest listing work's year.
+    expect(counted()).toBe(
+      `$31,755,035 for FY2006–FY2026, its fiscal years from 2006, when UWPR began, through 2026, the year of the latest publication listing it. ${OVER_EVERY}`,
+    );
+    expect(fact('Lifetime total')).toMatch(/^\$52,843,525, /);
+    const card = screen.getByRole('region', { name: 'Amount by fiscal year' });
+    expect(card).toHaveTextContent('The 21 fiscal years counted in the totals are marked');
+  });
+
+  it('a grant that began after its latest listing publication: $0, and why', () => {
+    const { container } = show('NIH:R01GM999004');
+    expect(counted()).toBe(
+      `$0: its funding began in FY2022, after 2019, the year of the latest publication listing it, so none of it is counted. ${OVER_EVERY}`,
+    );
+    const card = screen.getByRole('region', { name: 'Amount by fiscal year' });
+    expect(card).toHaveTextContent('No fiscal year shown is counted in the totals');
+    // Its one "$0" is the known zero, and says why; there is no other.
+    expect(words(container).match(/\$0(?![\d.,])/g)).toEqual(['$0']);
+  });
+
+  it('an instrument, counted in full with years after its latest listing publication', () => {
+    show('NIH:S10OD999001');
+    expect(counted()).toBe(
+      `$750,000, counted in full: an instrument is bought once and used for years. ${OVER_EVERY}`,
+    );
+    expect(screen.getByRole('region', { name: 'Amount by fiscal year' })).toHaveTextContent(
+      'Every fiscal year shown is counted in the totals',
+    );
+  });
+
+  it('a grant whose funding ended before 2006, phrased by its last fiscal year', () => {
+    show('NIH:T32GM999003');
+    // Its years run to 2004, but its last fiscal year with funding is FY2003.
+    expect(fact('Years')).toBe('1996–2004');
+    expect(counted()).toBe(
+      `$575,000: its funding ended in FY2003, before 2006, so its last five years, FY1999–FY2003, are counted. ${OVER_EVERY}`,
+    );
+  });
+
+  it('an amount with no end year, counted whole', () => {
+    show('F4399999998:SMRF99902');
+    expect(counted()).toBe(
+      `$300,000, counted whole: there is no yearly breakdown or end year to divide it by. ${OVER_EVERY}`,
+    );
+  });
+
+  it('an amount spread evenly over its years, counted to its latest listing and an estimate', () => {
+    show('F4399999998:SMRF99901');
+    expect(counted()).toBe(
+      `$714,289 for 2017–2021, its years from 2006, when UWPR began, through 2021, the year of the latest publication listing it. Its amount is spread evenly over the award’s years, 2017–2023: an estimate. ${OVER_EVERY}`,
+    );
+    // It has no fiscal years, so no table marks its years; the fact names them.
+    expect(screen.queryByRole('region', { name: 'Amount by fiscal year' })).toBeNull();
+  });
+
+  it('counts every publication listing it: the exported counted_usd, whatever the filter', () => {
+    for (const key of ['NIH:P30DK017047', 'F4399999998:SMRF99901', 'NIH:T32GM999003']) {
+      const { unmount } = show(key);
+      const grant = exported(key);
+      expect(counted().startsWith(`$${(grant?.counted_usd ?? -1).toLocaleString('en-US')}`)).toBe(
+        true,
+      );
+      unmount();
+    }
+  });
 });
 
 /* ------------------------------------------------------------------------------------------------

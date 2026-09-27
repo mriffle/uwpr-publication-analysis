@@ -133,10 +133,17 @@ describe('the funding definitions (docs/09 §12.5 item 2, §12.9)', () => {
   it('states the corpus values funding.summary holds', () => {
     const summary = doc.funding.summary;
     const unknown = summary.grants_resolved - summary.grants_with_amount;
-    expect(fundingById.get('funding-total')?.value).toBe(
+    const withUnknowns = (usd: number) =>
       unknown === 0
-        ? formatUsd(summary.amount_usd)
-        : `${formatUsd(summary.amount_usd)}; ${pluralize(unknown, 'grant')} without a known amount`,
+        ? formatUsd(usd)
+        : `${formatUsd(usd)}; ${pluralize(unknown, 'grant')} without a known amount`;
+    // The headline is the grant funding counted (F17); the lifetime sum is given beside it.
+    expect(fundingById.get('funding-total')?.term).toBe('Grant funding counted');
+    expect(fundingById.get('funding-total')?.value).toBe(withUnknowns(summary.counted_usd));
+    expect(fundingById.get('funding-lifetime')?.value).toBe(withUnknowns(summary.amount_usd));
+    const awarded = Object.keys(summary.counted_by_year).map(Number);
+    expect(fundingById.get('funding-award-year')?.value).toBe(
+      `${String(Math.min(...awarded))}–${String(Math.max(...awarded))}`,
     );
     expect(fundingById.get('funding-grants')?.value).toBe(formatCount(summary.grants_resolved));
     expect(fundingById.get('funding-agencies')?.value).toBe(formatCount(summary.agencies));
@@ -151,7 +158,7 @@ describe('the funding definitions (docs/09 §12.5 item 2, §12.9)', () => {
     );
     expect(fundingById.get('funding-institution-wide')?.value).toMatch(
       new RegExp(
-        `^${pluralize(summary.grants_institution_wide, 'award')}, \\${formatUsd(summary.amount_usd_institution_wide)}`,
+        `^${pluralize(summary.grants_institution_wide, 'award')}, \\${formatUsd(summary.counted_usd_institution_wide)}`,
       ),
     );
     expect(fundingById.get('funding-unmatched')?.value).toMatch(
@@ -168,10 +175,40 @@ describe('the funding definitions (docs/09 §12.5 item 2, §12.9)', () => {
     expect(total).toMatch(/never in it as zero/);
     expect(total).toMatch(/counts once/);
     expect(total).toContain(`as of ${formatDate(doc.funding.as_of ?? '')}`);
+    const lifetime = fundingById.get('funding-lifetime')?.definition ?? '';
+    expect(lifetime).toMatch(/not money spent on this work/);
+    expect(lifetime).toContain(`as of ${formatDate(doc.funding.as_of ?? '')}`);
+    expect(lifetime).toContain('no total on the site adds it up');
     expect(fundingById.get('funding-institution-wide')?.definition).toMatch(
       /never inferred from size/,
     );
     expect(fundingById.get('funding-investigators')?.definition).toMatch(/counts twice/);
+  });
+
+  it('states the counting window from the export’s constants, and follows them', () => {
+    const { from_year: from } = doc.funding.counting;
+    const resource = doc.resource.short_name;
+    expect(fundingById.get('funding-total')?.definition).toContain(
+      `its funding from ${String(from)}, when ${resource} began, through the year of the latest publication listing it`,
+    );
+    expect(fundingById.get('funding-award-year')?.definition).toContain(
+      `grants whose funding ended before ${String(from)}`,
+    );
+    const moved = fundingDefinitions({
+      ...doc,
+      funding: { ...doc.funding, counting: { ...doc.funding.counting, from_year: 2004 } },
+    });
+    const total = moved.find((definition) => definition.id === 'funding-total');
+    expect(total?.definition).toContain(`its funding from 2004, when ${resource} began,`);
+    expect(total?.definition).not.toContain(String(from));
+  });
+
+  it('keeps a grant’s first year for the new grants by agency and “First listed” alone', () => {
+    const first = fundingById.get('funding-first-year')?.definition ?? '';
+    expect(first).toContain('a publication year, not the year of the award');
+    expect(first).toContain('new grants by agency');
+    expect(first).toContain('“First listed”');
+    expect(first).toContain('no dollars are placed by it');
   });
 
   it('uses no wording of credit or cause (§12.11 rule 1)', () => {
@@ -189,12 +226,18 @@ describe('the funding definitions (docs/09 §12.5 item 2, §12.9)', () => {
     expect(none.map((definition) => definition.id)).toEqual(funding.map((d) => d.id));
     for (const definition of none) expect(definition.value).toBeUndefined();
     expect(none.find((d) => d.id === 'funding-total')?.definition).not.toMatch(/as of/);
+    // No counting rule to read, so no year is given for it.
+    expect(none.find((d) => d.id === 'funding-total')?.definition).toContain(
+      `its funding from when ${doc.resource.short_name} began, through`,
+    );
   });
 
   it('says "none" rather than inventing a total when no grant is known', () => {
     const empty = fundingDefinitions({ ...doc, works: [] });
     const values = new Map(empty.map((definition) => [definition.id, definition.value]));
     expect(values.get('funding-total')).toBe('none');
+    expect(values.get('funding-lifetime')).toBe('none');
+    expect(values.get('funding-award-year')).toBe('none');
     expect(values.get('funding-first-year')).toBe('none');
     expect(values.get('funding-publications')).toBe('0 of 0');
   });

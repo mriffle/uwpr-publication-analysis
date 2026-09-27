@@ -9,6 +9,8 @@ import {
   COUNTED_LABEL,
   countInWords,
   countedDefinition,
+  countedFact,
+  countedLine,
   countedRuleText,
   countedRulesSentence,
   estimatedLine,
@@ -18,7 +20,10 @@ import {
   grantYears,
   investigatorNames,
   originalAmount,
+  spreadSentence,
   unknownAmountReason,
+  yearRun,
+  type CountedFactParts,
 } from '../../src/format/funding';
 import { COUNTED_RULES } from '../../src/aggregate/counting';
 import { GRANT_CATEGORIES } from '../../src/aggregate/funding';
@@ -215,5 +220,127 @@ describe('what the totals count, in words', () => {
     expect(countedRulesSentence({}, 0, counting())).toBe(
       'No grant listed has a known amount, so none is counted.',
     );
+  });
+});
+
+/**
+ * One grant's counted amount (docs/09 F17), as its page and a publication's Funding section say
+ * it: each rule in its own terms, from the export's constants, so a change to them changes the
+ * words.
+ */
+describe('one grant’s counted amount, in words', () => {
+  const window: CountedFactParts = {
+    usd: 87_011_296,
+    rule: 'window',
+    category: 'center',
+    breakdown: { first: 1985, last: 2011 },
+    counted: { first: 2006, last: 2011 },
+    lastListed: 2012,
+    fiscal: true,
+  };
+
+  it('names a run of years, fiscal or not', () => {
+    expect(yearRun(2006, 2011, true)).toBe('FY2006–FY2011');
+    expect(yearRun(2016, 2019, false)).toBe('2016–2019');
+    expect(yearRun(2001, 2001, true)).toBe('FY2001');
+  });
+
+  it('gives a windowed grant the years counted, from the first year to its latest listing', () => {
+    expect(countedFact(window, counting(), 'UWPR')).toBe(
+      '$87,011,296 for FY2006–FY2011, its fiscal years from 2006, when UWPR began, through 2012, the year of the latest publication listing it',
+    );
+    expect(countedFact({ ...window, fiscal: false }, counting({ from_year: 2004 }), 'X')).toBe(
+      '$87,011,296 for 2006–2011, its years from 2004, when X began, through 2012, the year of the latest publication listing it',
+    );
+    // A window that holds none of its years: a known $0, and why.
+    expect(countedFact({ ...window, usd: 0, counted: null }, counting(), 'UWPR')).toBe(
+      '$0: none of its years falls from 2006, when UWPR began, through 2012, the year of the latest publication listing it',
+    );
+  });
+
+  it('phrases an ended grant by its last year of funding, and the years it counts', () => {
+    const ended: CountedFactParts = {
+      ...window,
+      usd: 2_167_823,
+      rule: 'ended_before',
+      breakdown: { first: 1985, last: 2001 },
+      counted: { first: 1997, last: 2001 },
+      lastListed: 2017,
+    };
+    expect(countedFact(ended, counting(), 'UWPR')).toBe(
+      '$2,167,823: its funding ended in FY2001, before 2006, so its last five years, FY1997–FY2001, are counted',
+    );
+    expect(countedFact(ended, counting({ last_years: 1 }), 'UWPR')).toBe(
+      '$2,167,823: its funding ended in FY2001, before 2006, so its last year, FY2001, is counted',
+    );
+    expect(countedFact({ ...ended, breakdown: null }, counting(), 'UWPR')).toBe(
+      '$2,167,823, ended before 2006: its last five years counted',
+    );
+  });
+
+  it('says when a grant began that counts nothing', () => {
+    const later: CountedFactParts = {
+      ...window,
+      usd: 0,
+      rule: 'began_after',
+      breakdown: { first: 2017, last: 2026 },
+      counted: null,
+      lastListed: 2016,
+    };
+    expect(countedFact(later, counting(), 'UWPR')).toBe(
+      '$0: its funding began in FY2017, after 2016, the year of the latest publication listing it, so none of it is counted',
+    );
+    expect(countedFact({ ...later, breakdown: null }, counting(), 'UWPR')).toBe(
+      '$0, began after its latest listing publication: nothing counted',
+    );
+  });
+
+  it('counts an instrument in full, and any other kind the export names', () => {
+    const instrument: CountedFactParts = {
+      ...window,
+      usd: 782_028,
+      rule: 'full_amount',
+      category: 'instrument',
+    };
+    expect(countedFact(instrument, counting(), 'UWPR')).toBe(
+      '$782,028, counted in full: an instrument is bought once and used for years',
+    );
+    expect(
+      countedFact(
+        { ...instrument, category: 'contract' },
+        counting({ full_amount_categories: ['instrument', 'contract'] }),
+        'UWPR',
+      ),
+    ).toBe('$782,028, counted in full, as every contract grant is');
+  });
+
+  it('counts an amount with nothing to divide it by whole', () => {
+    expect(
+      countedFact(
+        { ...window, usd: 583_518_208, rule: 'undated', breakdown: null, counted: null },
+        counting(),
+        'UWPR',
+      ),
+    ).toBe('$583,518,208, counted whole: there is no yearly breakdown or end year to divide it by');
+  });
+
+  it('marks a spread amount as an estimate, over the award’s years', () => {
+    expect(spreadSentence(2016, 2026)).toBe(
+      'Its amount is spread evenly over the award’s years, 2016–2026: an estimate.',
+    );
+  });
+
+  it('gives a publication’s Funding section the short line, and nothing for an unknown', () => {
+    const counted = grant({ counted_usd: 600_000, counted_rule: 'window' });
+    expect(countedLine(counted, false, counting())).toBe(
+      '$600,000, from 2006 to its latest listing publication',
+    );
+    expect(countedLine(counted, true, counting())).toBe(
+      '$600,000, from 2006 to its latest listing publication; an estimate, its amount spread evenly over its years',
+    );
+    expect(
+      countedLine(grant({ counted_usd: 0, counted_rule: 'began_after' }), false, counting()),
+    ).toBe('$0, began after its latest listing publication: nothing counted');
+    expect(countedLine(unresolvedGrant(), false, counting())).toBeNull();
   });
 });

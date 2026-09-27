@@ -2,7 +2,9 @@
  * "Funding listed in this publication" (docs/09 §12.8), per case: a listed grant, a corrected
  * reference (`cited_as` beside `how: listed`, the shape the real data has), an override, an NIH
  * link, an unmatched number, R2 evidence, a converted amount, an institution-wide award, a work
- * that lists nothing, and no funding data — each with axe.
+ * that lists nothing, and no funding data — each with axe. Each grant's counted amount (docs/09
+ * F17) — the export's own, with its reason, an estimate marked — and the opening that says the
+ * totals count only part of each grant.
  *
  * The negatives matter as much as the positives here, as in the evidence section: the failures
  * are a "$0", the resource's own code shown as a grant, or a section that reads "no grants" in an
@@ -14,9 +16,10 @@ import userEvent from '@testing-library/user-event';
 import { FundingSection } from '../../src/components/FundingSection';
 import { fundingOf, type FundingIndex } from '../../src/contract/funding';
 import type { GrantListing, Work } from '../../src/contract/types';
+import { formatUsd } from '../../src/format/number';
 import { expectNoAxeViolations } from '../support/axe';
 import { sampleExport } from '../support/fixture';
-import { listing, unresolvedGrant } from '../support/funding';
+import { grant, listing, unresolvedGrant } from '../support/funding';
 import { WORLD, WORLD_GRANTS, recordingLinks, worldIndex } from '../support/fundingWorld';
 import { listings } from '../support/grants';
 import { work } from '../support/works';
@@ -89,6 +92,44 @@ describe('a listed grant', () => {
     listed();
     expect(section()).toHaveTextContent('not money spent on this work');
     expect(section()).not.toHaveTextContent('Also written in the paper');
+  });
+
+  it('gives what the totals count of it, the export’s own, after its lifetime total', () => {
+    listed();
+    const [item] = items();
+    expect(fact(item, 'Counted in the totals')).toBe(
+      '$1,000,000, from 2006 to its latest listing publication',
+    );
+    const terms = within(item!)
+      .getAllByRole('term')
+      .map((term) => term.textContent);
+    expect(terms.indexOf('Counted in the totals')).toBe(terms.indexOf('Total') + 1);
+  });
+
+  it('opens by saying the totals elsewhere count only part of each grant, and links to how', () => {
+    const { links } = recordingLinks();
+    render(
+      <FundingSection
+        work={work({ grants: listings(worldIndex(), WORLD.r01) })}
+        index={worldIndex()}
+        resource={RESOURCE}
+        links={links}
+        methodHref="/method"
+      />,
+    );
+    const opening = within(section()).getByText(/^The grants this publication’s funding/);
+    expect(opening).toHaveTextContent(
+      'The totals elsewhere on this site count only part of each grant: its funding from 2006, when UWPR began, through the year of the latest publication listing it. What they count of each is given below as “Counted in the totals”.',
+    );
+    expect(
+      within(opening).getByRole('link', { name: 'How grant funding is counted' }),
+    ).toHaveAttribute('href', '/method#funding-counting');
+  });
+
+  it('says the same with no link when there is no method page to link', () => {
+    listed();
+    expect(section()).toHaveTextContent('count only part of each grant');
+    expect(screen.queryByRole('link', { name: 'How grant funding is counted' })).toBeNull();
   });
 
   it('passes axe', async () => {
@@ -302,12 +343,29 @@ describe('amounts', () => {
     );
   });
 
+  it('marks a spread amount’s counted part as an estimate', () => {
+    show(listings(worldIndex(), WORLD.foreign));
+    expect(fact(items()[0], 'Counted in the totals')).toBe(
+      '$600,000, from 2006 to its latest listing publication; an estimate, its amount spread evenly over its years',
+    );
+  });
+
+  it('gives a grant that began after its latest listing publication its $0 and why', () => {
+    const late = grant({ key: 'NIH:R01GM000002', counted_usd: 0, counted_rule: 'began_after' });
+    show([listing({ grant: late.key })], {}, worldIndex([...WORLD_GRANTS, late]));
+    expect(fact(items()[0], 'Counted in the totals')).toBe(
+      '$0, began after its latest listing publication: nothing counted',
+    );
+  });
+
   it('says "amount not known", with why, never $0 (rule 3)', () => {
     show(listings(worldIndex(), WORLD.nsf));
     const [item] = items();
     expect(fact(item, 'Total')).toBe(
       'Amount not known: no source read here reports an amount for it',
     );
+    // Nothing counted is stated for an unknown: its total already says it is not known.
+    expect(within(item!).queryByText('Counted in the totals')).toBeNull();
     expect(item!.textContent).not.toMatch(/\$0\b/);
     expect(item).toHaveTextContent('No title recorded');
     expect(
@@ -390,6 +448,27 @@ describe('the export’s real listings (docs/09 §11.8)', () => {
         await expectNoAxeViolations(container);
         unmount();
       }
+    }
+  }, 30_000);
+
+  it('gives each grant listed the counted amount the export holds, or none for an unknown', () => {
+    for (const entry of doc.works.filter((item) => item.grants.length > 0)) {
+      const { container, unmount } = showSample(entry.id);
+      for (const item of container.querySelectorAll<HTMLElement>('.funding-item')) {
+        const key = decodeURIComponent(
+          within(item).getAllByRole('link')[1]?.getAttribute('href')?.split('/').at(-1) ?? '',
+        );
+        const grant = index?.grants.get(key);
+        const counted = within(item).queryByText('Counted in the totals', { selector: 'dt' });
+        if (grant?.counted_usd === null || grant?.counted_usd === undefined) {
+          expect(counted, key).toBeNull();
+        } else {
+          expect(counted?.nextElementSibling?.textContent, key).toMatch(
+            new RegExp(`^\\${formatUsd(grant.counted_usd)}, `),
+          );
+        }
+      }
+      unmount();
     }
   }, 30_000);
 

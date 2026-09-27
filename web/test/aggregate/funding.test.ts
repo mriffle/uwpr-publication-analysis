@@ -871,8 +871,11 @@ describe('the agency page: one agency over the whole corpus', () => {
     });
   });
 
-  it('draws its value over time, ending at its total', () => {
-    expect(nih?.overTime.points.at(-1)?.cumulative).toBe(3_500_000);
+  it('draws its counted funding by the year awarded, ending at its counted total', () => {
+    // The P01 began after its listing work and counts nothing: $1,000,000, not the $3,500,000
+    // its lifetime totals come to.
+    expect(nih?.countedOverTime.points.at(-1)?.cumulative).toBe(1_000_000);
+    expect(nih?.countedOverTime.countedUsd).toBe(nih?.figures.countedUsd);
   });
 
   it('lists its publications newest first', () => {

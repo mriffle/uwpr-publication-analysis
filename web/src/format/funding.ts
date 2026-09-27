@@ -253,3 +253,102 @@ export function countedRulesSentence(
       : ` ${formatCount(estimated)} of these amounts ${estimated === 1 ? 'is an estimate' : 'are estimates'}: ${spread}`;
   return `Of the ${pluralize(known, 'grant')} with a known amount, ${parts.join('; ')}.${estimates}`;
 }
+
+/* ------------------------------------------------------------------------------------------------
+ * One grant's counted amount (docs/09 F17), as its own page and a publication's Funding section
+ * say it: over every publication listing it, so the export's `counted_usd`, whatever the filter.
+ * --------------------------------------------------------------------------------------------- */
+
+/** The label a grant's counted amount goes by, on its page and in a publication's section. */
+export const COUNTED_FACT_LABEL = 'Counted in the totals';
+
+/** A year as a grant's breakdown names it: "FY2011" for NIH's fiscal years, "2011" otherwise. */
+const yearName = (year: number, fiscal: boolean): string =>
+  fiscal ? `FY${String(year)}` : String(year);
+
+/** A run of years: "FY2006–FY2011" for NIH's fiscal years, "2016–2019" for calendar ones. */
+export const yearRun = (first: number, last: number, fiscal: boolean): string =>
+  first === last ? yearName(first, fiscal) : `${yearName(first, fiscal)}–${yearName(last, fiscal)}`;
+
+/** What the grant page knows of a grant with a known amount, to say why it counts what it does. */
+export interface CountedFactParts {
+  /** The counted amount: known, a safe integer. */
+  usd: number;
+  rule: CountedRule;
+  category: Grant['category'];
+  /** The first and last years of its yearly breakdown, fiscal or spread; null with none. */
+  breakdown: { first: number; last: number } | null;
+  /** The first and last of the years its counted amount adds up (`countedYears`); null for none. */
+  counted: { first: number; last: number } | null;
+  /** The year of the latest publication listing it, over every publication. */
+  lastListed: number;
+  /** Its years are NIH's fiscal years, not the calendar years of an even spread. */
+  fiscal: boolean;
+}
+
+/**
+ * A grant's counted amount and why, in a clause, as its page states it (docs/09 F17): "$87,011,296
+ * for FY2006–FY2011, its fiscal years from 2006, when UWPR began, through 2012, the year of the
+ * latest publication listing it". An ended grant is phrased by its last year of funding, since
+ * the "End year" beside it can be later; a grant that began too late says when it began, so its
+ * $0 says why. The years, the kinds counted in full and the count of years are the export's.
+ */
+export function countedFact(
+  parts: CountedFactParts,
+  counting: FundingCounting,
+  resource: string,
+): string {
+  const from = String(counting.from_year);
+  const amount = formatUsd(parts.usd);
+  const latest = `${String(parts.lastListed)}, the year of the latest publication listing it`;
+  const run = (first: number, last: number) => yearRun(first, last, parts.fiscal);
+  const { breakdown } = parts;
+  switch (parts.rule) {
+    case 'window':
+      return parts.counted === null
+        ? `${amount}: none of its years falls from ${from}, when ${resource} began, through ${latest}`
+        : `${amount} for ${run(parts.counted.first, parts.counted.last)}, its ${parts.fiscal ? 'fiscal ' : ''}years from ${from}, when ${resource} began, through ${latest}`;
+    case 'ended_before': {
+      if (breakdown === null) return `${amount}, ${countedRuleText(counting).ended_before}`;
+      const n = counting.last_years;
+      const counted =
+        n === 1
+          ? `its last year, ${yearName(breakdown.last, parts.fiscal)}, is`
+          : `its last ${countInWords(n)} years, ${run(breakdown.last - n + 1, breakdown.last)}, are`;
+      return `${amount}: its funding ended in ${yearName(breakdown.last, parts.fiscal)}, before ${from}, so ${counted} counted`;
+    }
+    case 'began_after':
+      return breakdown === null
+        ? `${amount}, ${countedRuleText(counting).began_after}`
+        : `${amount}: its funding began in ${yearName(breakdown.first, parts.fiscal)}, after ${latest}, so none of it is counted`;
+    case 'full_amount':
+      return parts.category === 'instrument'
+        ? `${amount}, counted in full: an instrument is bought once and used for years`
+        : `${amount}, counted in full, as every ${CATEGORY_LABELS[parts.category].toLowerCase()} grant is`;
+    case 'undated':
+      return `${amount}, counted whole: there is no yearly breakdown or end year to divide it by`;
+  }
+}
+
+/**
+ * The sentence a spread grant's counted amount carries (`isSpread`): its amount is the pipeline's
+ * even spread over the award's years, "2016–2026", so what is counted of it is an estimate.
+ */
+export const spreadSentence = (first: number, last: number): string =>
+  `Its amount is spread evenly over the award’s years, ${yearRun(first, last, false)}: an estimate.`;
+
+/**
+ * A grant's counted amount in a short line, for a publication's Funding section: "$1,000,000,
+ * from 2006 to its latest listing publication", with "; an estimate…" for a spread amount. From
+ * the export's `counted_usd` and `counted_rule`, over every publication listing it. Null for an
+ * unknown amount, whose total already says "not known".
+ */
+export function countedLine(
+  grant: Pick<Grant, 'counted_usd' | 'counted_rule'>,
+  spread: boolean,
+  counting: FundingCounting,
+): string | null {
+  if (grant.counted_usd === null || grant.counted_rule === null) return null;
+  const estimate = spread ? '; an estimate, its amount spread evenly over its years' : '';
+  return `${formatUsd(grant.counted_usd)}, ${countedRuleText(counting)[grant.counted_rule]}${estimate}`;
+}
