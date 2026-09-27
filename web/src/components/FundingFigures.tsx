@@ -1,20 +1,26 @@
 /**
- * The headline figures of Funding impact (docs/09 §12.5 item 2): the total value of the grants
- * listed, the grants, agencies, principal investigators, organisations, and the publications
- * listing a grant, *K* of *N* — and the institution-wide switch, which sits here because it
- * changes the figure people cite.
+ * The headline figures of Funding impact (docs/09 §12.5 item 2): the grant funding counted, the
+ * grants, agencies, principal investigators, organisations, and the publications listing a grant,
+ * *K* of *N* — and the institution-wide switch, which sits here because it changes the figure
+ * people cite.
  *
  * Every figure comes from `fundingFigures(scope)`, over the scope the view computed once; none
  * reads `funding.summary`, which exists only as the cross-check (docs/06 §12.1).
  *
+ * **The headline is the counted funding** (docs/09 F17): each grant's funding from `from_year`,
+ * when the resource began, through the year of the latest publication shown listing it — so a
+ * filter moves it — not its lifetime total, which stays a fact about the grant.
+ *
  * The honesty rules (§12.11) are what this component is for, and each holds in its strings:
  *
- * - **The total carries its definition, its as-of date and "not money spent on this work"**
- *   (rule 2), and **never shows $0 for "not known"** (rule 3): with no grant it shows a dash, with
- *   no known amount "Not known", and the count of grants without an amount stands beside it.
+ * - **The total carries its definition, its window, its as-of date and "Not money spent on this
+ *   work"** (rule 2), all from the export's `funding.counting`, and **never shows $0 for "not
+ *   known"** (rule 3): with no grant it shows a dash, with no known amount "Not known", and the
+ *   count of grants without an amount stands beside it. **The estimated part is stated** when
+ *   there is one: amounts spread evenly over their years.
  * - **The institution-wide position is stated beside the total** (rule 4) — how many such
- *   awards the total includes and their value, or what excluding them left out — whether or not
- *   the switch is shown.
+ *   awards the total includes and what is counted of them, or what excluding them left out —
+ *   whether or not the switch is shown.
  * - **A grant is counted once** (rule 7), and the grants figure says so.
  * - No wording of credit or cause (rule 1): the figures are about grants the publications list.
  *
@@ -24,14 +30,17 @@
 import { useId } from 'react';
 import {
   fundingFigures,
-  knownAmount,
+  knownCounted,
   type DollarTotal,
   type FundingFigures as Figures,
   type FundingScope,
   type InstitutionWideFigures,
 } from '../aggregate/funding';
+import { countingOf } from '../contract/funding';
+import type { FundingCounting } from '../contract/types';
 import type { InstitutionWide } from '../filter/funding';
 import { formatDate } from '../format/date';
+import { COUNTED_LABEL, countedDefinition, estimatedLine } from '../format/funding';
 import { formatCount, formatUsd, pluralize } from '../format/number';
 import type { FundingDefinitionId } from '../method/definitions';
 
@@ -53,7 +62,15 @@ export interface FundingFiguresProps {
    * and *K* of *N* says it is of every publication.
    */
   corpus?: boolean;
+  /**
+   * The resource's short name ("UWPR"), whose start the headline's definition names as the first
+   * year counted. Without it the definition says "the resource".
+   */
+  resource?: string;
 }
+
+/** What the definition calls the resource when the caller does not name it. */
+const THE_RESOURCE = 'the resource';
 
 interface Figure {
   /** The fragment of this figure's definition on the method page. */
@@ -63,20 +80,23 @@ interface Figure {
   definition: string;
 }
 
-/** ", 1 with no known amount" and the like: the value clause of an institution-wide sentence. */
+/**
+ * " counted at $1,000,000", ", with no known amount" and the like: the value clause of an
+ * institution-wide sentence, in counted dollars, as the headline beside it is.
+ */
 function awardsValue(total: DollarTotal): string {
-  const known = knownAmount(total);
+  const known = knownCounted(total);
   if (known === null) {
     return total.withoutAmount === 1 ? ', with no known amount' : ', none with a known amount';
   }
-  if (total.withoutAmount === 0) return ` worth ${formatUsd(known)}`;
-  return `, worth ${formatUsd(known)} for the ${formatCount(total.withAmount)} with a known amount; ${pluralize(total.withoutAmount, 'has', 'have')} none`;
+  if (total.withoutAmount === 0) return ` counted at ${formatUsd(known)}`;
+  return `, counted at ${formatUsd(known)} for the ${formatCount(total.withAmount)} with a known amount; ${pluralize(total.withoutAmount, 'has', 'have')} none`;
 }
 
 /**
  * The institution-wide position in words (§12.11 rule 4): "Including 5 institution-wide awards
- * worth $135,503,058." or what excluding them left out. `overridden` is a grant selection holding
- * the exclusion off (§12.4), which the sentence says so the switch is not read as broken.
+ * counted at $126,823,172." or what excluding them left out. `overridden` is a grant selection
+ * holding the exclusion off (§12.4), which the sentence says so the switch is not read as broken.
  */
 export function institutionWideSentence(wide: InstitutionWideFigures, overridden: boolean): string {
   const awards = pluralize(wide.grants, 'institution-wide award');
@@ -94,28 +114,42 @@ export function institutionWideSentence(wide: InstitutionWideFigures, overridden
     : `Excluding ${awards}${awardsValue(wide)}.`;
 }
 
-/** The total's value: a dash with no grant, "Not known" with no known amount, never "$0". */
+/**
+ * The total's value: a dash with no grant, "Not known" with no known amount, never "$0" for an
+ * unknown. A known $0 — every grant began after the latest publication shown listing it — is one.
+ */
 function totalValue(figures: Figures): string {
   if (figures.listed === 0) return '—';
-  const known = knownAmount(figures);
+  const known = knownCounted(figures);
   return known === null ? 'Not known' : formatUsd(known);
 }
 
-function totalDefinition(figures: Figures, asOf: string | null): string {
+/**
+ * The headline's definition (§12.11 rule 2): what is counted, from when to when, what it is not,
+ * as of when; then what part of it is estimated, and how many grants it leaves out, unknown.
+ */
+function totalDefinition(
+  figures: Figures,
+  asOf: string | null,
+  counting: FundingCounting,
+  resource: string,
+): string {
   if (figures.listed === 0) {
     return 'No grant is listed on the publications shown, so there is no total.';
   }
-  const dated = asOf === null ? '' : `, as of ${formatDate(asOf)}`;
-  const worth = `The lifetime award totals of the grants listed, as their funders record them${dated}. It is what the awards are worth, not money spent on this work.`;
+  const dated = asOf === null ? '' : ` Amounts as of ${formatDate(asOf)}.`;
+  const defined = `${countedDefinition(counting, resource)}${dated}`;
   if (figures.withAmount === 0) {
     const none =
       figures.listed === 1
         ? 'The one grant listed has no known amount'
         : `None of the ${formatCount(figures.listed)} grants listed has a known amount`;
-    return `${worth} ${none}, so no total can be given.`;
+    return `${defined} ${none}, so no total can be given.`;
   }
-  if (figures.withoutAmount === 0) return `${worth} Every grant listed has a known amount.`;
-  return `${worth} ${pluralize(figures.withoutAmount, 'grant')} with no known amount ${figures.withoutAmount === 1 ? 'is' : 'are'} not in it.`;
+  const estimated = estimatedLine(figures.estimatedUsd);
+  const withEstimate = estimated === null ? defined : `${defined} ${estimated}`;
+  if (figures.withoutAmount === 0) return `${withEstimate} Every grant listed has a known amount.`;
+  return `${withEstimate} ${pluralize(figures.withoutAmount, 'grant')} with no known amount ${figures.withoutAmount === 1 ? 'is' : 'are'} not in it.`;
 }
 
 /**
@@ -125,7 +159,8 @@ function totalDefinition(figures: Figures, asOf: string | null): string {
 export function fundingHeadlineFigures(
   figures: Figures,
   asOf: string | null,
-  corpus = false,
+  counting: FundingCounting,
+  { corpus = false, resource = THE_RESOURCE }: { corpus?: boolean; resource?: string } = {},
 ): Figure[] {
   const unmatchedGrants =
     figures.miscellaneous === 0
@@ -140,9 +175,9 @@ export function fundingHeadlineFigures(
   const all: Figure[] = [
     {
       id: 'funding-total',
-      label: 'Total value of grants listed',
+      label: COUNTED_LABEL,
       value: totalValue(figures),
-      definition: totalDefinition(figures, asOf),
+      definition: totalDefinition(figures, asOf, counting, resource),
     },
     {
       id: 'funding-grants',
@@ -184,13 +219,17 @@ export function FundingFigures({
   onInstitutionWide,
   definitionHref,
   corpus = false,
+  resource = THE_RESOURCE,
 }: FundingFiguresProps) {
   const positionId = useId();
   const index = scope.index;
   if (index === null) return null;
 
   const figures = fundingFigures(scope);
-  const [total, ...rest] = fundingHeadlineFigures(figures, index.funding.as_of, corpus);
+  const [total, ...rest] = fundingHeadlineFigures(figures, index.funding.as_of, countingOf(index), {
+    corpus,
+    resource,
+  });
   const position = scope.selection.institutionWide;
   const overridden = position === 'exclude' && figures.institutionWide.included;
 

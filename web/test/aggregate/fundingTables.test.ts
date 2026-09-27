@@ -4,10 +4,12 @@
  *
  * The rule the spec states outright — **unknown amounts last in both directions** — is asserted
  * for both tables, since it is the one a generic comparator gets wrong the moment the direction
- * flips.
+ * flips. Both sort by counted funding by default (docs/09 F17), a grant's lifetime total on
+ * request, and a counted $0 — a grant that began after its listing work — is a known zero, not
+ * an unknown.
  */
 import { describe, expect, it } from 'vitest';
-import { rankAgencies } from '../../src/aggregate/funding';
+import { UNFILTERED, fundingScope, rankAgencies } from '../../src/aggregate/funding';
 import {
   AGENCY_SORT_KEYS,
   DEFAULT_AGENCY_SORT,
@@ -21,15 +23,22 @@ import {
   toggleAgencySort,
   toggleGrantSort,
 } from '../../src/aggregate/fundingTables';
-import { WORLD, worldScope } from '../support/fundingWorld';
+import { WORLD, WORLD_GRANTS, worldIndex, worldScope, worldWorks } from '../support/fundingWorld';
 
 const scope = worldScope();
 const index = scope.index;
 const keys = (rows: readonly { grant: { key: string } }[]) => rows.map((row) => row.grant.key);
 
+/** The world with P01's fiscal years moved after its only listing work (2021): counted as $0. */
+function beganAfterScope() {
+  const later = { ...WORLD.p01, fiscal_years: { '2022': 1_000_000, '2023': 1_500_000 } };
+  const index_ = worldIndex(WORLD_GRANTS.map((grant) => (grant.key === later.key ? later : grant)));
+  return fundingScope(worldWorks(index_), index_, UNFILTERED);
+}
+
 describe('the grants table’s order', () => {
-  it('sorts by total, largest first, by default', () => {
-    expect(DEFAULT_GRANT_SORT).toEqual({ key: 'total', direction: 'desc' });
+  it('sorts by counted funding, largest first, by default', () => {
+    expect(DEFAULT_GRANT_SORT).toEqual({ key: 'counted', direction: 'desc' });
     expect(keys(sortGrants(scope.grants, DEFAULT_GRANT_SORT, index))).toEqual([
       WORLD.grfp.key,
       WORLD.p01.key,
@@ -41,8 +50,8 @@ describe('the grants table’s order', () => {
     ]);
   });
 
-  it('keeps unknown amounts last when the total is sorted ascending too', () => {
-    expect(keys(sortGrants(scope.grants, { key: 'total', direction: 'asc' }, index))).toEqual([
+  it('keeps unknown amounts last when counted funding is sorted ascending too', () => {
+    expect(keys(sortGrants(scope.grants, { key: 'counted', direction: 'asc' }, index))).toEqual([
       WORLD.foreign.key,
       WORLD.r01.key,
       WORLD.p01.key,
@@ -50,6 +59,54 @@ describe('the grants table’s order', () => {
       WORLD.unmatched.key,
       WORLD.nsf.key,
     ]);
+  });
+
+  it('sorts a counted $0 as a known zero, below every amount and above the unknowns', () => {
+    const later = beganAfterScope();
+    const p01 = later.grants.find((entry) => entry.grant.key === WORLD.p01.key);
+    expect(p01?.counted).toMatchObject({ usd: 0, rule: 'began_after' });
+    expect(keys(sortGrants(later.grants, DEFAULT_GRANT_SORT, later.index))).toEqual([
+      WORLD.grfp.key,
+      WORLD.r01.key,
+      WORLD.foreign.key,
+      WORLD.p01.key,
+      WORLD.unmatched.key,
+      WORLD.nsf.key,
+    ]);
+    expect(
+      keys(sortGrants(later.grants, { key: 'counted', direction: 'asc' }, later.index)).slice(0, 2),
+    ).toEqual([WORLD.p01.key, WORLD.foreign.key]);
+  });
+
+  it('sorts by the lifetime total on request, unknowns last both ways', () => {
+    // FOREIGN's $750,000 lifetime counts $600,000: by lifetime it is still the smallest known.
+    expect(keys(sortGrants(scope.grants, { key: 'lifetime', direction: 'desc' }, index))).toEqual([
+      WORLD.grfp.key,
+      WORLD.p01.key,
+      WORLD.r01.key,
+      WORLD.foreign.key,
+      WORLD.unmatched.key,
+      WORLD.nsf.key,
+    ]);
+    // With P01 counted $0, the two orders part: by lifetime it is second, by counted fourth.
+    const later = beganAfterScope();
+    expect(
+      keys(sortGrants(later.grants, { key: 'lifetime', direction: 'desc' }, later.index))[1],
+    ).toBe(WORLD.p01.key);
+    const ascending = keys(sortGrants(scope.grants, { key: 'lifetime', direction: 'asc' }, index));
+    expect(ascending.slice(-2)).toEqual([WORLD.unmatched.key, WORLD.nsf.key]);
+  });
+
+  it('counts less under a Year filter that shows an earlier listing work alone', () => {
+    // R01 is listed in 2019 and 2021: shown only 2019, it counts FY2019 alone.
+    const index_ = worldIndex();
+    const [w2019] = worldWorks(index_);
+    const filtered = fundingScope([w2019!], index_, UNFILTERED);
+    const r01 = filtered.grants.find((entry) => entry.grant.key === WORLD.r01.key);
+    expect(r01?.counted.usd).toBe(500_000);
+    expect(scope.grants.find((entry) => entry.grant.key === WORLD.r01.key)?.counted.usd).toBe(
+      1_000_000,
+    );
   });
 
   it('keeps a grant with no title last whichever way titles run', () => {
@@ -86,9 +143,13 @@ describe('the grants table’s order', () => {
   });
 
   it('toggles: the sorted column reverses, another starts in its natural direction', () => {
-    expect(toggleGrantSort(DEFAULT_GRANT_SORT, 'total')).toEqual({
-      key: 'total',
+    expect(toggleGrantSort(DEFAULT_GRANT_SORT, 'counted')).toEqual({
+      key: 'counted',
       direction: 'asc',
+    });
+    expect(toggleGrantSort(DEFAULT_GRANT_SORT, 'lifetime')).toEqual({
+      key: 'lifetime',
+      direction: 'desc',
     });
     expect(toggleGrantSort(DEFAULT_GRANT_SORT, 'title')).toEqual({
       key: 'title',
@@ -102,6 +163,7 @@ describe('the grants table’s order', () => {
       'asc',
       'asc',
       'asc',
+      'desc',
       'desc',
       'desc',
       'desc',
@@ -157,7 +219,7 @@ describe('the agency table’s order', () => {
   const rows = rankAgencies(scope, { level: 'agency', limit: Infinity }).items;
   const codes = (sorted: readonly { code: string }[]) => sorted.map((row) => row.code);
 
-  it('starts from the ranking’s own order, known total largest first', () => {
+  it('starts from the ranking’s own order, counted funding largest first', () => {
     expect(codes(sortAgencies(rows, DEFAULT_AGENCY_SORT, index))).toEqual(codes(rows));
     expect(codes(rows)).toEqual(['NSF', 'NHLBI', 'NIGMS', 'F4399999999']);
   });
@@ -169,7 +231,7 @@ describe('the agency table’s order', () => {
       ...rankAgencies(unknownOnly, { level: 'agency' }).items,
     ];
     for (const direction of ['asc', 'desc'] as const) {
-      expect(codes(sortAgencies(withUnknown, { key: 'total', direction }, index)).at(-1)).toBe(
+      expect(codes(sortAgencies(withUnknown, { key: 'counted', direction }, index)).at(-1)).toBe(
         'NSF',
       );
     }
@@ -189,8 +251,9 @@ describe('the agency table’s order', () => {
   });
 
   it('toggles like the grants table', () => {
-    expect(toggleAgencySort(DEFAULT_AGENCY_SORT, 'total')).toEqual({
-      key: 'total',
+    expect(DEFAULT_AGENCY_SORT).toEqual({ key: 'counted', direction: 'desc' });
+    expect(toggleAgencySort(DEFAULT_AGENCY_SORT, 'counted')).toEqual({
+      key: 'counted',
       direction: 'asc',
     });
     expect(toggleAgencySort(DEFAULT_AGENCY_SORT, 'agency')).toEqual({

@@ -1404,14 +1404,24 @@ button.chart-legend-item.is-selected {
   font-weight: 600;
 }
 
-/* The grants table: ten columns, so a little smaller, and its long free text may break. */
+/*
+ * The grants table: eleven columns since it shows both what is counted and the lifetime total
+ * (docs/09 F17), so a little smaller, with narrow padding, and its long free text may break — a
+ * tag too ("amounts from FY1985" set the type column's width for every row).
+ */
 .grants-table .funding-table {
   font-size: 0.85rem;
 }
 
 .grants-table .funding-table th,
 .grants-table .funding-table td {
-  padding: 0.35rem 0.3rem;
+  padding: 0.35rem 0.2rem;
+}
+
+/* A tag that wraps reads as a rounded box, not a pill stretched over three lines. */
+.grants-table .funding-table .badge {
+  white-space: normal;
+  border-radius: 0.5rem;
 }
 
 /* A number breaks only past NIH's eleven characters: a seventeen-character contract may break. */
@@ -1432,13 +1442,14 @@ button.chart-legend-item.is-selected {
  * word ("NEURODIAGNOSTIC") sets the column's least width instead. The least widths below leave the
  * table about 40 px inside a desktop column with every row drawn on macOS's fonts, which CI's
  * Linux fonts, 2-3% wider, need: at a few pixels' slack, CI drew it 8 px too wide (docs/09 R1b).
+ * With the counted column added, the real export's least width is 1,017 px of 1,056.
  */
 .funding-table .grants-organisation {
   overflow-wrap: break-word;
 }
 
 .funding-table .grants-title {
-  min-width: 8rem;
+  min-width: 7.5rem;
 }
 
 .funding-table .grants-people,

@@ -5,15 +5,24 @@
  * meets exports older than itself: for a while after every deploy, and after any rollback of the
  * data. `load.ts` accepts any 1.x export, so a missing funding block reaches the views, and every
  * funding read goes through here so that "this export has no funding data" is one designed state
- * rather than a crash wherever a view first reaches for it. That state has two shapes (docs/09
- * §12.10): a 1.0 export with no `funding` block at all, and a 1.1 export whose block has a null
- * `version`, which is what the pipeline writes while a store holds no funding.
+ * rather than a crash wherever a view first reaches for it. That state has three shapes (docs/09
+ * §12.10):
  *
- * **The generated types cannot say this.** They describe contract 1.2, where the block and each
- * work's `grants` are required, and the loader checks only the major version. So the checks here
- * read the document as `unknown` first, and a work's listings are read through `listingsOf`,
- * never off the work. The same goes for 1.2's `funding.counting`, which a 1.0 or 1.1 export
- * lacks: it is read through `countingOf`, and every counted figure is unknown without it.
+ * - a 1.0 export, with no `funding` block at all;
+ * - a block whose `version` is null, which is what the pipeline writes while a store holds no
+ *   funding;
+ * - a block without 1.2's `funding.counting` — a 1.1 export, as after a rollback of the data.
+ *   Every total the app shows is counted by that rule (docs/09 F17), so without it there is no
+ *   figure the app could show truthfully, and the export reads as having no funding data: Funding
+ *   impact shows its notice, the agency and grant filters match nothing, and each publication's
+ *   Funding section is left out, exactly as for a 1.0 export. The release order means production
+ *   never meets it.
+ *
+ * **The generated types cannot say this.** They describe contract 1.2, where the block, its
+ * `counting` and each work's `grants` are required, and the loader checks only the major version.
+ * So the checks here read the document as `unknown` first, and a work's listings are read through
+ * `listingsOf`, never off the work. Past `fundingOf`, the counting rule is always there:
+ * `countingOf` reads it from any index.
  *
  * What comes back is an index over the block (docs/09 §11.3–11.5): grants by key, agencies by
  * code, each agency's children and its chain root first, and Miscellaneous — found by its
@@ -132,19 +141,34 @@ export function buildFundingIndex(
 /** One index per document object, dropped with it. */
 const indexes = new WeakMap<ExportDocument, FundingIndex | null>();
 
+/**
+ * Whether a value is the counting rule's constants as contract 1.2 states them: two integers and
+ * a list. Anything else — absent, as in a 1.1 export, null, or malformed — is not.
+ */
+function isCounting(value: unknown): value is FundingCounting {
+  if (typeof value !== 'object' || value === null) return false;
+  const block = value as Partial<Record<keyof FundingCounting, unknown>>;
+  return (
+    Number.isInteger(block.from_year) &&
+    Number.isInteger(block.last_years) &&
+    Array.isArray(block.full_amount_categories)
+  );
+}
+
 function readFunding(doc: ExportDocument): Funding | null {
   const value: unknown = (doc as { funding?: unknown }).funding;
   if (typeof value !== 'object' || value === null) return null;
   const block = value as Partial<Record<keyof Funding, unknown>>;
   if (block.version === null || block.version === undefined) return null;
   if (!Array.isArray(block.grants) || !Array.isArray(block.agencies)) return null;
+  if (!isCounting(block.counting)) return null;
   return value as Funding;
 }
 
 /**
  * The export's funding, indexed, or null when this export has no funding data: a 1.0 export with
- * no block, a block whose `version` is null, or one without its `grants` or `agencies`. Built
- * once per document.
+ * no block, a block whose `version` is null, one without its `grants` or `agencies`, or one
+ * without the counting rule (a 1.1 export). Built once per document.
  */
 export function fundingOf(doc: ExportDocument): FundingIndex | null {
   if (indexes.has(doc)) return indexes.get(doc) ?? null;
@@ -167,22 +191,12 @@ export function listingsOf(work: Work, index: FundingIndex | null): readonly Gra
 }
 
 /**
- * The counting rule's constants (docs/09 F17, §7.4), or null when the export has none: no funding
- * data, or an export older than contract 1.2 (a 1.1 export, or a rollback of the data), whose
- * block has no `funding.counting` whatever the generated types say. Without them every counted
- * amount is unknown and every counted total 0 (`aggregate/funding.ts`); nothing throws.
+ * The counting rule's constants (docs/09 F17, §7.4), as the export states them, or null with no
+ * funding data. An index `fundingOf` built always has them: an export without them reads as
+ * having no funding data (above), so no view ever counts without the rule.
  */
+export function countingOf(index: FundingIndex): FundingCounting;
+export function countingOf(index: FundingIndex | null): FundingCounting | null;
 export function countingOf(index: FundingIndex | null): FundingCounting | null {
-  if (index === null) return null;
-  const value: unknown = (index.funding as { counting?: unknown }).counting;
-  if (typeof value !== 'object' || value === null) return null;
-  const block = value as Partial<Record<keyof FundingCounting, unknown>>;
-  if (
-    !Number.isInteger(block.from_year) ||
-    !Number.isInteger(block.last_years) ||
-    !Array.isArray(block.full_amount_categories)
-  ) {
-    return null;
-  }
-  return value as FundingCounting;
+  return index === null ? null : index.funding.counting;
 }

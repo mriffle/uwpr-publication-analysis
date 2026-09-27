@@ -6,19 +6,25 @@
  * or miss one it kept. The table draws the first 50 until asked for all (docs/09 R1b); the file
  * holds them all, and its button says how many. Each
  * cell obeys `csv.ts`: RFC 4180, CRLF, the formula-injection guard, and an unknown value as an
- * empty cell, never 0 — above all the total, where a 0 would be a false figure someone later
+ * empty cell, never 0 — above all the amounts, where a 0 would be a false figure someone later
  * adds up. Numeric columns carry numbers, so a spreadsheet can sum them.
+ *
+ * **Two amounts, as the table has them** (docs/09 F17): what the totals count of the grant for
+ * the publications shown, with how it was counted and whether it is an estimate, and the grant's
+ * own lifetime total. A began-after grant's counted 0 is a known zero, and "How counted" says why.
  *
  * **With a byte-order mark**, because Excel reads a CSV without one in the system's legacy code
  * page, and the investigators, organisations and agencies here are full of accented names.
  */
+import { isSpread } from '../aggregate/counting';
 import { agencyLabel, type ScopedGrant } from '../aggregate/funding';
-import type { FundingIndex } from '../contract/funding';
-import { CATEGORY_LABELS, grantTags } from '../format/funding';
+import { countingOf, type FundingIndex } from '../contract/funding';
+import { CATEGORY_LABELS, countedRuleText, grantTags } from '../format/funding';
 import { toCsv, type CsvColumn } from './csv';
 
 /** The columns, in order: identity, facts, amount and its provenance, then what the view counts. */
 export function grantCsvColumns(index: FundingIndex | null): CsvColumn<ScopedGrant>[] {
+  const reasons = index === null ? null : countedRuleText(countingOf(index));
   return [
     { header: 'Key', value: (entry) => entry.grant.key },
     { header: 'Number', value: (entry) => entry.grant.number },
@@ -45,7 +51,14 @@ export function grantCsvColumns(index: FundingIndex | null): CsvColumn<ScopedGra
       header: 'Tags',
       value: (entry) => grantTags(entry.grant, entry.miscellaneous).join('; ') || null,
     },
-    { header: 'Total (USD)', value: (entry) => entry.grant.amount_usd },
+    { header: 'Counted (USD)', value: (entry) => entry.counted.usd },
+    {
+      header: 'How counted',
+      value: (entry) =>
+        entry.counted.rule === null || reasons === null ? null : reasons[entry.counted.rule],
+    },
+    { header: 'Estimate', value: (entry) => (isSpread(entry.grant) ? 'yes' : null) },
+    { header: 'Lifetime total (USD)', value: (entry) => entry.grant.amount_usd },
     { header: 'Original amount', value: (entry) => entry.grant.amount_original },
     { header: 'Original currency', value: (entry) => entry.grant.currency },
     { header: 'Exchange rate year', value: (entry) => entry.grant.rate_year },

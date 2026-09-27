@@ -81,7 +81,10 @@ function manyAgencies(plainUnmatched = false): ExportDocument {
         number: `G${String(at_)}`,
         category: at_ === 0 ? 'other' : 'research',
         amount_usd: at_ < KNOWN ? (AGENCY_COUNT - at_) * 1_000_000 : null,
-        ...(at_ < KNOWN ? {} : { amount_source: null, fiscal_years: null }),
+        // One fiscal year inside the counting window, so each counts its whole amount.
+        ...(at_ < KNOWN
+          ? { fiscal_years: { '2019': (AGENCY_COUNT - at_) * 1_000_000 } }
+          : { amount_source: null, fiscal_years: null }),
       }),
     );
     listings.push(listing({ grant: key, agencies: [code] }));
@@ -130,7 +133,7 @@ describe('the ranked agencies with many agencies, most with no known amount', ()
     at('/funding', manyAgencies());
     const card = screen.getByRole('region', { name: 'Funding agencies' });
     expect(
-      within(card).getByRole('button', { name: /^AG00 \(Agency number 0\): \$18,000,000 known/ }),
+      within(card).getByRole('button', { name: /^AG00 \(Agency number 0\): \$18,000,000 counted/ }),
     ).toBeInTheDocument();
   });
 

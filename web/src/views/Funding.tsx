@@ -10,35 +10,44 @@
  * one scope, so no two can be computed from different grants. Nothing reads `funding.summary`,
  * which exists only as the cross-check (docs/06 §12.1).
  *
+ * **Every total is counted funding** (docs/09 F17): each grant's funding from 2006, when the
+ * resource began, through the year of the latest publication shown listing it — so a filter
+ * moves it — never its lifetime total, which the grants table keeps as a fact about the grant.
+ * The headline, the award-year chart, the agency and grant-type bars and the agency table all add
+ * up the same counted amounts, and the constants come from the export's `funding.counting`.
+ *
  * **Which marks are filters.** An agency's bar and an agency's segment apply the agency filter
- * (docs/06 §6); "Other" never does. The year bars are static: their year is a grant's first year
- * under the filter, and a click applying the publication-year filter would move the very first
- * years being drawn (§12.5 item 3). The grant types are static too: a type is not a dimension.
+ * (docs/06 §6); "Other" never does. The year bars are static: their year is the year a grant's
+ * funding was awarded, not a publication year, and a click applying the publication-year filter
+ * would move the very amounts being drawn (§12.5 item 3). The grant types are static too: a type
+ * is not a dimension.
  *
  * **The honesty rules are what the page is for** (§12.11). No wording of credit or cause: these
- * are grants the publications list. The total carries its definition, date and "not money spent
- * on this work"; an unknown amount is never $0 and its count stands beside every total; the
- * institution-wide position is stated wherever the total appears; a grant is counted once.
+ * are grants the publications list. The total carries its definition, its window, its date and
+ * "Not money spent on this work", and says how much of it is estimated; an unknown amount is never
+ * $0 and its count stands beside every total; a counted $0 says why; the institution-wide position
+ * is stated wherever the total appears; a grant is counted once.
  *
- * **An export with no funding data** — a 1.0 export after a rollback, or a 1.1 export written
- * before the pipeline had any (§12.10) — gets a plain notice, not empty charts that would read as
- * "no grants".
+ * **An export with no funding data** — a 1.0 export after a rollback, a block written before the
+ * pipeline had any, or a 1.1 export without the counting rule (§12.10) — gets a plain notice, not
+ * empty charts that would read as "no grants".
  */
 import { useId, useMemo, useState, type ReactNode } from 'react';
 import {
   GRANTS_BUCKET_YEARS,
   VALUE_BUCKET_YEARS,
+  countedByAgency,
+  countedOverTime,
+  countedRules,
   coverage,
-  cumulativeDollars,
   fundingFigures,
   fundingScope,
   grantKinds,
   keptUnmatched,
-  knownAmount,
+  knownCounted,
   newGrantsByAgency,
   otherKind,
   rankAgencies,
-  valueByAgency,
   type AgencyMeasure,
   type FundingFigures as Figures,
   type FundingScope,
@@ -49,8 +58,8 @@ import { ChartEmpty } from '../charts/ChartEmpty';
 import {
   AgencyStackChart,
   AgencyStackTable,
-  FundingOverTimeChart,
-  FundingOverTimeTable,
+  CountedOverTimeChart,
+  CountedOverTimeTable,
 } from '../charts/FundingOverTimeChart';
 import type { BarRow } from '../charts/HorizontalBarChart';
 import { ProportionCard } from '../charts/ProportionCard';
@@ -66,14 +75,14 @@ import { NlmAttribution } from '../components/NlmAttribution';
 import { PageFooter } from '../components/PageFooter';
 import { SiteHeader, type ViewSwitch } from '../components/SiteHeader';
 import { StalenessNotice } from '../components/StalenessNotice';
-import { fundingOf, type FundingIndex } from '../contract/funding';
-import type { ExportDocument, Work } from '../contract/types';
+import { countingOf, fundingOf, type FundingIndex } from '../contract/funding';
+import type { ExportDocument, FundingCounting, Work } from '../contract/types';
 import { buildLabels, describeFilter, filterSentence, fundingSentence } from '../filter/describe';
 import { DEFAULT_INSTITUTION_WIDE, grantSelection, type InstitutionWide } from '../filter/funding';
 import { applyFilter } from '../filter/predicate';
 import { EMPTY_FILTER, toggleString, type FilterState } from '../filter/state';
 import { formatDate } from '../format/date';
-import { CATEGORY_LABELS } from '../format/funding';
+import { CATEGORY_LABELS, countedRulesSentence, fundingLead } from '../format/funding';
 import { formatCount, formatUsd, formatUsdCompact, pluralize } from '../format/number';
 import { isPlainLeftClick } from '../routing/clicks';
 
@@ -119,7 +128,7 @@ export function Funding({
     <main className="page funding-page">
       <SiteHeader
         title={`${doc.resource.name} — funding impact`}
-        lead="The grants the publications here list as their funding, each with its lifetime award total as its funder records it. That total is what the award is worth, not money spent on the work that lists it."
+        lead={fundingLead(countingOf(funding), doc.resource.short_name)}
         current="funding"
         doc={doc}
         methodHref={methodHref}
@@ -291,6 +300,7 @@ function FundingImpact({
         doc={doc}
         works={works}
         scope={scope}
+        counting={countingOf(funding)}
         figures={figures}
         filter={filter}
         onFilter={onFilter}
@@ -325,6 +335,7 @@ function FundingImpact({
         scope={scope}
         onInstitutionWide={onInstitutionWide}
         definitionHref={(id) => `${methodHref}#${id}`}
+        resource={doc.resource.short_name}
       />
 
       {body}
@@ -379,6 +390,8 @@ interface FundingSectionsProps {
   /** The publications the filter selected, which the scope was read from. */
   works: readonly Work[];
   scope: FundingScope;
+  /** The export's counting rule (docs/09 F17), which every total here is counted by. */
+  counting: FundingCounting;
   figures: Figures;
   filter: FilterState;
   onFilter: (next: FilterState) => void;
@@ -399,6 +412,7 @@ function FundingSections({
   doc,
   works,
   scope,
+  counting,
   figures,
   filter,
   onFilter,
@@ -416,10 +430,10 @@ function FundingSections({
   const agencyTableHeading = useId();
   const period = doc.period;
 
-  const over = useMemo(() => cumulativeDollars(scope, period), [scope, period]);
+  const over = useMemo(() => countedOverTime(scope, period, counting), [scope, period, counting]);
   const valueStack = useMemo(
-    () => valueByAgency(scope, period, { bucketYears: VALUE_BUCKET_YEARS }),
-    [scope, period],
+    () => countedByAgency(scope, period, counting, { bucketYears: VALUE_BUCKET_YEARS }),
+    [scope, period, counting],
   );
   const grantStack = useMemo(
     () => newGrantsByAgency(scope, period, { bucketYears: singleYears ? 1 : GRANTS_BUCKET_YEARS }),
@@ -432,6 +446,7 @@ function FundingSections({
   const kinds = useMemo(() => grantKinds(scope), [scope]);
   const other = useMemo(() => otherKind(scope), [scope]);
   const cover = useMemo(() => coverage(scope), [scope]);
+  const rules = useMemo(() => countedRules(scope), [scope]);
   // How many of the unmatched numbers in view a recorded decision kept apart, not a failed match.
   const decided = useMemo(() => {
     const kept = keptUnmatched(works, scope.index);
@@ -444,27 +459,28 @@ function FundingSections({
   const unknownCount = figures.withoutAmount;
   const unmatched = figures.miscellaneous;
   const misc = scope.index?.miscellaneous ?? null;
+  const from = String(counting.from_year);
 
-  /* ---- §12.5 item 4: agencies ranked ---- */
+  /* ---- §12.5 item 4: agencies ranked, by counted funding or by grants ---- */
   const byValue = agencyMeasure === 'value';
   const drawable = byValue
-    ? ranking.items.filter((row) => knownAmount(row) !== null)
+    ? ranking.items.filter((row) => knownCounted(row) !== null)
     : ranking.items;
   const unknownOnly = ranking.items.length - drawable.length;
   const agencyRows: BarRow[] = drawable.slice(0, AGENCY_LIMIT).map((row) => {
-    const known = knownAmount(row);
+    const known = knownCounted(row);
     return {
       key: row.code,
       label: row.label,
       name: row.name,
-      value: byValue ? row.amountUsd : row.grants,
+      value: byValue ? row.countedUsd : row.grants,
       selected: filter.agency.includes(row.code),
       detail: byValue
         ? [
             { label: 'Grants', value: formatCount(row.grants) },
             { label: 'With no known amount', value: formatCount(row.withoutAmount) },
           ]
-        : [{ label: 'Known total', value: known === null ? 'not known' : formatUsd(known) }],
+        : [{ label: 'Counted', value: known === null ? 'not known' : formatUsd(known) }],
     };
   });
   // Miscellaneous is not an agency and is never ranked (docs/09 §4), but it is a filter value:
@@ -477,7 +493,7 @@ function FundingSections({
       selected: filter.agency.includes(ranking.miscellaneous.code),
       tag: 'unmatched numbers',
       colour: seriesColour(5),
-      detail: [{ label: 'Known total', value: 'not known' }],
+      detail: [{ label: 'Counted', value: 'not known' }],
     });
   }
   const agencyNotShown = drawable.length - Math.min(drawable.length, AGENCY_LIMIT);
@@ -498,25 +514,34 @@ function FundingSections({
 
   return (
     <>
-      {/* §12.5 item 3. */}
+      {/* §12.5 item 3: counted funding by the year awarded (F17). */}
       <h2>Grant funding over time</h2>
       <ChartCard
-        title={byAgencyOverTime ? 'Grant funding by agency over time' : 'Grant funding over time'}
+        title={
+          byAgencyOverTime
+            ? 'Grant funding by agency, by year awarded'
+            : 'Grant funding by year awarded'
+        }
         description={
           byAgencyOverTime
-            ? 'The known value of the grants first listed in each year, stacked by agency: the five largest, then everything else. Select an agency, in the chart or in the legend, to filter the page by it.'
-            : 'The known value of the grants first listed in each year, with the running total as a line on the right-hand axis. The bars are not filters.'
+            ? 'The counted funding of the grants listed, in the year it was awarded, stacked by agency: the five largest, then everything else. Select an agency, in the chart or in the legend, to filter the page by it.'
+            : 'The counted funding of the grants listed, in the year it was awarded, with the running total as a line on the right-hand axis. The bars are not filters.'
         }
         note={
           <>
-            Each grant’s full lifetime total enters in the year of the first publication shown that
-            lists it; this is a publication year, not an award year.{' '}
+            Each grant’s counted funding is shown in the year it was awarded: NIH’s by fiscal year
+            (October to September), other funders’ amounts spread evenly over the award’s years.
+            Amounts with no years, and grants that ended before {from}, enter in the year of the
+            first publication shown that lists them.{' '}
             {unknownCount === 0
               ? 'Every grant listed has a known amount.'
               : `${pluralize(unknownCount, 'grant')} with no known amount ${unknownCount === 1 ? 'is' : 'are'} not in this chart.`}
             {unmatched === 0
               ? ''
               : ` Nor ${unmatched === 1 ? 'is the unmatched number' : `are the ${formatCount(unmatched)} unmatched numbers`} in Miscellaneous, which ${unmatched === 1 ? 'has' : 'have'} no amount.`}
+            {over.beganAfter === 0
+              ? ''
+              : ` ${pluralize(over.beganAfter, 'grant')} began after the latest publication shown that lists ${over.beganAfter === 1 ? 'it, and counts' : 'them, and count'} nothing.`}
             {byAgencyOverTime && valueStack.series.some((series) => series.role === 'other')
               ? ' “Other” is everything outside the five largest agencies and is not a filter.'
               : ''}
@@ -548,7 +573,7 @@ function FundingSections({
                   onSelectAgency={toggleAgency}
                 />
               ) : (
-                <FundingOverTimeChart over={over} width={width} height={height} />
+                <CountedOverTimeChart over={over} width={width} height={height} />
               )
             }
           </ResponsiveChart>
@@ -557,7 +582,7 @@ function FundingSections({
           byAgencyOverTime ? (
             <AgencyStackTable stack={valueStack} measure="value" />
           ) : (
-            <FundingOverTimeTable over={over} />
+            <CountedOverTimeTable over={over} />
           )
         }
       />
@@ -568,12 +593,12 @@ function FundingSections({
         title="Funding agencies"
         chartLabel={
           byValue
-            ? 'Funding agencies by the known value of the grants listed, largest first'
+            ? 'Funding agencies by the grant funding counted, largest first'
             : 'Funding agencies by the number of grants listed, most first'
         }
         description={
           byValue
-            ? 'Agencies by the known value of the grants listed, largest first, each institute counted under its parent. Select an agency to filter the page by it.'
+            ? 'Agencies by the grant funding counted for the publications shown, largest first, each institute counted under its parent. Select an agency to filter the page by it.'
             : 'Agencies by the number of grants listed, most first, each institute counted under its parent. Select an agency to filter the page by it.'
         }
         note={
@@ -613,14 +638,14 @@ function FundingSections({
           ? {
               formatValue: formatUsd,
               markFormat: formatUsdCompact,
-              describeValue: (value: number) => `${formatUsd(value)} known`,
+              describeValue: (value: number) => `${formatUsd(value)} counted`,
             }
           : { unit: GRANT_UNIT })}
-        valueAxisLabel={byValue ? 'Known value of grants listed' : 'Grants listed'}
+        valueAxisLabel={byValue ? 'Grant funding counted' : 'Grants listed'}
         categoryHeader="Agency"
         tableCaption={
           byValue
-            ? 'Funding agencies by the known value of the grants listed, under the current filter.'
+            ? 'Funding agencies by the grant funding counted, under the current filter.'
             : 'Funding agencies by the number of grants listed, under the current filter.'
         }
         onSelect={(row) => {
@@ -682,12 +707,12 @@ function FundingSections({
         title="Grant types"
         chartLabel={
           kindMeasure === 'value'
-            ? 'Grant types by the known value of the grants listed'
+            ? 'Grant types by the grant funding counted'
             : 'Grant types by the number of grants listed'
         }
         description={
           kindMeasure === 'value'
-            ? 'The known value of the grants listed, by type of award.'
+            ? 'The grant funding counted for the publications shown, by type of award.'
             : 'The grants listed, by type of award.'
         }
         note={
@@ -718,11 +743,11 @@ function FundingSections({
           />
         }
         rows={kindDrawable.map((row) => {
-          const known = knownAmount(row);
+          const known = knownCounted(row);
           return {
             key: row.category,
             label: CATEGORY_LABELS[row.category],
-            value: kindMeasure === 'value' ? row.amountUsd : row.grants,
+            value: kindMeasure === 'value' ? row.countedUsd : row.grants,
             detail:
               kindMeasure === 'value'
                 ? [
@@ -731,7 +756,7 @@ function FundingSections({
                   ]
                 : [
                     {
-                      label: 'Known total',
+                      label: 'Counted',
                       value: known === null ? 'not known' : formatUsd(known),
                     },
                   ],
@@ -741,14 +766,14 @@ function FundingSections({
           ? {
               formatValue: formatUsd,
               markFormat: formatUsdCompact,
-              describeValue: (value: number) => `${formatUsd(value)} known`,
+              describeValue: (value: number) => `${formatUsd(value)} counted`,
             }
           : { unit: GRANT_UNIT })}
-        valueAxisLabel={kindMeasure === 'value' ? 'Known value of grants listed' : 'Grants listed'}
+        valueAxisLabel={kindMeasure === 'value' ? 'Grant funding counted' : 'Grants listed'}
         categoryHeader="Type"
         tableCaption={
           kindMeasure === 'value'
-            ? 'The known value of the grants listed, by type of award, under the current filter.'
+            ? 'The grant funding counted, by type of award, under the current filter.'
             : 'The grants listed, by type of award, under the current filter.'
         }
       />
@@ -847,15 +872,14 @@ function FundingSections({
           )}
         </li>
         <li>{institutionWideSentence(figures.institutionWide, overridden)}</li>
-        <li>
-          {cover.grants.startsBeforeFy1985 === 0
-            ? 'No grant listed began before FY1985, where NIH’s records of amounts begin.'
-            : `${pluralize(cover.grants.startsBeforeFy1985, 'grant')} began before FY1985, where NIH’s records of amounts begin, so ${cover.grants.startsBeforeFy1985 === 1 ? 'its total leaves' : 'their totals leave'} out the years before it.`}
-        </li>
+        {/* How each grant with a known amount is counted (F17). It replaces the FY1985 sentence:
+            nothing before 2006 is counted, so where NIH's amounts begin no longer moves a total;
+            the grant page keeps that caveat. */}
+        <li>{countedRulesSentence(rules, cover.grants.estimated, counting)}</li>
         <li>
           {cover.grants.active === 0
             ? 'None of the grants listed is still active.'
-            : `${pluralize(cover.grants.active, 'grant')} ${cover.grants.active === 1 ? 'is' : 'are'} still active, so ${cover.grants.active === 1 ? 'its total is' : 'their totals are'} still growing.`}
+            : `${pluralize(cover.grants.active, 'grant')} ${cover.grants.active === 1 ? 'is still active: its lifetime total still grows, but what is counted of it stops at the latest publication listing it' : 'are still active: their lifetime totals still grow, but what is counted of them stops at the latest publication listing each'}.`}
         </li>
         {cover.grants.unconverted === 0 ? null : (
           <li>

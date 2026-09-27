@@ -5,8 +5,9 @@
  * filter across a real History API in both directions, the browser's own back and forward
  * retracing the switches, the `404.html` fallback resolving `/funding` and an agency or grant
  * address from cold, a chart mark applying a filter that the other view then honours, the grants
- * CSV as the browser actually saves it, and axe against resolved colours in both themes — the
- * contrast half of the check jsdom cannot make for the funding components.
+ * CSV as the browser actually saves it, the counted headline and its award-year chart as a built
+ * page draws them (docs/09 F17), and axe against resolved colours in both themes — the contrast
+ * half of the check jsdom cannot make for the funding components.
  *
  * Nothing is hard-coded: the year, the agency, the grant, the publication and the counts come from
  * whatever export the preview server serves — `samples/export/` by default, the real one under
@@ -28,7 +29,8 @@ interface Listing {
 }
 
 interface ExportDocument {
-  period: { first_year: number };
+  period: { first_year: number; last_year: number };
+  resource: { short_name: string };
   works: { id: string; title: string; year: number; grants?: Listing[] }[];
   /** Absent in a 1.0 export; its `version` is null in a 1.1 export with no funding data. */
   funding?: {
@@ -48,8 +50,19 @@ interface ExportDocument {
       scope: string;
       fiscal_years: Record<string, number | null> | null;
     }[];
+    /** Contract 1.2's counting rule and counted totals (docs/09 F17). */
+    counting?: { from_year: number };
+    summary?: { counted_usd: number; counted_usd_institution_wide: number };
   } | null;
 }
+
+/** Whole US dollars, as the app writes them: "$5,139,499,698". */
+const usd = (value: number): string =>
+  new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(value);
 
 async function readExport(page: Page): Promise<ExportDocument> {
   const response = await page.request.get('/data/uwpr_publications.json');
@@ -350,6 +363,45 @@ test.describe('the Funding impact view', () => {
     );
   });
 
+  test('the headline is the grant funding counted, and the award-year chart ends at it', async ({
+    page,
+  }) => {
+    const doc = await readExport(page);
+    test.skip(!hasFunding(doc), 'The served export carries no funding data.');
+    const counted = doc.funding?.summary?.counted_usd ?? 0;
+    const wide = doc.funding?.summary?.counted_usd_institution_wide ?? 0;
+    const from = doc.funding?.counting?.from_year ?? 2006;
+
+    await page.goto('/funding');
+    const figures = page.getByRole('list', { name: 'Funding figures' });
+    await expect(figures.getByText(usd(counted), { exact: true })).toBeVisible();
+    await expect(figures).toContainText(
+      `from ${String(from)}, when ${doc.resource.short_name} began, through the year of the latest publication listing each grant. Not money spent on this work.`,
+    );
+    const card = page.getByRole('region', { name: 'Grant funding by year awarded' });
+    await expect(
+      card.getByRole('img', {
+        name: new RegExp(
+          `^${String(doc.period.last_year)}, a partial year: .*, ${escapeRegExp(usd(counted))} cumulative\\.$`,
+        ),
+      }),
+    ).toHaveCount(1);
+
+    await page.getByRole('button', { name: 'Exclude' }).click();
+    await expect(figures.getByText(usd(counted - wide), { exact: true })).toBeVisible();
+  });
+
+  test('the award-year chart starts at 2006 under a Year filter', async ({ page }) => {
+    const doc = await readExport(page);
+    test.skip(!hasFunding(doc), 'The served export carries no funding data.');
+    const from = doc.funding?.counting?.from_year ?? 2006;
+    await page.goto(`/funding?year=${String(doc.period.last_year - 1)}`);
+    const bars = page
+      .getByRole('region', { name: 'Grant funding by year awarded' })
+      .getByRole('img', { name: /^\d{4}(, a partial year)?:/ });
+    await expect(bars.first()).toHaveAccessibleName(new RegExp(`^${String(from)}:`));
+  });
+
   test('the grants CSV holds exactly the rows the table shows', async ({ page }) => {
     const doc = await readExport(page);
     test.skip(!hasFunding(doc), 'The served export carries no funding data.');
@@ -377,6 +429,17 @@ test.describe('the Funding impact view', () => {
     const number = header?.indexOf('Number') ?? -1;
     expect(number).toBeGreaterThanOrEqual(0);
     expect(rows.map((row) => row[number])).toEqual(numbers);
+    // Both amounts, as the table has them (docs/09 F17): counted, how, whether an estimate, and
+    // the lifetime total; an unknown one an empty cell, never 0.
+    for (const column of ['Counted (USD)', 'How counted', 'Estimate', 'Lifetime total (USD)']) {
+      expect(header).toContain(column);
+    }
+    expect(header).not.toContain('Total (USD)');
+    const counted = header?.indexOf('Counted (USD)') ?? -1;
+    const how = header?.indexOf('How counted') ?? -1;
+    for (const row of rows) {
+      expect(row[counted] === '').toBe(row[how] === '');
+    }
   });
 
   test('an agency opens in the app and goes back to the funding view, filter and all', async ({
@@ -586,7 +649,7 @@ test.describe('the Funding impact view', () => {
         );
         await page.getByRole('button', { name: 'By agency' }).click();
         await expect(
-          page.getByRole('region', { name: 'Grant funding by agency over time' }),
+          page.getByRole('region', { name: 'Grant funding by agency, by year awarded' }),
         ).toBeVisible();
         // The selected state of a bar, a segment and a legend entry, once a filter is applied.
         await page

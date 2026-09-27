@@ -33,8 +33,8 @@ export type {
   FundingSummary,
   FundingYear,
   // Contract 1.2's counting (docs/09 F17, §7.4): the rule's constants, each grant's rule and the
-  // counted dollars by award year. An export older than 1.2 has no `funding.counting`; read it
-  // through `countingOf` in `contract/funding.ts`.
+  // counted dollars by award year. An export older than 1.2 has no `funding.counting`, and
+  // `fundingOf` reads it as having no funding data; `countingOf` reads the rule off an index.
   FundingCounting,
   CountedRule,
   CountedYear,

@@ -39,7 +39,7 @@ const row = (name: string) =>
     ?.closest('tr') as HTMLElement;
 
 describe('the normal state', () => {
-  it('ranks each grant’s own agency by known total, Miscellaneous last and apart', () => {
+  it('ranks each grant’s own agency by counted funding, Miscellaneous last and apart', () => {
     show();
     expect(agencies()).toEqual([
       'NSF',
@@ -48,7 +48,7 @@ describe('the normal state', () => {
       'SAMPLE Research Foundation',
       'Miscellaneous unmatched numbers',
     ]);
-    expect(screen.getByRole('columnheader', { name: 'Known total' })).toHaveAttribute(
+    expect(screen.getByRole('columnheader', { name: 'Counted' })).toHaveAttribute(
       'aria-sort',
       'descending',
     );
@@ -63,12 +63,16 @@ describe('the normal state', () => {
     );
     expect(nigms).toHaveTextContent('United States');
     const nsf = row('NSF');
-    // GRFP and the NSF project: $4,000,000 known, one without an amount, two publications.
+    // GRFP and the NSF project: $4,000,000 counted, one without an amount, two publications.
     expect(
       within(nsf)
         .getAllByRole('cell')
         .map((cell) => cell.textContent),
     ).toEqual(['—', 'United States', '2', '$4,000,000', '1', '2']);
+    // What is counted, not the lifetime total: the foundation's $750,000 award counts $600,000.
+    const foundation = row('SAMPLE Research Foundation');
+    expect(foundation).toHaveTextContent('$600,000');
+    expect(foundation).not.toHaveTextContent('$750,000');
   });
 
   it('gives an agency known by a short name its full name beneath it (R1b)', () => {
@@ -86,7 +90,7 @@ describe('the normal state', () => {
   it('has a caption, and a sortable header for every column', () => {
     show();
     expect(table()).toHaveAccessibleName(
-      /each grant under its own agency.*Unknown totals are listed last.*unmatched numbers are kept apart in the last row/,
+      /each grant under its own agency.*Counted is each agency’s grant funding counted for the publications shown; unknown totals are listed last.*unmatched numbers are kept apart in the last row/,
     );
     const headers = within(table()).getAllByRole('columnheader');
     expect(headers).toHaveLength(7);
@@ -134,8 +138,8 @@ describe('sorting', () => {
     expect(agencies()[3]).toBe('NSF');
     expect(row('NSF')).toHaveTextContent('not known');
     expect(row('NSF').textContent).not.toMatch(/\$0\b/);
-    await userEvent.click(screen.getByRole('button', { name: 'Known total' }));
-    expect(screen.getByRole('columnheader', { name: 'Known total' })).toHaveAttribute(
+    await userEvent.click(screen.getByRole('button', { name: 'Counted' }));
+    expect(screen.getByRole('columnheader', { name: 'Counted' })).toHaveAttribute(
       'aria-sort',
       'ascending',
     );

@@ -1,9 +1,14 @@
 /**
  * Every grant in view, as a table (docs/09 §12.5 item 6): number, title, agency, principal
- * investigators, institution, years, type and tags, total, first listed and publications.
- * Reused by the Funding impact view and the agency page, each passing its own scope.
+ * investigators, institution, years, type and tags, counted, lifetime total, first listed and
+ * publications. Reused by the Funding impact view and the agency page, each passing its own scope.
  *
- * - **Sorted by total, largest first, with unknown amounts last in both directions**
+ * - **Two amounts** (docs/09 F17). "Counted" is what the totals count of the grant for the
+ *   publications shown — from 2006 through the latest of them listing it — so a filter moves it;
+ *   an estimate (an amount spread evenly over its years) is tagged, and a grant that began after
+ *   the latest publication listing it shows $0 with that reason. "Lifetime total" is the grant's
+ *   own, whatever the filter.
+ * - **Sorted by counted funding, largest first, with unknown amounts last in both directions**
  *   (`aggregate/fundingTables.ts`), so "not known" never reads as the smallest amount; any column
  *   header re-sorts. The sort and the search are this table's own state, out of the URL (§12.4).
  * - **The search narrows this table only.** It never touches the filter, the publications or a
@@ -27,6 +32,7 @@
  * region; the filter bar is the page's only one.
  */
 import { Fragment, useDeferredValue, useId, useMemo, useState } from 'react';
+import { isSpread } from '../aggregate/counting';
 import type { FundingScope, ScopedGrant } from '../aggregate/funding';
 import {
   DEFAULT_GRANT_SORT,
@@ -37,18 +43,20 @@ import {
   type GrantSortKey,
 } from '../aggregate/fundingTables';
 import { agencyLabel } from '../aggregate/funding';
-import type { FundingIndex } from '../contract/funding';
+import { countingOf, type FundingIndex } from '../contract/funding';
+import type { CountedRule } from '../contract/types';
 import { CSV_MEDIA_TYPE } from '../download/csv';
 import { grantsCsv } from '../download/grants';
 import {
   CATEGORY_LABELS,
+  countedRuleText,
   grantAmount,
   grantTags,
   grantYears,
   investigatorNames,
   originalAmount,
 } from '../format/funding';
-import { formatCount, pluralize } from '../format/number';
+import { formatCount, formatUsd, pluralize } from '../format/number';
 import { DownloadButton } from './DownloadButton';
 import { AgencyLink, GrantLink, type FundingLinks } from './FundingLinks';
 import { SortHeader } from './SortHeader';
@@ -65,12 +73,20 @@ export interface GrantsTableProps {
   limit?: number;
   /** What a row is, in the count and the button: an unmatched number on Miscellaneous's page. */
   noun?: { one: string; many: string };
+  /**
+   * What the counted amount is counted over, beneath the "Counted" header: "for the publications
+   * shown" by default, since a filter moves it.
+   */
+  countedNote?: string;
 }
 
 /** The rows drawn at first. The real export's 755 made a page no reader could get past. */
 export const GRANT_ROW_LIMIT = 50;
 
 const GRANT_NOUN = { one: 'grant', many: 'grants' };
+
+/** The counted column's note by default: a filter moves what it counts. */
+export const COUNTED_NOTE = 'for the publications shown';
 
 const COLUMNS: {
   key: GrantSortKey | null;
@@ -84,12 +100,43 @@ const COLUMNS: {
   { key: null, label: 'Institution' },
   { key: null, label: 'Years' },
   { key: null, label: 'Type' },
-  { key: 'total', label: 'Total', numeric: true },
+  { key: 'counted', label: 'Counted', numeric: true },
+  { key: 'lifetime', label: 'Lifetime total', numeric: true },
   { key: 'first', label: 'First listed', numeric: true },
   { key: 'publications', label: 'Publications', numeric: true },
 ];
 
 const None = ({ children }: { children: string }) => <span className="cell-none">{children}</span>;
+
+/**
+ * A grant's counted amount as its cell shows it (docs/09 F17, §12.11 rule 3): "not known", never
+ * $0, for an unknown amount; "$0" with its reason for a grant that began after the latest
+ * publication listing it; an "estimate" tag on an amount spread evenly over its years.
+ */
+function CountedCell({
+  entry,
+  reasons,
+}: {
+  entry: ScopedGrant;
+  reasons: Readonly<Record<CountedRule, string>> | null;
+}) {
+  const { usd, rule } = entry.counted;
+  if (usd === null) return <None>not known</None>;
+  return (
+    <>
+      {formatUsd(usd)}
+      {isSpread(entry.grant) ? (
+        <>
+          {' '}
+          <span className="badge">estimate</span>
+        </>
+      ) : null}
+      {rule === 'began_after' && reasons !== null ? (
+        <span className="cell-note">{reasons.began_after}</span>
+      ) : null}
+    </>
+  );
+}
 
 /**
  * A number as written, free to break after each "/" and ":", where a browser otherwise will not:
@@ -114,10 +161,12 @@ function GrantRow({
   entry,
   index,
   links,
+  reasons,
 }: {
   entry: ScopedGrant;
   index: FundingIndex;
   links: FundingLinks;
+  reasons: Readonly<Record<CountedRule, string>>;
 }) {
   const grant = entry.grant;
   const amount = grantAmount(grant);
@@ -153,6 +202,9 @@ function GrantRow({
         ))}
       </td>
       <td className="numeric">
+        <CountedCell entry={entry} reasons={reasons} />
+      </td>
+      <td className="numeric">
         {amount ?? <None>not known</None>}
         {original === null ? null : (
           // Intl joins a currency code to its figure with a no-break space, so "CLP 4,500,000,000"
@@ -173,6 +225,7 @@ export function GrantsTable({
   caption = 'Every grant listed on the publications shown',
   limit = GRANT_ROW_LIMIT,
   noun = GRANT_NOUN,
+  countedNote = COUNTED_NOTE,
 }: GrantsTableProps) {
   const searchId = useId();
   const noteId = useId();
@@ -194,6 +247,7 @@ export function GrantsTable({
     return <p className="chart-card-description">No grant is listed on the publications shown.</p>;
   }
 
+  const reasons = countedRuleText(countingOf(index));
   const counted = (n: number) => pluralize(n, noun.one, noun.many);
   const all = scope.grants.length;
   const long = rows.length > limit;
@@ -253,7 +307,10 @@ export function GrantsTable({
               {cut
                 ? `: the first ${formatCount(shown.length)} of ${formatCount(rows.length)}, in the order chosen`
                 : ''}
-              . Grants with no known amount are listed last, whichever way the table is sorted.
+              . Counted is the grant funding the totals count, {countedNote}: from{' '}
+              {String(countingOf(index).from_year)} through the year of the latest of them listing
+              the grant; the lifetime total is the grant’s own. Grants with no known amount are
+              listed last, whichever way the table is sorted.
             </caption>
             <thead>
               <tr>
@@ -266,6 +323,7 @@ export function GrantsTable({
                     <SortHeader
                       key={column.label}
                       label={column.label}
+                      {...(column.key === 'counted' ? { note: countedNote } : {})}
                       direction={sort.key === column.key ? sort.direction : null}
                       numeric={column.numeric ?? false}
                       onSort={() => {
@@ -279,7 +337,13 @@ export function GrantsTable({
             </thead>
             <tbody>
               {shown.map((entry) => (
-                <GrantRow key={entry.grant.key} entry={entry} index={index} links={links} />
+                <GrantRow
+                  key={entry.grant.key}
+                  entry={entry}
+                  index={index}
+                  links={links}
+                  reasons={reasons}
+                />
               ))}
             </tbody>
           </table>

@@ -8,16 +8,17 @@
  * way back cross the URL.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { cleanup, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Router } from '../../src/App';
 import { fundingOf } from '../../src/contract/funding';
-import type { ExportDocument } from '../../src/contract/types';
+import type { ExportDocument, Funding } from '../../src/contract/types';
 import { formatDate } from '../../src/format/date';
 import { Agency } from '../../src/views/Agency';
 import { Grant } from '../../src/views/Grant';
 import { expectNoAxeViolations } from '../support/axe';
 import { sampleExport } from '../support/fixture';
+import { legacyDocument } from '../support/funding';
 
 /**
  * The sample as an export with no funding data, which is what the pipeline writes while the store
@@ -95,6 +96,20 @@ describe('the funding view', () => {
     expect(screen.getByText(/not money spent on the work that lists it/)).toBeInTheDocument();
   });
 
+  it('leads with the counting rule only when the export states one (docs/09 F17)', () => {
+    at('/funding');
+    expect(screen.queryByText(/The totals count each grant’s funding from/)).toBeNull();
+    cleanup();
+    at('/funding', null, withFunding());
+    expect(
+      screen.getByText(
+        new RegExp(
+          `The totals count each grant’s funding from ${String(withFunding().funding.counting.from_year)}, when ${doc.resource.short_name} began, through the year of the latest publication listing it`,
+        ),
+      ),
+    ).toBeInTheDocument();
+  });
+
   it('says plainly that this export has no funding data, rather than drawing empty charts', () => {
     at('/funding');
     const state = screen.getByRole('region', { name: 'No funding data in this export' });
@@ -128,6 +143,69 @@ describe('the funding view', () => {
     const { container } = at(`/funding?year=${year}`);
     await expectNoAxeViolations(container);
   }, 30_000);
+});
+
+/**
+ * The sample as a 1.1 export, as after a rollback of the data to one older than the app: its
+ * funding and every work's listings as they were, and no `funding.counting` (docs/09 §12.10).
+ */
+const withoutCounting = (): ExportDocument => {
+  const sample = sampleExport();
+  const funding: Partial<Funding> = { ...sample.funding };
+  delete funding.counting;
+  return { ...sample, schema_version: '1.1', funding: funding as Funding };
+};
+
+/*
+ * docs/09 §12.10's three shapes of "no funding data": a 1.0 export with no block, a block with a
+ * null version, and a 1.1 export without the counting rule every total is counted by. Each is one
+ * state: the view's notice, the publications view's agency and grant filters matching nothing,
+ * and each publication without its Funding section — and nothing throws.
+ */
+describe.each([
+  ['a 1.0 export, with no funding block', legacyDocument],
+  ['a block whose version is null', withoutFunding],
+  ['a 1.1 export, without funding.counting', withoutCounting],
+])('no funding data: %s', (_, build) => {
+  const shape = build();
+  const sample = sampleExport();
+  // A grant and an agency the sample does list, so matching nothing is the state's doing.
+  const listed = sample.works.find((work) => work.grants.length > 0)!;
+  const [listing] = listed.grants;
+  const grantKey = listing!.grant;
+  const agencyCode = listing!.agencies[0];
+
+  it('reads as no funding data', () => {
+    expect(fundingOf(shape)).toBeNull();
+  });
+
+  it('shows the funding view’s notice, and draws nothing', async () => {
+    const { container } = at('/funding', null, shape);
+    expect(
+      screen.getByRole('region', { name: 'No funding data in this export' }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole('list', { name: 'Funding figures' })).toBeNull();
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    await expectNoAxeViolations(container);
+  }, 30_000);
+
+  it('switches the publications view’s agency and grant filters off: they match nothing', () => {
+    at(`/?agency=${encodeURIComponent(agencyCode)}`, null, shape);
+    expect(
+      screen.getAllByText(`0 publications matching Funding agency: ${agencyCode}.`),
+    ).not.toHaveLength(0);
+    cleanup();
+    at(`/?grant=${encodeURIComponent(grantKey)}`, null, shape);
+    expect(screen.getAllByText(`0 publications matching Grant: ${grantKey}.`)).not.toHaveLength(0);
+  });
+
+  it('leaves each publication’s Funding section out', () => {
+    at(`/publication/${listed.id}`, null, shape);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(listed.title);
+    expect(
+      screen.queryByRole('heading', { name: 'Funding listed in this publication' }),
+    ).toBeNull();
+  });
 });
 
 describe('the switch between the views (docs/09; docs/06 §9)', () => {

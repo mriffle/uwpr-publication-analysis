@@ -6,6 +6,13 @@
 import { describe, expect, it } from 'vitest';
 import {
   CATEGORY_LABELS,
+  COUNTED_LABEL,
+  countInWords,
+  countedDefinition,
+  countedRuleText,
+  countedRulesSentence,
+  estimatedLine,
+  fundingLead,
   grantAmount,
   grantTags,
   grantYears,
@@ -13,8 +20,9 @@ import {
   originalAmount,
   unknownAmountReason,
 } from '../../src/format/funding';
+import { COUNTED_RULES } from '../../src/aggregate/counting';
 import { GRANT_CATEGORIES } from '../../src/aggregate/funding';
-import { grant, unresolvedGrant } from '../support/funding';
+import { counting, grant, unresolvedGrant } from '../support/funding';
 
 describe('grantTags', () => {
   it('names every tag in words, in a fixed order', () => {
@@ -122,5 +130,90 @@ describe('names and categories', () => {
 
   it('labels every category the contract has', () => {
     for (const category of GRANT_CATEGORIES) expect(CATEGORY_LABELS[category]).toMatch(/^[A-Z]/);
+  });
+});
+
+/*
+ * The counting register (docs/09 F17): the headline's name and definition, the estimated line,
+ * the page's lead and each rule's reason, every year and count taken from `funding.counting`.
+ */
+describe('what the totals count, in words', () => {
+  it('names the headline, and defines it from the export’s first year', () => {
+    expect(COUNTED_LABEL).toBe('Grant funding counted');
+    expect(countedDefinition(counting(), 'UWPR')).toBe(
+      'The funding of the grants listed on these publications, from 2006, when UWPR began, through the year of the latest publication listing each grant. Not money spent on this work.',
+    );
+    expect(countedDefinition(counting({ from_year: 2004 }), 'X')).toMatch(
+      /from 2004, when X began,/,
+    );
+  });
+
+  it('states the estimated part, and nothing when none is', () => {
+    expect(estimatedLine(418_540_466)).toBe(
+      '$418,540,466 of it is estimated: other funders’ awards spread evenly over their years.',
+    );
+    expect(estimatedLine(0)).toBeNull();
+  });
+
+  it('leads the page with the rule, or without one when there is no funding data', () => {
+    expect(fundingLead(counting(), 'UWPR')).toBe(
+      'The grants the publications here list as their funding. The totals count each grant’s funding from 2006, when UWPR began, through the year of the latest publication listing it: not money spent on the work that lists it.',
+    );
+    expect(fundingLead(null, 'UWPR')).toMatch(/not money spent on the work that lists it\.$/);
+    expect(fundingLead(null, 'UWPR')).not.toMatch(/2006/);
+  });
+
+  it('gives each rule its reason, the year and the count of years the export’s', () => {
+    expect(countedRuleText(counting())).toEqual({
+      window: 'from 2006 to its latest listing publication',
+      began_after: 'began after its latest listing publication: nothing counted',
+      full_amount: 'an instrument grant: counted in full',
+      ended_before: 'ended before 2006: its last five years counted',
+      undated: 'no yearly breakdown: counted whole',
+    });
+    const other = countedRuleText(
+      counting({ from_year: 2010, last_years: 1, full_amount_categories: ['contract', 'center'] }),
+    );
+    expect(other.window).toBe('from 2010 to its latest listing publication');
+    expect(other.ended_before).toBe('ended before 2010: its last year counted');
+    expect(other.full_amount).toBe('a contract or centre or programme grant: counted in full');
+    expect(Object.keys(countedRuleText(counting())).sort()).toEqual([...COUNTED_RULES].sort());
+  });
+
+  it('writes a small count in words and a large one in digits', () => {
+    expect(countInWords(5)).toBe('five');
+    expect(countInWords(0)).toBe('zero');
+    expect(countInWords(12)).toBe('12');
+    expect(countInWords(1234)).toBe('1,234');
+  });
+
+  it('says how the grants with a known amount are counted, rule by rule, and the estimates', () => {
+    expect(
+      countedRulesSentence(
+        { full_amount: 15, undated: 10, ended_before: 6, began_after: 5, window: 581 },
+        125,
+        counting(),
+      ),
+    ).toBe(
+      'Of the 617 grants with a known amount, 581 are counted from 2006 through the year of the latest publication listing each; 15 are instrument grants, counted in full; 6 ended before 2006 and count their last five years; 10 have no yearly breakdown and count whole; 5 began after the latest publication listing them and count nothing. 125 of these amounts are estimates: other funders’ awards spread evenly over their years.',
+    );
+    expect(
+      countedRulesSentence(
+        { full_amount: 1, undated: 1, ended_before: 1, began_after: 1, window: 1 },
+        1,
+        counting(),
+      ),
+    ).toBe(
+      'Of the 5 grants with a known amount, 1 is counted from 2006 through the year of the latest publication listing it; 1 is an instrument grant, counted in full; 1 ended before 2006 and counts its last five years; 1 has no yearly breakdown and counts whole; 1 began after the latest publication listing it and counts nothing. 1 of these amounts is an estimate: other funders’ awards spread evenly over their years.',
+    );
+    expect(countedRulesSentence({ window: 1 }, 0, counting())).toBe(
+      'The one grant with a known amount is counted from 2006 through the year of the latest publication listing it.',
+    );
+    expect(countedRulesSentence({ began_after: 1 }, 1, counting())).toBe(
+      'The one grant with a known amount began after the latest publication listing it and counts nothing. Its amount is an estimate: other funders’ awards spread evenly over their years.',
+    );
+    expect(countedRulesSentence({}, 0, counting())).toBe(
+      'No grant listed has a known amount, so none is counted.',
+    );
   });
 });

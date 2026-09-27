@@ -63,6 +63,14 @@ export function yearly(grant: Grant): Map<number, number> | null {
   return null;
 }
 
+/**
+ * Whether the grant's yearly breakdown is the pipeline's even spread (`spread_years`) rather than
+ * its funder's own years: its counted amount is then an estimate, and is marked as one wherever it
+ * is shown. Not in the Python module; it reads the same choice `yearly` makes.
+ */
+export const isSpread = (grant: Grant): boolean =>
+  grant.amount_usd !== null && !nonEmpty(grant.fiscal_years) && nonEmpty(grant.spread_years);
+
 /** The sum of the years' dollars for which `keep` holds. */
 function sumOf(years: ReadonlyMap<number, number>, keep: (year: number) => boolean): number {
   let total = 0;

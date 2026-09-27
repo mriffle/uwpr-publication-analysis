@@ -19,9 +19,14 @@ export interface SortHeaderProps {
   onSort: () => void;
   /** Right-aligned, like the numbers beneath it. */
   numeric?: boolean;
+  /**
+   * A note beneath the button, part of the header's name: what the column's values depend on
+   * ("for the publications shown"). The button stays named by the label alone.
+   */
+  note?: string;
 }
 
-export function SortHeader({ label, direction, onSort, numeric = false }: SortHeaderProps) {
+export function SortHeader({ label, direction, onSort, numeric = false, note }: SortHeaderProps) {
   return (
     <th
       scope="col"
@@ -36,6 +41,12 @@ export function SortHeader({ label, direction, onSort, numeric = false }: SortHe
           {direction === null ? '' : direction === 'asc' ? ' ↑' : ' ↓'}
         </span>
       </button>
+      {note === undefined ? null : (
+        <>
+          {' '}
+          <span className="cell-note">{note}</span>
+        </>
+      )}
     </th>
   );
 }

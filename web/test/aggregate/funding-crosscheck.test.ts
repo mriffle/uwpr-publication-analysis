@@ -25,12 +25,16 @@ import {
   newGrantsByAgency,
   noFundingSummary,
   summarizeFunding,
-  valueByAgency,
 } from '../../src/aggregate/funding';
 import { countingOf, fundingOf } from '../../src/contract/funding';
 import type { FundingSummary } from '../../src/contract/types';
 import { sampleExport } from '../support/fixture';
-import { fundingDocument, legacyDocument, noFundingBlock } from '../support/funding';
+import {
+  fundingDocument,
+  legacyDocument,
+  noFundingBlock,
+  uncountedBlock,
+} from '../support/funding';
 
 const doc = sampleExport();
 const index = fundingOf(doc);
@@ -96,10 +100,6 @@ describe('the series the view draws agree with the summary', () => {
       expect(point.count, String(point.year)).toBe(entry?.amount_usd ?? 0);
       expect(point.grants, String(point.year)).toBe(entry?.grants ?? 0);
     }
-  });
-
-  it('stacks value by agency to the headline total', () => {
-    expect(valueByAgency(scope, doc.period).total).toBe(summary.amount_usd);
   });
 
   it('stacks new grants by agency to every grant, Miscellaneous included', () => {
@@ -217,5 +217,12 @@ describe('an export with no funding data', () => {
   it('returns the summary of none for a 1.0 export with no funding block', () => {
     const legacy = legacyDocument();
     expect(summarizeFunding(legacy.works, fundingOf(legacy))).toEqual(noFundingSummary());
+  });
+
+  it('returns the summary of none for a 1.1 export, which states no counting rule', () => {
+    const old = fundingDocument({ funding: uncountedBlock() });
+    expect(fundingOf(old)).toBeNull();
+    expect(summarizeFunding(old.works, fundingOf(old))).toEqual(noFundingSummary());
+    expect(firstYearDisagreements(old.works, fundingOf(old))).toEqual([]);
   });
 });

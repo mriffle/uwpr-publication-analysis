@@ -14,6 +14,7 @@ import {
   awardYears,
   counted,
   countedYears,
+  isSpread,
   yearly,
   type Counted,
 } from '../../src/aggregate/counting';
@@ -250,6 +251,20 @@ describe('the yearly breakdown: fiscal years, else the exported spread', () => {
     delete legacy.spread_years;
     expect(yearly(legacy as Grant)).toBeNull();
     expect(count(legacy as Grant, 2019, 2019)).toEqual({ usd: 9, rule: 'undated' });
+  });
+});
+
+describe('an estimate: the exported spread, not the funder’s own years', () => {
+  it('is a known amount whose breakdown is its spread_years', () => {
+    const spread = row({ amount_usd: 300, spread_years: byYear({ 2019: 150, 2020: 150 }) });
+    expect(isSpread(spread)).toBe(true);
+    expect(isSpread(row({ amount_usd: 300, fiscal_years: byYear({ 2019: 300 }) }))).toBe(false);
+    // Fiscal years win, as `yearly` reads them; an empty one counts as absent.
+    expect(isSpread({ ...spread, fiscal_years: byYear({ 2019: 300 }) })).toBe(false);
+    expect(isSpread({ ...spread, fiscal_years: {} })).toBe(true);
+    expect(isSpread(row({ amount_usd: 300 }))).toBe(false);
+    expect(isSpread({ ...spread, amount_usd: null })).toBe(false);
+    expect(isSpread({ ...spread, spread_years: {} })).toBe(false);
   });
 });
 

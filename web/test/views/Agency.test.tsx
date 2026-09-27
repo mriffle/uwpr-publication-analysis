@@ -226,7 +226,7 @@ describe.runIf(isSampleExport)('an agency in the sample (NSF)', () => {
     // Each figure links to its definition.
     expect(
       within(figures).getByRole('link', {
-        name: 'Total value of grants listed: how this figure is defined',
+        name: 'Grant funding counted: how this figure is defined',
       }),
     ).toHaveAttribute('href', '/method#funding-total');
   });
@@ -346,7 +346,7 @@ describe.runIf(isSampleExport)('Miscellaneous', () => {
     expect(screen.getByText(/^Not a funding agency/)).toBeInTheDocument();
     expect(screen.queryByText('Part of', { selector: 'dt' })).not.toBeInTheDocument();
     // No figure a grant would have: no total, no over-time chart.
-    expect(screen.queryByText('Total value of grants listed')).not.toBeInTheDocument();
+    expect(screen.queryByText('Grant funding counted')).not.toBeInTheDocument();
     expect(screen.queryByRole('region', { name: 'Grant funding over time' })).toBeNull();
   });
 

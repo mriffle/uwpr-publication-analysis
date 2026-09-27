@@ -10,11 +10,15 @@
  *
  * Every ordering is total: a tie falls back to the grant's key (or, for agencies, to the
  * ranking's own order), so rows never reshuffle between renders.
+ *
+ * **Both tables sort by counted funding by default** (docs/09 F17): the scoped entries' counted
+ * amounts, which a filter moves, as the headline's does. A grant's lifetime total is its own
+ * column, sortable too.
  */
 import type { FundingIndex } from '../contract/funding';
 import { countryName } from '../format/country';
 import type { SortDirection } from './explorer';
-import { agencyLabel, knownAmount, type AgencyRow, type ScopedGrant } from './funding';
+import { agencyLabel, knownCounted, type AgencyRow, type ScopedGrant } from './funding';
 
 /* ------------------------------------------------------------------------------------------------
  * Shared: a value that may be missing, which sorts last whichever way the column runs.
@@ -47,7 +51,8 @@ export const GRANT_SORT_KEYS = [
   'number',
   'title',
   'agency',
-  'total',
+  'counted',
+  'lifetime',
   'first',
   'publications',
 ] as const;
@@ -58,10 +63,10 @@ export interface GrantSort {
   direction: SortDirection;
 }
 
-/** Total, largest first (docs/09 §12.5 item 6). */
-export const DEFAULT_GRANT_SORT: GrantSort = { key: 'total', direction: 'desc' };
+/** Counted funding under the filter, largest first (docs/09 §12.5 item 6, F17). */
+export const DEFAULT_GRANT_SORT: GrantSort = { key: 'counted', direction: 'desc' };
 
-/** Words read A–Z first; totals, years and counts largest (or newest) first. */
+/** Words read A–Z first; amounts, years and counts largest (or newest) first. */
 export const naturalGrantDirection = (key: GrantSortKey): SortDirection =>
   key === 'number' || key === 'title' || key === 'agency' ? 'asc' : 'desc';
 
@@ -79,7 +84,10 @@ function grantCell(entry: ScopedGrant, key: GrantSortKey, index: FundingIndex | 
       return entry.grant.title;
     case 'agency':
       return agencyLabel(index, entry.grant.agency);
-    case 'total':
+    case 'counted':
+      // Null, never 0, for an unknown amount; a began-after grant's known $0 sorts as 0.
+      return entry.counted.usd;
+    case 'lifetime':
       return entry.grant.amount_usd;
     case 'first':
       return entry.firstYear;
@@ -172,7 +180,7 @@ export const AGENCY_SORT_KEYS = [
   'parent',
   'country',
   'grants',
-  'total',
+  'counted',
   'unknown',
   'publications',
 ] as const;
@@ -183,8 +191,8 @@ export interface AgencySort {
   direction: SortDirection;
 }
 
-/** Known total, largest first: the ranking's own order (`rankAgencies`, by value). */
-export const DEFAULT_AGENCY_SORT: AgencySort = { key: 'total', direction: 'desc' };
+/** Counted funding, largest first: the ranking's own order (`rankAgencies`, by value). */
+export const DEFAULT_AGENCY_SORT: AgencySort = { key: 'counted', direction: 'desc' };
 
 export const naturalAgencyDirection = (key: AgencySortKey): SortDirection =>
   key === 'agency' || key === 'parent' || key === 'country' ? 'asc' : 'desc';
@@ -204,9 +212,9 @@ function agencyCell(row: AgencyRow, key: AgencySortKey, index: FundingIndex | nu
       return row.country === null ? null : countryName(row.country);
     case 'grants':
       return row.grants;
-    case 'total':
+    case 'counted':
       // Null, not 0, for an agency none of whose grants has a known amount.
-      return knownAmount(row);
+      return knownCounted(row);
     case 'unknown':
       return row.withoutAmount;
     case 'publications':

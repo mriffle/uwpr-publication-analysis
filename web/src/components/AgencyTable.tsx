@@ -1,6 +1,6 @@
 /**
  * The agencies of the grants in view, as a table (docs/09 §12.5 item 4): agency, parent, country,
- * grants, known total, without an amount, and publications.
+ * grants, counted funding (F17, under the filter), without an amount, and publications.
  *
  * Each grant is counted under its own agency, the most specific one, with the parent beside it
  * (`rankAgencies` at `level: 'agency'`: NIGMS, parent NIH), so the table says which institute
@@ -9,13 +9,19 @@
  * own last row, outside the sort**: its unmatched numbers are not known to be any agency's
  * grants, and have no amount to rank (docs/09 §4).
  *
- * A known total is shown only through `knownAmount` — "not known", never $0, for an agency whose
- * every amount is unknown (§12.11 rule 3) — with the count without an amount in its own column
- * beside it, and **unknown totals sort last in both directions**. The sort is this table's own
- * state, out of the URL (§12.4). A caption, `th scope` and `aria-sort` via `SortHeader` (§12.12).
+ * A counted total is shown only through `knownCounted` — "not known", never $0, for an agency
+ * whose every amount is unknown (§12.11 rule 3) — with the count without an amount in its own
+ * column beside it, and **unknown totals sort last in both directions**. The sort is this table's
+ * own state, out of the URL (§12.4). A caption, `th scope` and `aria-sort` via `SortHeader`
+ * (§12.12).
  */
 import { useState } from 'react';
-import { knownAmount, rankAgencies, type AgencyRow, type FundingScope } from '../aggregate/funding';
+import {
+  knownCounted,
+  rankAgencies,
+  type AgencyRow,
+  type FundingScope,
+} from '../aggregate/funding';
 import {
   DEFAULT_AGENCY_SORT,
   sortAgencies,
@@ -44,7 +50,7 @@ const COLUMNS: { key: AgencySortKey; label: string; numeric?: boolean }[] = [
   { key: 'parent', label: 'Parent' },
   { key: 'country', label: 'Country' },
   { key: 'grants', label: 'Grants', numeric: true },
-  { key: 'total', label: 'Known total', numeric: true },
+  { key: 'counted', label: 'Counted', numeric: true },
   { key: 'unknown', label: 'Without an amount', numeric: true },
   { key: 'publications', label: 'Publications', numeric: true },
 ];
@@ -84,7 +90,7 @@ function Row({
   links: FundingLinks;
   miscellaneous?: boolean;
 }) {
-  const known = knownAmount(row);
+  const known = knownCounted(row);
   return (
     <tr className={miscellaneous ? 'funding-table-apart' : undefined}>
       <th scope="row">
@@ -136,7 +142,8 @@ export function AgencyTable({
     <div className="table-scroll">
       <table className="chart-table funding-table">
         <caption>
-          {caption}. Unknown totals are listed last, whichever way the table is sorted
+          {caption}. Counted is each agency’s grant funding counted for the publications shown;
+          unknown totals are listed last, whichever way the table is sorted
           {ranking.miscellaneous === null
             ? '.'
             : '; unmatched numbers are kept apart in the last row, and are not an agency’s grants.'}

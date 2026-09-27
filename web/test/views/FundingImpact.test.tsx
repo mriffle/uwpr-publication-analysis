@@ -4,9 +4,9 @@
  *
  * Rendered through `Router`, because the filter, the institution-wide position, the switch and
  * the agency and grant pages all cross the URL. Nothing is hard-coded: every figure is read from
- * the document under test, and the headline figures are held to `funding.summary`, which the
- * pipeline computed independently — so the same assertions hold against the real export
- * (`UWPR_EXPORT_DIR`). Every state is put through axe, on either export: the grants table draws
+ * the document under test, and the headline figures — the grant funding counted (docs/09 F17) —
+ * are held to `funding.summary`, which the pipeline computed independently — so the same
+ * assertions hold against the real export (`UWPR_EXPORT_DIR`). Every state is put through axe, on either export: the grants table draws
  * its first 50 rows (R1b), where R1a had left the whole view's two to the e2e step for time.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -94,7 +94,8 @@ describe('the sample, unfiltered', () => {
   it('shows the headline figures the pipeline computed apart (the cross-check, on the page)', () => {
     at('/funding');
     const figures = within(screen.getByRole('list', { name: 'Funding figures' }));
-    expect(figures.getByText(formatUsd(summary.amount_usd))).toBeInTheDocument();
+    expect(figures.getByText(formatUsd(summary.counted_usd))).toBeInTheDocument();
+    expect(figures.queryByText(formatUsd(summary.amount_usd))).not.toBeInTheDocument();
     expect(
       figures.getByText(`${String(summary.works_with_grants)} of ${String(doc.works.length)}`),
     );
@@ -103,7 +104,25 @@ describe('the sample, unfiltered', () => {
         new RegExp(`Including ${String(summary.grants_institution_wide)} institution-wide awards`),
       ),
     ).toBeInTheDocument();
-    expect(figures.getByText(/not money spent on this work/)).toBeInTheDocument();
+    expect(figures.getByText(/Not money spent on this work\./)).toBeInTheDocument();
+    expect(
+      figures.getByText(
+        new RegExp(
+          `^The funding of the grants listed on these publications, from ${String(doc.funding.counting.from_year)}, when ${doc.resource.short_name} began, through the year of the latest publication listing each grant\\.`,
+        ),
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('leads the page with what the totals count', () => {
+    at('/funding');
+    expect(
+      screen.getByText(
+        new RegExp(
+          `The totals count each grant’s funding from ${String(doc.funding.counting.from_year)}, when ${doc.resource.short_name} began`,
+        ),
+      ),
+    ).toBeInTheDocument();
   });
 
   it('links every figure to its definition on the method page', () => {
@@ -124,39 +143,75 @@ describe('the sample, unfiltered', () => {
   }, 30_000);
 });
 
-describe('grant funding over time', () => {
+describe('grant funding by year awarded (F17)', () => {
+  const CARD = 'Grant funding by year awarded';
+  const fromYear = doc.funding.counting.from_year;
+
   it('draws static year bars, which never apply a filter (§12.5 item 3)', () => {
     at('/funding');
-    const card = region('Grant funding over time');
+    const card = region(CARD);
     expect(within(card).queryAllByRole('button', { name: /^\d{4}/ })).toHaveLength(0);
     const bars = within(card).getAllByRole('img', { name: /^\d{4}(, a partial year)?:/ });
     expect(bars.length).toBeGreaterThan(0);
     for (const bar of bars) expect(bar).not.toHaveAttribute('tabindex');
-    const first = String(summary.first_year);
-    const bar = within(card).getByRole('img', { name: new RegExp(`^${first}:`) });
+    const bar = within(card).getByRole('img', { name: new RegExp(`^${String(fromYear)}:`) });
     fireEvent.click(bar);
     fireEvent.keyDown(bar, { key: 'Enter' });
     expect(here()).toBe('/funding');
   });
 
-  it('names each year by its known value and its grants, never an unknown as $0', () => {
+  it('names each year by the counted funding awarded and its grants, ending at the headline', () => {
     at('/funding');
-    const first = summary.first_year as number;
-    const year = summary.by_first_year[String(first)];
+    const [year, entry] = Object.entries(summary.counted_by_year)[0]!;
+    const card = region(CARD);
     expect(
-      within(region('Grant funding over time')).getByRole('img', {
+      within(card).getByRole('img', {
         name: new RegExp(
-          `^${String(first)}: ${formatUsd(year?.amount_usd ?? 0).replace('$', '\\$')} from`,
+          `^${year}(, a partial year)?: ${formatUsd(entry.counted_usd).replace('$', '\\$')} awarded, from \\d+ grants?, `,
+        ),
+      }),
+    ).toBeInTheDocument();
+    const last = String(doc.period.last_year);
+    expect(
+      within(card).getByRole('img', {
+        name: new RegExp(
+          `^${last}, a partial year: .*, ${formatUsd(summary.counted_usd).replace('$', '\\$')} cumulative\\.$`,
         ),
       }),
     ).toBeInTheDocument();
   });
 
+  it('starts at 2006 under a filter, and says once what it leaves out', () => {
+    const later = doc.period.last_year - 1;
+    at(`/funding?year=${String(later)}`);
+    const card = region(CARD);
+    const bars = within(card).getAllByRole('img', { name: /^\d{4}(, a partial year)?:/ });
+    expect(bars[0]).toHaveAccessibleName(new RegExp(`^${String(fromYear)}:`));
+    expect(card).toHaveTextContent(
+      `Amounts with no years, and grants that ended before ${String(fromYear)}, enter in the year of the first publication shown that lists them.`,
+    );
+  });
+
+  it('states the unknown and the began-after counts once, beneath the chart', () => {
+    at('/funding');
+    const card = region(CARD);
+    const unknown = summary.grants_resolved - summary.grants_with_amount;
+    expect(card).toHaveTextContent(
+      `${plural(unknown, 'grant')} with no known amount ${unknown === 1 ? 'is' : 'are'} not in this chart.`,
+    );
+    const began = summary.grants_by_counted_rule.began_after ?? 0;
+    if (began > 0) {
+      expect(card).toHaveTextContent(
+        `${plural(began, 'grant')} began after the latest publication shown that lists ${began === 1 ? 'it, and counts' : 'them, and count'} nothing.`,
+      );
+    }
+  });
+
   it('switches to the stacked view by agency, whose segments apply the agency filter', async () => {
     at('/funding');
-    const card = region('Grant funding over time');
+    const card = region(CARD);
     await userEvent.click(within(card).getByRole('button', { name: 'By agency' }));
-    const stacked = region('Grant funding by agency over time');
+    const stacked = region('Grant funding by agency, by year awarded');
     const segment = within(stacked).getAllByRole('button', {
       name: /Activate to filter by this agency/,
     })[0];
@@ -244,7 +299,7 @@ describe('the view’s own switches and links', () => {
     const card = region('Grant types');
     await userEvent.click(within(card).getByRole('button', { name: 'By grants' }));
     const kinds = grantKinds(fundingScope(doc.works, index, UNFILTERED));
-    expect(within(card).getAllByRole('img', { name: /: \d+ grants?, Known total/ })).toHaveLength(
+    expect(within(card).getAllByRole('img', { name: /: \d+ grants?, Counted/ })).toHaveLength(
       kinds.filter((row) => row.grants > 0).length,
     );
   });
@@ -271,7 +326,7 @@ describe('grant types, all grants and coverage', () => {
     at('/funding');
     const card = region('Grant types');
     expect(within(card).queryAllByRole('button', { name: /Activate/ })).toHaveLength(0);
-    expect(within(card).getAllByRole('img', { name: /known/ }).length).toBeGreaterThan(0);
+    expect(within(card).getAllByRole('img', { name: /counted/ }).length).toBeGreaterThan(0);
     expect(card).toHaveTextContent('These bars are not filters');
   });
 
@@ -298,12 +353,18 @@ describe('grant types, all grants and coverage', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('states the institution-wide position, FY1985 and the active grants', () => {
+  it('states the institution-wide position, how each grant is counted and the active grants', () => {
     const { container } = at('/funding');
     const coverage = container.querySelector('.funding-coverage');
-    expect(coverage).toHaveTextContent(/Including \d+ institution-wide awards/);
-    expect(coverage).toHaveTextContent(/FY1985/);
-    expect(coverage).toHaveTextContent(/still active/);
+    expect(coverage).toHaveTextContent(/Including \d+ institution-wide awards,? counted at \$/);
+    // The rule counts replace the FY1985 sentence, which no longer moves a total.
+    expect(coverage).toHaveTextContent(
+      `Of the ${plural(summary.grants_with_amount, 'grant')} with a known amount, ${String(summary.grants_by_counted_rule.window ?? 0)} are counted from ${String(doc.funding.counting.from_year)} through the year of the latest publication listing each;`,
+    );
+    expect(coverage).not.toHaveTextContent(/FY1985/);
+    expect(coverage).toHaveTextContent(
+      /are still active: their lifetime totals still grow, but what is counted of them stops at the latest publication listing each\./,
+    );
   });
 });
 
@@ -313,7 +374,7 @@ describe('institution-wide awards excluded', () => {
     expect(status()).toHaveTextContent(/Institution-wide awards are excluded\.$/);
     const figures = within(screen.getByRole('list', { name: 'Funding figures' }));
     expect(
-      figures.getByText(formatUsd(summary.amount_usd - summary.amount_usd_institution_wide)),
+      figures.getByText(formatUsd(summary.counted_usd - summary.counted_usd_institution_wide)),
     ).toBeInTheDocument();
     expect(
       figures.getByText(
@@ -347,6 +408,7 @@ describe('empty states', () => {
     expect(status()).toHaveTextContent(/^0 grants listed on 0 of 0 publications matching Year:/);
     expect(screen.getByText('No publications match the current filter.')).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: 'Grant funding over time' })).toBeNull();
+    expect(screen.queryByRole('region', { name: 'Grant funding by year awarded' })).toBeNull();
     await expectNoAxeViolations(container);
     await userEvent.click(screen.getByRole('button', { name: /^Remove Year:/ }));
     expect(here()).toBe('/funding');

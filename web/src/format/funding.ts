@@ -6,12 +6,15 @@
  * honesty rules that govern how an amount reads are kept in one place:
  *
  * - **Unknown is never $0** (rule 3). An amount with no known US-dollar value reads as null here,
- *   and the caller says "not known".
+ *   and the caller says "not known". A counted $0 is a known zero, and always says why.
  * - **A converted amount shows its original and the rate year** (rule 5).
  * - **Active grants are marked** (rule 6): their totals still grow.
+ * - **What the totals count is said in one register** (docs/09 F17): the headline's name and
+ *   definition, the estimated part, the reason each grant counts what it does. Each is built from
+ *   the export's `funding.counting`, so no year or count of years is written here.
  */
-import type { AmountSource, Grant } from '../contract/types';
-import { formatMoney, formatUsd } from './number';
+import type { AmountSource, CountedRule, FundingCounting, Grant } from '../contract/types';
+import { formatCount, formatMoney, formatUsd, pluralize } from './number';
 
 /** docs/09 §11.4's categories as a reader reads them. `center` covers programmes and resources. */
 export const CATEGORY_LABELS: Readonly<Record<Grant['category'], string>> = {
@@ -109,3 +112,144 @@ export const AMOUNT_BASIS_TEXT: Readonly<Record<AmountSource['basis'], string>> 
  */
 export const fiscalYearAmount = (amount: number | null): string =>
   amount === null ? 'no amount reported' : formatUsd(amount);
+
+/* ------------------------------------------------------------------------------------------------
+ * What the totals count (docs/09 F17): one register, for Funding impact now and the grant, agency
+ * and method pages after it.
+ * --------------------------------------------------------------------------------------------- */
+
+/** The headline figure's name: what every total on Funding impact adds up. */
+export const COUNTED_LABEL = 'Grant funding counted';
+
+const NUMBER_WORDS = [
+  'zero',
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+  'ten',
+] as const;
+
+/** A small count as a sentence writes it — "five" — and the digits past ten. */
+export const countInWords = (count: number): string => NUMBER_WORDS[count] ?? formatCount(count);
+
+/** "an instrument", "a contract": the article a word takes. */
+const withArticle = (word: string): string => `${/^[aeiou]/i.test(word) ? 'an' : 'a'} ${word}`;
+
+/** The kinds counted in full, as a reader reads them: "instrument", "instrument or contract". */
+const fullAmountKinds = (counting: FundingCounting): string =>
+  counting.full_amount_categories
+    .map((category) => CATEGORY_LABELS[category].toLowerCase())
+    .join(' or ');
+
+/** "its last five years", "its last year": the part of an ended grant that counts. */
+const lastYears = (counting: FundingCounting, whose: 'its' | 'their'): string =>
+  counting.last_years === 1
+    ? `${whose} last year`
+    : `${whose} last ${countInWords(counting.last_years)} years`;
+
+/**
+ * Why a grant counts what it does, one clause per rule, as the grants table's CSV ("How counted")
+ * and the grant page say it: "from 2006 to its latest listing publication", "began after its
+ * latest listing publication: nothing counted". The year, the kinds and the count of years are
+ * the export's.
+ */
+export function countedRuleText(counting: FundingCounting): Readonly<Record<CountedRule, string>> {
+  const from = String(counting.from_year);
+  return {
+    window: `from ${from} to its latest listing publication`,
+    began_after: 'began after its latest listing publication: nothing counted',
+    full_amount: `${withArticle(fullAmountKinds(counting))} grant: counted in full`,
+    ended_before: `ended before ${from}: ${lastYears(counting, 'its')} counted`,
+    undated: 'no yearly breakdown: counted whole',
+  };
+}
+
+/**
+ * The headline's definition (docs/09 §12.11 rule 2): what is counted, from when, to when, and
+ * what it is not. `resource` is the resource's short name ("UWPR"), whose start is the floor.
+ */
+export const countedDefinition = (counting: FundingCounting, resource: string): string =>
+  `The funding of the grants listed on these publications, from ${String(counting.from_year)}, when ${resource} began, through the year of the latest publication listing each grant. Not money spent on this work.`;
+
+/**
+ * The part of a counted total that is an estimate: "$418,540,466 of it is estimated: other
+ * funders’ awards spread evenly over their years." Null when none is, so no line is shown.
+ */
+export const estimatedLine = (estimatedUsd: number): string | null =>
+  estimatedUsd === 0
+    ? null
+    : `${formatUsd(estimatedUsd)} of it is estimated: other funders’ awards spread evenly over their years.`;
+
+/**
+ * The page's lead: what Funding impact shows and what its totals count. Without funding data
+ * there is no rule to state, and the lead says only what the page is for.
+ */
+export function fundingLead(counting: FundingCounting | null, resource: string): string {
+  const grants = 'The grants the publications here list as their funding';
+  if (counting === null) {
+    return `${grants}, and how much of each grant’s funding the totals count: not money spent on the work that lists it.`;
+  }
+  return `${grants}. The totals count each grant’s funding from ${String(counting.from_year)}, when ${resource} began, through the year of the latest publication listing it: not money spent on the work that lists it.`;
+}
+
+/** The order the rules are told in: the common case first, the zero last. */
+const RULES_IN_WORDS: readonly CountedRule[] = [
+  'window',
+  'full_amount',
+  'ended_before',
+  'undated',
+  'began_after',
+];
+
+/**
+ * How the grants with a known amount are counted, rule by rule, in one sentence, and how many
+ * of their amounts are estimates: the coverage's line on Funding impact, over the grants in view.
+ * `rules` is `countedRules`'s count per rule, whose sum is the grants with a known amount.
+ */
+export function countedRulesSentence(
+  rules: Partial<Record<CountedRule, number>>,
+  estimated: number,
+  counting: FundingCounting,
+): string {
+  const known = Object.values(rules).reduce((sum, count) => sum + count, 0);
+  if (known === 0) return 'No grant listed has a known amount, so none is counted.';
+  const from = String(counting.from_year);
+  const kinds = fullAmountKinds(counting);
+  /** What a rule does to the grants it counts, after their count: "are counted from 2006…". */
+  const phrase = (rule: CountedRule, one: boolean): string => {
+    switch (rule) {
+      case 'window':
+        return `${one ? 'is' : 'are'} counted from ${from} through the year of the latest publication listing ${one ? 'it' : 'each'}`;
+      case 'full_amount':
+        return `${one ? `is ${withArticle(kinds)} grant` : `are ${kinds} grants`}, counted in full`;
+      case 'ended_before':
+        return `ended before ${from} and ${one ? 'counts' : 'count'} ${lastYears(counting, one ? 'its' : 'their')}`;
+      case 'undated':
+        return `${one ? 'has' : 'have'} no yearly breakdown and ${one ? 'counts' : 'count'} whole`;
+      case 'began_after':
+        return `began after the latest publication listing ${one ? 'it and counts' : 'them and count'} nothing`;
+    }
+  };
+  const spread = 'other funders’ awards spread evenly over their years.';
+  const counted = RULES_IN_WORDS.filter((rule) => (rules[rule] ?? 0) > 0);
+  if (known === 1) {
+    const [rule] = counted as [CountedRule];
+    const estimate = estimated === 0 ? '' : ` Its amount is an estimate: ${spread}`;
+    return `The one grant with a known amount ${phrase(rule, true)}.${estimate}`;
+  }
+  const parts = counted.map((rule) => {
+    const count = rules[rule] ?? 0;
+    return `${formatCount(count)} ${phrase(rule, count === 1)}`;
+  });
+  const estimates =
+    estimated === 0
+      ? ''
+      : ` ${formatCount(estimated)} of these amounts ${estimated === 1 ? 'is an estimate' : 'are estimates'}: ${spread}`;
+  return `Of the ${pluralize(known, 'grant')} with a known amount, ${parts.join('; ')}.${estimates}`;
+}

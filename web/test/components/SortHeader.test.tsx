@@ -91,10 +91,27 @@ describe('SortHeader', () => {
     expect(onSort).toHaveBeenCalledTimes(2);
   });
 
+  it('carries a note beneath the button, in the header’s name and not the button’s', () => {
+    table([
+      {
+        label: 'Counted',
+        direction: 'desc',
+        onSort: vi.fn(),
+        numeric: true,
+        note: 'for the publications shown',
+      },
+    ]);
+    expect(
+      screen.getByRole('columnheader', { name: 'Counted for the publications shown' }),
+    ).toHaveAttribute('aria-sort', 'descending');
+    expect(screen.getByRole('button', { name: 'Counted' })).toBeInTheDocument();
+    expect(screen.getByText('for the publications shown')).toHaveClass('cell-note');
+  });
+
   it('passes axe', async () => {
     const { container } = table([
       { label: 'Number', direction: 'asc', onSort: vi.fn() },
-      { label: 'Total', direction: null, onSort: vi.fn(), numeric: true },
+      { label: 'Total', direction: null, onSort: vi.fn(), numeric: true, note: 'a note' },
     ]);
     await expectNoAxeViolations(container);
   });

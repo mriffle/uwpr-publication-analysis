@@ -46,16 +46,21 @@ import {
   keptUnmatched,
   knownAmount,
   newGrantsByAgency,
+  noFundingSummary,
   normalisedName,
   otherKind,
   rankAgencies,
   summarizeFunding,
-  valueByAgency,
   type FundingScope,
   type ScopedGrant,
 } from '../../src/aggregate/funding';
 import { OTHER_SERIES } from '../../src/aggregate/stack';
-import { buildFundingIndex, countingOf, type FundingIndex } from '../../src/contract/funding';
+import {
+  buildFundingIndex,
+  countingOf,
+  fundingOf,
+  type FundingIndex,
+} from '../../src/contract/funding';
 import type { Agency, Funding, Grant, Period, Work } from '../../src/contract/types';
 import type { GrantSelection } from '../../src/filter/funding';
 import {
@@ -63,6 +68,7 @@ import {
   agency,
   counting,
   fundingBlock,
+  fundingDocument,
   grant,
   listing,
   miscellaneous,
@@ -535,16 +541,17 @@ describe('value over time: each grant’s full amount in its first year (F3)', (
   });
 });
 
-describe('value by agency and new grants by agency', () => {
-  it('stacks known value by root agency in single years, summing to the total', () => {
-    const stack = valueByAgency(all, period);
+describe('counted funding by agency and new grants by agency', () => {
+  it('stacks counted funding by root agency in single years, summing to the counted total', () => {
+    const stack = countedByAgency(all, period, counting());
     expect(stack.bucketYears).toBe(VALUE_BUCKET_YEARS);
-    // NSF $4.0M, NIH $3.5M; the foundation and Miscellaneous have no known value, so no $0 series.
+    // NSF $4.0M, NIH $1.0M (P01 began after its listing work); the foundation and Miscellaneous
+    // have no known amount, so no $0 series.
     expect(stack.series.map((series) => [series.key, series.label, series.total])).toEqual([
       ['NSF', 'NSF', 4_000_000],
-      ['NIH', 'NIH', 3_500_000],
+      ['NIH', 'NIH', 1_000_000],
     ]);
-    expect(stack.total).toBe(fundingFigures(all).amountUsd);
+    expect(stack.total).toBe(fundingFigures(all).countedUsd);
   });
 
   it('counts new grants by root agency in three-year buckets, Miscellaneous pinned', () => {
@@ -606,7 +613,7 @@ describe('value by agency and new grants by agency', () => {
   });
 
   it('stacks nothing for an empty scope, or without funding data', () => {
-    expect(valueByAgency(nothing, period).series).toEqual([]);
+    expect(countedByAgency(nothing, period, counting()).series).toEqual([]);
     const none = newGrantsByAgency(fundingScope(WORKS, null, UNFILTERED), period);
     expect(none.series).toEqual([]);
     expect(none.total).toBe(0);
@@ -614,14 +621,20 @@ describe('value by agency and new grants by agency', () => {
 });
 
 describe('agency ranking', () => {
-  it('ranks root agencies by known value, with grants, unknowns and publications', () => {
+  it('ranks root agencies by counted value, with grants, unknowns and publications', () => {
     const ranking = rankAgencies(all);
     expect(
-      ranking.items.map((row) => [row.code, row.amountUsd, row.grants, row.withoutAmount]),
+      ranking.items.map((row) => [
+        row.code,
+        row.countedUsd,
+        row.amountUsd,
+        row.grants,
+        row.withoutAmount,
+      ]),
     ).toEqual([
-      ['NSF', 4_000_000, 2, 1],
-      ['NIH', 3_500_000, 3, 1],
-      ['F4399999999', 0, 1, 1],
+      ['NSF', 4_000_000, 4_000_000, 2, 1],
+      ['NIH', 1_000_000, 3_500_000, 3, 1],
+      ['F4399999999', 0, 0, 1, 1],
     ]);
     expect(ranking.items.map((row) => row.publications)).toEqual([3, 3, 1]);
     expect(ranking).toMatchObject({ distinct: 3, notShown: 0 });
@@ -670,9 +683,11 @@ describe('agency ranking', () => {
     const ranking = rankAgencies(all, { level: 'agency', limit: Infinity });
     expect(ranking.items.map((row) => [row.code, row.parent])).toEqual([
       ['NSF', null],
-      ['NHLBI', 'NIH'],
+      // By what is counted, not the lifetime total: NIGMS's $1.0M counts in full, NHLBI's
+      // $2.5M P01 began after its listing work and counts $0.
       ['NIGMS', 'NIH'],
-      // Both have no known value and one grant each: the label decides.
+      // Each counts $0, with one grant: the label decides.
+      ['NHLBI', 'NIH'],
       ['NIH', null],
       ['F4399999999', null],
     ]);
@@ -791,7 +806,7 @@ describe('coverage', () => {
     });
   });
 
-  it('counts the grants with and without an amount, unconverted, pre-FY1985 and active', () => {
+  it('counts the grants with and without an amount, unconverted, pre-FY1985, active, estimated', () => {
     expect(coverage(all).grants).toEqual({
       listed: 6,
       withAmount: 3,
@@ -799,7 +814,12 @@ describe('coverage', () => {
       unconverted: 1,
       startsBeforeFy1985: 1,
       active: 1,
+      // GRFP's amount is spread over its years: its counted amount is an estimate.
+      estimated: 1,
     });
+    expect(fundingFigures(all).estimatedUsd).toBe(4_000_000);
+    expect(coverage(excluded).grants.estimated).toBe(0);
+    expect(fundingFigures(excluded).estimatedUsd).toBe(0);
   });
 
   it('counts the unmatched numbers and the publications listing them', () => {
@@ -828,12 +848,19 @@ describe('the agency page: one agency over the whole corpus', () => {
     expect(nih?.figures).toMatchObject({ amountUsd: 3_500_000, listed: 3, withoutAmount: 1 });
   });
 
-  it('breaks it down by child agency, largest value first, with the remainder assigned to none', () => {
+  it('breaks it down by child agency, largest counted first, with the remainder assigned to none', () => {
     expect(
-      nih?.children.map((row) => [row.code, row.grants, row.amountUsd, row.publications]),
+      nih?.children.map((row) => [
+        row.code,
+        row.grants,
+        row.countedUsd,
+        row.amountUsd,
+        row.publications,
+      ]),
     ).toEqual([
-      ['NHLBI', 1, 2_500_000, 1],
-      ['NIGMS', 1, 1_000_000, 2],
+      // NHLBI's $2.5M P01 began after its listing work: it counts $0, below NIGMS's $1.0M.
+      ['NIGMS', 1, 1_000_000, 1_000_000, 2],
+      ['NHLBI', 1, 0, 2_500_000, 1],
     ]);
     expect(nih?.unassigned).toMatchObject({
       code: 'NIH',
@@ -868,7 +895,8 @@ describe('the agency page: one agency over the whole corpus', () => {
   });
 
   it('orders children of equal value and count by label', () => {
-    const even = { ...P01, amount_usd: 1_000_000 };
+    // Counted in full, as R01 is: the same fiscal years, both listed in 2021.
+    const even = { ...P01, amount_usd: 1_000_000, fiscal_years: R01.fiscal_years };
     const tied = buildFundingIndex(
       fundingBlock({ agencies: AGENCIES, grants: [R01, even] }),
       RESOURCE,
@@ -1170,7 +1198,7 @@ describe('the counted amount of each grant, under the filter (F17)', () => {
     expect(fundingFigures(earlier).institutionWide.countedUsd).toBe(2_400_000);
   });
 
-  it('carries the counted totals in the ranking, the kinds and the agency page, sorted by value', () => {
+  it('carries the counted totals in the ranking, the kinds and the agency page, sorted by them', () => {
     expect(rankAgencies(all).items.map((row) => [row.code, row.amountUsd, row.countedUsd])).toEqual(
       [
         ['NSF', 4_000_000, 4_000_000],
@@ -1188,10 +1216,10 @@ describe('the counted amount of each grant, under the filter (F17)', () => {
     ]);
     const nih = agencyDetail('NIH', WORKS, index, period);
     expect(nih?.figures.countedUsd).toBe(1_000_000);
-    // Still largest lifetime value first: NHLBI's $2.5M counts $0.
+    // Largest counted first: NHLBI's $2.5M counts $0.
     expect(nih?.children.map((row) => [row.code, row.amountUsd, row.countedUsd])).toEqual([
-      ['NHLBI', 2_500_000, 0],
       ['NIGMS', 1_000_000, 1_000_000],
+      ['NHLBI', 2_500_000, 0],
     ]);
     expect(nih?.unassigned).toMatchObject({ countedUsd: 0, withoutAmount: 1 });
     expect(nih?.countedOverTime).toMatchObject({ countedUsd: 1_000_000, beganAfter: 1 });
@@ -1323,64 +1351,43 @@ describe('the grant page: what the totals count of it', () => {
   });
 });
 
-describe('an export without funding.counting (1.1, or a rollback): nothing counted, nothing thrown', () => {
+describe('an export without funding.counting (1.1, or a rollback): no funding data', () => {
   const block = uncountedBlock({
     agencies: AGENCIES,
     grants: GRANTS,
     sources: [reporterSource(), NSF_SOURCE],
   });
-  const old = buildFundingIndex(block, RESOURCE);
-  const scope = fundingScope(WORKS, old, UNFILTERED);
 
-  it('reads no counting rule', () => {
+  it('reads as no funding data, whatever is where the rule should be', () => {
     expect('counting' in block).toBe(false);
-    expect(countingOf(old)).toBeNull();
-    expect(countingOf(null)).toBeNull();
-    expect(countingOf(index)).toEqual(counting());
-    const malformed = { ...block, counting: { from_year: '2006' } } as unknown as Funding;
-    expect(countingOf(buildFundingIndex(malformed, RESOURCE))).toBeNull();
-    const absent = { ...block, counting: null } as unknown as Funding;
-    expect(countingOf(buildFundingIndex(absent, RESOURCE))).toBeNull();
-  });
-
-  it('treats every counted amount as not known, and every counted total as 0', () => {
-    for (const item of scope.grants) {
-      expect(item.counted, item.grant.key).toEqual({ usd: null, rule: null, byYear: new Map() });
+    expect(fundingOf(fundingDocument({ funding: block }))).toBeNull();
+    for (const rule of [null, { from_year: '2006' }, { from_year: 2006, last_years: 5 }]) {
+      const malformed = { ...block, counting: rule } as unknown as Funding;
+      expect(fundingOf(fundingDocument({ funding: malformed })), JSON.stringify(rule)).toBeNull();
     }
-    expect(scope.grants.find((item) => item.grant.key === GRFP.key)?.lastYear).toBe(2026);
-    expect(fundingFigures(scope)).toMatchObject({
-      amountUsd: 7_500_000,
-      countedUsd: 0,
-      withAmount: 3,
-      withoutAmount: 3,
-    });
-    expect(countedRules(scope)).toEqual({});
+    // The same block with the rule is funding data: the rule alone decided.
+    expect(fundingOf(fundingDocument({ funding: { ...block, counting: counting() } }))).not.toBe(
+      null,
+    );
   });
 
-  it('draws an empty counted chart from the export’s first year, and an empty stack', () => {
-    const over = countedOverTime(scope, period, countingOf(old));
+  it('reads the rule off any index with funding data, and none without', () => {
+    expect(countingOf(index)).toEqual(counting());
+    expect(countingOf(null)).toBeNull();
+  });
+
+  it('counts and draws nothing without funding data, and throws nothing', () => {
+    const none = fundingScope(WORKS, null, UNFILTERED);
+    expect(countedRules(none)).toEqual({});
+    const over = countedOverTime(none, period, null);
     expect(over.points[0]?.year).toBe(period.first_year);
     expect(over.points.every((point) => point.cumulative === 0)).toBe(true);
-    expect(over).toMatchObject({ countedUsd: 0, beganAfter: 0, withoutAmount: 3 });
-    const stack = countedByAgency(scope, period, countingOf(old));
-    expect(stack).toMatchObject({ total: 0, series: [] });
-  });
-
-  it('gives the pages and the summary no counted figure, and their lifetime ones unchanged', () => {
-    const grfp = grantDetail(GRFP.key, WORKS, old);
-    expect(grfp?.counted).toEqual({ usd: null, rule: null, byYear: new Map() });
-    expect(grfp?.countedYears.size).toBe(0);
-    expect(grfp?.lastYear).toBe(2026);
-    expect(agencyDetail('NIH', WORKS, old, period)?.countedOverTime.countedUsd).toBe(0);
-    const summary = summarizeFunding(WORKS, old);
-    expect(summary).toMatchObject({
-      amount_usd: 7_500_000,
-      counted_usd: 0,
-      counted_usd_institution_wide: 0,
-      counted_usd_nih: 0,
-    });
-    expect(summary.grants_by_counted_rule).toEqual({});
-    expect(summary.counted_by_year).toEqual({});
+    expect(over).toMatchObject({ countedUsd: 0, beganAfter: 0, withoutAmount: 0 });
+    expect(countedByAgency(none, period, null)).toMatchObject({ total: 0, series: [] });
+    expect(fundingFigures(none)).toMatchObject({ countedUsd: 0, estimatedUsd: 0, listed: 0 });
+    expect(grantDetail(GRFP.key, WORKS, null)).toBeNull();
+    expect(agencyDetail('NIH', WORKS, null, period)).toBeNull();
+    expect(summarizeFunding(WORKS, null)).toEqual(noFundingSummary());
   });
 });
 
@@ -1404,7 +1411,6 @@ describe('every dollar figure is a safe integer', () => {
   const dollars = (): number[] => {
     const figures = fundingFigures(scope);
     const series = cumulativeDollars(scope, period);
-    const value = valueByAgency(scope, period);
     const detail = agencyDetail('NIH', works, big, period);
     const counted = countedOverTime(scope, period, counting());
     const stack = countedByAgency(scope, period, counting());
@@ -1414,9 +1420,6 @@ describe('every dollar figure is a safe integer', () => {
       figures.institutionWide.amountUsd,
       series.amountUsd,
       ...series.points.flatMap((point) => [point.count, point.cumulative]),
-      value.total,
-      ...value.series.map((series) => series.total),
-      ...value.buckets.flatMap((bucket) => [bucket.total, ...bucket.values]),
       ...rankAgencies(scope, { limit: Infinity }).items.map((row) => row.amountUsd),
       ...grantKinds(scope).map((row) => row.amountUsd),
       ...(detail?.children ?? []).map((row) => row.amountUsd),
