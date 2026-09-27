@@ -731,6 +731,32 @@ plan. [08](08-implementation.md) records them as they are built.
     - The real-store export test builds as `export` does, with the store's own overrides. Without
       them, a listing a grant override decided has no attribution (§11.2).
   - The `workflow_dispatch` run with funding enabled follows the merge.
+- *2026-09-27, B9c — the sample rebuilt with B9a's fixes.* The committed sample was B3b's, built at
+  `funding_version` `2026-09-26.3`, before B9a's fixes and the seed's version, so it no longer
+  matched a fresh build, which §17's B8 box promises. It was rebuilt live inside RePORTER's window,
+  on Saturday evening in New York, which is 2026-09-27 UTC, B3b's own UTC day, so no date it
+  records moved.
+  - **What moved.** Every citations line's `funding_version`, to `2026-09-27.1`. And two Swedish
+    Research Council grants gained their record (B9a, *a grant's record*). Each lists a bare
+    `crossref_work_funders` award, with no title, investigator or years, numbered below the award
+    that carries its amount, and B8 had taken the record from the bare one. `VR:201900217` is now
+    "National Microscopy Infrastructure", Hjalmar Brismar, 2020–2024, and `VR:202003380` is
+    "Crosstalk between phosphorylation and ubiquitination at the level of short linear motifs",
+    Ylva Ivarsson, 2021–2024. Their amounts already came from the other award and are unchanged,
+    so the export's investigators rise from 36 to 38.
+  - **What did not.** 55 grants, 46 with an amount, $452,773,861 known; no Miscellaneous grant or
+    agency line; the same five institution-wide; `NSF:2245300` still the only disagreement.
+    `works/`, `metrics/`, `candidates.jsonl` and the lookup index are byte-identical. B9a's suffix
+    rule moves no sample string, and its rerun fixes act only on an incremental run, which the
+    build never makes. Every `FUNDING_CASES` predicate and `tests/test_sample_funding.py` hold, and
+    no test pinned a value that moved; that file now holds the record fix against the store too.
+  - **Requests.** B8's 26 (RePORTER 3, NSF 6, USAspending 3, OpenAlex 2, Crossref 1, PubMed 1,
+    PMC 10) on an empty cache, in 13 s, for $0.0002 in OpenAlex award pages. A second build the
+    same day sent 16, PMC's being cached, and its store and export were byte-identical. The sample
+    export is 27,004 bytes, 26.4 KiB (§11.9).
+  - The build's docstrings said funding is disabled in `funding.yaml`; it has been enabled since
+    the seed. They now say so, and that the build still passes `even_if_disabled`, so the sample's
+    funding does not depend on the switch.
 
 ---
 
@@ -2077,8 +2103,8 @@ The budget rises to **500 KiB gzipped: 512,000 bytes (500 × 1,024) at gzip leve
 thing. Today's export is 303 KiB by it, and the export with funding is estimated at 420–450 KiB,
 to be measured in B9 (§3.5), which leaves about two years' headroom. *(B5 measured contract 1.1
 without funding data: 311,014 bytes, 303.7 KiB, for the real export, and 18,099 bytes for the
-sample with its synthetic funding; §3.5. B8's sample, with its real funding beside the synthetic,
-is 26,989 bytes, 26.4 KiB.)*
+sample with its synthetic funding; §3.5. The sample with its real funding beside the synthetic, as
+B9c rebuilt it, is 27,004 bytes, 26.4 KiB.)*
 [06](06-web-app.md) §10's row changes, `web/scripts/check-data-budget.mjs` enforces it in the web
 CI job against `export/` and `samples/export/`, a Python test asserts the script's constant
 equals `stages/export.DATA_BUDGET_BYTES`, and stage 11 alerts above it (§9.5), measuring the same

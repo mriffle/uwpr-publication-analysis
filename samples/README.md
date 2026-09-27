@@ -70,13 +70,14 @@ uv run uwpr-pubs validate samples/store
 
 - The build needs `OPEN_ALEX_API_KEY` in `.env`. Its metadata comes from free lookups.
 - **It then runs the funding stage** over the store it has just built, as a full refresh, and
-  writes `store/funding/`. Funding is `enabled: false` in `config/funding.yaml` until the seed;
-  the build passes the stage's `even_if_disabled`, which nothing else does. RePORTER goes through
-  the stage's own adapter, one request a second, so the build **runs only inside RePORTER's
-  window** (weekends, or 21:00-05:00 New York time) and stops otherwise. It also stops if any
-  source degrades, rather than build the sample from partial answers. On 2026-09-26 the stage
-  sent 26 requests (RePORTER 3, NSF 6, USAspending 3, OpenAlex 2, Crossref 1, PubMed 1, PMC 10),
-  took 15 s and cost $0.0002 in OpenAlex award pages.
+  writes `store/funding/`. Funding has been `enabled: true` in `config/funding.yaml` since the
+  seed; the build passes the stage's `even_if_disabled`, which nothing else does, so the sample's
+  funding does not depend on the switch. RePORTER goes through the stage's own adapter, one
+  request a second, so the build **runs only inside RePORTER's window** (weekends, or 21:00-05:00
+  New York time) and stops otherwise. It also stops if any source degrades, rather than build the
+  sample from partial answers. On 2026-09-27 UTC (docs/09, B9c) the stage sent 26 requests on an
+  empty cache (RePORTER 3, NSF 6, USAspending 3, OpenAlex 2, Crossref 1, PubMed 1, PMC 10), took
+  13 s and cost $0.0002 in OpenAlex award pages.
 - Then rebuild the export: `uv run uwpr-pubs export --store samples/store --out samples/export
   --cases samples/export_cases.json`.
 - A second build the same day is byte-identical, `store/funding/` included. **A rebuild on a
