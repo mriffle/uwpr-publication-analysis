@@ -15,7 +15,7 @@ resolving with partial answers (§9.4).
 
 import re
 from collections import Counter
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Iterable, Iterator, Mapping, Sequence
 from dataclasses import dataclass, field, replace
 
 from uwpr_pubs.funding.classify import (
@@ -486,9 +486,29 @@ def _other_agency(
     return _misc(strip_labels(item.text), "no configured agency, and no one OpenAlex funder, is named")
 
 
-def _apply_fragments(decided: dict[str, _Decision]) -> None:
-    """§6.10: on one work, a number that is part of a longer one of the same agency lists it."""
+def _agency_numbers(keys: Iterable[str], rules: FundingRules) -> Iterator[tuple[str, str, str]]:
+    """(agency, number, key) for each key §6.10 compares: another agency's or an OpenAlex funder's."""
+    for key in keys:
+        kind = family(key, rules)
+        segments = key.split(":")
+        if kind in ("agency", "openalex_funder") and len(segments) == 2:  # noqa: PLR2004
+            yield segments[0], segments[1], key
+        elif kind == "us_federal" and len(segments) == 3:  # noqa: PLR2004
+            yield segments[1], segments[2], key
+
+
+def _apply_fragments(
+    decided: dict[str, _Decision], rules: FundingRules, standing: Iterable[str] = ()
+) -> None:
+    """§6.10: on one work, a number that is part of a longer one of the same agency lists it.
+
+    `standing` are keys the work's other strings list as the store holds them, for strings no
+    source showed this run: a whole number is still in the work's company when only its
+    fragment's source was read.
+    """
     by_agency: dict[str, dict[str, str]] = {}
+    for agency, number, key in _agency_numbers(standing, rules):
+        by_agency.setdefault(agency, {})[number] = key
     for decision in decided.values():
         if decision.agency and decision.number:
             by_agency.setdefault(decision.agency, {})[decision.number] = decision.grants[0]
@@ -605,11 +625,14 @@ def resolve_work(  # noqa: PLR0913 - the work's strings, links and overrides, th
     *,
     overrides: Mapping[str, str | None] | None = None,
     data_year: int,
+    standing: Iterable[str] = (),
 ) -> WorkFunding:
     """Every string a work lists, decided in §6.1's order, and the work's grants.
 
     `links` are the cores RePORTER links to the work. `overrides` maps an override's
-    `override_match_key` to its grant key, or to None for "not a grant" (§6.6).
+    `override_match_key` to its grant key, or to None for "not a grant" (§6.6). `standing` are
+    the grant keys of the work's strings that no source showed this run, as stored, which the
+    stage keeps as they are: they stay in the work's company for §6.10's fragments.
     """
     overrides = overrides or _NO_OVERRIDES
     items = _pool(sightings, overrides, rules)
@@ -625,7 +648,7 @@ def resolve_work(  # noqa: PLR0913 - the work's strings, links and overrides, th
     work.corrections()
     for item in work.open():
         work.decided[item.raw] = _other_agency(item, answers, rules, data_year, work.notes.get(item.raw))
-    _apply_fragments(work.decided)
+    _apply_fragments(work.decided, rules, standing)
 
     strings = tuple(_outcome(item, work.decided[item.raw]) for item in items)
     grants = {key for string in strings for key in string.grants} | set(link_keys.values())

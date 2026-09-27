@@ -712,6 +712,16 @@ class _Work:
         ]
         return [*self.sightings, *kept]
 
+    def standing(self) -> list[GrantKey]:
+        """The grants of the stored strings no source showed, whose stored decisions stand.
+
+        Their sightings above carry no funder, so they alone cannot say whose number they are;
+        their keys keep them in the company of this run's fragments (§6.10).
+        """
+        strings = self.stored["strings"] if self.stored else []
+        unshown = [string for string in strings if string_key(string["raw"]) not in self.fresh]
+        return sorted({key for string in unshown for key in string["grants"]})
+
     def stored_links(self) -> dict[str, NihLink]:
         return {link["core"]: link for link in self.stored["nih_links"]} if self.stored else {}
 
@@ -1373,6 +1383,7 @@ class FundingStage:
             self.rules,
             overrides=work.overrides,
             data_year=self.context.today.year,
+            standing=work.standing(),
         )
         stored = {string_key(s["raw"]): s for s in work.stored["strings"]} if work.stored else {}
         strings: list[StoredString] = []

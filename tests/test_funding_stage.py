@@ -17,7 +17,7 @@ import datetime as dt
 import json
 import shutil
 from collections.abc import Mapping
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any
 
@@ -752,6 +752,26 @@ def test_a_run_a_week_later_rewrites_no_funding_file(seeded: Runner) -> None:
     assert not seeded.asked("api.nsf.gov")  # ended in 2020: not refreshed until a full refresh
     projects = [body for _, url, _, body in seeded.asked("projects/search")]
     assert [body["criteria"]["project_nums"] for body in projects] == [["R01GM086688"]]  # the active grant
+
+
+def test_a_fragment_lists_its_whole_when_only_the_fragments_source_is_read(run: Runner) -> None:
+    """§6.10 on an incremental run. OpenAlex writes Wellcome's `208391`, read every run; only
+    Crossref writes the whole number, `208391/Z/17/Z`, read at a full refresh. The whole stands
+    as stored, and the fragment must still list it: B9a's rehearsal found four such fragments
+    (AEI's `100576` and `PID2023`, SNSF's `181503` and `194379`) keyed on their own, as four new
+    grants, by a rerun the same day."""
+    whole = {"DOI": "10.13039/100010269", "name": "Wellcome Trust", "award": ["208391/Z/17/Z"]}
+    run.world.papers = (A, B, replace(C, awards=(*C.awards, award("208391", WELLCOME, "G14"))), D)
+    run.world.crossref_funders = {**CROSSREF, C.doi: [whole]}
+    assert run(SATURDAY).status == "ok"
+    before = run.funding()
+    assert run.strings(C)["208391"]["grants"] == ["WT:208391Z17Z"]
+
+    for when in ("2026-10-03T18:00:00+00:00", WEEK_LATER):  # the same day, then a week on
+        result = run(when)
+        assert result.status == "ok", result.errors
+        assert run.manifest(result)["funding"]["mode"] == "incremental"
+        assert run.funding() == before, when
 
 
 def test_the_dates_move_once_they_are_28_days_old(seeded: Runner) -> None:

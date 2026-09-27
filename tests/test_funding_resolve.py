@@ -357,3 +357,24 @@ def test_the_second_round_asks_only_what_the_first_answers_leave_open() -> None:
     assert plan.reporter_splits == {("CA", "282268"), ("HL", "000996")}
     combined = plan | Lookups(nsf=frozenset({"1233014"}))
     assert combined.nsf == {"1233014"} and combined.reporter_splits == plan.reporter_splits
+
+
+@pytest.mark.parametrize(
+    ("raw", "funder", "standing", "listed"),
+    [
+        ("208391", "F4320311904", "WT:208391Z17Z", "WT:208391Z17Z"),  # another agency
+        ("HDTRA1", "F4320332186", "USA:DOD:HDTRA11810001", "USA:DOD:HDTRA11810001"),  # US federal
+        ("4053", "F4320399999", "F4320399999:4053242", "F4320399999:4053242"),  # an OpenAlex funder
+        ("208391", "F4320311904", "NIH:R01GM208391", "WT:208391"),  # §6.10 compares one agency's
+    ],
+    ids=["agency", "us federal", "openalex funder", "not another agency's"],
+)
+def test_a_fragment_lists_a_whole_that_stands_as_stored(
+    raw: str, funder: str, standing: str, listed: str
+) -> None:
+    """A stored string no source showed this run keeps its decision, and its sighting carries no
+    funder, so its key is what keeps it in the company of this run's fragments (§6.10, B9a)."""
+    sightings = [Sighting(raw, "openalex", funder_id=funder)]
+    work = resolve_work(sightings, (), Answers(), rules(), data_year=2026, standing=[standing])
+    (string,) = work.strings
+    assert string.grants == (listed,)
