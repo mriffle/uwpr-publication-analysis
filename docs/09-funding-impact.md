@@ -3173,6 +3173,75 @@ Opened by F17 (2026-09-27):
     naming the real budget ([06](06-web-app.md) §10); the chunk is not split.
 17. **The grants table says "the first 50 of *N*" twice,** in its status line and in its caption, a
     redundancy from R1b that predates F17.
+18. **Renumbered grants are not linked, and a grant's years can run past its funding** (reported by
+    the maintainer 2026-09-27; researched, not started; display only, the counting is unaffected).
+    - **The report.** `NIH:P41RR011823`, "Comprehensive Biology: Exploiting the Yeast Genome",
+      shows years 1996–2016, but the project ran to about 2021, its PI changing from Trisha Davis to
+      Michael MacCoss.
+    - **The cause.** NIH closed NCRR in 2012 and moved its grants to other institutes under new
+      numbers.
+      - **The old number:** `NIH:P41RR011823` (NCRR) is funded FY1996–FY2011: PI "Trisha Davis
+        Muller" on its latest record, lifetime $29,168,026, counted $14,328,500.
+      - **The new number:** the project continued as `NIH:P41GM103533` (NIGMS), funded
+        FY2012–FY2021, project end 2022-03-31. FY2012 is its support year 17. PI Michael MacCoss on
+        its latest record; lifetime $20,699,505, all counted; 29 works list it.
+      - **The site treats them as two unrelated grants.** The old number's "2016" is its latest
+        parent row's `project_end_date` (2016-06-30, the award period set before the transfer),
+        not the end of its funding.
+      - **Why the years mix bases:** for RePORTER grants the exported `start_year` is the earliest
+        fiscal year (`funding/export.py` `export_grant`), but `end_year` is the year of the latest
+        project end date (`stages/funding.py`, the parent-row dates). So "Years" puts a funded
+        start beside a project-period end.
+      - The PI shown is only the latest record's (F13), so a change of PI within a number is not
+        visible either.
+    - **The counting is unaffected here.** All 8 works listing the old number also list the new
+      one, and their fiscal years don't overlap: $14,328,500 + $20,699,505 = $35,028,005, exactly
+      what one merged grant would count under F17.
+    - **Scope, measured 2026-09-27** on the store and export at `53f2a62` (scratch scripts, not
+      kept).
+      - **83 NIH grants continue an earlier number:** their first fiscal year held has
+        `first_support_year` > 1.
+      - **9 pairs have both numbers in the store,** matched by the same normalised title and
+        organisation, with the later number's first fiscal year within two of the earlier's last,
+        and its support years continuing:
+        - `K99HL091055`→`R00HL091055`
+        - `P41RR011823`→`P41GM103533`
+        - `R01HL075453`→`R56AI084457`
+        - `R01EB007057`→`R01GM096306`
+        - `R24RR016354`→`R24OD011157`
+        - `R61AI138272`→`R33AI138272`
+        - `U24DK059637`→`U2CDK059637`
+        - `U54RR022220`→`U54GM103511`
+        - `UL1RR024156`→`UL1TR000040`
+
+        K99/R00 and R61/R33 are phases, separate grants by §4.
+      - **In all 9 pairs, counting them as one grant changes the counted total by $0.** Money is
+        lost only where a work lists just the new number and predates it, which counts $0
+        (`began_after`): item 14's `P30DK020572`, and §3.6's `P41GM103493`, whose predecessor the
+        same work lists.
+    - **End years past the funding.** 103 NIH-family grants show an `end_year` three or more years
+      after their last funded fiscal year:
+
+      | Grants | Why | Verdict |
+      |---|---|---|
+      | 50 | active: the award period runs ahead of the money awarded so far | correct |
+      | 6 | paid up front and run on (DP2, DP3) | correct |
+      | 4 | NCRR numbers ended at the 2012 transfer: the three NCRR pairs above, and `P51RR000165`, whose successor is not in the store | misleading |
+      | 43 | other ended grants: probably no-cost extensions, or successors not matched | not checked |
+
+    - **Recommended, not started.**
+      1. **Show the funded fiscal years apart from the project end date** on the grant page, in the
+         grants table and in the CSV ("Funded FY1996–FY2011; project period to 2016"). That is
+         right for all 103.
+      2. **Link a renumbered grant to its successor and back** on grant pages ("Continued as
+         P41GM103533 from FY2012" / "Continues P41RR011823"). Detection: support-year continuity
+         (storing the earlier number's last support year beside `first_support_year`) plus the same
+         title and organisation, or RePORTER's own data if it links them. Measure the matches
+         before deciding.
+      3. Optionally, show the PIs a number had over time, not only its latest record's.
+      
+      A merge of the two numbers into one grant is not recommended: the totals would not change,
+      and §4 defines a grant by its number.
 
 ## 17. Exit criteria
 

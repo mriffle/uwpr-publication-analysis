@@ -31,7 +31,10 @@ frozen, Phase 4 retired, 5-7 agreed 2026-09-20 and 9 on 2026-09-26, with dated c
   - visual-regression tests (`docs/06` §12.2);
   - the rollback rehearsal and the 60-day schedule check (`docs/07` §17);
   - `uwpr-pubs run --mode record` records nothing: no recordings folder is passed (`docs/08` §8
-    item 10).
+    item 10);
+  - renumbered NIH grants (e.g. NCRR's `P41RR011823` → NIGMS's `P41GM103533`, 2012) are not
+    linked, and a grant's years can run past its funding. It is display only; the counting is
+    unaffected. Researched, with a recommendation, in `docs/09` §16 item 18.
 
   The fallback maintainer is Michael Hoopmann, named 2026-09-26 (`RUNBOOK.md` §1).
 
