@@ -13,15 +13,23 @@ Resource (UWPR).
   evidence for why it counts as UWPR's. All of that is already in the store.
 
 **Current state: every phase is specified and built, and the whole thing is live.** Phases 1-3
-frozen, Phase 4 retired, 5-7 agreed 2026-09-20 with dated changelogs.
+frozen, Phase 4 retired, 5-7 agreed 2026-09-20 and 9 on 2026-09-26, with dated changelogs.
 - **The pipeline runs itself** weekly via `update.yml` — about $0.01 a run. `store/` is seeded and
   committed (338 works); its work and record IDs are **permanent and must never be renumbered**.
 - **The app is built and deployed** at https://mriffle.github.io/uwpr-publication-analysis/, from
   the `gh-pages` branch. `web/` is React + TypeScript + Vite; `export/` holds the two JSON files
   it reads, rebuilt and committed by every run.
-- **What is left** is small and listed in `docs/07` §16 and `docs/08` §8:
+- **Funding impact (Phase 9) is built, and live since 2026-09-27.** The grants the papers list,
+  resolved and valued from each funder's own record, are in `store/funding/` (755 grants),
+  written by stage 8b every run; the export carries them (contract 1.1); the app shows them in
+  its Funding impact view, agency and grant pages, and each publication's Funding section.
+  Funding never affects inclusion, and a funding failure never holds up the publication update.
+- **What is left** is small and listed in `docs/07` §16 and `docs/08` §8 (Phase 9's own open
+  items are `docs/09` §16):
   - visual-regression tests (`docs/06` §12.2);
-  - the rollback rehearsal and the 60-day schedule check (`docs/07` §17).
+  - the rollback rehearsal and the 60-day schedule check (`docs/07` §17);
+  - `uwpr-pubs run --mode record` records nothing: no recordings folder is passed (`docs/08` §8
+    item 10).
 
   The fallback maintainer is Michael Hoopmann, named 2026-09-26 (`RUNBOOK.md` §1).
 
@@ -44,6 +52,7 @@ in `docs/archive/`.
 | 6 Web app | **Agreed 2026-09-20.** Decisions B1-B11: React + TypeScript + Vite, visx charts, in `web/` |
 | 7 Operations | **Agreed 2026-09-20.** Decisions O1-O8: Pages from `gh-pages`, data publish decoupled from the app build |
 | 8 Implementation | Done: pipeline, export, app and publishing all built and live |
+| 9 Funding impact | **Agreed 2026-09-26; built and live 2026-09-27.** Decisions F1–F16: the grants listed on included papers, valued by NIH RePORTER, NSF, USAspending or OpenAlex, stored in `store/funding/`, never in work files |
 
 ## How specs are handled
 
@@ -70,7 +79,10 @@ uv run uwpr-pubs export --store store --out DIR                # build the app's
 uv run uwpr-pubs config                                        # fingerprints and config summary
 uv run uwpr-pubs smoke                                         # live source check (~$0.001)
 uv run uwpr-pubs run --store /tmp/scratch-store                # live run (~$0.010, ~150 s, warm cache)
+uv run uwpr-pubs run --store DIR --funding full|skip           # a full funding refresh by hand (only inside
+                                                               #   RePORTER's window), or no funding at all
 uv run uwpr-pubs explain <DOI|PMID|W-id> --store DIR           # why a paper is, or is not, included
+uv run uwpr-pubs explain <grant key> --store DIR               # a grant (NIH:R01GM086688): facts, works, listings
 uv run uwpr-pubs fixtures --store DIR                          # the Phase 1 §12 test papers
 uv run uwpr-pubs report [RUN_ID] --store DIR                   # a run report (default: the latest)
 uv run python samples/build_sample_store.py                    # rebuild sample store from live APIs
@@ -81,9 +93,10 @@ The web app (`web/`, Node 24 from `.nvmrc`):
 ```
 cd web && npm ci                                               # from the committed lockfile
 npm run dev                                                    # serves samples/export/ by default
-UWPR_EXPORT_DIR=/tmp/real-export npm run dev                   # ...or a real export, for 339 works
+UWPR_EXPORT_DIR=$PWD/../export npm run dev                     # ...or the real export, committed at export/ (338 works)
 npm run check:types-fresh && npm run lint && npm run format:check && npm run typecheck
-npm test -- --run && npm run build && npm run check:budget && npm run e2e
+npm test -- --run && npm run build && npm run check:budget && npm run check:data-budget && npm run e2e
+UWPR_EXPORT_DIR=$PWD/../export npm test -- --run               # the unit suite against the real export (check.yml runs it)
 ```
 
 - **Types are generated from `schemas/`**, not hand-written, so contract drift is a build failure.
@@ -93,7 +106,10 @@ npm test -- --run && npm run build && npm run check:budget && npm run e2e
 - **The summary cross-check is the highest-value test**: the app's unfiltered figures must equal
   the `summary` block the pipeline computed independently.
 - **Playwright runs against the built app** behind `vite preview`; the 404 fallback and the
-  on-demand lookup fetch do not exist in the dev server.
+  on-demand lookup fetch do not exist in the dev server. For e2e on the real export, set
+  `UWPR_EXPORT_DIR` for **both** the build and `npm run e2e`, or the preview serves the sample.
+- **Whole-page axe tests need a 30 s timeout** (`30_000`): CI's runner is slower than a laptop,
+  and Vitest's 5 s default has failed `check` while passing locally.
 
 - **Quality gate:** `.github/workflows/check.yml` runs exactly these checks. Tests are offline:
   `tests/conftest.py` blocks sockets. Actions are pinned to commit SHAs (Dependabot updates
@@ -162,8 +178,9 @@ npm test -- --run && npm run build && npm run check:budget && npm run e2e
   file writes).
 - Three modes: `live`, `replay` (tests; no network) and `record`.
 - A full sweep every run, with a validation gate before any write.
-- **The download cache (`cache/`, git-ignored) is only an accelerator.** CI runners start
-  cold, so the pipeline must be correct with an empty cache.
+- **The download cache (`cache/`, git-ignored) is only an accelerator.** `update.yml` restores
+  it between runs (`dlcache-v2-`), but a miss starts cold, so the pipeline must be correct with an
+  empty cache.
 
 ## Data-source gotchas (learned the hard way)
 
@@ -201,6 +218,22 @@ npm test -- --run && npm run build && npm run check:budget && npm run e2e
   real outage must degrade the run rather than read as "this DOI has no preprint relation".
 - **Preprint servers mint a DOI per revision** (`…-33v24-v2`, `…/v2`), so a stated relation may
   name a revision the store does not hold.
+- **Funding (Phase 9).** The ones most likely to bite are below; the rest are in `docs/08` §5 and
+  `docs/09` §5.
+  - **NIH RePORTER's window:** large jobs only at weekends or 21:00–05:00 Eastern, at most one
+    request a second, or the address can be blocked. Every request sends a `sort_field`
+    (`publications/search` answers 500 to `appl_id`: sort by `coreproject`) and
+    `exclude_subprojects: true`.
+  - **USAspending:** the amount is `total_obligation`, not `total_funding`; `award_ids` match
+    exactly; mixing award-type groups is HTTP 422. TLS verifies under httpx; never `verify=False`.
+  - **OpenAlex award amounts:** DFG's `gepris` amounts are refused (they look invented); ANID's
+    are multiplied by 1,000 (thousands of pesos, labelled CLP).
+  - **G.5A quotes AUD, EUR, NZD and GBP as dollars per unit** and the rest as units per dollar.
+    Rates are stored as dollars per unit, the inverted ones rounded to ten significant digits.
+  - **Any edit to `config/funding.yaml` must bump `funding_version`**, or stage 0 refuses the run.
+  - **Pipeline dates are UTC:** a Saturday-evening run in New York is dated Sunday, and so is a
+    `funding_version` or override written for it.
+  - **`178013_1` must stay quoted in `overrides.yaml`:** YAML 1.1 reads it as the integer 1780131.
 
 ## Measuring
 
