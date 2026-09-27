@@ -19,7 +19,8 @@
  *
  * **Two sources' terms are met here** (docs/09 §13.3, re-read by B10). NLM asks for "Courtesy of
  * the U.S. National Library of Medicine", clearly shown where its data is used, and for a
- * statement that the data may not be its most current, which the date it was read supplies. The
+ * statement that the data may not be its most current, which the date it was read supplies;
+ * `NlmAttribution` words it, here and on every funding page (R1a). The
  * OECD's licence asks for changes to be indicated, and its rates are stored inverted, so the
  * currency paragraph says they are.
  *
@@ -28,6 +29,7 @@
  * public page does not change until the view is released.
  */
 import type { ReactNode } from 'react';
+import { NlmAttribution } from '../components/NlmAttribution';
 import type { ExportDocument, FundingSource } from '../contract/types';
 import { formatDate } from '../format/date';
 import { formatCount, formatUsd, pluralize } from '../format/number';
@@ -213,7 +215,6 @@ export function FundingMethodSection({ doc }: FundingMethodSectionProps) {
   const resource = doc.resource.short_name;
   const { method, grants } = facts;
   const reporter = sourceById(facts, 'reporter');
-  const pubmed = sourceById(facts, 'pubmed');
   const families = AMOUNT_FAMILIES.map((family) => ({
     ...family,
     count: family.bases.reduce((sum, basis) => sum + (facts.byBasis.get(basis) ?? 0), 0),
@@ -270,14 +271,7 @@ export function FundingMethodSection({ doc }: FundingMethodSectionProps) {
           </li>
         ))}
       </ul>
-      {pubmed === undefined ? null : (
-        <p className="method-attribution">
-          <strong>Courtesy of the U.S. National Library of Medicine.</strong> The grant numbers from{' '}
-          {pubmed.name} were read on {formatDate(pubmed.as_of)}, and may not reflect the most
-          current data available from the National Library of Medicine, which does not endorse this
-          site.
-        </p>
-      )}
+      <NlmAttribution sources={facts.sources} />
 
       <h3 id="funding-resolution">From a number in a publication to a grant</h3>
       <p>

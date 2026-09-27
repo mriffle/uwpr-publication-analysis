@@ -18,7 +18,8 @@
  *
  * The honesty rules hold as on the Funding impact view (§12.11): no wording of credit or cause; a
  * total carries its definition and date; unknown is never $0; a grant is counted once; names are
- * as the funder publishes them, with no link to a person.
+ * as the funder publishes them, with no link to a person. At its foot, NLM's attribution when
+ * PubMed is a source (§13.3, `NlmAttribution`).
  *
  * Built behind `VITE_FUNDING` (`contract/config.ts`). An unknown code, or an export with no
  * funding data (§12.10), is the designed not-found state.
@@ -40,6 +41,7 @@ import { EntityPublications } from '../components/EntityPublications';
 import { FundingFigures } from '../components/FundingFigures';
 import { AgencyLink, InAppLink, type FundingLinks } from '../components/FundingLinks';
 import { GrantsTable } from '../components/GrantsTable';
+import { NlmAttribution } from '../components/NlmAttribution';
 import type { SiteView, ViewSwitch } from '../components/SiteHeader';
 import { fundingOf, type FundingIndex } from '../contract/funding';
 import type { Agency as AgencyRecord, ExportDocument, Work } from '../contract/types';
@@ -240,6 +242,8 @@ function AgencyPage({
         publicationHref={publicationHref}
         onOpenPublication={onOpenPublication}
       />
+
+      <NlmAttribution sources={index.funding.sources} />
     </main>
   );
 }

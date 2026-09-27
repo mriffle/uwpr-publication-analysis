@@ -64,11 +64,12 @@ describe('agency and grant filter the publications view', () => {
   });
 
   it('selects the works listing a grant, named as its funder writes it', () => {
-    at('/?grant=NIH%3AR01GM999001');
+    // A grant both the sample and the real export list (NIDDK's diabetes research centre core).
+    at('/?grant=NIH%3AP30DK017047');
+    const count = listingGrant('NIH:P30DK017047');
+    expect(count).toBeGreaterThan(0);
     expect(
-      screen.getByText(
-        `${publications(listingGrant('NIH:R01GM999001'))} matching Grant: NIGMS R01GM999001.`,
-      ),
+      screen.getByText(`${publications(count)} matching Grant: NIDDK P30DK017047.`),
     ).toBeInTheDocument();
   });
 

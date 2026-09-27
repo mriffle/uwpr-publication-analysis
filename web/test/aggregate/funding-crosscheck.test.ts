@@ -8,7 +8,7 @@
  * functions the views use, so this checks the definitions the page shows.
  *
  * Every expectation is read from whichever export is loaded, never hard-coded, so this holds
- * against the sample (whose funding is B5's synthetic block) and the real export alike. The
+ * against the sample and the real export alike: 755 grants on the real one at its seed. The
  * test builders' summaries are zeros (`support/funding.ts`), so they are no fixture for this.
  */
 import { describe, expect, it } from 'vitest';
@@ -25,7 +25,7 @@ import {
 } from '../../src/aggregate/funding';
 import { fundingOf } from '../../src/contract/funding';
 import type { FundingSummary } from '../../src/contract/types';
-import { isSampleExport, sampleExport } from '../support/fixture';
+import { sampleExport } from '../support/fixture';
 import { fundingDocument, legacyDocument, noFundingBlock } from '../support/funding';
 
 const doc = sampleExport();
@@ -35,9 +35,10 @@ const computed = summarizeFunding(doc.works, index);
 
 describe('the app’s unfiltered funding figures equal funding.summary', () => {
   // A vacuous pass — no funding on either side — would be worse than no test at all. The sample
-  // always has funding; a real export has none until the seed (docs/09 §17), and then agrees
-  // with its zeros, which the no-data cases below also hold.
-  it.skipIf(!isSampleExport && index === null)('reads an export with funding data', () => {
+  // always has funding, and so has the real export since the seed of 2026-09-27 (docs/09 B9),
+  // which CI checks on every push (R1a). An export with none agrees with its zeros, which the
+  // no-data cases below hold.
+  it('reads an export with funding data', () => {
     expect(index).not.toBeNull();
     expect(summary.grants).toBeGreaterThan(0);
     expect(summary.works_with_listings).toBeGreaterThan(0);

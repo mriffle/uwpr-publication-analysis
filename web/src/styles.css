@@ -942,11 +942,18 @@ button.chart-legend-item.is-selected {
 
 /*
  * NLM's attribution (docs/09 §13.3), which its terms ask to be shown "in a clear and conspicuous
- * manner": full-size text in the body colour, set off from the paragraphs around it.
+ * manner": full-size text in the body colour, set off from the paragraphs around it. The method
+ * page, the foot of every funding page, and one line at the end of a publication's Funding
+ * section (`NlmAttribution`).
  */
-.method-attribution {
+.nlm-attribution {
   border-left: 3px solid var(--border);
   padding-left: 0.75rem;
+}
+
+.entity-page > .nlm-attribution,
+.funding-page > .nlm-attribution {
+  margin-top: 2rem;
 }
 
 /*

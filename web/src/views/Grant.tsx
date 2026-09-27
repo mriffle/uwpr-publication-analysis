@@ -19,7 +19,8 @@
  * Its words are §12.11's: unknown is never $0, a converted amount shows its original, a grant is
  * counted once and the page says so, and nothing says the resource caused or earned it. An
  * unmatched number (Miscellaneous) has a page too, which says it matched no record and shows only
- * what the papers wrote.
+ * what the papers wrote. At its foot, NLM's attribution when PubMed is a source (§13.3,
+ * `NlmAttribution`).
  *
  * Built behind `VITE_FUNDING` (`contract/config.ts`). An unknown key, or an export with no
  * funding data (§12.10), is the designed not-found state.
@@ -34,6 +35,7 @@ import { EntityNotFound } from '../components/EntityNotFound';
 import { EntityPublications } from '../components/EntityPublications';
 import { AgencyLink, type FundingLinks } from '../components/FundingLinks';
 import { ListingNotes } from '../components/FundingSection';
+import { NlmAttribution } from '../components/NlmAttribution';
 import { fundingOf, type FundingIndex } from '../contract/funding';
 import type { ExportDocument, Work } from '../contract/types';
 import { formatDate } from '../format/date';
@@ -213,7 +215,7 @@ function GrantPage({
         heading="Publications listing this grant"
         entries={detail.listings.map(({ work, listing }) => ({
           work,
-          notes: <ListingNotes listing={listing} />,
+          notes: <ListingNotes listing={listing} unmatched={detail.miscellaneous} />,
         }))}
         summary={
           detail.miscellaneous
@@ -223,6 +225,8 @@ function GrantPage({
         publicationHref={publicationHref}
         onOpenPublication={onOpenPublication}
       />
+
+      <NlmAttribution sources={index.funding.sources} />
     </main>
   );
 }

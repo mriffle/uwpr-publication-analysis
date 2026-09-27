@@ -15,7 +15,7 @@ import { FundingSection } from '../../src/components/FundingSection';
 import { fundingOf, type FundingIndex } from '../../src/contract/funding';
 import type { GrantListing, Work } from '../../src/contract/types';
 import { expectNoAxeViolations } from '../support/axe';
-import { isSampleExport, sampleExport } from '../support/fixture';
+import { sampleExport } from '../support/fixture';
 import { listing } from '../support/funding';
 import { WORLD, recordingLinks, worldIndex } from '../support/fundingWorld';
 import { listings } from '../support/grants';
@@ -194,6 +194,54 @@ describe('unmatched numbers (Miscellaneous)', () => {
   });
 });
 
+/**
+ * An override can decide that a string matches nothing (docs/09 B9): the real export's W-000102
+ * lists `MISC:1780131`, "178013_1", which OpenAlex matched to an unrelated grant. The section
+ * quoted the number and dropped the listing, so the decision's reason, author and date — which
+ * §12.8 asks of every override — were shown nowhere on the publication. R1a found it by running
+ * the sample-only listings test below against the real export.
+ */
+describe('an override that keeps a number unmatched', () => {
+  const kept = () =>
+    show([
+      listing({
+        grant: WORLD.unmatched.key,
+        agencies: ['MISC'],
+        how: 'override',
+        cited_as: [WORLD.unmatched.number, 'R01 GM-99999'],
+        override: {
+          reason: 'OpenAlex matches this string to an unrelated grant, which does not fit.',
+          by: 'mriffle',
+          date: '2026-09-27',
+        },
+      }),
+    ]);
+
+  it('gives its reason, by whom and when, and does not call the decision a match', () => {
+    kept();
+    const [item] = within(section()).getAllByRole('listitem');
+    expect(item).toHaveTextContent(`“${WORLD.unmatched.number}”`);
+    expect(item).toHaveTextContent('Kept unmatched by a recorded decision, not by a rule');
+    expect(item).not.toHaveTextContent('Matched by a recorded decision');
+    expect(item).toHaveTextContent(
+      'OpenAlex matches this string to an unrelated grant, which does not fit.',
+    );
+    expect(item).toHaveTextContent('Decided by mriffle on 27 September 2026');
+  });
+
+  it('says only the forms the paper wrote besides the number quoted', () => {
+    kept();
+    const [item] = within(section()).getAllByRole('listitem');
+    expect(item).toHaveTextContent('Also written in the paper as “R01 GM-99999”.');
+    expect(item).not.toHaveTextContent(`as “${WORLD.unmatched.number}”`);
+  });
+
+  it('passes axe', async () => {
+    const { container } = kept();
+    await expectNoAxeViolations(container);
+  });
+});
+
 describe('R2 evidence: the resource’s own award (§6.13, §12.11 rule 10)', () => {
   it('says the code shown as evidence is not a grant, and never lists it as one', () => {
     // `work()` carries R2 evidence by default.
@@ -286,7 +334,9 @@ describe('no funding data (docs/09 §12.10)', () => {
   });
 });
 
-describe.runIf(isSampleExport)('the sample export’s real listings (docs/09 §11.8)', () => {
+// Every listing of whichever export is loaded: the sample's, or the real one's 1,664 (R1a), whose
+// 33 listings with a written form take about 3 s with axe, and its 338 sections about 1 s.
+describe('the export’s real listings (docs/09 §11.8)', () => {
   const doc = sampleExport();
   const index = fundingOf(doc);
   const find = (id: string) => doc.works.find((entry) => entry.id === id) as Work;
@@ -311,7 +361,7 @@ describe.runIf(isSampleExport)('the sample export’s real listings (docs/09 §1
         unmount();
       }
     }
-  });
+  }, 30_000);
 
   it('never shows the resource’s own code as a grant', () => {
     for (const entry of doc.works) {
@@ -321,5 +371,5 @@ describe.runIf(isSampleExport)('the sample export’s real listings (docs/09 §1
       }
       unmount();
     }
-  });
+  }, 30_000);
 });

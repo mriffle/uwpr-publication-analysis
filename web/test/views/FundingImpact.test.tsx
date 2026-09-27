@@ -6,7 +6,8 @@
  * the agency and grant pages all cross the URL. Nothing is hard-coded: every figure is read from
  * the document under test, and the headline figures are held to `funding.summary`, which the
  * pipeline computed independently — so the same assertions hold against the real export
- * (`UWPR_EXPORT_DIR`). Every state is put through axe.
+ * (`UWPR_EXPORT_DIR`). Every state is put through axe; on the real export, the whole view's two
+ * are left to the e2e step for time (R1a).
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
@@ -18,7 +19,7 @@ import type { ExportDocument } from '../../src/contract/types';
 import { formatUsd } from '../../src/format/number';
 import { FUNDING_DEFINITION_IDS } from '../../src/method/definitions';
 import { expectNoAxeViolations } from '../support/axe';
-import { sampleExport } from '../support/fixture';
+import { isSampleExport, sampleExport } from '../support/fixture';
 import { legacyDocument } from '../support/funding';
 
 const doc = sampleExport();
@@ -115,10 +116,17 @@ describe('the sample, unfiltered', () => {
     expect(new Set(hrefs)).toEqual(new Set(FUNDING_DEFINITION_IDS.map((id) => `/method#${id}`)));
   });
 
-  it('passes axe', async () => {
-    const { container } = at('/funding');
-    await expectNoAxeViolations(container);
-  }, 30_000);
+  // Sample-only for time (R1a): on the real export, whose grants table has 755 rows, axe takes
+  // 6.5 s alone in jsdom and 14 s beside the rest of the suite. Axe on the real data is the e2e
+  // step's, in a real browser and both themes (e2e/funding.spec.ts).
+  it.runIf(isSampleExport)(
+    'passes axe',
+    async () => {
+      const { container } = at('/funding');
+      await expectNoAxeViolations(container);
+    },
+    30_000,
+  );
 });
 
 describe('grant funding over time', () => {
@@ -331,10 +339,15 @@ describe('institution-wide awards excluded', () => {
     expect(here()).toBe('/funding?year=2020&institution_wide=exclude');
   });
 
-  it('passes axe', async () => {
-    const { container } = at('/funding?institution_wide=exclude');
-    await expectNoAxeViolations(container);
-  }, 30_000);
+  // Sample-only for time, as the unfiltered view's is (R1a).
+  it.runIf(isSampleExport)(
+    'passes axe',
+    async () => {
+      const { container } = at('/funding?institution_wide=exclude');
+      await expectNoAxeViolations(container);
+    },
+    30_000,
+  );
 });
 
 describe('empty states', () => {

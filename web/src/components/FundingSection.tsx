@@ -17,10 +17,13 @@
  *   names are as the funder publishes them, with no link to any person (rule 9).
  * - **The resource's own code is never a grant** (rule 10). When the work has R2 evidence, one
  *   sentence says the code shown above as evidence is not repeated here.
+ * - **NLM's attribution ends the section**, as one short line, when PubMed is a source (§13.3).
  *
  * Unmatched numbers are quoted under their own `h3`, apart from the grants: no record matched
- * them, so they have no agency, title or amount to show. **With no funding data the section is
- * not rendered at all** (§12.10) — it would otherwise read as "this paper lists no grant".
+ * them, so they have no agency, title or amount to show. One an override kept unmatched still
+ * gives the override's reason, by whom and when, as every override does. **With no funding data
+ * the section is not rendered at all** (§12.10) — it would otherwise read as "this paper lists no
+ * grant".
  */
 import { useId } from 'react';
 import { agencyLabel } from '../aggregate/funding';
@@ -37,6 +40,7 @@ import {
   unknownAmountReason,
 } from '../format/funding';
 import { AgencyLink, GrantLink, type FundingLinks } from './FundingLinks';
+import { NlmAttribution } from './NlmAttribution';
 
 export interface FundingSectionProps {
   work: Work;
@@ -49,6 +53,16 @@ export interface FundingSectionProps {
 
 /** “P01 HL99900” and “P01-HL99900”: the forms the paper wrote, each quoted. */
 const quoted = (forms: readonly string[]): string => forms.map((form) => `“${form}”`).join(' and ');
+
+/**
+ * An unmatched number is quoted as the paper wrote it, so of `cited_as` only the other forms are
+ * worth saying: `MISC:1780131`'s listing cites "178013_1", which is the number shown.
+ */
+function otherForms(listing: GrantListing, grant: Grant): GrantListing {
+  const { cited_as: forms, ...rest } = listing;
+  const [first, ...more] = (forms ?? []).filter((form) => form !== grant.number);
+  return first === undefined ? rest : { ...rest, cited_as: [first, ...more] };
+}
 
 /** How the listing reached the grant, where that is not simply the paper naming it. */
 function howNote(listing: GrantListing): string | null {
@@ -67,8 +81,18 @@ function howNote(listing: GrantListing): string | null {
  * paper wrote, wherever `cited_as` is present and whatever `how` is; how an NIH link or a
  * correction reached it; and an override's reason, by whom and when, as a judgement. Shared by
  * this section and the grant page's publications, so the two never word a listing differently.
+ *
+ * `unmatched` is for a Miscellaneous number, which an override can decide too: the real export's
+ * `MISC:1780131` is a string OpenAlex matched to an unrelated grant, kept out by a decision
+ * (docs/09 B9). That decision matched nothing, so it is not called a match.
  */
-export function ListingNotes({ listing }: { listing: GrantListing }) {
+export function ListingNotes({
+  listing,
+  unmatched = false,
+}: {
+  listing: GrantListing;
+  unmatched?: boolean;
+}) {
   const note = howNote(listing);
   const override = listing.override;
   return (
@@ -79,7 +103,11 @@ export function ListingNotes({ listing }: { listing: GrantListing }) {
       {note === null ? null : <p className="funding-how">{note}</p>}
       {override === undefined ? null : (
         <div className="funding-override">
-          <p className="evidence-label">Matched by a recorded decision, not by a rule</p>
+          <p className="evidence-label">
+            {unmatched
+              ? 'Kept unmatched by a recorded decision, not by a rule'
+              : 'Matched by a recorded decision, not by a rule'}
+          </p>
           <p className="evidence-reason">{override.reason}</p>
           <p>
             Decided by {override.by} on {formatDate(override.date)} and recorded in the project’s
@@ -175,11 +203,11 @@ export function FundingSection({ work, index, resource, links }: FundingSectionP
   if (index === null) return null;
 
   const grants: { listing: GrantListing; grant: Grant }[] = [];
-  const unmatched: Grant[] = [];
+  const unmatched: { listing: GrantListing; grant: Grant }[] = [];
   for (const listing of listingsOf(work, index)) {
     // `listingsOf` keeps only listings whose grant the index holds.
     const grant = index.grants.get(listing.grant) as Grant;
-    if (isMiscellaneous(grant, index)) unmatched.push(grant);
+    if (isMiscellaneous(grant, index)) unmatched.push({ listing, grant });
     else grants.push({ listing, grant });
   }
   const hasResourceCode = work.evidence.some((entry) => entry.rule === 'R2');
@@ -222,8 +250,11 @@ export function FundingSection({ work, index, resource, links }: FundingSectionP
             title or amount, and are not counted as grants.
           </p>
           <ul className="funding-unmatched">
-            {unmatched.map((grant) => (
-              <li key={grant.key}>“{grant.number}”</li>
+            {unmatched.map(({ listing, grant }) => (
+              <li key={grant.key}>
+                “{grant.number}”
+                <ListingNotes listing={otherForms(listing, grant)} unmatched />
+              </li>
             ))}
           </ul>
         </>
@@ -236,6 +267,8 @@ export function FundingSection({ work, index, resource, links }: FundingSectionP
           not listed here.
         </p>
       ) : null}
+
+      <NlmAttribution sources={index.funding.sources} compact />
     </section>
   );
 }

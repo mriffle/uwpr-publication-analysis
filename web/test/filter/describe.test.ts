@@ -14,7 +14,7 @@ import {
   toggleYear,
   type FilterState,
 } from '../../src/filter/state';
-import { sampleExport } from '../support/fixture';
+import { isSampleExport, sampleExport } from '../support/fixture';
 import { legacyDocument } from '../support/funding';
 
 describe('the active filter, in words (docs/06 §6)', () => {
@@ -94,7 +94,13 @@ describe('agencies and grants, named from the funding block (docs/09 §12.4)', (
     expect(label({ agency: ['MISC'] })).toEqual(['Funding agency: Miscellaneous']);
   });
 
+  // The grants named below are listed in both the sample and the real export; the sample's
+  // synthetic grants, which the real one never has, are named in the sample-only cases.
   it('names a grant by its agency’s short name and its number, as the funder writes it', () => {
+    expect(label({ grant: ['NIH:P30DK017047'] })).toEqual(['Grant: NIDDK P30DK017047']);
+  });
+
+  it.runIf(isSampleExport)('names the sample’s synthetic grant and task order the same way', () => {
     expect(label({ grant: ['NIH:R01GM999001'] })).toEqual(['Grant: NIGMS R01GM999001']);
     expect(label({ grant: ['NIH-contract:HHSN272209900002I:75N99099F00001'] })).toEqual([
       'Grant: NIAID 75N99099F00001',
@@ -102,6 +108,10 @@ describe('agencies and grants, named from the funding block (docs/09 §12.4)', (
   });
 
   it('uses the agency’s name where it has no short name', () => {
+    expect(label({ grant: ['CANCERFONDEN:222380PJ'] })).toEqual(['Grant: Cancerfonden 22 2380 Pj']);
+  });
+
+  it.runIf(isSampleExport)('names the sample’s synthetic funder and unmatched number so', () => {
     expect(label({ grant: ['F4399999999:UA99001'] })).toEqual([
       'Grant: SAMPLE Research Foundation UA-99001',
     ]);
@@ -131,7 +141,7 @@ describe('agencies and grants, named from the funding block (docs/09 §12.4)', (
     expect(funding).not.toBeNull();
     if (funding === null) return;
     const orphan = { ...funding, agencies: new Map() };
-    expect(buildLabels(doc, orphan).grant.get('NIH:R01GM999001')).toBe('NIGMS R01GM999001');
+    expect(buildLabels(doc, orphan).grant.get('NIH:P30DK017047')).toBe('NIDDK P30DK017047');
   });
 
   it('places them after the publication dimensions, and removes one value per chip', () => {
@@ -183,11 +193,11 @@ describe('the funding sentence (docs/09 §12.4)', () => {
   it('agrees with English on one grant and one publication', () => {
     expect(
       fundingSentence(
-        { ...EMPTY_FILTER, grant: ['NIH:R01GM999001'] },
+        { ...EMPTY_FILTER, grant: ['NIH:P30DK017047'] },
         { grants: 1, withGrants: 1, publications: 1 },
         labels,
       ),
-    ).toBe('1 grant listed on 1 of 1 publication matching Grant: NIGMS R01GM999001.');
+    ).toBe('1 grant listed on 1 of 1 publication matching Grant: NIDDK P30DK017047.');
   });
 
   it('states an empty result as counts, not as a missing sentence', () => {
@@ -226,10 +236,10 @@ describe('the funding sentence (docs/09 §12.4)', () => {
   });
 
   it('claims no exclusion while a grant is selected, which overrides the toggle', () => {
-    const state = { ...EMPTY_FILTER, grant: ['ANID:1599A0999'] };
+    const state = { ...EMPTY_FILTER, grant: ['NSF:1908587'] };
     expect(
       fundingSentence(state, { grants: 1, withGrants: 1, publications: 1 }, labels, 'exclude'),
-    ).toBe('1 grant listed on 1 of 1 publication matching Grant: ANID 1599A0999.');
+    ).toBe('1 grant listed on 1 of 1 publication matching Grant: NSF 1908587.');
   });
 
   it('leaves the publications sentence as it was', () => {

@@ -34,13 +34,13 @@ const root = repositoryRoot();
  * Point the fixture at another export directory — in practice the real one.
  *
  * docs/06 §15's last exit criterion is "The summary cross-check asserted against the real
- * export", and the real export is not in the repository (only `samples/export/` is). Until it
- * is, the check is run against a freshly built one:
+ * export". The real export is committed at `export/`, and CI runs the whole suite against it on
+ * every push (R1a):
  *
- *     uv run uwpr-pubs export --store store --out /tmp/real-export
- *     UWPR_EXPORT_DIR=/tmp/real-export npm test
+ *     UWPR_EXPORT_DIR=$PWD/../export npm test -- --run
  *
- * Nothing in the suite hard-codes a figure, so the same assertions hold over 18 works or 339.
+ * Nothing in the suite hard-codes a figure, so the same assertions hold over 18 works or 338. A
+ * key a test names is one both exports list (`NIH:P30DK017047`), or the test is sample-only.
  */
 const exportDir = process.env.UWPR_EXPORT_DIR ?? resolve(root, 'samples/export');
 
@@ -50,7 +50,9 @@ const exportDir = process.env.UWPR_EXPORT_DIR ?? resolve(root, 'samples/export')
  * docs/05 §13: the twelve-case coverage guard "cannot apply to a real store, which can never
  * satisfy 'retracted' or 'override with attribution': the store holds no retraction, and its
  * only override is an *exclude*, which by definition never reaches the export." The case tests
- * are therefore sample-only; every other test in the suite holds against either.
+ * are therefore sample-only, as are the funding tests of the sample's synthetic grants and works
+ * (docs/09 §11.8) and two whole-page axe tests too slow on the real export in jsdom; every other
+ * test in the suite holds against either.
  */
 export const isSampleExport = process.env.UWPR_EXPORT_DIR === undefined;
 

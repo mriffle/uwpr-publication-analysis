@@ -219,7 +219,10 @@ describe('an agency or grant the export does not have', () => {
   });
 
   it('says only that nothing has the key when the export has funding data', () => {
-    at('/funding/grant/NIH%3AR01GM086688', null, withFunding());
+    // A key no export lists: the real one lists NIH:R01GM086688, which the no-data cases use.
+    const absent = 'NIH:R01GM777777';
+    expect(withFunding().funding.grants.some((grant) => grant.key === absent)).toBe(false);
+    at(`/funding/grant/${encodeURIComponent(absent)}`, null, withFunding());
     expect(screen.queryByText(/no funding data at all/)).not.toBeInTheDocument();
     expect(screen.getByText(/Nothing listed on the publications here/)).toBeInTheDocument();
   });

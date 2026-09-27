@@ -25,7 +25,7 @@ import {
 import { fundingMethodFacts } from '../../src/method/funding';
 import { Method } from '../../src/views/Method';
 import { expectNoAxeViolations } from '../support/axe';
-import { isSampleExport, sampleExport } from '../support/fixture';
+import { sampleExport } from '../support/fixture';
 import {
   agency,
   fundingBlock,
@@ -374,14 +374,11 @@ describe('the rules and what they decided (docs/09 §6, §11.3 method)', () => {
     expect(prose()).toContain('under a filter the earliest one the filter shows');
   });
 
-  it.runIf(isSampleExport)(
-    'names the partial publication year when the export says it is one',
-    () => {
-      show();
-      expect(doc.period.current_year_partial).toBe(true);
-      expect(prose()).toContain(`${String(doc.period.last_year)} is a partial publication year`);
-    },
-  );
+  it('names the partial publication year when the export says it is one', () => {
+    show();
+    expect(doc.period.current_year_partial).toBe(true);
+    expect(prose()).toContain(`${String(doc.period.last_year)} is a partial publication year`);
+  });
 });
 
 describe('an export with no funding data (docs/09 §12.10)', () => {

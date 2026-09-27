@@ -65,6 +65,13 @@ jobs:
       - run: npm run format:check
       - run: npm run typecheck
       - run: npm run test:coverage     # unit and component tests, 80% floor (B7)
+      # The same suite against the committed real export (docs/09 R1a), about 30 s. The weekly
+      # bot's data commits start no workflow, so it is every push that holds the app's figures —
+      # the summary and funding cross-checks above all — to the real data the site serves. The
+      # tests of the sample's own synthetic cases skip themselves here.
+      - run: npm test -- --run
+        env:
+          UWPR_EXPORT_DIR: ${{ github.workspace }}/export
       # The gate builds and tests the Funding impact view, which is built on `main` in slices
       # behind `VITE_FUNDING` (docs/09). The production build in pages.yml leaves it off until
       # release, so the budget below is measured on the larger of the two builds. (Vitest turns

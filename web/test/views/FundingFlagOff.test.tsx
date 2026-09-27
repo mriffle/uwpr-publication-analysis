@@ -71,7 +71,8 @@ describe('a build without the Funding impact view', () => {
   });
 
   it('gives a publication no Funding section, and so no link to an agency or grant', () => {
-    // Every work in the sample: the section would appear on each with the flag on (§12.8).
+    // Every work in the export: the section would appear on each with the flag on (§12.8). The
+    // real export's 338 pages take about 4 s in jsdom, so this has the page sweeps' 30 s.
     for (const work of doc.works) {
       const view = at(`/publication/${work.id}`);
       expect(
@@ -82,5 +83,5 @@ describe('a build without the Funding impact view', () => {
       }
       view.unmount();
     }
-  });
+  }, 30_000);
 });

@@ -109,18 +109,19 @@
  *
  * The cases are found by the app's own reading of each, not a copy of the Python predicates, and
  * rendered through `Router` at the address a reader would open, as `FundingImpact.test.tsx` does.
- * The honesty rules of §12.11 that no view test held on the committed sample are held here too.
+ * The honesty rules of §12.11 that no view test held on the committed sample are held here too,
+ * on whichever export is loaded.
  */
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { Router } from '../src/App';
 import { fundingOf } from '../src/contract/funding';
 import type { Grant } from '../src/contract/types';
 import { formatDate } from '../src/format/date';
 import { AMOUNT_BASIS_TEXT } from '../src/format/funding';
-import { formatUsd } from '../src/format/number';
+import { formatUsd, pluralize } from '../src/format/number';
 import { SCHEMA_DIR, isSampleExport, sampleExport } from './support/fixture';
 
 const doc = sampleExport();
@@ -427,7 +428,9 @@ describe.runIf(isSampleExport)('every §11.8 case renders where a reader would s
 });
 
 /* ------------------------------------------------------------------------------------------------
- * §12.11's honesty rules, on the committed sample's pages, where no view test held them.
+ * §12.11's honesty rules, where no view test held them: on every page of whichever export is
+ * loaded, the sample's or the real one's (R1a). Every grant page of the real export's 755 takes
+ * about 4 s in jsdom, and every publication's Funding section about 2 s.
  * --------------------------------------------------------------------------------------------- */
 
 /**
@@ -462,17 +465,32 @@ const CREDIT_OR_CAUSE = [
   'return on',
 ];
 
+/**
+ * The export's own words, which the page quotes and the rule is not about: a real grant is called
+ * "Cancer Center Support Grant", and a paper's title may say what "led to" what. Longest first,
+ * so a title is removed before a shorter name inside it.
+ */
+const QUOTED = [
+  ...grants.flatMap((grant) => [grant.title, grant.organization, ...grant.pis.map((p) => p.name)]),
+  ...doc.funding.agencies.map((agency) => agency.name),
+  ...doc.works.map((work) => work.title),
+]
+  .filter((text): text is string => text !== null && text !== '')
+  .map((text) => text.toLowerCase())
+  .sort((a, b) => b.length - a.length);
+
 const expectNoCreditOrCause = (element: HTMLElement) => {
   // "Data generated 19 September 2026" says when the export was written, not what funding did.
-  const text = (element.textContent ?? '')
+  let text = (element.textContent ?? '')
     .toLowerCase()
     .replace(/\bgenerated \d{1,2} [a-z]+ \d{4}/g, '');
+  for (const quoted of QUOTED) text = text.split(quoted).join(' ');
   for (const phrase of CREDIT_OR_CAUSE) {
     expect(text, phrase).not.toMatch(new RegExp(`\\b${phrase}\\b`));
   }
 };
 
-describe.runIf(isSampleExport)('the honesty rules on every funding page (§12.11)', () => {
+describe('the honesty rules on every funding page (§12.11)', () => {
   it('rule 1: no wording of credit or cause on the view, an agency or a grant page', () => {
     const paths = [
       '/funding',
@@ -509,6 +527,49 @@ describe.runIf(isSampleExport)('the honesty rules on every funding page (§12.11
       }),
     ).toHaveAttribute('href', '/method#funding-total');
   });
+
+  it('rule 4: the headline states the institution-wide position, either way', () => {
+    const awards = pluralize(doc.funding.summary.grants_institution_wide, 'institution-wide award');
+    const { unmount } = at('/funding');
+    expect(screen.getByRole('list', { name: 'Funding figures' })).toHaveTextContent(
+      `Including ${awards}`,
+    );
+    unmount();
+    at('/funding?institution_wide=exclude');
+    expect(screen.getByRole('list', { name: 'Funding figures' })).toHaveTextContent(
+      `Excluding ${awards}`,
+    );
+  });
+
+  /**
+   * Rule 3 wherever amounts accumulate: the view and every agency page, charts and tables. The
+   * real export's first year with a grant (2008) comes after its first publication year, and many
+   * agencies' first grants have no known amount, so a year with nothing known is common there,
+   * and neither its value nor a running total with nothing in it may read "$0" — in the words,
+   * or in the name a mark announces (W8, W10).
+   */
+  it('rule 3: unknown is never $0 on the view or any agency page, as charts or as tables', () => {
+    // The page's own statements of the rule ("never as $0", "which is not $0") are not figures.
+    const figures = (text: string) => text.replace(/\b(?:never|not)(?: as)? \$0(?![\d.,])/g, '');
+    const paths = [
+      '/funding',
+      '/funding?institution_wide=exclude',
+      ...doc.funding.agencies.map((agency) => `/funding/agency/${encodeURIComponent(agency.code)}`),
+    ];
+    for (const path of paths) {
+      const { unmount } = at(path);
+      const main = screen.getByRole('main');
+      for (const mark of main.querySelectorAll('[aria-label]')) {
+        expect(figures(mark.getAttribute('aria-label') ?? ''), path).not.toMatch(ZERO_DOLLARS);
+      }
+      expect(figures(words(main)), path).not.toMatch(ZERO_DOLLARS);
+      for (const toggle of screen.queryAllByRole('button', { name: 'View as table' })) {
+        fireEvent.click(toggle);
+      }
+      expect(figures(words(main)), `${path}, as tables`).not.toMatch(ZERO_DOLLARS);
+      unmount();
+    }
+  }, 30_000);
 
   it('rule 6: the partial publication year is marked on the view’s chart', () => {
     expect(doc.period.current_year_partial).toBe(true);

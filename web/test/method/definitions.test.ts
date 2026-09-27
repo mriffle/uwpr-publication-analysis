@@ -16,7 +16,7 @@ import {
 import { summarize } from '../../src/aggregate/metrics';
 import { formatDate } from '../../src/format/date';
 import { formatCount, formatUsd, pluralize } from '../../src/format/number';
-import { isSampleExport, sampleExport } from '../support/fixture';
+import { sampleExport } from '../support/fixture';
 
 const doc = sampleExport();
 const byId = new Map(metricDefinitions(doc).map((definition) => [definition.id, definition]));
@@ -130,7 +130,7 @@ describe('the funding definitions (docs/09 §12.5 item 2, §12.9)', () => {
     expect(new Set(all).size).toBe(all.length);
   });
 
-  it.runIf(isSampleExport)('states the corpus values funding.summary holds', () => {
+  it('states the corpus values funding.summary holds', () => {
     const summary = doc.funding.summary;
     const unknown = summary.grants_resolved - summary.grants_with_amount;
     expect(fundingById.get('funding-total')?.value).toBe(

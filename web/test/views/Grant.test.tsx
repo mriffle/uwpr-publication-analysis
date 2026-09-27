@@ -210,6 +210,44 @@ describe('a grant with fiscal years, one in progress and one with no amount', ()
   }, 30_000);
 });
 
+/**
+ * An override can keep a string unmatched (docs/09 B9), as the real export's `MISC:1780131` is.
+ * Its reason is shown with the publication, and a decision that matched nothing is not called a
+ * match, which the shared listing notes did before R1a.
+ */
+describe('an unmatched number an override kept', () => {
+  const doc = fundingDocument({
+    works: sampleExport().works.map((work, position) => ({
+      ...work,
+      grants:
+        position === 0
+          ? [
+              listing({
+                grant: 'MISC:R01GM999999',
+                agencies: ['MISC'],
+                how: 'override',
+                cited_as: ['R01 GM999999'],
+                override: {
+                  reason: 'OpenAlex matches this string to an unrelated grant.',
+                  by: 'mriffle',
+                  date: '2026-09-27',
+                },
+              }),
+            ]
+          : [],
+    })),
+  });
+
+  it('gives the decision with its publication, and does not call it a match', () => {
+    show('MISC:R01GM999999', { doc });
+    const item = within(publicationsList()).getByRole('listitem');
+    expect(item).toHaveTextContent('Kept unmatched by a recorded decision, not by a rule');
+    expect(item).not.toHaveTextContent('Matched by a recorded decision');
+    expect(item).toHaveTextContent('OpenAlex matches this string to an unrelated grant.');
+    expect(item).toHaveTextContent('Decided by mriffle on 27 September 2026');
+  });
+});
+
 /* ------------------------------------------------------------------------------------------------
  * The committed sample's grants.
  * --------------------------------------------------------------------------------------------- */
