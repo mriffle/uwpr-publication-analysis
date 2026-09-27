@@ -205,6 +205,10 @@ _BARE_HEAD = re.compile(r"([A-Z]{2})[ \-]{0,3}(?=[0-9OI])")
 _SERIAL_RUN = re.compile(r"[0-9OI]+")
 _SUFFIX = re.compile(r"(?:-?([0-9]{2}))?((?:[AS][0-9]{1,2})*)")
 _YEAR_SUFFIX = re.compile(r"-[0-9]{2}(?:[AS][0-9]{1,2})*(?![A-Z0-9])")
+# A component's number after a dash, alone or after the support year: PubMed writes a centre's
+# component as `P30 ES007033-6364`, and a JATS award ID `S10 RR023044-010001` (year 01, then 0001).
+# Read only after a whole six-digit serial, where the digits cannot be the rest of a split serial.
+_COMPONENT_SUFFIX = re.compile(r"-(?:[0-9]{2})?[0-9]{4}(?![A-Z0-9])")
 
 
 def _fix_activity(code: str) -> tuple[str, list[Fix]]:
@@ -276,7 +280,8 @@ def _finish(  # noqa: PLR0913 - where the serial starts, and what the head alrea
     if candidates is None:
         return None
     serials, fill_fixes = candidates
-    tail = _SUFFIX.match(text, end)  # it matches the empty string too
+    component = _COMPONENT_SUFFIX.match(text, end) if len(written) == SERIAL_DIGITS else None
+    tail = component or _SUFFIX.match(text, end)  # _SUFFIX matches the empty string too
     suffix = tail.group() if tail else ""
     end += len(suffix)
     if end < len(text) and text[end].isalnum():

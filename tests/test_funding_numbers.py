@@ -17,7 +17,7 @@ import pytest
 
 from uwpr_pubs.config import load_config
 from uwpr_pubs.funding.classify import FundingRules, institution_wide
-from uwpr_pubs.funding.numbers import AGENCY_CODE, GRANT_KEY, split_list
+from uwpr_pubs.funding.numbers import AGENCY_CODE, GRANT_KEY, parse_nih, split_list
 from uwpr_pubs.funding.overrides import override_match_key
 from uwpr_pubs.funding.resolve import Answers, Sighting, StringOutcome, WorkFunding, resolve_work
 
@@ -377,6 +377,49 @@ A1 = [
 @pytest.mark.parametrize("case", A1, ids=lambda case: case.id)
 def test_exact_matches_and_parse_fixes(case: Case) -> None:
     check(case)
+
+
+# A component's number after the serial, which Appendix A has no row for: the seed's rehearsal
+# (B9a) found these strings in Miscellaneous, each beside the core its work already lists. The
+# works are those of 2026-09-27.
+COMPONENTS = [
+    Case("W-000115", ("P30 ES007033-6364",), "grant", "exact", nih("P30ES007033"), links=("P30ES007033",)),
+    Case("W-000123", ("P42 ES004696-5897",), "grant", "exact", nih("P42ES004696"), links=("P42ES004696",)),
+    Case(
+        "W-000152",
+        (f"P50 NS062684{HYPHEN}6221",),
+        "grant",
+        "exact",
+        nih("P50NS062684"),
+        links=("P50NS062684",),
+    ),
+    Case("W-000166", ("P30 ES007033-8649",), "grant", "exact", nih("P30ES007033"), holds=("P30ES007033",)),
+    Case("W-000113", ("ES007033-6364",), "grant", "normalised", nih("P30ES007033"), links=("P30ES007033",)),
+    Case(
+        "W-000041",
+        ("S10 RR023044-010001 || RR",),
+        "grant",
+        "exact",
+        nih("S10RR023044"),
+        links=("S10RR023044",),
+    ),
+]
+
+
+@pytest.mark.parametrize("case", COMPONENTS, ids=lambda case: case.id)
+def test_a_components_number_after_the_serial_is_a_suffix(case: Case) -> None:
+    check(case)
+
+
+def test_a_component_is_read_only_after_a_whole_serial() -> None:
+    """Five digits and a dash may be a split serial (`R01-HL1-26028`), so four more digits there
+    are not taken for a component: `P30 DK01047-1234` is left unread, as it was."""
+    ics = rules().ics
+    assert [n.cores() for n in parse_nih("P30 ES007033-6364", ics)] == [("P30ES007033",)]
+    assert [n.suffix for n in parse_nih("S10 RR023044-010001", ics)] == ["-010001"]
+    assert [n.suffix for n in parse_nih("3P30 ES007033-10S1", ics)] == ["-10S1"]
+    assert parse_nih("P30 DK01047-1234", ics) == ()
+    assert parse_nih("P30 ES007033-63645", ics) == ()
 
 
 # --- A.3 IC + serial matches with the wrong activity code (all refused) ----------------------
