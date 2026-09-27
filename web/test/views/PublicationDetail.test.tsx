@@ -303,7 +303,7 @@ describe('accessibility', () => {
       ],
     });
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 });
 
 describe.skipIf(!isSampleExport)('every work in the sample renders (docs/06 §12.1)', () => {

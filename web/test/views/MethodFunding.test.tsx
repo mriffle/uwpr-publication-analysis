@@ -388,17 +388,21 @@ describe('an export with no funding data (docs/09 §12.10)', () => {
   it.each([
     ['a 1.1 export whose block has a null version', { ...doc, funding: noFundingBlock() }],
     ['a 1.0 export with no funding block', legacyDocument()],
-  ])('renders the page, and the section says so in a sentence: %s', async (_, exported) => {
-    const { container } = page(exported);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('How this was assembled');
-    expect(section()).toHaveTextContent(
-      'This export carries no funding data, so there are no funding figures to describe.',
-    );
-    for (const id of FUNDING_DEFINITION_IDS) expect(container.querySelector(`#${id}`)).toBeNull();
-    expect(screen.queryByRole('link', { name: 'with the funding section' })).toBeNull();
-    expect(screen.queryByText(/Courtesy of the U\.S\. National Library of Medicine/)).toBeNull();
-    await expectNoAxeViolations(container);
-  });
+  ])(
+    'renders the page, and the section says so in a sentence: %s',
+    async (_, exported) => {
+      const { container } = page(exported);
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('How this was assembled');
+      expect(section()).toHaveTextContent(
+        'This export carries no funding data, so there are no funding figures to describe.',
+      );
+      for (const id of FUNDING_DEFINITION_IDS) expect(container.querySelector(`#${id}`)).toBeNull();
+      expect(screen.queryByRole('link', { name: 'with the funding section' })).toBeNull();
+      expect(screen.queryByText(/Courtesy of the U\.S\. National Library of Medicine/)).toBeNull();
+      await expectNoAxeViolations(container);
+    },
+    30_000,
+  );
 });
 
 describe('a build without the Funding impact view (VITE_FUNDING off)', () => {

@@ -59,6 +59,12 @@ export interface YearValueText {
    * are not all known says so, rather than reading as $0.
    */
   describeValue?: (value: number, point: YearPoint) => string;
+  /**
+   * The running total in a bar's accessible name, as the clause after the year's value:
+   * "$8,250,000 cumulative" by default, `formatValue` and the word. A running total of known
+   * amounts with none known yet is not "$0" (docs/09 §12.11 rule 3), so a series can say so.
+   */
+  describeCumulative?: (value: number, point: YearPoint) => string;
 }
 
 export interface YearSeriesChartProps extends YearValueText {
@@ -98,6 +104,11 @@ export interface YearSeriesChartProps extends YearValueText {
    * source reports no amount is not "$0". Defaults to `formatValue` of the point's value.
    */
   tooltipValue?: (point: YearPoint) => string;
+  /**
+   * The tooltip's running total for a year, where the number alone would mislead, as
+   * `tooltipValue` is for its value. Defaults to `formatValue` of the point's running total.
+   */
+  tooltipCumulative?: (point: YearPoint) => string;
 }
 
 const plural = (count: number, unit: SeriesUnit): string => (count === 1 ? unit.one : unit.many);
@@ -126,6 +137,7 @@ export function yearMarkLabel(
   {
     formatValue = formatCount,
     describeValue,
+    describeCumulative,
     selectable = true,
     cumulative = true,
   }: YearMarkOptions = {},
@@ -137,7 +149,10 @@ export function yearMarkLabel(
     : selected
       ? ' Selected. Activate to remove this year from the filter.'
       : ' Activate to filter by this year.';
-  const total = cumulative ? `, ${formatValue(point.cumulative)} cumulative` : '';
+  const runningTotal = describeCumulative
+    ? describeCumulative(point.cumulative, point)
+    : `${formatValue(point.cumulative)} cumulative`;
+  const total = cumulative ? `, ${runningTotal}` : '';
   return `${String(point.year)}${partial}: ${describe(point.count, point)}${total}.${action}`;
 }
 
@@ -160,6 +175,7 @@ export function YearSeriesChart({
   onSelectYear,
   formatValue = formatCount,
   describeValue,
+  describeCumulative,
   yTickFormat,
   rightTickFormat,
   tooltipRows,
@@ -168,6 +184,7 @@ export function YearSeriesChart({
   partialNoun = 'year',
   cumulative = true,
   tooltipValue,
+  tooltipCumulative,
 }: YearSeriesChartProps) {
   const patternId = useId();
   const [hovered, setHovered] = useState<YearPoint | null>(null);
@@ -177,6 +194,7 @@ export function YearSeriesChart({
     selectable,
     cumulative,
     ...(describeValue === undefined ? {} : { describeValue }),
+    ...(describeCumulative === undefined ? {} : { describeCumulative }),
   };
 
   const innerWidth = Math.max(0, width - margin.left - margin.right);
@@ -305,7 +323,14 @@ export function YearSeriesChart({
               value: tooltipValue ? tooltipValue(hovered) : formatValue(hovered.count),
             },
             ...(cumulative
-              ? [{ label: cumulativeAxisLabel, value: formatValue(hovered.cumulative) }]
+              ? [
+                  {
+                    label: cumulativeAxisLabel,
+                    value: tooltipCumulative
+                      ? tooltipCumulative(hovered)
+                      : formatValue(hovered.cumulative),
+                  },
+                ]
               : []),
             ...(tooltipRows?.(hovered) ?? []),
           ]}

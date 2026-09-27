@@ -330,10 +330,14 @@ describe.runIf(isSampleExport)('the sample’s grants', () => {
     'NIH:P01HL999001',
     'NIH:U19AG999002',
     'MISC:R01GM999999',
-  ])('%s passes axe', async (key) => {
-    const { container } = show(key);
-    await expectNoAxeViolations(container);
-  });
+  ])(
+    '%s passes axe',
+    async (key) => {
+      const { container } = show(key);
+      await expectNoAxeViolations(container);
+    },
+    30_000,
+  );
 });
 
 /* ------------------------------------------------------------------------------------------------

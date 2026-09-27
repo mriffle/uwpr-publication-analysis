@@ -30,9 +30,11 @@ interface Listing {
   grant: string;
   agencies: string[];
   cited_as?: string[];
+  how?: string;
 }
 
 interface ExportDocument {
+  period: { first_year: number };
   works: { id: string; title: string; year: number; grants?: Listing[] }[];
   /** Absent in a 1.0 export; its `version` is null in a 1.1 export with no funding data. */
   funding?: {
@@ -49,6 +51,7 @@ interface ExportDocument {
       agency: string;
       number: string;
       title: string | null;
+      scope: string;
       fiscal_years: Record<string, number | null> | null;
     }[];
   } | null;
@@ -106,6 +109,79 @@ function grantWithYears(doc: ExportDocument) {
     ) ?? grants[0]
   );
 }
+
+/**
+ * A root agency every one of whose listings is an institution-wide award, where there is one: with
+ * those excluded, its publications match and list nothing in view (docs/09 §12.5's empty states).
+ */
+function wideOnlyAgency(doc: ExportDocument): string | undefined {
+  const scopes = new Map<string, Set<string>>();
+  for (const work of doc.works) {
+    for (const entry of work.grants ?? []) {
+      const root = entry.agencies[0];
+      const grant = doc.funding?.grants.find((candidate) => candidate.key === entry.grant);
+      if (root === undefined || grant === undefined) continue;
+      scopes.set(root, (scopes.get(root) ?? new Set()).add(grant.scope));
+    }
+  }
+  return [...scopes].find(([, seen]) => seen.size === 1 && seen.has('institution-wide'))?.[0];
+}
+
+/**
+ * One publication per kind of listing its Funding section words differently (docs/09 §12.8): an
+ * override, a reference the paper wrote otherwise (`cited_as`), an NIH link, an unmatched number,
+ * and none at all — each a different structure for axe to see.
+ */
+function worksByListing(doc: ExportDocument): string[] {
+  const misc = new Set(
+    (doc.funding?.agencies ?? [])
+      .filter((agency) => agency.group === 'miscellaneous')
+      .map((agency) => agency.code),
+  );
+  const kinds: ((entries: Listing[]) => boolean)[] = [
+    (entries) => entries.some((entry) => entry.how === 'override'),
+    (entries) => entries.some((entry) => entry.cited_as !== undefined),
+    (entries) => entries.some((entry) => entry.how === 'nih_link'),
+    (entries) => entries.some((entry) => entry.agencies.some((code) => misc.has(code))),
+    (entries) => entries.length === 0,
+  ];
+  const ids = kinds.map((kind) => doc.works.find((work) => kind(work.grants ?? []))?.id);
+  return [...new Set(ids.filter((id): id is string => id !== undefined))];
+}
+
+/**
+ * Serve the export changed, for a state the served one does not show: the app loads it once per
+ * page load, so the change holds from the next `goto`.
+ */
+async function serveChanged(
+  page: Page,
+  change: (doc: Record<string, unknown> & { works: Record<string, unknown>[] }) => unknown,
+) {
+  await page.route('**/data/uwpr_publications.json', async (route) => {
+    const response = await route.fetch();
+    const doc = (await response.json()) as Parameters<typeof change>[0];
+    await route.fulfill({ response, json: change(doc) });
+  });
+}
+
+/**
+ * The export as the pipeline writes it while the store holds no funding (docs/09 §11.1, §12.10):
+ * the block there, its `version` null, and no work listing a grant — today's real export, so the
+ * no-data states are checked in CI too, where only the sample is served.
+ */
+const withoutFunding = (doc: Record<string, unknown> & { works: Record<string, unknown>[] }) => ({
+  ...doc,
+  funding: {
+    ...(doc.funding as Record<string, unknown>),
+    version: null,
+    as_of: null,
+    sources: [],
+    exchange_rates: [],
+    agencies: [],
+    grants: [],
+  },
+  works: doc.works.map((work) => ({ ...work, grants: [] })),
+});
 
 /** The live region: the filter bar's sentence, the first status on either view (docs/06 §9). */
 const sentence = (page: Page) => page.getByRole('status').first();
@@ -539,6 +615,114 @@ test.describe('a build with the Funding impact view', () => {
         await page.goto('/funding/grant/NOT-A-FUNDER%3A0000');
         await expect(page.getByRole('heading', { level: 1 })).toHaveText('Grant not found');
         await expectClean(page);
+      });
+
+      test('an agency not found passes axe', async ({ page }) => {
+        await page.goto('/funding/agency/NOT-A-FUNDER');
+        await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+          'Funding agency not found',
+        );
+        await expectClean(page);
+      });
+
+      test('the funding view passes axe with institution-wide awards excluded', async ({
+        page,
+      }) => {
+        const doc = await readExport(page);
+        test.skip(!hasFunding(doc), 'The served export carries no funding data.');
+        await page.goto('/funding?institution_wide=exclude');
+        await expect(sentence(page)).toContainText('Institution-wide awards are excluded.');
+        await expectClean(page);
+      });
+
+      test('the funding view’s empty states pass axe (§12.5)', async ({ page }) => {
+        const doc = await readExport(page);
+        test.skip(!hasFunding(doc), 'The served export carries no funding data.');
+
+        // No publication matches: the year before the first.
+        await page.goto(`/funding?year=${String(doc.period.first_year - 1)}`);
+        await expect(page.getByText('No publications match the current filter.')).toBeVisible();
+        await expectClean(page);
+
+        // Publications match, and every grant they list is an excluded institution-wide award.
+        const wide = wideOnlyAgency(doc);
+        if (wide !== undefined) {
+          await page.goto(`/funding?agency=${encodeURIComponent(wide)}&institution_wide=exclude`);
+          await expect(page.getByRole('region', { name: 'No grant listed' })).toContainText(
+            'only institution-wide awards',
+          );
+          await expectClean(page);
+        }
+
+        // Publications match and list no grant at all, which the served export never shows.
+        await serveChanged(page, (served) => ({
+          ...served,
+          works: served.works.map((work) => ({ ...work, grants: [] })),
+        }));
+        await page.goto('/funding');
+        await expect(page.getByRole('region', { name: 'No grant listed' })).toContainText(
+          'not a finding that the work had no funding',
+        );
+        await expectClean(page);
+      });
+
+      test('a publication’s Funding section passes axe with every kind of listing', async ({
+        page,
+      }) => {
+        const doc = await readExport(page);
+        const ids = worksByListing(doc);
+        test.skip(!hasFunding(doc) || ids.length === 0, 'The served export lists no grant.');
+        for (const id of ids) {
+          await page.goto(`/publication/${id}`);
+          await expect(
+            page.getByRole('region', { name: 'Funding listed in this publication' }),
+          ).toBeVisible();
+          await expectClean(page);
+        }
+      });
+
+      test('with no funding data, every funding page passes axe and nothing throws', async ({
+        page,
+      }) => {
+        const doc = await readExport(page);
+        const chain = chainOf(doc);
+        const errors: string[] = [];
+        page.on('pageerror', (error) => errors.push(error.message));
+        await serveChanged(page, withoutFunding);
+        const h1 = page.getByRole('heading', { level: 1 });
+
+        await page.goto('/funding');
+        await expect(
+          page.getByRole('region', { name: 'No funding data in this export' }),
+        ).toBeVisible();
+        await expectClean(page);
+
+        await page.goto(`/funding/agency/${encodeURIComponent(chain?.agency.code ?? 'NIH')}`);
+        await expect(h1).toHaveText('Funding agency not found');
+        await expect(page.getByText(/This export has no funding data at all/)).toBeVisible();
+        await expectClean(page);
+
+        await page.goto(
+          `/funding/grant/${encodeURIComponent(chain?.grant.key ?? 'NIH:R01GM086688')}`,
+        );
+        await expect(h1).toHaveText('Grant not found');
+        await expectClean(page);
+
+        const work = chain?.work ?? doc.works[0]!;
+        await page.goto(`/publication/${work.id}`);
+        await expect(h1).toHaveText(work.title);
+        await expect(
+          page.getByRole('heading', { name: 'Funding listed in this publication' }),
+        ).toHaveCount(0);
+        await expectClean(page);
+
+        await page.goto('/method#funding');
+        await expect(
+          page.getByRole('region', { name: 'How the funding figures are assembled' }),
+        ).toContainText('This export carries no funding data');
+        await expectClean(page);
+
+        expect(errors).toEqual([]);
       });
     });
   }

@@ -12,7 +12,9 @@
  *   publication-year filter would change the very first years being drawn (§12.5 item 3).
  * - **Unknown is never $0** (§12.11 rule 3). A year whose grants all lack an amount says so in
  *   words, and its row and its tooltip say "not known"; a year or a bucket with nothing entering
- *   is a dash. The count of grants with no known amount stands beside each year's value.
+ *   is a dash. The count of grants with no known amount stands beside each year's value. The
+ *   running total has nothing known in it until a known amount first enters, so the years before
+ *   say "no known amount yet", and a dash in the tooltip and the table, never "$0 cumulative".
  * - **An agency's segments apply the agency filter** — their series *is* an agency, whatever
  *   their year — while "Other" is a residue and never a filter. Miscellaneous is pinned, its own
  *   colour, and selectable like any agency (§12.4).
@@ -51,6 +53,18 @@ export function yearValueCell(point: FundingYearPoint): string {
 /** A running total of known amounts: a dash until one is known, never "$0". */
 const cumulativeCell = (value: number): string => (value === 0 ? '—' : formatUsd(value));
 
+/**
+ * The running total in a bar's accessible name. Until the first year a known amount enters, it
+ * holds nothing known, which is not "$0": the years before are "no known amount yet". After it,
+ * it is the sum, as any running total is.
+ */
+export function describeRunningTotal(over: CumulativeDollars, point: FundingYearPoint): string {
+  const first = over.points.find((entry) => entry.withAmount > 0)?.year;
+  return first === undefined || point.year < first
+    ? 'no known amount yet in the running total'
+    : `${formatUsd(point.cumulative)} cumulative`;
+}
+
 export interface FundingOverTimeChartProps {
   over: CumulativeDollars;
   width: number;
@@ -74,6 +88,12 @@ export function FundingOverTimeChart({ over, width, height }: FundingOverTimeCha
         const year = of(point.year);
         return year === undefined ? formatUsd(value) : describeYear(year);
       }}
+      describeCumulative={(value, point) => {
+        const year = of(point.year);
+        return year === undefined
+          ? `${formatUsd(value)} cumulative`
+          : describeRunningTotal(over, year);
+      }}
       yTickFormat={compactTick}
       rightTickFormat={compactTick}
       margin={WIDE_MARGIN}
@@ -82,6 +102,8 @@ export function FundingOverTimeChart({ over, width, height }: FundingOverTimeCha
         const year = of(point.year);
         return year === undefined ? formatUsd(point.count) : yearValueCell(year);
       }}
+      // …and the table's dash, not "$0", for a running total with nothing known in it yet.
+      tooltipCumulative={(point) => cumulativeCell(point.cumulative)}
       tooltipRows={(point) => {
         const year = of(point.year);
         if (year === undefined) return [];
@@ -100,7 +122,7 @@ export function FundingOverTimeChart({ over, width, height }: FundingOverTimeCha
 export function FundingOverTimeTable({ over }: { over: CumulativeDollars }) {
   return (
     <ChartTable<FundingYearPoint>
-      caption="The known value of the grants first listed in each year, the running total, and how many grants entered with no known amount. Each grant's whole lifetime total enters in its first year."
+      caption="The known value of the grants first listed in each year, the running total, and how many grants entered with no known amount. Each grant's whole lifetime total enters in its first year. A dash is no known amount, which is not $0."
       rows={over.points}
       rowKey={(point) => String(point.year)}
       columns={[

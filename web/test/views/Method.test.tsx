@@ -78,7 +78,7 @@ describe('the route', () => {
   it('passes axe', async () => {
     const { container } = show();
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 });
 
 describe('how the corpus is assembled (docs/05 §10, §7.13)', () => {

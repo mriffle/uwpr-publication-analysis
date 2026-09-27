@@ -137,6 +137,72 @@ describe('the Total view', () => {
   });
 });
 
+/**
+ * The running total before any known amount has entered (W10): the years before hold nothing
+ * known, which is not "$0". The world's grants under a filter that starts the frame in 2018 and
+ * leaves 2019's R01 an unknown amount, so 2018 enters nothing and 2019 enters only an unknown.
+ */
+describe('the running total before a known amount enters', () => {
+  const early: Period = { ...period, first_year: 2018 };
+  const scope = worldScope();
+  const unknownFirst = {
+    ...scope,
+    grants: scope.grants.map((entry) =>
+      entry.firstYear === 2019
+        ? { ...entry, grant: { ...entry.grant, amount_usd: null, amount_original: null } }
+        : entry,
+    ),
+  };
+  const before = cumulativeDollars(unknownFirst, early);
+
+  it('names those years "no known amount yet", never "$0 cumulative"', () => {
+    const { container } = render(<FundingOverTimeChart over={before} width={800} height={320} />);
+    expect(
+      screen.getByRole('img', {
+        name: '2018: no grant first listed, no known amount yet in the running total.',
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', {
+        name: '2019: 1 grant first listed, with no known amount, no known amount yet in the running total.',
+      }),
+    ).toBeInTheDocument();
+    // Once an amount is known, the running total is the sum, as any running total is.
+    expect(
+      screen.getByRole('img', {
+        name: /^2021: \$6,500,000 from 2 grants first listed, \$6,500,000 cumulative\.$/,
+      }),
+    ).toBeInTheDocument();
+    for (const bar of screen.getAllByRole('img', { name: /^\d{4}/ })) {
+      expect(bar.getAttribute('aria-label')).not.toMatch(/\$0 cumulative/);
+    }
+    expect(container.textContent).not.toMatch(/\$0 cumulative/);
+  });
+
+  it('says the same in its tooltip and its table: a dash, never "$0"', async () => {
+    render(<FundingOverTimeChart over={before} width={800} height={320} />);
+    await userEvent.hover(screen.getByRole('img', { name: /^2019:/ }));
+    const tooltip = screen.getByTestId('chart-tooltip');
+    expect(tooltip).toHaveTextContent('Value first listednot known');
+    expect(tooltip).toHaveTextContent('Cumulative—');
+    expect(tooltip.textContent).not.toMatch(/\$0(?![\d.,])/);
+
+    render(<FundingOverTimeTable over={before} />);
+    const table = screen.getByRole('table', {
+      name: /A dash is no known amount, which is not \$0/,
+    });
+    const row = within(
+      within(table).getByRole('rowheader', { name: '2019' }).closest('tr') as HTMLElement,
+    );
+    expect(row.getAllByRole('cell').map((cell) => cell.textContent)).toEqual([
+      'not known',
+      '—',
+      '1',
+      '1',
+    ]);
+  });
+});
+
 /** A stack with every role, to see the colours and which series are filters. */
 const stack: YearStack = {
   series: [
