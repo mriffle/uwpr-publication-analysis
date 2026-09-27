@@ -11,7 +11,7 @@ from typing import Any
 import pytest
 
 from uwpr_pubs.config import load_config
-from uwpr_pubs.explain import explain, resolve
+from uwpr_pubs.explain import NO_FUNDING, explain, resolve
 from uwpr_pubs.fixtures import alias_keys, evaluate, evaluate_one
 from uwpr_pubs.store import io
 from uwpr_pubs.store.read import read_store
@@ -175,3 +175,15 @@ def test_explain_says_plainly_when_nothing_has_ever_nominated_a_paper(store: Pat
     found, text = explain(read_store(store), "10.9999/nothing")
     assert not found
     assert "No channel has ever nominated it" in text
+
+
+def test_explain_on_a_store_without_funding_says_so(store: Path) -> None:
+    """The real store until the seed (docs/09 §9.1): "no funding data yet" is not "no grants"."""
+    shutil.rmtree(store / "funding", ignore_errors=True)
+    snapshot = read_store(store)
+    found, text = explain(snapshot, CASANOVO)
+    assert found
+    assert text.splitlines()[-1] == NO_FUNDING
+    found, text = explain(snapshot, "NIH:R01GM086688")
+    assert not found
+    assert text == f"NIH:R01GM086688: {NO_FUNDING}"

@@ -820,8 +820,8 @@ class FundingStage:
             return "incremental"
         if window:
             return "full"
-        self.recorder.note(
-            "funding: a full refresh is due and was deferred, because the run started outside NIH"
+        self.recorder.funding_note(
+            "a full refresh is due and was deferred, because the run started outside NIH"
             " RePORTER's window for large jobs (weekends, or 21:00-05:00 New York time); it runs"
             " incrementally until then, or with `run --funding full`"
         )
@@ -863,13 +863,13 @@ class FundingStage:
                 continue
             lines[work.id] = self._line(work, answers, awards)
         if carried:
-            self.recorder.note(
-                f"funding: {carried} work(s) kept their stored funding, because a source they need"
+            self.recorder.funding_note(
+                f"{carried} work(s) kept their stored funding, because a source they need"
                 " did not answer or was deferred this run"
             )
         if self.deferred:
-            self.recorder.note(
-                f"funding: {len(self.deferred)} RePORTER question(s) deferred: the run started outside"
+            self.recorder.funding_note(
+                f"{len(self.deferred)} RePORTER question(s) deferred: the run started outside"
                 f" its window, and the cap of {self.cap} requests was reached"
             )
         grants = self._grants(lines, inputs, awards)
@@ -1060,9 +1060,7 @@ class FundingStage:
                 for key in self._ask("reporter", [link_query(core)], partial(self._restore, core, applid)):
                     self.restored[core] = key
                     if key is None:
-                        self.recorder.note(
-                            f"funding: NIH links {work.id} to {core}, which could not be keyed"
-                        )
+                        self.recorder.funding_note(f"NIH links {work.id} to {core}, which could not be keyed")
 
     def _restore(self, core: str, applid: int | None) -> GrantKey | None:
         rows = [_reporter_row(raw) for raw in self.sources.reporter.projects_by_nums([f"{core}*"])]

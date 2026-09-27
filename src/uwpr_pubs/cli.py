@@ -114,7 +114,13 @@ def _explain(args: argparse.Namespace) -> int:
     if not store.is_dir():
         print(f"ERROR no store at {store}")
         return 1
-    found, text = explain(read_store(store), args.identifier)
+    # NIH's institute codes let an unresolved NIH-format string show what RePORTER holds nearby
+    # (docs/09 §6.11). A config that does not load costs only those lines, never the answer.
+    try:
+        ics = frozenset(load_config().funding["nih"]["ics"])
+    except ConfigError:
+        ics = frozenset()
+    found, text = explain(read_store(store), args.identifier, ics=ics)
     print(text)
     return 0 if found else 1
 
@@ -257,8 +263,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         " one now (full), or none (skip); --channels implies skip, and so does funding.yaml's enabled: false",
     )
 
-    explain_command = subcommands.add_parser("explain", help="why one paper is, or is not, included")
-    explain_command.add_argument("identifier", help="a work ID, DOI, PMID, PMCID or OpenAlex ID")
+    explain_command = subcommands.add_parser(
+        "explain", help="why one paper is, or is not, included; or what one grant is and who lists it"
+    )
+    explain_command.add_argument(
+        "identifier", help="a work ID, DOI, PMID, PMCID or OpenAlex ID, or a grant key (NIH:R01GM086688)"
+    )
     explain_command.add_argument("--store", default="store")
 
     report_command = subcommands.add_parser("report", help="print a run report (default: the latest)")

@@ -105,6 +105,12 @@ class RunRecorder:
     # What the funding stage did (docs/09 §9.6): its mode, grants, total and requests by source.
     # None when funding is disabled, so such a run's manifest says only what it ran with.
     funding_run: dict[str, Any] | None = None
+    # The report's Funding section (docs/09 §9.6), written by the pipeline after stage 8b: its
+    # lines, or one line for the Store section when the run decided no funding. Neither, before
+    # stage 8b has run.
+    funding_section: list[str] | None = None
+    funding_line: str | None = None
+    funding_notes: list[str] = field(default_factory=list)
     channels: dict[str, ChannelRun] = field(default_factory=dict)
     rules: dict[str, dict[str, int]] = field(default_factory=dict)
     degradations: list[Degradation] = field(default_factory=list)
@@ -133,6 +139,10 @@ class RunRecorder:
 
     def note(self, text: str) -> None:
         self.notes.append(text)
+
+    def funding_note(self, text: str) -> None:
+        """A note the funding stage makes, shown in the Funding section when there is one."""
+        self.funding_notes.append(text)
 
     def rule_fired(self, rule: str, *, new: bool) -> None:
         counts = self.rules.setdefault(rule, {"works": 0, "new": 0})
@@ -199,8 +209,9 @@ class RunRecorder:
                 "fingerprint": self.funding_fingerprint,
                 **(self.funding_run or {}),
             }
-        if self.notes:
-            manifest["note"] = " | ".join(self.notes)
+        notes = [*self.notes, *(f"funding: {note}" for note in self.funding_notes)]
+        if notes:
+            manifest["note"] = " | ".join(notes)
         return cast(RunManifest, manifest)
 
     def markdown(self, *, duration_seconds: float, spend_usd: float) -> str:
@@ -222,6 +233,7 @@ class RunRecorder:
             self._rule_section,
             self._new_work_section,
             self._change_section,
+            self._funding,
             self._degradation_section,
             self._note_section,
         ):
@@ -239,7 +251,14 @@ class RunRecorder:
     def _store_section(self) -> list[str]:
         if not self.counts:
             return []
-        return ["## Store", "", *[f"- {name}: {number}" for name, number in self.counts.items()], ""]
+        funding = [f"- {self.funding_line}"] if self.funding_line else []
+        return [
+            "## Store",
+            "",
+            *[f"- {name}: {number}" for name, number in self.counts.items()],
+            *funding,
+            "",
+        ]
 
     def _quality_section(self) -> list[str]:
         lines: list[str] = []
@@ -322,5 +341,19 @@ class RunRecorder:
         rows = [f"- {item['source']}: {item['cause']}" for item in self.degradations]
         return ["## Degradations", "", *rows, ""]
 
+    def _funding(self) -> list[str]:
+        """docs/09 §9.6. A run that decided no funding says so in the Store section instead."""
+        if self.funding_section is None:
+            return []
+        # The stage's notes (a deferred refresh, the cap reached) belong with its figures, which
+        # end at the first blank line; the lists follow.
+        lines = self.funding_section
+        split = lines.index("") if "" in lines else len(lines)
+        notes = [f"- {note}" for note in self.funding_notes]
+        return ["## Funding", "", *lines[:split], *notes, *lines[split:], ""]
+
     def _note_section(self) -> list[str]:
-        return ["## Notes", "", *[f"- {note}" for note in self.notes], ""] if self.notes else []
+        notes = list(self.notes)
+        if self.funding_section is None:
+            notes += [f"funding: {note}" for note in self.funding_notes]
+        return ["## Notes", "", *[f"- {note}" for note in notes], ""] if notes else []

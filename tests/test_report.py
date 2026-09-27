@@ -1,10 +1,12 @@
 """The run report's quality machinery (docs/03 §9, §10.6)."""
 
 import datetime as dt
+import difflib
 from pathlib import Path
 from typing import Any
 
 from uwpr_pubs.context import RunContext
+from uwpr_pubs.funding.report import disabled_line
 from uwpr_pubs.report import RunRecorder, Trend, trailing_average, trends
 
 
@@ -95,3 +97,51 @@ def test_the_report_never_names_the_commit_it_is_part_of() -> None:
     entry = recorder()
     entry.commit = "abcdef1234"
     assert "abcdef" not in entry.markdown(duration_seconds=1.0, spend_usd=0.0)
+
+
+# --- the Funding section (docs/09 §9.6) --------------------------------------------------------
+
+
+def a_week() -> RunRecorder:
+    entry = recorder()
+    entry.counts = {"works": 342, "candidates": 453}
+    entry.merged = [{"into": "W-000001", "retired": "W-000002"}]
+    entry.degrade("source:biorxiv", "down")
+    entry.note("an ordinary note")
+    return entry
+
+
+def test_a_run_that_decided_no_funding_differs_only_by_its_one_line() -> None:
+    today = a_week().markdown(duration_seconds=1.0, spend_usd=0.0).splitlines()
+    entry = a_week()
+    entry.funding_line = disabled_line()
+    disabled = entry.markdown(duration_seconds=1.0, spend_usd=0.0).splitlines()
+    changed = [line for line in difflib.ndiff(today, disabled) if line.startswith(("+ ", "- "))]
+    assert changed == [f"+ - {disabled_line()}"]
+    assert "## Funding" not in disabled
+
+
+def test_the_funding_section_carries_the_stages_notes_beside_its_figures() -> None:
+    entry = a_week()
+    entry.funding_section = ["- mode: incremental", "- grants: 3", "", "### New grants (1)", "", "| x |"]
+    entry.funding_note("a full refresh is due and was deferred")
+    text = entry.markdown(duration_seconds=1.0, spend_usd=0.0)
+    section = text.split("## Funding\n\n")[1].split("\n## ")[0]
+    assert section.splitlines()[:4] == [
+        "- mode: incremental",
+        "- grants: 3",
+        "- a full refresh is due and was deferred",
+        "",
+    ]
+    assert text.index("## Works merged") < text.index("## Funding") < text.index("## Degradations")
+    assert "deferred" not in text.split("## Notes\n\n")[1]
+    manifest = entry.manifest("2026-09-21T09:05:00Z", {})
+    assert manifest["note"] == "an ordinary note | funding: a full refresh is due and was deferred"
+
+
+def test_without_a_funding_section_the_stages_notes_go_to_the_notes() -> None:
+    entry = a_week()
+    entry.funding_line = "funding: the stage failed, so the stored funding was carried forward (see Alerts)"
+    entry.funding_note("3 work(s) kept their stored funding")
+    notes = entry.markdown(duration_seconds=1.0, spend_usd=0.0).split("## Notes\n\n")[1]
+    assert "- funding: 3 work(s) kept their stored funding" in notes

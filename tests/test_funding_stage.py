@@ -28,6 +28,7 @@ from uwpr_pubs import pipeline as pipeline_module
 from uwpr_pubs.cache import Cache
 from uwpr_pubs.config import load_config
 from uwpr_pubs.context import RunContext
+from uwpr_pubs.explain import explain
 from uwpr_pubs.funding.amounts import value_grant
 from uwpr_pubs.funding.jats import FundingString as JatsString
 from uwpr_pubs.http import Budget, HttpClient, Mode, RateLimiter, Response
@@ -73,6 +74,7 @@ WELLCOME = "https://openalex.org/F4320311904"
 NASA = "https://openalex.org/F4320306101"
 UW = "https://openalex.org/F4320310094"
 UNCONFIGURED = "https://openalex.org/F4320399999"
+ICS = frozenset(load_config(config_dir=PROJECT / "config").funding["nih"]["ics"])
 
 
 @dataclass(frozen=True)
@@ -862,7 +864,10 @@ def test_an_excluded_work_takes_its_citations_with_it(seeded: Runner) -> None:
     assert "NIH:R21AI123456" in seeded.grants()
     seeded.overrides = overrides_file(seeded.tmp_path, override(work, "exclude"))
     result = seeded(WEEK_LATER)
-    assert result.status == "ok", result.errors
+    assert result.errors == []
+    # R21AI123456 is a large share of this small corpus's total, so its going raises §9.5's alert.
+    assert result.status == "alert"
+    assert "the funding total fell" in result.report
     assert work not in seeded.lines()
     assert "NIH:R21AI123456" not in seeded.grants()  # only the excluded work listed it
     agencies = {line["code"] for line in io.read_jsonl(seeded.store / "funding" / "agencies.jsonl")}
@@ -1035,6 +1040,139 @@ def test_the_sample_build_decides_funding_that_is_disabled(run: Runner) -> None:
     assert set(decided.funding.citations) == set(snapshot.works)
     assert "NIH:R01GM086688" in decided.funding.grants
     assert run.asked("api.reporter.nih.gov")
+
+
+# --- the report's Funding section and the total-drop alert (§9.5, §9.6) -------------------------------
+
+
+def funding_section(report: str) -> list[str]:
+    return report.split("## Funding\n\n")[1].split("\n## ", maxsplit=1)[0].splitlines()
+
+
+def test_a_first_run_reports_its_funding_and_every_unresolved_string(run: Runner) -> None:
+    result = run()
+    section = funding_section(result.report)
+    assert section[:3] == [
+        "- mode: full refresh; funding_version 2099-01-01.1",
+        "- grants: 11, 3 of them unresolved; the first run to decide funding",
+        "- total: $5,221,373",
+    ]
+    assert "### New unresolved strings (3)" in section
+    b, c = run.work(B), run.work(C)
+    assert f'- {b}: "R01 GM12345" from openalex; funders: A funder → MISC:R01GM12345' in section
+    assert f'- {c}: "U19AG02312" from openalex; funders: A funder → MISC:U19AG02312' in section
+    at = section.index(f'- {c}: "P01 HL09296" from openalex; funders: A funder → MISC:P01HL09296')
+    assert (
+        section[at + 1]
+        == "  - nearest in RePORTER: P01HL092969 (one edit from the digits written; the store holds it)"
+    )
+    assert "### Grants by agency" in section
+    assert "| NIGMS (NIH) | 1 | $601,000 |" in section
+
+
+def test_an_unchanged_rerun_reports_nothing_new(seeded: Runner) -> None:
+    result = seeded(WEEK_LATER)
+    assert funding_section(result.report) == [
+        "- mode: incremental; the last full refresh was 2026-10-03; funding_version 2099-01-01.1",
+        "- grants: 11, 3 of them unresolved; 0 new, 0 no longer listed",
+        "- total: $5,221,373, unchanged since the last run",
+        "- strings excluded: 1 not grants, 2 the resource code, 1 facility contracts",
+        "- requests: reporter 2",
+    ]
+
+
+def test_a_run_adding_and_losing_grants_lists_them(seeded: Runner) -> None:
+    added = Paper(C.number, C.pmid, C.doi, True, (*C.awards, award("SFE-2019-0100", UNCONFIGURED)))
+    seeded.world.papers = (A, B, added, D)
+    seeded.overrides = overrides_file(seeded.tmp_path, override(seeded.work(D), "exclude"))
+    section = funding_section(seeded(WEEK_LATER).report)
+    assert "- grants: 11, 3 of them unresolved; 1 new, 1 no longer listed" in section
+    assert "### New grants (1)" in section
+    assert f"| F4320399999:SFE20190100 | F4320399999 | no amount | {seeded.work(C)} |" in section
+    assert "### Grants no longer listed (1)" in section
+    assert f"- NIH:R21AI123456 — $601,000; listed by {seeded.work(D)}" in section
+
+
+def test_a_deferred_run_says_so_and_carries_the_stages_note(seeded: Runner) -> None:
+    section = funding_section(seeded(MONDAY_MORNING).report)
+    assert section[0] == (
+        "- mode: incremental: a full refresh is due, and waits for RePORTER's window;"
+        " the last full refresh was 2026-10-03; funding_version 2099-01-01.1"
+    )
+    assert [line for line in section if "a full refresh is due and was deferred" in line]
+
+
+def test_a_run_that_decides_no_funding_says_so_in_one_line(seeded: Runner) -> None:
+    skipped = seeded(WEEK_LATER, funding="skip")
+    assert "## Funding" not in skipped.report
+    assert "- funding: skipped (`--funding skip`); the stored funding was carried forward" in skipped.report
+    partial = seeded(WEEK_LATER, channels=("B1",))
+    assert "- funding: skipped, as every partial run (`--channels`) is;" in partial.report
+    seeded.config = PROJECT / "config"
+    disabled = seeded(WEEK_LATER)
+    assert "## Funding" not in disabled.report
+    assert (
+        "- funding: disabled (`enabled: false` in config/funding.yaml); nothing was asked" in disabled.report
+    )
+
+
+def test_a_fall_in_a_degraded_run_raises_no_total_drop_alert(seeded: Runner) -> None:
+    seeded.world.reporter_status = 503
+    seeded.overrides = overrides_file(seeded.tmp_path, override(seeded.work(D), "exclude"))
+    result = seeded(WEEK_LATER)
+    assert result.status == "degraded", result.report
+    assert "the funding total fell" not in result.report
+
+
+# --- explain (§9.6) -----------------------------------------------------------------------------------
+
+
+def test_explain_shows_a_works_funding(seeded: Runner) -> None:
+    found, text = explain(read_store(seeded.store), seeded.work(A), ics=ICS)
+    assert found
+    funding = text.split("\nFunding (funding_version 2099-01-01.1)\n")[1].splitlines()
+    assert '    "R01 GM086688"  grant, exact → NIH:R01GM086688' in funding
+    assert '    "UWPR95794"  resource_code' in funding
+    assert "  NIH links (1)" in funding
+    assert "    NIH:R01GM086688  NIGMS, research, $601,000" in funding
+
+
+def test_explain_shows_an_unresolved_strings_nearest_cores(seeded: Runner) -> None:
+    _, text = explain(read_store(seeded.store), seeded.work(C), ics=ICS)
+    assert (
+        "        nearest in RePORTER: P01HL092969 (one edit from the digits written; the store holds it)"
+        in text
+    )
+
+
+def test_explain_a_grant_key_lists_its_facts_and_the_works_that_list_it(seeded: Runner) -> None:
+    snapshot = read_store(seeded.store)
+    found, text = explain(snapshot, "NIH:R01GM086688", ics=ICS)
+    assert found
+    lines = text.splitlines()
+    assert lines[0].startswith("NIH:R01GM086688 — RESOLVED, NIGMS (")
+    assert "amount: $601,000 — 601000 USD, basis reporter_fiscal_years, from NIH RePORTER" in lines
+    assert "Listed by 1 work(s)" in lines
+    at = lines.index(f"  {seeded.work(A)}")
+    assert lines[at + 1].startswith('      as "R01 GM086688" (exact; from ')
+    assert "      NIH link R01GM086688" in lines
+    assert explain(snapshot, "nih:r01gm086688")[1] == text  # a key typed in lower case
+
+
+def test_explain_an_unresolved_grant_shows_what_reporter_holds_nearby(seeded: Runner) -> None:
+    found, text = explain(read_store(seeded.store), "MISC:P01HL09296", ics=ICS)
+    assert found
+    assert text.splitlines()[0] == "MISC:P01HL09296 — UNRESOLVED, MISC (Miscellaneous)"
+    assert (
+        "          nearest in RePORTER: P01HL092969 (one edit from the digits written; the store holds it)"
+        in text
+    )
+
+
+def test_explain_an_unknown_grant_key_says_no_work_lists_it(seeded: Runner) -> None:
+    found, text = explain(read_store(seeded.store), "NIH:R01GM999999")
+    assert not found
+    assert text == "NIH:R01GM999999: no grant with this key in the store. No work lists it."
 
 
 # --- small pieces ---------------------------------------------------------------------------------------

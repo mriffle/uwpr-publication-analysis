@@ -32,6 +32,7 @@ from uwpr_pubs.fulltext import (
     recheck_after,
 )
 from uwpr_pubs.funding.export import FundingInput
+from uwpr_pubs.funding.report import FundingReport, disabled_line, drop_alert, skipped_line
 from uwpr_pubs.http import HttpClient, HttpError, Mode
 from uwpr_pubs.match import (
     TITLE_SIMILARITY,
@@ -1776,6 +1777,7 @@ class Pipeline:
             unreachable=self._unreachable,
         )
         inputs = [self._funding_input_for(work) for work in works]
+        failed = False
         try:
             result = stage.run(inputs, self.aliases, request=self.options.funding_request)
             problems = self._funding_problems(works, result) if result.resolved else []
@@ -1783,8 +1785,42 @@ class Pipeline:
                 raise FundingCheckError("; ".join(problems[:5]))
         except Exception as exc:  # docs/09 §9.4: a funding bug must never block the publication update
             result = self._funding_carried(stage, inputs, exc)
+            failed = True
         self.recorder.funding_run = result.manifest()
+        self._report_funding(stage, snapshot, result, failed=failed)
         return result
+
+    def _report_funding(
+        self, stage: FundingStage, snapshot: StoreSnapshot, result: FundingResult, *, failed: bool
+    ) -> None:
+        """The report's Funding section (docs/09 §9.6), or the one line a run that decided none shows.
+
+        Written here, from the stage's result beside the store it started from, so the section
+        says what moved. A fault in writing it costs the section, never the run (F16).
+        """
+        if result.mode is None:
+            self.recorder.funding_line = disabled_line()
+            return
+        if not result.resolved:
+            self.recorder.funding_line = skipped_line(partial=self.options.partial, failed=failed)
+            return
+        try:
+            self.recorder.funding_section = FundingReport(
+                mode=result.mode,
+                version=self.config.funding_version,
+                before=snapshot.funding,
+                after=result.funding,
+                rules=stage.rules,
+                rates=stage.rates,
+                overrides=self.config.overrides,
+                aliases=self.aliases,
+                requests=result.requests,
+                refreshed=result.refreshed,
+            ).lines()
+        except Exception as exc:
+            self.recorder.funding_line = (
+                f"funding: the Funding section could not be written ({type(exc).__name__}: {scrub(str(exc))})"
+            )
 
     def _funding_input_for(self, work: Work) -> WorkInput:
         canonical = next((r for r in work["records"] if r["id"] == work["canonical"]), None)
@@ -1993,6 +2029,7 @@ class Pipeline:
                 *trends(channel_counts, trailing_average(runs, "channels", "nominated"), "nominated"),
             ]
         self._alert_on_repeated_degradation(runs)
+        self._alert_on_funding_drop(runs)
 
     def _alert_on_repeated_degradation(self, runs: Sequence[Any]) -> None:
         """A source that has failed in three runs running needs a person, not another retry (§9).
@@ -2017,6 +2054,17 @@ class Pipeline:
                     f"{source} has now failed in {limit} runs in a row",
                     "check the source: nothing has been removed, but its data is going stale",
                 )
+
+    def _alert_on_funding_drop(self, runs: Sequence[Any]) -> None:
+        """docs/09 §9.5: the funding total fell by more than `total_drop_alert`, undegraded."""
+        threshold = float(self.config.funding["total_drop_alert"])
+        reason = drop_alert(runs, self.recorder.funding_run, self.recorder.degradations, threshold)
+        if reason is not None:
+            self.recorder.alert(
+                reason,
+                "read the report's Funding section — the grants no longer listed — and `explain`"
+                " them (RUNBOOK §15)",
+            )
 
     def publish(self, staging: Path) -> None:
         """Stage 13: only work files that left are deleted; everything else is carried forward."""
