@@ -841,7 +841,12 @@ plan. [08](08-implementation.md) records them as they are built.
     long word, with a minimum width; a number may break after "/" or ":" (by `<wbr>`, so its text
     is unchanged) and, when longer than NIH's eleven characters, anywhere; an original amount
     may break after its currency code; and the grants table is set a little smaller. Both fit
-    at 1,280 with every row drawn.
+    at 1,280 with every row drawn. *(Changed after merge: an institution now breaks only between
+    words, since "anywhere" let the column shrink until RePORTER's capitals broke inside a word,
+    "NORTHWESTE / RN"; and the least widths leave the grants table about 40 pixels inside its
+    column on macOS's fonts, since CI's Linux fonts, 2–3% wider, drew it 8 pixels too wide and
+    failed R1b's own check. The e2e check now also holds the table in its column with every row
+    drawn, and no institution broken inside a word.)*
   - **No page scrolls sideways on a phone** (docs/06 §9). At 390 pixels a chart's table
     alternative (value by agency's, 905 pixels wide) and a publication's topic table scrolled the
     whole page, as did a funding excerpt that runs award numbers together with no space. Both
