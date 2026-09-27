@@ -460,6 +460,10 @@ a funding bug alerts, and either way the stored funding is carried forward (docs
 - `config/funding.yaml` — agencies, patterns, exclusions and thresholds, versioned by
   `funding_version`. `config/exchange_rates.yaml` — not versioned. **Grant overrides** live in
   `overrides.yaml` with the others.
+- **Two figures per grant.** The store holds each grant's **lifetime total**, its whole award as
+  its funder records it. The site's totals add a smaller figure, the **counted amount**: the
+  grant's funding from 2006, when UWPR began, through the year of the latest publication listing
+  it (docs/09 F17, §7.4). The counting is done at export, from the store, and needs no source.
 
 ### Reading the Funding section
 
@@ -470,7 +474,9 @@ It follows the works' changes in the report (§3):
   after a `funding_version` bump, or with `--funding full`: everything re-read and re-decided.
   "a full refresh is due, and waits for RePORTER's window" appears only on a run started by hand
   outside that window; the next Saturday run does the refresh.
-- **grants** and **total**, with the change since the last run. The total usually moves a little,
+- **grants** and **total**, with the change since the last run. **The total is the store's
+  lifetime sum** — every known amount, whole — **not the site's headline**, which counts each
+  grant only from 2006 to its latest listing paper (below). The total usually moves a little,
   as active grants add fiscal years. **It falling by more than 5% in a run where every source
   answered raises an alert**: read *Grants no longer listed*. A grant goes when the last paper
   listing it leaves — an exclusion, a rule change, a merge — and the list names the papers. To see
@@ -502,6 +508,30 @@ Then what needs a person, each list stopping at 50 with "and N more":
 A run that decided no funding says so in one line under **Store** instead: disabled
 (`enabled: false`), skipped (`--funding skip`, and every `--channels` run), or carried forward
 because the stage failed, which also alerts.
+
+### What the site counts of a grant
+
+The report and `explain` give lifetime figures, from the store. What the site counts is in the
+export, which each run rebuilds:
+
+```bash
+uv run uwpr-pubs explain NIH:P51RR000166 --store store   # lifetime: amount, fiscal years, works
+jq '.funding.grants[] | select(.key == "NIH:P51RR000166")
+    | {amount_usd, counted_usd, counted_rule, first_year, last_listed_year}' \
+    export/uwpr_publications.json
+jq '.funding.summary | {amount_usd, counted_usd, grants_by_counted_rule}' \
+    export/uwpr_publications.json
+```
+
+`explain` prints nothing counted. In the export, `amount_usd` is the lifetime total and
+`counted_usd` what the totals count, over every publication listing the grant (the site counts
+less under a filter). `counted_rule` says why: `window` (its years from 2006 to the latest listing
+paper), `full_amount` (an instrument, counted in full), `ended_before` (funding ended before 2006:
+its last five years), `began_after` (began after its latest listing paper: $0), `undated` (no
+yearly breakdown: counted whole). The grant's page on the site says the same in words, under
+"Counted in the totals", and marks each fiscal year counted or not. A `began_after` grant is
+usually a renumbered grant whose predecessor the paper also lists, or one PubMed or NIH attached
+to the paper after it was published (docs/09 §3.6, §16 item 14).
 
 ### A new unresolved string, and a grant override
 
@@ -613,3 +643,21 @@ so the next run inside RePORTER's window re-reads everything and decides every s
 Saturday run is inside the window; a run by hand on a weekday defers it (and says so). Read that
 run's Funding section: the grants new and no longer listed, and the total, are what the change
 did. `uv run uwpr-pubs config` prints the version and fingerprint in force.
+
+### Changing a counting constant
+
+The counting rule's constants — the first year counted (2006), how many final years a grant that
+ended before it counts (5), and the kinds counted in full (instruments) — are in
+`src/uwpr_pubs/funding/counting.py`, **not** in `config/funding.yaml`. **Changing one is a code
+change, not a `funding_version` bump**, and needs no refresh and no request: the export reads no
+configuration, and every counted figure is recomputed from the stored rows.
+
+1. Edit the constant, and the tests that pin it: `tests/test_funding_counting.py` and the
+   export tests, and the app's (`web/test/`, whose builders state the constants and whose cases
+   expect their figures). The app's code reads the constants from the export's `funding.counting`.
+2. Rebuild both exports: `uv run uwpr-pubs export --store store --out export`, and the sample's
+   (`--store samples/store --out samples/export --cases samples/export_cases.json`).
+3. Run the checks (§6 step 4), the web suite against both exports included.
+4. Add a dated note to docs/09 (F17, §7.4) saying what changed and why, with the new headline.
+
+The app hard-codes none of the constants, so the page follows the data once it is published.

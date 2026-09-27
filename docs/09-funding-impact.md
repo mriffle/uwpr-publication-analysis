@@ -3,6 +3,9 @@
 **Status:** Agreed · 2026-09-26 · the input to implementation. Changes from here are made
 deliberately, dated, and noted in this header. **Built and live 2026-09-27:** the store was seeded
 and the Funding impact view released that day (§17; [08](08-implementation.md) §3.8 is the record).
+**Counting changed 2026-09-27 (F17):** the totals count each grant's funding from 2006 through the
+year of the latest publication listing it, not its lifetime total (§7.4), in export contract 1.2
+(§11).
 **Purpose:** show the funding behind the publications UWPR supports — the grants those papers list,
 what the grants are worth, which agencies award them, and how that total accumulates over time —
 with every grant traceable to the paper that lists it and every amount to the funder's own record.
@@ -22,7 +25,8 @@ and the per-grant measurements; no later milestone may depend on the scratch fil
 the research's own files disagreed, the section says so rather than choosing silently. Figures
 that are estimates, not measurements, say so and name the milestone that measures them. **Before
 landing, the figures were checked again against the research's saved files** and corrected where
-they differed; B6's live measurements of the same day are folded into §5 and §17.
+they differed; B6's live measurements of the same day are folded into §5 and §17. **§3.6's figures
+were measured on 2026-09-27**, on the committed export, to decide F17.
 
 The milestones named here — M0, B1–B10, W1–W10 and R — are those of the approved implementation
 plan. [08](08-implementation.md) records them as they are built.
@@ -944,6 +948,65 @@ plan. [08](08-implementation.md) records them as they are built.
 
   All eight rendered with no page error. The rollback, if it is ever needed, is to re-run
   `pages.yml` at fd7d0d8, the commit before R2 (`RUNBOOK.md` §8).
+- *2026-09-27, F17 — grant funding counted from 2006 through the latest listing publication.* The
+  headline stops adding lifetime totals. Each grant counts its funding from 2006, when UWPR began,
+  through the publication year of the latest publication listing it (under a filter, the latest
+  one shown), the years between its publications included. Four exceptions: an instrument grant
+  counts in full; an amount with no yearly breakdown counts whole; a grant whose funding ended
+  before 2006 counts its last five years; and a grant that began after its latest listing
+  publication counts $0, and says why. Other funders' amounts, which come as one total, are
+  first spread evenly over the award's start and end years where both are known, and what is
+  counted of them is marked as an estimate. The over-time chart moves from the year a grant was first listed to the year its
+  funding was awarded. A grant's lifetime total is unchanged, and stays on its own page, in the
+  grants table and in the CSV. On the committed export the headline goes from $7,888,899,029 to
+  **$5,139,499,698** (§3.6). The rule is §7.4.
+  - **Why.** The maintainer's judgement, on §3.6's measurements: UWPR could not have touched money
+    awarded before it existed, or after the last paper that lists the grant. A lifetime total
+    counted 27 years of `NIH:P51RR000166`, a primate centre funded FY1985–2011, for one 2012 paper,
+    and FY2022–2026 of `NIH:UM1AI169662` for one 2022 paper.
+  - **Measured and rejected: look-back windows.** Counting each listing paper's year and the *k*
+    years before it gave the NIH grants $887M (the paper's year alone) to $3,091M (five years
+    before), against $6,556M lifetime (§3.6). Nothing says how many years of a grant a paper drew
+    on, so the length cannot be verified, and each year of it moves the figure by $400–600M. The
+    floor and the ceiling each rest on a date that can be checked: when UWPR began, and the year of
+    the latest paper listing the grant.
+  - **The five grants that began after their latest listing paper were each checked** in the store
+    (§3.6). Two are renumbered grants whose predecessor the same paper lists, and the predecessor
+    is counted; three are listings that only the metadata carries — PubMed and OpenAlex, or NIH's
+    links alone — not the paper's text, attached after publication (§16 item 14).
+  - **What it supersedes.** F2's headline definition and F3's cumulative rule, each marked in place
+    in §2; §1's defensible statement; §4's *total value of grants listed*, *first year* and
+    *cumulative rule*; F14's contract version. Each grant still counts once, and new grants by
+    agency are still counted in their first year.
+  - **The constants live in code,** `src/uwpr_pubs/funding/counting.py`, not in
+    `config/funding.yaml`. That file is fingerprinted, so a constant kept there would force a
+    `funding_version` bump and a full RePORTER refresh, where an export rebuild is all a change
+    needs (§7.4). The export states them as `funding.counting`, so the app hard-codes none.
+  - **Contract 1.2, additive** (§11): `funding.counting`; each grant's `spread_years`,
+    `last_listed_year`, `counted_usd` and `counted_rule`; and the summary's counted totals, its
+    grants by rule and its counted dollars by award year. `amount_usd` stays the lifetime total
+    everywhere, so an app built before 1.2 reads a 1.2 export and shows true lifetime figures. The
+    app built with it needs `funding.counting`, and reads an export without it as having no
+    funding data (§12.10), so the release publishes the data before the views
+    ([07](07-operations.md) §10).
+  - **Decided while building, where the plan was silent or read otherwise.** An amount obligated to
+    date is spread to the year of the grant's own `amount_source.as_of`, which the plan called the
+    data's year: the export reads no clock, so it rebuilds identically on any day and CI's export
+    diff holds. The estimated part of the headline is a sentence of its definition rather than a
+    line of its own. The headline's institution-wide sentence gives counted dollars ("counted
+    at"). The app counts under the filter; a grant's page and a publication's Funding section give
+    the unfiltered amount, over every publication listing the grant, and say so.
+  - **Where it is built.** M1 2421a77: the pipeline and contract 1.2. M2 c94e2c1: the app's
+    arithmetic, beside the lifetime totals, with no view changed. M3a 6f69f19: the Funding impact
+    view, the grants table and its CSV on counted amounts, and the chart by year awarded. M3b
+    f326cd1: the grant, agency and publication pages, and the method page's new "How grant funding
+    is counted", at `#funding-counting`. This record is M4.
+  - **The gate.** 1,572 Python tests pass, and the validator recomputes every new field. The
+    counted figures equal an independent integer model of the rule, grant by grant, with no
+    mismatch. On the sample, 1,918 web unit tests pass; on the real export, 1,791 pass and 127
+    skip; the 89 Playwright specs pass. The JavaScript is 148.5 KB gzipped, against the 250 KiB
+    budget, and Vite's advisory warning for a chunk over 500 kB minified now shows (502.6 kB; §16
+    item 16). The real export is 450,002 bytes gzipped at level 9, from 440,730 (§11.9).
 
 ---
 
@@ -959,11 +1022,13 @@ funding metadata) is unchanged. A paper that lists no grant is as much a UWPR pu
 that lists ten.
 
 **It does not claim causation.** The defensible statement is: *the publications that record use
-of the resource list grants whose lifetime award totals, as of the data date, come to $X.* It is
-not money spent on this work, not money UWPR brought in, and not money the resource caused
-anyone to receive. [05](05-metrics-and-data-contract.md) §5.1 and §11.2 apply with more force here
-than anywhere else, because a dollar figure invites exactly the causal reading a publication count
-does not.
+of the resource list grants whose funding from 2006, when the resource began, through the year of
+the latest publication listing each, comes to $X, as the funders recorded it on the data date.*
+*(Amended 2026-09-27 by F17; it read "grants whose lifetime award totals, as of the data date,
+come to $X".)* It is not money spent on this work, not money UWPR brought in, and not money the
+resource caused anyone to receive. [05](05-metrics-and-data-contract.md) §5.1 and §11.2 apply
+with more force here than anywhere else, because a dollar figure invites exactly the causal
+reading a publication count does not.
 
 **It does not assess UWPR's own funding.** UWPR's own award is the code `UWPR95794`, which is
 evidence of use (R2), never a grant in this phase's totals. No other grant is assumed to be a UWPR
@@ -987,15 +1052,15 @@ instrument grant, however likely it looks.
 
 ## 2. Decisions
 
-Agreed 2026-09-26. Decisions marked *(maintainer)* were made by UWPR's maintainer on 2026-09-26;
-the rest were recommended in planning and adopted. Each is recorded with the measurement that
-informed it.
+Agreed 2026-09-26. Decisions marked *(maintainer)* were made by UWPR's maintainer on 2026-09-26,
+F17 on 2026-09-27; the rest were recommended in planning and adopted. Each is recorded with the
+measurement that informed it.
 
 | # | Decision | Why |
 |---|---|---|
 | F1 | **Scope.** The grants listed on included publications. UWPR's own funding is the code `UWPR95794` only, and it is never a grant. **No grant is assumed to be a UWPR instrument grant.** *(maintainer)* | 131 works name `UWPR95794` among their awards (§3.1). Counting it would put the resource's own award in a figure about its users' funding. |
-| F2 | **The headline figure is "Total value of grants listed":** *the lifetime award totals, as of the data date, of the distinct grants listed on these publications — not money spent on this work.* Each grant counts once, at its full lifetime value, however many papers list it. The view is named **Funding impact**. *(maintainer)* | A figure about grants, worded so it cannot be read as spending or as caused by UWPR (§1). |
-| F3 | **Cumulative rule:** a grant's full lifetime total enters the cumulative series in the publication year of the first included paper that lists it. Grant counts by agency, and over time, are shown too. *(maintainer)* | Measured: lifetime totals of the 454 NIH-linked grants come to $6,217M; the dollars awarded up to each grant's first-paper year only, $4,307M (§3.2). The lifetime rule was chosen because the headline is lifetime, and the two must agree. |
+| F2 | **The headline figure is "Total value of grants listed":** *the lifetime award totals, as of the data date, of the distinct grants listed on these publications — not money spent on this work.* Each grant counts once, at its full lifetime value, however many papers list it. The view is named **Funding impact**. *(maintainer)* ***The headline's definition is superseded by F17** (2026-09-27): it is "Grant funding counted", each grant's funding from 2006 through the year of the latest publication listing it, and a grant's lifetime total is a fact on its own page. Each grant still counts once, and the view is still Funding impact.* | A figure about grants, worded so it cannot be read as spending or as caused by UWPR (§1). |
+| F3 | **Cumulative rule:** a grant's full lifetime total enters the cumulative series in the publication year of the first included paper that lists it. Grant counts by agency, and over time, are shown too. *(maintainer)* ***The cumulative rule is superseded by F17** (2026-09-27): the series adds counted dollars in the year they were awarded (§7.4). Grant counts by agency still count each grant once, in its first year.* | Measured: lifetime totals of the 454 NIH-linked grants come to $6,217M; the dollars awarded up to each grant's first-paper year only, $4,307M (§3.2). The lifetime rule was chosen because the headline is lifetime, and the two must agree. |
 | F4 | **Institution-wide awards count in full, tagged** `scope: institution-wide`, and are **included by default.** The view can exclude them, and states which it is doing. *(maintainer)* | 23 grants (Appendix B). They dominate the non-NIH US-federal total: **$993.5M with them, $71.5M without** (§3.3). |
 | F5 | **v1 amount sources:** NIH RePORTER for NIH grants, contracts and task orders; the NSF Award API for NSF; USAspending for other US federal agencies; **OpenAlex award amounts for everyone else.** DOE national-laboratory operating (M&O) contracts are **excluded**: they are cited for facility use and are not grants. *(maintainer)* | Coverage measured per source (§3); the four M&O contracts are $8.6–30.9B each (Appendix C). |
 | F6 | **NIH amounts are sums of parent rows only**, one row per fiscal year's award action, supplements included; sub-project rows are never added. Contracts are keyed by contract number and task orders by task order. | Summing every row inflates a multi-project grant 50–100% (P30DK017047: $52.8M against $86.0M, §5.1). |
@@ -1006,9 +1071,10 @@ informed it.
 | F11 | **Storage in `store/funding/`, never in work files**, like `metrics/`. **Grant keys are this project's own grammar** (§8.2), not OpenAlex award IDs. | No work file is rewritten and `work.schema.json` does not change. OpenAlex mints one award ID per funder-and-string pair: one grant can have several (§5.4). |
 | F12 | **Results are stored, and sources are asked on a schedule:** an incremental refresh every run, a full refresh every 28 days. **The weekly run moves to Saturday 07:17 UTC** (`17 7 * * 6`), inside RePORTER's window for large jobs (weekends, or 9 PM–5 AM Eastern) at no more than one request a second. *(maintainer)* | RePORTER asks for both (§5.1). Monday 13:17 UTC ([03](03-retrieval-pipeline.md) C4) is 8:17 or 9:17 AM Eastern, a weekday morning. |
 | F13 | **PI names are exported and shown** where the funder's public award record gives them. [07](07-operations.md) §15 gets a dated note. *(maintainer)* | They are part of the public award record, and a grant without its investigators is hard to recognise. |
-| F14 | **Funding is part of the main export**, `schema_version` **1.1** (additive): `works[].grants[]` and a top-level `funding` block. The top-level `summary` is untouched. **The data budget rises from 400 to 500 KiB gzipped, enforced twice:** a web CI script, and a stage-11 alert. It is measured as `web/scripts/check-bundle-budget.mjs` measures JavaScript: gzip level 9, in KiB of 1,024 bytes. *(maintainer: main export, 500 KB; recommended: the double enforcement and the measure)* | The export is 303 KiB gzipped today, and about 420–450 KiB with funding (an estimate, §3.5). The bot's weekly commit starts no workflow ([07](07-operations.md) §6), so a CI check alone would never see weekly growth. |
+| F14 | **Funding is part of the main export**, `schema_version` **1.1** (additive): `works[].grants[]` and a top-level `funding` block. *(1.2 from 2026-09-27, F17, additive too: the counting rule's fields, §11.)* The top-level `summary` is untouched. **The data budget rises from 400 to 500 KiB gzipped, enforced twice:** a web CI script, and a stage-11 alert. It is measured as `web/scripts/check-bundle-budget.mjs` measures JavaScript: gzip level 9, in KiB of 1,024 bytes. *(maintainer: main export, 500 KB; recommended: the double enforcement and the measure)* | The export is 303 KiB gzipped today, and about 420–450 KiB with funding (an estimate, §3.5). The bot's weekly commit starts no workflow ([07](07-operations.md) §6), so a CI check alone would never see weekly growth. |
 | F15 | **The app** gains a Publications \| Funding impact switch, agency and grant pages, a grants table with CSV download, and a Funding section on each publication. **Agency and grant selections narrow the grants shown, not only the publications.** It ships behind a build flag, **`VITE_FUNDING`**, on in CI and e2e and off in the production build until release. *(maintainer: the views; recommended: the scope rule and the flag)* | As a pure publication filter, `agency=NSF` would show NIH dollars from papers that list both. The flag lets commits go straight to `main` without deploying a half-built view ([07](07-operations.md) §4). |
 | F16 | **Versioning and failure.** `funding_version` (`YYYY-MM-DD.N`) with a stage-0 fingerprint guard like the rules'. **A source outage never removes a grant, a listing or an amount**; an unexpected error in the funding stage carries the stored funding forward and alerts, and never blocks the publication update. JATS full text is harvested **once per record**. | Mirrors [03](03-retrieval-pipeline.md) P4 and P6. Full text adds 5 NIH work–grant pairs on 5 works (§3.1): worth reading once, not weekly. |
+| F17 | **Counting** (2026-09-27). **The totals count each grant's funding from 2006, when UWPR began, through the publication year of the latest publication listing it** — under a filter, the latest one shown — the years between its publications included. The first exception that applies decides: an **instrument** grant (S10, G20) counts in full; an amount with **no yearly breakdown** counts whole; a grant whose funding **ended before 2006** counts its last five years; a grant that **began after** its latest listing publication counts $0, and says why. An amount with no fiscal years but a start and an end year is **spread evenly** over them first, and marked as an estimate. The headline is **"Grant funding counted"**; the over-time chart places counted dollars in the year they were awarded; a grant's lifetime total stays a fact about the grant. The constants are code, not configuration (§7.4). *(maintainer)* | A lifetime total counts money UWPR could not have touched: 27 years of `NIH:P51RR000166` (FY1985–2011, $273.8M) for one 2012 paper. Measured (§3.6): lifetime $7.89B; the floor alone $6.32B; floor and ceiling $5.12B in the planning model, and $5,139,499,698 as built. Look-back windows were measured and rejected: their length cannot be verified, and each year of it moves the NIH total by $400–600M. |
 
 ## 3. Measurements
 
@@ -1215,6 +1281,125 @@ export from 310,628 to **311,014 bytes (303.7 KiB)**. The sample export goes fro
 `funding` block alone is about 2,500 bytes gzipped. Nine grants say little about 480, so the
 estimate above stands until B9 measures the real export with funding.
 
+### 3.6 Counting (2026-09-27)
+
+Measured with the maintainer on 2026-09-27, to decide F17, on `export/uwpr_publications.json` as
+committed at 5e711cb: 338 works, 755 grants, 617 with a known amount. The alternatives were
+scratch models, like the research of §3.1–3.5, and this section is their record; the last
+subsection is the rule as M1 built it, which an independent integer model of the rule reproduces
+grant by grant.
+
+**Lifetime, before F17** (F2, F3). The headline was **$7,888,899,029**: NIH $6,556,225,823 (483
+grants, 83%); institution-wide awards $1,214,918,218 (23 grants). By category: centre $4,908M,
+research $1,144M, other $1,110M, training $660M, contract $55M, instrument $11.5M. What a lifetime
+total counts:
+- `NIH:P51RR000166`: FY1985–2011, listed only by a 2012 paper: $273.8M.
+- `NIH:UM1AI169662`: FY2022–2026, one 2022 paper: $32.0M.
+- `NIH:P30CA015704`: FY1985–2026, papers 2012–2026: $353.2M.
+
+**Look-back windows, measured and rejected** (the 482 NIH grants with an amount, each by fiscal
+year):
+
+| Dollars counted per grant | NIH total | Share of lifetime |
+|---|---:|---:|
+| Lifetime | $6,556M | 100% |
+| Each listing paper's year and the 5 years before | $3,091M | 47% |
+| … and the 3 years before | $2,425M | 37% |
+| … and the 2 years before | $2,022M | 31% |
+| … and the 1 year before | $1,514M | 23% |
+| Publication years only | $887M | 14% |
+
+A span window, from *k* years before the first listing paper through the last, gives similar
+figures: *k* = 3, $2,567M; *k* = 5, $3,163M. **Rejected:** the length of the look-back cannot be
+verified, and each year of it moves the figure by $400–600M.
+
+**The floor alone** (nothing before FY2006): $6,318M in all, $1,570M less than lifetime, all of it
+NIH's, from 115 of the 482 NIH grants. FY2006 alone holds $196.9M, so a FY2007 floor would give
+$4.92B with the ceiling. **Floor and ceiling** (FY2006 through the latest listing paper; other
+funders prorated, in a floating-point model): **$5,117M**.
+
+**The five grants that began after their latest listing paper** (`began_after`), each checked in
+the store:
+- **`NIH:P41GM103493`** (PNNL, R. D. Smith). NIH renumbered the NCRR resource in 2012: support year
+  10 in FY2012, project start 2003. W-000049 (2010) also lists its predecessor **`NIH:P41RR018522`**
+  (FY2003–2011), through strings and an NIH link, and that one is counted.
+- **`NIH:KL2TR002317`** (UW ITHS KL2). New in FY2017 (support year 1). W-000154 (May 2016) prints
+  **KL2 TR000421** in its JATS text, which is counted. KL2TR002317 appears only in PubMed, OpenAlex
+  and NIH's link.
+- **`NIH:P30DK020572`** (Michigan Diabetes Research Center). FY2013 is support year 36, the earlier
+  years under another number. W-000079 (January 2012): the number is in PubMed and OpenAlex, not in
+  the JATS text.
+- **`NIH:ZIAAG000345`, `NIH:ZIAAG000346`** (NIA intramural, N. Basisty). New in FY2021. W-000230
+  (January 2020, its preprint 2019): NIH's links only.
+
+None is a calendar- or fiscal-year edge: every paper was published before October. **The pattern:**
+PubMed's grant lists and NIH's links include grants attached after publication (§16 item 14).
+
+**The pre-2006 grants listed by later papers:**
+
+| Grant | Type | Funded | Papers | How listed | Lifetime | Last 5 years |
+|---|---|---|---|---|---:|---:|
+| `NIH:K23RR016069` | training | FY2000–04 | 2022 | `nih_link` | $0.52M | $0.52M |
+| `NIH:R01DK044746` | research | FY1992–96 | 2012 | `listed` (PubMed, OpenAlex) | $1.37M | $1.37M |
+| `NIH:R01GM048231` | research | FY1992–2003 | 2011 | `listed` | $2.43M | $1.09M |
+| `NIH:R01HL069190` | research | FY2001–04 | 2015 | `listed` | $1.43M | $1.43M |
+| `NIH:R21CA099139` | research | FY2003 | 2009–2015 (5 papers; JATS text too) | `listed` | $0.18M | $0.18M |
+| `NIH:S10RR017262` | instrument | FY2003 | 2008, 2011, 2014 (JATS text too) | `listed` | $0.78M | counted in full |
+| `NIH:S10RR021026` | instrument | FY2005 | 2009 | `listed` | $0.50M | counted in full |
+| `NIH:T32CA009437` | training | FY1985–2001 | 2014, 2017 | `nih_link` | $5.11M | $2.17M |
+
+The six that are not instruments count $6.76M by their last five years (`ended_before`).
+
+**Other funders.** 135 grants not under NIH have an amount, $1,333M, and none has a yearly
+breakdown: only RePORTER reports one. 125 have a start and an end year ($566M lifetime), and are
+spread evenly over them. 10 have a start year only ($767M), and count whole (`undated`). The
+largest are `USA:NASA:NCC958` (institution-wide, from 1999, $583.5M: NSBRI, §3.3),
+`ANR:ANR10IAHU0001` ($116.2M) and `ANR:ANR10LABX0062` ($63.8M).
+
+**Obligations to date.** NSF's obligated amount and USAspending's are money obligated so far, not
+a planned total, so spreading one over its whole start…end range puts an active award into years
+not yet paid. In the planning model, the 13 spread grants ending after 2026 came to $89.4M that
+way, against $111.6M spread only to the year the amount was read, and that is the rule (§7.4). As
+built, 7 of the 125 spread grants have an obligation basis and end after the year of their
+`amount_source.as_of`; they count $91,843,232, against $77,770,764 were each spread over its whole
+range (recomputed from the committed export with `uwpr_pubs.funding.counting.counted`).
+
+**The rule as built** (M1, 2421a77; `uwpr-pubs export --store store --out export`):
+
+| | Counted (`counted_usd`) | Lifetime (`amount_usd`) |
+|---|---:|---:|
+| **All grants, the headline** | **$5,139,499,698** | $7,888,899,029 |
+| Institution-wide awards excluded | $4,052,434,757 | $6,673,980,811 |
+| Institution-wide awards | $1,087,064,941 | $1,214,918,218 |
+| NIH | $3,954,190,395 | $6,556,225,823 |
+| Spread evenly, the estimated part (125 grants) | $418,540,466 | $565,904,369 |
+
+| Rule | Grants | Counted |
+|---|---:|---:|
+| `window` | 581 | $4,354,473,040 |
+| `undated` | 10 | $766,768,837 |
+| `ended_before` | 6 | $6,758,263 |
+| `began_after` | 5 | $0 |
+| `full_amount` | 15 | $11,499,558 |
+
+| Grant | Counted | Lifetime | Rule |
+|---|---:|---:|---|
+| `NIH:P51RR000166` | $87,011,296 (FY2006–2011) | $273,843,530 | `window` |
+| `NIH:UM1AI169662` | $5,814,430 | $31,993,303 | `window` |
+| `NIH:P30CA015704` | $232,555,318 | $353,151,822 | `window` |
+| `NIH:S10RR017262` | $782,028 | $782,028 | `full_amount` |
+| `NIH:T32CA009437` | $2,167,823 (FY1997–2001) | $5,107,802 | `ended_before` |
+| `NIH:KL2TR002317` | $0 | $14,473,882 | `began_after` |
+| `USA:NASA:NCC958` | $583,518,208 | $583,518,208 | `undated` |
+| `USA:NASA:NNX16AO69A` | $50,760,504, an estimate: spread 2016–2026 (obligations to date), counted 2016–2019 | $139,591,380 | `window` |
+
+**By award year** (`counted_by_year`), 2006 to 2026, adding up to the headline: 2006 $197,096,716;
+2016 $370,876,360; 2019 $889,726,807, of which NCC958's undated $583.5M is counted in its first
+listing year; 2026, a partial year, $27,125,458.
+
+**Size.** The real export is 450,002 bytes gzipped at level 9, from 440,730 (budget 512,000); the
+sample 29,112, from 27,004 (§11.9).
+
 ## 4. Definitions
 
 - **Grant.** An award identified by a number its funder issues, resolved to one key (§8.2). For
@@ -1228,15 +1413,40 @@ estimate above stands until B9 measures the real export with funding.
 - **Agency.** The funder that issued a grant. NIH grants belong to their administering **IC**
   (institute or centre), whose parent is NIH. Other agencies are configured, or learned from
   OpenAlex's funder records. The **root** agency is the top of the chain (NIH, not NIGMS).
-- **A grant's amount** (its *total value*): its lifetime award total as of the data date, by the
-  basis of its source (§7). An active grant's total still grows.
-- **Total value of grants listed** (F2): the sum of the amounts of the distinct grants in view
-  whose amount is known in US dollars. Grants with no known amount are counted beside it, never in
-  it as zero.
+- **A grant's amount** (its *total value*, or *lifetime total*): its lifetime award total as of
+  the data date, by the basis of its source (§7). An active grant's total still grows. **It is a
+  fact about the grant**, shown on its page, in the grants table and in the CSV; since F17 no
+  total adds it up, and the method page gives the corpus's lifetime sum only beside the counted one.
+- **Counted amount** (F17, §7.4): the part of a grant's amount the totals count — its funding from
+  2006 through the year of the latest publication listing it, by the counting rule. Exported
+  unfiltered as `counted_usd`; the app counts again under a filter. Null exactly when the amount
+  is: an unknown amount is never counted as $0.
+- **Counting rule** (F17, §7.4). Five rules, and the first that applies decides, as
+  `counted_rule`:
+  1. `full_amount` — an instrument grant counts in full;
+  2. `undated` — an amount with no yearly breakdown counts whole;
+  3. `ended_before` — a grant whose funding ended before 2006 counts its last five years;
+  4. `began_after` — a grant that began after the latest publication listing it counts $0;
+  5. `window` — otherwise, its years from 2006 through that publication's year.
+- **Grant funding counted** (F17; until 2026-09-27 the headline was *total value of grants
+  listed*, F2, the sum of the lifetime amounts): the sum of the counted amounts of the distinct
+  grants in view whose amount is known in US dollars. Grants with no known amount are counted
+  beside it, never in it as zero; a grant that began after its latest listing publication is in it
+  at a known $0.
+- **Award year** (F17, §7.4). The year a counted dollar was awarded: an NIH fiscal year, or a year
+  of an even spread, kept within 2006 … the latest listing year: dollars with no year, and years
+  before 2006, go to the first listing year, and an instrument's years after the latest listing
+  year go to that year. The over-time chart is drawn by award year.
 - **First year.** The publication year ([05](05-metrics-and-data-contract.md) A2) of the earliest
   included work that lists the grant. Under a filter in the app, the earliest *filtered* work.
-- **Cumulative rule** (F3). The cumulative series adds each grant's full amount in its first year.
-  It is a publication year, not an award year, and says so.
+  Since F17 it places no dollars: it counts new grants by agency, is a grant's "First listed", and
+  is where the counting rule's dollars with no year go.
+- **Last listed year** (F17). The publication year of the latest included work that lists the
+  grant (`last_listed_year`); under a filter, the latest *filtered* work. The counting rule's
+  ceiling.
+- **Cumulative rule** (F3). *Superseded by F17 (2026-09-27).* The cumulative series added each
+  grant's full amount in its first year, a publication year. It now adds counted dollars by award
+  year, and ends at the grant funding counted.
 - **Institution-wide award.** An award made to an institution or consortium to run a programme for
   many unrelated projects — a fellowship programme, a national institute, a consortium-wide total,
   a centre of excellence — whose value bears no relation to one research project. Tagged from an
@@ -1758,6 +1968,84 @@ A grant's amount is **recomputed every run** as a pure function of its stored fa
 the rates and the date. Changing a rate or an amount rule needs no network, and changing a rate
 needs no version bump (the rates file is outside the funding fingerprint).
 
+### 7.4 Counting (F17, 2026-09-27)
+
+A grant's amount, §7.1–7.3, is unchanged: its lifetime total, exported as `amount_usd`. **What the
+totals count of it is its counted amount**, computed by `src/uwpr_pubs/funding/counting.py` —
+pure and in whole dollars, with no I/O, no clock and no floats — and, in the app, by its line for
+line twin `web/src/aggregate/counting.ts`.
+
+**The constants are code, not configuration:** `FROM_YEAR = 2006`, when UWPR began
+([01](01-discovery-strategy.md) D4; fiscal year 2006 counts); `LAST_YEARS = 5`;
+`FULL_AMOUNT_CATEGORIES = ("instrument",)`, NIH's S10 and G20 (§11.4); and
+`OBLIGATED_TO_DATE_BASES`, `nsf_obligated` and `usaspending_obligation`. `config/funding.yaml` is
+fingerprinted (§8.4), so a constant kept there would force a `funding_version` bump and a full
+RePORTER refresh, although the export reads no configuration and needs neither. **Changing a
+constant is a code change and a dated note here, never a `funding_version` bump.** The export
+states the first three as `funding.counting` (§11.3), so the app hard-codes none of them; it never
+needs the fourth, since it reads the spread the pipeline exported.
+
+**A grant's yearly breakdown**, `Y`:
+- **Its `fiscal_years`,** where it has them: RePORTER's grants, contracts and task orders (§11.4). A
+  year with no amount reported counts as 0.
+- **Else its `spread_years`:** an even spread of `amount_usd`, for a known amount with no fiscal
+  years and `start_year` ≤ `end_year`. It runs from `start_year` to `end_year` when the amount is a
+  planned or awarded total (`openalex_amount`, `nsf_estimated`). When the amount is money obligated
+  so far (`nsf_obligated`, `usaspending_obligation`), it stops at the year of the grant's own
+  `amount_source.as_of`, if that is earlier (never before `start_year`), so that an award still
+  running is not spread into years not yet paid (§3.6). **Whole dollars:** each of the *n* years
+  takes `amount // n`, and the first `amount % n` years a dollar more, so the years sum exactly to
+  `amount_usd`. The pipeline computes it once and exports it; the app never derives one. **It
+  reads the grant's as-of date, never today's,** so an export rebuilt from the same store is the
+  same on any day, and CI's check that the committed export matches the committed store holds.
+- **Else none.**
+
+`Y`'s first and last years are those of its keys, whatever their values.
+
+**The counted amount**, given `last`, the year of the latest publication listing the grant: over
+every exported work, its `last_listed_year`; in the app, under a filter, the latest publication
+shown. The first rule that applies decides, and is the grant's `counted_rule`:
+
+1. **`full_amount`** — its `category` is in `full_amount_categories`: all of `amount_usd`. An
+   instrument is bought once and used for years.
+2. **`undated`** — it has no `Y`: all of `amount_usd`. There is nothing to divide it by.
+3. **`ended_before`** — `Y`'s last year is before `from_year`: the sum of `Y` over its final
+   `last_years` years, its last year and the four before it. The publication lists the grant as its
+   funding, perhaps of the work's early stages, so the end of it counts rather than none.
+4. **`began_after`** — `Y`'s first year is after `last`: $0. It cannot have paid for work already
+   published, and the page says why it counts nothing.
+5. **`window`** — otherwise: the sum of `Y` over `from_year` … `last`, the years between listing
+   publications included.
+
+An unknown amount has neither a counted amount nor a rule, and is counted beside every total,
+never as $0. On the committed export the earliest listing year is 2008, the corpus's first year, so
+`last` is never before `from_year`. A grant listed by no exported work is a validator error.
+
+**Award years** — the over-time chart, and `funding.summary.counted_by_year` — given also `first`,
+the year of the earliest publication listing the grant (or shown):
+- `window`: each year of `Y` from `from_year` to `last`, to itself;
+- `full_amount`: each year's dollars to that year, but a year before `from_year` to `first`, and a
+  year after `last` to `last`; with no `Y`, all of it to `first`;
+- `undated` and `ended_before`: all of it to `first`, for want of a year inside the window;
+- `began_after`: nothing.
+
+So every counted dollar lands between `from_year` and the latest listing year, a year with nothing
+is left out, and the years add up to the counted amount. The app's chart starts at the earlier of
+`from_year` and the export's first year, whatever the filter, and runs to the export's last year.
+
+**Under a filter** the app counts again: `first` and `last` are the earliest and latest
+publications shown that list the grant, so a filter can count less of it — a Year filter ending at
+2015 counts `NIH:P30CA015704` only to FY2015. The exported `counted_usd`, `counted_rule` and the
+summary's counted fields are unfiltered, and the app's unfiltered figures must equal them (§11.7).
+A grant's own page and a publication's Funding section give the unfiltered amount, over every
+publication listing the grant, and say so.
+
+**Recomputed, needing no network.** Every figure here is a function of exported rows: a grant's
+`amount_usd`, `category`, `fiscal_years` and `spread_years` (itself from `start_year`, `end_year`
+and `amount_source`), and the years of the works listing it. The validator recomputes each from
+the export (§11.7). A change to the rule is an export rebuild (`uwpr-pubs export --store store
+--out export`), with no refresh and no request.
+
 ## 8. Store
 
 ### 8.1 Files
@@ -2042,7 +2330,8 @@ protects hand-started runs.
 ### 9.5 Alerts
 
 - RePORTER answers **HTTP 403**: "possible IP block — RUNBOOK".
-- The **total drops by more than 5%** in a run with no funding degradation.
+- The **total drops by more than 5%** in a run with no funding degradation. *(The store's lifetime
+  sum, the manifest's `amount_usd`: not F17's counted headline, which this alert does not watch.)*
 - An override's NIH grant is unknown to RePORTER.
 - The stage carried forward after an error or a failed self-validation.
 - The export exceeds **500 KiB gzipped** at level 9 (stage 11; it alerts, never fails, on size).
@@ -2061,7 +2350,9 @@ requests}` and B1's `overrides_fingerprint`, both additive to `run.schema.json`.
 adds the rest.
 
 **`uwpr-pubs explain W-…`** gains a Funding section, and `explain NIH:R01…` (any grant key) lists
-the grant's works, listings and facts.
+the grant's works, listings and facts. *(After F17 the report's total and `explain`'s amount are
+still lifetime figures, from the store; what the site counts of a grant is the export's
+`counted_usd` and `counted_rule`, `RUNBOOK.md` §15.)*
 
 ## 10. HTTP: POST, backward compatible
 
@@ -2085,10 +2376,11 @@ the grant's works, listings and facts.
   </Abstract>` is stripped from XML; the violations check flags `<AbstractText`.
 - **TLS:** §5.3.
 
-## 11. The export contract, `schema_version` 1.1
+## 11. The export contract, `schema_version` 1.2
 
 This is the one contract, reconciling the backend and web designs: where they differed, the
-plan's shape wins, with the additions this section marks.
+plan's shape wins, with the additions this section marks. *(1.1 until 2026-09-27. 1.2 adds the
+counting rule's fields, F17, each marked 1.2 below, and changes the meaning of none.)*
 
 ### 11.1 Versioning
 
@@ -2100,6 +2392,17 @@ and null years, and every `works[].grants` empty. The app also meets **1.0 expor
 `funding` block at all** (after a rollback, [07](07-operations.md) O2) and must treat both as "no
 funding data" (§12.10). Everything is sorted: `grants` by key, `agencies` by code, each work's
 `grants` by grant.
+
+**1.2 (2026-09-27, F17) is additive too:** `funding.counting` (§11.3), four fields on each grant
+(§11.4) and five on `funding.summary` (§11.6), each required by the schema. **No field changes its
+meaning:** `amount_usd` is the lifetime total everywhere, so an app built before 1.2 reads a 1.2
+export and shows true lifetime figures. The no-data shape carries `funding.counting` too, and its
+summary's new counts are 0 and its two new objects `{}`. **The app built with 1.2 needs
+`funding.counting`,** because every total it shows is counted by that rule: a 1.1 export, as after
+a rollback of the data, reads as having no funding data, the third such shape beside 1.0 and a
+null `version` (§12.10). So the release publishes 1.2 data before the app that needs it
+([07](07-operations.md) §10). `lookup_index.json` carries the same `schema_version`, its shape
+unchanged.
 
 ### 11.2 `works[].grants[]` (required, possibly empty)
 
@@ -2138,6 +2441,7 @@ it — with `cited_as: ["P01 HL09296"]`, the form in its JATS text, PubMed and O
                       "currencies": ["CAD", "CHF", "…"], "through_year": 2025}],
   "method": {},
   "summary": {},
+  "counting": {"from_year": 2006, "last_years": 5, "full_amount_categories": ["instrument"]},
   "agencies": [],
   "grants": []
 }
@@ -2160,6 +2464,10 @@ it — with `cited_as: ["P01 HL09296"]`, the form in its JATS text, PubMed and O
   work–grant listings, because a listing's `how` hides its corrections (§11.2). For the method
   page only. (The date of the last full refresh is `as_of`, so the method block does not repeat
   it.)
+- **`counting`** *(1.2)*: the counting rule's constants (§7.4) — `from_year`, `last_years`, and
+  `full_amount_categories`, a list of §11.4's categories — written from the code's own constants,
+  **with or without funding data**, so the app hard-codes none of them. The validator requires it
+  to equal them.
 
 ### 11.4 A grant
 
@@ -2177,12 +2485,16 @@ it — with `cited_as: ["P01 HL09296"]`, the form in its JATS text, PubMed and O
 | `organization` | string\|null | The awardee as the source names it (RePORTER's latest row, NSF `awardeeName`, USAspending recipient, OpenAlex institution) |
 | `start_year`, `end_year` | int\|null | The award's years as the source gives them; for NIH, the first fiscal year RePORTER holds and the year of the latest project end date |
 | `first_year` | int\|null | §4; null only for a grant no exported work lists, which cannot occur |
-| `amount_usd` | int\|null | §7; null when unknown or unconverted |
+| `last_listed_year` | int\|null | *(1.2)* The year of the latest exported work that lists it (§4): the ceiling its counted amount stops at. The twin of `first_year`; `funding.summary.last_year` means something else. Null only as `first_year` is |
+| `amount_usd` | int\|null | §7; null when unknown or unconverted. **The lifetime total**, in every version: the totals add `counted_usd` (F17) |
 | `amount_original` | number\|null | In `currency` |
 | `currency` | string\|null | ISO 4217 |
 | `rate_year` | int\|null | The rate's year, when converted |
 | `amount_source` | object\|null | `{name, url, as_of, basis}`: the source's name, a page a reader can open to check the figure, the date its facts were last confirmed (under the 28-day rule, so up to 27 days behind the latest read), and the basis of §7.1. **Derived, not stored twice:** `url` is the grant's `url`, and `as_of` the store line's `checked` date (§8.3). Null when there is no amount. *(`basis` added to the plan's list: NSF's rule makes one source mean two things.)* |
 | `fiscal_years` | object\|null | `{"YYYY": int}` parent-row sums, RePORTER grants only; they sum to `amount_usd` |
+| `spread_years` | object\|null | *(1.2)* `{"YYYY": int}`, **an estimate:** `amount_usd` spread evenly over `start_year` … `end_year` in whole dollars, the remainder a dollar each to the earliest years, so they sum to `amount_usd`; for an obligation to date (`nsf_obligated`, `usaspending_obligation`), to no later than `amount_source.as_of`'s year. Present exactly for a known amount with no `fiscal_years` and `start_year` ≤ `end_year`; else null (§7.4) |
+| `counted_usd` | int\|null | *(1.2)* What the totals count of it over every exported work listing it (§7.4). **Unfiltered**: the app counts again under a filter. Null exactly when `amount_usd` is |
+| `counted_rule` | enum\|null | *(1.2)* The rule that decided `counted_usd`: `full_amount`, `undated`, `ended_before`, `began_after` or `window`, the first that applies in that order (§7.4). Null exactly when `counted_usd` is |
 | `url` | string\|null | An outbound link built by the pipeline, so the app holds no source URL pattern: RePORTER's project page (`https://reporter.nih.gov/project-details/<appl_id>`, latest application), NSF's award page (`https://www.nsf.gov/awardsearch/show-award/?AWD_ID=<id>`; the older `showAward?AWD_ID=` redirects there), USAspending's award page (`https://www.usaspending.gov/award/<generated_id>`); each form fetched and answering 200 on 2026-09-26 (B5) |
 | `url_name` | string\|null | The link's label, naming the page it opens ("NIH RePORTER project page", "NSF award page", "USAspending award page"); null exactly when `url` is null. So the link can be labelled without `amount_source`, which is null for a grant with no amount (VA, `N01HV028179`) |
 | `flags` | array | From: `active`, `starts_before_fy1985`, `starts_before_fy2008`, `no_amount_reported`, `amount_not_found`, `amount_from_openalex`, `amount_corrected`, `amounts_disagree`, `unconverted_currency`, `rate_year_estimated` |
@@ -2226,14 +2538,19 @@ the excluded view is checkable too:
 | `agencies` | Distinct **root** agencies of resolved grants (Miscellaneous is not one) |
 | `investigators` | Distinct principal investigators over the `pis` of resolved grants, each keyed by its `id` when present, else by its name normalised: NFKC, casefolded, whitespace collapsed |
 | `organizations` | Distinct `organization`s of resolved grants, keyed by the name normalised the same way; a null organisation counts for nothing |
-| `amount_usd` | Σ `amount_usd` over all grants — **the headline, unfiltered** |
+| `amount_usd` | Σ `amount_usd` over all grants: the lifetime sum, unfiltered. *(The headline until F17, 2026-09-27; since then **not the headline**, which is `counted_usd`.)* |
 | `amount_usd_institution_wide` | Σ `amount_usd` over institution-wide grants |
 | `amount_usd_nih` | Σ `amount_usd` over grants whose root agency is NIH |
 | `nih_grants` | Resolved grants whose root agency is NIH |
 | `works_with_grants` | Exported works listing at least one resolved grant |
 | `works_with_listings` | Exported works listing at least one grant, Miscellaneous included |
 | `first_year`, `last_year` | Min and max `first_year` over resolved grants; null if none |
-| `by_first_year` | `{"YYYY": {grants, grants_institution_wide, amount_usd, amount_usd_institution_wide}}` over resolved grants, keyed by `first_year` — the cumulative rule's increments (F3) |
+| `by_first_year` | `{"YYYY": {grants, grants_institution_wide, amount_usd, amount_usd_institution_wide}}` over resolved grants, keyed by `first_year` — the cumulative rule's increments (F3). Kept unchanged, and still cross-checked, after F17 superseded that rule |
+| `counted_usd` | *(1.2)* Σ `counted_usd` over all grants — **the headline, unfiltered** (F17) |
+| `counted_usd_institution_wide` | *(1.2)* Σ `counted_usd` over institution-wide grants |
+| `counted_usd_nih` | *(1.2)* Σ `counted_usd` over resolved grants whose root agency is NIH |
+| `grants_by_counted_rule` | *(1.2)* `{rule: count}`: the grants with an amount, by `counted_rule`. A rule no grant falls under is omitted, so the no-data shape is `{}` |
+| `counted_by_year` | *(1.2)* `{"YYYY": {counted_usd, counted_usd_institution_wide}}`: each grant's counted amount allocated to award years (§7.4) from its own `first_year` and `last_listed_year`, as the app allocates it unfiltered. A year appears only when its `counted_usd` is not zero, and the years sum to `counted_usd` |
 
 **Investigators and organisations are keyed partly on names.** RePORTER gives a person
 identifier and the other sources do not, so one person under two spellings, or once with an `id`
@@ -2256,10 +2573,23 @@ counts on each grant's latest row are 365 and 86 (§3.2).
 - **The resource code appears nowhere** — not as a key, a number, or in `cited_as`.
 - Every key matches the grant-key grammar.
 - With `version` null, every list is empty and every count zero.
+- *(1.2)* `funding.counting` equals the counting rule's constants (§7.4), checked before the
+  no-data case returns, so a no-data export must carry them too.
+- *(1.2)* Each grant's `spread_years` equals a recomputation from its own row, present exactly as
+  §11.4 defines it; its `last_listed_year` is the year of the latest exported work listing it; and
+  its `counted_usd` and `counted_rule` equal the rule's (`funding/counting.py`), recomputed over the
+  years of the earliest and latest works listing it. Each is its own message. The summary's
+  recomputation covers the five counted fields.
 
 **The app's cross-check:** `summarizeFunding(works, funding)` equals `funding.summary` field for
 field — `investigators` and `organizations` included, with the same keys — and each grant's
-unfiltered first year equals its `first_year`.
+unfiltered first year equals its `first_year`. *(1.2)* Unfiltered, the app's counting
+(`aggregate/counting.ts`) gives each grant the exported `last_listed_year`, `counted_usd` and
+`counted_rule`, and award years that add up to its counted amount. The counted series by award year
+starts at 2006, ends at `counted_usd`, and equals `counted_by_year` year for year, both ways; the
+grants that began after equal `grants_by_counted_rule`'s; the counted stack by agency adds up to
+the headline; and the institution-wide halves are those the exclusion leaves out. An export without
+`funding.counting` gives the summary of none, and throws nothing.
 
 ### 11.8 Sample cases
 
@@ -2283,6 +2613,27 @@ OECD rate; an amount in a currency neither rate table covers, left unconverted; 
 grants; **one grant listed by two works in different years** (first year and
 de-duplication); a grant with a null amount; a sub-agency with a parent.
 
+**Synthetic, for the counting rule** *(1.2, M1)*: seven more `FUNDING_CASES`, each rule and each
+edge of the window and the spread, on six more synthetic grants attached to the existing SAMPLE
+works, so the publication figures do not move:
+- "funding that ended before 2006, counted by its last five years": `NIH:T32GM999003`, FY1996–2003,
+  on W-000104 (2019);
+- "an instrument counted in full, with years after its latest listing work": `NIH:S10OD999001`,
+  FY2020 and FY2023, on W-000105 (2021);
+- "a grant that began after its latest listing work, counted as zero": `NIH:R01GM999004`,
+  FY2022–2025, on W-000104 (2019);
+- "an amount spread evenly with a remainder, on works in two years": `F4399999998:SMRF99901`,
+  $1,000,003 over 2017–2023, on W-000104 (2019) and W-000105 (2021);
+- "an obligation to date spread only to its as-of year": `NSF:2299901`, 2022–2028 spread to 2026,
+  on W-000101 (2024), and real NSF grants too;
+- "a start year and no end year, counted whole": `F4399999998:SMRF99902`, on W-000105, and NASA's
+  real `USA:NASA:NNX14AJ87G`;
+- "a grant funded past its latest listing work, counted to that year": `F4399999998:SMRF99901`,
+  `NSF:2299901`, and many real grants.
+
+The names are `FUNDING_CASES`' own, and `web/test/funding-coverage.test.tsx` maps each to the test
+that holds it.
+
 ### 11.9 Size
 
 The budget rises to **500 KiB gzipped: 512,000 bytes (500 × 1,024) at gzip level 9**, the measure
@@ -2291,7 +2642,9 @@ thing. Today's export is 303 KiB by it, and the export with funding is estimated
 to be measured in B9 (§3.5), which leaves about two years' headroom. *(B5 measured contract 1.1
 without funding data: 311,014 bytes, 303.7 KiB, for the real export, and 18,099 bytes for the
 sample with its synthetic funding; §3.5. The sample with its real funding beside the synthetic, as
-B9c rebuilt it, is 27,004 bytes, 26.4 KiB.)*
+B9c rebuilt it, is 27,004 bytes, 26.4 KiB.)* *(Contract 1.2, measured 2026-09-27 by the same
+measure: the real export is 450,002 bytes (439.5 KiB), from the seed's 440,730, which leaves
+61,998 bytes under the budget; the sample 29,112 bytes (28.4 KiB), from 27,004.)*
 [06](06-web-app.md) §10's row changes, `web/scripts/check-data-budget.mjs` enforces it in the web
 CI job against `export/` and `samples/export/`, a Python test asserts the script's constant
 equals `stages/export.DATA_BUDGET_BYTES`, and stage 11 alerts above it (§9.5), measuring the same
@@ -2357,35 +2710,60 @@ publications".
 
 In order:
 
-1. **Header** (`SiteHeader`), the staleness notice, and the filter bar with the funding sentence.
-2. **Headline figures:** *Total value of grants listed*, with its as-of date and definition link
-   (F2), and beneath it how many grants have no known amount and are not in it; grants listed (and
-   how many more are unmatched numbers, in Miscellaneous); agencies; principal investigators and
-   organisations (`funding.summary`'s `investigators` and `organizations`, so the cross-check
-   covers them); publications listing a grant, *K* of *N*. **The institution-wide switch sits
-   here**, and the figure always states its position: "including *M* institution-wide awards
-   worth $*Y*", or what was left out.
-3. **Grant funding over time:** bars for the value entering each year and a cumulative line, a
-   Total / By agency switch to a stacked view, and the note: "each grant's full lifetime total
-   enters in the year of the first publication shown that lists it; this is a publication year, not
-   an award year; *N* grants with no known amount are not in this chart." **The year bars are
-   static** (`role="img"`): their year is a grant's first year, and clicking it would apply a
-   publication-year filter that changes the very first years being drawn.
-4. **Agencies:** a ranked bar chart (by value or by grants; a per-chart switch) whose bars **apply
-   the agency filter**; "new grants by agency over time" (counts by first year, three-year buckets by
-   default; top five, Miscellaneous pinned and never merged into Other, then Other), whose segments
-   apply the filter; and a table — agency (linking to its page), parent, country, grants, known
-   total, without an amount, publications.
-5. **Grant types:** static bars by value and by count per category, noted as not filters.
+*(Items 1–7 amended 2026-09-27 by F17: every dollar figure on the view is counted funding, under
+the filter, and the chart is by year awarded.)*
+
+1. **Header** (`SiteHeader`), whose lead states the counting rule from `funding.counting`, the
+   staleness notice, and the filter bar with the funding sentence.
+2. **Headline figures:** *Grant funding counted* (F17; *Total value of grants listed* until
+   2026-09-27), with its definition link and its definition — "The funding of the grants listed on
+   these publications, from 2006, when UWPR began, through the year of the latest publication
+   listing each grant. Not money spent on this work." — its as-of date, the part of it that is
+   estimated ("$*E* of it is estimated: other funders’ awards spread evenly over their years."),
+   and how many grants have no known amount and are not in it; grants listed (and how many more are
+   unmatched numbers, in Miscellaneous); agencies; principal investigators and organisations
+   (`funding.summary`'s `investigators` and `organizations`, so the cross-check covers them);
+   publications listing a grant, *K* of *N*. **The institution-wide switch sits here**, and the
+   figure always states its position, in counted dollars: "Including *M* institution-wide awards
+   counted at $*Y*.", or what was left out. The year, and the resource's name, are the export's.
+3. **Grant funding over time**, counted funding **by year awarded** (§7.4): bars for the counted
+   funding awarded each year and its running total as a line, "Grant funding by year awarded", and
+   a Total / By agency switch to a stacked view, "Grant funding by agency, by year awarded". **The
+   axis starts at 2006 whatever the filter**, so a filtered chart is read against the same frame.
+   The note: "Each grant’s counted funding is shown in the year it was awarded: NIH’s by fiscal
+   year (October to September), other funders’ amounts spread evenly over the award’s years.
+   Amounts with no years, and grants that ended before 2006, enter in the year of the first
+   publication shown that lists them. *N* grants with no known amount are not in this chart.", with
+   the unmatched numbers, and "*N* grants began after the latest publication shown that lists them,
+   and count nothing." Its table gives each year's counted funding, the running total and how many
+   grants contributed. **The year bars are static** (`role="img"`): their year is the year funding
+   was awarded, not a publication year, and a click applying the publication-year filter would move
+   the very amounts being drawn.
+4. **Agencies:** a ranked bar chart (by counted funding or by grants; a per-chart switch) whose bars
+   **apply the agency filter**; "new grants by agency over time" (counts by first year, three-year
+   buckets by default; top five, Miscellaneous pinned and never merged into Other, then Other),
+   whose segments apply the filter; and a table — agency (linking to its page), parent, country,
+   grants, "Counted" (the known total until F17), without an amount, publications.
+5. **Grant types:** static bars by counted funding and by count per category, noted as not
+   filters.
 6. **All grants:** a table — number (linking to the grant page), title, agency (linking), PIs,
-   institution, years, type and tags, total or "not known", first listed, publications — sorted by
-   total, descending, with unknown amounts last in both directions; a local search; and **a CSV
-   download of exactly the visible rows** (RFC 4180, CRLF, formula-injection guard, nulls as empty
-   cells, never 0).
+   institution, years, type and tags, **"Counted"**, **"Lifetime total"**, first listed,
+   publications — sorted by counted funding, descending, with unknown amounts last in both
+   directions; a local search; and **a CSV download of exactly the visible rows** (RFC 4180, CRLF,
+   formula-injection guard, nulls as empty cells, never 0). "Counted" is noted "for the publications
+   shown", since a filter moves it: "not known" for an unknown amount, never $0; $0 with its reason,
+   "began after its latest listing publication: nothing counted", for a grant that began too late;
+   and an "estimate" tag on a spread amount. "Lifetime total" is the grant's own, whatever the
+   filter. The CSV gives "Counted (USD)", "How counted" (the rule's reason in a clause, such as
+   "from 2006 to its latest listing publication"), "Estimate" ("yes" for a spread amount) and
+   "Lifetime total (USD)", which was "Total (USD)".
 7. **Coverage:** publications with an identified grant, with only unmatched numbers, with none;
    grants with and without a known amount; the Miscellaneous sentence, linking to
-   `?agency=<misc>`; the institution-wide position; how many amounts start at FY1985; how many
-   grants are still active.
+   `?agency=<misc>`; the institution-wide position; **how the grants with a known amount are
+   counted, rule by rule, and how many of the amounts are estimates**, in place of how many amounts
+   start at FY1985, which moves no total now that nothing before 2006 counts (the grant page keeps
+   that caveat); how many grants are still active, whose lifetime totals still grow while what is
+   counted of them stops at the latest publication listing each.
 8. **Footer.**
 
 Empty states: no publication matches (the existing chart-empty state); publications match but none
@@ -2398,7 +2776,12 @@ filter"; a breakdown by child agency, each linking to its page, with an "assigne
 remainder; grants over time (static); its grants (the grants table); its publications, as a compact
 list of links; and two links: "Filter the publications by this agency" (the current filter plus
 the agency) and "See funding impact for this agency". A designed not-found state for an unknown
-code.
+code. *(Amended 2026-09-27 by F17.)* **Its dollars are counted funding over every publication**,
+so each grant's is its exported `counted_usd`: the headline and its institution-wide sentence; the
+breakdown, ranked by "Counted", where a known $0 reads "$0: none of its funding falls in the years
+counted"; grants over time, now "Grant funding by year awarded", with §12.5's award-year note, the
+began-after count and a link to the method page's "How grant funding is counted"; and the grants
+table, whose "Counted" is noted "for every publication listing it".
 
 ### 12.7 The grant page
 
@@ -2410,6 +2793,21 @@ September)", with the partial fiscal year marked. The publications listing it, e
 written in the paper as …" wherever its listing carries `cited_as`. The outbound `url`, labelled
 with `url_name` (§11.4), whether or not the grant has an amount. Not-found, and Escape closing only
 when opened in-app.
+
+*(Added 2026-09-27 by F17.)* Beside the lifetime total, a fact **"Counted in the totals"**: what the
+totals count of the grant over every publication listing it, whatever the filter, with its reason
+in the rule's own terms and a link to "How grant funding is counted". A `window` grant names the
+years counted — P51RR000166's reads "$87,011,296 for FY2006–FY2011, its fiscal years from 2006,
+when UWPR began, through 2012, the year of the latest publication listing it" — an `ended_before`
+grant is phrased by its last fiscal year, since its "Years" can run later; a `began_after` grant
+says when its funding began, so its $0 says why; an instrument counts in full, "bought once and
+used for years"; an `undated` amount counts whole; and a spread amount says it is an estimate over
+the award's years. An unknown amount's fact says it is counted beside every total, never in one.
+The fact ends by saying it counts every publication listing the grant and is not money spent on
+the work. **The fiscal-year table marks the years counted:** an "In the totals" column reads
+"Counted" or "Not counted", with a sentence in its caption, and each bar's description and tooltip
+say the same; the bars are drawn alike. The lifetime total, the FY1985 caveat and "active" stay as
+they were.
 
 ### 12.8 The publication's Funding section
 
@@ -2423,6 +2821,13 @@ gives its reason, by whom and when. Unmatched numbers appear quoted under an `h3
 own award is shown above as evidence and is not a grant. The section is omitted when there is no
 funding data.
 
+*(Added 2026-09-27 by F17.)* After each grant's total, **"Counted in the totals"**: the export's
+`counted_usd` over every publication listing the grant, with its reason in a clause — "$*X*, from
+2006 to its latest listing publication", and for a spread amount "; an estimate, its amount spread
+evenly over its years" — and nothing for an unknown amount, whose total already says "not known".
+The section's opening says the totals elsewhere count only part of each grant, from 2006 through
+the year of the latest publication listing it, and links to "How grant funding is counted".
+
 ### 12.9 The method page
 
 A section `#funding`: the sources with their as-of dates; the resolution rules with the counts from
@@ -2434,12 +2839,45 @@ publication years; active grants; the first-year definition; institution-wide aw
 Miscellaneous. The definitions list gains
 entries for the funding figures, each with its corpus value.
 
+*(Amended 2026-09-27 by F17.)* The section, "How the funding figures are assembled", is in this
+order:
+- `#funding-sources`, "Where the funding data comes from";
+- `#funding-resolution`, "From a number in a publication to a grant";
+- `#funding-amounts`, "What a grant’s total means", **rewritten**: a lifetime total is a fact about
+  the grant, what it adds up by source, and the totals on this site add counted amounts instead;
+- **`#funding-counting`, "How grant funding is counted", new**: the rule, and each exception with
+  its reason, its grant count and its counted dollars — instruments, ended before 2006, began after,
+  the even spread of other funders' amounts (to the year read, for an obligation to date), and an
+  amount with no end year — then NIH's fiscal years, and the corpus's lifetime and counted sums
+  side by side ($7,888,899,029 against $5,139,499,698 on the committed export). Every year, kind
+  and count is read from `funding.counting` and the unfiltered scope;
+- `#funding-currency`, "Amounts in other currencies";
+- `#funding-years`, renamed **"Fiscal years, award years, partial years and the first year"**:
+  RePORTER's FY1985 start now matters only to lifetime totals; active grants' lifetime totals grow
+  while what is counted stops at the latest listing publication; funding over time is by the year
+  awarded; the partial year; and the first year places no dollars, used only to count new grants
+  by agency and as "First listed";
+- `#funding-institution-wide-awards`, `#funding-miscellaneous`, and `#funding-definitions`, "What
+  each funding figure means".
+
+In the definitions, `funding-total` keeps its anchor and is now "Grant funding counted"; two are
+new, `funding-lifetime` ("Lifetime total of the grants listed", given for comparison, which no
+total adds up) and `funding-award-year` ("Grant funding by year awarded"); and `funding-first-year`
+is reworded, a publication year that places no dollars.
+
 ### 12.10 No funding data
 
 The funding block is absent (a 1.0 export) or its `version` is null: `/funding` renders a plain
 notice that this export carries no funding data; agency and grant pages render not-found; the
 publication detail omits its Funding section; nothing throws. **All funding reads go through one
 accessor** (`fundingOf(doc)`), which returns null in both cases.
+
+**A third shape since 1.2** (2026-09-27, F17): a block without `funding.counting`, a 1.1 export,
+as after a rollback of the data. Every total the app shows is counted by that rule, so without it
+there is no figure the app could show truthfully, and `fundingOf` returns null for it too: Funding
+impact shows its notice, the agency and grant filters match nothing, and each publication's Funding
+section is left out, as for a 1.0 export. Past `fundingOf`, the rule is always there
+(`countingOf`). The release order (§11.1) means production never meets this shape.
 
 ### 12.11 Honesty rules
 
@@ -2448,8 +2886,12 @@ These extend [05](05-metrics-and-data-contract.md) §11 to every funding string:
 1. **No causal or credit-taking wording.** Never "funding generated, attracted, enabled or
    supported by UWPR". The figure is about grants listed on papers that used the resource.
 2. **The headline always carries its definition, its as-of date and "not money spent on this
-   work".**
+   work".** *(F17:)* **The counted total states its window** — from 2006, when the resource began,
+   through the year of the latest publication listing each grant — with the year and the resource
+   from the export, never written into a string.
 3. **Unknown is never $0,** and the count of grants without an amount stands beside every total.
+   *(Still, after F17: an unknown amount has no counted amount, and is counted beside the counted
+   total.)*
 4. **The institution-wide position is stated** wherever the total appears.
 5. **A converted amount shows its original** and the rate year.
 6. **Partial fiscal years and active grants are marked.**
@@ -2458,6 +2900,13 @@ These extend [05](05-metrics-and-data-contract.md) §11 to every funding string:
    in the paper as …", from `cited_as`), whatever the listing's `how`.
 9. **PI names as the funder publishes them,** with no link to any profile of a person.
 10. **The resource's own code is never shown as a grant.**
+11. **Estimates are marked** *(F17)*. An amount spread evenly over its years is an estimate
+    wherever what is counted of it appears: an "estimate" tag in the grants table, "Estimate" in
+    the CSV, a sentence on the grant page, a clause in a publication's section. The headline says
+    how much of it is estimated.
+12. **A counted $0 says why** *(F17)*: a grant that began after the latest publication listing it
+    is a known zero, and the table, the grant page, the CSV and the charts' notes each give that
+    reason. It is never how an unknown amount reads (rule 3).
 
 ### 12.12 Build flag, budgets, accessibility
 
@@ -2465,6 +2914,7 @@ These extend [05](05-metrics-and-data-contract.md) §11 to every funding string:
 funding entry point off the public page while the view was built. **It was removed at release
 (R2, 2026-09-27):** every build has the view. The JavaScript budget stays at **250 KiB gzipped**
 (level 9), and no dependency is added: currency formatting uses `Intl`, CSV is written by hand.
+*(After F17 the JavaScript is 148.5 KB gzipped; §16 item 16 has Vite's advisory warning.)*
 One `h1` per route; `nav` with `aria-current`; every table with a caption, `th scope` and
 `aria-sort` on sortable headers; a labelled search box; only the filter bar is a live region;
 every static mark `role="img"`.
@@ -2612,6 +3062,11 @@ free. [07](07-operations.md) §14's "under a dollar a year" still holds. B9 meas
   e2e — the switch keeps the filter, an agency bar filters, funding → agency → grant → publication
   → back three times, cold deep links, a corrected reference on the publication, CSV rows equal to
   the table; accessibility in both themes.
+- **Counting** (F17, 2026-09-27): `tests/test_funding_counting.py` and
+  `web/test/aggregate/counting.test.ts` hold the same rule table — each rule, their order, the
+  spread's remainder, both spread bases and the award-year clamps — to the two twins; each new
+  validator check has a mutation that fails it alone; the cross-checks of §11.7; and the pages'
+  wording, the award-year chart and the grant page's counted fact in unit tests and e2e.
 
 ## 15. Changes to other specs
 
@@ -2637,6 +3092,8 @@ Each lands, dated, with the milestone that makes it true.
 | `NOTICE`, `README.md` | §13.3; and the schedule wherever it is named | B10 |
 | `RUNBOOK.md` | The schedule and the funding smoke checks | B10 |
 | `RUNBOOK.md` | §13.4: it describes B7's report section, `--funding full` and its alerts | B7 |
+| [00](00-project-phases.md), [05](05-metrics-and-data-contract.md), [06](06-web-app.md), [07](07-operations.md), [08](08-implementation.md) | F17, 2026-09-27: 00's Phase 9 paragraph and D14; 05's contract 1.2; 06's cross-check and no-data shapes; 07 §10, the data before the views; 08 §1, §3.8, §4 and §5 | M4 (counting) |
+| `CLAUDE.md`, `RUNBOOK.md` | F17: the current state and the Funding gotchas; §15, what the report's total is, how to read a grant's counted amount, and changing a counting constant | M4 (counting) |
 
 ## 16. Open items
 
@@ -2684,6 +3141,31 @@ Each lands, dated, with the milestone that makes it true.
     G.5A currency has 1999–2025 (§5.10).
 12. **Closed (B8):** the sample cases' work IDs (§11.8) are verified against the live-built
     sample; one moved (the NIH-link case is W-000009's R35GM150919).
+
+Opened by F17 (2026-09-27):
+
+13. **Yearly obligations for NSF and USAspending awards** could make exact most of the amounts now
+    spread evenly (§7.4). Of the 125 spread grants, counted at $418,540,466, 56 are NSF's
+    ($205,076,946 counted) and 14 USAspending's ($93,673,716); the other 55 are OpenAlex amounts
+    ($119,789,804), which come with no years. Whether either source gives its obligations year by
+    year, and how well, is not measured.
+14. **Listings attached after publication.** Three of the five `began_after` grants —
+    `NIH:P30DK020572` on W-000079, and `NIH:ZIAAG000345` and `NIH:ZIAAG000346` on W-000230 — are
+    listed only by PubMed and OpenAlex, or only by NIH's links, and began after the paper; the
+    fourth, `NIH:KL2TR002317` on W-000154, is carried by PubMed, OpenAlex and NIH's link while the
+    paper's own text names its predecessor (§3.6). Each counts $0 and says why. Whether a grant
+    that only PubMed or NIH attached after publication should be a listing at all is open; not
+    listing it would change §11.2, not the counting rule.
+15. **NASA's `USA:NASA:NCC958`, $583,518,208, has no end year**, so it counts whole (`undated`) and
+    all of it lands in 2019, its first listing year: most of that year's $889,726,807 by award year
+    (§3.6). USAspending's transactions for the award might date its obligations, and so spread it;
+    not measured.
+16. **Vite's advisory warning for a chunk over 500 kB minified now shows** in `npm run build`: the
+    app's chunk is 502.6 kB minified. It is not the project's budget, which is 250 KiB gzipped
+    (level 9) and which the app meets at 148.5 KB; nothing fails. Splitting the chunk, or raising
+    Vite's `chunkSizeWarningLimit`, would silence it.
+17. **The grants table says "the first 50 of *N*" twice,** in its status line and in its caption, a
+    redundancy from R1b that predates F17.
 
 ## 17. Exit criteria
 
@@ -2796,6 +3278,23 @@ by hand; docs/08's Phase 9 record written and these boxes ticked.
       overview's switch. All eight rendered with no page error (the R entry in this document's
       header). [08](08-implementation.md)'s Phase 9 record is §3.8, with §1, §2, §4, §5 and §8.
       Rollback, if ever needed: re-run `pages.yml` at fd7d0d8 (`RUNBOOK.md` §8).
+
+**F17 — counting** (2026-09-27) — the Python and web gates green on the sample and the real
+export; `counted_usd` on the real export equal, grant by grant, to an independent model of the
+rule; `validate store` clean and the export diff clean; the data under 512,000 bytes; the data
+published before the views that need it; the live headline, chart and grant pages checked.
+- [x] Built 2026-09-27: M1 2421a77 (the pipeline, contract 1.2), M2 c94e2c1 (the app's arithmetic),
+      M3a 6f69f19 (the Funding impact view), M3b f326cd1 (the grant, agency, publication and
+      method pages), and this record, M4. 1,572 Python tests pass; 1,918 web unit tests on the
+      sample, and 1,791 with 127 skipped on the real export; 89 Playwright specs. The counted total
+      is $5,139,499,698 ($4,052,434,757 without institution-wide awards), with no per-grant
+      mismatch against the model; the real export is 450,002 bytes gzipped (§3.6, §11.9).
+- [ ] Published data 1.2: the export, rebuilt on the rebased branch, pushed with M1 and M2 and
+      published to `gh-pages` with `tools/publish-site.sh data export`, before the views.
+- [ ] Deployed app: M3a, M3b and this record pushed, and `pages.yml` green.
+- [ ] Verified live: `/funding` shows "Grant funding counted" at the export's `counted_usd`, the
+      chart by year awarded starts at 2006, and the grant pages of §3.6's table give their counted
+      amounts and reasons.
 
 ---
 

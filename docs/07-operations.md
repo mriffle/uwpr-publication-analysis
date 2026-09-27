@@ -73,6 +73,16 @@ dated, and noted in this header.
   award records. Each funding source is attributed under its own terms in `NOTICE` and
   `README.md`, including NLM's required wording ([09](09-funding-impact.md) §13.3).
 
+**Changed 2026-09-27, when the funding totals began to be counted** ([09](09-funding-impact.md)
+F17, §11.1):
+- *§10, a minor bump still needs no coordination for the app that is deployed, but a new app can
+  need the new fields.* Contract 1.2 is additive, so the deployed app read 1.2 data truthfully and
+  the data could go first unannounced, as §10 says. The app built with 1.2, though, reads an export
+  without `funding.counting` as having no funding data. So this release reverses O6's order for a
+  major bump: **the 1.2 data was published before the views that need it**, which then deployed
+  against it. §10 now says so. Should 1.1 data ever be served to the new app, its funding pages
+  show that no-data state, never a wrong figure, and the publications are unaffected.
+
 **Purpose:** define where this runs, how the app is published, how a failure becomes visible, and
 who is responsible when it does.
 **Depends on:** [03](03-retrieval-pipeline.md) (frozen), which already specifies the run, its
@@ -340,7 +350,11 @@ worst case is a visibly broken page, not a quietly wrong one.
 **Procedure for a major bump (O6):** the schema, the pipeline's writer and the app's generated
 types change together in one reviewed change; the app is deployed first; the next data update then
 publishes data the deployed app understands. Additive changes bump the minor version and need no
-coordination, because the app ignores fields it does not know.
+coordination, because the app ignores fields it does not know. *(Added 2026-09-27:)* The
+reverse can still bind: an app built to *need* a minor version's new fields must follow the data
+that carries them. Contract 1.2's counting fields were published before the views that read them
+([09](09-funding-impact.md) §11.1, F17), and the app reads an export without them as having no
+funding data rather than showing a wrong figure.
 
 Because the app's types are generated from the schema ([06](06-web-app.md) B3), a pipeline change
 the app has not accounted for fails the build rather than reaching the page.

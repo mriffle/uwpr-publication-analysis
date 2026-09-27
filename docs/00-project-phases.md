@@ -3,9 +3,11 @@
 **Status:** the pipeline, export and app are built and live (see 08). Phase 9, funding impact, is
 built and live too, since 2026-09-27.
 **Last updated:** 2026-09-27 (Phase 9 built and live: the store seeded with funding, and the
-Funding impact view released; [08](08-implementation.md) §3.8). Before that, 2026-09-26: Phase 9
-added and agreed, the funding behind the publications, in [09](09-funding-impact.md); and
-2026-09-20: Phase 4 retired, and 5, 6 and 7 agreed.
+Funding impact view released; [08](08-implementation.md) §3.8. Later that day its headline came
+to count each grant's funding from 2006 through the latest publication listing it, not its
+lifetime total, [09](09-funding-impact.md) F17, and the Phase 9 paragraph and D14 say so). Before
+that, 2026-09-26: Phase 9 added and agreed, the funding behind the publications, in
+[09](09-funding-impact.md); and 2026-09-20: Phase 4 retired, and 5, 6 and 7 agreed.
 
 ## Goal
 
@@ -92,10 +94,13 @@ wanted, it has a home, a regeneration trigger and an owned-paths rule already.
   A7 had left funders and grants out of v1 as a deliberate omission. Measured on 2026-09-26, 329
   of 338 works carry funding metadata and NIH's RePORTER links 260 of them to 454 grants, so the
   data exists; the difficulty is resolving what papers write, which is why the phase is mostly
-  about resolution rules and honest wording. Its headline is "Total value of grants listed" —
-  lifetime award totals of the grants the papers list, **not money spent on this work and not
-  money UWPR caused** — and it never affects inclusion. Funding is stored beside the work files,
-  in `store/funding/`, so `work.schema.json` does not change and no work file is rewritten.
+  about resolution rules and honest wording. Its headline is "Grant funding counted" — the
+  funding of the grants the papers list, from 2006, when UWPR began, through the year of the
+  latest publication listing each, **not money spent on this work and not money UWPR caused** —
+  and it never affects inclusion. *(Amended 2026-09-27, [09](09-funding-impact.md) F17: it was
+  "Total value of grants listed", the grants' lifetime award totals, which counted money UWPR
+  could not have touched.)* Funding is stored beside the work files, in `store/funding/`, so
+  `work.schema.json` does not change and no work file is rewritten.
 
 ## Dependencies and order of work
 
@@ -148,7 +153,7 @@ Suggested implementation order once specs are agreed:
 | D11 | ~~How are summaries generated, and may abstracts be quoted?~~ | **Answered 2026-09-20: no summaries, and no abstracts.** A summary is the one thing on a publication page that could not be traced to a source, and abstracts are copyrighted, which is why they stay in the cache and out of the repository | — |
 | D12 | ~~Own subject vocabulary, or reuse an existing one?~~ | **Answered 2026-09-20:** use OpenAlex topics as reported — domain, field, subfield, topic — which cover 100% of included works. No vocabulary of our own | 05 |
 | D13 | ~~Embed knowledge-base content, or load pages on click?~~ | **Obsolete** — there is no separate knowledge base to embed or load. Publication detail is part of the app's data contract | 05 |
-| D14 | Show the funding behind the publications, and how? | **Answered 2026-09-26:** yes, as "Total value of grants listed" — lifetime totals, as of the data date, of the distinct grants the publications list, not money spent on this work. Institution-wide awards counted and tagged; UWPR's own funding is the code `UWPR95794` alone; PI names shown as funders publish them | 09 |
+| D14 | Show the funding behind the publications, and how? | **Answered 2026-09-26:** yes, as "Total value of grants listed" — lifetime totals, as of the data date, of the distinct grants the publications list, not money spent on this work. Institution-wide awards counted and tagged; UWPR's own funding is the code `UWPR95794` alone; PI names shown as funders publish them. **Amended 2026-09-27** (09 F17): as "Grant funding counted" — each distinct grant's funding from 2006 through the year of the latest publication listing it, with instruments in full; lifetime totals stay on each grant's page | 09 |
 
 ## Glossary
 

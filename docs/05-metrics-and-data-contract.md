@@ -169,6 +169,23 @@ its B5 note, which records every reading §11 left open):
   synthetic now, in `samples/export_cases.json` with two more SAMPLE works; the real ones come with
   the sample store's funding (B8).
 
+**Changed 2026-09-27, contract 1.2: grant funding is counted** ([09](09-funding-impact.md) F17,
+§7.4, §11). The maintainer judged that adding each grant's lifetime total counted money UWPR could
+not have touched, so the funding totals now count each grant's funding from 2006 through the year
+of the latest publication listing it. The export carries what that needs, as an additive minor bump
+(§12): `funding.counting`, the rule's constants; each grant's `spread_years`, `last_listed_year`,
+`counted_usd` and `counted_rule`; and five counted fields on `funding.summary`. No field changes
+its meaning, and `amount_usd` stays the lifetime total everywhere.
+- *§4.1 and §4.2, the version.* Both files carry 1.2; `lookup_index.json`'s shape is unchanged.
+- *§4.4, the size.* 450,002 bytes gzipped at level 9 for the real export, from 440,730; 29,112
+  for the sample, from 27,004.
+- *§12, the version and the cross-checks.* The validator also recomputes every new field, each
+  with its own message, and requires `funding.counting` even with no funding data. The app now
+  needs `funding.counting`, and reads an export without it (a 1.1 export after a rollback) as
+  having no funding data, beside 1.0 and a null `funding.version`.
+- *§13, the funding cases.* Seven synthetic cases, one for each counting rule and each edge of the
+  window and the spread ([09](09-funding-impact.md) §11.8).
+
 **Every figure in this document was measured against the committed store on 2026-09-20**
 (339 works, rule version `2026-09-20.1`). Figures move as the store grows; the definitions do
 not. Where a number is quoted to justify a design decision, re-measure before changing that
@@ -336,12 +353,14 @@ grants, their agencies and a `funding.summary` of its own, built from `store/fun
 store without funding exports the block's **"no funding data" shape** — `version` null, every list
 empty, every count zero, every `grants` empty — which is what `export/` holds until the funding
 seed. `lookup_index.json` is unchanged; it shares the one `schema_version`, so it reads 1.1 too.
+*(1.2 from 2026-09-27: the block also carries `funding.counting`, and each grant and the funding
+summary carry the counted amounts of [09](09-funding-impact.md) §7.4; both files read 1.2.)*
 
 ### 4.2 Top-level structure
 
 ```json
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "generated_at": "2026-09-20T17:07:00Z",
   "run_id": "2026-09-20T17-07-live",
   "pipeline_version": "0.1.0",
@@ -496,6 +515,10 @@ block and an empty `grants` on each of 338 works, goes from 310,628 to **311,014
 KiB)**. The sample export, with two more SAMPLE works and nine synthetic grants (§13), goes from
 15,188 to **18,099 bytes (17.7 KiB)**. The real export with funding is measured at the seed;
 [09](09-funding-impact.md) §3.5 estimates 420–450 KiB.
+
+**Contract 1.2, measured 2026-09-27** the same way: the real export with its funding, 440,730
+bytes at the seed, is **450,002 bytes (439.5 KiB)** with the counting fields, and the sample
+**29,112 bytes (28.4 KiB)**, from 27,004 ([09](09-funding-impact.md) §11.9).
 
 ### 4.5 The `summary` block
 
@@ -734,7 +757,7 @@ browsable list (A4).
 
 ```json
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "generated_at": "2026-09-20T17:07:00Z",
   "aliases": {"doi:10.1021/…": "W-000457", "pmid:…": "W-000457", "work:W-000735": "W-000457"},
   "not_included": [
@@ -907,6 +930,11 @@ These apply to every string the app displays and to the explanatory text in the 
   contract's, so a 1.0-shaped document fails on its version and on the `funding` block and
   `grants` it lacks, and on nothing else. The app still accepts any 1.x, and treats a 1.0 export,
   or a 1.1 export whose `funding.version` is null, as one with no funding data.
+- **Contract 1.2** (2026-09-27, [09](09-funding-impact.md) F17, §11) is the additive bump that
+  adds the counting rule's fields; both files carry it, and the validator refuses 1.1 as it
+  refuses 1.0. The app still accepts any 1.x, but reads an export without `funding.counting` — a
+  1.1 export, after a rollback of the data — as one with no funding data, since every funding total
+  it shows is counted by that rule.
 - **Funding cross-checks** ([09](09-funding-impact.md) §11.7), each with its own message: every
   listed grant is in `funding.grants`, and every grant is listed by an exported work; every
   grant's agency, and every parent, is in `funding.agencies`, with no cycle, and each listing's
@@ -919,7 +947,9 @@ These apply to every string the app displays and to the explanatory text in the 
   the resource code is in no key, number or `cited_as`; and a null `version` means every list
   empty and every count zero. Given the store's citations lines, which the pipeline passes, each
   listing's `how`, `cited_as` and `override` are also checked against what the work's strings and
-  NIH links say.
+  NIH links say. *(1.2:)* `funding.counting` equals the rule's constants, with or without funding
+  data; and each grant's `spread_years`, `last_listed_year`, `counted_usd` and `counted_rule` equal
+  their recomputation from its row and the works listing it.
 
 ## 13. The sample export
 
@@ -981,7 +1011,12 @@ work with no grants; one grant listed by two works in different years; a grant w
 and a sub-agency with a parent. Every synthetic grant's title says SAMPLE or it has none, its
 numbers hold a 999 serial or a 2099 contract year, and its override is by `sample`. **The real
 half** — cases the sample store's own papers show — arrives with the sample store's live funding
-at milestone B8.
+at milestone B8. *(From 2026-09-27, contract 1.2:)* seven more synthetic cases, on six more
+synthetic grants attached to the existing SAMPLE works, exercise the counting rule: funding that
+ended before 2006; an instrument with years after its latest listing work; a grant that began after
+it; an even spread with a remainder, on works in two years; an obligation spread only to its as-of
+year; a start year with no end year; and a grant funded past its latest listing work
+([09](09-funding-impact.md) §11.8).
 
 ## 14. Open items
 

@@ -1,7 +1,8 @@
 # Phase 8 — Implementation: status and handoff
 
 **Status:** Record — the build is done and live, and this is appended to as it runs · last
-updated 2026-09-27 (Phase 9, funding impact, built and live: §1, §2, §3.8, §4, §5 and §8)
+updated 2026-09-27 (Phase 9, funding impact, built and live: §1, §2, §3.8, §4, §5 and §8; then
+F17, grant funding counted from 2006 through the latest listing publication: §1, §3.8, §4 and §5)
 **Purpose:** everything needed to pick this work up: what was built, what was measured, what was
 decided along the way, and the approved plan in full (§6).
 **Depends on:** the frozen specs [01](01-discovery-strategy.md), [01a](01a-discovery-calibration.md),
@@ -47,7 +48,8 @@ budgets (JavaScript, and the data's 500 KiB) and the store validator are all cle
 green on every push. Besides the code, it validates the committed `store/`, runs the Phase 1 §12
 test papers against it, checks that the committed export matches the committed store, and runs
 the web unit suite a second time against that export (1,538 pass; the 95 that test the sample's
-own cases skip).
+own cases skip). **After F17** (2026-09-27): 1,572 Python tests, 1,918 web unit tests on the sample
+(1,791 pass and 127 skip on the real export) and 89 Playwright specs.
 
 **`store/` was seeded on 2026-09-20**: 339 works, 455 candidates, 306 list entries, 754 metrics
 lines, 0 errors and 0 warnings. The ~1,100 work and record IDs it minted are permanent from here.
@@ -74,6 +76,12 @@ and a top-level `funding` block). The weekly run has carried funding since the f
 Funding impact view, its agency and grant pages and each publication's Funding section went public
 on 2026-09-27 at 05:39 UTC, when R2's removal of the `VITE_FUNDING` flag (6c1698f, e5dc3a6)
 deployed, so the data was published before the app. §3.8 has the figures.
+
+**Grant funding is counted, not summed whole, since F17** (the maintainer, 2026-09-27;
+[09](09-funding-impact.md) F17, §7.4). The totals count each grant's funding from 2006, when UWPR
+began, through the year of the latest publication listing it: **$5,139,499,698** of the
+$7,888,899,029 of lifetime totals. A grant's lifetime total stays on its own page. The export is
+contract 1.2, which adds the counting rule's fields and changes none.
 
 ## 2. What exists
 
@@ -642,6 +650,29 @@ confirmed before the push. A Playwright script then loaded eight pages cold on t
 Funding impact switch). All eight rendered with no page error. The rollback, if ever needed, is
 `pages.yml` re-run at fd7d0d8 (`RUNBOOK.md` §8).
 
+**Counting, F17 (2026-09-27; M1 2421a77, M2 c94e2c1, M3a 6f69f19, M3b f326cd1).** The headline
+stopped adding lifetime totals ([09](09-funding-impact.md) §3.6 has the measurements that decided
+it, and §7.4 the rule). On the committed export, rebuilt by `uwpr-pubs export --store store --out
+export`, each counted figure beside the lifetime one it replaces:
+
+| | Counted | Lifetime |
+|---|---:|---:|
+| **All grants, the headline** | **$5,139,499,698** | $7,888,899,029 |
+| Institution-wide awards excluded | $4,052,434,757 | $6,673,980,811 |
+| Institution-wide awards | $1,087,064,941 | $1,214,918,218 |
+| NIH | $3,954,190,395 | $6,556,225,823 |
+| Spread evenly, the estimated part (125 grants) | $418,540,466 | $565,904,369 |
+
+By rule, of the 617 grants with an amount: `window` 581 ($4,354,473,040), `undated` 10
+($766,768,837), `full_amount` 15 ($11,499,558), `ended_before` 6 ($6,758,263) and `began_after` 5
+($0). An independent integer model of the rule agrees grant by grant. By award year the counted
+funding runs from 2006 ($197,096,716) to 2026, a partial year ($27,125,458), and peaks in 2019
+($889,726,807), where NASA's undated $583.5M lands in its first listing year. The export is
+450,002 bytes gzipped at level 9, from 440,730; the sample 29,112, from 27,004. **The gate:**
+1,572 Python tests; on the sample 1,918 web unit tests, and on the real export 1,791 pass and 127
+skip; 89 Playwright specs; the JavaScript 148.5 KB gzipped. The release and its live check are
+09 §17's F17 block.
+
 ## 4. Decisions taken during implementation
 
 Each is already reflected in the code, the config or a dated spec note. They are listed here
@@ -793,6 +824,15 @@ header, "Changes since agreement", unless another place is named):
   kept the view out of the production build while it landed on `main` in slices. Its data was on
   `gh-pages` from the first update run, so the push that removed the flag published the view. The
   tests of the no-funding-data state stay: a rolled-back export still needs them.
+- **Grant funding is counted from 2006 through the latest listing publication** (the maintainer,
+  2026-09-27; 09 F17, §7.4). Lifetime totals counted money UWPR could not have touched — 27 years
+  of a primate centre for one 2012 paper — and look-back windows were measured and rejected, since
+  their length cannot be verified. The constants are code (`funding/counting.py`), not
+  `config/funding.yaml`, so a change to one needs no `funding_version` bump and no RePORTER
+  refresh, only an export rebuild. Contract 1.2 is additive, so the app before it read 1.2 data
+  truthfully; the app after it reads an export without `funding.counting` as having no funding
+  data, so the release publishes the data before the views. The app counts again under a filter,
+  and its unfiltered counting is held to the export's grant by grant.
 
 ## 5. Gotchas found while building
 
@@ -948,6 +988,14 @@ header, "Changes since agreement", unless another place is named):
 - **A table tuned to macOS's fonts can overflow on CI's Linux fonts,** which are 2–3% wider. R1b's
   grants table fitted locally with 2–22 pixels to spare and measured 1,064 pixels in a 1,056-pixel
   column on CI. Its least widths now leave about 40 pixels (fee1be4).
+- **An export must not read today's date** (F17, 2026-09-27). An amount obligated to date is spread
+  only to a year already paid, and that year is the grant's own `amount_source.as_of`, not the
+  current one. `check.yml` rebuilds the export from the committed store and diffs it, so a spread
+  that ran to the current year would change the export on each 1 January with no data behind it,
+  and fail that check until the next data commit.
+- **The run report's funding total, and its drop alert, are the store's lifetime sum**, not the
+  site's counted headline (F17). A change to the counting rule moves the headline and leaves the
+  report's total where it was.
 
 ## 6. The approved implementation plan
 

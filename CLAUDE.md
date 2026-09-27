@@ -21,9 +21,11 @@ frozen, Phase 4 retired, 5-7 agreed 2026-09-20 and 9 on 2026-09-26, with dated c
   it reads, rebuilt and committed by every run.
 - **Funding impact (Phase 9) is built, and live since 2026-09-27.** The grants the papers list,
   resolved and valued from each funder's own record, are in `store/funding/` (755 grants),
-  written by stage 8b every run; the export carries them (contract 1.1); the app shows them in
+  written by stage 8b every run; the export carries them (contract 1.2); the app shows them in
   its Funding impact view, agency and grant pages, and each publication's Funding section.
   Funding never affects inclusion, and a funding failure never holds up the publication update.
+  **Its totals are counted amounts** (`docs/09` F17, §7.4): each grant's funding from 2006 through
+  the year of the latest publication listing it, not its lifetime total, which stays on its page.
 - **What is left** is small and listed in `docs/07` §16 and `docs/08` §8 (Phase 9's own open
   items are `docs/09` §16):
   - visual-regression tests (`docs/06` §12.2);
@@ -52,7 +54,7 @@ in `docs/archive/`.
 | 6 Web app | **Agreed 2026-09-20.** Decisions B1-B11: React + TypeScript + Vite, visx charts, in `web/` |
 | 7 Operations | **Agreed 2026-09-20.** Decisions O1-O8: Pages from `gh-pages`, data publish decoupled from the app build |
 | 8 Implementation | Done: pipeline, export, app and publishing all built and live |
-| 9 Funding impact | **Agreed 2026-09-26; built and live 2026-09-27.** Decisions F1–F16: the grants listed on included papers, valued by NIH RePORTER, NSF, USAspending or OpenAlex, stored in `store/funding/`, never in work files |
+| 9 Funding impact | **Agreed 2026-09-26; built and live 2026-09-27.** Decisions F1–F17: the grants listed on included papers, valued by NIH RePORTER, NSF, USAspending or OpenAlex, stored in `store/funding/`, never in work files; F17 counts each from 2006 to its latest listing paper |
 
 ## How specs are handled
 
@@ -231,6 +233,12 @@ UWPR_EXPORT_DIR=$PWD/../export npm test -- --run               # the unit suite 
   - **G.5A quotes AUD, EUR, NZD and GBP as dollars per unit** and the rest as units per dollar.
     Rates are stored as dollars per unit, the inverted ones rounded to ten significant digits.
   - **Any edit to `config/funding.yaml` must bump `funding_version`**, or stage 0 refuses the run.
+  - **The headline counts, it does not add lifetime totals:** each grant from 2006 to the year of
+    its latest listing publication (instruments in full; ended before 2006, the last five years;
+    begun after its last paper, $0; other funders spread evenly). The constants are in
+    `funding/counting.py`, not `config/funding.yaml`: changing one is a code change plus a
+    `docs/09` note, never a `funding_version` bump. `amount_usd`, the run report's total and its
+    drop alert stay lifetime.
   - **Pipeline dates are UTC:** a Saturday-evening run in New York is dated Sunday, and so is a
     `funding_version` or override written for it.
   - **`178013_1` must stay quoted in `overrides.yaml`:** YAML 1.1 reads it as the integer 1780131.

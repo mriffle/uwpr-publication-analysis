@@ -302,6 +302,23 @@ deliberately, dated, and noted in this header.
   builds, with no flag in either; the tests of the flag itself are deleted (11 unit tests and the
   3 e2e specs of a build without the view), and the tests of an export with no funding data stay.
   e2e is 82 specs, all passing and none skipped. The JavaScript is 143.2 KB gzipped, from 143.3.
+- *2026-09-27, §6 and §12.1, grant funding counted* ([09](09-funding-impact.md) F17, §7.4, §12).
+  The funding totals stop adding lifetime totals and count each grant's funding from 2006 through
+  the year of the latest publication listing it, in contract 1.2. **The app counts for itself
+  under a filter**, since the ceiling is the latest publication *shown*: `aggregate/counting.ts` is
+  the line-for-line twin of the pipeline's `funding/counting.py`, pure and in whole dollars,
+  reading its constants from the export's `funding.counting` and the spread the pipeline exported,
+  never deriving one. **§12.1's funding cross-check grows:** unfiltered, each grant's counted
+  amount, rule and last listing year must equal the export's `counted_usd`, `counted_rule` and
+  `last_listed_year`, and the counted series by award year must equal `counted_by_year` year for
+  year and end at `counted_usd`. **A third no-data shape** (§6's funding dimensions; 09 §12.10): an
+  export without `funding.counting` (1.1, as after a rollback of the data) reads as having no
+  funding data, as a 1.0 export does, because no total could be shown truthfully without the
+  rule. The views, the grants table's "Counted" and "Lifetime total" columns, the CSV's new
+  columns and the method page's "How grant funding is counted" are 09 §12.5–12.9's. The unit
+  suite is 1,918 tests on the sample and 1,791, with 127 skipped, on the real export; e2e is 89
+  specs; the JavaScript is 148.5 KB gzipped, and Vite's own advisory warning for a chunk over
+  500 kB minified now shows at 502.6 kB, within §10's budget (09 §16 item 16).
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -555,9 +572,10 @@ which the publications view honours as well as the Funding impact view.
   every institute's grants and Miscellaneous is selectable. It matches grant *G* when it lists
   *G*. Codes and keys ride as they are, with the `:` percent-encoded. The predicate takes the
   funding index (`fundingOf(doc)`) as an argument and reads listings only through it. With no
-  funding data, as in a 1.0 export, a work lists nothing, so an agency or grant selection
-  matches nothing and the empty state names it. Chips read "Funding agency: *name*" and
-  "Grant: *agency short name, else name* *number*"; a code or key the export lacks shows raw.
+  funding data, as in a 1.0 export (or, from contract 1.2, one without `funding.counting`), a work
+  lists nothing, so an agency or grant selection matches nothing and the empty state names it.
+  Chips read "Funding agency: *name*" and "Grant: *agency short name, else name* *number*"; a
+  code or key the export lacks shows raw.
 - **The scope rule** ([09](09-funding-impact.md) F15) decides which grants a filtered funding
   view shows. It applies to the distinct grants listed on the filtered publications:
   - restricted to the selected agencies, by the listing's chain, when any are selected;
@@ -779,7 +797,7 @@ of the generic ones.
 | Check | What it catches |
 |---|---|
 | **The summary cross-check.** The app's unfiltered aggregates must equal the exported `summary` block, which the pipeline computes independently ([05](05-metrics-and-data-contract.md) §1.2). | A metric implemented to a different definition than the pipeline used. This is the single highest-value test in the suite: two independent computations of the same number. |
-| **The funding cross-check.** The app's unfiltered funding figures (`summarizeFunding`) must equal the exported `funding.summary`, field for field, and every grant's first year, recomputed from the works, its `first_year` ([09](09-funding-impact.md) §11.6, §11.7). It is built from the functions the funding views draw. | The same fault in the funding figures. A grant counted twice, an unknown amount summed as $0, an investigator keyed differently, or a first year read from the export instead of recomputed would each show here. |
+| **The funding cross-check.** The app's unfiltered funding figures (`summarizeFunding`) must equal the exported `funding.summary`, field for field, and every grant's first year, recomputed from the works, its `first_year` ([09](09-funding-impact.md) §11.6, §11.7). It is built from the functions the funding views draw. *(From 2026-09-27, contract 1.2:)* every grant's unfiltered counted amount, rule and last listing year must equal its `counted_usd`, `counted_rule` and `last_listed_year`, and the counted series by award year `counted_by_year`. | The same fault in the funding figures. A grant counted twice, an unknown amount summed as $0, an investigator keyed differently, or a first year read from the export instead of recomputed would each show here; so would the app's counting rule drifting from the pipeline's. |
 | **The sample export validates against its JSON Schema**, and the app's types are generated from that schema. | Contract drift. A pipeline change the app does not handle becomes a build failure, not a broken page. |
 | **Every case in [05](05-metrics-and-data-contract.md) §13 renders.** Preprint-only; a merged pair; evidence with no excerpt, in both of its forms; an override with attribution; no open-access link; no field-weighted impact; retracted; one author; more than fifty; an unresolved affiliation; a retired identifier in the alias map. | The states that exist in the data but are rare enough that nobody meets them while developing. The retraction case in particular **has no instance in the real store**, so only the sample exercises it — and citation metadata refreshes weekly, so a real one can appear any week. |
 
