@@ -277,6 +277,22 @@ deliberately, dated, and noted in this header.
   Funding impact view, an agency page and a grant page, and as one short line ending a
   publication's Funding section, whenever PubMed is a funding source. One component words it,
   on the method page too. The JavaScript is 142.2 KB gzipped, from 141.9.
+- *2026-09-27, §5, §7, §8 and §9, the funding views read on the real export*
+  ([09](09-funding-impact.md) R1b). **§7's tables:** the grants table draws its first 50 rows,
+  in the order chosen, with a control to draw them all; its count and caption say how many are
+  shown of how many, and its CSV holds every row the search matches. Drawn at once, the real
+  export's 755 made the Funding impact view 58,024 pixels tall; it is 13,721. **Every chart's
+  table alternative now scrolls in its own container**, as the funding tables did, and so does
+  §5's topic table: at 390 pixels, value by agency's table and a publication's topics scrolled
+  the whole page sideways, which **§9's phone layout** forbids. A caption in such a container
+  stays within the width that shows. Evidence and funding cards break a run of characters with
+  no space, which a funding excerpt can hold. **§8:** the funding tables' headers wrap and their
+  free text may break, so the grants table's totals are on a desktop page (it was 1,705 pixels
+  wide in a 1,056-pixel column), and an agency known by an acronym has its full name beside it
+  in the tables and the ranked chart's accessible name, tooltip and table alternative, the axis
+  keeping the short name (a bar's optional `name`). Playwright checks, on any export, that no
+  funding page scrolls sideways at 390 pixels with every table open. The JavaScript is 143.3 KB
+  gzipped, from 142.2.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.

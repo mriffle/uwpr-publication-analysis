@@ -815,6 +815,78 @@ plan. [08](08-implementation.md) records them as they are built.
     publication's Funding section and `/method#funding`, in both themes. On the sample: 1,613 pass
     at 98.6% line and 91.9% branch coverage, and e2e passes with and without the flag. The
     JavaScript is 142.2 KB gzipped, from 141.9; the real export 440,730 bytes (430.4 KiB).
+- *2026-09-27, R1b — the funding views on the real data.* R1a made the tests hold on the seeded
+  export; R1b read every funding page on it as a reader would, light and dark, at 1,280 and 390
+  pixels. The sample has 55 grants and a handful of agencies. The real export has 755 grants, 71
+  root agencies (98 in all, 53 with no known amount), 208 grants typed `other`, a publication
+  listing 25 grants and an unmatched number a decision kept apart, and none of these had been
+  seen on a page. Nothing here changes a grant's scope or amount: NASA's `NCC958` ($583,518,208)
+  and the $1,214,918,218 of institution-wide awards are data, and the headline's
+  institution-wide sentence already states them.
+  - **The grants table draws the first 50 rows** (§12.5 item 6), in the order chosen, with "Show
+    all *N* grants" beneath it. Drawn at once, the real export's 755 made `/funding` 58,024
+    pixels tall at 1,280 wide, with the coverage section at 57,010, and axe took about 10 s on
+    the page. It is now 13,721 pixels, coverage at 12,682; the NIH page 19,939, from 62,817. The
+    count and the caption say how many are shown of how many ("the first 50 of 755, in the order
+    chosen"). **"A CSV of exactly the visible rows" now reads as every row the search matches**,
+    in the order shown, those beyond the first 50 included: the search decides which rows the
+    reader asked for, and the cut only how many are drawn. The button names the count it holds
+    ("Download these 755 grants as CSV"). The two whole-view axe tests R1a made sample-only for
+    time run on either export again.
+  - **The tables fit a desktop page.** The grants table was 1,705 pixels wide in a 1,056-pixel
+    column, so its totals were beyond the right-hand edge at 1,280; the agency table 1,249, its
+    caption cut off. Headers and row headers were held on one line, so one long name (the UCSF
+    tobacco centre's) or written number (`ANID/BASAL/FB210008 (M.V.G.)`) set its column's width
+    for every row. Headers now wrap; a title, agency, investigator or organisation may break a
+    long word, with a minimum width; a number may break after "/" or ":" (by `<wbr>`, so its text
+    is unchanged) and, when longer than NIH's eleven characters, anywhere; an original amount
+    may break after its currency code; and the grants table is set a little smaller. Both fit
+    at 1,280 with every row drawn.
+  - **No page scrolls sideways on a phone** (docs/06 §9). At 390 pixels a chart's table
+    alternative (value by agency's, 905 pixels wide) and a publication's topic table scrolled the
+    whole page, as did a funding excerpt that runs award numbers together with no space. Both
+    tables now scroll in their own container; evidence and funding cards break such a run. A
+    caption in a scrolling container stays within the width that shows, where it ran off with
+    the columns.
+  - **An agency known by an acronym is named in full.** Most of the 98 are acronyms (VR, SSF,
+    OD, NCRR, DOI). The table of every agency and an agency's breakdown give the full name
+    beneath the short one, and the ranked chart's accessible name, tooltip and table give both
+    ("VR (Vetenskapsrådet)"); the axis keeps the short name.
+  - **The ranked agencies' note adds up to the headline.** It said "the 15 largest of 21
+    agencies" beside a headline of 71, and only then that 50 have no known amount. It now says
+    "the 15 largest of the 21 agencies with a known amount are drawn; the other 6 are in the
+    table of every agency below", then the 50.
+  - **"Other" is said not to be a kind of award.** All 208 of the real export's `other` grants
+    are from agencies other than NIH and NSF, whose grants alone are typed (§11.4); it is the
+    second type by count and the third by value. The grant-types card says so, counted by
+    `otherKind`. An unmatched number's type reads "not known", not "Other", in the table and the
+    CSV, as the chart already counted it under none, and Miscellaneous's page calls its rows
+    unmatched numbers, not grants.
+  - **An unmatched number a decision kept apart says so.** `MISC:1780131`'s page said "No
+    funder's record matched this number"; OpenAlex matched it, and B9's decision set the match
+    aside. The page now says a recorded decision kept it unmatched and gives the reason with the
+    publication; it is headed "Publications giving this number", and no longer says "also written
+    in the paper as" the number its heading shows. The Funding section, the coverage sentence,
+    Miscellaneous's page and the method's definition of an unmatched number tell the two kinds
+    apart (`keptUnmatched`).
+  - **Judged acceptable as they are.** The NIH page's 271 publications, a compact list of links,
+    are most of its height, but they are its last section and bury nothing but NLM's line. The
+    25 cards of W-000277's Funding section are one publication's grants, each with its own total,
+    and a reader who opens it wants them. NIH's bar dwarfs the rest of the ranked chart
+    ($6.56 billion to NASA's $736 million), which a value label beside every bar reads; a log
+    scale would be a redesign. The over-time chart spans the export's years, 2008–2026, not
+    forty; the forty-one years are `NIH:P30DK017047`'s fiscal years, which read well.
+  - **Speed was never the problem.** Measured in Chromium with Playwright on the development
+    machine, from navigation to the grants table drawn: 96–154 ms before, 48–100 ms after; from
+    clicking an agency bar to the next frame: 24–61 ms before, 31–35 ms after; a keystroke in the
+    grants search, 13–61 ms before, 15–28 ms after. Each scope is computed once and memoised, and
+    the search is deferred; the cut makes the page lighter, not the arithmetic faster.
+  - **The gate.** On the sample: 1,644 unit tests pass at 98.7% statement and 92.3% branch
+    coverage; build, both budgets, and e2e with the flag (82 pass) and without it (43) pass. On
+    the real export: 1,549 pass and 95 skip, and the 82 e2e specs pass with the flag, two new:
+    no funding page, nor the publication with the most grants, scrolls sideways at 390 pixels
+    with every table open, and the grants table draws 50, fits its column and downloads every
+    grant. The JavaScript is 143.3 KB gzipped, from 142.2.
 
 ---
 
