@@ -42,7 +42,7 @@ const withoutFunding = (): ExportDocument => {
 const doc = withoutFunding();
 const year = String(doc.period.last_year);
 
-/** The committed sample carries synthetic funding data (docs/09 §11.8). */
+/** The committed sample carries funding data (docs/09 §11.8); `FundingImpact.test.tsx` draws it. */
 const withFunding = (): ExportDocument => sampleExport();
 
 const at = (path: string, state: unknown = null, document_: ExportDocument = doc) => {
@@ -103,9 +103,12 @@ describe('the funding view', () => {
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 
-  it('says funding is not shown yet when the export does carry it', () => {
+  it('draws the view, not the notice, when the export does carry funding data', () => {
     at('/funding', null, withFunding());
-    expect(screen.getByRole('region', { name: 'Funding is not shown yet' })).toBeInTheDocument();
+    expect(
+      screen.queryByRole('region', { name: 'No funding data in this export' }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole('list', { name: 'Funding figures' })).toBeInTheDocument();
   });
 
   it('carries the header links and the footer the publications view has', () => {

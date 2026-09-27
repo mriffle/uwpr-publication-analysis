@@ -164,6 +164,30 @@ describe('dollar mode: exact values everywhere but the axes', () => {
   });
 });
 
+describe('what a point carries beyond its value', () => {
+  it('gives describeValue the point, so a year can say more than its value', () => {
+    draw({
+      describeValue: (value, point) =>
+        point.year === 2020 ? 'nothing known' : `${formatUsd(value)} known`,
+    });
+    expect(
+      screen.getByRole('img', { name: '2020: nothing known, $1,200,000 cumulative.' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', { name: '2019: $1,200,000 known, $1,200,000 cumulative.' }),
+    ).toBeInTheDocument();
+  });
+
+  it('adds the caller’s tooltip rows after the value and the running total', async () => {
+    draw({ tooltipRows: (point) => [{ label: 'Grants', value: String(point.year - 2018) }] });
+    await userEvent.hover(screen.getByRole('img', { name: /^2020:/ }));
+    const tooltip = screen.getByTestId('chart-tooltip');
+    expect(tooltip).toHaveTextContent('Grant funding$0');
+    expect(tooltip).toHaveTextContent('Cumulative$1,200,000');
+    expect(tooltip).toHaveTextContent('Grants2');
+  });
+});
+
 describe('the table alternative in dollars', () => {
   it('carries the exact values the tooltip does', () => {
     render(

@@ -88,6 +88,11 @@ export interface OverviewProps {
   onOpenLookup: () => void;
   /** The switch to the Funding impact view, in a build that has it (`VITE_FUNDING`). */
   views?: ViewSwitch;
+  /**
+   * Move focus to the heading as the view opens: when the switch brought the reader here from
+   * Funding impact, so they hear where they landed (docs/06 §9). Off otherwise.
+   */
+  focusHeading?: boolean;
   /** Injected in tests so the staleness threshold is exercised without freezing the clock. */
   now?: Date;
   /** 0 in tests, so a keystroke in the search box does not need a timer to land. */
@@ -107,6 +112,7 @@ export function Overview({
   lookupHref,
   onOpenLookup,
   views,
+  focusHeading = false,
   now,
   searchDebounceMs,
 }: OverviewProps) {
@@ -194,6 +200,7 @@ export function Overview({
         lookupHref={lookupHref}
         onOpenLookup={onOpenLookup}
         {...(views ? { views } : {})}
+        focusHeading={focusHeading}
       />
 
       <StalenessNotice generatedAt={doc.generated_at} {...(now ? { now } : {})} />

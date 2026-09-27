@@ -29,7 +29,7 @@ import { Group } from '@visx/group';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import type { YearPoint } from '../aggregate/series';
 import { formatCount } from '../format/number';
-import { ChartFrame, DEFAULT_MARGIN } from './ChartFrame';
+import { ChartFrame, DEFAULT_MARGIN, type ChartMargin } from './ChartFrame';
 import { ChartTable } from './ChartTable';
 import { ChartTooltip } from './ChartTooltip';
 import { seriesColour } from './palette';
@@ -50,9 +50,11 @@ export interface YearValueText {
   formatValue?: (value: number) => string;
   /**
    * One year's value in a sentence, for its accessible name: "2 publications",
-   * "$1,200,000 in grants first listed". Defaults to the count and `unit`.
+   * "$1,200,000 in grants first listed". Defaults to the count and `unit`. It is given the point
+   * too, for a series whose points carry more than their value — a year of grants whose amounts
+   * are not all known says so, rather than reading as $0.
    */
-  describeValue?: (value: number) => string;
+  describeValue?: (value: number, point: YearPoint) => string;
 }
 
 export interface YearSeriesChartProps extends YearValueText {
@@ -74,6 +76,10 @@ export interface YearSeriesChartProps extends YearValueText {
   yTickFormat?: (value: unknown) => string;
   /** The right (cumulative) axis's tick labels. */
   rightTickFormat?: (value: unknown) => string;
+  /** Further tooltip rows for a year, after its value and the running total. */
+  tooltipRows?: (point: YearPoint) => readonly { label: string; value: string }[];
+  /** The plot's margins; `WIDE_MARGIN` for tick labels wider than a count's. */
+  margin?: ChartMargin;
 }
 
 const plural = (count: number, unit: SeriesUnit): string => (count === 1 ? unit.one : unit.many);
@@ -104,7 +110,7 @@ export function yearMarkLabel(
       ? ' Selected. Activate to remove this year from the filter.'
       : ' Activate to filter by this year.';
   return (
-    `${String(point.year)}${partial}: ${describe(point.count)}, ` +
+    `${String(point.year)}${partial}: ${describe(point.count, point)}, ` +
     `${formatValue(point.cumulative)} cumulative.${action}`
   );
 }
@@ -130,6 +136,8 @@ export function YearSeriesChart({
   describeValue,
   yTickFormat,
   rightTickFormat,
+  tooltipRows,
+  margin = DEFAULT_MARGIN,
 }: YearSeriesChartProps) {
   const patternId = useId();
   const [hovered, setHovered] = useState<YearPoint | null>(null);
@@ -140,7 +148,6 @@ export function YearSeriesChart({
     ...(describeValue === undefined ? {} : { describeValue }),
   };
 
-  const margin = DEFAULT_MARGIN;
   const innerWidth = Math.max(0, width - margin.left - margin.right);
   const innerHeight = Math.max(0, height - margin.top - margin.bottom);
 
@@ -256,6 +263,7 @@ export function YearSeriesChart({
           rows={[
             { label: valueAxisLabel, value: formatValue(hovered.count) },
             { label: cumulativeAxisLabel, value: formatValue(hovered.cumulative) },
+            ...(tooltipRows?.(hovered) ?? []),
           ]}
         />
       ) : null}

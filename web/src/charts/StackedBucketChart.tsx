@@ -11,7 +11,8 @@
  *   series as a filter (docs/06 §6) — but only where the series *is* a filter value. A residue
  *   such as "Other" never is: it is whatever fell outside the largest few, and it changes as the
  *   corpus and the filter change. A pinned series with a stable identity, such as a
- *   "Miscellaneous" agency, can be. The caller says which with `selectable`.
+ *   "Miscellaneous" agency, can be. The caller says which with `selectable`; a series that is
+ *   not one is a picture in the plot and plain text in the legend, never a control.
  * - **Exact values** (docs/06 §7): `formatValue` is the exact figure in the tooltip, the legend
  *   and the table, and `describeValue` the figure in a sentence, for the accessible name. Only
  *   the axis (`yTickFormat`) may round.
@@ -20,7 +21,7 @@ import { useId, useState, type ReactNode } from 'react';
 import { Bar } from '@visx/shape';
 import { scaleBand, scaleLinear } from 'd3-scale';
 import { formatCount } from '../format/number';
-import { ChartFrame, DEFAULT_MARGIN } from './ChartFrame';
+import { ChartFrame, DEFAULT_MARGIN, type ChartMargin } from './ChartFrame';
 import { ChartLegend, type LegendEntry } from './ChartLegend';
 import { ChartTable, type ChartTableColumn } from './ChartTable';
 import { ChartTooltip } from './ChartTooltip';
@@ -118,6 +119,8 @@ export interface StackedBucketChartProps<B extends StackedBucket> {
   totalLabel?: string;
   /** Further tooltip rows for a bucket, after the segment's value and the total. */
   tooltipRows?: (bucket: B) => readonly { label: string; value: string }[];
+  /** The plot's margins; `WIDE_MARGIN` for tick labels wider than a count's. */
+  margin?: ChartMargin;
 }
 
 export function StackedBucketChart<B extends StackedBucket>({
@@ -139,6 +142,7 @@ export function StackedBucketChart<B extends StackedBucket>({
   yTickFormat,
   totalLabel = 'Total',
   tooltipRows,
+  margin = DEFAULT_MARGIN,
 }: StackedBucketChartProps<B>) {
   const patternId = useId();
   const [hovered, setHovered] = useState<{ bucket: B; index: number } | null>(null);
@@ -147,7 +151,6 @@ export function StackedBucketChart<B extends StackedBucket>({
     describeSegment ??
     ((segment: StackedSegment<B>) => stackedSegmentLabel(segment, describeValue, selectVerb));
 
-  const margin = DEFAULT_MARGIN;
   const innerWidth = Math.max(0, width - margin.left - margin.right);
   const innerHeight = Math.max(0, height - margin.top - margin.bottom);
 
@@ -168,14 +171,16 @@ export function StackedBucketChart<B extends StackedBucket>({
     buckets.reduce((sum, bucket) => sum + (bucket.values[index] ?? 0), 0),
   );
 
+  // A series that is not a filter value is plain text in the legend, not a button that does
+  // nothing (`ChartLegend`); the segments say why in their accessible names.
   const entries: LegendEntry[] = series.map((item, index) => ({
     key: item.key,
     label: item.label,
     colour: item.colour,
     selected: selectedSeries.includes(item.key),
     value: formatValue(totals[index] ?? 0),
+    selectable: item.selectable,
   }));
-  const selectableKeys = new Set(series.filter((item) => item.selectable).map((item) => item.key));
 
   const hoveredSeries = hovered ? series[hovered.index] : undefined;
 
@@ -313,7 +318,7 @@ export function StackedBucketChart<B extends StackedBucket>({
         {...(onSelectSeries
           ? {
               onSelect: (entry) => {
-                if (selectableKeys.has(entry.key)) onSelectSeries(entry.key);
+                onSelectSeries(entry.key);
               },
             }
           : {})}

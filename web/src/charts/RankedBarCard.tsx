@@ -33,6 +33,8 @@ export interface RankedBarCardProps {
   /** Rendered instead of the chart when the current filter selects nothing (docs/06 §6). */
   empty?: ReactNode;
   formatValue?: (value: number) => string;
+  /** The value on the axis and beside each bar, which may round (see `HorizontalBarChart`). */
+  markFormat?: (value: number) => string;
   /** The value in a sentence, for each mark's accessible name (see `HorizontalBarChart`). */
   describeValue?: (value: number) => string;
   /** Extra controls in the card, such as §7.7's "include staff" toggle. */
@@ -53,6 +55,7 @@ export function RankedBarCard({
   selectVerb,
   empty,
   formatValue,
+  markFormat,
   describeValue,
   controls,
 }: RankedBarCardProps) {
@@ -75,6 +78,7 @@ export function RankedBarCard({
               {...(onSelect ? { onSelect } : {})}
               {...(selectVerb === undefined ? {} : { selectVerb })}
               {...(formatValue === undefined ? {} : { formatValue })}
+              {...(markFormat === undefined ? {} : { markFormat })}
               {...(describeValue === undefined ? {} : { describeValue })}
             />
           )}

@@ -14,8 +14,9 @@
  * carries one, labelled with the page it returns to. So a publication opened from the lookup
  * says "Back to the lookup", and the offer survives reload, back and forward.
  */
-import { useCallback, useMemo, type ReactNode } from 'react';
+import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import { toggleSort, type SortKey } from './aggregate/explorer';
+import type { FundingLinks } from './components/FundingLinks';
 import { NotIncludedAnswer } from './components/NotIncludedAnswer';
 import type { SiteView, ViewSwitch } from './components/SiteHeader';
 import { basePath, exportUrl, fundingEnabled, lookupUrl } from './contract/config';
@@ -29,15 +30,18 @@ import type { Fetcher } from './contract/load';
 import { isPlainLeftClick } from './routing/clicks';
 import { backLabel, entryFrom, readBack, shellTitle } from './routing/navigation';
 import {
+  agencyPath,
   fundingPath,
+  grantPath,
   lookupPath,
   methodPath,
   overviewPath,
   parseRoute,
   publicationPath,
 } from './routing/route';
-import { useLocation } from './routing/useLocation';
+import { useLocation, type NavigateOptions, type NavigateTo } from './routing/useLocation';
 import { decodeView, encodeViewToQuery } from './routing/view';
+import type { InstitutionWide } from './filter/funding';
 import type { FilterState } from './filter/state';
 import { Agency } from './views/Agency';
 import { Funding } from './views/Funding';
@@ -139,6 +143,20 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
   const view = useMemo(() => decodeView(search), [search]);
   const index = useMemo(() => buildWorkIndex(doc), [doc]);
 
+  // The view the switch has just opened, so that it can take focus (docs/06 §9): the link the
+  // reader activated belonged to the page that has gone, and focus would otherwise fall to the
+  // document. The funding view always focuses its heading as it opens; the publications view
+  // does so only when the switch brought the reader there — not on a cold load, and not on a
+  // return from a publication, where it never has. Every other step the app takes clears it.
+  const [switchedTo, setSwitchedTo] = useState<SiteView | null>(null);
+  const go = useCallback(
+    (to: NavigateTo, options?: NavigateOptions) => {
+      setSwitchedTo(null);
+      navigate(to, options);
+    },
+    [navigate],
+  );
+
   // Where this entry goes back to, if the app opened it (docs/06 §3). Closing pops the entry
   // rather than pushing another — "otherwise opening and closing five publications leaves ten
   // entries to press Back through" (docs/06 §6) — which is also what restores the exact view the
@@ -161,16 +179,31 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
 
   const setFilter = useCallback(
     (filter: FilterState) => {
-      navigate({ search: encodeViewToQuery({ ...view, filter }) });
+      go({ search: encodeViewToQuery({ ...view, filter }) });
     },
-    [navigate, view],
+    [go, view],
   );
 
   const setSort = useCallback(
     (key: SortKey) => {
-      navigate({ search: encodeViewToQuery({ ...view, sort: toggleSort(view.sort, key) }) });
+      go({ search: encodeViewToQuery({ ...view, sort: toggleSort(view.sort, key) }) });
     },
-    [navigate, view],
+    [go, view],
+  );
+
+  // The institution-wide position is view state in the URL (docs/09 §12.4), written only when
+  // the reader excludes those awards. A change is a step like a filter change: it pushes.
+  const setInstitutionWide = useCallback(
+    (position: InstitutionWide) => {
+      go({
+        search: encodeViewToQuery({
+          filter: view.filter,
+          sort: view.sort,
+          ...(position === 'exclude' ? { institutionWide: position } : {}),
+        }),
+      });
+    },
+    [go, view],
   );
 
   const publicationHref = useCallback(
@@ -180,27 +213,47 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
 
   const openPublication = useCallback(
     (work: Work) => {
-      navigate({ pathname: publicationPath(work.id, base) }, { state: entryFrom(leaving) });
+      go({ pathname: publicationPath(work.id, base) }, { state: entryFrom(leaving) });
     },
-    [navigate, base, leaving],
+    [go, base, leaving],
+  );
+
+  // An agency or a grant opens the way a publication does (docs/09 §12.3): the query string is
+  // kept, so the page's way out returns to the view the reader built, and the entry records the
+  // page it was opened from, so its back control names that page. The hrefs carry the same query
+  // as the in-app open, so a new tab lands on the same page.
+  const fundingLinks: FundingLinks = useMemo(
+    () => ({
+      agencyHref: (code: string) => `${agencyPath(code, base)}${search}`,
+      grantHref: (key: string) => `${grantPath(key, base)}${search}`,
+      onOpenAgency: (code: string) => {
+        go({ pathname: agencyPath(code, base) }, { state: entryFrom(leaving) });
+      },
+      onOpenGrant: (key: string) => {
+        go({ pathname: grantPath(key, base) }, { state: entryFrom(leaving) });
+      },
+    }),
+    [go, base, search, leaving],
   );
 
   // The method page carries no filter, so its URL drops the query rather than showing a filter
   // that changes nothing on it. Going back pops the entry, which restores the reader's filtered
   // view exactly — the same mechanism that keeps the filter across a publication detail.
   const openMethod = useCallback(() => {
-    navigate({ pathname: methodHref, search: '' }, { state: entryFrom(leaving) });
-  }, [navigate, methodHref, leaving]);
+    go({ pathname: methodHref, search: '' }, { state: entryFrom(leaving) });
+  }, [go, methodHref, leaving]);
 
   const lookupRoutePath = lookupPath(base);
   const openLookup = useCallback(() => {
-    navigate({ pathname: lookupRoutePath, search: '' }, { state: entryFrom(leaving) });
-  }, [navigate, lookupRoutePath, leaving]);
+    go({ pathname: lookupRoutePath, search: '' }, { state: entryFrom(leaving) });
+  }, [go, lookupRoutePath, leaving]);
 
   // The switch between the two views (docs/09): peers, so a switch keeps the query string and
-  // stores no way back — neither view opened over the other.
+  // stores no way back — neither view opened over the other. It records which view it opened,
+  // for the focus (above).
   const switchView = useCallback(
     (to: SiteView) => {
+      setSwitchedTo(to);
       navigate({ pathname: to === 'funding' ? fundingPath(base) : overviewPath(base) });
     },
     [navigate, base],
@@ -237,6 +290,7 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
         lookupHref={lookupRoutePath}
         onOpenLookup={openLookup}
         {...(views ? { views } : {})}
+        focusHeading={switchedTo === 'publications'}
         {...(now ? { now } : {})}
         {...(searchDebounceMs === undefined ? {} : { searchDebounceMs })}
       />
@@ -247,6 +301,12 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
     return (
       <Funding
         doc={doc}
+        filter={view.filter}
+        onFilter={setFilter}
+        {...(view.institutionWide ? { institutionWide: view.institutionWide } : {})}
+        onInstitutionWide={setInstitutionWide}
+        filterHref={(filter) => `${pathname}${encodeViewToQuery({ ...view, filter })}`}
+        links={fundingLinks}
         methodHref={methodHref}
         onOpenMethod={openMethod}
         lookupHref={lookupRoutePath}

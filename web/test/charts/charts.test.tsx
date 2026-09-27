@@ -191,6 +191,11 @@ describe('research areas over time (docs/05 §7.5)', () => {
     expect(screen.getByRole('img', { name: /^Other, 2008–2010/ })).toHaveAccessibleName(
       /Not a filter/,
     );
+    // …and in the legend it is a name, not a control announcing a filter it does not apply.
+    const legend = within(screen.getByRole('list', { name: 'Research fields' }));
+    expect(legend.queryByRole('button', { name: /^Other/ })).not.toBeInTheDocument();
+    expect(legend.getByText('Other').closest('button')).toBeNull();
+    expect(legend.getAllByRole('button')).toHaveLength(5);
   });
 
   it('shows a segment as pressed when its field is selected', () => {
@@ -444,6 +449,27 @@ describe('the legend (docs/06 §8)', () => {
       />,
     );
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
+
+  it('draws an entry that is not a filter value as plain text, even when the rest filter', async () => {
+    const onSelect = vi.fn();
+    render(
+      <ChartLegend
+        label="Agencies"
+        entries={[
+          { key: 'nih', label: 'NIH', colour: 'var(--chart-1)' },
+          { key: 'other', label: 'Other', colour: 'var(--chart-other)', selectable: false },
+        ]}
+        onSelect={onSelect}
+      />,
+    );
+    const list = within(screen.getByRole('list', { name: 'Agencies' }));
+    expect(list.getAllByRole('button')).toHaveLength(1);
+    expect(list.getByRole('button', { name: /NIH/ })).toHaveAccessibleName(
+      'NIH. Activate to filter by it',
+    );
+    await userEvent.click(list.getByText('Other'));
+    expect(onSelect).not.toHaveBeenCalled();
   });
 
   it('says a selected series is selected', () => {

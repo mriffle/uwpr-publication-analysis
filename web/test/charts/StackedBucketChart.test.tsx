@@ -121,6 +121,17 @@ describe('selectable and non-selectable series', () => {
     expect(onSelectSeries).not.toHaveBeenCalled();
   });
 
+  it('draws "Other" in the legend as plain text, not a button that would do nothing', () => {
+    draw({ onSelectSeries: vi.fn() });
+    const legend = within(screen.getByRole('list', { name: 'Agencies' }));
+    expect(legend.getAllByRole('button').map((button) => button.textContent)).toEqual([
+      expect.stringContaining('NIH'),
+      expect.stringContaining('Miscellaneous'),
+    ]);
+    expect(legend.queryByRole('button', { name: /Other/ })).not.toBeInTheDocument();
+    expect(legend.getByText('Other').closest('button')).toBeNull();
+  });
+
   it('shows a selected series as pressed', () => {
     draw({ onSelectSeries: vi.fn(), selectedSeries: ['nih'] });
     const nih = screen.getByRole('button', { name: /^NIH, 2011–2013/ });

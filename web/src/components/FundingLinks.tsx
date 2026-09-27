@@ -12,7 +12,10 @@ import type { ReactNode } from 'react';
 import { isPlainLeftClick } from '../routing/clicks';
 
 export interface FundingLinks {
-  /** A grant's page, by key: `grantPath(key, base)` plus nothing of the filter. */
+  /**
+   * A grant's page, by key. The app's (`App.tsx`) keep the reader's query string, as a
+   * publication's link does, so the page's way out returns to the view the reader built.
+   */
   grantHref: (key: string) => string;
   /** An agency's page, by code. */
   agencyHref: (code: string) => string;

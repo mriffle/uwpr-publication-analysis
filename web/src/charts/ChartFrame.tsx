@@ -21,6 +21,13 @@ export interface ChartMargin {
 
 export const DEFAULT_MARGIN: ChartMargin = { top: 8, right: 56, bottom: 44, left: 56 };
 
+/**
+ * Room for wider tick labels — compact dollars such as "$120M" — between the axis and its
+ * rotated title, which `DEFAULT_MARGIN`'s counts leave no room for: the title would sit on the
+ * ticks.
+ */
+export const WIDE_MARGIN: ChartMargin = { top: 8, right: 68, bottom: 44, left: 68 };
+
 export interface ChartFrameProps {
   width: number;
   height: number;

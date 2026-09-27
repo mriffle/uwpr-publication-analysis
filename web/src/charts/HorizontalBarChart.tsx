@@ -64,6 +64,12 @@ export interface HorizontalBarChartProps {
   /** The value beside the bar, on the axis and in the tooltip. Defaults to a grouped integer. */
   formatValue?: (value: number) => string;
   /**
+   * The value on the axis and beside each bar, where a long exact figure would not fit:
+   * `formatUsdCompact`. It may round, so `formatValue` stays exact in the tooltip, the table and
+   * (through `describeValue`) the accessible name (docs/06 §7). Defaults to `formatValue`.
+   */
+  markFormat?: (value: number) => string;
+  /**
    * The value in a sentence, for the mark's accessible name: "26 publications",
    * "$6,219,845,123 across 41 grants". Defaults to the count and `unit`.
    */
@@ -122,6 +128,7 @@ export function HorizontalBarChart({
   selectVerb = 'filter by this',
   rowHeight = ROW_HEIGHT,
   formatValue = formatCount,
+  markFormat = formatValue,
   describeValue = describeBarValue(unit, formatValue),
 }: HorizontalBarChartProps) {
   const [hovered, setHovered] = useState<BarRow | null>(null);
@@ -154,7 +161,7 @@ export function HorizontalBarChart({
         yScale={yScale}
         grid="columns"
         xLabel={valueAxisLabel}
-        xTickFormat={(value) => formatValue(Number(value))}
+        xTickFormat={(value) => markFormat(Number(value))}
         yTickFormat={(value) => truncate(labels.get(String(value)) ?? String(value), left)}
         yNumTicks={rows.length}
       >
@@ -214,7 +221,7 @@ export function HorizontalBarChart({
                     fill="var(--chart-axis-text)"
                     aria-hidden="true"
                   >
-                    {formatValue(row.value)}
+                    {markFormat(row.value)}
                     {row.tag === undefined ? '' : ` · ${row.tag}`}
                   </text>
                   {/* The full label, for the reader whose pointer lands on a truncated axis. */}

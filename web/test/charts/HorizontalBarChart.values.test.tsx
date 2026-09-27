@@ -63,6 +63,24 @@ describe('describeValue', () => {
     );
   });
 
+  it('rounds the axis and the bar’s label with markFormat, and keeps the tooltip exact', async () => {
+    const { container } = render(
+      <HorizontalBarChart
+        rows={rows}
+        width={800}
+        label="Agencies"
+        valueAxisLabel="Grant funding"
+        formatValue={formatUsd}
+        markFormat={formatUsdCompact}
+        describeValue={inGrants}
+      />,
+    );
+    expect(container.querySelector('.visx-axis-bottom')?.textContent).toContain('$4B');
+    expect(container.textContent).toContain('$6.22B');
+    await userEvent.hover(screen.getByRole('img', { name: /^National Institutes of Health/ }));
+    expect(screen.getByTestId('chart-tooltip')).toHaveTextContent('$6,219,845,123');
+  });
+
   it('falls back to formatValue where there is neither describeValue nor a unit', () => {
     render(
       <HorizontalBarChart rows={rows} width={800} label="Agencies" valueAxisLabel="Funding" />,
@@ -141,6 +159,28 @@ describe('RankedBarCard passes describeValue through', () => {
         name: 'National Science Foundation: $1,000,000 in grants listed.',
       }),
     ).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'View as table' }));
+    const table = screen.getByRole('table', { name: 'Grant funding by agency' });
+    expect(within(table).getByRole('cell', { name: '$6,219,845,123' })).toBeInTheDocument();
+    vi.restoreAllMocks();
+  });
+
+  it('passes markFormat to the chart, and keeps the table exact', async () => {
+    vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(800);
+    const { container } = render(
+      <RankedBarCard
+        title="Agencies"
+        description="Grant funding by agency."
+        rows={rows}
+        valueAxisLabel="Grant funding"
+        categoryHeader="Agency"
+        tableCaption="Grant funding by agency"
+        formatValue={formatUsd}
+        markFormat={formatUsdCompact}
+        describeValue={inGrants}
+      />,
+    );
+    expect(container.textContent).toContain('$6.22B');
     await userEvent.click(screen.getByRole('button', { name: 'View as table' }));
     const table = screen.getByRole('table', { name: 'Grant funding by agency' });
     expect(within(table).getByRole('cell', { name: '$6,219,845,123' })).toBeInTheDocument();
