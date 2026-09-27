@@ -7,10 +7,16 @@
  */
 import { describe, expect, it } from 'vitest';
 import { headlineFigures } from '../../src/components/HeadlineFigures';
-import { HEADLINE_DEFINITION_IDS, metricDefinitions } from '../../src/method/definitions';
+import {
+  FUNDING_DEFINITION_IDS,
+  HEADLINE_DEFINITION_IDS,
+  fundingDefinitions,
+  metricDefinitions,
+} from '../../src/method/definitions';
 import { summarize } from '../../src/aggregate/metrics';
-import { formatCount } from '../../src/format/number';
-import { sampleExport } from '../support/fixture';
+import { formatDate } from '../../src/format/date';
+import { formatCount, formatUsd, pluralize } from '../../src/format/number';
+import { isSampleExport, sampleExport } from '../support/fixture';
 
 const doc = sampleExport();
 const byId = new Map(metricDefinitions(doc).map((definition) => [definition.id, definition]));
@@ -111,5 +117,85 @@ describe('what the contract cannot state, the page does not state', () => {
       'not available',
     );
     expect(empty.find((definition) => definition.id === 'open-access')?.value).toBe('0 (0%)');
+  });
+});
+
+describe('the funding definitions (docs/09 §12.5 item 2, §12.9)', () => {
+  const funding = fundingDefinitions(doc);
+  const fundingById = new Map(funding.map((definition) => [definition.id, definition]));
+
+  it('covers every anchor the headline figures link to, and every id is unique site-wide', () => {
+    for (const id of FUNDING_DEFINITION_IDS) expect(fundingById.has(id)).toBe(true);
+    const all = [...metricDefinitions(doc), ...funding].map((definition) => definition.id);
+    expect(new Set(all).size).toBe(all.length);
+  });
+
+  it.runIf(isSampleExport)('states the corpus values funding.summary holds', () => {
+    const summary = doc.funding.summary;
+    const unknown = summary.grants_resolved - summary.grants_with_amount;
+    expect(fundingById.get('funding-total')?.value).toBe(
+      unknown === 0
+        ? formatUsd(summary.amount_usd)
+        : `${formatUsd(summary.amount_usd)}; ${pluralize(unknown, 'grant')} without a known amount`,
+    );
+    expect(fundingById.get('funding-grants')?.value).toBe(formatCount(summary.grants_resolved));
+    expect(fundingById.get('funding-agencies')?.value).toBe(formatCount(summary.agencies));
+    expect(fundingById.get('funding-investigators')?.value).toBe(
+      formatCount(summary.investigators),
+    );
+    expect(fundingById.get('funding-organizations')?.value).toBe(
+      formatCount(summary.organizations),
+    );
+    expect(fundingById.get('funding-publications')?.value).toBe(
+      `${formatCount(summary.works_with_grants)} of ${formatCount(doc.works.length)}`,
+    );
+    expect(fundingById.get('funding-institution-wide')?.value).toMatch(
+      new RegExp(
+        `^${pluralize(summary.grants_institution_wide, 'award')}, \\${formatUsd(summary.amount_usd_institution_wide)}`,
+      ),
+    );
+    expect(fundingById.get('funding-unmatched')?.value).toMatch(
+      new RegExp(`^${formatCount(summary.grants - summary.grants_resolved)}, on `),
+    );
+    expect(fundingById.get('funding-first-year')?.value).toBe(
+      `${String(summary.first_year)}–${String(summary.last_year)}`,
+    );
+  });
+
+  it('keeps every figure’s register: dated, not money spent, unknowns beside the total', () => {
+    const total = fundingById.get('funding-total')?.definition ?? '';
+    expect(total).toMatch(/not money spent on the work/);
+    expect(total).toMatch(/never in it as zero/);
+    expect(total).toMatch(/counts once/);
+    expect(total).toContain(`as of ${formatDate(doc.funding.as_of ?? '')}`);
+    expect(fundingById.get('funding-institution-wide')?.definition).toMatch(
+      /never inferred from size/,
+    );
+    expect(fundingById.get('funding-investigators')?.definition).toMatch(/counts twice/);
+  });
+
+  it('uses no wording of credit or cause (§12.11 rule 1)', () => {
+    const prose = funding
+      .map((definition) => `${definition.term} ${definition.definition}`)
+      .join(' ')
+      .toLowerCase();
+    for (const word of ['generated', 'attracted', 'enabled', 'supported by', 'thanks to']) {
+      expect(prose).not.toContain(word);
+    }
+  });
+
+  it('keeps every definition and states no value without funding data (§12.10)', () => {
+    const none = fundingDefinitions({ ...doc, funding: { ...doc.funding, version: null } });
+    expect(none.map((definition) => definition.id)).toEqual(funding.map((d) => d.id));
+    for (const definition of none) expect(definition.value).toBeUndefined();
+    expect(none.find((d) => d.id === 'funding-total')?.definition).not.toMatch(/as of/);
+  });
+
+  it('says "none" rather than inventing a total when no grant is known', () => {
+    const empty = fundingDefinitions({ ...doc, works: [] });
+    const values = new Map(empty.map((definition) => [definition.id, definition.value]));
+    expect(values.get('funding-total')).toBe('none');
+    expect(values.get('funding-first-year')).toBe('none');
+    expect(values.get('funding-publications')).toBe('0 of 0');
   });
 });

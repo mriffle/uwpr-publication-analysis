@@ -37,9 +37,25 @@ import {
   yearSpan,
 } from '../aggregate/metrics';
 import { citationsInWindow } from '../aggregate/metrics';
+import {
+  UNFILTERED,
+  coverage,
+  fundingFigures,
+  fundingScope,
+  knownAmount,
+  type DollarTotal,
+} from '../aggregate/funding';
+import { fundingOf } from '../contract/funding';
 import type { ExportDocument } from '../contract/types';
 import { formatDate } from '../format/date';
-import { formatCount, formatDecimal, formatOptional, formatShare } from '../format/number';
+import {
+  formatCount,
+  formatDecimal,
+  formatOptional,
+  formatShare,
+  formatUsd,
+  pluralize,
+} from '../format/number';
 
 export interface MetricDefinition {
   /** The anchor a figure links to, and the `id` the method page renders. */
@@ -188,6 +204,133 @@ export function metricDefinitions(doc: ExportDocument): MetricDefinition[] {
       term: 'Publications with a staff author',
       value: formatCount(worksWithStaffAuthor(works)),
       definition: `Publications with at least one author who is a member of ${doc.resource.short_name}’s staff. It is reported here and is never evidence: co-authorship on its own does not include a publication.`,
+    },
+  ];
+}
+
+/* ------------------------------------------------------------------------------------------------
+ * Funding impact (docs/09 §12.5 item 2, §12.9).
+ * --------------------------------------------------------------------------------------------- */
+
+/**
+ * The anchors Funding impact's headline figures link to, in the order `FundingFigures` shows
+ * them: the six figures, then the institution-wide position the total always states (§12.11
+ * rule 4). A test asserts the component carries exactly these, as for the overview's five.
+ */
+export const FUNDING_DEFINITION_IDS = [
+  'funding-total',
+  'funding-grants',
+  'funding-agencies',
+  'funding-investigators',
+  'funding-organizations',
+  'funding-publications',
+  'funding-institution-wide',
+] as const;
+
+export type FundingDefinitionId = (typeof FUNDING_DEFINITION_IDS)[number];
+
+/** "$1,234,567; 11 grants without a known amount": a total never stands without its unknowns. */
+function dollarsWithUnknowns(total: DollarTotal): string {
+  const known = knownAmount(total);
+  const unknown = `${pluralize(total.withoutAmount, 'grant')} without a known amount`;
+  if (known === null) return total.withoutAmount === 0 ? 'none' : `not known; ${unknown}`;
+  return total.withoutAmount === 0 ? formatUsd(known) : `${formatUsd(known)}; ${unknown}`;
+}
+
+/**
+ * The funding figures' definitions, each with its value over the whole corpus — unfiltered, with
+ * institution-wide awards included, the convention `funding.summary` is computed under — from the
+ * functions the Funding impact view draws, so each value is the one the cross-check holds to the
+ * pipeline's. **For the method page's `#funding` section**, which places them (docs/09 §12.9);
+ * kept apart from `metricDefinitions` so that nothing appears on the page before it does.
+ *
+ * With no funding data (§12.10) every definition still stands and no entry has a value: there is
+ * nothing to count, and a zero would read as a finding.
+ *
+ * The register is §12.11's: no wording of credit or cause; the total dated and said not to be
+ * money spent on the work; an unknown amount beside every total and never in it; a grant
+ * counted once; names as the funder publishes them.
+ */
+export function fundingDefinitions(doc: ExportDocument): MetricDefinition[] {
+  const index = fundingOf(doc);
+  const scope = fundingScope(doc.works, index, UNFILTERED);
+  const figures = fundingFigures(scope);
+  const unmatched = coverage(scope).miscellaneous;
+  const years = scope.grants
+    .filter((entry) => !entry.miscellaneous)
+    .map((entry) => entry.firstYear);
+  const asOf = index?.funding.as_of ?? null;
+  const dated = asOf === null ? '' : `, as of ${formatDate(asOf)}`;
+  const valued = (value: string): { value?: string } => (index === null ? {} : { value });
+
+  return [
+    {
+      id: 'funding-total',
+      term: 'Total value of grants listed',
+      ...valued(dollarsWithUnknowns(figures)),
+      definition: `The sum, in US dollars, of the lifetime award totals of the distinct grants the publications list, each as its funder records it${dated}. It is what the awards are worth, not money spent on the work that lists them. A grant counts once however many publications list it. A grant with no known amount is counted beside the total, never in it as zero. Institution-wide awards are included unless the reader excludes them, and the page always says which.`,
+    },
+    {
+      id: 'funding-grants',
+      term: 'Grants listed',
+      ...valued(formatCount(figures.listed)),
+      definition:
+        'Distinct grants that the publications’ funding statements name and that a funder’s record matched, each counted once however many publications list it. A number no record matched is an unmatched number, kept apart and not counted here.',
+    },
+    {
+      id: 'funding-agencies',
+      term: 'Funding agencies',
+      ...valued(formatCount(figures.agencies)),
+      definition:
+        'Distinct agencies that awarded the grants listed, each counted at the top of its chain, so an institute counts under its parent agency. Unmatched numbers have no agency and are not one.',
+    },
+    {
+      id: 'funding-investigators',
+      term: 'Principal investigators',
+      ...valued(formatCount(figures.investigators)),
+      definition:
+        'Distinct principal investigators of the grants listed, named as the funders publish them, and told apart by the funder’s own identifier where it gives one and by name otherwise. One person written two ways, or once with an identifier and once without, counts twice.',
+    },
+    {
+      id: 'funding-organizations',
+      term: 'Organisations',
+      ...valued(formatCount(figures.organizations)),
+      definition:
+        'Distinct organisations the grants listed were awarded to, as the funders name them, told apart by name. The same organisation written two ways counts twice.',
+    },
+    {
+      id: 'funding-publications',
+      term: 'Publications listing a grant',
+      ...valued(`${formatCount(figures.withGrants)} of ${formatCount(figures.publications)}`),
+      definition:
+        'Publications with at least one grant listed, out of the publications shown. One whose only numbers are unmatched is not among them. A publication listing none is not a finding that it had no funding: not every funding statement reaches the sources read.',
+    },
+    {
+      id: 'funding-institution-wide',
+      term: 'Institution-wide awards',
+      ...valued(
+        `${pluralize(figures.institutionWide.grants, 'award')}, ${dollarsWithUnknowns(figures.institutionWide)}`,
+      ),
+      definition:
+        'Awards made to an institution or a consortium to run a programme for many unrelated projects — a fellowship programme, a national institute, a consortium-wide total — whose value bears no relation to one research project. They are tagged from an explicit list and never inferred from size. They are included in the total by default; a reader may exclude them, and the page states which.',
+    },
+    {
+      id: 'funding-unmatched',
+      term: 'Unmatched numbers',
+      ...valued(
+        `${formatCount(unmatched.grants)}, on ${pluralize(unmatched.publications, 'publication')}`,
+      ),
+      definition:
+        'Numbers the publications give as funding that no funder’s record matched. They are kept apart, under Miscellaneous, with no agency, kind or amount, and are not counted as grants.',
+    },
+    {
+      id: 'funding-first-year',
+      term: 'A grant’s first year',
+      ...valued(
+        years.length === 0 ? 'none' : `${String(Math.min(...years))}–${String(Math.max(...years))}`,
+      ),
+      definition:
+        'The publication year of the earliest publication shown that lists the grant. Over time, each grant’s whole lifetime total enters in its first year, which is a publication year, not the year of the award.',
     },
   ];
 }

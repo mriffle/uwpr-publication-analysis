@@ -1336,3 +1336,157 @@ button.chart-legend-item.is-selected {
 .empty-state > :first-child {
   margin-top: 0;
 }
+
+/* --- the funding components (docs/09 §12.5, §12.8) --------------------------------------- */
+
+/*
+ * The total is the one figure that must carry its definition, its date, its unknowns and the
+ * institution-wide position (docs/09 §12.11), so it takes the grid's whole first row, which also
+ * gives an exact ten-digit dollar figure room at the headline size.
+ */
+.funding-figure-total {
+  grid-column: 1 / -1;
+}
+
+.funding-position {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+/* A table wider than a phone scrolls inside itself, never the page (docs/06 §8). */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.funding-table th,
+.funding-table td {
+  vertical-align: top;
+}
+
+.funding-table thead th {
+  white-space: nowrap;
+}
+
+.funding-table tbody th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Miscellaneous: a row apart from the ranked ones above it. */
+.funding-table .funding-table-apart th,
+.funding-table .funding-table-apart td {
+  border-top: 2px solid var(--border);
+}
+
+.cell-nowrap {
+  white-space: nowrap;
+}
+
+.cell-none {
+  color: var(--text-muted);
+}
+
+.cell-note {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.table-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 0.75rem 0;
+}
+
+.table-search label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.table-search input {
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  min-width: 16rem;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+.table-search-note,
+.table-count,
+.table-empty {
+  margin: 0.25rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* The publication's Funding section: one card per grant, as the evidence has one per reason. */
+.funding-list {
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.funding-item {
+  border: 1px solid var(--border);
+  background: var(--panel-bg);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.funding-item p {
+  margin: 0.3rem 0;
+}
+
+.funding-item-head {
+  font-weight: 600;
+}
+
+.funding-facts {
+  margin: 0.4rem 0;
+}
+
+.funding-facts div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
+}
+
+.funding-facts dt {
+  color: var(--text-muted);
+}
+
+.funding-facts dt::after {
+  content: ':';
+}
+
+.funding-facts dd {
+  margin: 0;
+}
+
+/* An override reads as a judgement, set apart as the evidence's excerpt is. */
+.funding-override {
+  margin: 0.5rem 0;
+  padding: 0.25rem 0.9rem;
+  border-left: 3px solid var(--chart-other);
+  background: var(--page-bg);
+}
+
+.funding-how,
+.funding-source,
+.funding-resource-code {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.funding-unmatched {
+  padding-left: 1.2rem;
+}
