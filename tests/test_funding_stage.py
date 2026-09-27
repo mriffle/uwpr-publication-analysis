@@ -810,6 +810,19 @@ def test_an_overridden_strings_openalex_awards_are_read_the_first_time(tmp_path:
     assert (grant["openalex_awards"], [a["id"] for a in grant["facts"]["openalex"]]) == (["G10"], ["G10"])
 
 
+def test_a_grants_record_comes_from_an_award_that_has_one(run: Runner) -> None:
+    """Wellcome's grant on C is also written on D, where OpenAlex mints a second award, G0, with
+    no record. Taken by the lowest ID alone, the grant lost its title; so did the seed's
+    rehearsal's ANR and DFG grants when their overrides' awards were read (B9a)."""
+    bare = {"amount": None, "currency": None, "provenance": "crossref_work_funders", "start_year": None}
+    run.world.openalex_awards = {**OPENALEX_AWARDS, "G0": bare}
+    run.world.papers = (A, B, C, replace(D, awards=(*D.awards, award("092809/Z/10/Z", WELLCOME, "G0"))))
+    assert run(SATURDAY).status == "ok"
+    grant = run.grants()["WT:092809Z10Z"]
+    assert grant["openalex_awards"] == ["G0", "G6"]
+    assert (grant["title"], grant["amount"]["original"]) == ("SAMPLE: A consortium", "1000000")
+
+
 def test_the_dates_move_once_they_are_28_days_old(seeded: Runner) -> None:
     seeded("2026-10-31T12:00:00+00:00")  # a Saturday, 28 days on: a full refresh
     string = seeded.strings(A)["R01 GM086688"]

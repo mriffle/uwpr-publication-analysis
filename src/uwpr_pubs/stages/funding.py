@@ -1537,11 +1537,17 @@ class FundingStage:
         return info
 
     def _award_info(self, awards: Iterable[str]) -> _Info | None:
-        """An OpenAlex-valued grant's record, from the lowest-numbered award fetched this run."""
+        """An OpenAlex-valued grant's record, from the lowest-numbered award fetched this run that
+        has one (a title, an investigator or an organisation).
+
+        OpenAlex mints an award for each funder and string, and most carry no record: taken by ID
+        alone, a grant listed once more, or through an override's string, lost its title (B9a).
+        """
         fetched = [entity for award in awards if (entity := self.awards.get(award)) is not None]
         if not fetched:
             return None
-        lead = min(fetched, key=lambda entity: (len(entity.fact["id"]), entity.fact["id"]))
+        recorded = [entity for entity in fetched if entity.title or entity.pis or entity.organization]
+        lead = min(recorded or fetched, key=lambda entity: (len(entity.fact["id"]), entity.fact["id"]))
         return _Info({}, None, lead.title, lead.pis, lead.organization, lead.start, lead.end)
 
     def _default_agency(self, key: GrantKey, kind: GrantFamily) -> AgencyCode:
