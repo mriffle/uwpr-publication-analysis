@@ -2534,8 +2534,11 @@ a +7-day replay rewrites no file; an incremental run adds ≤ 1 minute and a ful
 `workflow_dispatch` run of `update.yml` succeeds with funding enabled (moved from B10).
 - [x] Accepted 2026-09-27 (d91c784). Every figure is met but two, which the rehearsal redefined:
       319 works with a string, and OpenAlex agreeing on 62 of 63 (the B9 entry in this document's
-      header). *The `workflow_dispatch` run with funding enabled is the orchestrator's, after
-      merging.*
+      header). The `workflow_dispatch` run with funding enabled (run 36289188785,
+      `2026-09-27T02-40-live`, data commit d0c566b): funding incremental, 755 grants, total
+      $7,888,899,029 unchanged, 0 new and 0 no longer listed, no funding degradation, 31 funding
+      requests; the export published to `gh-pages`. The job ended red only at its alert step, for
+      bioRxiv's `details` endpoint failing a third run in a row — a discovery source, not funding.
 
 **B10** — `smoke` shows PASS for every new source and DOWN on a simulated 503;
 `check:data-budget` passes and fails on a planted file of 501 KiB gzipped; one `workflow_dispatch`
