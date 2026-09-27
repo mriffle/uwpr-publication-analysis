@@ -2617,7 +2617,7 @@
         "amount_usd": 4339948,
         "category": "other",
         "currency": "SEK",
-        "end_year": null,
+        "end_year": 2024,
         "first_year": 2026,
         "fiscal_years": null,
         "flags": [
@@ -2626,13 +2626,18 @@
         "key": "VR:201900217",
         "number": "2019-00217",
         "organization": null,
-        "pis": [],
+        "pis": [
+          {
+            "id": null,
+            "name": "Hjalmar Brismar"
+          }
+        ],
         "rate_year": 2020,
         "scope": "institution-wide",
         "scope_reason": "national infrastructure",
-        "start_year": null,
+        "start_year": 2020,
         "status": "resolved",
-        "title": null,
+        "title": "National Microscopy Infrastructure",
         "url": null,
         "url_name": null
       },
@@ -2648,7 +2653,7 @@
         "amount_usd": 372908,
         "category": "other",
         "currency": "SEK",
-        "end_year": null,
+        "end_year": 2024,
         "first_year": 2026,
         "fiscal_years": null,
         "flags": [
@@ -2657,13 +2662,18 @@
         "key": "VR:202003380",
         "number": "2020-03380",
         "organization": null,
-        "pis": [],
+        "pis": [
+          {
+            "id": null,
+            "name": "Ylva Ivarsson"
+          }
+        ],
         "rate_year": 2021,
         "scope": "project",
         "scope_reason": null,
-        "start_year": null,
+        "start_year": 2021,
         "status": "resolved",
-        "title": null,
+        "title": "Crosstalk between phosphorylation and ubiquitination at the level of short linear motifs",
         "url": null,
         "url_name": null
       },
@@ -2918,14 +2928,14 @@
       "grants_resolved": 63,
       "grants_unconverted": 1,
       "grants_with_amount": 52,
-      "investigators": 36,
+      "investigators": 38,
       "last_year": 2026,
       "nih_grants": 34,
       "organizations": 15,
       "works_with_grants": 17,
       "works_with_listings": 17
     },
-    "version": "2026-09-26.3"
+    "version": "2026-09-27.1"
   },
   "generated_at": "2026-09-19T00:00:00Z",
   "method": {

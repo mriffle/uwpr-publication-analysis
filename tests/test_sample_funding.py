@@ -80,6 +80,24 @@ def test_only_a_lifetime_total_is_compared_with_openalex() -> None:
     assert "amounts_disagree" in nsf["flags"]
 
 
+def test_an_openalex_valued_grant_takes_its_record_from_an_award_that_has_one() -> None:
+    """B9a: OpenAlex mints a bare award per funder and string, and the lowest-numbered of these two
+    VR grants' awards is one (from Crossref, with no amount); the record comes from the award that
+    has one, so each keeps its title and investigator."""
+    records = {
+        "VR:201900217": ("National Microscopy Infrastructure", "Hjalmar Brismar"),
+        "VR:202003380": (
+            "Crosstalk between phosphorylation and ubiquitination at the level of short linear motifs",
+            "Ylva Ivarsson",
+        ),
+    }
+    for key, (title, pi) in records.items():
+        grant = FUNDING.grants[key]
+        lowest = min(grant["facts"]["openalex"], key=lambda award: int(award["id"][1:]))
+        assert (lowest["provenance"], lowest["amount"]) == ("crossref_work_funders", None), key
+        assert (grant["title"], [p["name"] for p in grant["pis"]]) == (title, [pi]), key
+
+
 def test_the_resource_code_is_never_a_grant() -> None:
     """§6.13: UWPR's own award code, written on three of the papers, is excluded, not a grant."""
     written = {

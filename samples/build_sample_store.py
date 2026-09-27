@@ -5,9 +5,10 @@ layout of docs/02-data-model.md. Evidence excerpts come from the definition file
 each PMC excerpt really occurs in the paper's text.
 
 Then runs the funding stage (docs/09 §9) over the built store as a full refresh and writes
-samples/store/funding/, although funding is disabled in config/funding.yaml (`even_if_disabled`).
-Its RePORTER traffic goes through the stage's adapter, so it runs only inside NIH RePORTER's window
-for large jobs (weekends, or 21:00-05:00 New York time), and stops otherwise.
+samples/store/funding/. It passes `even_if_disabled`, so the sample keeps its funding whatever
+config/funding.yaml's `enabled` says (true since the seed, B9). Its RePORTER traffic goes through the
+stage's adapter, so it runs only inside NIH RePORTER's window for large jobs (weekends, or 21:00-05:00
+New York time), and stops otherwise.
 
 Run:  .venv/bin/python samples/build_sample_store.py
 Needs OPEN_ALEX_API_KEY in the environment or in .env at the repository root.
@@ -308,9 +309,9 @@ def require_reporter_window(config):
 def build_funding(config, payloads):
     """Stage 8b over the freshly built sample store, as a full refresh, through the pipeline's own
     client and adapters: RePORTER at one request a second, sorted, sub-projects excluded, and no
-    abstract kept. Funding is `enabled: false` in config/funding.yaml, so `even_if_disabled` runs it
-    for the sample alone. Anything degraded stops the build: the sample is never built from
-    partial answers."""
+    abstract kept. Funding is `enabled: true` in config/funding.yaml since the seed (B9);
+    `even_if_disabled` is kept so the sample's funding does not depend on it. Anything degraded
+    stops the build: the sample is never built from partial answers."""
     from uwpr_pubs.context import RunContext
     from uwpr_pubs.report import RunRecorder
     from uwpr_pubs.runtime import api_keys, build_client
