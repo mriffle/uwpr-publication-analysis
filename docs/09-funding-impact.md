@@ -253,10 +253,11 @@ plan. [08](08-implementation.md) records them as they are built.
     organisation), with the earliest start and latest end of its rows; an NIH grant's agency is
     that row's `agency_ic_admin` abbreviation, under NIH, and another RePORTER agency's grant (VA)
     is that agency's. NSF gives `pdPIName` and `awardeeName`, USAspending the recipient, and an
-    OpenAlex-valued grant its lowest-numbered award. `number`'s written form (§11.4) counts the
-    strings whose letters and digits contain the key's number, so a fragment is not its display
-    form. `checked` moves under P11 when the grant's facts were fetched in this run. **A grant's
-    OpenAlex awards** are those its strings carried this run and those it already had.
+    OpenAlex-valued grant its lowest-numbered award *(one with a record, B9a)*. `number`'s written
+    form (§11.4) counts the strings whose letters and digits contain the key's number, so a
+    fragment is not its display form. `checked` moves under P11 when the grant's facts were
+    fetched in this run. **A grant's OpenAlex awards** are those its strings carried this run and
+    those it already had.
   - **Agency lines:** a configured agency's from the config; an institute learned from RePORTER
     (`origin: reporter`, parent NIH, `us_federal`, `US`); an unconfigured OpenAlex funder from its
     funder record, fetched when new and at a full refresh (a US country makes it `us_nonfederal`,
@@ -595,6 +596,53 @@ plan. [08](08-implementation.md) records them as they are built.
     to another starts afresh, and the grants table's search and sort with it.
   - **W7's over-time tooltip** now says "not known" or a dash for a year with nothing known, as
     its table does, where it said "$0" (§12.11 rule 3).
+- *2026-09-26, B9a — five faults the seed's rehearsal found.* The seed was rehearsed as a full
+  live run on a scratch copy of the committed store, with funding enabled at `2026-09-27.1` and
+  the overrides it will commit, then run again the same day and a week on; B9b records the seed
+  itself. The rerun is what found three of the five: a first run cannot show that a second one
+  changes it.
+  - **A component's number after an NIH serial left the string unread** (§6.2). PubMed and
+    Crossref write a centre's component after the serial (`P30 ES007033-6364`,
+    `P42 ES004696-5897`, `P50 NS062684-6221`), and one JATS award ID writes the support year and
+    then the component (`S10 RR023044-010001`). The parser took the dash and two digits for a
+    support year, found more digits running on, and gave the number up, so 15 strings on seven
+    works became 8 Miscellaneous keys, each beside the core its work already lists; the research
+    had resolved all of them. A dash and four digits, or a year and four digits, after a whole
+    six-digit serial are now a suffix, and §6.2's table gains the row. After fewer digits the dash
+    may split the serial (`R01-HL1-26028`), so nothing there changes. Appendix A's 187 cases and
+    Appendix F's 267 keys pass unchanged.
+  - **The test suite read the committed `enabled`.** Switching funding on failed 31 tests: every
+    pipeline test loading the project's configuration asked NIH RePORTER, which the fake sources
+    do not answer, and ended degraded. Tests now run with a copy of `config/` that differs only in
+    `enabled: false`, as they already run without the project's `overrides.yaml`; a test that
+    wants funding enables it on its own copy, and only the test pinning the committed files
+    reads `config/` itself.
+  - **A fragment lost its whole on an incremental run** (§6.10). OpenAlex, read every run, writes
+    AEI's `100576` and `PID2023` and SNSF's `181503` and `194379`; the numbers they are fragments
+    of come only from PubMed, Crossref or JATS. A stored string no source showed stands in its
+    work's company without its funder, so it named no agency, and the rerun keyed each fragment
+    alone, as four new grants the next full refresh would have taken back. `resolve_work` now
+    takes those strings' stored keys (`standing`) into the fragment rule's company.
+  - **A string's method moved with the forms read.** A string written several ways is named by
+    its most frequent form, and its method read from that form, so with PubMed and JATS unread
+    eight NIH strings moved between `exact` and `normalised` (`R01HL126028` beside
+    `R01-HL1-26028`), and a decision that needs no funder always replaced the stored one. It now
+    does so only when it lists something else or is an override's; a full refresh decides every
+    string afresh as before.
+  - **An override's OpenAlex awards were read a run late, and cost grants their record.**
+    Planning skipped a string an override decides, so its awards were read only when the grant
+    next came up for a refresh. Asked for with the rest, they then showed that *a grant's record*
+    (B7a's "its lowest-numbered award") could be a bare award: OpenAlex mints one per funder and
+    string, most with no title, investigator or organisation, and 19 grants had lost theirs to
+    one. The record now comes from the lowest-numbered award that has one, and is chosen again
+    only when every award read before was read again (a full refresh, or a grant due a refresh);
+    otherwise the stored record stands.
+  - **Seen live for the first time.** USAspending's FAIN for a DOE Office of Science grant is
+    written without its dash (`DESC0010566`), so asking by letters and digits finds it (B7a's
+    question). The contract-link restoration is still unseen: RePORTER links no paper to an
+    `HHSN` contract, and the one linked contract, `N01HV028179`, keeps its core.
+  - **§17's B9 figures** are B9b's to record, from the seed itself; the rehearsal proposed the
+    overrides the seed commits beyond Appendix E's nine, each with its evidence in its `reason`.
 
 ---
 
@@ -1171,6 +1219,7 @@ letter first. It handles, each measured (Appendix A.1 has every example):
 |---|---|---|
 | O or I read as 0 or 1 in the activity code or serial | `RO1 CA189986`, `PO1DE02195`, `R21ESO34337`, `AGO5131` | R01, P01, `034337`, `005131` |
 | A leading application type, and suffixes `-NN`, `A1`, `S1` | `3p30dk017047-45s2`, `1k08ar082939-01a1`, `3t32gm008268-21a1s1` | P30DK017047, K08AR082939, T32GM008268 |
+| A component's number after a whole serial, alone or after the support year *(B9a, header)* | `P30 ES007033-6364`, `S10 RR023044-010001` | P30ES007033, S10RR023044 |
 | Activity codes with a letter second | `DP3DK108209`, `5DP5OD03615502`, `KL2 TR000421`, `TL1TR002318`, `UL1 RR 024156` | as written |
 | A serial of 7–9 digits: the support year run on, or a stray leading zero; head and tail both tried | `1R01-HL14477801`, `5DP5OD03615502`, `P41 RR0011823`, `1S10RR-449017262` | R01HL144778, DP5OD036155, P41RR011823, S10RR017262 |
 | Digits split by a space, comma or dash after the IC | `R01CA10720 9`, `P30 DK 089,507`, `R01-HL1-26028`, `UL1-TR-000,040` | R01CA107209, P30DK089507, R01HL126028, UL1TR000040 |
