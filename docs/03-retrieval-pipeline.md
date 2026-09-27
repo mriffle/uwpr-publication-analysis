@@ -260,6 +260,10 @@ C4, §8, §11.3; [09](09-funding-impact.md) F12, §13):
   moves slowly, and RePORTER asks for restraint. It is the same reading as unreadable text's
   recheck under P9.
 
+**Changed 2026-09-27, the funding stage switched on and measured** (Phase 9, B9; §13;
+[09](09-funding-impact.md) §17): the seed enabled stage 8b. §13 gains its time and cost, taken
+from the seed's full refresh and a same-day incremental rerun on a copy of the seeded store.
+
 **Changes made while implementing M5** (2026-09-20):
 - *§8 and §11.3:* `run` writes **`commit`** to `$GITHUB_OUTPUT` as well as `status` and `run_id`.
   The workflow has no other way to know whether the run committed anything, and it needs the
@@ -933,10 +937,28 @@ the push never see them.
 |---|---|---|---|
 | Normal weekly | **4m 34s measured** (2026-09-20, cold cache) | **$0.0100 measured** | Free |
 | After a rule change | **6m 38s measured** (2026-09-26, cold cache; 604 NCBI requests) | **$0.0100 measured** | Free |
+| Funding's full refresh (the seed) | **4m 46s measured** (2026-09-27, warm cache; stage 8b about 2 min) | **$0.0130 measured** | Free |
+| Funding incremental (a normal week) | **1m 45s measured** (2026-09-27, warm cache, same day; stage 8b about 20 s) | **$0.0108 measured** | Free |
 | Check workflow | 2–4 min | none | none |
 
 Well within GitHub's free minutes for public repositories, and the OpenAlex free tier. The
 metadata refresh of stage 3 adds about 22 filter requests (≈ $0.002).
+
+**The funding stage (8b), measured at the seed** ([09](09-funding-impact.md) §9). Its span is read
+from the timestamps of its first and last requests:
+
+| | Full refresh | Incremental |
+|---|---|---|
+| Stage 8b (UTC) | 02:17:58–02:19:58, about 2 min | 02:24:55–02:25:14, about 20 s |
+| Added to the run | 2.1 min: the whole run took 286 s, against 160 s with funding skipped (B9a, the same code and cache) | about 20 s |
+| Requests | RePORTER 58, NSF 56, USAspending 26, OpenAlex 30, Crossref 9, PubMed 2 | RePORTER 13, NSF 6, USAspending 4, OpenAlex 8 |
+| OpenAlex | $0.0030 of the run's $0.0130 | $0.0008 of the run's $0.0108 |
+
+- Both runs are well inside docs/09's limits of +5 and +1 minutes.
+- A full refresh comes every 28 days, after a `funding_version` bump, or with `--funding full`.
+- The seed also re-read all 377 records once, because the last committed manifest had no
+  overrides fingerprint. So its 286 s is a first run's, not a normal full refresh's.
+- The other sources are free. RePORTER is sent at most one request a second.
 
 ## 14. Migration from the spec-phase tools
 

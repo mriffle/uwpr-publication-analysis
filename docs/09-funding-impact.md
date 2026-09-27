@@ -665,6 +665,72 @@ plan. [08](08-implementation.md) records them as they are built.
     sample-only. Pointed at today's real export (`UWPR_EXPORT_DIR`), which has none, 69 tests in
     12 files fail; the Playwright specs, which skip what the served export lacks, pass. R runs the
     unit suite against the seeded export and marks sample-only what depends on a synthetic case.
+- *2026-09-27, B9 — the seed, and two targets the rehearsal redefined.* Run
+  `2026-09-27T02-15-live` seeded the real store: a full live refresh at `funding_version`
+  `2026-09-27.1`, started on a Saturday evening in New York, inside RePORTER's window. It took 286 s
+  on a warm cache, stage 8b about two minutes of it, and OpenAlex $0.0130. It ended ALERT only
+  because bioRxiv's `details` failed for the third run in a row, which is a discovery source.
+  - **The maintainer's decisions** (2026-09-26):
+    - Appendix E's nine overrides and all 14 the rehearsal proposed are committed, dated
+      2026-09-27, the seed's UTC day.
+    - `S10OD032290` stays Miscellaneous (§16 item 1).
+    - **CIHR's `178013_1` on W-000102 is overridden to `MISC:1780131`.** OpenAlex matches it to an
+      unrelated hepatitis C grant ($674,480), which does not fit a 2013 paper on PARP-1. The
+      probable mismatch is kept out of the total and shown as unmatched.
+    - A grant override may name a `MISC:` key for exactly this. `178013_1` must be quoted: YAML
+      1.1 reads it as the integer 1780131.
+  - **§17's figures, from the seed:**
+    - 310 works list a grant that is not Miscellaneous (≥ 309).
+    - 479 RePORTER cores: 478 NIH and `VA:I01BX000531` (≥ 473).
+    - The 454 linked cores come to $6,217,332,093, exactly the target.
+    - The three contracts and the task order are exactly their targets: $24,791,405, $10,781,559,
+      $18,117,838 and $1,471,125.
+    - The NIH-format strings left in Miscellaneous are exactly `S10OD032290`, `R01GM122864` (two
+      works) and `P01 HL0996`. None is new.
+    - No M&O contract and no `UWPR95794` is a grant: 26 facility-contract strings and 132
+      resource-code strings are excluded.
+    - All 23 Appendix B keys are listed and tagged.
+    - The 11 CLP grants are converted at OECD's rate for their start year.
+    - The export is 440,753 bytes gzipped at level 9 (430.4 KiB).
+    - Funding adds 2.1 minutes to a full run: 286 s, against the rehearsal's 160 s without
+      funding. It adds about 20 s to an incremental one: stage 8b of a same-day rerun, which took
+      105 s in all.
+    - A same-day rerun on a copy changed only `runs/` and the export's `generated_at` and
+      `run_id`. The +7-day replay is the rehearsal's (B9a).
+  - **Two targets the rehearsal redefined:**
+    - *Works with any funding string* is **319**, not ≥ 329. §3.1's 329 counts works with funding
+      *information*, and 10 of them name a funder with no number in any source: OpenAlex
+      `funders` without `awards` (W-000046, -053, -062, -092, -111, -125, -128, -548, -566), and
+      PubMed's HHMI with a null `GrantID` (W-000037). With §3.1's 9 works that have nothing,
+      19 works have no string, and nothing is missing.
+    - *OpenAlex agrees with the agency* on **62 of 63** comparable grants (98.4%, not ≥ 99%). The
+      one is `NSF:2245300`: $1,199,760 from NSF, against OpenAlex's stale $905,320 (§3.3). The
+      research's 101 of 102 also compared sources v1 does not read (§5.9). Under v1's bases, one
+      known-stale grant is 1.6%, and no rule changes for it.
+  - **Against the rehearsal**, every figure is the same but for the CIHR override:
+    - 755 grants, 748 resolved and 7 Miscellaneous (the rehearsal had 749 and 6);
+    - 617 with an amount (618);
+    - $7,888,899,029, which is the rehearsal's $7,889,573,509 less $674,480;
+    - 472 investigators (473);
+    - 213 grants seen only beside another (214, one of them the CIHR pair);
+    - 8 unresolved strings, the rehearsal's seven and `178013_1`;
+    - 24 strings decided by override (23).
+
+    The requests were the rehearsal's exactly: RePORTER 58, NSF 56, USAspending 26, OpenAlex 30,
+    Crossref 9, PubMed 2.
+  - **What else the seed changed:**
+    - Every work file's dates, once. The last committed manifest had no `overrides_fingerprint`,
+      so all 377 records were read again.
+    - W-000392 gained R2 from Crossref's award metadata. The deposit changed after the last
+      committed run, and the rehearsal saw it too.
+    - Six cache pointers name the local cache's copies of PMC texts, which differ from CI's
+      ([08](08-implementation.md) §5).
+  - **Three tests assumed the real store held no funding**, and failed on the seeded one:
+    - The real export's test now asserts what any export obeys.
+    - The no-funding validator cases build their own document.
+    - The real-store export test builds as `export` does, with the store's own overrides. Without
+      them, a listing a grant override decided has no attribution (§11.2).
+  - The `workflow_dispatch` run with funding enabled follows the merge.
 
 ---
 
@@ -2358,16 +2424,25 @@ Each lands, dated, with the milestone that makes it true.
 
 ## 16. Open items
 
-1. **`S10OD032290`** (W-000264) needs a person: possibly S10OD030237, the UW Mass Spectrometry
-   Center's Orbitrap Eclipse (FY2022), which the paper thanks — but three digits differ. Stays
-   Miscellaneous (F10).
+1. **Decided (B9, 2026-09-26): `S10OD032290`** (W-000264) **stays Miscellaneous** (F10), with no
+   override. It is possibly S10OD030237, the UW Mass Spectrometry Center's Orbitrap Eclipse
+   (FY2022), which the paper thanks. But three digits differ, and no source says which.
 2. **`R01GM122864`** (W-000183, W-000224) and **`P01 HL0996`** (W-000147) are unmatchable
-   (Appendix A.4). Miscellaneous.
-3. **Override candidates for B9.** B9's review of the unresolved list decides whether the
-   research's hand merges in Appendix A.9, and `DOE-SC10010566` (probably DE-SC0010566, the one
-   real DOE grant), become grant overrides. (The four non-NIH typos the research resolved,
-   Appendix A.8, are not automatic under F8 but have independent support, and are seeded:
-   Appendix E.)
+   (Appendix A.4), and stay Miscellaneous. The seed's report lists them with no RePORTER core
+   nearby for `R01GM122864`. For `P01 HL0996` it lists `Z01HL000996`, which is refused because
+   its activity code disagrees.
+3. **Closed (B9): the override candidates.** The seed commits 24 grant overrides:
+   - Appendix E's nine;
+   - the rehearsal's 14: `DOE-SC10010566` and `SC10010566` → `USA:DOE:DESC0010566`, which
+     USAspending holds, five of Appendix A.9's hand merges, and six unresolved strings with
+     independent support;
+   - CIHR's `178013_1` → `MISC:1780131`, which keeps a probably wrong amount out of the total.
+
+   Each `reason` in `overrides.yaml` carries its evidence. Not overridden:
+   - `DBI 659680`: NSF does not know 0659680 (A8.5).
+   - `R/SFA-8`: Washington Sea Grant's internal project number (A6.43).
+   - `5300-155`: the California Citrus Research Board's, which no configured agency covers.
+   - Moore's `6000`: already one key.
 4. **Should NIH centre grants be institution-wide?** P30, P41, UL1 and similar grants fund an
    institution's shared cores, and some are large. They are categorised `center` and counted as
    project-scope (§4); the category chart shows them apart. A policy call for the maintainer.
@@ -2457,7 +2532,10 @@ the agency source in ≥ 99% of comparable grants; CLP converted by OECD; export
 at level 9 (estimated 420–450 KiB; the figure recorded); a same-day rerun changes nothing and
 a +7-day replay rewrites no file; an incremental run adds ≤ 1 minute and a full run ≤ 5; one
 `workflow_dispatch` run of `update.yml` succeeds with funding enabled (moved from B10).
-- [ ] Accepted.
+- [x] Accepted 2026-09-27 (d91c784). Every figure is met but two, which the rehearsal redefined:
+      319 works with a string, and OpenAlex agreeing on 62 of 63 (the B9 entry in this document's
+      header). *The `workflow_dispatch` run with funding enabled is the orchestrator's, after
+      merging.*
 
 **B10** — `smoke` shows PASS for every new source and DOWN on a simulated 503;
 `check:data-budget` passes and fails on a planted file of 501 KiB gzipped; one `workflow_dispatch`
