@@ -66,6 +66,16 @@ def _load_yaml(path: Path) -> Any:
     return _iso_dates(yaml.safe_load(path.read_text(encoding="utf-8")))
 
 
+def default_config_dir() -> Path:
+    """Where the configuration lives when a caller does not name a directory.
+
+    A function for the reason `default_overrides_path` is one: tests point it at a copy of the
+    project's configuration with funding switched off, since their fake sources answer no funding
+    source, and the project's `enabled: true` would otherwise degrade every pipeline test.
+    """
+    return project_root() / "config"
+
+
 def default_overrides_path() -> Path:
     """Where `overrides.yaml` lives when a caller does not name one.
 
@@ -124,8 +134,7 @@ class Config:
 
 
 def load_config(config_dir: Path | None = None, overrides_path: Path | None = None) -> Config:
-    root = project_root()
-    directory = config_dir if config_dir is not None else root / "config"
+    directory = config_dir if config_dir is not None else default_config_dir()
     overrides_file = overrides_path if overrides_path is not None else default_overrides_path()
 
     documents: dict[str, Any] = {}

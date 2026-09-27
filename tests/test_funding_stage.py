@@ -24,6 +24,7 @@ from typing import Any
 import pytest
 import yaml
 
+from uwpr_pubs import config as config_module
 from uwpr_pubs import pipeline as pipeline_module
 from uwpr_pubs.cache import Cache
 from uwpr_pubs.config import load_config
@@ -971,7 +972,7 @@ def test_a_partial_run_leaves_funding_alone(seeded: Runner) -> None:
 
 def test_funding_disabled_asks_nothing_and_writes_nothing(run: Runner) -> None:
     """`enabled: false` is how the stage lands: the run is the run it was before (§9.1)."""
-    run.config = PROJECT / "config"
+    run.config = config_module.default_config_dir()  # the project's, switched off
     result = run()
     assert result.status == "ok", result.errors
     assert not (run.store / "funding").exists()
@@ -985,7 +986,7 @@ def test_the_sample_build_decides_funding_that_is_disabled(run: Runner) -> None:
     """`even_if_disabled` is `samples/build_sample_store.py`'s alone (B8): with `enabled: false` the
     stage decides only when it is passed, so the sample gets funding while the weekly run, which
     reads the same `funding.yaml`, carries none."""
-    run.config = PROJECT / "config"
+    run.config = config_module.default_config_dir()  # the project's, switched off
     assert run().status == "ok"
     config = load_config(config_dir=run.config)
     assert not config.funding["enabled"]
@@ -1108,7 +1109,7 @@ def test_a_run_that_decides_no_funding_says_so_in_one_line(seeded: Runner) -> No
     assert "- funding: skipped (`--funding skip`); the stored funding was carried forward" in skipped.report
     partial = seeded(WEEK_LATER, channels=("B1",))
     assert "- funding: skipped, as every partial run (`--channels`) is;" in partial.report
-    seeded.config = PROJECT / "config"
+    seeded.config = config_module.default_config_dir()  # the project's, switched off
     disabled = seeded(WEEK_LATER)
     assert "## Funding" not in disabled.report
     assert (

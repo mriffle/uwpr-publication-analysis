@@ -276,7 +276,22 @@ def test_exchange_rates_are_outside_the_funding_fingerprint(config_dir: Path) ->
 
 
 def test_the_projects_funding_config_loads_switched_off() -> None:
-    config = load_config()
+    config = load_config(ROOT / "config")  # the committed files, not the copy tests run with
     assert config.funding["enabled"] is False
     assert config.funding_version == "2026-09-26.3"
     assert "UWPR95794" not in (ROOT / "config" / "funding.yaml").read_text(encoding="utf-8")
+
+
+def test_tests_run_with_the_projects_config_and_funding_switched_off() -> None:
+    """conftest's copy: whatever `enabled` the project commits, a test that names no config sees
+    `false`, and every other setting exactly as committed, so no pipeline test asks a funding
+    source its fake world does not answer."""
+    tested, committed = load_config(), load_config(ROOT / "config")
+    assert tested.funding["enabled"] is False
+    assert {**tested.funding, "enabled": None} == {**committed.funding, "enabled": None}
+    for name in ("settings", "staff", "channels", "rules", "fixtures", "exchange_rates"):
+        assert getattr(tested, name) == getattr(committed, name), name
+    assert (tested.rules_fingerprint, tested.funding_version) == (
+        committed.rules_fingerprint,
+        committed.funding_version,
+    )

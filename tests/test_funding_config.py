@@ -566,7 +566,6 @@ def test_the_configuration_is_consistent() -> None:
     assert all(len(ic) == 2 for ic in rules().ics)
     assert {"K99", "R00", "R33", "R21", "R61", "UH2", "UH3", "UG3", "R01", "R37"} == set(rules().partners)
     assert rules().partners["R33"] == {"R21", "R61"}
-    assert funding["enabled"] is False
     assert rules().openalex_excluded == {"gepris"}
     assert rules().openalex_multipliers == {"anid_github": 1000}
     assert (rules().large_award_review_usd, rules().total_drop_alert) == (20_000_000, 0.05)

@@ -23,6 +23,7 @@ from typing import Any
 import pytest
 import yaml
 
+from uwpr_pubs import config as config_module
 from uwpr_pubs import pipeline as pipeline_module
 from uwpr_pubs.cache import Cache
 from uwpr_pubs.config import load_config
@@ -32,7 +33,6 @@ from uwpr_pubs.pipeline import RunOptions, run_pipeline
 from uwpr_pubs.store import io
 from uwpr_pubs.validate import validate_store
 
-PROJECT = Path(__file__).resolve().parents[1]
 TODAY = "2026-09-21"
 INDEX = "https://proteomicsresource.washington.edu/publications/"
 LISTED_PMID = "38665238"
@@ -163,7 +163,7 @@ def go(
 def config_at(tmp_path: Path, version: str, **rules: Any) -> Path:
     """A second config tree at a new rule version, as a rule change really arrives."""
     directory = tmp_path / f"config-{version}"
-    shutil.copytree(PROJECT / "config", directory)
+    shutil.copytree(config_module.default_config_dir(), directory)
     document = yaml.safe_load((directory / "rules.yaml").read_text(encoding="utf-8"))
     document["rule_version"] = version
     for key, value in rules.items():

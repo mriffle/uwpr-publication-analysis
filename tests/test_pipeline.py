@@ -10,6 +10,7 @@ from typing import Any
 
 import pytest
 
+from uwpr_pubs import config as config_module
 from uwpr_pubs import git as git_module
 from uwpr_pubs import pipeline as pipeline_module
 from uwpr_pubs.cache import Cache
@@ -643,7 +644,7 @@ def texts_read(asked: Asked) -> list[str]:
 def channels_edited(tmp_path: Path) -> Path:
     """A config tree whose only change is to `channels.yaml`, which no rule reads."""
     directory = tmp_path / "config-channels"
-    shutil.copytree(PROJECT / "config", directory)
+    shutil.copytree(config_module.default_config_dir(), directory)
     channels = directory / "channels.yaml"
     text = channels.read_text(encoding="utf-8")
     assert "max_results: 3000" in text
@@ -746,7 +747,7 @@ def test_a_manifest_without_an_overrides_fingerprint_falls_back(
 def funding_edited(tmp_path: Path, *, bump: bool) -> Path:
     """A config tree whose `funding.yaml` has changed, with or without a new funding_version."""
     directory = tmp_path / ("config-funding-bumped" if bump else "config-funding")
-    shutil.copytree(PROJECT / "config", directory)
+    shutil.copytree(config_module.default_config_dir(), directory)
     funding = directory / "funding.yaml"
     text = funding.read_text(encoding="utf-8")
     assert "weekday_request_cap: 60" in text
