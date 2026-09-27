@@ -2,12 +2,52 @@
   "funding": {
     "agencies": [
       {
+        "code": "AHA",
+        "country": "US",
+        "group": "us_nonfederal",
+        "name": "American Heart Association",
+        "parent": null,
+        "short_name": "AHA"
+      },
+      {
         "code": "ANID",
         "country": "CL",
         "group": "non_us",
         "name": "Agencia Nacional de Investigación y Desarrollo",
         "parent": null,
         "short_name": "ANID"
+      },
+      {
+        "code": "BMBF",
+        "country": "DE",
+        "group": "non_us",
+        "name": "Bundesministerium für Bildung und Forschung",
+        "parent": null,
+        "short_name": "BMBF"
+      },
+      {
+        "code": "CANCERFONDEN",
+        "country": "SE",
+        "group": "non_us",
+        "name": "Cancerfonden",
+        "parent": null,
+        "short_name": null
+      },
+      {
+        "code": "DFG",
+        "country": "DE",
+        "group": "non_us",
+        "name": "Deutsche Forschungsgemeinschaft",
+        "parent": null,
+        "short_name": "DFG"
+      },
+      {
+        "code": "EU",
+        "country": null,
+        "group": "non_us",
+        "name": "European Union",
+        "parent": null,
+        "short_name": "EU"
       },
       {
         "code": "F4399999999",
@@ -18,6 +58,22 @@
         "short_name": null
       },
       {
+        "code": "FWO",
+        "country": "BE",
+        "group": "non_us",
+        "name": "Fonds Wetenschappelijk Onderzoek",
+        "parent": null,
+        "short_name": "FWO"
+      },
+      {
+        "code": "KAW",
+        "country": "SE",
+        "group": "non_us",
+        "name": "Knut och Alice Wallenbergs Stiftelse",
+        "parent": null,
+        "short_name": "KAW"
+      },
+      {
         "code": "MISC",
         "country": null,
         "group": "miscellaneous",
@@ -26,10 +82,34 @@
         "short_name": null
       },
       {
+        "code": "NASA",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Aeronautics and Space Administration",
+        "parent": null,
+        "short_name": "NASA"
+      },
+      {
+        "code": "NCRR",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Center for Research Resources",
+        "parent": "NIH",
+        "short_name": "NCRR"
+      },
+      {
+        "code": "NHGRI",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Human Genome Research Institute",
+        "parent": "NIH",
+        "short_name": "NHGRI"
+      },
+      {
         "code": "NHLBI",
         "country": "US",
         "group": "us_federal",
-        "name": "National Heart, Lung, and Blood Institute",
+        "name": "National Heart Lung and Blood Institute",
         "parent": "NIH",
         "short_name": "NHLBI"
       },
@@ -50,6 +130,14 @@
         "short_name": "NIAID"
       },
       {
+        "code": "NIDDK",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Institute of Diabetes and Digestive and Kidney Diseases",
+        "parent": "NIH",
+        "short_name": "NIDDK"
+      },
+      {
         "code": "NIGMS",
         "country": "US",
         "group": "us_federal",
@@ -66,12 +154,44 @@
         "short_name": "NIH"
       },
       {
+        "code": "NINDS",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Institute of Neurological Disorders and Stroke",
+        "parent": "NIH",
+        "short_name": "NINDS"
+      },
+      {
+        "code": "NSF",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Science Foundation",
+        "parent": null,
+        "short_name": "NSF"
+      },
+      {
+        "code": "SSF",
+        "country": "SE",
+        "group": "non_us",
+        "name": "Stiftelsen för Strategisk Forskning",
+        "parent": null,
+        "short_name": "SSF"
+      },
+      {
         "code": "VA",
         "country": "US",
         "group": "us_federal",
         "name": "Department of Veterans Affairs",
         "parent": null,
         "short_name": "VA"
+      },
+      {
+        "code": "VR",
+        "country": "SE",
+        "group": "non_us",
+        "name": "Vetenskapsrådet",
+        "parent": null,
+        "short_name": "VR"
       }
     ],
     "as_of": "2026-09-26",
@@ -141,6 +261,42 @@
     ],
     "grants": [
       {
+        "agency": "AHA",
+        "amount_original": 90000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 90000,
+        "category": "other",
+        "currency": "USD",
+        "end_year": 2016,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "AHA:15POST22700033",
+        "number": "15POST22700033",
+        "organization": null,
+        "pis": [
+          {
+            "id": null,
+            "name": "Yi He"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2015,
+        "status": "resolved",
+        "title": "The role of paraoxonase 1 (PON1) in HDL functions",
+        "url": null,
+        "url_name": null
+      },
+      {
         "agency": "ANID",
         "amount_original": 2000000000,
         "amount_source": {
@@ -178,6 +334,193 @@
         "url_name": null
       },
       {
+        "agency": "BMBF",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": null,
+        "first_year": 2023,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "BMBF:031L0168",
+        "number": "031L0168",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "CANCERFONDEN",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": null,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "CANCERFONDEN:222380PJ",
+        "number": "22 2380 Pj",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "DFG",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": null,
+        "first_year": 2025,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "DFG:16LW0243K",
+        "number": "16LW0243K",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "DFG",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": 2021,
+        "first_year": 2025,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "DFG:461264291",
+        "number": "461264291",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2021,
+        "status": "resolved",
+        "title": "IT Infrastruktur für Computational Molecular Medicine",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "DFG",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": 2022,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "DFG:497694394",
+        "number": "497694394",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2022,
+        "status": "resolved",
+        "title": "FlüssigchromatographieMassenspektrometrie System für ‚Shotgun Proteomics‘ und Immunoproteomik",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "DFG",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": null,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "DFG:INST193901FUGG",
+        "number": "INST 193/90-1 FUGG",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "EU",
+        "amount_original": 9986185.75,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 11178536,
+        "category": "other",
+        "currency": "EUR",
+        "end_year": 2023,
+        "first_year": 2023,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "EU:823839",
+        "number": "823839",
+        "organization": null,
+        "pis": [],
+        "rate_year": 2019,
+        "scope": "institution-wide",
+        "scope_reason": "EU consortium total",
+        "start_year": 2019,
+        "status": "resolved",
+        "title": "European Proteomics Infrastructure Consortium providing Access",
+        "url": null,
+        "url_name": null
+      },
+      {
         "agency": "F4399999999",
         "amount_original": 5000000,
         "amount_source": {
@@ -210,6 +553,141 @@
         "scope_reason": null,
         "start_year": 2021,
         "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "FWO",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": 2028,
+        "first_year": 2025,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "FWO:G087625N",
+        "number": "FWO G087625N",
+        "organization": null,
+        "pis": [
+          {
+            "id": null,
+            "name": "Wout Bittremieux"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2025,
+        "status": "resolved",
+        "title": "Bioinformatics Solutions For the Comprehensive Study of the Human Immunopeptidome",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "KAW",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": null,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "KAW:20210173",
+        "number": "KAW 2021.0173",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "KAW",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": null,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "KAW:20240039",
+        "number": "KAW2024-0039",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "MISC",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": null,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "MISC:DGE2140004",
+        "number": "DGE-2140004",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "unresolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "MISC",
+        "amount_original": null,
+        "amount_source": null,
+        "amount_usd": null,
+        "category": "other",
+        "currency": null,
+        "end_year": null,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_not_found"
+        ],
+        "key": "MISC:FWOG087625N",
+        "number": "FWO G087625N",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "unresolved",
         "title": null,
         "url": null,
         "url_name": null
@@ -306,6 +784,181 @@
         "url_name": "NIH RePORTER project page"
       },
       {
+        "agency": "NIDDK",
+        "amount_original": 1599819,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/9036727"
+        },
+        "amount_usd": 1599819,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2019,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2015": 1599819
+        },
+        "flags": [],
+        "key": "NIH:DP3DK108209",
+        "number": "DP3DK108209",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "1886161",
+            "name": "JAY W HEINECKE"
+          },
+          {
+            "id": "2315018",
+            "name": "Karin E Bornfeldt"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2015,
+        "status": "resolved",
+        "title": "APOC3, HDL Function and Cardiovascular Complications of T1DM",
+        "url": "https://reporter.nih.gov/project-details/9036727",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHLBI",
+        "amount_original": 23474601,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/9691951"
+        },
+        "amount_usd": 23474601,
+        "category": "center",
+        "currency": "USD",
+        "end_year": 2021,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2008": 2242721,
+          "2009": 2226221,
+          "2010": 2226221,
+          "2011": 2226221,
+          "2012": 2226221,
+          "2015": 2401515,
+          "2016": 2367774,
+          "2017": 2684569,
+          "2018": 2466809,
+          "2019": 2406329
+        },
+        "flags": [],
+        "key": "NIH:P01HL092969",
+        "number": "P01HL092969",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "2315018",
+            "name": "Karin E Bornfeldt"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2008,
+        "status": "resolved",
+        "title": "Cardiovascular Disease and Diabetes Program Project",
+        "url": "https://reporter.nih.gov/project-details/9691951",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHLBI",
+        "amount_original": 22620278,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11389434"
+        },
+        "amount_usd": 22620278,
+        "category": "center",
+        "currency": "USD",
+        "end_year": 2028,
+        "first_year": 2026,
+        "fiscal_years": {
+          "2016": 2517073,
+          "2017": 2432193,
+          "2018": 2671927,
+          "2019": 2417998,
+          "2020": 2409435,
+          "2023": 2629258,
+          "2024": 2494366,
+          "2025": 2561009,
+          "2026": 2487019
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:P01HL128203",
+        "number": "P01HL128203",
+        "organization": "UNIVERSITY OF CINCINNATI",
+        "pis": [
+          {
+            "id": "1913864",
+            "name": "W Sean Davidson"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2016,
+        "status": "resolved",
+        "title": "Multi-disciplinary Approaches to HDL Structure, Assembly, and Functional Heterogeneity",
+        "url": "https://reporter.nih.gov/project-details/11389434",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHLBI",
+        "amount_original": 17091864,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11369809"
+        },
+        "amount_usd": 17091864,
+        "category": "center",
+        "currency": "USD",
+        "end_year": 2030,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2020": 2409622,
+          "2021": 2342163,
+          "2022": 2360354,
+          "2023": 2390187,
+          "2024": 2453240,
+          "2025": 2622487,
+          "2026": 2513811
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:P01HL151328",
+        "number": "P01HL151328",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "2315018",
+            "name": "Karin E Bornfeldt"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2020,
+        "status": "resolved",
+        "title": "Triglycerides, Diabetes and Cardiovascular Disease",
+        "url": "https://reporter.nih.gov/project-details/11369809",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
         "agency": "NHLBI",
         "amount_original": 2100000,
         "amount_source": {
@@ -341,6 +994,417 @@
         "status": "resolved",
         "title": "SAMPLE: PROGRAM PROJECT ON CARDIAC PROTEOMICS",
         "url": "https://reporter.nih.gov/project-details/99990002",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 52929230,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11092649"
+        },
+        "amount_usd": 52929230,
+        "category": "center",
+        "currency": "USD",
+        "end_year": 2031,
+        "first_year": 2023,
+        "fiscal_years": {
+          "2012": 3294281,
+          "2013": 3150074,
+          "2014": 2380796,
+          "2015": 3521553,
+          "2016": 3345261,
+          "2017": 3455553,
+          "2018": 3504067,
+          "2019": 3466718,
+          "2020": 3736490,
+          "2021": 3668046,
+          "2022": 3418046,
+          "2023": 4234327,
+          "2024": 4241550,
+          "2025": 3680584,
+          "2026": 3831884
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:P20GM103432",
+        "number": "P20GM103432",
+        "organization": "UNIVERSITY OF WYOMING",
+        "pis": [
+          {
+            "id": "1875362",
+            "name": "David S Fay"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2012,
+        "status": "resolved",
+        "title": "Wyoming INBRE-5",
+        "url": "https://reporter.nih.gov/project-details/11092649",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIDDK",
+        "amount_original": 52843525,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11374793"
+        },
+        "amount_usd": 52843525,
+        "category": "center",
+        "currency": "USD",
+        "end_year": 2027,
+        "first_year": 2021,
+        "fiscal_years": {
+          "1986": 904531,
+          "1987": 683472,
+          "1988": 783496,
+          "1989": 658000,
+          "1990": 940999,
+          "1991": 941000,
+          "1992": 941002,
+          "1993": 959892,
+          "1994": 959893,
+          "1995": 988000,
+          "1996": 988000,
+          "1997": 988000,
+          "1998": 1007000,
+          "1999": 1082911,
+          "2000": 1010039,
+          "2001": 1582815,
+          "2002": 1630000,
+          "2003": 1342954,
+          "2004": 1342954,
+          "2005": 1353532,
+          "2006": 1341988,
+          "2007": 1353934,
+          "2008": 1482538,
+          "2009": 2337066,
+          "2010": 1615066,
+          "2011": 1303066,
+          "2012": 1303066,
+          "2013": 1543570,
+          "2014": 1560892,
+          "2015": 1557549,
+          "2016": 1557547,
+          "2017": 1557547,
+          "2018": 1471180,
+          "2019": 1389154,
+          "2020": 1388166,
+          "2021": 1823596,
+          "2022": 1470666,
+          "2023": 1434361,
+          "2024": 1421361,
+          "2025": 1421361,
+          "2026": 1421361
+        },
+        "flags": [
+          "active",
+          "amounts_disagree"
+        ],
+        "key": "NIH:P30DK017047",
+        "number": "P30DK017047",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "2315018",
+            "name": "Karin E Bornfeldt"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 1986,
+        "status": "resolved",
+        "title": "Diabetes Research Center",
+        "url": "https://reporter.nih.gov/project-details/11374793",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 11133956,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/9412834"
+        },
+        "amount_usd": 11133956,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2019,
+        "first_year": 2020,
+        "fiscal_years": {
+          "1988": 137010,
+          "1989": 132521,
+          "1990": 164792,
+          "1991": 202365,
+          "1992": 211851,
+          "1993": 264989,
+          "1994": 240859,
+          "1995": 252985,
+          "1996": 262043,
+          "1997": 87862,
+          "1998": 314585,
+          "1999": 308874,
+          "2000": 318472,
+          "2001": 328504,
+          "2002": 346282,
+          "2003": 345707,
+          "2004": 348865,
+          "2005": 352350,
+          "2006": 16552,
+          "2007": 450575,
+          "2008": 417982,
+          "2009": 872999,
+          "2010": 438689,
+          "2011": 467326,
+          "2012": 519702,
+          "2013": 501499,
+          "2014": 518090,
+          "2015": 525261,
+          "2016": 693662,
+          "2017": 565442,
+          "2018": 525261
+        },
+        "flags": [],
+        "key": "NIH:R01GM040506",
+        "number": "R01GM040506",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "1864452",
+            "name": "Trisha Davis Muller"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 1988,
+        "status": "resolved",
+        "title": "Molecular Analysis of the Kinetochore",
+        "url": "https://reporter.nih.gov/project-details/9412834",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 4524340,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/9989505"
+        },
+        "amount_usd": 4524340,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2020,
+        "first_year": 2020,
+        "fiscal_years": {
+          "2006": 304200,
+          "2007": 384893,
+          "2008": 254107,
+          "2009": 261280,
+          "2010": 265969,
+          "2011": 331211,
+          "2012": 379227,
+          "2013": 327141,
+          "2014": 339006,
+          "2016": 396623,
+          "2017": 396623,
+          "2018": 396623,
+          "2019": 487437
+        },
+        "flags": [],
+        "key": "NIH:R01GM079373",
+        "number": "R01GM079373",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "1900754",
+            "name": "Charles L Asbury"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2006,
+        "status": "resolved",
+        "title": "Supplement to Biophysical Study of Reconstituted Kinetochore-microtubule Attachments",
+        "url": "https://reporter.nih.gov/project-details/9989505",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 6747731,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11003703"
+        },
+        "amount_usd": 6747731,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2027,
+        "first_year": 2026,
+        "fiscal_years": {
+          "2014": 568768,
+          "2015": 546959,
+          "2016": 546959,
+          "2017": 541099,
+          "2018": 548482,
+          "2019": 663933,
+          "2020": 537038,
+          "2021": 537038,
+          "2022": 556215,
+          "2023": 564415,
+          "2024": 572410,
+          "2025": 564415
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:R01GM111097",
+        "number": "R01GM111097",
+        "organization": "NORTHWESTERN UNIVERSITY",
+        "pis": [
+          {
+            "id": "1871898",
+            "name": "BRIAN M HOFFMAN"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2014,
+        "status": "resolved",
+        "title": "Biological Transition Metals",
+        "url": "https://reporter.nih.gov/project-details/11003703",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 1766507,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/10337224"
+        },
+        "amount_usd": 1766507,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2024,
+        "first_year": 2023,
+        "fiscal_years": {
+          "2018": 336239,
+          "2019": 349956,
+          "2020": 503288,
+          "2021": 273721,
+          "2022": 303303
+        },
+        "flags": [],
+        "key": "NIH:R01GM121481",
+        "number": "R01GM121481",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "8832246",
+            "name": "Michael Ailion"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2018,
+        "status": "resolved",
+        "title": "Proteins important for dense-core vesicle function",
+        "url": "https://reporter.nih.gov/project-details/10337224",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 776295,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/9748343"
+        },
+        "amount_usd": 776295,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2021,
+        "first_year": 2023,
+        "fiscal_years": {
+          "2017": 265987,
+          "2018": 249468,
+          "2019": 260840
+        },
+        "flags": [],
+        "key": "NIH:R01GM125091",
+        "number": "R01GM125091",
+        "organization": "UNIVERSITY OF WYOMING",
+        "pis": [
+          {
+            "id": "1875362",
+            "name": "David S Fay"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2017,
+        "status": "resolved",
+        "title": "Mechanisms controlling tissue morphogenesis, architecture, and the response to mechanical forces in C. elegans.",
+        "url": "https://reporter.nih.gov/project-details/9748343",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 1770644,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/10878778"
+        },
+        "amount_usd": 1770644,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2025,
+        "first_year": 2026,
+        "fiscal_years": {
+          "2021": 464176,
+          "2022": 391682,
+          "2023": 523104,
+          "2024": 391682
+        },
+        "flags": [],
+        "key": "NIH:R01GM143399",
+        "number": "R01GM143399",
+        "organization": "UNIVERSITY OF IOWA",
+        "pis": [
+          {
+            "id": "6771135",
+            "name": "Michael E Wright"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2021,
+        "status": "resolved",
+        "title": "Construction of the Androgen Receptor Interactome: A Molecular Framework for Probing Genetic Interactions in Androgen-Dependent Signaling",
+        "url": "https://reporter.nih.gov/project-details/10878778",
         "url_name": "NIH RePORTER project page"
       },
       {
@@ -387,6 +1451,809 @@
         "url_name": "NIH RePORTER project page"
       },
       {
+        "agency": "NHLBI",
+        "amount_original": 2351718,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/7878717"
+        },
+        "amount_usd": 2351718,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2011,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2000": 206537,
+          "2001": 228954,
+          "2002": 229928,
+          "2003": 233200,
+          "2006": 293784,
+          "2007": 285555,
+          "2008": 297786,
+          "2009": 289267,
+          "2010": 286707
+        },
+        "flags": [],
+        "key": "NIH:R01HL063895",
+        "number": "R01HL063895",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "6098321",
+            "name": "XUE-QIAO ZHAO"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2000,
+        "status": "resolved",
+        "title": "Carotid plaque composition by MRI during lipid-lowering",
+        "url": "https://reporter.nih.gov/project-details/7878717",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHLBI",
+        "amount_original": 2232081,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/8300144"
+        },
+        "amount_usd": 2232081,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2015,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2008": 448062,
+          "2009": 483730,
+          "2010": 446687,
+          "2011": 440457,
+          "2012": 413145
+        },
+        "flags": [],
+        "key": "NIH:R01HL089504",
+        "number": "R01HL089504",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "8771434",
+            "name": "Kevin D. O'Brien"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2008,
+        "status": "resolved",
+        "title": "Plaque Inflammation and Dysfunctional HDL in AIM-HIGH",
+        "url": "https://reporter.nih.gov/project-details/8300144",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHLBI",
+        "amount_original": 2793099,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/10318179"
+        },
+        "amount_usd": 2793099,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2023,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2019": 827326,
+          "2020": 684499,
+          "2021": 650228,
+          "2022": 631046
+        },
+        "flags": [],
+        "key": "NIH:R01HL144558",
+        "number": "R01HL144558",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "8691365",
+            "name": "Tomas Vaisar"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2019,
+        "status": "resolved",
+        "title": "HDL composition/function and cardiovascular risk in youths with diabetes",
+        "url": "https://reporter.nih.gov/project-details/10318179",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHLBI",
+        "amount_original": 2762050,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/10523119"
+        },
+        "amount_usd": 2762050,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2024,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2020": 688354,
+          "2021": 691232,
+          "2022": 691232,
+          "2023": 691232
+        },
+        "flags": [],
+        "key": "NIH:R01HL149685",
+        "number": "R01HL149685",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "1886161",
+            "name": "JAY W HEINECKE"
+          },
+          {
+            "id": "2315018",
+            "name": "Karin E Bornfeldt"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2020,
+        "status": "resolved",
+        "title": "Structural basis for cardioprotective HDL",
+        "url": "https://reporter.nih.gov/project-details/10523119",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHLBI",
+        "amount_original": 3318186,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11013961"
+        },
+        "amount_usd": 3318186,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2026,
+        "first_year": 2026,
+        "fiscal_years": {
+          "2022": 862314,
+          "2023": 823854,
+          "2024": 823854,
+          "2025": 808164
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:R01HL161829",
+        "number": "R01HL161829",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "1886161",
+            "name": "JAY W HEINECKE"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2022,
+        "status": "resolved",
+        "title": "Apolipoprotein C3-loading of apolipoprotein B100 lipoproteins and cardiovascular disease in patients with type 1 diabetes",
+        "url": "https://reporter.nih.gov/project-details/11013961",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NINDS",
+        "amount_original": 2206078,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11352560"
+        },
+        "amount_usd": 2206078,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2029,
+        "first_year": 2026,
+        "fiscal_years": {
+          "2024": 805738,
+          "2025": 724016,
+          "2026": 676324
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:R01NS125591",
+        "number": "R01NS125591",
+        "organization": "BATTELLE PACIFIC NORTHWEST LABORATORIES",
+        "pis": [
+          {
+            "id": "10586410",
+            "name": "John Melchior"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2024,
+        "status": "resolved",
+        "title": "The impact of brain lipoprotein structure and composition on amyloid beta metabolism and Alzheimer's disease",
+        "url": "https://reporter.nih.gov/project-details/11352560",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 6663390,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11420890"
+        },
+        "amount_usd": 6663390,
+        "category": "center",
+        "currency": "USD",
+        "end_year": 2031,
+        "first_year": 2025,
+        "fiscal_years": {
+          "2021": 1113806,
+          "2022": 1113806,
+          "2023": 1113806,
+          "2024": 1113806,
+          "2025": 1113806,
+          "2026": 1094360
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:R24GM141156",
+        "number": "R24GM141156",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "6676500",
+            "name": "Michael MacCoss"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2021,
+        "status": "resolved",
+        "title": "Seattle Quant: A Resource for the Skyline Software Ecosystem",
+        "url": "https://reporter.nih.gov/project-details/11420890",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 3497735,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/10551264"
+        },
+        "amount_usd": 3497735,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2025,
+        "first_year": 2020,
+        "fiscal_years": {
+          "2019": 574427,
+          "2020": 730827,
+          "2021": 730827,
+          "2022": 730827,
+          "2023": 730827
+        },
+        "flags": [],
+        "key": "NIH:R35GM130293",
+        "number": "R35GM130293",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "1864452",
+            "name": "Trisha Davis Muller"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2019,
+        "status": "resolved",
+        "title": "Molecular Analysis of Chromosome Segregation",
+        "url": "https://reporter.nih.gov/project-details/10551264",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 3010633,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11330368"
+        },
+        "amount_usd": 3010633,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2029,
+        "first_year": 2026,
+        "fiscal_years": {
+          "2019": 355468,
+          "2020": 355468,
+          "2021": 447753,
+          "2022": 355468,
+          "2023": 355468,
+          "2024": 380336,
+          "2025": 380336,
+          "2026": 380336
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:R35GM131889",
+        "number": "R35GM131889",
+        "organization": "MONTANA STATE UNIVERSITY - BOZEMAN",
+        "pis": [
+          {
+            "id": "1874080",
+            "name": "Joan B Broderick"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2019,
+        "status": "resolved",
+        "title": "Radical SAM Enzymes: Radical Mechanisms Central to Biology",
+        "url": "https://reporter.nih.gov/project-details/11330368",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 4735263,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11321925"
+        },
+        "amount_usd": 4735263,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2030,
+        "first_year": 2020,
+        "fiscal_years": {
+          "2020": 558492,
+          "2021": 657407,
+          "2022": 657407,
+          "2023": 657407,
+          "2024": 657407,
+          "2025": 727855,
+          "2026": 819288
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:R35GM134842",
+        "number": "R35GM134842",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "1900754",
+            "name": "Charles L Asbury"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2020,
+        "status": "resolved",
+        "title": "Reconstitution and biophysical study of chromosome segregation machinery",
+        "url": "https://reporter.nih.gov/project-details/11321925",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 3822420,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11355452"
+        },
+        "amount_usd": 3822420,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2030,
+        "first_year": 2023,
+        "fiscal_years": {
+          "2020": 536174,
+          "2021": 536174,
+          "2022": 536174,
+          "2023": 536174,
+          "2024": 536174,
+          "2025": 570775,
+          "2026": 570775
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:R35GM136236",
+        "number": "R35GM136236",
+        "organization": "UNIVERSITY OF WYOMING",
+        "pis": [
+          {
+            "id": "1875362",
+            "name": "David S Fay"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2020,
+        "status": "resolved",
+        "title": "In vivo regulation of cell trafficking and the extracellular matrix",
+        "url": "https://reporter.nih.gov/project-details/11355452",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 1555000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11380304"
+        },
+        "amount_usd": 1555000,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2028,
+        "first_year": 2023,
+        "fiscal_years": {
+          "2023": 388750,
+          "2024": 388750,
+          "2025": 388750,
+          "2026": 388750
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:R35GM150919",
+        "number": "R35GM150919",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "9308677",
+            "name": "Devin Karl Schweppe"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2023,
+        "status": "resolved",
+        "title": "Technology for evaluating drug-binding responses to small-molecule perturbation",
+        "url": "https://reporter.nih.gov/project-details/11380304",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHLBI",
+        "amount_original": 6150289,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11061021"
+        },
+        "amount_usd": 6150289,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2027,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2020": 1037755,
+          "2021": 1017915,
+          "2022": 1016402,
+          "2023": 1022830,
+          "2024": 1002374,
+          "2025": 1053013
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:R35HL150754",
+        "number": "R35HL150754",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "2315018",
+            "name": "Karin E Bornfeldt"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2020,
+        "status": "resolved",
+        "title": "Identifying new strategies for prevention of cardiovascular complications of diabetes",
+        "url": "https://reporter.nih.gov/project-details/11061021",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NCRR",
+        "amount_original": 782028,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/6500621"
+        },
+        "amount_usd": 782028,
+        "category": "instrument",
+        "currency": "USD",
+        "end_year": 2005,
+        "first_year": 2008,
+        "fiscal_years": {
+          "2003": 782028
+        },
+        "flags": [],
+        "key": "NIH:S10RR017262",
+        "number": "S10RR017262",
+        "organization": "INSTITUTE FOR SYSTEMS BIOLOGY",
+        "pis": [
+          {
+            "id": "6938861",
+            "name": "DAVID ROBINSON GOODLETT"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2003,
+        "status": "resolved",
+        "title": "Fourier transform-ion cyclotron-resonance mass spec",
+        "url": "https://reporter.nih.gov/project-details/6500621",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 15497946,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/10615629"
+        },
+        "amount_usd": 15497946,
+        "category": "training",
+        "currency": "USD",
+        "end_year": 2024,
+        "first_year": 2008,
+        "fiscal_years": {
+          "1985": 108808,
+          "1986": 91682,
+          "1987": 95250,
+          "1988": 99353,
+          "1989": 115041,
+          "1990": 173105,
+          "1991": 197834,
+          "1992": 196798,
+          "1993": 186347,
+          "1994": 245030,
+          "1995": 243995,
+          "1996": 245037,
+          "1997": 267536,
+          "1998": 270855,
+          "1999": 398668,
+          "2000": 425592,
+          "2001": 452030,
+          "2002": 486106,
+          "2003": 519374,
+          "2004": 573564,
+          "2005": 537716,
+          "2006": 537716,
+          "2007": 537716,
+          "2008": 521643,
+          "2009": 587500,
+          "2010": 590811,
+          "2011": 597615,
+          "2012": 604613,
+          "2013": 534121,
+          "2014": 469014,
+          "2015": 474763,
+          "2016": 567067,
+          "2017": 486738,
+          "2018": 468232,
+          "2019": 496563,
+          "2020": 503095,
+          "2021": 509783,
+          "2022": 549062,
+          "2023": 532173
+        },
+        "flags": [
+          "starts_before_fy1985"
+        ],
+        "key": "NIH:T32GM007750",
+        "number": "T32GM007750",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "1879844",
+            "name": "WILLIAM M ATKINS"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 1985,
+        "status": "resolved",
+        "title": "Drug Action, Metabolism and Kinetics Training Grant",
+        "url": "https://reporter.nih.gov/project-details/10615629",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 10732300,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/10650707"
+        },
+        "amount_usd": 10732300,
+        "category": "training",
+        "currency": "USD",
+        "end_year": 2024,
+        "first_year": 2020,
+        "fiscal_years": {
+          "1988": 87547,
+          "1989": 150255,
+          "1990": 152298,
+          "1991": 187506,
+          "1992": 143940,
+          "1993": 168062,
+          "1994": 189647,
+          "1995": 154009,
+          "1996": 189647,
+          "1997": 207324,
+          "1998": 217193,
+          "1999": 252120,
+          "2000": 266880,
+          "2001": 283987,
+          "2002": 295910,
+          "2003": 334713,
+          "2004": 344264,
+          "2005": 344264,
+          "2006": 312968,
+          "2007": 312968,
+          "2008": 156484,
+          "2009": 376793,
+          "2010": 310270,
+          "2011": 314352,
+          "2012": 318551,
+          "2013": 308910,
+          "2014": 346593,
+          "2015": 389896,
+          "2016": 394821,
+          "2017": 399875,
+          "2018": 440507,
+          "2019": 426323,
+          "2020": 431766,
+          "2021": 523315,
+          "2022": 470072,
+          "2023": 528270
+        },
+        "flags": [],
+        "key": "NIH:T32GM008268",
+        "number": "T32GM008268",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "6255564",
+            "name": "Justin M Kollman"
+          },
+          {
+            "id": "7744794",
+            "name": "NING ZHENG"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 1988,
+        "status": "resolved",
+        "title": "Molecular Biophysics Training Program",
+        "url": "https://reporter.nih.gov/project-details/10650707",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NHGRI",
+        "amount_original": 25921234,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/11393065"
+        },
+        "amount_usd": 25921234,
+        "category": "training",
+        "currency": "USD",
+        "end_year": 2030,
+        "first_year": 2023,
+        "fiscal_years": {
+          "1995": 318170,
+          "1996": 322409,
+          "1997": 340314,
+          "1998": 321127,
+          "1999": 382508,
+          "2000": 696662,
+          "2001": 746104,
+          "2002": 834387,
+          "2003": 891122,
+          "2004": 919059,
+          "2005": 1000000,
+          "2006": 1021612,
+          "2007": 961210,
+          "2008": 770880,
+          "2009": 1025207,
+          "2010": 954899,
+          "2011": 968481,
+          "2012": 980236,
+          "2013": 996907,
+          "2014": 1006523,
+          "2015": 921700,
+          "2016": 899462,
+          "2017": 867735,
+          "2018": 833124,
+          "2019": 785643,
+          "2020": 821059,
+          "2021": 832762,
+          "2022": 888007,
+          "2023": 791668,
+          "2024": 878725,
+          "2025": 965331,
+          "2026": 978201
+        },
+        "flags": [
+          "active"
+        ],
+        "key": "NIH:T32HG000035",
+        "number": "T32HG000035",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "10581508",
+            "name": "Bruce Colston Trapnell"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 1995,
+        "status": "resolved",
+        "title": "Interdisciplinary Training in Genome Sciences",
+        "url": "https://reporter.nih.gov/project-details/11393065",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
         "agency": "NIA",
         "amount_original": 4100000,
         "amount_source": {
@@ -424,6 +2291,304 @@
         "url_name": "NIH RePORTER project page"
       },
       {
+        "agency": "NSF",
+        "amount_original": 47474312,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "nsf_obligated",
+          "name": "NSF Award API",
+          "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=0939564"
+        },
+        "amount_usd": 47474312,
+        "category": "center",
+        "currency": "USD",
+        "end_year": 2022,
+        "first_year": 2020,
+        "fiscal_years": null,
+        "flags": [],
+        "key": "NSF:0939564",
+        "number": "0939564",
+        "organization": "University of Southern California",
+        "pis": [
+          {
+            "id": null,
+            "name": "Jan P Amend"
+          }
+        ],
+        "rate_year": null,
+        "scope": "institution-wide",
+        "scope_reason": "NSF Science and Technology Center (C-DEBI)",
+        "start_year": 2010,
+        "status": "resolved",
+        "title": "Center for Dark Energy Biosphere Investigations (C-DEBI)",
+        "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=0939564",
+        "url_name": "NSF award page"
+      },
+      {
+        "agency": "NSF",
+        "amount_original": 1999857,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "nsf_obligated",
+          "name": "NSF Award API",
+          "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1542240"
+        },
+        "amount_usd": 1999857,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2021,
+        "first_year": 2022,
+        "fiscal_years": null,
+        "flags": [],
+        "key": "NSF:1542240",
+        "number": "1542240",
+        "organization": "University of Washington",
+        "pis": [
+          {
+            "id": null,
+            "name": "Gabrielle Rocap"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2015,
+        "status": "resolved",
+        "title": "Dimensions: Diversity, assembly and function of microbial communities on suspended and sinking particles in a marine Oxygen Deficient Zone",
+        "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1542240",
+        "url_name": "NSF award page"
+      },
+      {
+        "agency": "NSF",
+        "amount_original": 24605190,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "nsf_obligated",
+          "name": "NSF Award API",
+          "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1762114"
+        },
+        "amount_usd": 24605190,
+        "category": "training",
+        "currency": "USD",
+        "end_year": 2022,
+        "first_year": 2022,
+        "fiscal_years": null,
+        "flags": [],
+        "key": "NSF:1762114",
+        "number": "1762114",
+        "organization": "University of Washington",
+        "pis": [
+          {
+            "id": null,
+            "name": "joy williamson-lott"
+          }
+        ],
+        "rate_year": null,
+        "scope": "institution-wide",
+        "scope_reason": "NSF GRFP institutional award",
+        "start_year": 2017,
+        "status": "resolved",
+        "title": "Graduate Research Fellowship Program (GRFP)",
+        "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1762114",
+        "url_name": "NSF award page"
+      },
+      {
+        "agency": "NSF",
+        "amount_original": 900000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "nsf_obligated",
+          "name": "NSF Award API",
+          "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1908587"
+        },
+        "amount_usd": 900000,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2024,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [],
+        "key": "NSF:1908587",
+        "number": "1908587",
+        "organization": "Northwestern University",
+        "pis": [
+          {
+            "id": null,
+            "name": "Brian M Hoffman"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2019,
+        "status": "resolved",
+        "title": "Biophysical Studies of Metalloenzymes",
+        "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1908587",
+        "url_name": "NSF award page"
+      },
+      {
+        "agency": "NSF",
+        "amount_original": 45382136,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "nsf_obligated",
+          "name": "NSF Award API",
+          "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2140004"
+        },
+        "amount_usd": 45382136,
+        "category": "training",
+        "currency": "USD",
+        "end_year": 2027,
+        "first_year": 2025,
+        "fiscal_years": null,
+        "flags": [
+          "active"
+        ],
+        "key": "NSF:2140004",
+        "number": "2140004",
+        "organization": "University of Washington",
+        "pis": [
+          {
+            "id": null,
+            "name": "joy williamson-lott"
+          }
+        ],
+        "rate_year": null,
+        "scope": "institution-wide",
+        "scope_reason": "NSF GRFP institutional award",
+        "start_year": 2021,
+        "status": "resolved",
+        "title": "Graduate Research Fellowship Program (GRFP)",
+        "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2140004",
+        "url_name": "NSF award page"
+      },
+      {
+        "agency": "NSF",
+        "amount_original": 1199760,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "nsf_obligated",
+          "name": "NSF Award API",
+          "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2245300"
+        },
+        "amount_usd": 1199760,
+        "category": "research",
+        "currency": "USD",
+        "end_year": 2027,
+        "first_year": 2025,
+        "fiscal_years": null,
+        "flags": [
+          "active",
+          "amounts_disagree"
+        ],
+        "key": "NSF:2245300",
+        "number": "2245300",
+        "organization": "University of Washington",
+        "pis": [
+          {
+            "id": null,
+            "name": "William S Noble"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2023,
+        "status": "resolved",
+        "title": "DMS/NIGMS 2: Deep learning for repository-scale analysis of tandem mass spectrometry proteomics data",
+        "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2245300",
+        "url_name": "NSF award page"
+      },
+      {
+        "agency": "SSF",
+        "amount_original": 33969611,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 3976309,
+        "category": "other",
+        "currency": "SEK",
+        "end_year": 2023,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "SSF:SB160039",
+        "number": "SB16-0039",
+        "organization": null,
+        "pis": [],
+        "rate_year": 2017,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2017,
+        "status": "resolved",
+        "title": "Systembiologisk studie av humana-virala proteininteraktioner",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "NASA",
+        "amount_original": 7414441.28,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "usaspending_obligation",
+          "name": "USAspending",
+          "url": "https://www.usaspending.gov/award/ASST_NON_NNA15BB03A_080"
+        },
+        "amount_usd": 7414441,
+        "category": "other",
+        "currency": "USD",
+        "end_year": 2021,
+        "first_year": 2020,
+        "fiscal_years": null,
+        "flags": [],
+        "key": "USA:NASA:NNA15BB03A",
+        "number": "NNA15BB03A",
+        "organization": "THE REGENTS OF THE UNIVERSITY OF CALIFORNIA",
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2015,
+        "status": "resolved",
+        "title": null,
+        "url": "https://www.usaspending.gov/award/ASST_NON_NNA15BB03A_080",
+        "url_name": "USAspending award page"
+      },
+      {
+        "agency": "NASA",
+        "amount_original": 796089.19,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "usaspending_obligation",
+          "name": "USAspending",
+          "url": "https://www.usaspending.gov/award/ASST_NON_NNX14AJ87G_080"
+        },
+        "amount_usd": 796089,
+        "category": "other",
+        "currency": "USD",
+        "end_year": null,
+        "first_year": 2020,
+        "fiscal_years": null,
+        "flags": [],
+        "key": "USA:NASA:NNX14AJ87G",
+        "number": "NNX14AJ87G",
+        "organization": "GEORGIA TECH RESEARCH CORP",
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2014,
+        "status": "resolved",
+        "title": null,
+        "url": "https://www.usaspending.gov/award/ASST_NON_NNX14AJ87G_080",
+        "url_name": "USAspending award page"
+      },
+      {
         "agency": "VA",
         "amount_original": null,
         "amount_source": null,
@@ -456,23 +2621,230 @@
         "title": "SAMPLE: MERIT AWARD",
         "url": "https://reporter.nih.gov/project-details/99990006",
         "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "VR",
+        "amount_original": 25200000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 2898384,
+        "category": "other",
+        "currency": "SEK",
+        "end_year": 2023,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "VR:201805851",
+        "number": "2018-05851",
+        "organization": null,
+        "pis": [
+          {
+            "id": null,
+            "name": "Anna Överby Wernstedt"
+          }
+        ],
+        "rate_year": 2018,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2018,
+        "status": "resolved",
+        "title": "Multimodal imaging and proteomics to study flavivirus replication and molecular disease mechanisms",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "VR",
+        "amount_original": 40000000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 4339948,
+        "category": "other",
+        "currency": "SEK",
+        "end_year": null,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "VR:201900217",
+        "number": "2019-00217",
+        "organization": null,
+        "pis": [],
+        "rate_year": 2020,
+        "scope": "institution-wide",
+        "scope_reason": "national infrastructure",
+        "start_year": null,
+        "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "VR",
+        "amount_original": 3200000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 372908,
+        "category": "other",
+        "currency": "SEK",
+        "end_year": null,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "VR:202003380",
+        "number": "2020-03380",
+        "organization": null,
+        "pis": [],
+        "rate_year": 2021,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": null,
+        "status": "resolved",
+        "title": null,
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "VR",
+        "amount_original": 12000000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 1301984,
+        "category": "other",
+        "currency": "SEK",
+        "end_year": 2024,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "VR:202006224",
+        "number": "2020-06224",
+        "organization": null,
+        "pis": [
+          {
+            "id": null,
+            "name": "Anna Överby Wernstedt"
+          }
+        ],
+        "rate_year": 2020,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2020,
+        "status": "resolved",
+        "title": "Viral tropism and host responses in the brain",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "VR",
+        "amount_original": 4800000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 474416,
+        "category": "other",
+        "currency": "SEK",
+        "end_year": 2025,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "VR:202102468",
+        "number": "2021-02468",
+        "organization": null,
+        "pis": [
+          {
+            "id": null,
+            "name": "Nasim Sabouri"
+          }
+        ],
+        "rate_year": 2022,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2022,
+        "status": "resolved",
+        "title": "Identification and mechanistic studies of proteins that interact with DNA and RNA Quadruplex structures and their roles in human diseases",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "VR",
+        "amount_original": 30000000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 3059351,
+        "category": "other",
+        "currency": "SEK",
+        "end_year": 2030,
+        "first_year": 2026,
+        "fiscal_years": null,
+        "flags": [
+          "active",
+          "amount_from_openalex"
+        ],
+        "key": "VR:202400390",
+        "number": "2024-00390",
+        "organization": null,
+        "pis": [
+          {
+            "id": null,
+            "name": "Lars-Anders Carlson"
+          }
+        ],
+        "rate_year": 2025,
+        "scope": "project",
+        "scope_reason": null,
+        "start_year": 2025,
+        "status": "resolved",
+        "title": "Reverse engineering viral factories",
+        "url": null,
+        "url_name": null
       }
     ],
     "method": {
       "resolution": {
         "corrected": 2,
-        "exact": 6,
-        "normalised": 0,
+        "exact": 40,
+        "normalised": 8,
         "override": 1
       },
       "strings": {
         "facility_contract": 1,
-        "grant": 11,
-        "not_a_grant": 1,
-        "resource_code": 1,
-        "unresolved": 1
+        "grant": 87,
+        "not_a_grant": 4,
+        "resource_code": 4,
+        "unresolved": 3
       },
-      "works_without_funding_metadata": 13
+      "works_without_funding_metadata": 0
     },
     "sources": [
       {
@@ -482,6 +2854,22 @@
         "name": "NIH RePORTER",
         "partial_year": 2026,
         "url": "https://reporter.nih.gov/"
+      },
+      {
+        "amounts_from": null,
+        "as_of": "2026-09-26",
+        "id": "nsf",
+        "name": "NSF Award API",
+        "partial_year": null,
+        "url": "https://www.nsf.gov/awardsearch/"
+      },
+      {
+        "amounts_from": 2008,
+        "as_of": "2026-09-26",
+        "id": "usaspending",
+        "name": "USAspending",
+        "partial_year": null,
+        "url": "https://www.usaspending.gov/"
       },
       {
         "amounts_from": null,
@@ -517,44 +2905,80 @@
       }
     ],
     "summary": {
-      "agencies": 4,
-      "amount_usd": 15452936,
-      "amount_usd_institution_wide": 2522936,
-      "amount_usd_nih": 12930000,
+      "agencies": 15,
+      "amount_usd": 468226797,
+      "amount_usd_institution_wide": 135503058,
+      "amount_usd_nih": 308240240,
       "by_first_year": {
+        "2008": {
+          "amount_usd": 16279974,
+          "amount_usd_institution_wide": 0,
+          "grants": 2,
+          "grants_institution_wide": 0
+        },
         "2019": {
           "amount_usd": 3130000,
           "amount_usd_institution_wide": 0,
           "grants": 2,
           "grants_institution_wide": 0
         },
+        "2020": {
+          "amount_usd": 90308436,
+          "amount_usd_institution_wide": 47474312,
+          "grants": 8,
+          "grants_institution_wide": 1
+        },
         "2021": {
-          "amount_usd": 4100000,
+          "amount_usd": 115399046,
           "amount_usd_institution_wide": 0,
-          "grants": 1,
+          "grants": 10,
           "grants_institution_wide": 0
+        },
+        "2022": {
+          "amount_usd": 26605047,
+          "amount_usd_institution_wide": 24605190,
+          "grants": 2,
+          "grants_institution_wide": 1
+        },
+        "2023": {
+          "amount_usd": 97949222,
+          "amount_usd_institution_wide": 11178536,
+          "grants": 8,
+          "grants_institution_wide": 1
         },
         "2024": {
           "amount_usd": 8222936,
           "amount_usd_institution_wide": 2522936,
           "grants": 5,
           "grants_institution_wide": 1
+        },
+        "2025": {
+          "amount_usd": 53245286,
+          "amount_usd_institution_wide": 45382136,
+          "grants": 6,
+          "grants_institution_wide": 1
+        },
+        "2026": {
+          "amount_usd": 57086850,
+          "amount_usd_institution_wide": 4339948,
+          "grants": 20,
+          "grants_institution_wide": 1
         }
       },
-      "first_year": 2019,
-      "grants": 9,
-      "grants_institution_wide": 1,
-      "grants_resolved": 8,
+      "first_year": 2008,
+      "grants": 66,
+      "grants_institution_wide": 6,
+      "grants_resolved": 63,
       "grants_unconverted": 1,
-      "grants_with_amount": 6,
-      "investigators": 5,
-      "last_year": 2024,
-      "nih_grants": 5,
-      "organizations": 5,
-      "works_with_grants": 4,
-      "works_with_listings": 4
+      "grants_with_amount": 52,
+      "investigators": 36,
+      "last_year": 2026,
+      "nih_grants": 34,
+      "organizations": 15,
+      "works_with_grants": 17,
+      "works_with_listings": 17
     },
-    "version": "2026-09-26.1"
+    "version": "2026-09-26.2"
   },
   "generated_at": "2026-09-19T00:00:00Z",
   "method": {
@@ -700,12 +3124,12 @@
     "beyond_official_list": 14,
     "citations": 336,
     "citations_in_window": 323,
-    "countries": 9,
+    "countries": 8,
     "first_year": 2008,
-    "fwci_mean": 1.7884,
-    "fwci_median": 1.0652,
+    "fwci_mean": 1.7555,
+    "fwci_median": 1.0304,
     "h_index": 9,
-    "institutions": 29,
+    "institutions": 23,
     "journals": 12,
     "last_authors": 17,
     "last_year": 2026,
@@ -817,7 +3241,7 @@
               "ror": "02w0trx84"
             }
           ],
-          "name": "Joan Broderick",
+          "name": "Joan B. Broderick",
           "openalex": "A5073568934",
           "orcid": "0000-0001-7057-9124",
           "staff": null
@@ -828,8 +3252,8 @@
         "by_year": {
           "2026": 1
         },
-        "fwci": 1.1891,
-        "percentile": 0.76768208,
+        "fwci": 1.1196,
+        "percentile": 0.75532588,
         "total": 1
       },
       "corresponding_authors": [],
@@ -868,7 +3292,31 @@
         }
       ],
       "first_version_date": "2026-03-18",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R01GM111097",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R35GM131889",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NSF"
+          ],
+          "grant": "NSF:1908587",
+          "how": "listed"
+        }
+      ],
       "id": "W-000003",
       "ids": {
         "doi": "10.1073/pnas.2529780123",
@@ -954,7 +3402,7 @@
           ],
           "name": "Marie B. A. Peters",
           "openalex": "A5123397102",
-          "orcid": null,
+          "orcid": "0000-0001-8994-0864",
           "staff": null
         },
         {
@@ -970,7 +3418,7 @@
               "ror": "05kb8h459"
             }
           ],
-          "name": "Richard Lindqvist",
+          "name": "Richard P. Lindqvist",
           "openalex": "A5072467906",
           "orcid": "0000-0001-9798-0129",
           "staff": null
@@ -1142,7 +3590,7 @@
         "as_of": "2026-09-19",
         "by_year": {},
         "fwci": 0.0,
-        "percentile": 0.3053848,
+        "percentile": 0.28848206,
         "total": 0
       },
       "corresponding_authors": [
@@ -1209,7 +3657,92 @@
         }
       ],
       "first_version_date": "2025-08-29",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "CANCERFONDEN"
+          ],
+          "grant": "CANCERFONDEN:222380PJ",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "DFG"
+          ],
+          "grant": "DFG:497694394",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "DFG"
+          ],
+          "grant": "DFG:INST193901FUGG",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "KAW"
+          ],
+          "grant": "KAW:20210173",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "KAW"
+          ],
+          "grant": "KAW:20240039",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "SSF"
+          ],
+          "grant": "SSF:SB160039",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "VR"
+          ],
+          "grant": "VR:201805851",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "VR"
+          ],
+          "grant": "VR:201900217",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "VR"
+          ],
+          "grant": "VR:202003380",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "VR"
+          ],
+          "grant": "VR:202006224",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "VR"
+          ],
+          "grant": "VR:202102468",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "VR"
+          ],
+          "grant": "VR:202400390",
+          "how": "listed"
+        }
+      ],
       "id": "W-000004",
       "ids": {
         "doi": "10.1038/s41467-026-71449-1",
@@ -1337,7 +3870,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -1435,7 +3968,44 @@
         }
       ],
       "first_version_date": "2026-07-16",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "MISC"
+          ],
+          "grant": "MISC:DGE2140004",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "MISC"
+          ],
+          "grant": "MISC:FWOG087625N",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R24GM141156",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NSF"
+          ],
+          "grant": "NSF:2140004",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NSF"
+          ],
+          "grant": "NSF:2245300",
+          "how": "listed"
+        }
+      ],
       "id": "W-000014",
       "ids": {
         "doi": "10.64898/2026.07.11.737889",
@@ -1540,7 +4110,7 @@
               "ror": "05dq2gs74"
             }
           ],
-          "name": "Hyun D. Song",
+          "name": "Hyun Deok Song",
           "openalex": "A5049572208",
           "orcid": "0000-0002-9768-5055",
           "staff": null
@@ -1625,7 +4195,7 @@
               "ror": "01e3m7079"
             }
           ],
-          "name": "W. Sean Davidson",
+          "name": "William Sean Davidson",
           "openalex": "A5008316828",
           "orcid": "0000-0003-2756-2989",
           "staff": null
@@ -1644,7 +4214,7 @@
           ],
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         },
         {
@@ -1669,12 +4239,12 @@
         "as_of": "2026-09-19",
         "by_year": {},
         "fwci": 0.0,
-        "percentile": 0.74429448,
+        "percentile": 0.63517987,
         "total": 0
       },
       "corresponding_authors": [
         {
-          "name": "Hyun D. Song",
+          "name": "Hyun Deok Song",
           "openalex": "A5049572208"
         },
         {
@@ -1734,7 +4304,47 @@
         }
       ],
       "first_version_date": "2026-07-27",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "AHA"
+          ],
+          "grant": "AHA:15POST22700033",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "grant": "NIH:P01HL128203",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIDDK"
+          ],
+          "grant": "NIH:P30DK017047",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "grant": "NIH:R01HL161829",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NINDS"
+          ],
+          "grant": "NIH:R01NS125591",
+          "how": "listed"
+        }
+      ],
       "id": "W-000007",
       "ids": {
         "doi": "10.1016/j.jlr.2026.101113",
@@ -1830,8 +4440,8 @@
               "ror": "036jqmy94"
             }
           ],
-          "name": "Celeste C. Ptak",
-          "openalex": "A5144482659",
+          "name": "Celeste Ptak",
+          "openalex": "A5125665745",
           "orcid": null,
           "staff": null
         },
@@ -1840,13 +4450,7 @@
             "KEYENCE Corporation of America, Life Science Division, 601 Carlson Parkway, Suite 800, Minnetonka, MN 55305, USA"
           ],
           "corresponding": false,
-          "institutions": [
-            {
-              "country": "US",
-              "name": "Carleton College",
-              "ror": "03jep7677"
-            }
-          ],
+          "institutions": [],
           "name": "Conor O'Rourke",
           "openalex": "A5040803272",
           "orcid": null,
@@ -1948,7 +4552,16 @@
         }
       ],
       "first_version_date": "2026-08-06",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R01GM143399",
+          "how": "listed"
+        }
+      ],
       "id": "W-000011",
       "ids": {
         "doi": "10.64898/2026.08.03.742469",
@@ -1971,11 +4584,6 @@
           "country": "US",
           "name": "University of Iowa",
           "ror": "036jqmy94"
-        },
-        {
-          "country": "US",
-          "name": "Carleton College",
-          "ror": "03jep7677"
         }
       ],
       "is_preprint": true,
@@ -2061,7 +4669,7 @@
             }
           ],
           "name": "Varun Ananth",
-          "openalex": "A5121570839",
+          "openalex": "A5002337314",
           "orcid": null,
           "staff": null
         },
@@ -2143,7 +4751,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -2181,7 +4789,7 @@
           ],
           "name": "Bo Wen",
           "openalex": "A5121554610",
-          "orcid": null,
+          "orcid": "0000-0003-2261-3150",
           "staff": null
         },
         {
@@ -2299,8 +4907,8 @@
         "by_year": {
           "2026": 4
         },
-        "fwci": 1.473,
-        "percentile": 0.82644684,
+        "fwci": 1.172,
+        "percentile": 0.78093927,
         "total": 4
       },
       "corresponding_authors": [
@@ -2390,7 +4998,51 @@
         }
       ],
       "first_version_date": "2025-07-26",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "DFG"
+          ],
+          "grant": "DFG:16LW0243K",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "DFG"
+          ],
+          "grant": "DFG:461264291",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "FWO"
+          ],
+          "grant": "FWO:G087625N",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R24GM141156",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NSF"
+          ],
+          "grant": "NSF:2140004",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NSF"
+          ],
+          "grant": "NSF:2245300",
+          "how": "listed"
+        }
+      ],
       "id": "W-000006",
       "ids": {
         "doi": "10.1021/acs.jproteome.5c00706",
@@ -3889,8 +6541,8 @@
           "2025": 5,
           "2026": 4
         },
-        "fwci": 0.6604,
-        "percentile": 0.69420539,
+        "fwci": 0.6597,
+        "percentile": 0.69380734,
         "total": 10
       },
       "corresponding_authors": [],
@@ -3923,7 +6575,40 @@
         }
       ],
       "first_version_date": "2023-06-22",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:P20GM103432",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R01GM121481",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R01GM125091",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R35GM136236",
+          "how": "listed"
+        }
+      ],
       "id": "W-000008",
       "ids": {
         "doi": "10.1242/bio.059982",
@@ -4006,7 +6691,7 @@
           ],
           "name": "Chris D McGann",
           "openalex": "A5110699303",
-          "orcid": null,
+          "orcid": "0000-0001-9379-1910",
           "staff": null
         },
         {
@@ -4040,7 +6725,7 @@
           ],
           "name": "Jesse D. Canterbury",
           "openalex": "A5016116051",
-          "orcid": null,
+          "orcid": "0009-0000-5533-1710",
           "staff": null
         },
         {
@@ -4140,7 +6825,7 @@
               "ror": "03x1ewr52"
             }
           ],
-          "name": "Rafael D. Melani",
+          "name": "Rafael Donadelli Melani",
           "openalex": "A5080143820",
           "orcid": "0000-0002-0349-235X",
           "staff": null
@@ -4176,7 +6861,7 @@
           ],
           "name": "Graeme C. McAlister",
           "openalex": "A5024827021",
-          "orcid": null,
+          "orcid": "0009-0008-5623-2077",
           "staff": null
         },
         {
@@ -4205,8 +6890,8 @@
           "2025": 7,
           "2026": 3
         },
-        "fwci": 2.3202,
-        "percentile": 0.88913891,
+        "fwci": 2.1772,
+        "percentile": 0.88061241,
         "total": 21
       },
       "corresponding_authors": [
@@ -4247,7 +6932,38 @@
         }
       ],
       "first_version_date": "2023-08-09",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "BMBF"
+          ],
+          "grant": "BMBF:031L0168",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "EU"
+          ],
+          "grant": "EU:823839",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R35GM150919",
+          "how": "nih_link"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHGRI"
+          ],
+          "grant": "NIH:T32HG000035",
+          "how": "listed"
+        }
+      ],
       "id": "W-000009",
       "ids": {
         "doi": "10.1021/acs.jproteome.3c00085",
@@ -4333,7 +7049,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "name": "Megan Duffy",
+          "name": "Megan E. Duffy",
           "openalex": "A5039970247",
           "orcid": "0000-0002-3212-4927",
           "staff": null
@@ -4390,7 +7106,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "name": "Jacquelyn Neibauer",
+          "name": "Jacquelyn A. Neibauer",
           "openalex": "A5048627551",
           "orcid": "0000-0001-9920-2558",
           "staff": null
@@ -4439,13 +7155,13 @@
           "2025": 2,
           "2026": 1
         },
-        "fwci": 0.4726,
-        "percentile": 0.49396304,
+        "fwci": 0.4727,
+        "percentile": 0.4940877,
         "total": 6
       },
       "corresponding_authors": [
         {
-          "name": "Megan Duffy",
+          "name": "Megan E. Duffy",
           "openalex": "A5039970247"
         }
       ],
@@ -4481,7 +7197,22 @@
         }
       ],
       "first_version_date": "2022-01-21",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "NSF"
+          ],
+          "grant": "NSF:1542240",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NSF"
+          ],
+          "grant": "NSF:1762114",
+          "how": "listed"
+        }
+      ],
       "id": "W-000010",
       "ids": {
         "doi": "10.3389/fmars.2021.757245",
@@ -4741,11 +7472,6 @@
               "country": "US",
               "name": "University of Washington",
               "ror": "00cvxb145"
-            },
-            {
-              "country": "CZ",
-              "name": "Tomas Bata University in Zlín",
-              "ror": "04nayfw11"
             }
           ],
           "name": "Tomáš Vaisar",
@@ -4766,7 +7492,7 @@
               "ror": "01e3m7079"
             }
           ],
-          "name": "W. Sean Davidson",
+          "name": "William Sean Davidson",
           "openalex": "A5008316828",
           "orcid": "0000-0003-2756-2989",
           "staff": null
@@ -4782,11 +7508,6 @@
               "country": "US",
               "name": "University of Washington",
               "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "Qi2",
-              "ror": "021wvan87"
             }
           ],
           "name": "Karin Bornfeldt",
@@ -4805,11 +7526,6 @@
               "country": "US",
               "name": "University of Washington",
               "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "Washington and Jefferson College",
-              "ror": "05k3dc376"
             }
           ],
           "name": "Jeffrey L. Probstfield",
@@ -4828,11 +7544,6 @@
               "country": "US",
               "name": "University of Washington",
               "ror": "00cvxb145"
-            },
-            {
-              "country": "AT",
-              "name": "Pädagogische Hochschule Wien",
-              "ror": "0105rz203"
             }
           ],
           "name": "Kevin D. O’Brien",
@@ -4851,11 +7562,6 @@
               "country": "US",
               "name": "University of Washington",
               "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "IHI Corporation (United States)",
-              "ror": "04185av43"
             }
           ],
           "name": "Xue-Qiao Zhao",
@@ -4877,7 +7583,7 @@
           ],
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         }
       ],
@@ -4890,15 +7596,13 @@
           "2025": 6,
           "2026": 2
         },
-        "fwci": 5.4846,
-        "percentile": 0.96902391,
+        "fwci": 5.5035,
+        "percentile": 0.96915061,
         "total": 35
       },
       "corresponding_authors": [],
       "countries": [
-        "AT",
         "BR",
-        "CZ",
         "US"
       ],
       "criteria": [
@@ -4932,7 +7636,80 @@
         }
       ],
       "first_version_date": "2021-06-17",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "NIH",
+            "NIDDK"
+          ],
+          "grant": "NIH:DP3DK108209",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "grant": "NIH:P01HL092969",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "grant": "NIH:P01HL151328",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIDDK"
+          ],
+          "grant": "NIH:P30DK017047",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "grant": "NIH:R01HL063895",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "grant": "NIH:R01HL089504",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "grant": "NIH:R01HL144558",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "grant": "NIH:R01HL149685",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NHLBI"
+          ],
+          "grant": "NIH:R35HL150754",
+          "how": "listed"
+        }
+      ],
       "id": "W-000002",
       "ids": {
         "doi": "10.1161/atvbaha.121.316278",
@@ -4947,39 +7724,14 @@
           "ror": "00cvxb145"
         },
         {
-          "country": "AT",
-          "name": "Pädagogische Hochschule Wien",
-          "ror": "0105rz203"
-        },
-        {
           "country": "US",
           "name": "University of Cincinnati",
           "ror": "01e3m7079"
         },
         {
-          "country": "US",
-          "name": "Qi2",
-          "ror": "021wvan87"
-        },
-        {
           "country": "BR",
           "name": "Universidade de São Paulo",
           "ror": "036rp1748"
-        },
-        {
-          "country": "US",
-          "name": "IHI Corporation (United States)",
-          "ror": "04185av43"
-        },
-        {
-          "country": "CZ",
-          "name": "Tomas Bata University in Zlín",
-          "ror": "04nayfw11"
-        },
-        {
-          "country": "US",
-          "name": "Washington and Jefferson College",
-          "ror": "05k3dc376"
         }
       ],
       "is_preprint": false,
@@ -5116,7 +7868,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "name": "Trisha N. Davis",
+          "name": "Trisha Nell Davis",
           "openalex": "A5022826364",
           "orcid": "0000-0003-4797-3152",
           "staff": null
@@ -5133,8 +7885,8 @@
           "2025": 8,
           "2026": 4
         },
-        "fwci": 1.5665,
-        "percentile": 0.80236654,
+        "fwci": 1.5563,
+        "percentile": 0.80091481,
         "total": 29
       },
       "corresponding_authors": [],
@@ -5169,7 +7921,48 @@
         }
       ],
       "first_version_date": "2020-05-14",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R01GM040506",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R01GM079373",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R35GM130293",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R35GM134842",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:T32GM008268",
+          "how": "listed"
+        }
+      ],
       "id": "W-000012",
       "ids": {
         "doi": "10.7554/elife.56582",
@@ -5352,7 +8145,7 @@
           ],
           "name": "Thomas J. DiChristina",
           "openalex": "A5035503732",
-          "orcid": null,
+          "orcid": "0000-0002-8459-4138",
           "staff": null
         },
         {
@@ -5413,8 +8206,8 @@
           "2025": 2,
           "2026": 3
         },
-        "fwci": 0.3368,
-        "percentile": 0.52577478,
+        "fwci": 0.3329,
+        "percentile": 0.52140471,
         "total": 12
       },
       "corresponding_authors": [
@@ -5455,7 +8248,29 @@
         }
       ],
       "first_version_date": "2020-07-02",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "NSF"
+          ],
+          "grant": "NSF:0939564",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NASA"
+          ],
+          "grant": "USA:NASA:NNA15BB03A",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NASA"
+          ],
+          "grant": "USA:NASA:NNX14AJ87G",
+          "how": "listed"
+        }
+      ],
       "id": "W-000013",
       "ids": {
         "doi": "10.1111/1758-2229.12867",
@@ -5700,7 +8515,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "name": "Shawna Hengel",
+          "name": "Shawna Mae Hengel",
           "openalex": "A5077830669",
           "orcid": "0000-0002-7444-7687",
           "staff": null
@@ -5774,8 +8589,8 @@
           "2023": 3,
           "2024": 1
         },
-        "fwci": 2.0026,
-        "percentile": 0.84456543,
+        "fwci": 1.9855,
+        "percentile": 0.84311497,
         "total": 42
       },
       "corresponding_authors": [],
@@ -5897,7 +8712,24 @@
         }
       ],
       "first_version_date": "2008-11-18",
-      "grants": [],
+      "grants": [
+        {
+          "agencies": [
+            "NIH",
+            "NCRR"
+          ],
+          "grant": "NIH:S10RR017262",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:T32GM007750",
+          "how": "listed"
+        }
+      ],
       "id": "W-000001",
       "ids": {
         "doi": "10.1016/j.jasms.2008.10.025",

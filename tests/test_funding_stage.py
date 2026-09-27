@@ -32,11 +32,27 @@ from uwpr_pubs.funding.amounts import value_grant
 from uwpr_pubs.funding.jats import FundingString as JatsString
 from uwpr_pubs.http import Budget, HttpClient, Mode, RateLimiter, Response
 from uwpr_pubs.pipeline import RunOptions, RunResult, run_pipeline
+from uwpr_pubs.report import RunRecorder
+from uwpr_pubs.sources.crossref import Crossref
+from uwpr_pubs.sources.ncbi import Ncbi
+from uwpr_pubs.sources.nsf import Nsf
+from uwpr_pubs.sources.openalex import OpenAlex
+from uwpr_pubs.sources.reporter import Reporter
+from uwpr_pubs.sources.usaspending import UsaSpending
 from uwpr_pubs.stages import funding as stage_module
 from uwpr_pubs.stages.export import build_from_store, export_dir, resource_block
 from uwpr_pubs.stages.export import read as read_export
-from uwpr_pubs.stages.funding import contract_key, in_window, jats_sightings, openalex_sightings
+from uwpr_pubs.stages.funding import (
+    FundingSources,
+    FundingStage,
+    WorkInput,
+    contract_key,
+    in_window,
+    jats_sightings,
+    openalex_sightings,
+)
 from uwpr_pubs.store import io
+from uwpr_pubs.store.read import read_store
 from uwpr_pubs.validate import validate_store
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -958,6 +974,67 @@ def test_funding_disabled_asks_nothing_and_writes_nothing(run: Runner) -> None:
     for host in ("api.reporter.nih.gov", "api.nsf.gov", "api.usaspending.gov", "openalex.org/awards"):
         assert not run.asked(host), host
     assert not [p for _, _, p, _ in run.asked("efetch.fcgi") if p.get("db") == "pubmed"]
+
+
+def test_the_sample_build_decides_funding_that_is_disabled(run: Runner) -> None:
+    """`even_if_disabled` is `samples/build_sample_store.py`'s alone (B8): with `enabled: false` the
+    stage decides only when it is passed, so the sample gets funding while the weekly run, which
+    reads the same `funding.yaml`, carries none."""
+    run.config = PROJECT / "config"
+    assert run().status == "ok"
+    config = load_config(config_dir=run.config)
+    assert not config.funding["enabled"]
+    snapshot = read_store(run.store)
+    payloads = {paper.pmid: openalex_work(paper) for paper in run.world.papers}
+    inputs = [
+        WorkInput(
+            id=work["id"],
+            year=2023,
+            records=tuple(work["records"]),
+            payloads={r["id"]: payloads[str(r["ids"]["pmid"])] for r in work["records"]},
+        )
+        for work in snapshot.works.values()
+    ]
+    started = dt.datetime.fromisoformat(SATURDAY)
+    context = RunContext(today=started.date(), started=started, mode="sample", store=run.store)
+
+    def stage() -> FundingStage:
+        client = client_for(run.world, run.tmp_path / "cache-sample")
+        recorder = RunRecorder(
+            context=context,
+            rule_version=config.rule_version,
+            config_fingerprint=config.config_fingerprint,
+            rules_fingerprint=config.rules_fingerprint,
+            code_version="test",
+        )
+        sources = FundingSources(
+            reporter=Reporter(client, config.contact),
+            nsf=Nsf(client, config.contact),
+            usaspending=UsaSpending(client, config.contact),
+            openalex=OpenAlex(client, config.contact),
+            crossref=Crossref(client, config.contact),
+            ncbi=Ncbi(client, config.contact),
+        )
+        return FundingStage(
+            config=config,
+            context=context,
+            recorder=recorder,
+            snapshot=snapshot,
+            client=client,
+            sources=sources,
+            unreachable=set(),
+        )
+
+    run.world.sent.clear()
+    carried = stage().run(inputs, snapshot.aliases, request="full")
+    assert (carried.mode, carried.resolved, carried.funding.present) == (None, False, False)
+    assert not run.world.sent
+
+    decided = stage().run(inputs, snapshot.aliases, request="full", even_if_disabled=True)
+    assert (decided.mode, decided.resolved) == ("full", True)
+    assert set(decided.funding.citations) == set(snapshot.works)
+    assert "NIH:R01GM086688" in decided.funding.grants
+    assert run.asked("api.reporter.nih.gov")
 
 
 # --- small pieces ---------------------------------------------------------------------------------------

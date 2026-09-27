@@ -4,6 +4,11 @@ Fetches live metadata (OpenAlex singletons, Crossref, NCBI PMC, UWPR site) and a
 layout of docs/02-data-model.md. Evidence excerpts come from the definition file; the builder checks that
 each PMC excerpt really occurs in the paper's text.
 
+Then runs the funding stage (docs/09 §9) over the built store as a full refresh and writes
+samples/store/funding/, although funding is disabled in config/funding.yaml (`even_if_disabled`).
+Its RePORTER traffic goes through the stage's adapter, so it runs only inside NIH RePORTER's window
+for large jobs (weekends, or 21:00-05:00 New York time), and stops otherwise.
+
 Run:  .venv/bin/python samples/build_sample_store.py
 Needs OPEN_ALEX_API_KEY in the environment or in .env at the repository root.
 """
@@ -50,9 +55,10 @@ LABELS = {  # plain-language labels; in the real pipeline these live in config/r
 OVERRIDE_BY = "sample"
 KIND = {"article": "article", "review": "review", "letter": "letter", "preprint": "preprint",
         "data-paper": "data-paper", "book-chapter": "book-chapter"}
+# `awards` is read only by the funding stage (docs/09 §5.4); the store's records never hold it.
 OA_SELECT = ("id,doi,ids,display_name,publication_date,publication_year,type,primary_location,authorships,topics,"
              "open_access,best_oa_location,is_retracted,cited_by_count,counts_by_year,fwci,"
-             "citation_normalized_percentile,abstract_inverted_index")
+             "citation_normalized_percentile,abstract_inverted_index,awards")
 
 
 def api_key():
@@ -281,11 +287,87 @@ def check_excerpt(excerpt, text, where):
         raise SystemExit(f"excerpt not found in {where}: {probe!r}")
 
 
+# ---------------------------------------------------------------- funding (docs/09 §9)
+def funding_config():
+    from uwpr_pubs.config import load_config
+
+    # The sample's own overrides: its work IDs are not the real store's (docs/09, B5).
+    return load_config(overrides_path=SAMPLES / "overrides.yaml")
+
+
+def require_reporter_window(config):
+    """NIH asks for large jobs on weekends or 21:00-05:00 its time (docs/09 §5.1, §9.3)."""
+    from uwpr_pubs.stages.funding import in_window
+
+    now = dt.datetime.now(tz=dt.UTC)
+    if not in_window(now, config.funding["reporter"]["window"]):
+        sys.exit(f"{now:%Y-%m-%d %H:%M} UTC is outside NIH RePORTER's window for large jobs "
+                 "(weekends, or 21:00-05:00 New York time); the sample's funding is built only inside it")
+
+
+def build_funding(config, payloads):
+    """Stage 8b over the freshly built sample store, as a full refresh, through the pipeline's own
+    client and adapters: RePORTER at one request a second, sorted, sub-projects excluded, and no
+    abstract kept. Funding is `enabled: false` in config/funding.yaml, so `even_if_disabled` runs it
+    for the sample alone. Anything degraded stops the build: the sample is never built from
+    partial answers."""
+    from uwpr_pubs.context import RunContext
+    from uwpr_pubs.report import RunRecorder
+    from uwpr_pubs.runtime import api_keys, build_client
+    from uwpr_pubs.sources.crossref import Crossref
+    from uwpr_pubs.sources.ncbi import Ncbi
+    from uwpr_pubs.sources.nsf import Nsf
+    from uwpr_pubs.sources.openalex import OpenAlex
+    from uwpr_pubs.sources.reporter import Reporter
+    from uwpr_pubs.sources.usaspending import UsaSpending
+    from uwpr_pubs.stages.funding import FundingSources, FundingStage, WorkInput, write_funding
+    from uwpr_pubs.store.read import read_store
+
+    started = time.monotonic()
+    context = RunContext.now("sample", OUT)
+    client = build_client(config)
+    openalex_key, ncbi_key = api_keys()
+    recorder = RunRecorder(context=context, rule_version=config.rule_version,
+                           config_fingerprint=config.config_fingerprint,
+                           rules_fingerprint=config.rules_fingerprint, code_version="samples/build_sample_store.py")
+    snapshot = read_store(OUT)
+    stage = FundingStage(
+        config=config, context=context, recorder=recorder, snapshot=snapshot, client=client,
+        sources=FundingSources(
+            reporter=Reporter(client, config.contact), nsf=Nsf(client, config.contact),
+            usaspending=UsaSpending(client, config.contact),
+            openalex=OpenAlex(client, config.contact, openalex_key or KEY),
+            crossref=Crossref(client, config.contact), ncbi=Ncbi(client, config.contact, ncbi_key)),
+        unreachable=set())
+    inputs = []
+    for wid, work in sorted(snapshot.works.items()):
+        canonical = next(r for r in work["records"] if r["id"] == work["canonical"])
+        inputs.append(WorkInput(id=wid, year=canonical["year"], records=tuple(work["records"]),
+                                payloads=payloads[wid]))
+    result = stage.run(inputs, snapshot.aliases, request="full", even_if_disabled=True)
+    if recorder.degradations or recorder.alerts or not result.resolved:
+        raise SystemExit("funding: not built from complete answers:\n  " + "\n  ".join(
+            [f"{d['source']}: {d['cause']}" for d in recorder.degradations]
+            + [reason for reason, _ in recorder.alerts] + recorder.notes))
+    write_funding(OUT, result.funding)
+    grants = result.funding.grants
+    usd = sum(g["amount"]["usd"] for g in grants.values() if g["amount"] and g["amount"]["usd"] is not None)
+    requests = ", ".join(f"{source} {n}" for source, n in sorted(result.requests.items()) if n)
+    print(f"funding: {len(result.funding.citations)} works, {len(grants)} grants, ${usd:,} known; "
+          f"requests: {requests}; OpenAlex ${client.budget.spent_usd:.4f}; "
+          f"{time.monotonic() - started:.0f} s")
+    for note in recorder.notes:
+        print(f"  note: {note}")
+
+
 def main():
     spec = yaml.safe_load((SAMPLES / "sample_works.yaml").read_text())
     observed, rule_version = spec["observed"], spec["rule_version"]
+    config = funding_config()
+    require_reporter_window(config)
     if OUT.exists():
         shutil.rmtree(OUT)
+    payloads = {}  # work -> record -> this build's OpenAlex payload, for the funding stage
     mint = Minter()
     pages = uwpr_pages()
     entries = list_entries(pages)
@@ -308,6 +390,7 @@ def main():
             pmcid = rdef["ids"].get("pmcid")
             raw = pmc_xml(pmcid) if pmcid else None
             rec = build_record(mint.record(), w, pmcid, observed, raw)
+            payloads.setdefault(wid, {})[rec["id"]] = w
             if rdef["ids"].get("pride"):
                 rec["ids"]["pride"] = rdef["ids"]["pride"]
                 rec["sources"]["pride"] = observed
@@ -440,6 +523,7 @@ def main():
                     "list_disappeared": [l["key"] for l in list_lines if l["last_seen"] != observed]},
         "api": {}})
     print(f"built {len(included_ids)} works, {len(cand_lines)} candidates, {len(list_lines)} list entries -> {OUT}")
+    build_funding(config, payloads)
 
 
 if __name__ == "__main__":

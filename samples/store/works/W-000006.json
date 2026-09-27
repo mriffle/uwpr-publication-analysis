@@ -166,7 +166,7 @@
           ],
           "corresponding": false,
           "name": "Varun Ananth",
-          "openalex": "A5121570839",
+          "openalex": "A5002337314",
           "orcid": null,
           "staff": null
         },
@@ -264,7 +264,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
@@ -308,7 +308,7 @@
           "corresponding": false,
           "name": "Bo Wen",
           "openalex": "A5121554610",
-          "orcid": null,
+          "orcid": "0000-0003-2261-3150",
           "staff": null
         },
         {
@@ -550,10 +550,10 @@
         {
           "affiliations": [
             {
-              "country": "US",
-              "name": "Bioscience Research",
+              "country": null,
+              "name": null,
               "raw": "Talus Bioscience;",
-              "ror": "00bsjtn43"
+              "ror": null
             },
             {
               "country": "US",
@@ -626,7 +626,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Riffle",
+          "name": "Michael E. Riffle",
           "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"

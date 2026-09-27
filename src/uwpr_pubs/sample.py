@@ -68,11 +68,10 @@ CASES: Mapping[str, Callable[[ExportWork], bool]] = {
 
 
 # --- funding (docs/09 §11.8) -------------------------------------------------------------------
-# The synthetic half of §11.8, from `samples/export_cases.json`. The real half — cases the sample
-# store's own papers show once it has `funding/` — is added with that funding (B8). Each predicate
-# reads the whole document, because a funding case is a relation between works, grants and
-# agencies rather than a property of one work, and each returns what exhibits it, so the export
-# command can say where.
+# The synthetic half of §11.8, from `samples/export_cases.json`, and the real half, from the sample
+# store's own papers (`REAL_FUNDING_CASES`, below). Each predicate reads the whole document,
+# because a funding case is a relation between works, grants and agencies rather than a property
+# of one work, and each returns what exhibits it, so the export command can say where.
 
 NIH_FORMAT = re.compile(r"^[1-9]?[A-Z][A-Z0-9]{2} ?[A-Z]{2} ?[0-9]{6}")
 
@@ -185,6 +184,95 @@ def _sub_agencies(export: ExportDoc) -> list[str]:
     ]
 
 
+# The real half of §11.8, from `samples/store/funding/`, which the sample's build fetches live
+# (B8). Each reads only the listings of the real works, so a synthetic case cannot stand in for a
+# real one: if a rebuild ever loses one, the export says so. Four of §11.8's real cases are facts
+# the export does not carry — a supplement's written number, the funder a source names, the
+# resource code, and the provenance of a refused amount — and `tests/test_sample_funding.py`
+# holds them against the store instead (docs/09, B8).
+
+SYNTHETIC_TITLE = "SAMPLE: "  # every synthetic work's title starts so (`export_cases.json`)
+MULTI_PROJECT = ("P01", "P30", "P41", "P50", "U54")  # docs/09 §5.1's multi-project grants
+PAIRED_CURRENCIES = frozenset({"SEK", "EUR"})
+
+
+def _real_listings(export: ExportDoc) -> list[tuple[ExportWork, ExportGrantListing]]:
+    return [(work, row) for work, row in _listings(export) if not work["title"].startswith(SYNTHETIC_TITLE)]
+
+
+def _real_grants(export: ExportDoc, keep: Callable[[ExportGrant], bool]) -> list[str]:
+    listed = {row["grant"] for _, row in _real_listings(export)}
+    return [g["key"] for g in _grants(export) if g["key"] in listed and keep(g)]
+
+
+def _source(grant: ExportGrant) -> tuple[str | None, str | None]:
+    source = grant["amount_source"]
+    return (source["name"], source["basis"]) if source else (None, None)
+
+
+def _parent_rows_total(grant: ExportGrant) -> bool:
+    return (
+        grant["category"] == "center"
+        and grant["number"].startswith(MULTI_PROJECT)
+        and _source(grant)[1] == "reporter_fiscal_years"
+    )
+
+
+def _converted_openalex_amounts(export: ExportDoc) -> list[str]:
+    found = _real_grants(
+        export,
+        lambda g: (
+            _source(g)[1] == "openalex_amount"
+            and g["currency"] in PAIRED_CURRENCIES
+            and g["amount_usd"] is not None
+            and g["rate_year"] is not None
+        ),
+    )
+    currencies = {g["currency"] for g in _grants(export) if g["key"] in found}
+    return found if currencies == PAIRED_CURRENCIES else []
+
+
+def _nih_link_only(export: ExportDoc) -> list[str]:
+    return [
+        f"{work['id']} {row['grant']}" for work, row in _real_listings(export) if row["how"] == "nih_link"
+    ]
+
+
+def _nih_institutes(export: ExportDoc) -> list[str]:
+    return sorted(
+        {
+            row["agencies"][-1]
+            for _, row in _real_listings(export)
+            if len(row["agencies"]) > 1 and row["agencies"][0] == "NIH"
+        }
+    )
+
+
+REAL_FUNDING_CASES: Mapping[str, Callable[[ExportDoc], Sequence[str]]] = {
+    "real: a multi-project grant valued from its parent rows alone": lambda export: _real_grants(
+        export, _parent_rows_total
+    ),
+    "real: an NSF grant valued by the NSF Award API": lambda export: _real_grants(
+        export, lambda g: _source(g)[0] == "NSF Award API"
+    ),
+    "real: a NASA grant valued by USAspending": lambda export: _real_grants(
+        export, lambda g: g["agency"] == "NASA" and _source(g)[0] == "USAspending"
+    ),
+    "real: OpenAlex amounts in SEK and EUR, converted": _converted_openalex_amounts,
+    "real: institution-wide awards": lambda export: _real_grants(
+        export, lambda g: g["scope"] == "institution-wide"
+    ),
+    "real: a grant starting before FY1985": lambda export: _real_grants(
+        export, lambda g: "starts_before_fy1985" in g["flags"]
+    ),
+    "real: a grant known only by an NIH link": _nih_link_only,
+    "real: a DFG grant left without an amount": lambda export: _real_grants(
+        export, lambda g: g["agency"] == "DFG" and g["status"] == "resolved" and g["amount_usd"] is None
+    ),
+    "real: an NIH institute under its parent": _nih_institutes,
+}
+
+
 FUNDING_CASES: Mapping[str, Callable[[ExportDoc], Sequence[str]]] = {
     "a contract": lambda export: _contracts(export, 1),
     "a task order": lambda export: _contracts(export, 2),
@@ -200,6 +288,7 @@ FUNDING_CASES: Mapping[str, Callable[[ExportDoc], Sequence[str]]] = {
     "one grant listed by two works in different years": _shared_across_years,
     "a grant with a null amount": _no_amount,
     "a sub-agency with a parent": _sub_agencies,
+    **REAL_FUNDING_CASES,
 }
 
 

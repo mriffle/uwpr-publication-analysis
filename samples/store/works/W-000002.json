@@ -72,10 +72,10 @@
               "ror": "00cvxb145"
             },
             {
-              "country": "CZ",
-              "name": "Tomas Bata University in Zlín",
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Tomas Vaisar Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
-              "ror": "04nayfw11"
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -100,7 +100,7 @@
             }
           ],
           "corresponding": false,
-          "name": "W. Sean Davidson",
+          "name": "William Sean Davidson",
           "openalex": "A5008316828",
           "orcid": "0000-0003-2756-2989",
           "staff": null
@@ -115,9 +115,9 @@
             },
             {
               "country": "US",
-              "name": "Qi2",
+              "name": "University of Washington",
               "raw": "Karin E. Bornfeldt https://orcid.org/0000-0001-9208-6523 Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
-              "ror": "021wvan87"
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -135,10 +135,10 @@
               "ror": "00cvxb145"
             },
             {
-              "country": "US",
-              "name": "Washington and Jefferson College",
+              "country": null,
+              "name": null,
               "raw": "Jeffrey L. Probstfield https://orcid.org/0000-0002-4899-9971 Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
-              "ror": "05k3dc376"
+              "ror": null
             }
           ],
           "corresponding": false,
@@ -156,10 +156,10 @@
               "ror": "00cvxb145"
             },
             {
-              "country": "AT",
-              "name": "Pädagogische Hochschule Wien",
+              "country": null,
+              "name": null,
               "raw": "Kevin D. O'Brien Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
-              "ror": "0105rz203"
+              "ror": null
             }
           ],
           "corresponding": false,
@@ -177,10 +177,10 @@
               "ror": "00cvxb145"
             },
             {
-              "country": "US",
-              "name": "IHI Corporation (United States)",
+              "country": null,
+              "name": null,
               "raw": "Xue-Qiao Zhao Department of Medicine, University of Washington, Seattle (T.V., K.E.B., J.L.P., K.D.O., X.-Q.Z., J.W.H.)",
-              "ror": "04185av43"
+              "ror": null
             }
           ],
           "corresponding": false,
@@ -201,7 +201,7 @@
           "corresponding": false,
           "name": "Jay W. Heinecke",
           "openalex": "A5035595391",
-          "orcid": null,
+          "orcid": "0000-0001-5246-0007",
           "staff": null
         }
       ],

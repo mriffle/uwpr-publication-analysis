@@ -783,10 +783,21 @@ class FundingStage:
         )
 
     def run(
-        self, works: Sequence[WorkInput], aliases: Mapping[str, WorkId], *, request: FundingRequest
+        self,
+        works: Sequence[WorkInput],
+        aliases: Mapping[str, WorkId],
+        *,
+        request: FundingRequest,
+        even_if_disabled: bool = False,
     ) -> FundingResult:
-        """Stage 8b. `enabled: false` and `skip` carry the stored funding forward (§9.1)."""
-        if not self.config.funding.get("enabled") or request == "skip":
+        """Stage 8b. `enabled: false` and `skip` carry the stored funding forward (§9.1).
+
+        `even_if_disabled` is the sample build's alone (`samples/build_sample_store.py`): it
+        decides the sample store's funding while the real store's stays off, without an edit to
+        `funding.yaml` that the weekly run would read too. The pipeline never passes it.
+        """
+        enabled = bool(self.config.funding.get("enabled")) or even_if_disabled
+        if not enabled or request == "skip":
             return self.carried(works, aliases)
         self.aliases = aliases
         last = self._last_full()

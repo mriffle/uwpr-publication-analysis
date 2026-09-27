@@ -1,0 +1,19 @@
+{"code": "AHA", "country": "US", "group": "us_nonfederal", "name": "American Heart Association", "origin": "config", "parent": null, "schema": 1, "short_name": "AHA"}
+{"code": "BMBF", "country": "DE", "group": "non_us", "name": "Bundesministerium für Bildung und Forschung", "origin": "config", "parent": null, "schema": 1, "short_name": "BMBF"}
+{"code": "CANCERFONDEN", "country": "SE", "group": "non_us", "name": "Cancerfonden", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "DFG", "country": "DE", "group": "non_us", "name": "Deutsche Forschungsgemeinschaft", "origin": "config", "parent": null, "schema": 1, "short_name": "DFG"}
+{"code": "EU", "country": null, "group": "non_us", "name": "European Union", "origin": "config", "parent": null, "schema": 1, "short_name": "EU"}
+{"code": "FWO", "country": "BE", "group": "non_us", "name": "Fonds Wetenschappelijk Onderzoek", "origin": "config", "parent": null, "schema": 1, "short_name": "FWO"}
+{"code": "KAW", "country": "SE", "group": "non_us", "name": "Knut och Alice Wallenbergs Stiftelse", "origin": "config", "parent": null, "schema": 1, "short_name": "KAW"}
+{"code": "MISC", "country": null, "group": "miscellaneous", "name": "Miscellaneous", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "NASA", "country": "US", "group": "us_federal", "name": "National Aeronautics and Space Administration", "origin": "config", "parent": null, "schema": 1, "short_name": "NASA"}
+{"code": "NCRR", "country": "US", "group": "us_federal", "name": "National Center for Research Resources", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NCRR"}
+{"code": "NHGRI", "country": "US", "group": "us_federal", "name": "National Human Genome Research Institute", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NHGRI"}
+{"code": "NHLBI", "country": "US", "group": "us_federal", "name": "National Heart Lung and Blood Institute", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NHLBI"}
+{"code": "NIDDK", "country": "US", "group": "us_federal", "name": "National Institute of Diabetes and Digestive and Kidney Diseases", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIDDK"}
+{"code": "NIGMS", "country": "US", "group": "us_federal", "name": "National Institute of General Medical Sciences", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIGMS"}
+{"code": "NIH", "country": "US", "group": "us_federal", "name": "National Institutes of Health", "origin": "config", "parent": null, "schema": 1, "short_name": "NIH"}
+{"code": "NINDS", "country": "US", "group": "us_federal", "name": "National Institute of Neurological Disorders and Stroke", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NINDS"}
+{"code": "NSF", "country": "US", "group": "us_federal", "name": "National Science Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": "NSF"}
+{"code": "SSF", "country": "SE", "group": "non_us", "name": "Stiftelsen för Strategisk Forskning", "origin": "config", "parent": null, "schema": 1, "short_name": "SSF"}
+{"code": "VR", "country": "SE", "group": "non_us", "name": "Vetenskapsrådet", "origin": "config", "parent": null, "schema": 1, "short_name": "VR"}

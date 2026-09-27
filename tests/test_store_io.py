@@ -159,9 +159,17 @@ def test_sample_store_reads_into_typed_snapshot() -> None:
 # --- store/funding/ (docs/09 §8) ----------------------------------------------------------------
 
 
-def funded_sample(tmp_path: Path) -> Path:
+def unfunded_sample(tmp_path: Path) -> Path:
+    """The sample store without the funding its build fetched live (B8)."""
     store = tmp_path / "store"
     shutil.copytree(SAMPLE, store)
+    shutil.rmtree(store / "funding")
+    return store
+
+
+def funded_sample(tmp_path: Path) -> Path:
+    """The sample's works with B4's synthetic fixture as their `funding/`, in place of its own."""
+    store = unfunded_sample(tmp_path)
     shutil.copytree(FUNDING, store / "funding")
     return store
 
@@ -172,6 +180,14 @@ SORTERS: dict[str, Any] = {
     "lookups.jsonl": io.sort_funding_lookups,
     "agencies.jsonl": io.sort_agencies,
 }
+
+
+@pytest.mark.parametrize("name", sorted(SORTERS))
+def test_the_samples_funding_is_in_the_order_the_stage_writes(name: str) -> None:
+    """The sample's `funding/`, as its build wrote it through the stage's `write_funding`."""
+    lines = io.read_jsonl(SAMPLE / "funding" / name)
+    assert lines
+    assert SORTERS[name](lines) == lines
 
 
 @pytest.mark.parametrize("name", sorted(SORTERS))
@@ -268,8 +284,8 @@ def test_the_fixture_covers_what_the_store_must_hold() -> None:
     assert agencies["NIH"]["parent"] is None
 
 
-def test_a_store_without_funding_reads_as_empty() -> None:
-    funding = read_store(SAMPLE).funding
+def test_a_store_without_funding_reads_as_empty(tmp_path: Path) -> None:
+    funding = read_store(unfunded_sample(tmp_path)).funding
     assert funding == FundingSnapshot()
     assert not funding.present
 

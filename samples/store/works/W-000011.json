@@ -29,7 +29,7 @@
       "rule_version": "2026-09-19.2",
       "section": "affiliation",
       "source": {
-        "cache": "sha256:982595e20dc87e58b2570b687638febf437029ccdb720ba237884c686d66d265",
+        "cache": "sha256:33d25b3fb913b3f452702ee2c23c868b2d91a37d5af941fc92891c39fd8b8c71",
         "name": "PMC",
         "retrieved": "2026-09-19",
         "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13484654/"
@@ -53,18 +53,18 @@
             }
           ],
           "corresponding": false,
-          "name": "Celeste C. Ptak",
-          "openalex": "A5144482659",
+          "name": "Celeste Ptak",
+          "openalex": "A5125665745",
           "orcid": null,
           "staff": null
         },
         {
           "affiliations": [
             {
-              "country": "US",
-              "name": "Carleton College",
+              "country": null,
+              "name": null,
               "raw": "KEYENCE Corporation of America, Life Science Division, 601 Carlson Parkway, Suite 800, Minnetonka, MN 55305, USA",
-              "ror": "03jep7677"
+              "ror": null
             }
           ],
           "corresponding": false,
@@ -120,7 +120,7 @@
         }
       ],
       "fulltext": {
-        "cache": "sha256:982595e20dc87e58b2570b687638febf437029ccdb720ba237884c686d66d265",
+        "cache": "sha256:33d25b3fb913b3f452702ee2c23c868b2d91a37d5af941fc92891c39fd8b8c71",
         "checked": "2026-09-19",
         "recheck_after": null,
         "status": "pmc_xml"

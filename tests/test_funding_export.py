@@ -41,6 +41,7 @@ from uwpr_pubs.stages.export import (
 from uwpr_pubs.store import io
 from uwpr_pubs.store.models import FundingCitation, Grant, Override, RunManifest, Work
 from uwpr_pubs.store.paths import StorePaths
+from uwpr_pubs.store.read import read_store
 from uwpr_pubs.validate import Report, _validate_funding, validate_export
 
 SAMPLES = Path("samples")
@@ -48,15 +49,23 @@ SAMPLE_CASES = SAMPLES / "export_cases.json"
 FIXTURE = Path(__file__).resolve().parent / "fixtures" / "funding"  # B4's synthetic funding store
 
 
-def sample() -> tuple[Any, Any]:
+def sample(store: Path = SAMPLES / "store") -> tuple[Any, Any]:
     config = load_config(overrides_path=SAMPLES / "overrides.yaml")
     return build_from_store(
-        SAMPLES / "store",
+        store,
         resource_block(config),
         extra=SAMPLE_CASES,
         overrides=config.overrides,
         rate_sources=config.exchange_rates["sources"],
     )
+
+
+def unfunded_sample(tmp_path: Path) -> Path:
+    """The sample store without the funding its build fetched live (B8): the real works alone."""
+    store = tmp_path / "store"
+    shutil.copytree(SAMPLES / "store", store)
+    shutil.rmtree(store / "funding")
+    return store
 
 
 @pytest.fixture(scope="module")
@@ -66,9 +75,9 @@ def built() -> tuple[Any, Any]:
 
 @pytest.fixture(scope="module")
 def lines() -> dict[str, Any]:
-    """The citations lines the sample was built from: its synthetic ones (the store has none yet)."""
+    """The citations lines the sample was built from: the store's own, and the synthetic ones."""
     funding, _ = load_extra_funding(SAMPLE_CASES)
-    return dict(funding.citations)
+    return {**read_store(SAMPLES / "store").funding.citations, **funding.citations}
 
 
 def copy(document: Any) -> Any:
@@ -99,7 +108,7 @@ def test_the_sample_carries_funding_and_validates_against_its_lines(
 ) -> None:
     document, lookup = built
     assert document["schema_version"] == SCHEMA_VERSION == "1.1"
-    assert document["funding"]["version"] == "2026-09-26.1"
+    assert document["funding"]["version"] == max(line["funding_version"] for line in lines.values())
     assert schema_problems(document, lookup) == []
     report = validate_export(document, lookup, run_year=2026, funding_citations=lines)
     assert report.errors == []
@@ -114,15 +123,16 @@ def test_the_funding_summary_equals_a_recomputation_from_the_rows(built: tuple[A
     )
 
 
-def test_the_sample_summary_by_hand(built: tuple[Any, Any]) -> None:
+def test_the_sample_summary_by_hand(tmp_path: Path) -> None:
     """The synthetic funding's figures, worked out from export_cases.json by hand.
 
-    Nine grants, eight resolved; the CLP grant converts to $2,522,936 at OECD's 2020 rate, and the
-    UAH grant stays out of every total. Investigator K is written two ways without an id and is
-    one person; L is on two grants with one id. The University of Washington is written in capitals
-    once and in title case once, and is one organisation.
+    Over the sample's works without the funding its build fetched live, so the figures are the
+    synthetic lines' alone. Nine grants, eight resolved; the CLP grant converts to $2,522,936 at
+    OECD's 2020 rate, and the UAH grant stays out of every total. Investigator K is written two
+    ways without an id and is one person; L is on two grants with one id. The University of
+    Washington is written in capitals once and in title case once, and is one organisation.
     """
-    summary = built[0]["funding"]["summary"]
+    summary = sample(unfunded_sample(tmp_path))[0]["funding"]["summary"]
     assert summary == {
         "grants": 9,
         "grants_resolved": 8,
@@ -727,7 +737,9 @@ FUNDING_MUTATIONS: list[tuple[str, Callable[[Any], None], str]] = [
     ("a parent missing", _no_parent, "NHLBI's parent NIH is not in funding.agencies"),
     (
         "an agency missing",
-        lambda d: d["funding"]["agencies"].pop(0),
+        lambda d: d["funding"]["agencies"].remove(
+            next(agency for agency in d["funding"]["agencies"] if agency["code"] == "ANID")
+        ),
         "ANID:1599A0999's agency ANID is not in",
     ),
     ("a cycle", _cycle, "funding.agencies: NIH's parents form a cycle"),
@@ -814,9 +826,10 @@ def test_each_broken_promise_is_its_own_error(
 
 def test_a_summary_that_disagrees_with_the_rows_is_an_error(built: tuple[Any, Any]) -> None:
     document = copy(built[0])
+    total = document["funding"]["summary"]["amount_usd"]
     document["funding"]["summary"]["amount_usd"] += 1
     errors = validate_export(document, built[1]).errors
-    assert errors == ["funding.summary: amount_usd is 15452937, recomputed as 15452936"]
+    assert errors == [f"funding.summary: amount_usd is {total + 1}, recomputed as {total}"]
 
 
 def test_a_key_outside_the_grammar_fails_the_schema(built: tuple[Any, Any]) -> None:
@@ -868,8 +881,7 @@ def test_the_b4_fixture_store_exports_and_validates(tmp_path: Path) -> None:
 
     Its W-000010 names NSF:1443474 by an override, so the store's overrides must attribute it.
     """
-    store = tmp_path / "store"
-    shutil.copytree(SAMPLES / "store", store)
+    store = unfunded_sample(tmp_path)
     shutil.copytree(FIXTURE, store / "funding")
     overrides = (SAMPLES / "overrides.yaml").read_text(encoding="utf-8") + (
         "- target: W-000010\n  action: grant\n  raw: OPP 144374\n  grant: NSF:1443474\n"
@@ -929,8 +941,7 @@ def test_the_b4_fixture_store_exports_and_validates(tmp_path: Path) -> None:
 
 
 def test_without_the_attribution_the_b4_fixture_store_fails_to_validate(tmp_path: Path) -> None:
-    store = tmp_path / "store"
-    shutil.copytree(SAMPLES / "store", store)
+    store = unfunded_sample(tmp_path)
     shutil.copytree(FIXTURE, store / "funding")
     config = load_config(overrides_path=SAMPLES / "overrides.yaml")
     document, lookup = build_from_store(store, resource_block(config), overrides=config.overrides)
@@ -940,8 +951,7 @@ def test_without_the_attribution_the_b4_fixture_store_fails_to_validate(tmp_path
 
 
 def test_synthetic_funding_that_clashes_with_the_stores_is_refused(tmp_path: Path) -> None:
-    store = tmp_path / "store"
-    shutil.copytree(SAMPLES / "store", store)
+    store = unfunded_sample(tmp_path)
     shutil.copytree(FIXTURE, store / "funding")
     cases = json.loads(SAMPLE_CASES.read_text(encoding="utf-8"))
     cases["funding"]["grants"].append(io.read_jsonl(FIXTURE / "grants.jsonl")[0])

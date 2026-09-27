@@ -31,20 +31,30 @@ def store(tmp_path: Path) -> Path:
 
 @pytest.fixture
 def funded(store: Path) -> Path:
-    """The sample store with a valid `funding/` beside its works (docs/09 §8)."""
+    """The sample's works with B4's synthetic `funding/` (docs/09 §8), in place of its own."""
+    shutil.rmtree(store / "funding")
     shutil.copytree(FUNDING, store / "funding")
     return store
 
 
 def test_the_sample_store_is_valid(store: Path) -> None:
+    """With the funding its build fetched live (B8): one citations line per included work."""
     report = validate_store(store)
     assert report.errors == []
+    funding = {
+        name: len(io.read_jsonl(store / "funding" / f"{name}.jsonl"))
+        for name in ("grants", "lookups", "agencies")
+    }
     assert report.counts == {
         "works": 13,
         "candidates": 7,
         "list entries": 4,
         "metrics lines": 30,
         "overrides": 2,
+        "funding citations": 13,
+        "grants": funding["grants"],
+        "funding lookups": funding["lookups"],
+        "agencies": funding["agencies"],
     }
 
 
@@ -555,6 +565,7 @@ def test_an_override_on_a_merged_work_is_looked_for_on_the_survivor(funded: Path
 
 def test_without_funding_grant_overrides_are_not_checked(store: Path) -> None:
     """The real store until the seed: nothing to look in, which is said once, and is no error."""
+    shutil.rmtree(store / "funding")
     add_overrides(
         store,
         grant_override("W-000010", "OPP 144374", "NSF:1443474"),
