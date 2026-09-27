@@ -1587,10 +1587,18 @@ class FundingStage:
         if kind == "miscellaneous":
             facts = {}
         fetched = info is not None or any(self.awards.get(award) is not None for award in awards)
+        # An OpenAlex-valued grant's record is chosen among its awards again only when every award
+        # read before was read again (a full refresh, or a grant due a refresh); from a few, such
+        # as a new string's, it could differ, and the stored record stands (B9a).
+        reread = all(self.awards.get(award) is not None for award in kept)
         described = (
             info
             if info is not None
-            else (self._award_info(awards) if kind in ("agency", "openalex_funder") else None)
+            else (
+                self._award_info(awards)
+                if kind in ("agency", "openalex_funder") and (reread or stored is None)
+                else None
+            )
         )
         start = described.start if described else (stored["start"] if stored else None)
         end = described.end if described else (stored["end"] if stored else None)

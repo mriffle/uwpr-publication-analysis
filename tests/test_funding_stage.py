@@ -823,6 +823,25 @@ def test_a_grants_record_comes_from_an_award_that_has_one(run: Runner) -> None:
     assert (grant["title"], grant["amount"]["original"]) == ("SAMPLE: A consortium", "1000000")
 
 
+def test_a_grants_record_stands_when_only_a_new_award_is_read(seeded: Runner) -> None:
+    """A week on, D writes Wellcome's number too, and OpenAlex mints it a bare award, G0, which is
+    new and read; G6, which holds the grant's record, is not read again, the grant having ended.
+    Chosen among this run's awards alone, the record was lost; B9a's rehearsal saw three grants
+    lose theirs in a rerun the same day."""
+    bare = {"amount": None, "currency": None, "provenance": "crossref_work_funders", "start_year": None}
+    seeded.world.openalex_awards = {**OPENALEX_AWARDS, "G0": bare}
+    seeded.world.papers = (A, B, C, replace(D, awards=(*D.awards, award("092809/Z/10/Z", WELLCOME, "G0"))))
+    before = seeded.grants()["WT:092809Z10Z"]
+    assert before["title"] == "SAMPLE: A consortium"
+
+    assert seeded(WEEK_LATER).status == "ok"
+    after = seeded.grants()["WT:092809Z10Z"]
+    assert after["openalex_awards"] == ["G0", "G6"]
+    assert [after[field] for field in ("title", "pis", "start", "end")] == [
+        before[field] for field in ("title", "pis", "start", "end")
+    ]
+
+
 def test_the_dates_move_once_they_are_28_days_old(seeded: Runner) -> None:
     seeded("2026-10-31T12:00:00+00:00")  # a Saturday, 28 days on: a full refresh
     string = seeded.strings(A)["R01 GM086688"]
