@@ -102,7 +102,8 @@ npm test -- --run && npm run build && npm run check:budget && npm run e2e
   excluded from ruff and mypy. The validator now lives in the package as `uwpr_pubs.validate`.
 - **The sample build** needs `OPEN_ALEX_API_KEY` in `.env` (read automatically). It checks every
   PMC evidence excerpt against the paper's live text, and a rebuild must be byte-identical
-  apart from `metrics/`.
+  apart from `metrics/` and `funding/` (and any metadata OpenAlex has revised since; see
+  `samples/README.md`). It runs the funding stage live, so it runs only inside RePORTER's window.
 
 ## Architecture (big picture)
 

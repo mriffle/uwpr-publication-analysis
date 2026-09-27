@@ -7,6 +7,9 @@ export).
 - **Real content:** papers, metadata and evidence excerpts are real. Metadata is fetched live;
   the excerpts were measured on 2026-09-19 and are checked against each paper's text at build
   time.
+- **Real funding:** `store/funding/` ([`docs/09-funding-impact.md`](../docs/09-funding-impact.md)
+  §8) is what the funding stage decides for the thirteen included papers, fetched live by the
+  build (below).
 - **Synthetic content:** scenarios marked **SAMPLE** in `sample_works.yaml` (a removed list
   entry, an include override) are made up to exercise the format, not real decisions.
 
@@ -42,6 +45,17 @@ export).
 | W-000020 | Peer-review report carrying the award code |
 | W-000021 | Dissertation carrying the award code |
 
+**Funding (`store/funding/`, built 2026-09-26):** a citations line for each of the 13 included
+works, 57 grants and $452.8M of known amounts: 29 NIH grants valued by RePORTER from parent rows,
+6 NSF by the NSF Award API, 2 NASA by USAspending, and 9 in SEK, EUR or USD by OpenAlex; 11 have no
+amount, among them two DFG grants whose GEPRIS amounts the rules refuse. Five are
+institution-wide: two GRFP institutional awards (2140004 and 1762114), C-DEBI, the EPIC-XS
+consortium, and a Swedish Research Council national-infrastructure grant. Two strings are Miscellaneous, both on W-000014 and both written only in
+Crossref, under funder names no rule reads. docs/09 §11.8 lists the cases the app is tested on:
+`uwpr_pubs.sample.FUNDING_CASES` holds them against the export, and `tests/test_sample_funding.py`
+holds the four the export does not carry against the store. `export_cases.json` adds the
+synthetic funding beside the synthetic works.
+
 ## Rebuild and validate
 
 From the repository root:
@@ -52,6 +66,23 @@ uv run python samples/build_sample_store.py
 uv run uwpr-pubs validate samples/store
 ```
 
-- The build needs `OPEN_ALEX_API_KEY` in `.env`. It uses only free lookups.
-- Citation counts change over time, so a rebuild on a later day will differ in
-  `store/metrics/`.
+- The build needs `OPEN_ALEX_API_KEY` in `.env`. Its metadata comes from free lookups.
+- **It then runs the funding stage** over the store it has just built, as a full refresh, and
+  writes `store/funding/`. Funding is `enabled: false` in `config/funding.yaml` until the seed;
+  the build passes the stage's `even_if_disabled`, which nothing else does. RePORTER goes through
+  the stage's own adapter, one request a second, so the build **runs only inside RePORTER's
+  window** (weekends, or 21:00-05:00 New York time) and stops otherwise. It also stops if any
+  source degrades, rather than build the sample from partial answers. On 2026-09-26 the stage
+  sent 27 requests (RePORTER 3, NSF 6, USAspending 3, OpenAlex 2, Crossref 1, PubMed 1, PMC 10),
+  took 15 s and cost $0.0002 in OpenAlex award pages.
+- Then rebuild the export: `uv run uwpr-pubs export --store samples/store --out samples/export
+  --cases samples/export_cases.json`.
+- A second build the same day is byte-identical, `store/funding/` included. **A rebuild on a
+  later day differs:**
+  - `store/metrics/`, as citation counts change;
+  - `store/funding/`, as active grants gain fiscal years, the dates it records (`checked`,
+    `first_seen`, `jats_checked`, a probe's `recheck_after`) are the build's, and the export's
+    funding `as_of` moves with them;
+  - and `store/works/`, wherever OpenAlex has revised its metadata. The rebuild of 2026-09-26, six
+    days after the last, changed author names, ORCIDs or affiliations in 12 of the 13 work files,
+    and one PMC article's XML.

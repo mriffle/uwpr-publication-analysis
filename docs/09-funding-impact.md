@@ -319,6 +319,48 @@ plan. [08](08-implementation.md) records them as they are built.
     is followed by the full foldings a name plausibly carries: ß and ẞ become "ss", and final
     sigma becomes σ. Whitespace is split as Python's `str.split()` splits it, not as `\s`. A test
     holds the result to Python's output for each case.
+- *2026-09-26, B8 — the sample's real funding, and the stage's first live run.*
+  `samples/build_sample_store.py` now runs stage 8b over the sample it has just built, as a full
+  refresh, and commits `samples/store/funding/`. Funding stays `enabled: false`; the build passes
+  the stage's `even_if_disabled`, which the pipeline never does. It runs only inside RePORTER's
+  window, and stops on any degradation.
+  - **What the live run confirmed.** 13 works, 57 grants, $452,773,861 known: 29 NIH grants from
+    RePORTER's parent rows (P30DK017047 at **$52,843,525**, §5.1's figure to the dollar), 6 NSF, 2
+    NASA from USAspending, 9 OpenAlex amounts (SEK, EUR, USD), and 11 without an amount; 5
+    institution-wide, 2 Miscellaneous. Requests: RePORTER 3 (the links, then two batches of
+    cores), NSF 6 (one per award), USAspending 3 (a search, two details), OpenAlex 2 award pages
+    ($0.0002), Crossref 1, PubMed 1, PMC 10; 15 s. Every field the stage reads came back in the
+    shape B7a read it: RePORTER's link and project rows, NSF's `transType`, USAspending's
+    flattened detail (NNX14AJ87G's null `end_date` is USAspending's own), OpenAlex's
+    `institution_awarded` list. Nothing degraded, so the stage needed no fix. A same-day rebuild is
+    byte-identical, `funding/` and the export included; it sent no PMC request, the XML being
+    cached.
+  - **What it could not see.** No sample paper links a contract, so B7a's contract-link
+    restoration is still unseen live, as is `DE-SC0010566` at USAspending: both are B9's. The
+    R37 probes of the R01s (12 cores) and USAspending's O-for-0 and I-for-1 readings of the NASA
+    numbers (3) were all misses, remembered for 90 days.
+  - **What it showed that the rules leave to B9.** Crossref's newer deposits name a funder by ROR
+    (`id: [{id-type: ROR}]`), not by a registry DOI, or by a name alone. On W-000014 two
+    Crossref-only strings fall to Miscellaneous for it. `DGE-2140004` is under "National Science
+    Foundation Graduate Research Fellowship Program", which NSF's name patterns do not match
+    whole. `FWO G087625N` is under "Research Foundation – Flanders" (ROR 03qtxy027): FWO has no
+    name pattern, and no rule reads ROR IDs, as B3a noted for CIHR. The same work lists
+    NSF:2140004 from OpenAlex's `2140004`, so its Miscellaneous key is the twin of a resolved grant.
+    A name pattern or a ROR rule in `funding.yaml` is B9's call.
+  - **The sample cases, verified (§11.8; §16 item 12 closed).** Every planned work ID holds but
+    one: the grant known only by an NIH link is R35GM150919 on W-000009, since PubMed, Crossref
+    and JATS also write W-000011's. T32GM007750 on W-000001 starts before FY1985 (the grant in
+    1979, RePORTER's amounts in 1985). Institution-wide adds EPIC-XS (W-000009) and VR's
+    infrastructure grant (W-000004) to the planned three. Nine real cases are
+    `REAL_FUNDING_CASES`, which read only the real works' listings, so a synthetic case cannot
+    stand in for a real one. Four are facts the export does not carry: `3p30dk017047-45s2` keyed
+    to P30DK017047, the AHA named for W-000007's `P30 DK017047`, the resource code on W-000001,
+    W-000006 and W-000007, and the gepris amounts refused on DFG:461264291 and DFG:497694394.
+    `tests/test_sample_funding.py` holds them against the store. None was dropped.
+  - **A later day differs** in `metrics/`; in `funding/`, whose active grants gain fiscal years and
+    whose dates are the build's; and, it turned out, in `works/`. Six days after the last build,
+    OpenAlex had revised author names, ORCIDs or affiliations in 12 of the 13 work files, and one
+    PMC article's XML had changed. The sample export is 26,989 bytes (§11.9).
 
 ---
 
@@ -1637,11 +1679,16 @@ unfiltered first year equals its `first_year`.
 `missing_cases`. **Real, from `samples/store/`:** a parent-rows-only multi-project total (P30DK017047
 on W-000002 and W-000007); a type-3 supplement string (`3p30dk017047-45s2` on W-000007); NSF
 (W-000003, W-000010); USAspending, NASA (W-000013); OpenAlex amounts in SEK and EUR (W-000004,
-W-000009); institution-wide (GRFP 2140004 on W-000006, 1762114 on W-000010, C-DEBI on W-000013); a
-grant starting before FY1985 (T32GM007750 on W-000001, *to verify in B8*); a grant known only by an
-NIH link (W-000011); a funder misattributed to AHA (W-000007); the resource code excluded; a DFG
-gepris amount excluded; an NIH IC with its parent. *These sample work IDs come from the planning
-design and are verified against `samples/store/` in B8.* **Synthetic, in `samples/export_cases.json`**
+W-000009); institution-wide (GRFP 2140004 on W-000006, 1762114 on W-000010, C-DEBI on W-000013,
+and also EPIC-XS on W-000009 and VR's infrastructure grant on W-000004); a grant starting before
+FY1985 (T32GM007750 on W-000001); a grant known only by an NIH link (R35GM150919 on W-000009); a
+funder misattributed to AHA (W-000007); the resource code excluded (W-000001, W-000006, W-000007); a
+DFG gepris amount excluded (W-000004, W-000006); an NIH IC with its parent. *Verified against
+`samples/store/` in B8, which moved the NIH-link case from W-000011, whose grant three sources also
+write. Four of these — the supplement, the AHA attribution, the resource code and the gepris
+amount — are facts of the store the export does not carry, so `tests/test_sample_funding.py` holds
+them against the store; the other nine are `REAL_FUNDING_CASES`, which read the real works'
+listings alone.* **Synthetic, in `samples/export_cases.json`**
 (SAMPLE titles, `10.0000` DOIs): a contract; a task order; an unresolved NIH-format string in
 Miscellaneous; an override with attribution; a corrected near-miss; a CLP amount converted by the
 OECD rate; an amount in a currency neither rate table covers, left unconverted; a work with no
@@ -1655,7 +1702,8 @@ The budget rises to **500 KiB gzipped: 512,000 bytes (500 × 1,024) at gzip leve
 thing. Today's export is 303 KiB by it, and the export with funding is estimated at 420–450 KiB,
 to be measured in B9 (§3.5), which leaves about two years' headroom. *(B5 measured contract 1.1
 without funding data: 311,014 bytes, 303.7 KiB, for the real export, and 18,099 bytes for the
-sample with its synthetic funding; §3.5.)*
+sample with its synthetic funding; §3.5. B8's sample, with its real funding beside the synthetic,
+is 26,989 bytes, 26.4 KiB.)*
 [06](06-web-app.md) §10's row changes, `web/scripts/check-data-budget.mjs` enforces it in the web
 CI job against `export/` and `samples/export/`, a Python test asserts the script's constant
 equals `stages/export.DATA_BUDGET_BYTES`, and stage 11 alerts above it (§9.5), measuring the same
@@ -2032,7 +2080,8 @@ Each lands, dated, with the milestone that makes it true.
     page states the caveat.
 11. **Closed (B3):** the OECD dataset is `DSD_NAMAIN10@DF_TABLE4`, transaction `EXC_A`, and every
     G.5A currency has 1999–2025 (§5.10).
-12. **The sample cases' work IDs** (§11.8) are verified in B8.
+12. **Closed (B8):** the sample cases' work IDs (§11.8) are verified against the live-built
+    sample; one moved (the NIH-link case is W-000009's R35GM150919).
 
 ## 17. Exit criteria
 
@@ -2083,7 +2132,9 @@ entities; every RePORTER request sorted and excluding sub-projects; Crossref bat
 
 **B8** — every `FUNDING_CASES` predicate holds; the committed sample matches a fresh build; the
 sample rebuilds byte-identically except `metrics/` and `funding/` (documented).
-- [ ] Accepted.
+- [x] Accepted 2026-09-26 (02c9ef4): the first live run of the stage built the sample's funding (13
+      works, 57 grants, $452.8M known) from 27 requests in 15 s for $0.0002; all 12 synthetic
+      and 9 real `FUNDING_CASES` hold; a same-day rebuild is byte-identical; sample 26,989 bytes.
 
 **B9** (live, in the window) — works with ≥ 1 grant that is not Miscellaneous **≥ 309**; works with
 any funding string **≥ 329**; RePORTER cores **≥ 473** (454 linked + 19 from strings; corrections add
