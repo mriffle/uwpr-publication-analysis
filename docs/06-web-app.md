@@ -183,6 +183,36 @@ deliberately, dated, and noted in this header.
   sources are a list, not a table: a row header "OpenAlex" would repeat one in the evidence
   sources' table, and a by-name lookup of that table would find two. With no funding data the
   section is one sentence. A test holds it to §12.11 rule 1, with no wording of credit or cause.
+- *2026-09-26, §6, §8 and §9, the Funding impact view, a legend's non-filters, and where focus
+  goes after the switch* ([09](09-funding-impact.md) §12.5). `/funding` is now the view, in
+  §12.5's order, behind the flag still. It filters the publications as the overview does and
+  computes the scope once, so every figure, chart, table and the live-region sentence read the
+  same grants. An agency's bar and an agency's segment apply the agency filter, as §6 asks of a
+  mark. The year bars and the grant types are static, and say so. Agency and grant links keep the
+  query string and record the page left, as a publication's do. Playwright now runs axe on the
+  placed components in both themes, excluded, by agency and as tables. It found nothing, and
+  §9's contrast check is closed for them.
+  **§8, "one legend": an entry that is not a filter value is plain text.** The legend drew every
+  entry as a button whenever the chart could filter. So research areas' "Other" was a button
+  announcing "Activate to filter by it" that did nothing; W2 kept it to leave that chart as it
+  was. `ChartLegend` now draws such an entry as the static legend draws every entry, and the
+  segments keep saying why in their names. This changes the research-areas legend deliberately,
+  and its test says so.
+  **§9, focus after the switch.** The funding view focused its `h1` on opening; the publications
+  view did not. So switching back from Funding impact left focus on the document, the link the
+  reader pressed having gone with its page. The publications view now focuses its `h1` when the
+  switch opened it, and only then. A cold load, a filter change and a return from a publication
+  leave focus as before: on a return, focus on the heading would move the reader away from the
+  list they came back to. The Router records which view the switch opened, and any other step
+  it takes clears that. The browser's own back and forward do not clear it, so going forward
+  over a switch focuses the heading again, as the switch did.
+  **§8, the chart kit gains three small options**, each tested and none changing a chart
+  already drawn. `YearSeriesChart` gives `describeValue` the point and takes tooltip rows, so a
+  year of grants with no known amount says so rather than reading as $0. `HorizontalBarChart` and
+  `RankedBarCard` take `markFormat`, rounded dollars on the axis and beside the bar, with the
+  tooltip, table and accessible name exact. The frames take a margin, and `WIDE_MARGIN` keeps a
+  "$120M" tick off the rotated axis title, which `DEFAULT_MARGIN`'s counts had room for and
+  dollars did not. The JavaScript is 130.2 KB gzipped, from 119.3.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -519,7 +549,8 @@ Detailed visual design happens at implementation against the sample export. The 
 - **No information carried by colour alone** — a preprint mark, a retraction flag and a partial
   year all carry text or shape as well.
 - **Charts read as one system.** One axis treatment, one tooltip, one legend, one number format,
-  from the shared kit (§11.2), not per-chart decisions.
+  from the shared kit (§11.2), not per-chart decisions. A legend entry that is not a filter
+  value, such as "Other", is text, never a control that does nothing.
 - **Reduced motion respected.** Transitions are an affordance, not decoration, and are dropped
   entirely when the system asks.
 
@@ -538,7 +569,8 @@ Detailed visual design happens at implementation against the sample export. The 
 - The switch between views is a `<nav>` of links, and the view being read has
   `aria-current="page"`. It is not ARIA tabs, because each view is a separate page with its own
   address. The funding view and the publication, agency and grant pages move focus to their `h1`
-  when they open, so a reader who switched or opened one hears where they are.
+  when they open, so a reader who switched or opened one hears where they are. The publications
+  view does so when the switch opened it, and not on a cold load or a return from a publication.
 - Automated checks in CI (§12) plus a keyboard walkthrough before release. Automated checks catch
   perhaps half of what matters and are not sufficient on their own.
 

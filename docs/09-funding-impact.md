@@ -516,6 +516,41 @@ plan. [08](08-implementation.md) records them as they are built.
     but four of G.5A's.
   - **The total's definition** now says "not money spent on this work", §12.11 rule 2's words and
     the view's, where W6 wrote "not money spent on the work that lists them".
+- *2026-09-26, W7 — the Funding impact view (§12.5) as placed, where §12.5 was silent.* The view
+  is §12.5's in its order, and these are the readings it settles:
+  - **The value-by-agency segments apply the agency filter**, as new grants by agency's do.
+    Item 3 makes the year bars static because their year is a first year. A segment's series is
+    an agency, whatever its year, so it is a mark like any other agency mark. "Other" is never a
+    filter, in the plot or in the legend.
+  - **Ranked by value, an agency with no known amount is not drawn**, since its bar would stand at
+    $0. The note counts such agencies and says to rank by grants to see them. Miscellaneous is
+    never ranked, and it has no value, so by value the note names it. By grants it is its own
+    last bar, tagged "unmatched numbers" and selectable, since §12.4 makes it a filter value. The
+    chart draws fifteen agencies and counts the rest, as the overview's ranked charts do.
+  - **Grant types are one card with a By value / By grants switch.** They are static in both.
+    A type with no grant is not drawn. By value, a type whose grants all lack an amount is left
+    out and counted, as the agencies are.
+  - **Nothing known is a dash, never $0.** In the year table, a year with no grant entering is a
+    dash. A year whose grants all lack an amount reads "not known", and the grants entering and
+    those with no known amount have columns beside it. A year's accessible name says both counts.
+    In the value-by-agency table, a cell with no known amount is a dash, and the caption says it
+    is not $0.
+  - **The empty states replace §12.5 items 3–7 with one block.** The headline figures stay above
+    it. With no publication matching it is the overview's chart-empty state, once. With
+    publications matching but none listing a grant in scope, it says so, and that this is not a
+    finding that the work had no funding. When every grant in view is an excluded
+    institution-wide award, it says so instead, pointing at the switch. Each offers to remove the
+    last filter.
+  - **The Miscellaneous sentence** links to the view with the agency selection set to
+    Miscellaneous alone, the rest of the query kept ("Show only the unmatched numbers"). It is
+    left out when that is the view already. Coverage always states the FY1985 and active counts,
+    and states the unconverted count only when there is one.
+  - **Agency and grant links keep the query string**, like a publication's, and the in-app open
+    records the page left. W6's note that a grant's link carries "nothing of the filter" is
+    superseded. The entity pages already read the query for their way out, and a new tab now
+    lands on the same address as the in-app open.
+  - **The grants CSV is named `<short name>-grants-<export date>.csv`**, as
+    `uwpr-grants-2026-09-26.csv`.
 
 ---
 
