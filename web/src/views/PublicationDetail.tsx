@@ -2,9 +2,13 @@
  * One publication: what it is, who wrote it, and why it is counted (docs/06 §5).
  *
  * Renders docs/05 §6 in that order: identity; links; authors with affiliations and staff markers;
- * research areas at all four levels; citations; **why this is a UWPR publication**; other
- * versions; retraction if flagged. "Every element is already in the store; nothing is generated,
- * summarised or paraphrased."
+ * research areas at all four levels; citations; **why this is a UWPR publication**; the funding
+ * the publication lists (docs/09 §12.8); other versions; retraction if flagged. "Every element is
+ * already in the store; nothing is generated, summarised or paraphrased."
+ *
+ * The funding section is drawn only when the app gives it the funding index and the links, which
+ * it does only in a build with the Funding impact view (`VITE_FUNDING`), and it draws nothing
+ * when the export has no funding data (§12.10).
  *
  * **Everything is rendered as stored** (docs/06 §5). One work's title is a filename and one
  * excerpt carries an undecoded XML entity; both appear exactly as the pipeline wrote them,
@@ -15,6 +19,9 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { BackLink, useCloseOnEscape } from '../components/BackLink';
 import { EvidenceSection } from '../components/EvidenceSection';
+import type { FundingLinks } from '../components/FundingLinks';
+import { FundingSection } from '../components/FundingSection';
+import type { FundingIndex } from '../contract/funding';
 import type { Author, Resource, Topic, Work } from '../contract/types';
 import { BACK_LABELS } from '../routing/navigation';
 import { formatDate } from '../format/date';
@@ -52,6 +59,12 @@ export interface PublicationDetailProps {
    * a reader who followed an old one is told which work it opened.
    */
   resolvedFrom?: string | null;
+  /**
+   * "Funding listed in this publication" (docs/09 §12.8): the export's funding index —
+   * `fundingOf(doc)`, null when it has no funding data — and the agency and grant links. Both are
+   * given only in a build with the Funding impact view; without them there is no section.
+   */
+  funding?: { index: FundingIndex | null; links: FundingLinks };
 }
 
 const doiUrl = (doi: string): string => `https://doi.org/${doi}`;
@@ -109,6 +122,7 @@ export function PublicationDetail({
   backLabel = BACK_LABELS.overview,
   overviewHref,
   resolvedFrom = null,
+  funding,
 }: PublicationDetailProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
 
@@ -322,6 +336,17 @@ export function PublicationDetail({
         read.
       </p>
       <EvidenceSection work={work} />
+
+      {/* The funding the publication lists (docs/09 §12.8), after the evidence, whose R2 entry
+          it points back to, and before the other versions. */}
+      {funding === undefined ? null : (
+        <FundingSection
+          work={work}
+          index={funding.index}
+          resource={resource}
+          links={funding.links}
+        />
+      )}
 
       {/* 7. Other versions (docs/05 §6.7). */}
       {work.versions.length > 0 ? (

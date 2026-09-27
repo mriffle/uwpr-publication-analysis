@@ -1499,3 +1499,46 @@ button.chart-legend-item.is-selected {
 .funding-unmatched {
   padding-left: 1.2rem;
 }
+
+/* --- the agency and grant pages (docs/09 §12.6, §12.7) ------------------------------------ */
+
+/* The facts list reads as the publication's Funding section does, a little more open. */
+.entity-facts {
+  margin: 0.75rem 0;
+  display: grid;
+  gap: 0.3rem;
+}
+
+/* The ways into a view with this agency added: links on one line, wrapping on a phone. */
+.entity-ways {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0.75rem 0;
+}
+
+/* The funder's own page. */
+.entity-source {
+  margin: 0.75rem 0;
+}
+
+/* The publications, compactly: a title each, its year and venue beside it in the muted tone. */
+.entity-publications {
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.entity-publications li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.entity-publications li p {
+  margin: 0.25rem 0 0;
+}
+
+.entity-publication-meta {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}

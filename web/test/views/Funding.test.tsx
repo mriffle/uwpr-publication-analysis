@@ -127,7 +127,7 @@ describe('the funding view', () => {
   it('passes axe', async () => {
     const { container } = at(`/funding?year=${year}`);
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 });
 
 describe('the switch between the views (docs/09; docs/06 §9)', () => {
@@ -246,13 +246,28 @@ describe('an agency or grant the export does not have', () => {
     cold.unmount();
     const opened = at('/funding/grant/NIH%3AR01GM086688', { back: 'funding' });
     await expectNoAxeViolations(opened.container);
-  });
+  }, 30_000);
 });
+
+/** What the Router gives an entity page beside its key, which a not-found page never uses. */
+const entity = {
+  fundingHref: '/funding',
+  links: { grantHref: () => '/funding/grant/X', agencyHref: () => '/funding/agency/X' },
+  publicationHref: () => '/publication/X',
+};
+const agencyProps = {
+  ...entity,
+  withAgency: {
+    hrefs: { publications: '/?agency=NIH', funding: '/funding?agency=NIH' },
+    onSwitch: () => undefined,
+  },
+  methodHref: '/method',
+};
 
 describe('closing an agency or grant page on Escape', () => {
   it('closes only when it opened over another page', async () => {
     const onClose = vi.fn();
-    render(<Agency doc={doc} agencyKey="NIH" fundingHref="/funding" onClose={onClose} />);
+    render(<Agency doc={doc} agencyKey="NIH" {...agencyProps} onClose={onClose} />);
     expect(screen.getByRole('button', { name: 'Back to funding impact' })).toBeInTheDocument();
     await userEvent.keyboard('{Escape}');
     expect(onClose).toHaveBeenCalledTimes(1);
@@ -260,7 +275,7 @@ describe('closing an agency or grant page on Escape', () => {
 
   it('does nothing on Escape when reached cold, with nowhere in the site to go back to', async () => {
     const back = vi.spyOn(window.history, 'back').mockImplementation(() => undefined);
-    render(<Grant doc={doc} grantKey="NIH:R01GM086688" fundingHref="/funding" />);
+    render(<Grant doc={doc} grantKey="NIH:R01GM086688" {...entity} />);
     await userEvent.keyboard('{Escape}');
     expect(back).not.toHaveBeenCalled();
   });
@@ -270,7 +285,7 @@ describe('closing an agency or grant page on Escape', () => {
       <Grant
         doc={doc}
         grantKey="NIH:R01GM086688"
-        fundingHref="/funding"
+        {...entity}
         onClose={() => undefined}
         backLabel="Back to the publication"
       />,

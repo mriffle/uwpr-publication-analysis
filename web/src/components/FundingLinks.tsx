@@ -30,7 +30,11 @@ interface InAppLinkProps {
   children: ReactNode;
 }
 
-function InAppLink({ href, onOpen, children }: InAppLinkProps) {
+/**
+ * A real link the app opens in place on a plain left click, when it has a way to; the entity
+ * pages use it for their publications and their ways into a view, as well as for these.
+ */
+export function InAppLink({ href, onOpen, children }: InAppLinkProps) {
   return (
     <a
       href={href}

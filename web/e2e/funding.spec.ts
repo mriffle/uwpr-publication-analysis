@@ -12,10 +12,13 @@
  * how CI builds it. Without the flag the view's specs are skipped, and one spec checks the other
  * half of the promise: that such a build has no funding entry point at all.
  *
- * Nothing is hard-coded: the year, the agency and the counts come from whatever export the
- * preview server serves — `samples/export/` by default, the real one under `UWPR_EXPORT_DIR`. The
- * not-found keys are made up on purpose, because the page under test is the one for a key the
- * export lacks.
+ * Nothing is hard-coded: the year, the agency, the grant, the publication and the counts come from
+ * whatever export the preview server serves — `samples/export/` by default, the real one under
+ * `UWPR_EXPORT_DIR`. The not-found keys are made up on purpose, because the page under test is the
+ * one for a key the export lacks. The agency and grant pages (§12.6, §12.7) are walked as a chain,
+ * funding → agency → grant → publication and back three times, since only a real History API
+ * shows each entry keeping its way back, and are reached cold, where the `404.html` fallback
+ * serves them.
  */
 import { readFileSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
@@ -23,12 +26,31 @@ import { expect, test, type Page } from '@playwright/test';
 
 const FUNDING = process.env.VITE_FUNDING === '1';
 
+interface Listing {
+  grant: string;
+  agencies: string[];
+  cited_as?: string[];
+}
+
 interface ExportDocument {
-  works: { year: number; grants?: { grant: string; agencies: string[] }[] }[];
+  works: { id: string; title: string; year: number; grants?: Listing[] }[];
   /** Absent in a 1.0 export; its `version` is null in a 1.1 export with no funding data. */
   funding?: {
     version: string | null;
-    agencies: { code: string; name: string }[];
+    agencies: {
+      code: string;
+      name: string;
+      short_name: string | null;
+      parent: string | null;
+      group: string;
+    }[];
+    grants: {
+      key: string;
+      agency: string;
+      number: string;
+      title: string | null;
+      fiscal_years: Record<string, number | null> | null;
+    }[];
   } | null;
 }
 
@@ -41,6 +63,49 @@ async function readExport(page: Page): Promise<ExportDocument> {
 const hasFunding = (doc: ExportDocument): boolean => (doc.funding?.version ?? null) !== null;
 
 const views = (page: Page) => page.getByRole('navigation', { name: 'Views' });
+
+/**
+ * A publication, one grant it lists that matched a record, and that grant's agency: the chain
+ * funding → agency → grant → publication, read from whatever export is served.
+ */
+function chainOf(doc: ExportDocument) {
+  const misc = new Set(
+    (doc.funding?.agencies ?? [])
+      .filter((agency) => agency.group === 'miscellaneous')
+      .map((agency) => agency.code),
+  );
+  for (const work of doc.works) {
+    for (const entry of work.grants ?? []) {
+      if (entry.agencies.some((code) => misc.has(code))) continue;
+      const grant = doc.funding?.grants.find((candidate) => candidate.key === entry.grant);
+      const agency = doc.funding?.agencies.find((candidate) => candidate.code === grant?.agency);
+      if (grant && agency) return { work, grant, agency };
+    }
+  }
+  return null;
+}
+
+/** The label the funding tables give an agency: its short name, else its name. */
+const agencyLabel = (agency: { name: string; short_name: string | null }) =>
+  agency.short_name ?? agency.name;
+
+/** An agency page worth checking: one with agencies within it, where there is one. */
+function agencyWithChildren(doc: ExportDocument) {
+  const agencies = doc.funding?.agencies ?? [];
+  return (
+    agencies.find((agency) => agencies.some((child) => child.parent === agency.code)) ?? agencies[0]
+  );
+}
+
+/** A grant page worth checking: one with an amount by fiscal year to draw, where there is one. */
+function grantWithYears(doc: ExportDocument) {
+  const grants = doc.funding?.grants ?? [];
+  return (
+    grants.find((grant) =>
+      Object.values(grant.fiscal_years ?? {}).some((amount) => amount !== null),
+    ) ?? grants[0]
+  );
+}
 
 /** The live region: the filter bar's sentence, the first status on either view (docs/06 §9). */
 const sentence = (page: Page) => page.getByRole('status').first();
@@ -292,9 +357,143 @@ test.describe('a build with the Funding impact view', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Funding agency not found');
   });
 
+  test('funding → agency → grant → publication, and back three times, each named (§12.3)', async ({
+    page,
+  }) => {
+    const doc = await readExport(page);
+    const chain = chainOf(doc);
+    test.skip(chain === null, 'The served export lists no matched grant.');
+    const { work, grant, agency } = chain!;
+    const query = `?year=${String(work.year)}`;
+    const agencyPath = `/funding/agency/${encodeURIComponent(agency.code)}${query}`;
+    const grantPath = `/funding/grant/${encodeURIComponent(grant.key)}${query}`;
+    const h1 = page.getByRole('heading', { level: 1 });
+
+    await page.goto(`/funding${query}`);
+    await page
+      .getByRole('table', { name: /The agencies of the grants listed/ })
+      .getByRole('rowheader')
+      .getByRole('link', { name: agencyLabel(agency), exact: true })
+      .click();
+    await expect(page).toHaveURL(agencyPath);
+    await expect(h1).toHaveText(agency.name);
+    await expect(h1).toBeFocused();
+
+    await page
+      .getByRole('table', { name: /Every grant of/ })
+      .getByRole('rowheader')
+      .getByRole('link', { name: grant.number, exact: true })
+      .click();
+    await expect(page).toHaveURL(grantPath);
+    await expect(h1).toHaveText(grant.title ?? grant.number);
+    await expect(h1).toBeFocused();
+
+    await page
+      .getByRole('list', { name: 'Publications listing this grant' })
+      .getByRole('link', { name: work.title, exact: true })
+      .click();
+    await expect(page).toHaveURL(`/publication/${work.id}${query}`);
+    await expect(h1).toHaveText(work.title);
+
+    await page.getByRole('button', { name: 'Back to the grant' }).click();
+    await expect(page).toHaveURL(grantPath);
+    await expect(h1).toHaveText(grant.title ?? grant.number);
+    await page.getByRole('button', { name: 'Back to the agency' }).click();
+    await expect(page).toHaveURL(agencyPath);
+    await expect(h1).toHaveText(agency.name);
+    await page.getByRole('button', { name: 'Back to funding impact' }).click();
+    await expect(page).toHaveURL(`/funding${query}`);
+    await expect(h1).toContainText('funding impact');
+  });
+
+  test('an agency and a grant resolve from cold, each linking to the funding view', async ({
+    page,
+  }) => {
+    const doc = await readExport(page);
+    const chain = chainOf(doc);
+    test.skip(chain === null, 'The served export lists no matched grant.');
+    const { grant, agency } = chain!;
+    const parent = page.getByRole('link', { name: 'See funding impact', exact: true });
+
+    await page.goto(`/funding/agency/${encodeURIComponent(agency.code)}`);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(agency.name);
+    await expect(parent).toHaveAttribute('href', '/funding');
+    await expect(page.getByRole('button', { name: /^Back to/ })).toHaveCount(0);
+
+    const grantPath = `/funding/grant/${encodeURIComponent(grant.key)}?year=2020`;
+    await page.goto(grantPath);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(grant.title ?? grant.number);
+    await expect(parent).toHaveAttribute('href', '/funding?year=2020');
+    // Arrived cold, Escape has nowhere in the site to go back to, so it goes nowhere.
+    await page.keyboard.press('Escape');
+    await expect(page).toHaveURL(grantPath);
+  });
+
+  test('a corrected reference shows what the paper wrote on the publication (§12.11)', async ({
+    page,
+  }) => {
+    const doc = await readExport(page);
+    const work = doc.works.find((entry) =>
+      (entry.grants ?? []).some((listing) => listing.cited_as),
+    );
+    test.skip(work === undefined, 'No listing in the served export carries cited_as.');
+    const written = (work!.grants ?? []).find((listing) => listing.cited_as)?.cited_as?.[0] ?? '';
+
+    await page.goto(`/publication/${work!.id}`);
+    await expect(
+      page.getByRole('region', { name: 'Funding listed in this publication' }),
+    ).toContainText(`Also written in the paper as “${written}”`);
+  });
+
   for (const theme of ['light', 'dark'] as const) {
     test.describe(`${theme} theme`, () => {
       test.use({ colorScheme: theme });
+
+      test('an agency page passes axe, as charts and as tables', async ({ page }) => {
+        const doc = await readExport(page);
+        const agency = agencyWithChildren(doc);
+        test.skip(!hasFunding(doc) || agency === undefined, 'No funding data is served.');
+        await page.goto(`/funding/agency/${encodeURIComponent(agency!.code)}`);
+        await expect(page.getByRole('heading', { level: 1 })).toHaveText(agency!.name);
+        await expectClean(page);
+        const toTable = page.getByRole('button', { name: 'View as table' });
+        while ((await toTable.count()) > 0) await toTable.first().click();
+        await expectClean(page);
+      });
+
+      test('a grant page passes axe, as a chart and as a table', async ({ page }) => {
+        const doc = await readExport(page);
+        const grant = grantWithYears(doc);
+        test.skip(!hasFunding(doc) || grant === undefined, 'No funding data is served.');
+        await page.goto(`/funding/grant/${encodeURIComponent(grant!.key)}`);
+        await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+          grant!.title ?? grant!.number,
+        );
+        await expectClean(page);
+        const toTable = page.getByRole('button', { name: 'View as table' });
+        while ((await toTable.count()) > 0) await toTable.first().click();
+        await expectClean(page);
+      });
+
+      test('the Miscellaneous page passes axe', async ({ page }) => {
+        const doc = await readExport(page);
+        const misc = doc.funding?.agencies.find((agency) => agency.group === 'miscellaneous');
+        test.skip(misc === undefined, 'The served export has no unmatched numbers.');
+        await page.goto(`/funding/agency/${encodeURIComponent(misc!.code)}`);
+        await expect(page.getByRole('heading', { level: 1 })).toHaveText(misc!.name);
+        await expectClean(page);
+      });
+
+      test('a publication’s Funding section passes axe', async ({ page }) => {
+        const doc = await readExport(page);
+        const chain = chainOf(doc);
+        test.skip(chain === null, 'The served export lists no matched grant.');
+        await page.goto(`/publication/${chain!.work.id}`);
+        await expect(
+          page.getByRole('region', { name: 'Funding listed in this publication' }),
+        ).toBeVisible();
+        await expectClean(page);
+      });
 
       test('the overview’s view switch passes axe', async ({ page }) => {
         await page.goto('/');
@@ -361,6 +560,21 @@ test.describe('a build without the Funding impact view', () => {
     for (const path of ['/funding', '/funding/agency/NIH', '/funding/grant/NIH%3AR01GM086688']) {
       await page.goto(path);
       await expect(page.getByRole('alert')).toContainText('There is no page at this address.');
+    }
+  });
+
+  test('gives a publication no Funding section and no funding link (§12.12)', async ({ page }) => {
+    const doc = await readExport(page);
+    const work = doc.works.find((entry) => (entry.grants ?? []).length > 0) ?? doc.works[0];
+    await page.goto(`/publication/${work!.id}`);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(work!.title);
+    await expect(
+      page.getByRole('heading', { name: 'Funding listed in this publication' }),
+    ).toHaveCount(0);
+    for (const href of await page
+      .getByRole('link')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''))) {
+      expect(href).not.toMatch(/funding/);
     }
   });
 });

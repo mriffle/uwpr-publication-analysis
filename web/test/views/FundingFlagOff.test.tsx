@@ -69,4 +69,18 @@ describe('a build without the Funding impact view', () => {
     render(<App url="/data/uwpr_publications.json" fetcher={() => new Promise(() => undefined)} />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Publications');
   });
+
+  it('gives a publication no Funding section, and so no link to an agency or grant', () => {
+    // Every work in the sample: the section would appear on each with the flag on (§12.8).
+    for (const work of doc.works) {
+      const view = at(`/publication/${work.id}`);
+      expect(
+        screen.queryByRole('heading', { name: 'Funding listed in this publication' }),
+      ).not.toBeInTheDocument();
+      for (const link of screen.getAllByRole('link')) {
+        expect(link.getAttribute('href') ?? '').not.toMatch(/funding/);
+      }
+      view.unmount();
+    }
+  });
 });

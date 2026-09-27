@@ -62,6 +62,35 @@ function howNote(listing: GrantListing): string | null {
   }
 }
 
+/**
+ * What one publication's listing says about how it reached the grant (§12.11 rule 8): what the
+ * paper wrote, wherever `cited_as` is present and whatever `how` is; how an NIH link or a
+ * correction reached it; and an override's reason, by whom and when, as a judgement. Shared by
+ * this section and the grant page's publications, so the two never word a listing differently.
+ */
+export function ListingNotes({ listing }: { listing: GrantListing }) {
+  const note = howNote(listing);
+  const override = listing.override;
+  return (
+    <>
+      {listing.cited_as === undefined ? null : (
+        <p className="funding-cited">Also written in the paper as {quoted(listing.cited_as)}.</p>
+      )}
+      {note === null ? null : <p className="funding-how">{note}</p>}
+      {override === undefined ? null : (
+        <div className="funding-override">
+          <p className="evidence-label">Matched by a recorded decision, not by a rule</p>
+          <p className="evidence-reason">{override.reason}</p>
+          <p>
+            Decided by {override.by} on {formatDate(override.date)} and recorded in the project’s
+            overrides file. This is a judgement about the reference, not something measured in it.
+          </p>
+        </div>
+      )}
+    </>
+  );
+}
+
 function GrantItem({
   listing,
   grant,
@@ -78,8 +107,6 @@ function GrantItem({
   const years = grantYears(grant);
   const people = investigatorNames(grant);
   const tags = grantTags(grant, false);
-  const note = howNote(listing);
-  const override = listing.override;
 
   return (
     <li className="funding-item">
@@ -131,20 +158,7 @@ function GrantItem({
           </div>
         ) : null}
       </dl>
-      {listing.cited_as === undefined ? null : (
-        <p className="funding-cited">Also written in the paper as {quoted(listing.cited_as)}.</p>
-      )}
-      {note === null ? null : <p className="funding-how">{note}</p>}
-      {override === undefined ? null : (
-        <div className="funding-override">
-          <p className="evidence-label">Matched by a recorded decision, not by a rule</p>
-          <p className="evidence-reason">{override.reason}</p>
-          <p>
-            Decided by {override.by} on {formatDate(override.date)} and recorded in the project’s
-            overrides file. This is a judgement about the reference, not something measured in it.
-          </p>
-        </div>
-      )}
+      <ListingNotes listing={listing} />
       {grant.url === null || grant.url_name === null ? null : (
         <p className="funding-source">
           <a href={grant.url} rel="noreferrer" aria-label={`${grant.url_name} for ${grant.number}`}>

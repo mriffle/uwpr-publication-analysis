@@ -32,15 +32,22 @@ export function BackLink({ onBack, backLabel, parentHref, parentLabel }: BackLin
   );
 }
 
+/** A field where Escape is the field's own key: a search box clears itself with it. */
+const isTextEntry = (target: EventTarget | null): boolean =>
+  target instanceof HTMLElement &&
+  (target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName));
+
 /**
  * Escape closes a page that opened over another, and only then: arriving cold, Escape has
  * nowhere to go back to within the site, and must not take the reader somewhere they never were.
+ * Nor does it close from a text field, such as an agency page's grant search, where the reader
+ * pressing Escape means to clear what they typed, not to leave the page.
  */
 export function useCloseOnEscape(onClose: (() => void) | undefined): void {
   useEffect(() => {
     if (!onClose) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
+      if (event.key === 'Escape' && !isTextEntry(event.target)) onClose();
     };
     window.addEventListener('keydown', onKeyDown);
     return () => {

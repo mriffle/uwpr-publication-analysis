@@ -22,6 +22,7 @@ import type { SiteView, ViewSwitch } from './components/SiteHeader';
 import { basePath, exportUrl, fundingEnabled, lookupUrl } from './contract/config';
 import { parseIdentifier } from './contract/identifier';
 import { describeFailure } from './contract/load';
+import { fundingOf } from './contract/funding';
 import { buildWorkIndex, resolveFromExport, resolveFromLookup } from './contract/resolve';
 import { useExportDocument } from './contract/useExport';
 import { useLookupIndex } from './contract/useLookup';
@@ -146,8 +147,9 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
   // The view the switch has just opened, so that it can take focus (docs/06 §9): the link the
   // reader activated belonged to the page that has gone, and focus would otherwise fall to the
   // document. The funding view always focuses its heading as it opens; the publications view
-  // does so only when the switch brought the reader there — not on a cold load, and not on a
-  // return from a publication, where it never has. Every other step the app takes clears it.
+  // does so only when the switch brought the reader there — or an agency page's way into it,
+  // which is the same step — not on a cold load, and not on a return from a publication, where
+  // it never has. Every other step the app takes clears it.
   const [switchedTo, setSwitchedTo] = useState<SiteView | null>(null);
   const go = useCallback(
     (to: NavigateTo, options?: NavigateOptions) => {
@@ -250,11 +252,15 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
 
   // The switch between the two views (docs/09): peers, so a switch keeps the query string and
   // stores no way back — neither view opened over the other. It records which view it opened,
-  // for the focus (above).
+  // for the focus (above). An agency page's two ways into a view (§12.6) are the same step with
+  // the agency added to the query, so they come here too, with the query they carry.
   const switchView = useCallback(
-    (to: SiteView) => {
+    (to: SiteView, query?: string) => {
       setSwitchedTo(to);
-      navigate({ pathname: to === 'funding' ? fundingPath(base) : overviewPath(base) });
+      navigate({
+        pathname: to === 'funding' ? fundingPath(base) : overviewPath(base),
+        ...(query === undefined ? {} : { search: query }),
+      });
     },
     [navigate, base],
   );
@@ -264,7 +270,9 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
           publications: `${overviewPath(base)}${search}`,
           funding: `${fundingPath(base)}${search}`,
         },
-        onSwitch: switchView,
+        onSwitch: (to) => {
+          switchView(to);
+        },
       }
     : undefined;
 
@@ -319,12 +327,56 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
 
   if (route.kind === 'agency' || route.kind === 'grant') {
     // Entity pages show whole-corpus facts, like a publication; the query string is kept only
-    // so the way out returns to the funding view the reader was looking at.
+    // so the ways out return to the view the reader was looking at. Each is keyed by its code or
+    // key, so moving from one agency to another starts the page afresh, its grants table's
+    // search and sort with it.
     const fundingHref = `${fundingPath(base)}${search}`;
-    return route.kind === 'agency' ? (
-      <Agency doc={doc} agencyKey={route.key} fundingHref={fundingHref} {...close} />
-    ) : (
-      <Grant doc={doc} grantKey={route.key} fundingHref={fundingHref} {...close} />
+    if (route.kind === 'grant') {
+      return (
+        <Grant
+          key={route.key}
+          doc={doc}
+          grantKey={route.key}
+          fundingHref={fundingHref}
+          links={fundingLinks}
+          publicationHref={publicationHref}
+          onOpenPublication={openPublication}
+          {...close}
+        />
+      );
+    }
+    // docs/09 §12.6: "the current filter plus the agency", in either view, the rest of the
+    // query (the sort, the institution-wide position) kept.
+    const { agency: selected } = view.filter;
+    const query = encodeViewToQuery({
+      ...view,
+      filter: {
+        ...view.filter,
+        agency: selected.includes(route.key) ? selected : [...selected, route.key],
+      },
+    });
+    const withAgency: ViewSwitch = {
+      hrefs: {
+        publications: `${overviewPath(base)}${query}`,
+        funding: `${fundingPath(base)}${query}`,
+      },
+      onSwitch: (to) => {
+        switchView(to, query);
+      },
+    };
+    return (
+      <Agency
+        key={route.key}
+        doc={doc}
+        agencyKey={route.key}
+        fundingHref={fundingHref}
+        links={fundingLinks}
+        publicationHref={publicationHref}
+        onOpenPublication={openPublication}
+        withAgency={withAgency}
+        methodHref={methodHref}
+        {...close}
+      />
     );
   }
 
@@ -369,6 +421,9 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
       standalone={back === null}
       overviewHref={`${overviewPath(base)}${search}`}
       resolvedFrom={resolvedFrom}
+      // Only a build with the Funding impact view has the section (docs/09 §12.12), and its
+      // agency and grant links open as the view's do, recording the publication as the way back.
+      {...(funding ? { funding: { index: fundingOf(doc), links: fundingLinks } } : {})}
       {...close}
     />
   );

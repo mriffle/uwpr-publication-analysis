@@ -22,6 +22,10 @@
  * The values need not be counts: `formatValue` and `describeValue` let the same frame draw
  * dollars, with the exact figure in every accessible name, tooltip and table cell and only the
  * axes rounded (docs/06 §7).
+ *
+ * Nor need the years be calendar years, or the series cumulative: a grant's amounts by fiscal
+ * year take their own axis title and partial-period noun, and leave out the running total, whose
+ * "$0 so far" before the first reported amount would read as a figure (docs/09 §12.7).
  */
 import { useId, useState } from 'react';
 import { Bar, LinePath } from '@visx/shape';
@@ -80,9 +84,26 @@ export interface YearSeriesChartProps extends YearValueText {
   tooltipRows?: (point: YearPoint) => readonly { label: string; value: string }[];
   /** The plot's margins; `WIDE_MARGIN` for tick labels wider than a count's. */
   margin?: ChartMargin;
+  /** The horizontal axis title: "Year" by default, "Fiscal year (October to September)". */
+  xLabel?: string;
+  /** What a partial point is called under the chart: "year" by default, "fiscal year". */
+  partialNoun?: string;
+  /**
+   * False leaves out the running total: no line, no right-hand axis, and no cumulative clause in
+   * a bar's name or tooltip. True by default.
+   */
+  cumulative?: boolean;
+  /**
+   * The tooltip's value for a year, where the number alone would mislead: a fiscal year whose
+   * source reports no amount is not "$0". Defaults to `formatValue` of the point's value.
+   */
+  tooltipValue?: (point: YearPoint) => string;
 }
 
 const plural = (count: number, unit: SeriesUnit): string => (count === 1 ? unit.one : unit.many);
+
+/** The width, in pixels, a four-digit year's tick label needs to stand clear of the next. */
+const LABEL_ROOM = 34;
 
 /** The default sentence for one year's value: "2 publications", or the bare value. */
 const describeWith =
@@ -93,6 +114,8 @@ const describeWith =
 export interface YearMarkOptions extends YearValueText {
   /** False for a static chart, whose marks have no action to describe. Defaults to true. */
   selectable?: boolean;
+  /** False for a series drawn without its running total. Defaults to true. */
+  cumulative?: boolean;
 }
 
 /** The accessible name of one bar, which is also what the tooltip shows (docs/06 §7, §9). */
@@ -100,7 +123,12 @@ export function yearMarkLabel(
   point: YearPoint,
   selected: boolean,
   unit: SeriesUnit | undefined,
-  { formatValue = formatCount, describeValue, selectable = true }: YearMarkOptions = {},
+  {
+    formatValue = formatCount,
+    describeValue,
+    selectable = true,
+    cumulative = true,
+  }: YearMarkOptions = {},
 ): string {
   const partial = point.partial ? ', a partial year' : '';
   const describe = describeValue ?? describeWith(unit, formatValue);
@@ -109,10 +137,8 @@ export function yearMarkLabel(
     : selected
       ? ' Selected. Activate to remove this year from the filter.'
       : ' Activate to filter by this year.';
-  return (
-    `${String(point.year)}${partial}: ${describe(point.count, point)}, ` +
-    `${formatValue(point.cumulative)} cumulative.${action}`
-  );
+  const total = cumulative ? `, ${formatValue(point.cumulative)} cumulative` : '';
+  return `${String(point.year)}${partial}: ${describe(point.count, point)}${total}.${action}`;
 }
 
 /**
@@ -138,6 +164,10 @@ export function YearSeriesChart({
   rightTickFormat,
   tooltipRows,
   margin = DEFAULT_MARGIN,
+  xLabel = 'Year',
+  partialNoun = 'year',
+  cumulative = true,
+  tooltipValue,
 }: YearSeriesChartProps) {
   const patternId = useId();
   const [hovered, setHovered] = useState<YearPoint | null>(null);
@@ -145,6 +175,7 @@ export function YearSeriesChart({
   const markText: YearMarkOptions = {
     formatValue,
     selectable,
+    cumulative,
     ...(describeValue === undefined ? {} : { describeValue }),
   };
 
@@ -160,7 +191,10 @@ export function YearSeriesChart({
 
   // At narrow widths the year labels collide; thinning them is docs/06 §8's "reflow to fewer
   // categories rather than shrinking into illegibility".
-  const step = innerWidth < 420 ? 4 : innerWidth < 640 ? 2 : 1;
+  // A long series — a grant's forty fiscal years — thins by the room each label needs as well,
+  // which never thins the publication years' nineteen more than the widths above already do.
+  const byWidth = innerWidth > 0 ? Math.ceil((points.length * LABEL_ROOM) / innerWidth) : 1;
+  const step = Math.max(innerWidth < 420 ? 4 : innerWidth < 640 ? 2 : 1, byWidth);
   const tickValues = years.filter((_, index) => index % step === 0);
 
   const partialYears = points.filter((point) => point.partial).map((point) => point.year);
@@ -174,10 +208,9 @@ export function YearSeriesChart({
         label={label}
         xScale={xScale}
         yScale={yScale}
-        rightScale={cumulativeScale}
-        xLabel="Year"
+        {...(cumulative ? { rightScale: cumulativeScale, rightLabel: cumulativeAxisLabel } : {})}
+        xLabel={xLabel}
         yLabel={valueAxisLabel}
-        rightLabel={cumulativeAxisLabel}
         xTickValues={tickValues}
         {...(yTickFormat === undefined ? {} : { yTickFormat })}
         {...(rightTickFormat === undefined ? {} : { rightTickFormat })}
@@ -242,16 +275,18 @@ export function YearSeriesChart({
                 </Group>
               );
             })}
-            <LinePath<YearPoint>
-              data={[...points]}
-              x={(point) => (xScale(String(point.year)) ?? 0) + xScale.bandwidth() / 2}
-              y={(point) => cumulativeScale(point.cumulative)}
-              stroke={seriesColour(1)}
-              strokeWidth={2}
-              fill="none"
-              aria-hidden="true"
-              data-testid="cumulative-line"
-            />
+            {cumulative ? (
+              <LinePath<YearPoint>
+                data={[...points]}
+                x={(point) => (xScale(String(point.year)) ?? 0) + xScale.bandwidth() / 2}
+                y={(point) => cumulativeScale(point.cumulative)}
+                stroke={seriesColour(1)}
+                strokeWidth={2}
+                fill="none"
+                aria-hidden="true"
+                data-testid="cumulative-line"
+              />
+            ) : null}
           </>
         )}
       </ChartFrame>
@@ -259,15 +294,24 @@ export function YearSeriesChart({
         <ChartTooltip
           x={margin.left + (xScale(String(hovered.year)) ?? 0) + xScale.bandwidth() / 2}
           y={margin.top + yScale(hovered.count)}
-          title={hovered.partial ? `${String(hovered.year)} (partial year)` : String(hovered.year)}
+          title={
+            hovered.partial
+              ? `${String(hovered.year)} (partial ${partialNoun})`
+              : String(hovered.year)
+          }
           rows={[
-            { label: valueAxisLabel, value: formatValue(hovered.count) },
-            { label: cumulativeAxisLabel, value: formatValue(hovered.cumulative) },
+            {
+              label: valueAxisLabel,
+              value: tooltipValue ? tooltipValue(hovered) : formatValue(hovered.count),
+            },
+            ...(cumulative
+              ? [{ label: cumulativeAxisLabel, value: formatValue(hovered.cumulative) }]
+              : []),
             ...(tooltipRows?.(hovered) ?? []),
           ]}
         />
       ) : null}
-      <PartialKey labels={partialYears.map(String)} />
+      <PartialKey labels={partialYears.map(String)} noun={partialNoun} />
     </div>
   );
 }

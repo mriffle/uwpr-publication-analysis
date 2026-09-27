@@ -10,7 +10,7 @@
  * - **A converted amount shows its original and the rate year** (rule 5).
  * - **Active grants are marked** (rule 6): their totals still grow.
  */
-import type { Grant } from '../contract/types';
+import type { AmountSource, Grant } from '../contract/types';
 import { formatMoney, formatUsd } from './number';
 
 /** docs/09 §11.4's categories as a reader reads them. `center` covers programmes and resources. */
@@ -87,3 +87,25 @@ export function unknownAmountReason(grant: Pick<Grant, 'flags' | 'status'>): str
 /** The principal investigators as the funder publishes them (rule 9), or null for none. */
 export const investigatorNames = (grant: Pick<Grant, 'pis'>): string | null =>
   grant.pis.length === 0 ? null : grant.pis.map((person) => person.name).join('; ');
+
+/**
+ * What a lifetime total is, by the basis its source gives it (docs/09 §7.1), as a clause after
+ * "the total is": each source adds up a different thing, and the grant page says which.
+ */
+export const AMOUNT_BASIS_TEXT: Readonly<Record<AmountSource['basis'], string>> = {
+  reporter_fiscal_years:
+    'the sum of the grant’s award actions over every fiscal year NIH RePORTER holds, its sub-projects left out so that nothing is counted twice',
+  reporter_contract: 'the sum of the contract’s line items in NIH RePORTER',
+  reporter_task_order: 'the task order’s own total in NIH RePORTER, apart from the larger contract',
+  nsf_obligated: 'what NSF obligated to the award',
+  nsf_estimated: 'NSF’s estimated total for the award, larger than what it has obligated so far',
+  usaspending_obligation: 'the award’s total obligation, as USAspending records it',
+  openalex_amount: 'the amount OpenAlex records for the award',
+};
+
+/**
+ * One fiscal year's amount in words: "$1,000,000", or "no amount reported" for a year whose
+ * source rows report none — never "$0" (§12.11 rule 3).
+ */
+export const fiscalYearAmount = (amount: number | null): string =>
+  amount === null ? 'no amount reported' : formatUsd(amount);

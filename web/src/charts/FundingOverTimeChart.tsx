@@ -11,8 +11,8 @@
  *   filter — the year of the first publication shown that lists it — and a click applying the
  *   publication-year filter would change the very first years being drawn (§12.5 item 3).
  * - **Unknown is never $0** (§12.11 rule 3). A year whose grants all lack an amount says so in
- *   words, and its row says "not known"; a year or a bucket with nothing entering is a dash. The
- *   count of grants with no known amount stands beside each year's value.
+ *   words, and its row and its tooltip say "not known"; a year or a bucket with nothing entering
+ *   is a dash. The count of grants with no known amount stands beside each year's value.
  * - **An agency's segments apply the agency filter** — their series *is* an agency, whatever
  *   their year — while "Other" is a residue and never a filter. Miscellaneous is pinned, its own
  *   colour, and selectable like any agency (§12.4).
@@ -77,6 +77,11 @@ export function FundingOverTimeChart({ over, width, height }: FundingOverTimeCha
       yTickFormat={compactTick}
       rightTickFormat={compactTick}
       margin={WIDE_MARGIN}
+      // The table's words, not "$0", for a year whose grants all lack an amount or with none.
+      tooltipValue={(point) => {
+        const year = of(point.year);
+        return year === undefined ? formatUsd(point.count) : yearValueCell(year);
+      }}
       tooltipRows={(point) => {
         const year = of(point.year);
         if (year === undefined) return [];

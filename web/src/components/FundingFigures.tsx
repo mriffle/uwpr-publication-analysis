@@ -47,6 +47,12 @@ export interface FundingFiguresProps {
   onInstitutionWide?: ((position: InstitutionWide) => void) | undefined;
   /** A figure's definition on the method page, by its id (`FUNDING_DEFINITION_IDS`). */
   definitionHref?: ((id: FundingDefinitionId) => string) | undefined;
+  /**
+   * True on an agency's page, whose figures are over every publication rather than the ones a
+   * filter shows (docs/09 §12.6). The agencies figure, one agency by construction, is left out,
+   * and *K* of *N* says it is of every publication.
+   */
+  corpus?: boolean;
 }
 
 interface Figure {
@@ -112,8 +118,15 @@ function totalDefinition(figures: Figures, asOf: string | null): string {
   return `${worth} ${pluralize(figures.withoutAmount, 'grant')} with no known amount ${figures.withoutAmount === 1 ? 'is' : 'are'} not in it.`;
 }
 
-/** The figures in the order shown, each with its definition id. Exported for the id test. */
-export function fundingHeadlineFigures(figures: Figures, asOf: string | null): Figure[] {
+/**
+ * The figures in the order shown, each with its definition id. Exported for the id test.
+ * `corpus` is an agency page's: no agencies figure, and *K* of every publication (see the prop).
+ */
+export function fundingHeadlineFigures(
+  figures: Figures,
+  asOf: string | null,
+  corpus = false,
+): Figure[] {
   const unmatchedGrants =
     figures.miscellaneous === 0
       ? ''
@@ -124,7 +137,7 @@ export function fundingHeadlineFigures(figures: Figures, asOf: string | null): F
       ? ''
       : ` ${formatCount(onlyUnmatched)} more ${onlyUnmatched === 1 ? 'lists' : 'list'} only unmatched numbers.`;
 
-  return [
+  const all: Figure[] = [
     {
       id: 'funding-total',
       label: 'Total value of grants listed',
@@ -160,18 +173,24 @@ export function fundingHeadlineFigures(figures: Figures, asOf: string | null): F
       id: 'funding-publications',
       label: 'Publications listing a grant',
       value: `${formatCount(figures.withGrants)} of ${formatCount(figures.publications)}`,
-      definition: `Of the publications shown.${unmatchedPublications}`,
+      definition: `${corpus ? 'Of every publication here, whatever the filter.' : 'Of the publications shown.'}${unmatchedPublications}`,
     },
   ];
+  return corpus ? all.filter((figure) => figure.id !== 'funding-agencies') : all;
 }
 
-export function FundingFigures({ scope, onInstitutionWide, definitionHref }: FundingFiguresProps) {
+export function FundingFigures({
+  scope,
+  onInstitutionWide,
+  definitionHref,
+  corpus = false,
+}: FundingFiguresProps) {
   const positionId = useId();
   const index = scope.index;
   if (index === null) return null;
 
   const figures = fundingFigures(scope);
-  const [total, ...rest] = fundingHeadlineFigures(figures, index.funding.as_of);
+  const [total, ...rest] = fundingHeadlineFigures(figures, index.funding.as_of, corpus);
   const position = scope.selection.institutionWide;
   const overridden = position === 'exclude' && figures.institutionWide.included;
 
