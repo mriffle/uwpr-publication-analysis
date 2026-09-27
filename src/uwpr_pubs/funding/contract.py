@@ -1,8 +1,14 @@
-"""The export's funding shapes, `schema_version` 1.1 (docs/09 §11).
+"""The export's funding shapes, `schema_version` 1.2 (docs/09 §11).
 
 Kept apart from `uwpr_pubs.export`, which holds the rest of the contract, only so that the
-builder (`funding.export`), the summary (`funding.summary`) and the export can all import them
-without importing one another. `schemas/export.schema.json` is the authority; these mirror it.
+builder (`funding.export`), the summary (`funding.summary`), the counting rule
+(`funding.counting`) and the export can all import them without importing one another.
+`schemas/export.schema.json` is the authority; these mirror it.
+
+1.1 added funding. 1.2 added, without changing any field's meaning, what the counting rule needs:
+each grant's `spread_years`, `last_listed_year`, `counted_usd` and `counted_rule`, the summary's
+counted totals, and the block's `counting` constants. `amount_usd` stays the lifetime total
+everywhere.
 """
 
 from typing import Literal, NotRequired, TypedDict
@@ -27,6 +33,11 @@ ListingHow = Literal["listed", "corrected", "override", "nih_link"]
 HOW_ORDER: tuple[ListingHow, ...] = ("listed", "corrected", "override", "nih_link")
 
 FundingSourceId = Literal["reporter", "nsf", "usaspending", "openalex", "pubmed", "crossref", "pmc"]
+
+# Why a grant's counted amount is what it is (`funding.counting`): the first of these that applies,
+# in this order.
+CountedRule = Literal["full_amount", "undated", "ended_before", "began_after", "window"]
+COUNTED_RULES: tuple[CountedRule, ...] = ("full_amount", "undated", "ended_before", "began_after", "window")
 
 
 class ExportGrantOverride(TypedDict):
@@ -85,12 +96,17 @@ class ExportGrant(TypedDict):
     start_year: int | None
     end_year: int | None
     first_year: int | None
+    last_listed_year: int | None  # the year of the latest exported work that lists it
     amount_usd: int | None
     amount_original: int | float | None
     currency: str | None
     rate_year: int | None
     amount_source: ExportAmountSource | None
     fiscal_years: dict[str, int | None] | None
+    # An even spread of `amount_usd` over its years, for an amount with no fiscal years.
+    spread_years: dict[str, int] | None
+    counted_usd: int | None  # what the totals count, over every exported work that lists it
+    counted_rule: CountedRule | None  # null exactly when `counted_usd` is
     url: str | None
     url_name: str | None
     flags: list[GrantFlag]
@@ -151,6 +167,13 @@ class ExportFundingYear(TypedDict):
     amount_usd_institution_wide: int
 
 
+class ExportCountedYear(TypedDict):
+    """The counted dollars allocated to one award year (`funding.counting.award_years`)."""
+
+    counted_usd: int
+    counted_usd_institution_wide: int
+
+
 class ExportFundingSummary(TypedDict):
     """§11.6. Computed from the rows by `funding.summary`, for the cross-check."""
 
@@ -171,6 +194,19 @@ class ExportFundingSummary(TypedDict):
     first_year: int | None
     last_year: int | None
     by_first_year: dict[str, ExportFundingYear]
+    counted_usd: int
+    counted_usd_institution_wide: int
+    counted_usd_nih: int
+    grants_by_counted_rule: dict[CountedRule, int]  # a rule no grant falls under is omitted
+    counted_by_year: dict[str, ExportCountedYear]  # a year only when its counted_usd is non-zero
+
+
+class ExportFundingCounting(TypedDict):
+    """The counting rule's constants, so the app hard-codes none of them."""
+
+    from_year: int
+    last_years: int
+    full_amount_categories: list[GrantCategory]
 
 
 class ExportFunding(TypedDict):
@@ -183,5 +219,6 @@ class ExportFunding(TypedDict):
     exchange_rates: list[ExportExchangeRates]
     method: ExportFundingMethod
     summary: ExportFundingSummary
+    counting: ExportFundingCounting  # present even with no funding data
     agencies: list[ExportAgency]
     grants: list[ExportGrant]

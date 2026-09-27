@@ -50,6 +50,14 @@
         "short_name": "EU"
       },
       {
+        "code": "F4399999998",
+        "country": "US",
+        "group": "us_nonfederal",
+        "name": "SAMPLE Medical Research Foundation",
+        "parent": null,
+        "short_name": null
+      },
+      {
         "code": "F4399999999",
         "country": "UA",
         "group": "non_us",
@@ -170,6 +178,14 @@
         "short_name": "NSF"
       },
       {
+        "code": "OD",
+        "country": "US",
+        "group": "us_federal",
+        "name": "NIH Office of the Director",
+        "parent": "NIH",
+        "short_name": "OD"
+      },
+      {
         "code": "SSF",
         "country": "SE",
         "group": "non_us",
@@ -195,6 +211,13 @@
       }
     ],
     "as_of": "2026-09-27",
+    "counting": {
+      "from_year": 2006,
+      "full_amount_categories": [
+        "instrument"
+      ],
+      "last_years": 5
+    },
     "exchange_rates": [
       {
         "currencies": [
@@ -271,6 +294,8 @@
         },
         "amount_usd": 90000,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 90000,
         "currency": "USD",
         "end_year": 2016,
         "first_year": 2026,
@@ -279,6 +304,7 @@
           "amount_from_openalex"
         ],
         "key": "AHA:15POST22700033",
+        "last_listed_year": 2026,
         "number": "15POST22700033",
         "organization": null,
         "pis": [
@@ -290,6 +316,10 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2015": 45000,
+          "2016": 45000
+        },
         "start_year": 2015,
         "status": "resolved",
         "title": "The role of paraoxonase 1 (PON1) in HDL functions",
@@ -307,6 +337,8 @@
         },
         "amount_usd": 2522936,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 1146790,
         "currency": "CLP",
         "end_year": 2030,
         "first_year": 2024,
@@ -316,6 +348,7 @@
           "amount_from_openalex"
         ],
         "key": "ANID:1599A0999",
+        "last_listed_year": 2024,
         "number": "1599A0999",
         "organization": "SAMPLE Universidad",
         "pis": [
@@ -327,6 +360,19 @@
         "rate_year": 2020,
         "scope": "institution-wide",
         "scope_reason": "SAMPLE: a national research centre programme",
+        "spread_years": {
+          "2020": 229358,
+          "2021": 229358,
+          "2022": 229358,
+          "2023": 229358,
+          "2024": 229358,
+          "2025": 229358,
+          "2026": 229358,
+          "2027": 229358,
+          "2028": 229358,
+          "2029": 229357,
+          "2030": 229357
+        },
         "start_year": 2020,
         "status": "resolved",
         "title": "SAMPLE: research centre programme",
@@ -339,6 +385,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": null,
         "first_year": 2023,
@@ -347,12 +395,14 @@
           "amount_not_found"
         ],
         "key": "BMBF:031L0168",
+        "last_listed_year": 2023,
         "number": "031L0168",
         "organization": null,
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": null,
         "status": "resolved",
         "title": null,
@@ -365,6 +415,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": null,
         "first_year": 2026,
@@ -373,12 +425,14 @@
           "amount_not_found"
         ],
         "key": "CANCERFONDEN:222380PJ",
+        "last_listed_year": 2026,
         "number": "22 2380 Pj",
         "organization": null,
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": null,
         "status": "resolved",
         "title": null,
@@ -391,6 +445,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": null,
         "first_year": 2025,
@@ -399,12 +455,14 @@
           "amount_not_found"
         ],
         "key": "DFG:16LW0243K",
+        "last_listed_year": 2025,
         "number": "16LW0243K",
         "organization": null,
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": null,
         "status": "resolved",
         "title": null,
@@ -417,6 +475,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": 2021,
         "first_year": 2025,
@@ -425,12 +485,14 @@
           "amount_not_found"
         ],
         "key": "DFG:461264291",
+        "last_listed_year": 2025,
         "number": "461264291",
         "organization": null,
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2021,
         "status": "resolved",
         "title": "IT Infrastruktur für Computational Molecular Medicine",
@@ -443,6 +505,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": 2022,
         "first_year": 2026,
@@ -451,12 +515,14 @@
           "amount_not_found"
         ],
         "key": "DFG:497694394",
+        "last_listed_year": 2026,
         "number": "497694394",
         "organization": null,
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2022,
         "status": "resolved",
         "title": "FlüssigchromatographieMassenspektrometrie System für ‚Shotgun Proteomics‘ und Immunoproteomik",
@@ -469,6 +535,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": null,
         "first_year": 2026,
@@ -477,12 +545,14 @@
           "amount_not_found"
         ],
         "key": "DFG:INST193901FUGG",
+        "last_listed_year": 2026,
         "number": "INST 193/90-1 FUGG",
         "organization": null,
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": null,
         "status": "resolved",
         "title": null,
@@ -500,6 +570,8 @@
         },
         "amount_usd": 11178536,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 11178536,
         "currency": "EUR",
         "end_year": 2023,
         "first_year": 2023,
@@ -508,15 +580,106 @@
           "amount_from_openalex"
         ],
         "key": "EU:823839",
+        "last_listed_year": 2023,
         "number": "823839",
         "organization": null,
         "pis": [],
         "rate_year": 2019,
         "scope": "institution-wide",
         "scope_reason": "EU consortium total",
+        "spread_years": {
+          "2019": 2235708,
+          "2020": 2235707,
+          "2021": 2235707,
+          "2022": 2235707,
+          "2023": 2235707
+        },
         "start_year": 2019,
         "status": "resolved",
         "title": "European Proteomics Infrastructure Consortium providing Access",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "F4399999998",
+        "amount_original": 1000003,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 1000003,
+        "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 714289,
+        "currency": "USD",
+        "end_year": 2023,
+        "first_year": 2019,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "F4399999998:SMRF99901",
+        "last_listed_year": 2021,
+        "number": "SMRF-99901",
+        "organization": "SAMPLE Institute",
+        "pis": [
+          {
+            "id": null,
+            "name": "SAMPLE Investigator R"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "spread_years": {
+          "2017": 142858,
+          "2018": 142858,
+          "2019": 142858,
+          "2020": 142858,
+          "2021": 142857,
+          "2022": 142857,
+          "2023": 142857
+        },
+        "start_year": 2017,
+        "status": "resolved",
+        "title": "SAMPLE: foundation research award",
+        "url": null,
+        "url_name": null
+      },
+      {
+        "agency": "F4399999998",
+        "amount_original": 300000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "openalex_amount",
+          "name": "OpenAlex",
+          "url": null
+        },
+        "amount_usd": 300000,
+        "category": "other",
+        "counted_rule": "undated",
+        "counted_usd": 300000,
+        "currency": "USD",
+        "end_year": null,
+        "first_year": 2021,
+        "fiscal_years": null,
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "F4399999998:SMRF99902",
+        "last_listed_year": 2021,
+        "number": "SMRF-99902",
+        "organization": null,
+        "pis": [],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "spread_years": null,
+        "start_year": 2018,
+        "status": "resolved",
+        "title": null,
         "url": null,
         "url_name": null
       },
@@ -531,6 +694,8 @@
         },
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": "UAH",
         "end_year": null,
         "first_year": 2024,
@@ -540,6 +705,7 @@
           "unconverted_currency"
         ],
         "key": "F4399999999:UA99001",
+        "last_listed_year": 2024,
         "number": "UA-99001",
         "organization": null,
         "pis": [
@@ -551,6 +717,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2021,
         "status": "resolved",
         "title": null,
@@ -563,6 +730,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": 2028,
         "first_year": 2025,
@@ -571,6 +740,7 @@
           "amount_not_found"
         ],
         "key": "FWO:G087625N",
+        "last_listed_year": 2026,
         "number": "FWO G087625N",
         "organization": null,
         "pis": [
@@ -582,6 +752,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2025,
         "status": "resolved",
         "title": "Bioinformatics Solutions For the Comprehensive Study of the Human Immunopeptidome",
@@ -594,6 +765,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": null,
         "first_year": 2026,
@@ -602,12 +775,14 @@
           "amount_not_found"
         ],
         "key": "KAW:20210173",
+        "last_listed_year": 2026,
         "number": "KAW 2021.0173",
         "organization": null,
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": null,
         "status": "resolved",
         "title": null,
@@ -620,6 +795,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": null,
         "first_year": 2026,
@@ -628,12 +805,14 @@
           "amount_not_found"
         ],
         "key": "KAW:20240039",
+        "last_listed_year": 2026,
         "number": "KAW2024-0039",
         "organization": null,
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": null,
         "status": "resolved",
         "title": null,
@@ -646,6 +825,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "other",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": null,
         "first_year": 2019,
@@ -654,12 +835,14 @@
           "amount_not_found"
         ],
         "key": "MISC:R01GM999999",
+        "last_listed_year": 2019,
         "number": "R01 GM999999",
         "organization": null,
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": null,
         "status": "unresolved",
         "title": null,
@@ -677,6 +860,8 @@
         },
         "amount_usd": 5000000,
         "category": "contract",
+        "counted_rule": "window",
+        "counted_usd": 5000000,
         "currency": "USD",
         "end_year": 2024,
         "first_year": 2024,
@@ -687,12 +872,14 @@
         },
         "flags": [],
         "key": "NIH-contract:HHSN272209900001C",
+        "last_listed_year": 2024,
         "number": "HHSN272209900001C",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2021,
         "status": "resolved",
         "title": "SAMPLE: CONTRACT FOR A REFERENCE PROTEOME",
@@ -710,6 +897,8 @@
         },
         "amount_usd": 700000,
         "category": "contract",
+        "counted_rule": "window",
+        "counted_usd": 700000,
         "currency": "USD",
         "end_year": 2023,
         "first_year": 2024,
@@ -719,12 +908,14 @@
         },
         "flags": [],
         "key": "NIH-contract:HHSN272209900002I:75N99099F00001",
+        "last_listed_year": 2024,
         "number": "75N99099F00001",
         "organization": "SAMPLE CONTRACTOR",
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2022,
         "status": "resolved",
         "title": "SAMPLE: TASK ORDER",
@@ -742,6 +933,8 @@
         },
         "amount_usd": 1599819,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1599819,
         "currency": "USD",
         "end_year": 2019,
         "first_year": 2021,
@@ -750,6 +943,7 @@
         },
         "flags": [],
         "key": "NIH:DP3DK108209",
+        "last_listed_year": 2021,
         "number": "DP3DK108209",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -765,6 +959,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2015,
         "status": "resolved",
         "title": "APOC3, HDL Function and Cardiovascular Complications of T1DM",
@@ -782,6 +977,8 @@
         },
         "amount_usd": 23474601,
         "category": "center",
+        "counted_rule": "window",
+        "counted_usd": 23474601,
         "currency": "USD",
         "end_year": 2021,
         "first_year": 2021,
@@ -799,6 +996,7 @@
         },
         "flags": [],
         "key": "NIH:P01HL092969",
+        "last_listed_year": 2021,
         "number": "P01HL092969",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -810,6 +1008,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2008,
         "status": "resolved",
         "title": "Cardiovascular Disease and Diabetes Program Project",
@@ -827,6 +1026,8 @@
         },
         "amount_usd": 22620278,
         "category": "center",
+        "counted_rule": "window",
+        "counted_usd": 22620278,
         "currency": "USD",
         "end_year": 2028,
         "first_year": 2026,
@@ -845,6 +1046,7 @@
           "active"
         ],
         "key": "NIH:P01HL128203",
+        "last_listed_year": 2026,
         "number": "P01HL128203",
         "organization": "UNIVERSITY OF CINCINNATI",
         "pis": [
@@ -856,6 +1058,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2016,
         "status": "resolved",
         "title": "Multi-disciplinary Approaches to HDL Structure, Assembly, and Functional Heterogeneity",
@@ -873,6 +1076,8 @@
         },
         "amount_usd": 17091864,
         "category": "center",
+        "counted_rule": "window",
+        "counted_usd": 4751785,
         "currency": "USD",
         "end_year": 2030,
         "first_year": 2021,
@@ -889,6 +1094,7 @@
           "active"
         ],
         "key": "NIH:P01HL151328",
+        "last_listed_year": 2021,
         "number": "P01HL151328",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -900,6 +1106,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2020,
         "status": "resolved",
         "title": "Triglycerides, Diabetes and Cardiovascular Disease",
@@ -917,6 +1124,8 @@
         },
         "amount_usd": 2100000,
         "category": "center",
+        "counted_rule": "window",
+        "counted_usd": 2100000,
         "currency": "USD",
         "end_year": 2021,
         "first_year": 2019,
@@ -927,6 +1136,7 @@
         },
         "flags": [],
         "key": "NIH:P01HL999001",
+        "last_listed_year": 2021,
         "number": "P01HL999001",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -938,6 +1148,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2016,
         "status": "resolved",
         "title": "SAMPLE: PROGRAM PROJECT ON CARDIAC PROTEOMICS",
@@ -955,6 +1166,8 @@
         },
         "amount_usd": 52929230,
         "category": "center",
+        "counted_rule": "window",
+        "counted_usd": 41175212,
         "currency": "USD",
         "end_year": 2031,
         "first_year": 2023,
@@ -979,6 +1192,7 @@
           "active"
         ],
         "key": "NIH:P20GM103432",
+        "last_listed_year": 2023,
         "number": "P20GM103432",
         "organization": "UNIVERSITY OF WYOMING",
         "pis": [
@@ -990,6 +1204,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2012,
         "status": "resolved",
         "title": "Wyoming INBRE-5",
@@ -1007,6 +1222,8 @@
         },
         "amount_usd": 52843525,
         "category": "center",
+        "counted_rule": "window",
+        "counted_usd": 31755035,
         "currency": "USD",
         "end_year": 2027,
         "first_year": 2021,
@@ -1057,6 +1274,7 @@
           "active"
         ],
         "key": "NIH:P30DK017047",
+        "last_listed_year": 2026,
         "number": "P30DK017047",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1068,6 +1286,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 1986,
         "status": "resolved",
         "title": "Diabetes Research Center",
@@ -1085,6 +1304,8 @@
         },
         "amount_usd": 11133956,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 6513040,
         "currency": "USD",
         "end_year": 2019,
         "first_year": 2020,
@@ -1123,6 +1344,7 @@
         },
         "flags": [],
         "key": "NIH:R01GM040506",
+        "last_listed_year": 2020,
         "number": "R01GM040506",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1134,6 +1356,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 1988,
         "status": "resolved",
         "title": "Molecular Analysis of the Kinetochore",
@@ -1151,6 +1374,8 @@
         },
         "amount_usd": 4524340,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 4524340,
         "currency": "USD",
         "end_year": 2020,
         "first_year": 2020,
@@ -1171,6 +1396,7 @@
         },
         "flags": [],
         "key": "NIH:R01GM079373",
+        "last_listed_year": 2020,
         "number": "R01GM079373",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1182,6 +1408,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2006,
         "status": "resolved",
         "title": "Supplement to Biophysical Study of Reconstituted Kinetochore-microtubule Attachments",
@@ -1199,6 +1426,8 @@
         },
         "amount_usd": 6747731,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 6747731,
         "currency": "USD",
         "end_year": 2027,
         "first_year": 2026,
@@ -1220,6 +1449,7 @@
           "active"
         ],
         "key": "NIH:R01GM111097",
+        "last_listed_year": 2026,
         "number": "R01GM111097",
         "organization": "NORTHWESTERN UNIVERSITY",
         "pis": [
@@ -1231,6 +1461,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2014,
         "status": "resolved",
         "title": "Biological Transition Metals",
@@ -1248,6 +1479,8 @@
         },
         "amount_usd": 1766507,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1766507,
         "currency": "USD",
         "end_year": 2024,
         "first_year": 2023,
@@ -1260,6 +1493,7 @@
         },
         "flags": [],
         "key": "NIH:R01GM121481",
+        "last_listed_year": 2023,
         "number": "R01GM121481",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1271,6 +1505,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2018,
         "status": "resolved",
         "title": "Proteins important for dense-core vesicle function",
@@ -1288,6 +1523,8 @@
         },
         "amount_usd": 776295,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 776295,
         "currency": "USD",
         "end_year": 2021,
         "first_year": 2023,
@@ -1298,6 +1535,7 @@
         },
         "flags": [],
         "key": "NIH:R01GM125091",
+        "last_listed_year": 2023,
         "number": "R01GM125091",
         "organization": "UNIVERSITY OF WYOMING",
         "pis": [
@@ -1309,6 +1547,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2017,
         "status": "resolved",
         "title": "Mechanisms controlling tissue morphogenesis, architecture, and the response to mechanical forces in C. elegans.",
@@ -1326,6 +1565,8 @@
         },
         "amount_usd": 1770644,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1770644,
         "currency": "USD",
         "end_year": 2025,
         "first_year": 2026,
@@ -1337,6 +1578,7 @@
         },
         "flags": [],
         "key": "NIH:R01GM143399",
+        "last_listed_year": 2026,
         "number": "R01GM143399",
         "organization": "UNIVERSITY OF IOWA",
         "pis": [
@@ -1348,6 +1590,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2021,
         "status": "resolved",
         "title": "Construction of the Androgen Receptor Interactome: A Molecular Framework for Probing Genetic Interactions in Androgen-Dependent Signaling",
@@ -1365,6 +1608,8 @@
         },
         "amount_usd": 1030000,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1030000,
         "currency": "USD",
         "end_year": 2022,
         "first_year": 2019,
@@ -1376,6 +1621,7 @@
         },
         "flags": [],
         "key": "NIH:R01GM999001",
+        "last_listed_year": 2021,
         "number": "R01GM999001",
         "organization": "University of Washington",
         "pis": [
@@ -1391,10 +1637,54 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2018,
         "status": "resolved",
         "title": "SAMPLE: RESEARCH PROJECT",
         "url": "https://reporter.nih.gov/project-details/99990001",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 1260000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/99990009"
+        },
+        "amount_usd": 1260000,
+        "category": "research",
+        "counted_rule": "began_after",
+        "counted_usd": 0,
+        "currency": "USD",
+        "end_year": 2026,
+        "first_year": 2019,
+        "fiscal_years": {
+          "2022": 300000,
+          "2023": 310000,
+          "2024": 320000,
+          "2025": 330000
+        },
+        "flags": [],
+        "key": "NIH:R01GM999004",
+        "last_listed_year": 2019,
+        "number": "R01GM999004",
+        "organization": "University of Washington",
+        "pis": [
+          {
+            "id": "9000003",
+            "name": "SAMPLE Investigator M"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "spread_years": null,
+        "start_year": 2022,
+        "status": "resolved",
+        "title": "SAMPLE: RESEARCH PROJECT BEGUN LATER",
+        "url": "https://reporter.nih.gov/project-details/99990009",
         "url_name": "NIH RePORTER project page"
       },
       {
@@ -1408,6 +1698,8 @@
         },
         "amount_usd": 2351718,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1453099,
         "currency": "USD",
         "end_year": 2011,
         "first_year": 2021,
@@ -1424,6 +1716,7 @@
         },
         "flags": [],
         "key": "NIH:R01HL063895",
+        "last_listed_year": 2021,
         "number": "R01HL063895",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1435,6 +1728,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2000,
         "status": "resolved",
         "title": "Carotid plaque composition by MRI during lipid-lowering",
@@ -1452,6 +1746,8 @@
         },
         "amount_usd": 2232081,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 2232081,
         "currency": "USD",
         "end_year": 2015,
         "first_year": 2021,
@@ -1464,6 +1760,7 @@
         },
         "flags": [],
         "key": "NIH:R01HL089504",
+        "last_listed_year": 2021,
         "number": "R01HL089504",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1475,6 +1772,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2008,
         "status": "resolved",
         "title": "Plaque Inflammation and Dysfunctional HDL in AIM-HIGH",
@@ -1492,6 +1790,8 @@
         },
         "amount_usd": 2793099,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 2162053,
         "currency": "USD",
         "end_year": 2023,
         "first_year": 2021,
@@ -1503,6 +1803,7 @@
         },
         "flags": [],
         "key": "NIH:R01HL144558",
+        "last_listed_year": 2021,
         "number": "R01HL144558",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1514,6 +1815,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2019,
         "status": "resolved",
         "title": "HDL composition/function and cardiovascular risk in youths with diabetes",
@@ -1531,6 +1833,8 @@
         },
         "amount_usd": 2762050,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1379586,
         "currency": "USD",
         "end_year": 2024,
         "first_year": 2021,
@@ -1542,6 +1846,7 @@
         },
         "flags": [],
         "key": "NIH:R01HL149685",
+        "last_listed_year": 2021,
         "number": "R01HL149685",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1557,6 +1862,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2020,
         "status": "resolved",
         "title": "Structural basis for cardioprotective HDL",
@@ -1574,6 +1880,8 @@
         },
         "amount_usd": 3318186,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 3318186,
         "currency": "USD",
         "end_year": 2026,
         "first_year": 2026,
@@ -1587,6 +1895,7 @@
           "active"
         ],
         "key": "NIH:R01HL161829",
+        "last_listed_year": 2026,
         "number": "R01HL161829",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1598,6 +1907,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2022,
         "status": "resolved",
         "title": "Apolipoprotein C3-loading of apolipoprotein B100 lipoproteins and cardiovascular disease in patients with type 1 diabetes",
@@ -1615,6 +1925,8 @@
         },
         "amount_usd": 2206078,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 2206078,
         "currency": "USD",
         "end_year": 2029,
         "first_year": 2026,
@@ -1627,6 +1939,7 @@
           "active"
         ],
         "key": "NIH:R01NS125591",
+        "last_listed_year": 2026,
         "number": "R01NS125591",
         "organization": "BATTELLE PACIFIC NORTHWEST LABORATORIES",
         "pis": [
@@ -1638,6 +1951,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2024,
         "status": "resolved",
         "title": "The impact of brain lipoprotein structure and composition on amyloid beta metabolism and Alzheimer's disease",
@@ -1655,6 +1969,8 @@
         },
         "amount_usd": 6663390,
         "category": "center",
+        "counted_rule": "window",
+        "counted_usd": 6663390,
         "currency": "USD",
         "end_year": 2031,
         "first_year": 2025,
@@ -1670,6 +1986,7 @@
           "active"
         ],
         "key": "NIH:R24GM141156",
+        "last_listed_year": 2026,
         "number": "R24GM141156",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1681,6 +1998,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2021,
         "status": "resolved",
         "title": "Seattle Quant: A Resource for the Skyline Software Ecosystem",
@@ -1698,6 +2016,8 @@
         },
         "amount_usd": 3497735,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1305254,
         "currency": "USD",
         "end_year": 2025,
         "first_year": 2020,
@@ -1710,6 +2030,7 @@
         },
         "flags": [],
         "key": "NIH:R35GM130293",
+        "last_listed_year": 2020,
         "number": "R35GM130293",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1721,6 +2042,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2019,
         "status": "resolved",
         "title": "Molecular Analysis of Chromosome Segregation",
@@ -1738,6 +2060,8 @@
         },
         "amount_usd": 3010633,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 3010633,
         "currency": "USD",
         "end_year": 2029,
         "first_year": 2026,
@@ -1755,6 +2079,7 @@
           "active"
         ],
         "key": "NIH:R35GM131889",
+        "last_listed_year": 2026,
         "number": "R35GM131889",
         "organization": "MONTANA STATE UNIVERSITY - BOZEMAN",
         "pis": [
@@ -1766,6 +2091,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2019,
         "status": "resolved",
         "title": "Radical SAM Enzymes: Radical Mechanisms Central to Biology",
@@ -1783,6 +2109,8 @@
         },
         "amount_usd": 4735263,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 558492,
         "currency": "USD",
         "end_year": 2030,
         "first_year": 2020,
@@ -1799,6 +2127,7 @@
           "active"
         ],
         "key": "NIH:R35GM134842",
+        "last_listed_year": 2020,
         "number": "R35GM134842",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1810,6 +2139,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2020,
         "status": "resolved",
         "title": "Reconstitution and biophysical study of chromosome segregation machinery",
@@ -1827,6 +2157,8 @@
         },
         "amount_usd": 3822420,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 2144696,
         "currency": "USD",
         "end_year": 2030,
         "first_year": 2023,
@@ -1843,6 +2175,7 @@
           "active"
         ],
         "key": "NIH:R35GM136236",
+        "last_listed_year": 2023,
         "number": "R35GM136236",
         "organization": "UNIVERSITY OF WYOMING",
         "pis": [
@@ -1854,6 +2187,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2020,
         "status": "resolved",
         "title": "In vivo regulation of cell trafficking and the extracellular matrix",
@@ -1871,6 +2205,8 @@
         },
         "amount_usd": 1555000,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 388750,
         "currency": "USD",
         "end_year": 2028,
         "first_year": 2023,
@@ -1884,6 +2220,7 @@
           "active"
         ],
         "key": "NIH:R35GM150919",
+        "last_listed_year": 2023,
         "number": "R35GM150919",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1895,6 +2232,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2023,
         "status": "resolved",
         "title": "Technology for evaluating drug-binding responses to small-molecule perturbation",
@@ -1912,6 +2250,8 @@
         },
         "amount_usd": 6150289,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 2055670,
         "currency": "USD",
         "end_year": 2027,
         "first_year": 2021,
@@ -1927,6 +2267,7 @@
           "active"
         ],
         "key": "NIH:R35HL150754",
+        "last_listed_year": 2021,
         "number": "R35HL150754",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -1938,10 +2279,52 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2020,
         "status": "resolved",
         "title": "Identifying new strategies for prevention of cardiovascular complications of diabetes",
         "url": "https://reporter.nih.gov/project-details/11061021",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "OD",
+        "amount_original": 750000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/99990008"
+        },
+        "amount_usd": 750000,
+        "category": "instrument",
+        "counted_rule": "full_amount",
+        "counted_usd": 750000,
+        "currency": "USD",
+        "end_year": 2023,
+        "first_year": 2021,
+        "fiscal_years": {
+          "2020": 600000,
+          "2023": 150000
+        },
+        "flags": [],
+        "key": "NIH:S10OD999001",
+        "last_listed_year": 2021,
+        "number": "S10OD999001",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "9000007",
+            "name": "SAMPLE Investigator Q"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "spread_years": null,
+        "start_year": 2020,
+        "status": "resolved",
+        "title": "SAMPLE: HIGH-RESOLUTION MASS SPECTROMETER",
+        "url": "https://reporter.nih.gov/project-details/99990008",
         "url_name": "NIH RePORTER project page"
       },
       {
@@ -1955,6 +2338,8 @@
         },
         "amount_usd": 782028,
         "category": "instrument",
+        "counted_rule": "full_amount",
+        "counted_usd": 782028,
         "currency": "USD",
         "end_year": 2005,
         "first_year": 2008,
@@ -1963,6 +2348,7 @@
         },
         "flags": [],
         "key": "NIH:S10RR017262",
+        "last_listed_year": 2008,
         "number": "S10RR017262",
         "organization": "INSTITUTE FOR SYSTEMS BIOLOGY",
         "pis": [
@@ -1974,6 +2360,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2003,
         "status": "resolved",
         "title": "Fourier transform-ion cyclotron-resonance mass spec",
@@ -1991,6 +2378,8 @@
         },
         "amount_usd": 15497946,
         "category": "training",
+        "counted_rule": "window",
+        "counted_usd": 1597075,
         "currency": "USD",
         "end_year": 2024,
         "first_year": 2008,
@@ -2039,6 +2428,7 @@
           "starts_before_fy1985"
         ],
         "key": "NIH:T32GM007750",
+        "last_listed_year": 2008,
         "number": "T32GM007750",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -2050,6 +2440,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 1985,
         "status": "resolved",
         "title": "Drug Action, Metabolism and Kinetics Training Grant",
@@ -2067,6 +2458,8 @@
         },
         "amount_usd": 10732300,
         "category": "training",
+        "counted_rule": "window",
+        "counted_usd": 5241077,
         "currency": "USD",
         "end_year": 2024,
         "first_year": 2020,
@@ -2110,6 +2503,7 @@
         },
         "flags": [],
         "key": "NIH:T32GM008268",
+        "last_listed_year": 2020,
         "number": "T32GM008268",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -2125,10 +2519,58 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 1988,
         "status": "resolved",
         "title": "Molecular Biophysics Training Program",
         "url": "https://reporter.nih.gov/project-details/10650707",
+        "url_name": "NIH RePORTER project page"
+      },
+      {
+        "agency": "NIGMS",
+        "amount_original": 860000,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "reporter_fiscal_years",
+          "name": "NIH RePORTER",
+          "url": "https://reporter.nih.gov/project-details/99990007"
+        },
+        "amount_usd": 860000,
+        "category": "training",
+        "counted_rule": "ended_before",
+        "counted_usd": 575000,
+        "currency": "USD",
+        "end_year": 2004,
+        "first_year": 2019,
+        "fiscal_years": {
+          "1996": 90000,
+          "1997": 95000,
+          "1998": 100000,
+          "1999": 105000,
+          "2000": 110000,
+          "2001": 115000,
+          "2002": 120000,
+          "2003": 125000
+        },
+        "flags": [],
+        "key": "NIH:T32GM999003",
+        "last_listed_year": 2019,
+        "number": "T32GM999003",
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "9000006",
+            "name": "SAMPLE Investigator P"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "spread_years": null,
+        "start_year": 1996,
+        "status": "resolved",
+        "title": "SAMPLE: TRAINING PROGRAM IN PROTEIN SCIENCE",
+        "url": "https://reporter.nih.gov/project-details/99990007",
         "url_name": "NIH RePORTER project page"
       },
       {
@@ -2142,6 +2584,8 @@
         },
         "amount_usd": 25921234,
         "category": "training",
+        "counted_rule": "window",
+        "counted_usd": 16327115,
         "currency": "USD",
         "end_year": 2030,
         "first_year": 2023,
@@ -2183,6 +2627,7 @@
           "active"
         ],
         "key": "NIH:T32HG000035",
+        "last_listed_year": 2023,
         "number": "T32HG000035",
         "organization": "UNIVERSITY OF WASHINGTON",
         "pis": [
@@ -2194,6 +2639,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 1995,
         "status": "resolved",
         "title": "Interdisciplinary Training in Genome Sciences",
@@ -2211,6 +2657,8 @@
         },
         "amount_usd": 4100000,
         "category": "center",
+        "counted_rule": "window",
+        "counted_usd": 4100000,
         "currency": "USD",
         "end_year": 2024,
         "first_year": 2021,
@@ -2220,6 +2668,7 @@
         },
         "flags": [],
         "key": "NIH:U19AG999002",
+        "last_listed_year": 2021,
         "number": "U19AG999002",
         "organization": "SAMPLE UNIVERSITY",
         "pis": [
@@ -2231,6 +2680,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2019,
         "status": "resolved",
         "title": "SAMPLE: COOPERATIVE CENTER",
@@ -2248,12 +2698,15 @@
         },
         "amount_usd": 47474312,
         "category": "center",
+        "counted_rule": "window",
+        "counted_usd": 40170572,
         "currency": "USD",
         "end_year": 2022,
         "first_year": 2020,
         "fiscal_years": null,
         "flags": [],
         "key": "NSF:0939564",
+        "last_listed_year": 2020,
         "number": "0939564",
         "organization": "University of Southern California",
         "pis": [
@@ -2265,6 +2718,21 @@
         "rate_year": null,
         "scope": "institution-wide",
         "scope_reason": "NSF Science and Technology Center (C-DEBI)",
+        "spread_years": {
+          "2010": 3651871,
+          "2011": 3651871,
+          "2012": 3651870,
+          "2013": 3651870,
+          "2014": 3651870,
+          "2015": 3651870,
+          "2016": 3651870,
+          "2017": 3651870,
+          "2018": 3651870,
+          "2019": 3651870,
+          "2020": 3651870,
+          "2021": 3651870,
+          "2022": 3651870
+        },
         "start_year": 2010,
         "status": "resolved",
         "title": "Center for Dark Energy Biosphere Investigations (C-DEBI)",
@@ -2282,12 +2750,15 @@
         },
         "amount_usd": 1999857,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1999857,
         "currency": "USD",
         "end_year": 2021,
         "first_year": 2022,
         "fiscal_years": null,
         "flags": [],
         "key": "NSF:1542240",
+        "last_listed_year": 2022,
         "number": "1542240",
         "organization": "University of Washington",
         "pis": [
@@ -2299,6 +2770,15 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2015": 285694,
+          "2016": 285694,
+          "2017": 285694,
+          "2018": 285694,
+          "2019": 285694,
+          "2020": 285694,
+          "2021": 285693
+        },
         "start_year": 2015,
         "status": "resolved",
         "title": "Dimensions: Diversity, assembly and function of microbial communities on suspended and sinking particles in a marine Oxygen Deficient Zone",
@@ -2316,12 +2796,15 @@
         },
         "amount_usd": 24605190,
         "category": "training",
+        "counted_rule": "window",
+        "counted_usd": 24605190,
         "currency": "USD",
         "end_year": 2022,
         "first_year": 2022,
         "fiscal_years": null,
         "flags": [],
         "key": "NSF:1762114",
+        "last_listed_year": 2022,
         "number": "1762114",
         "organization": "University of Washington",
         "pis": [
@@ -2333,6 +2816,14 @@
         "rate_year": null,
         "scope": "institution-wide",
         "scope_reason": "NSF GRFP institutional award",
+        "spread_years": {
+          "2017": 4100865,
+          "2018": 4100865,
+          "2019": 4100865,
+          "2020": 4100865,
+          "2021": 4100865,
+          "2022": 4100865
+        },
         "start_year": 2017,
         "status": "resolved",
         "title": "Graduate Research Fellowship Program (GRFP)",
@@ -2350,12 +2841,15 @@
         },
         "amount_usd": 900000,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 900000,
         "currency": "USD",
         "end_year": 2024,
         "first_year": 2026,
         "fiscal_years": null,
         "flags": [],
         "key": "NSF:1908587",
+        "last_listed_year": 2026,
         "number": "1908587",
         "organization": "Northwestern University",
         "pis": [
@@ -2367,6 +2861,14 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2019": 150000,
+          "2020": 150000,
+          "2021": 150000,
+          "2022": 150000,
+          "2023": 150000,
+          "2024": 150000
+        },
         "start_year": 2019,
         "status": "resolved",
         "title": "Biophysical Studies of Metalloenzymes",
@@ -2384,6 +2886,8 @@
         },
         "amount_usd": 45382136,
         "category": "training",
+        "counted_rule": "window",
+        "counted_usd": 45382136,
         "currency": "USD",
         "end_year": 2027,
         "first_year": 2025,
@@ -2392,6 +2896,7 @@
           "active"
         ],
         "key": "NSF:2140004",
+        "last_listed_year": 2026,
         "number": "2140004",
         "organization": "University of Washington",
         "pis": [
@@ -2403,6 +2908,14 @@
         "rate_year": null,
         "scope": "institution-wide",
         "scope_reason": "NSF GRFP institutional award",
+        "spread_years": {
+          "2021": 7563690,
+          "2022": 7563690,
+          "2023": 7563689,
+          "2024": 7563689,
+          "2025": 7563689,
+          "2026": 7563689
+        },
         "start_year": 2021,
         "status": "resolved",
         "title": "Graduate Research Fellowship Program (GRFP)",
@@ -2420,6 +2933,8 @@
         },
         "amount_usd": 1199760,
         "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1199760,
         "currency": "USD",
         "end_year": 2027,
         "first_year": 2025,
@@ -2429,6 +2944,7 @@
           "amounts_disagree"
         ],
         "key": "NSF:2245300",
+        "last_listed_year": 2026,
         "number": "2245300",
         "organization": "University of Washington",
         "pis": [
@@ -2440,10 +2956,62 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2023": 299940,
+          "2024": 299940,
+          "2025": 299940,
+          "2026": 299940
+        },
         "start_year": 2023,
         "status": "resolved",
         "title": "DMS/NIGMS 2: Deep learning for repository-scale analysis of tandem mass spectrometry proteomics data",
         "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2245300",
+        "url_name": "NSF award page"
+      },
+      {
+        "agency": "NSF",
+        "amount_original": 2500002,
+        "amount_source": {
+          "as_of": "2026-09-26",
+          "basis": "nsf_obligated",
+          "name": "NSF Award API",
+          "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2299901"
+        },
+        "amount_usd": 2500002,
+        "category": "research",
+        "counted_rule": "window",
+        "counted_usd": 1500002,
+        "currency": "USD",
+        "end_year": 2028,
+        "first_year": 2024,
+        "fiscal_years": null,
+        "flags": [
+          "active"
+        ],
+        "key": "NSF:2299901",
+        "last_listed_year": 2024,
+        "number": "2299901",
+        "organization": "University of Washington",
+        "pis": [
+          {
+            "id": null,
+            "name": "SAMPLE Investigator S"
+          }
+        ],
+        "rate_year": null,
+        "scope": "project",
+        "scope_reason": null,
+        "spread_years": {
+          "2022": 500001,
+          "2023": 500001,
+          "2024": 500000,
+          "2025": 500000,
+          "2026": 500000
+        },
+        "start_year": 2022,
+        "status": "resolved",
+        "title": "SAMPLE: Collaborative Research: Proteome Dynamics",
+        "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2299901",
         "url_name": "NSF award page"
       },
       {
@@ -2457,6 +3025,8 @@
         },
         "amount_usd": 3976309,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 3976309,
         "currency": "SEK",
         "end_year": 2023,
         "first_year": 2026,
@@ -2465,12 +3035,22 @@
           "amount_from_openalex"
         ],
         "key": "SSF:SB160039",
+        "last_listed_year": 2026,
         "number": "SB16-0039",
         "organization": null,
         "pis": [],
         "rate_year": 2017,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2017": 568045,
+          "2018": 568044,
+          "2019": 568044,
+          "2020": 568044,
+          "2021": 568044,
+          "2022": 568044,
+          "2023": 568044
+        },
         "start_year": 2017,
         "status": "resolved",
         "title": "Systembiologisk studie av humana-virala proteininteraktioner",
@@ -2488,18 +3068,30 @@
         },
         "amount_usd": 7414441,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 6355236,
         "currency": "USD",
         "end_year": 2021,
         "first_year": 2020,
         "fiscal_years": null,
         "flags": [],
         "key": "USA:NASA:NNA15BB03A",
+        "last_listed_year": 2020,
         "number": "NNA15BB03A",
         "organization": "THE REGENTS OF THE UNIVERSITY OF CALIFORNIA",
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2015": 1059206,
+          "2016": 1059206,
+          "2017": 1059206,
+          "2018": 1059206,
+          "2019": 1059206,
+          "2020": 1059206,
+          "2021": 1059205
+        },
         "start_year": 2015,
         "status": "resolved",
         "title": null,
@@ -2517,18 +3109,22 @@
         },
         "amount_usd": 796089,
         "category": "other",
+        "counted_rule": "undated",
+        "counted_usd": 796089,
         "currency": "USD",
         "end_year": null,
         "first_year": 2020,
         "fiscal_years": null,
         "flags": [],
         "key": "USA:NASA:NNX14AJ87G",
+        "last_listed_year": 2020,
         "number": "NNX14AJ87G",
         "organization": "GEORGIA TECH RESEARCH CORP",
         "pis": [],
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2014,
         "status": "resolved",
         "title": null,
@@ -2541,6 +3137,8 @@
         "amount_source": null,
         "amount_usd": null,
         "category": "research",
+        "counted_rule": null,
+        "counted_usd": null,
         "currency": null,
         "end_year": 2023,
         "first_year": 2024,
@@ -2552,6 +3150,7 @@
           "no_amount_reported"
         ],
         "key": "VA:I01BX999001",
+        "last_listed_year": 2024,
         "number": "I01BX999001",
         "organization": "VA PUGET SOUND HEALTH CARE SYSTEM",
         "pis": [
@@ -2563,6 +3162,7 @@
         "rate_year": null,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": null,
         "start_year": 2019,
         "status": "resolved",
         "title": "SAMPLE: MERIT AWARD",
@@ -2580,6 +3180,8 @@
         },
         "amount_usd": 2898384,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 2898384,
         "currency": "SEK",
         "end_year": 2023,
         "first_year": 2026,
@@ -2588,6 +3190,7 @@
           "amount_from_openalex"
         ],
         "key": "VR:201805851",
+        "last_listed_year": 2026,
         "number": "2018-05851",
         "organization": null,
         "pis": [
@@ -2599,6 +3202,14 @@
         "rate_year": 2018,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2018": 483064,
+          "2019": 483064,
+          "2020": 483064,
+          "2021": 483064,
+          "2022": 483064,
+          "2023": 483064
+        },
         "start_year": 2018,
         "status": "resolved",
         "title": "Multimodal imaging and proteomics to study flavivirus replication and molecular disease mechanisms",
@@ -2616,6 +3227,8 @@
         },
         "amount_usd": 4339948,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 4339948,
         "currency": "SEK",
         "end_year": 2024,
         "first_year": 2026,
@@ -2624,6 +3237,7 @@
           "amount_from_openalex"
         ],
         "key": "VR:201900217",
+        "last_listed_year": 2026,
         "number": "2019-00217",
         "organization": null,
         "pis": [
@@ -2635,6 +3249,13 @@
         "rate_year": 2020,
         "scope": "institution-wide",
         "scope_reason": "national infrastructure",
+        "spread_years": {
+          "2020": 867990,
+          "2021": 867990,
+          "2022": 867990,
+          "2023": 867989,
+          "2024": 867989
+        },
         "start_year": 2020,
         "status": "resolved",
         "title": "National Microscopy Infrastructure",
@@ -2652,6 +3273,8 @@
         },
         "amount_usd": 372908,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 372908,
         "currency": "SEK",
         "end_year": 2024,
         "first_year": 2026,
@@ -2660,6 +3283,7 @@
           "amount_from_openalex"
         ],
         "key": "VR:202003380",
+        "last_listed_year": 2026,
         "number": "2020-03380",
         "organization": null,
         "pis": [
@@ -2671,6 +3295,12 @@
         "rate_year": 2021,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2021": 93227,
+          "2022": 93227,
+          "2023": 93227,
+          "2024": 93227
+        },
         "start_year": 2021,
         "status": "resolved",
         "title": "Crosstalk between phosphorylation and ubiquitination at the level of short linear motifs",
@@ -2688,6 +3318,8 @@
         },
         "amount_usd": 1301984,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 1301984,
         "currency": "SEK",
         "end_year": 2024,
         "first_year": 2026,
@@ -2696,6 +3328,7 @@
           "amount_from_openalex"
         ],
         "key": "VR:202006224",
+        "last_listed_year": 2026,
         "number": "2020-06224",
         "organization": null,
         "pis": [
@@ -2707,6 +3340,13 @@
         "rate_year": 2020,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2020": 260397,
+          "2021": 260397,
+          "2022": 260397,
+          "2023": 260397,
+          "2024": 260396
+        },
         "start_year": 2020,
         "status": "resolved",
         "title": "Viral tropism and host responses in the brain",
@@ -2724,6 +3364,8 @@
         },
         "amount_usd": 474416,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 474416,
         "currency": "SEK",
         "end_year": 2025,
         "first_year": 2026,
@@ -2732,6 +3374,7 @@
           "amount_from_openalex"
         ],
         "key": "VR:202102468",
+        "last_listed_year": 2026,
         "number": "2021-02468",
         "organization": null,
         "pis": [
@@ -2743,6 +3386,12 @@
         "rate_year": 2022,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2022": 118604,
+          "2023": 118604,
+          "2024": 118604,
+          "2025": 118604
+        },
         "start_year": 2022,
         "status": "resolved",
         "title": "Identification and mechanistic studies of proteins that interact with DNA and RNA Quadruplex structures and their roles in human diseases",
@@ -2760,6 +3409,8 @@
         },
         "amount_usd": 3059351,
         "category": "other",
+        "counted_rule": "window",
+        "counted_usd": 1019784,
         "currency": "SEK",
         "end_year": 2030,
         "first_year": 2026,
@@ -2769,6 +3420,7 @@
           "amount_from_openalex"
         ],
         "key": "VR:202400390",
+        "last_listed_year": 2026,
         "number": "2024-00390",
         "organization": null,
         "pis": [
@@ -2780,6 +3432,14 @@
         "rate_year": 2025,
         "scope": "project",
         "scope_reason": null,
+        "spread_years": {
+          "2025": 509892,
+          "2026": 509892,
+          "2027": 509892,
+          "2028": 509892,
+          "2029": 509892,
+          "2030": 509891
+        },
         "start_year": 2025,
         "status": "resolved",
         "title": "Reverse engineering viral factories",
@@ -2790,13 +3450,13 @@
     "method": {
       "resolution": {
         "corrected": 2,
-        "exact": 40,
-        "normalised": 8,
+        "exact": 42,
+        "normalised": 9,
         "override": 1
       },
       "strings": {
         "facility_contract": 1,
-        "grant": 89,
+        "grant": 95,
         "not_a_grant": 4,
         "resource_code": 4,
         "unresolved": 1
@@ -2862,10 +3522,10 @@
       }
     ],
     "summary": {
-      "agencies": 15,
-      "amount_usd": 468226797,
+      "agencies": 16,
+      "amount_usd": 474896802,
       "amount_usd_institution_wide": 135503058,
-      "amount_usd_nih": 308240240,
+      "amount_usd_nih": 311110240,
       "by_first_year": {
         "2008": {
           "amount_usd": 16279974,
@@ -2874,9 +3534,9 @@
           "grants_institution_wide": 0
         },
         "2019": {
-          "amount_usd": 3130000,
+          "amount_usd": 6250003,
           "amount_usd_institution_wide": 0,
-          "grants": 2,
+          "grants": 5,
           "grants_institution_wide": 0
         },
         "2020": {
@@ -2886,9 +3546,9 @@
           "grants_institution_wide": 1
         },
         "2021": {
-          "amount_usd": 115399046,
+          "amount_usd": 116449046,
           "amount_usd_institution_wide": 0,
-          "grants": 10,
+          "grants": 12,
           "grants_institution_wide": 0
         },
         "2022": {
@@ -2904,9 +3564,9 @@
           "grants_institution_wide": 1
         },
         "2024": {
-          "amount_usd": 8222936,
+          "amount_usd": 10722938,
           "amount_usd_institution_wide": 2522936,
-          "grants": 5,
+          "grants": 6,
           "grants_institution_wide": 1
         },
         "2025": {
@@ -2922,16 +3582,112 @@
           "grants_institution_wide": 1
         }
       },
+      "counted_by_year": {
+        "2006": {
+          "counted_usd": 3828820,
+          "counted_usd_institution_wide": 0
+        },
+        "2007": {
+          "counted_usd": 4286851,
+          "counted_usd_institution_wide": 0
+        },
+        "2008": {
+          "counted_usd": 7374231,
+          "counted_usd_institution_wide": 0
+        },
+        "2009": {
+          "counted_usd": 7872563,
+          "counted_usd_institution_wide": 0
+        },
+        "2010": {
+          "counted_usd": 10196379,
+          "counted_usd_institution_wide": 3651871
+        },
+        "2011": {
+          "counted_usd": 9702985,
+          "counted_usd_institution_wide": 3651871
+        },
+        "2012": {
+          "counted_usd": 13086299,
+          "counted_usd_institution_wide": 3651870
+        },
+        "2013": {
+          "counted_usd": 10479971,
+          "counted_usd_institution_wide": 3651870
+        },
+        "2014": {
+          "counted_usd": 10372538,
+          "counted_usd_institution_wide": 3651870
+        },
+        "2015": {
+          "counted_usd": 16506022,
+          "counted_usd_institution_wide": 3651870
+        },
+        "2016": {
+          "counted_usd": 17760952,
+          "counted_usd_institution_wide": 3651870
+        },
+        "2017": {
+          "counted_usd": 23975161,
+          "counted_usd_institution_wide": 7752735
+        },
+        "2018": {
+          "counted_usd": 25085288,
+          "counted_usd_institution_wide": 7752735
+        },
+        "2019": {
+          "counted_usd": 29918861,
+          "counted_usd_institution_wide": 9988443
+        },
+        "2020": {
+          "counted_usd": 34619575,
+          "counted_usd_institution_wide": 11085790
+        },
+        "2021": {
+          "counted_usd": 35094502,
+          "counted_usd_institution_wide": 14997610
+        },
+        "2022": {
+          "counted_usd": 28966628,
+          "counted_usd_institution_wide": 14997610
+        },
+        "2023": {
+          "counted_usd": 27565205,
+          "counted_usd_institution_wide": 10896743
+        },
+        "2024": {
+          "counted_usd": 18086756,
+          "counted_usd_institution_wide": 8661036
+        },
+        "2025": {
+          "counted_usd": 16065232,
+          "counted_usd_institution_wide": 7563689
+        },
+        "2026": {
+          "counted_usd": 14432921,
+          "counted_usd_institution_wide": 7563689
+        }
+      },
+      "counted_usd": 365277740,
+      "counted_usd_institution_wide": 126823172,
+      "counted_usd_nih": 214555550,
       "first_year": 2008,
-      "grants": 64,
+      "grants": 70,
+      "grants_by_counted_rule": {
+        "began_after": 1,
+        "ended_before": 1,
+        "full_amount": 2,
+        "undated": 2,
+        "window": 52
+      },
       "grants_institution_wide": 6,
-      "grants_resolved": 63,
+      "grants_resolved": 69,
       "grants_unconverted": 1,
-      "grants_with_amount": 52,
-      "investigators": 38,
+      "grants_with_amount": 58,
+      "investigators": 42,
       "last_year": 2026,
-      "nih_grants": 34,
-      "organizations": 15,
+      "nih_grants": 37,
+      "organizations": 16,
       "works_with_grants": 17,
       "works_with_listings": 17
     },
@@ -3067,7 +3823,7 @@
   },
   "rule_version": "2026-09-19.2",
   "run_id": "2026-09-19T00-00-sample",
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "sources": {
     "citations": {
       "as_of": "2026-09-19",
@@ -6164,6 +6920,13 @@
           ],
           "grant": "NIH-contract:HHSN272209900002I:75N99099F00001",
           "how": "listed"
+        },
+        {
+          "agencies": [
+            "NSF"
+          ],
+          "grant": "NSF:2299901",
+          "how": "listed"
         }
       ],
       "id": "W-000101",
@@ -7304,6 +8067,20 @@
       "grants": [
         {
           "agencies": [
+            "F4399999998"
+          ],
+          "grant": "F4399999998:SMRF99901",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "F4399999998"
+          ],
+          "grant": "F4399999998:SMRF99902",
+          "how": "listed"
+        },
+        {
+          "agencies": [
             "NIH",
             "NHLBI"
           ],
@@ -7320,6 +8097,14 @@
           ],
           "grant": "NIH:R01GM999001",
           "how": "nih_link"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "OD"
+          ],
+          "grant": "NIH:S10OD999001",
+          "how": "listed"
         },
         {
           "agencies": [
@@ -8373,6 +9158,13 @@
       "grants": [
         {
           "agencies": [
+            "F4399999998"
+          ],
+          "grant": "F4399999998:SMRF99901",
+          "how": "listed"
+        },
+        {
+          "agencies": [
             "MISC"
           ],
           "grant": "MISC:R01GM999999",
@@ -8395,6 +9187,22 @@
             "NIGMS"
           ],
           "grant": "NIH:R01GM999001",
+          "how": "listed"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:R01GM999004",
+          "how": "nih_link"
+        },
+        {
+          "agencies": [
+            "NIH",
+            "NIGMS"
+          ],
+          "grant": "NIH:T32GM999003",
           "how": "listed"
         }
       ],

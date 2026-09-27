@@ -1,4 +1,4 @@
-"""Funding in the app's data contract, `schema_version` 1.1 (docs/09 §11).
+"""Funding in the app's data contract, `schema_version` 1.2 (docs/09 §11).
 
 The summary is the part most worth testing as arithmetic, for the same reason docs/05's is: the app
 recomputes every funding figure in the browser, and `summarizeFunding` must reproduce this block
@@ -107,7 +107,7 @@ def test_the_sample_carries_funding_and_validates_against_its_lines(
     built: tuple[Any, Any], lines: dict[str, Any]
 ) -> None:
     document, lookup = built
-    assert document["schema_version"] == SCHEMA_VERSION == "1.1"
+    assert document["schema_version"] == SCHEMA_VERSION == "1.2"
     assert document["funding"]["version"] == max(line["funding_version"] for line in lines.values())
     assert schema_problems(document, lookup) == []
     report = validate_export(document, lookup, run_year=2026, funding_citations=lines)
@@ -127,50 +127,137 @@ def test_the_sample_summary_by_hand(tmp_path: Path) -> None:
     """The synthetic funding's figures, worked out from export_cases.json by hand.
 
     Over the sample's works without the funding its build fetched live, so the figures are the
-    synthetic lines' alone. Nine grants, eight resolved; the CLP grant converts to $2,522,936 at
-    OECD's 2020 rate, and the UAH grant stays out of every total. Investigator K is written two
-    ways without an id and is one person; L is on two grants with one id. The University of
-    Washington is written in capitals once and in title case once, and is one organisation.
+    synthetic lines' alone. Fifteen grants, fourteen resolved; the CLP grant converts to $2,522,936
+    at OECD's 2020 rate, and the UAH grant stays out of every total. Investigator K is written two
+    ways without an id and is one person; L and M are on two grants each with one id. The
+    University of Washington is written in capitals and in title case, and is one organisation.
+
+    Counted (the works are W-000101 to 103 from 2024, W-000104 from 2019, W-000105 from 2021):
+    - ANID's $2,522,936 spreads over 2020-2030 as $229,358 (2020-2028) and $229,357; 2020-2024
+      count, $1,146,790, all institution-wide;
+    - SMRF99901's $1,000,003 spreads over 2017-2023 as $142,858 (2017-2020) and $142,857; its
+      works are from 2019 and 2021, so 2017-2021 count, $714,289;
+    - SMRF99902's $300,000 has no end year: undated, whole, in 2021;
+    - NSF:2299901's $2,500,002 is obligated to date, so it spreads only to 2026 (its as-of year),
+      $500,001 in 2022 and 2023 and $500,000 after; 2022-2024 count, $1,500,002;
+    - T32GM999003 ended in FY2003: its last five years, $105,000 to $125,000, are $575,000, in 2019;
+    - S10OD999001 is an instrument: all $750,000, its FY2023 $150,000 moved to 2021;
+    - R01GM999004 began in FY2022, after its only work (2019): $0;
+    - the contract ($5,000,000), task order ($700,000), P01 ($2,100,000; FY2016's null is $0),
+      R01GM999001 ($1,030,000) and U19 ($4,100,000) fall wholly inside their windows.
     """
     summary = sample(unfunded_sample(tmp_path))[0]["funding"]["summary"]
     assert summary == {
-        "grants": 9,
-        "grants_resolved": 8,
-        "grants_with_amount": 6,
+        "grants": 15,
+        "grants_resolved": 14,
+        "grants_with_amount": 12,
         "grants_unconverted": 1,
         "grants_institution_wide": 1,
-        "agencies": 4,  # NIH, VA, ANID and the OpenAlex funder; Miscellaneous is not one
-        "investigators": 5,
-        "organizations": 5,
-        "amount_usd": 15_452_936,
+        # NIH, VA, ANID, NSF and the two OpenAlex funders; Miscellaneous is not one
+        "agencies": 6,
+        "investigators": 9,  # K, L, M, N, O, P, Q, R and S
+        "organizations": 6,
+        "amount_usd": 22_122_941,
         "amount_usd_institution_wide": 2_522_936,
-        "amount_usd_nih": 12_930_000,
-        "nih_grants": 5,
+        "amount_usd_nih": 15_800_000,
+        "nih_grants": 8,
         "works_with_grants": 4,
         "works_with_listings": 4,
         "first_year": 2019,
         "last_year": 2024,
         "by_first_year": {
-            "2019": {
-                "grants": 2,
-                "grants_institution_wide": 0,
-                "amount_usd": 3_130_000,
-                "amount_usd_institution_wide": 0,
-            },
-            "2021": {
-                "grants": 1,
-                "grants_institution_wide": 0,
-                "amount_usd": 4_100_000,
-                "amount_usd_institution_wide": 0,
-            },
-            "2024": {
+            "2019": {  # P01, R01GM999001, R01GM999004, T32 and SMRF99901
                 "grants": 5,
+                "grants_institution_wide": 0,
+                "amount_usd": 6_250_003,
+                "amount_usd_institution_wide": 0,
+            },
+            "2021": {  # U19, S10 and SMRF99902
+                "grants": 3,
+                "grants_institution_wide": 0,
+                "amount_usd": 5_150_000,
+                "amount_usd_institution_wide": 0,
+            },
+            "2024": {  # ANID, the UAH grant, VA, the contract, the task order and NSF
+                "grants": 6,
                 "grants_institution_wide": 1,
-                "amount_usd": 8_222_936,
+                "amount_usd": 10_722_938,
                 "amount_usd_institution_wide": 2_522_936,
             },
         },
+        "counted_usd": 17_916_081,
+        "counted_usd_institution_wide": 1_146_790,
+        "counted_usd_nih": 14_255_000,
+        "grants_by_counted_rule": {
+            "full_amount": 1,
+            "undated": 1,
+            "ended_before": 1,
+            "began_after": 1,
+            "window": 8,
+        },
+        "counted_by_year": {
+            # SMRF99901 142,858 + P01 1,000,000
+            "2017": {"counted_usd": 1_142_858, "counted_usd_institution_wide": 0},
+            # SMRF99901 142,858 + P01 1,100,000 + R01 250,000
+            "2018": {"counted_usd": 1_492_858, "counted_usd_institution_wide": 0},
+            # SMRF99901 142,858 + R01 255,000 + U19 2,000,000 + T32 575,000
+            "2019": {"counted_usd": 2_972_858, "counted_usd_institution_wide": 0},
+            # ANID 229,358 + SMRF99901 142,858 + R01 260,000 + U19 2,100,000 + S10 600,000
+            "2020": {"counted_usd": 3_332_216, "counted_usd_institution_wide": 229_358},
+            # ANID 229,358 + SMRF99901 142,857 + R01 265,000 + contract 3,000,000 + S10 150,000
+            # + SMRF99902 300,000
+            "2021": {"counted_usd": 4_087_215, "counted_usd_institution_wide": 229_358},
+            # ANID 229,358 + contract 1,500,000 + task order 400,000 + NSF 500,001
+            "2022": {"counted_usd": 2_629_359, "counted_usd_institution_wide": 229_358},
+            # ANID 229,358 + contract 500,000 + task order 300,000 + NSF 500,001
+            "2023": {"counted_usd": 1_529_359, "counted_usd_institution_wide": 229_358},
+            # ANID 229,358 + NSF 500,000
+            "2024": {"counted_usd": 729_358, "counted_usd_institution_wide": 229_358},
+        },
     }
+
+
+@pytest.mark.parametrize(
+    ("key", "expected"),
+    [
+        ("ANID:1599A0999", (2024, 2024, 1_146_790, "window")),
+        ("F4399999998:SMRF99901", (2019, 2021, 714_289, "window")),
+        ("F4399999998:SMRF99902", (2021, 2021, 300_000, "undated")),
+        ("F4399999999:UA99001", (2024, 2024, None, None)),
+        ("MISC:R01GM999999", (2019, 2019, None, None)),
+        ("NIH:P01HL999001", (2019, 2021, 2_100_000, "window")),
+        ("NIH:R01GM999004", (2019, 2019, 0, "began_after")),
+        ("NIH:S10OD999001", (2021, 2021, 750_000, "full_amount")),
+        ("NIH:T32GM999003", (2019, 2019, 575_000, "ended_before")),
+        ("NSF:2299901", (2024, 2024, 1_500_002, "window")),
+    ],
+)
+def test_each_synthetic_grant_is_counted_as_worked_out_by_hand(
+    built: tuple[Any, Any], key: str, expected: tuple[Any, ...]
+) -> None:
+    """First and last listing years, counted amount and rule, from the summary's working above."""
+    grant = grant_of(built[0], key)
+    assert (
+        grant["first_year"],
+        grant["last_listed_year"],
+        grant["counted_usd"],
+        grant["counted_rule"],
+    ) == expected
+
+
+def test_only_an_amount_without_fiscal_years_is_spread(built: tuple[Any, Any]) -> None:
+    spread = {g["key"]: g["spread_years"] for g in built[0]["funding"]["grants"]}
+    assert spread["NSF:2299901"] == {
+        "2022": 500001,
+        "2023": 500001,
+        "2024": 500000,
+        "2025": 500000,
+        "2026": 500000,
+    }
+    assert list(spread["ANID:1599A0999"] or {}) == [str(year) for year in range(2020, 2031)]
+    assert spread["F4399999998:SMRF99902"] is None  # no end year
+    assert spread["F4399999999:UA99001"] is None  # no amount
+    assert spread["NIH:R01GM999001"] is None  # fiscal years
 
 
 def test_every_funding_case_is_exhibited_by_the_committed_sample() -> None:
@@ -508,8 +595,14 @@ def _row(key: str, agency: str = "NIGMS", **fields: Any) -> ExportGrant:
         "pis": [],
         "organization": None,
         "first_year": 2020,
+        "category": "research",
+        "fiscal_years": None,
+        "spread_years": None,
+        "counted_usd": None,
+        "counted_rule": None,
     }
     row.update(fields)
+    row.setdefault("last_listed_year", row["first_year"])
     return cast(ExportGrant, row)
 
 
@@ -593,8 +686,70 @@ def test_unknown_is_never_zero_and_miscellaneous_is_no_agency() -> None:
 
 def test_a_grant_no_work_dates_adds_to_no_year() -> None:
     """`first_year` is null only for a grant no exported work lists, which the validator refuses."""
-    summary = build_funding_summary([], [_row("NIH:A", amount_usd=10, first_year=None)], EXPORT_AGENCIES)
+    grant = _row("NIH:A", amount_usd=10, first_year=None, counted_usd=10, counted_rule="undated")
+    summary = build_funding_summary([], [grant], EXPORT_AGENCIES)
     assert (summary["amount_usd"], summary["first_year"], summary["by_first_year"]) == (10, None, {})
+    assert (summary["counted_usd"], summary["counted_by_year"]) == (10, {})
+
+
+def test_the_counted_figures_add_the_rows_and_allocate_their_award_years() -> None:
+    """The counted totals add each row's `counted_usd`, whatever computed it; the award years are
+    allocated from the row's own years, first year and last listed year (`funding.counting`)."""
+    grants = [
+        _row(
+            "NIH:A",
+            amount_usd=60,
+            fiscal_years={"2005": 10, "2019": 20, "2023": 30},
+            first_year=2019,
+            last_listed_year=2021,
+            counted_usd=20,
+            counted_rule="window",
+        ),
+        _row(
+            "NIH:B",
+            amount_usd=60,
+            category="instrument",
+            fiscal_years={"2005": 10, "2019": 20, "2023": 30},
+            first_year=2019,
+            last_listed_year=2021,
+            counted_usd=60,
+            counted_rule="full_amount",
+        ),
+        _row(
+            "NSF:C",
+            "NSF",
+            amount_usd=9,
+            scope="institution-wide",
+            spread_years={"2018": 3, "2019": 3, "2020": 3},
+            first_year=2020,
+            counted_usd=9,
+            counted_rule="window",
+        ),
+        _row(
+            "NIH:D",
+            amount_usd=5,
+            fiscal_years={"2024": 5},
+            first_year=2020,
+            counted_usd=0,
+            counted_rule="began_after",
+        ),
+        _row("NIH:E", amount_usd=None, fiscal_years={"2019": None}, first_year=2019),
+        _row("MISC:F", "MISC", status="unresolved", first_year=2017),
+    ]
+    summary = build_funding_summary([], grants, EXPORT_AGENCIES)
+    assert (summary["counted_usd"], summary["counted_usd_institution_wide"], summary["counted_usd_nih"]) == (
+        89,
+        9,
+        80,
+    )
+    assert summary["grants_by_counted_rule"] == {"full_amount": 1, "began_after": 1, "window": 2}
+    assert summary["counted_by_year"] == {
+        "2018": {"counted_usd": 3, "counted_usd_institution_wide": 3},
+        "2019": {"counted_usd": 20 + 10 + 20 + 3, "counted_usd_institution_wide": 3},  # B's 2005 at 2019
+        "2020": {"counted_usd": 3, "counted_usd_institution_wide": 3},
+        "2021": {"counted_usd": 30, "counted_usd_institution_wide": 0},  # B's 2023 at its last year
+    }
+    assert summary["amount_usd"] == 60 + 60 + 9 + 5  # the lifetime figures keep their meaning
 
 
 # --- no funding data (§11.1) ------------------------------------------------------------------------
@@ -623,6 +778,13 @@ def test_no_funding_data_validates_with_every_list_empty_and_every_count_zero() 
     assert all(value == 0 for value in funding["method"]["resolution"].values())
     assert funding["method"]["works_without_funding_metadata"] == 0
     assert {value for value in funding["summary"].values() if value not in (None, {})} == {0}
+    empty = {name: value for name, value in funding["summary"].items() if isinstance(value, dict)}
+    assert empty == {"by_first_year": {}, "grants_by_counted_rule": {}, "counted_by_year": {}}
+    assert funding["counting"] == {
+        "from_year": 2006,
+        "last_years": 5,
+        "full_amount_categories": ["instrument"],
+    }
     assert all(work["grants"] == [] for work in document["works"])
     assert schema_errors("export", document) == []
     report = validate_export(
@@ -643,7 +805,7 @@ def test_the_real_export_lists_grants_only_under_a_funding_version() -> None:
     """Before the seed the real export had no funding data, and since it, it has. Both are exports
     the weekly run could write, so this asserts the rule each obeys, not which holds (docs/08 §5)."""
     document, lookup = read(Path("export"))
-    assert document["schema_version"] == "1.1"
+    assert document["schema_version"] == "1.2"
     if document["funding"]["version"] is None:
         assert all(work["grants"] == [] for work in document["works"])
     assert validate_export(document, lookup).errors == []
@@ -659,6 +821,20 @@ def test_the_real_export_lists_grants_only_under_a_funding_version() -> None:
             "version is null, but method.strings.grant is 1",
         ),
         (lambda f, w, s: f["summary"].update(amount_usd=5), "version is null, but summary.amount_usd is 5"),
+        (
+            lambda f, w, s: f["summary"].update(grants_by_counted_rule={"window": 1}),
+            "version is null, but summary.grants_by_counted_rule is {'window': 1}",
+        ),
+        (
+            lambda f, w, s: f["summary"]["counted_by_year"].update(
+                {"2020": {"counted_usd": 1, "counted_usd_institution_wide": 0}}
+            ),
+            "version is null, but summary.counted_by_year is",
+        ),
+        (
+            lambda f, w, s: f["counting"].update(from_year=2008),
+            "funding: funding.counting is {'from_year': 2008,",
+        ),
         (
             lambda f, w, s: w[0]["grants"].append({"grant": "NIH:X", "how": "listed", "agencies": ["NIH"]}),
             "lists grants, but the export's funding version",
@@ -682,7 +858,7 @@ def test_a_1_0_document_fails_only_on_its_version_and_the_funding_it_lacks() -> 
     for work in old["works"]:
         del work["grants"]
     errors = validate_export(old, lookup).errors
-    assert "uwpr_publications.json: schema_version is 1.0, but this contract is 1.1" in errors
+    assert "uwpr_publications.json: schema_version is 1.0, but this contract is 1.2" in errors
     assert "uwpr_publications.json: schema: (root): 'funding' is a required property" in errors
     rest = [error for error in errors if "schema_version" not in error and "'funding'" not in error]
     assert len(rest) == len(old["works"])
@@ -739,6 +915,15 @@ def _code_cited(d: Any) -> None:
 
 def _url_unnamed(d: Any) -> None:
     grant_of(d, "NIH:R01GM999001")["url_name"] = None
+
+
+def _spread_uneven(d: Any) -> None:
+    years = grant_of(d, "ANID:1599A0999")["spread_years"]
+    years["2020"], years["2030"] = years["2020"] - 1, years["2030"] + 1  # the sum still holds
+
+
+def _counted_as_undated(d: Any) -> None:
+    grant_of(d, "NIH:T32GM999003").update(counted_usd=860000, counted_rule="undated")
 
 
 FUNDING_MUTATIONS: list[tuple[str, Callable[[Any], None], str]] = [
@@ -819,6 +1004,49 @@ FUNDING_MUTATIONS: list[tuple[str, Callable[[Any], None], str]] = [
         "the resource code UWPR95794 is written in cited_as 'UWPR-95794'",
     ),
     ("a url without its name", _url_unnamed, "NIH:R01GM999001 has a url without a url_name"),
+    (
+        "a wrong last listed year",
+        lambda d: grant_of(d, "NIH:P01HL999001").update(last_listed_year=2019),
+        "NIH:P01HL999001's last_listed_year is 2019, but the latest exported work listing it is from 2021",
+    ),
+    (
+        "a spread that is not even",
+        _spread_uneven,
+        "ANID:1599A0999's spread_years are {'2020': 229357,",
+    ),
+    (
+        "a spread where the amount has fiscal years",
+        lambda d: grant_of(d, "NIH:R01GM999001").update(spread_years={"2018": 1030000}),
+        "NIH:R01GM999001's spread_years are {'2018': 1030000}, but recomputed are None",
+    ),
+    (
+        "a spread missing",
+        lambda d: grant_of(d, "NSF:2299901").update(spread_years=None),
+        "NSF:2299901's spread_years are None, but recomputed are {'2022': 500001,",
+    ),
+    (
+        "a wrong counted amount",
+        lambda d: grant_of(d, "NIH:R01GM999004").update(counted_usd=1260000),
+        "NIH:R01GM999004's counted_usd is 1260000 (began_after), but recomputed from its listing years"
+        " 2019-2019 it is 0 (began_after)",
+    ),
+    (
+        "a wrong counted rule",
+        _counted_as_undated,
+        "NIH:T32GM999003's counted_usd is 860000 (undated), but recomputed from its listing years"
+        " 2019-2019 it is 575000 (ended_before)",
+    ),
+    (
+        "a counted amount for an unknown amount",
+        lambda d: grant_of(d, "VA:I01BX999001").update(counted_usd=0, counted_rule="window"),
+        "VA:I01BX999001's counted_usd is 0 (window), but recomputed from its listing years 2024-2024 it is"
+        " None (None)",
+    ),
+    (
+        "counting constants that are not the rule's",
+        lambda d: d["funding"]["counting"].update(full_amount_categories=[]),
+        "funding: funding.counting is {'from_year': 2006, 'last_years': 5, 'full_amount_categories': []}",
+    ),
 ]
 
 

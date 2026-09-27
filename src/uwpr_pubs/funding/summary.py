@@ -9,21 +9,30 @@ Everything counts **with institution-wide awards included**, the default view, a
 halves so the excluded view is checkable too. Investigators and organisations are keyed partly on
 names, because only RePORTER gives a person an identifier: one person under two spellings counts
 twice, and the method page says so.
+
+The counted figures (1.2) add each grant's exported `counted_usd` and `counted_rule`, and allocate
+its counted amount to award years from the row's own first and last listed years
+(`funding.counting.award_years`), as the app does unfiltered. The lifetime `amount_usd` figures keep
+their meaning beside them.
 """
 
 import unicodedata
 from collections.abc import Mapping, Sequence
 
 from uwpr_pubs.funding.contract import (
+    COUNTED_RULES,
+    CountedRule,
     ExportAgency,
+    ExportCountedYear,
     ExportFundingSummary,
     ExportFundingYear,
     ExportGrant,
     ExportInvestigator,
     WorkGrants,
 )
+from uwpr_pubs.funding.counting import award_years
 
-NIH = "NIH"  # the root agency `amount_usd_nih` and `nih_grants` count
+NIH = "NIH"  # the root agency `amount_usd_nih`, `counted_usd_nih` and `nih_grants` count
 
 
 def normalised_name(name: str) -> str:
@@ -72,6 +81,22 @@ def build_funding_summary(
         year["amount_usd"] += grant["amount_usd"] or 0
         year["amount_usd_institution_wide"] += (grant["amount_usd"] or 0) if is_wide else 0
 
+    rules: dict[CountedRule, int] = {}
+    for grant in grants:
+        if grant["counted_rule"] is not None:
+            rules[grant["counted_rule"]] = rules.get(grant["counted_rule"], 0) + 1
+    by_award_year: dict[int, ExportCountedYear] = {}
+    for grant in grants:
+        if grant["first_year"] is None or grant["last_listed_year"] is None:
+            continue  # listed by no exported work, which the validator refuses
+        is_wide = grant["scope"] == "institution-wide"
+        for award_year, usd in award_years(grant, grant["first_year"], grant["last_listed_year"]).items():
+            entry = by_award_year.setdefault(
+                award_year, {"counted_usd": 0, "counted_usd_institution_wide": 0}
+            )
+            entry["counted_usd"] += usd
+            entry["counted_usd_institution_wide"] += usd if is_wide else 0
+
     return {
         "grants": len(grants),
         "grants_resolved": len(resolved),
@@ -94,4 +119,13 @@ def build_funding_summary(
         "first_year": min(years) if years else None,
         "last_year": max(years) if years else None,
         "by_first_year": dict(sorted(by_first_year.items())),
+        "counted_usd": sum(grant["counted_usd"] or 0 for grant in grants),
+        "counted_usd_institution_wide": sum(grant["counted_usd"] or 0 for grant in wide),
+        "counted_usd_nih": sum(grant["counted_usd"] or 0 for grant in nih),
+        "grants_by_counted_rule": {rule: rules[rule] for rule in COUNTED_RULES if rule in rules},
+        "counted_by_year": {
+            str(award_year): entry
+            for award_year, entry in sorted(by_award_year.items())
+            if entry["counted_usd"] != 0
+        },
     }

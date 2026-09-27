@@ -16,9 +16,10 @@ The export is a *projection* of the store, not a copy. Three rules govern what c
   ORCID, no field-weighted impact, no ISSN-L. A key is omitted only where the concept does not
   apply at all — `found_on` on override evidence, which belongs to the work and to no record.
 
-Funding (docs/09 §11, contract 1.1) follows the same rules: each work's `grants` are rows the app
-filters on, and the top-level `funding` block, built by `funding.export`, carries the grants, the
-agencies and a summary written independently. Its shapes live in `funding.contract`.
+Funding (docs/09 §11, contract 1.1; counted amounts 1.2) follows the same rules: each work's
+`grants` are rows the app filters on, and the top-level `funding` block, built by `funding.export`,
+carries the grants, the agencies and a summary written independently. Its shapes live in
+`funding.contract`.
 """
 
 import statistics
@@ -45,9 +46,11 @@ from uwpr_pubs.store.models import (
     WorkId,
 )
 
-# 1.1 (docs/09 §11) added funding: `works[].grants` and the top-level `funding` block. Additive,
-# so a minor bump (docs/05 §12): the app refuses only a major version it does not know.
-SCHEMA_VERSION = "1.1"
+# 1.1 (docs/09 §11) added funding: `works[].grants` and the top-level `funding` block. 1.2 added
+# the counting rule's fields beside them (`funding.counting`; each grant's counted amount and the
+# summary's counted totals), changing none. Both additive, so minor bumps (docs/05 §12): the app
+# refuses only a major version it does not know. The lookup index carries the same version.
+SCHEMA_VERSION = "1.2"
 
 # Presentation text for the lookup index (docs/05 §8). It lives here rather than in rules.yaml
 # because a change to that file is a rule change and forces a `rule_version` bump that

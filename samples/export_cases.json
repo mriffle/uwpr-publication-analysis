@@ -12,6 +12,16 @@
         "short_name": "ANID"
       },
       {
+        "code": "F4399999998",
+        "country": "US",
+        "group": "us_nonfederal",
+        "name": "SAMPLE Medical Research Foundation",
+        "origin": "openalex",
+        "parent": null,
+        "schema": 1,
+        "short_name": null
+      },
+      {
         "code": "F4399999999",
         "country": "UA",
         "group": "non_us",
@@ -82,6 +92,26 @@
         "short_name": "NIH"
       },
       {
+        "code": "NSF",
+        "country": "US",
+        "group": "us_federal",
+        "name": "National Science Foundation",
+        "origin": "config",
+        "parent": null,
+        "schema": 1,
+        "short_name": "NSF"
+      },
+      {
+        "code": "OD",
+        "country": "US",
+        "group": "us_federal",
+        "name": "NIH Office of the Director",
+        "origin": "reporter",
+        "parent": "NIH",
+        "schema": 1,
+        "short_name": "OD"
+      },
+      {
         "code": "VA",
         "country": "US",
         "group": "us_federal",
@@ -97,7 +127,8 @@
         "funding_version": "2026-09-26.1",
         "grants": [
           "NIH-contract:HHSN272209900001C",
-          "NIH-contract:HHSN272209900002I:75N99099F00001"
+          "NIH-contract:HHSN272209900002I:75N99099F00001",
+          "NSF:2299901"
         ],
         "jats_checked": {
           "R-000101": "2026-09-26"
@@ -118,6 +149,24 @@
             "raw": "75N99099F00001",
             "sources": [
               "jats"
+            ]
+          },
+          {
+            "first_seen": "2026-09-26",
+            "funders": [
+              "National Science Foundation"
+            ],
+            "grants": [
+              "NSF:2299901"
+            ],
+            "last_seen": "2026-09-26",
+            "method": "normalised",
+            "note": null,
+            "outcome": "grant",
+            "raw": "DBI-2299901",
+            "sources": [
+              "crossref",
+              "openalex"
             ]
           },
           {
@@ -282,9 +331,12 @@
       {
         "funding_version": "2026-09-26.1",
         "grants": [
+          "F4399999998:SMRF99901",
           "MISC:R01GM999999",
           "NIH:P01HL999001",
-          "NIH:R01GM999001"
+          "NIH:R01GM999001",
+          "NIH:R01GM999004",
+          "NIH:T32GM999003"
         ],
         "jats_checked": {
           "R-000104": "2026-09-26"
@@ -294,6 +346,12 @@
             "core": "P01HL999001",
             "first_seen": "2026-09-26",
             "grant": "NIH:P01HL999001",
+            "last_seen": "2026-09-26"
+          },
+          {
+            "core": "R01GM999004",
+            "first_seen": "2026-09-26",
+            "grant": "NIH:R01GM999004",
             "last_seen": "2026-09-26"
           }
         ],
@@ -351,6 +409,40 @@
               "crossref",
               "openalex"
             ]
+          },
+          {
+            "first_seen": "2026-09-26",
+            "funders": [
+              "SAMPLE Medical Research Foundation"
+            ],
+            "grants": [
+              "F4399999998:SMRF99901"
+            ],
+            "last_seen": "2026-09-26",
+            "method": "openalex_award",
+            "note": null,
+            "outcome": "grant",
+            "raw": "SMRF-99901",
+            "sources": [
+              "openalex"
+            ]
+          },
+          {
+            "first_seen": "2026-09-26",
+            "funders": [
+              "NIGMS NIH HHS"
+            ],
+            "grants": [
+              "NIH:T32GM999003"
+            ],
+            "last_seen": "2026-09-26",
+            "method": "exact",
+            "note": null,
+            "outcome": "grant",
+            "raw": "T32 GM999003",
+            "sources": [
+              "pubmed"
+            ]
           }
         ],
         "work": "W-000104"
@@ -358,8 +450,11 @@
       {
         "funding_version": "2026-09-26.1",
         "grants": [
+          "F4399999998:SMRF99901",
+          "F4399999998:SMRF99902",
           "NIH:P01HL999001",
           "NIH:R01GM999001",
+          "NIH:S10OD999001",
           "NIH:U19AG999002"
         ],
         "jats_checked": {
@@ -413,6 +508,57 @@
             "raw": "P01HL999001",
             "sources": [
               "crossref"
+            ]
+          },
+          {
+            "first_seen": "2026-09-26",
+            "funders": [
+              "OD NIH HHS"
+            ],
+            "grants": [
+              "NIH:S10OD999001"
+            ],
+            "last_seen": "2026-09-26",
+            "method": "exact",
+            "note": null,
+            "outcome": "grant",
+            "raw": "S10 OD999001",
+            "sources": [
+              "pubmed"
+            ]
+          },
+          {
+            "first_seen": "2026-09-26",
+            "funders": [
+              "SAMPLE Medical Research Foundation"
+            ],
+            "grants": [
+              "F4399999998:SMRF99901"
+            ],
+            "last_seen": "2026-09-26",
+            "method": "openalex_award",
+            "note": null,
+            "outcome": "grant",
+            "raw": "SMRF-99901",
+            "sources": [
+              "openalex"
+            ]
+          },
+          {
+            "first_seen": "2026-09-26",
+            "funders": [
+              "SAMPLE Medical Research Foundation"
+            ],
+            "grants": [
+              "F4399999998:SMRF99902"
+            ],
+            "last_seen": "2026-09-26",
+            "method": "openalex_award",
+            "note": null,
+            "outcome": "grant",
+            "raw": "SMRF-99902",
+            "sources": [
+              "openalex"
             ]
           },
           {
@@ -487,6 +633,101 @@
         "start": "2020",
         "status": "resolved",
         "title": "SAMPLE: research centre programme"
+      },
+      {
+        "activity": null,
+        "agency": "F4399999998",
+        "amount": {
+          "basis": "openalex_amount",
+          "currency": "USD",
+          "original": "1000003",
+          "rate": "1",
+          "rate_year": null,
+          "source": "OpenAlex",
+          "usd": 1000003
+        },
+        "category": "other",
+        "checked": "2026-09-26",
+        "end": "2023",
+        "facts": {
+          "openalex": [
+            {
+              "amount": "1000003",
+              "currency": "USD",
+              "id": "G9990000003",
+              "provenance": "crossref",
+              "start_year": 2017
+            }
+          ]
+        },
+        "family": "openalex_funder",
+        "first_seen": "2026-09-26",
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "F4399999998:SMRF99901",
+        "number": "SMRF-99901",
+        "openalex_awards": [
+          "G9990000003"
+        ],
+        "organization": "SAMPLE Institute",
+        "pis": [
+          {
+            "id": null,
+            "name": "SAMPLE Investigator R"
+          }
+        ],
+        "schema": 1,
+        "scope": "project",
+        "scope_reason": null,
+        "start": "2017",
+        "status": "resolved",
+        "title": "SAMPLE: foundation research award"
+      },
+      {
+        "activity": null,
+        "agency": "F4399999998",
+        "amount": {
+          "basis": "openalex_amount",
+          "currency": "USD",
+          "original": "300000",
+          "rate": "1",
+          "rate_year": null,
+          "source": "OpenAlex",
+          "usd": 300000
+        },
+        "category": "other",
+        "checked": "2026-09-26",
+        "end": null,
+        "facts": {
+          "openalex": [
+            {
+              "amount": "300000",
+              "currency": "USD",
+              "id": "G9990000004",
+              "provenance": "crossref",
+              "start_year": 2018
+            }
+          ]
+        },
+        "family": "openalex_funder",
+        "first_seen": "2026-09-26",
+        "flags": [
+          "amount_from_openalex"
+        ],
+        "key": "F4399999998:SMRF99902",
+        "number": "SMRF-99902",
+        "openalex_awards": [
+          "G9990000004"
+        ],
+        "organization": null,
+        "pis": [],
+        "schema": 1,
+        "scope": "project",
+        "scope_reason": null,
+        "start": "2018",
+        "status": "resolved",
+        "title": null
       },
       {
         "activity": null,
@@ -753,6 +994,161 @@
         "title": "SAMPLE: RESEARCH PROJECT"
       },
       {
+        "activity": "R01",
+        "agency": "NIGMS",
+        "amount": {
+          "basis": "reporter_fiscal_years",
+          "currency": "USD",
+          "original": "1260000",
+          "rate": "1",
+          "rate_year": null,
+          "source": "NIH RePORTER",
+          "usd": 1260000
+        },
+        "category": "research",
+        "checked": "2026-09-26",
+        "end": "2026-03-31",
+        "facts": {
+          "reporter": {
+            "application_types": [
+              "1",
+              "5"
+            ],
+            "first_support_year": 1,
+            "fiscal_years": {
+              "2022": 300000,
+              "2023": 310000,
+              "2024": 320000,
+              "2025": 330000
+            },
+            "latest_appl_id": 99990009
+          }
+        },
+        "family": "reporter",
+        "first_seen": "2026-09-26",
+        "flags": [],
+        "key": "NIH:R01GM999004",
+        "number": "R01GM999004",
+        "openalex_awards": [],
+        "organization": "University of Washington",
+        "pis": [
+          {
+            "id": "9000003",
+            "name": "SAMPLE Investigator M"
+          }
+        ],
+        "schema": 1,
+        "scope": "project",
+        "scope_reason": null,
+        "start": "2022-04-01",
+        "status": "resolved",
+        "title": "SAMPLE: RESEARCH PROJECT BEGUN LATER"
+      },
+      {
+        "activity": "S10",
+        "agency": "OD",
+        "amount": {
+          "basis": "reporter_fiscal_years",
+          "currency": "USD",
+          "original": "750000",
+          "rate": "1",
+          "rate_year": null,
+          "source": "NIH RePORTER",
+          "usd": 750000
+        },
+        "category": "instrument",
+        "checked": "2026-09-26",
+        "end": "2023-04-30",
+        "facts": {
+          "reporter": {
+            "application_types": [
+              "1",
+              "3"
+            ],
+            "first_support_year": 1,
+            "fiscal_years": {
+              "2020": 600000,
+              "2023": 150000
+            },
+            "latest_appl_id": 99990008
+          }
+        },
+        "family": "reporter",
+        "first_seen": "2026-09-26",
+        "flags": [],
+        "key": "NIH:S10OD999001",
+        "number": "S10OD999001",
+        "openalex_awards": [],
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "9000007",
+            "name": "SAMPLE Investigator Q"
+          }
+        ],
+        "schema": 1,
+        "scope": "project",
+        "scope_reason": null,
+        "start": "2020-05-01",
+        "status": "resolved",
+        "title": "SAMPLE: HIGH-RESOLUTION MASS SPECTROMETER"
+      },
+      {
+        "activity": "T32",
+        "agency": "NIGMS",
+        "amount": {
+          "basis": "reporter_fiscal_years",
+          "currency": "USD",
+          "original": "860000",
+          "rate": "1",
+          "rate_year": null,
+          "source": "NIH RePORTER",
+          "usd": 860000
+        },
+        "category": "training",
+        "checked": "2026-09-26",
+        "end": "2004-06-30",
+        "facts": {
+          "reporter": {
+            "application_types": [
+              "1",
+              "5"
+            ],
+            "first_support_year": 1,
+            "fiscal_years": {
+              "1996": 90000,
+              "1997": 95000,
+              "1998": 100000,
+              "1999": 105000,
+              "2000": 110000,
+              "2001": 115000,
+              "2002": 120000,
+              "2003": 125000
+            },
+            "latest_appl_id": 99990007
+          }
+        },
+        "family": "reporter",
+        "first_seen": "2026-09-26",
+        "flags": [],
+        "key": "NIH:T32GM999003",
+        "number": "T32GM999003",
+        "openalex_awards": [],
+        "organization": "UNIVERSITY OF WASHINGTON",
+        "pis": [
+          {
+            "id": "9000006",
+            "name": "SAMPLE Investigator P"
+          }
+        ],
+        "schema": 1,
+        "scope": "project",
+        "scope_reason": null,
+        "start": "1996-07-01",
+        "status": "resolved",
+        "title": "SAMPLE: TRAINING PROGRAM IN PROTEIN SCIENCE"
+      },
+      {
         "activity": "U19",
         "agency": "NIA",
         "amount": {
@@ -800,6 +1196,52 @@
         "start": "2019-09-01",
         "status": "resolved",
         "title": "SAMPLE: COOPERATIVE CENTER"
+      },
+      {
+        "activity": null,
+        "agency": "NSF",
+        "amount": {
+          "basis": "nsf_obligated",
+          "currency": "USD",
+          "original": "2500002",
+          "rate": "1",
+          "rate_year": null,
+          "source": "NSF Award API",
+          "usd": 2500002
+        },
+        "category": "research",
+        "checked": "2026-09-26",
+        "end": "2028-07-31",
+        "facts": {
+          "nsf": {
+            "estimated": "2000000",
+            "exp_date": "2028-07-31",
+            "obligated": "2500002",
+            "program": "SAMPLE Program",
+            "type": "Standard Grant"
+          }
+        },
+        "family": "nsf",
+        "first_seen": "2026-09-26",
+        "flags": [
+          "active"
+        ],
+        "key": "NSF:2299901",
+        "number": "2299901",
+        "openalex_awards": [],
+        "organization": "University of Washington",
+        "pis": [
+          {
+            "id": null,
+            "name": "SAMPLE Investigator S"
+          }
+        ],
+        "schema": 1,
+        "scope": "project",
+        "scope_reason": null,
+        "start": "2022-08-01",
+        "status": "resolved",
+        "title": "SAMPLE: Collaborative Research: Proteome Dynamics"
       },
       {
         "activity": "I01",

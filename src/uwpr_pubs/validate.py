@@ -23,6 +23,7 @@ from typing import Any
 import yaml
 
 from uwpr_pubs.export import SCHEMA_VERSION, build_summary
+from uwpr_pubs.funding.counting import counted, counting_block, spread_years
 from uwpr_pubs.funding.overrides import override_match_key
 from uwpr_pubs.funding.summary import build_funding_summary
 from uwpr_pubs.schemas import project_root, schema_errors
@@ -739,6 +740,55 @@ def _check_listings(works: Sequence[Any], chains: Mapping[str, list[str]], repor
             report.error("funding.grants", f"{key} is listed by no exported work")
 
 
+def _listing_years(works: Sequence[Any]) -> dict[str, tuple[int, int]]:
+    """Each listed grant's earliest and latest listing years, from the works themselves."""
+    years: dict[str, tuple[int, int]] = {}
+    for work in works:
+        for row in work["grants"]:
+            first, last = years.get(row["grant"], (work["year"], work["year"]))
+            years[row["grant"]] = (min(first, work["year"]), max(last, work["year"]))
+    return years
+
+
+def _check_counting_constants(funding: Any, report: Report) -> None:
+    """`funding.counting` states the rule's own constants, with or without funding data."""
+    expected = counting_block()
+    if funding["counting"] != expected:
+        message = (
+            f"funding.counting is {funding['counting']}, but the counting rule's constants are {expected}"
+        )
+        report.error("funding", message)
+
+
+def _check_counted(works: Sequence[Any], funding: Any, report: Report) -> None:
+    """Each grant's spread, last listed year and counted amount, recomputed from its row and the
+    works that list it. A grant no work lists is reported by `_check_listings`, and skipped here."""
+    years = _listing_years(works)
+    for grant in funding["grants"]:
+        key, where = grant["key"], "funding.grants"
+        spread = spread_years(grant)
+        if grant["spread_years"] != spread:
+            report.error(
+                where, f"{key}'s spread_years are {grant['spread_years']}, but recomputed are {spread}"
+            )
+        if key not in years:
+            continue
+        first, last = years[key]
+        if grant["last_listed_year"] != last:
+            report.error(
+                where,
+                f"{key}'s last_listed_year is {grant['last_listed_year']}, but the latest exported work"
+                f" listing it is from {last}",
+            )
+        usd, rule = counted(grant, first, last)
+        if (grant["counted_usd"], grant["counted_rule"]) != (usd, rule):
+            report.error(
+                where,
+                f"{key}'s counted_usd is {grant['counted_usd']} ({grant['counted_rule']}), but recomputed"
+                f" from its listing years {first}-{last} it is {usd} ({rule})",
+            )
+
+
 def _check_first_years(works: Sequence[Any], funding: Any, code: str, report: Report) -> None:
     """A grant's first year is its earliest listing work's; no work writes the resource code."""
     first: dict[str, int] = {}
@@ -832,6 +882,7 @@ def _check_funding(
     export: Any, works: Sequence[Any], report: Report, citations: Mapping[str, Any] | None
 ) -> None:
     funding = export["funding"]
+    _check_counting_constants(funding, report)
     if funding["version"] is None:
         _check_no_funding(funding, works, report)
         return
@@ -840,6 +891,7 @@ def _check_funding(
     code = _letters_and_digits(str(export["resource"]["identifier"]))
     _check_first_years(works, funding, code, report)
     _check_grant_rows(funding, code, report)
+    _check_counted(works, funding, report)
     _check_funding_summary(works, funding, report)
     if citations is not None:
         _check_listings_against_lines(works, citations, report)

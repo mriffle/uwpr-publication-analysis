@@ -499,7 +499,7 @@
       "description": "The funding behind the publications (docs/09 §11.3). `version` is null exactly when this export carries no funding data; then every list is empty and every count zero.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["version", "as_of", "sources", "exchange_rates", "method", "summary", "agencies", "grants"],
+      "required": ["version", "as_of", "sources", "exchange_rates", "method", "summary", "counting", "agencies", "grants"],
       "properties": {
         "version": {"oneOf": [{"$ref": "common.schema.json#/$defs/ruleVersion"}, {"type": "null"}]},
         "as_of": {
@@ -510,10 +510,32 @@
         "exchange_rates": {"type": "array", "items": {"$ref": "#/$defs/exchangeRates"}},
         "method": {"$ref": "#/$defs/fundingMethod"},
         "summary": {"$ref": "#/$defs/fundingSummary"},
+        "counting": {"$ref": "#/$defs/fundingCounting"},
         "agencies": {"description": "Every agency a grant names, with every parent, sorted by code", "type": "array", "items": {"$ref": "#/$defs/agency"}},
         "grants": {"description": "Every grant an exported work lists, sorted by key", "type": "array", "items": {"$ref": "#/$defs/grant"}}
       }
     },
+    "fundingCounting": {
+      "description": "The counting rule's constants (docs/09 F17, §7.4), present even with no funding data, so the app hard-codes none",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from_year", "last_years", "full_amount_categories"],
+      "properties": {
+        "from_year": {"description": "No grant money from before this year counts: UWPR began in it", "type": "integer"},
+        "last_years": {"description": "How many final years a grant whose funding ended before from_year counts", "type": "integer", "minimum": 1},
+        "full_amount_categories": {
+          "description": "Grant categories counted in full, whatever their years",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/grantCategory"}
+        }
+      }
+    },
+    "countedRule": {
+      "description": "Why a grant's counted amount is what it is: the first that applies, in the order full_amount, undated, ended_before, began_after, window",
+      "enum": ["full_amount", "undated", "ended_before", "began_after", "window"]
+    },
+    "grantCategory": {"enum": ["research", "center", "training", "instrument", "contract", "other"]},
     "fundingSource": {
       "type": "object",
       "additionalProperties": false,
@@ -591,7 +613,12 @@
         "works_with_listings",
         "first_year",
         "last_year",
-        "by_first_year"
+        "by_first_year",
+        "counted_usd",
+        "counted_usd_institution_wide",
+        "counted_usd_nih",
+        "grants_by_counted_rule",
+        "counted_by_year"
       ],
       "properties": {
         "grants": {"type": "integer", "minimum": 0},
@@ -615,7 +642,37 @@
           "type": "object",
           "additionalProperties": false,
           "patternProperties": {"^[0-9]{4}$": {"$ref": "#/$defs/fundingYear"}}
+        },
+        "counted_usd": {"description": "The grants' counted amounts, summed", "type": "integer"},
+        "counted_usd_institution_wide": {"description": "The part of counted_usd from institution-wide awards", "type": "integer"},
+        "counted_usd_nih": {"description": "The part of counted_usd from resolved grants under NIH", "type": "integer"},
+        "grants_by_counted_rule": {
+          "description": "Grants with an amount, by the rule that counted them; a rule no grant falls under is omitted",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "full_amount": {"type": "integer", "minimum": 1},
+            "undated": {"type": "integer", "minimum": 1},
+            "ended_before": {"type": "integer", "minimum": 1},
+            "began_after": {"type": "integer", "minimum": 1},
+            "window": {"type": "integer", "minimum": 1}
+          }
+        },
+        "counted_by_year": {
+          "description": "The counted amounts by award year, each clamped into from_year and the latest listing year; a year only when its counted_usd is not zero",
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {"^[0-9]{4}$": {"$ref": "#/$defs/countedYear"}}
         }
+      }
+    },
+    "countedYear": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["counted_usd", "counted_usd_institution_wide"],
+      "properties": {
+        "counted_usd": {"type": "integer"},
+        "counted_usd_institution_wide": {"type": "integer"}
       }
     },
     "fundingYear": {
@@ -661,12 +718,16 @@
         "start_year",
         "end_year",
         "first_year",
+        "last_listed_year",
         "amount_usd",
         "amount_original",
         "currency",
         "rate_year",
         "amount_source",
         "fiscal_years",
+        "spread_years",
+        "counted_usd",
+        "counted_rule",
         "url",
         "url_name",
         "flags"
@@ -675,7 +736,7 @@
         "key": {"$ref": "common.schema.json#/$defs/grantKey"},
         "agency": {"description": "The most specific agency: an NIH grant's administering IC", "$ref": "common.schema.json#/$defs/agencyCode"},
         "number": {"description": "The display form", "type": "string", "minLength": 1},
-        "category": {"enum": ["research", "center", "training", "instrument", "contract", "other"]},
+        "category": {"$ref": "#/$defs/grantCategory"},
         "scope": {"enum": ["project", "institution-wide"]},
         "scope_reason": {"description": "Why it is institution-wide; null for a project", "type": ["string", "null"]},
         "status": {"description": "unresolved exactly for a MISC: grant", "enum": ["resolved", "unresolved"]},
@@ -685,6 +746,7 @@
         "start_year": {"type": ["integer", "null"]},
         "end_year": {"type": ["integer", "null"]},
         "first_year": {"description": "The year of the earliest exported work that lists it", "type": ["integer", "null"]},
+        "last_listed_year": {"description": "The year of the latest exported work that lists it: the ceiling its counted amount stops at", "type": ["integer", "null"]},
         "amount_usd": {"description": "Whole US dollars; null when unknown or unconverted, never 0 for unknown", "type": ["integer", "null"], "minimum": 0},
         "amount_original": {"description": "In `currency`", "type": ["number", "null"]},
         "currency": {"description": "ISO 4217", "oneOf": [{"type": "string", "pattern": "^[A-Z]{3}$"}, {"type": "null"}]},
@@ -701,6 +763,22 @@
             {"type": "null"}
           ]
         },
+        "spread_years": {
+          "description": "An estimate: amount_usd spread evenly over start_year to end_year in whole dollars, the earliest years taking the remainder, for an amount with no fiscal_years (to no later than amount_source.as_of's year when the basis is an obligation to date); null where none applies. The years sum to amount_usd.",
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "patternProperties": {"^[0-9]{4}$": {"type": "integer"}}
+            },
+            {"type": "null"}
+          ]
+        },
+        "counted_usd": {
+          "description": "What the totals count of the grant over every exported work listing it (docs/09 §7.4); null exactly when amount_usd is",
+          "type": ["integer", "null"]
+        },
+        "counted_rule": {"oneOf": [{"$ref": "#/$defs/countedRule"}, {"type": "null"}]},
         "url": {"description": "A page a reader can open to check the grant", "type": ["string", "null"]},
         "url_name": {"description": "The link's label, naming the page it opens; null exactly when url is", "type": ["string", "null"]},
         "flags": {

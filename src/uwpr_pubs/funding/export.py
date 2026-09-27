@@ -10,6 +10,11 @@ exported works count, only the grants they list cross, and only the agencies tho
 with every parent. A store without `funding/`, or whose lines name no exported work, exports the
 "no funding data" shape — a null `version`, empty lists, zero counts — which the app meets as one
 designed state, as it meets a 1.0 export with no block at all (§11.1, §12.10).
+
+Each grant also carries what the counting rule makes of it over every exported work that lists it
+(`funding.counting`): an amount spread over its years where it has no fiscal years, the latest
+listing year, and the counted amount with its rule. Only the constants cross as configuration, and
+they are the rule's own.
 """
 
 import datetime as dt
@@ -33,6 +38,7 @@ from uwpr_pubs.funding.contract import (
     ListingHow,
     WorkGrants,
 )
+from uwpr_pubs.funding.counting import counted, counting_block, spread_years
 from uwpr_pubs.funding.overrides import grant_override_for
 from uwpr_pubs.funding.summary import build_funding_summary
 from uwpr_pubs.store.models import (
@@ -194,9 +200,14 @@ def listings_for(work: WorkId, line: FundingCitation, funding: FundingInput) -> 
 # --- the block ---------------------------------------------------------------------------------------
 
 
-def export_grant(grant: Grant, first_year: int | None) -> ExportGrant:
+def export_grant(grant: Grant, first_year: int, last_year: int) -> ExportGrant:
     """A grant (§11.4), with `amount_source` derived rather than stored twice: its page is the
-    grant's `url`, and its date the line's `checked`."""
+    grant's `url`, and its date the line's `checked`.
+
+    `first_year` and `last_year` are those of the earliest and latest exported works that list it,
+    over which the counting rule counts it. The spread and the counted amount are computed from
+    the row itself, as the app and the validator read it.
+    """
     amount = grant["amount"]
     reporter = grant["facts"].get("reporter")
     url, url_name = grant_url(grant)
@@ -206,7 +217,7 @@ def export_grant(grant: Grant, first_year: int | None) -> ExportGrant:
     # A year whose rows report no amount stays null; the years sum to `amount_usd` only while the
     # amount is RePORTER's, so they are not exported beside an amount from elsewhere.
     by_year = reporter is not None and (amount is None or amount["basis"] in REPORTER_BASES)
-    return {
+    row: ExportGrant = {
         "key": grant["key"],
         "agency": grant["agency"],
         "number": grant["number"],
@@ -220,6 +231,7 @@ def export_grant(grant: Grant, first_year: int | None) -> ExportGrant:
         "start_year": start_year,
         "end_year": _year(grant["end"]),
         "first_year": first_year,
+        "last_listed_year": last_year,
         "amount_usd": amount["usd"] if amount else None,
         "amount_original": json_number(amount["original"]) if amount else None,
         "currency": amount["currency"] if amount else None,
@@ -230,10 +242,16 @@ def export_grant(grant: Grant, first_year: int | None) -> ExportGrant:
             else None
         ),
         "fiscal_years": dict(sorted(reporter["fiscal_years"].items())) if reporter and by_year else None,
+        "spread_years": None,
+        "counted_usd": None,
+        "counted_rule": None,
         "url": url,
         "url_name": url_name,
         "flags": list(grant["flags"]),
     }
+    row["spread_years"] = spread_years(row)
+    row["counted_usd"], row["counted_rule"] = counted(row, first_year, last_year)
+    return row
 
 
 def _sources(lines: Iterable[FundingCitation], grants: Iterable[Grant]) -> list[ExportFundingSource]:
@@ -331,6 +349,7 @@ def no_funding() -> ExportFunding:
         "exchange_rates": [],
         "method": _no_method(),
         "summary": build_funding_summary([], [], []),
+        "counting": counting_block(),
         "agencies": [],
         "grants": [],
     }
@@ -342,7 +361,8 @@ def build_funding(
     """Each exported work's grants, and the `funding` block, from the works' years (§11).
 
     `years` is every exported work's publication year, by ID: a grant's first year is the year of
-    the earliest exported work that lists it (§4), and only exported works' lines count.
+    the earliest exported work that lists it (§4), its last listed year the latest's, and only
+    exported works' lines count.
     """
     lines = {work: funding.citations[work] for work in years if work in funding.citations}
     if not lines:
@@ -350,11 +370,13 @@ def build_funding(
 
     listings = {work: listings_for(work, line, funding) for work, line in lines.items()}
     first_years: dict[GrantKey, int] = {}
+    last_years: dict[GrantKey, int] = {}
     for work, listed_by in listings.items():
         for row in listed_by:
             first_years[row["grant"]] = min(years[work], first_years.get(row["grant"], years[work]))
+            last_years[row["grant"]] = max(years[work], last_years.get(row["grant"], years[work]))
     listed = [funding.grants[key] for key in sorted(first_years) if key in funding.grants]
-    grants = [export_grant(grant, first_years[grant["key"]]) for grant in listed]
+    grants = [export_grant(grant, first_years[grant["key"]], last_years[grant["key"]]) for grant in listed]
 
     codes = {code for grant in listed for code in agency_chain(grant["agency"], funding.agencies)}
     agencies: list[ExportAgency] = [
@@ -381,6 +403,7 @@ def build_funding(
         "exchange_rates": _exchange_rates(funding.rate_sources),
         "method": _method(years, lines),
         "summary": build_funding_summary(rows, grants, agencies),
+        "counting": counting_block(),
         "agencies": agencies,
         "grants": grants,
     }

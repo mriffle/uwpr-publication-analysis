@@ -27,6 +27,7 @@ from collections.abc import Callable, Mapping, Sequence
 
 from uwpr_pubs.export import ExportDoc, ExportWork
 from uwpr_pubs.funding.contract import ExportGrant, ExportGrantListing
+from uwpr_pubs.funding.counting import OBLIGATED_TO_DATE_BASES, yearly
 
 LONG_AUTHOR_LIST = 50
 
@@ -184,6 +185,42 @@ def _sub_agencies(export: ExportDoc) -> list[str]:
     ]
 
 
+# The counting rule's cases (1.2): each rule, and each edge of the window and the spread.
+
+
+def _counted(export: ExportDoc, rule: str, keep: Callable[[ExportGrant], bool] = lambda g: True) -> list[str]:
+    return [g["key"] for g in _grants(export) if g["counted_rule"] == rule and keep(g)]
+
+
+def _years_after_listing(grant: ExportGrant) -> bool:
+    years, last = yearly(grant), grant["last_listed_year"]
+    return years is not None and last is not None and max(years) > last
+
+
+def _spread_with_remainder_in_two_years(export: ExportDoc) -> list[str]:
+    return [
+        g["key"]
+        for g in _grants(export)
+        if g["spread_years"]
+        and (g["amount_usd"] or 0) % len(g["spread_years"])
+        and g["first_year"] is not None
+        and g["last_listed_year"] is not None
+        and g["first_year"] < g["last_listed_year"]
+    ]
+
+
+def _obligation_spread_to_as_of(export: ExportDoc) -> list[str]:
+    return [
+        g["key"]
+        for g in _grants(export)
+        if g["spread_years"]
+        and g["amount_source"] is not None
+        and g["amount_source"]["basis"] in OBLIGATED_TO_DATE_BASES
+        and g["end_year"] is not None
+        and g["end_year"] > max(int(year) for year in g["spread_years"])
+    ]
+
+
 # The real half of §11.8, from `samples/store/funding/`, which the sample's build fetches live
 # (B8). Each reads only the listings of the real works, so a synthetic case cannot stand in for a
 # real one: if a rebuild ever loses one, the export says so. Four of §11.8's real cases are facts
@@ -288,6 +325,23 @@ FUNDING_CASES: Mapping[str, Callable[[ExportDoc], Sequence[str]]] = {
     "one grant listed by two works in different years": _shared_across_years,
     "a grant with a null amount": _no_amount,
     "a sub-agency with a parent": _sub_agencies,
+    "funding that ended before 2006, counted by its last five years": lambda export: _counted(
+        export, "ended_before", lambda g: g["counted_usd"] != g["amount_usd"]
+    ),
+    "an instrument counted in full, with years after its latest listing work": lambda export: _counted(
+        export, "full_amount", _years_after_listing
+    ),
+    "a grant that began after its latest listing work, counted as zero": lambda export: _counted(
+        export, "began_after"
+    ),
+    "an amount spread evenly with a remainder, on works in two years": _spread_with_remainder_in_two_years,
+    "an obligation to date spread only to its as-of year": _obligation_spread_to_as_of,
+    "a start year and no end year, counted whole": lambda export: _counted(
+        export, "undated", lambda g: g["start_year"] is not None and g["end_year"] is None
+    ),
+    "a grant funded past its latest listing work, counted to that year": lambda export: _counted(
+        export, "window", _years_after_listing
+    ),
     **REAL_FUNDING_CASES,
 }
 
