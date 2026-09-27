@@ -293,6 +293,15 @@ deliberately, dated, and noted in this header.
   keeping the short name (a bar's optional `name`). Playwright checks, on any export, that no
   funding page scrolls sideways at 390 pixels with every table open. The JavaScript is 143.3 KB
   gzipped, from 142.2.
+- *2026-09-27, §3, §5 and §12, the Funding impact view released* ([09](09-funding-impact.md) R2).
+  The `VITE_FUNDING` flag that kept the funding routes, the view switch, the publication's Funding
+  section and the method page's `#funding` out of the production build is removed, so every
+  build has them and the push that deploys it is the release. **§3's funding routes always
+  exist**, and **§5's Funding section** is no longer qualified by the build. No funding page
+  changes, only whether it exists. **§12:** CI builds and runs Playwright once, as `pages.yml`
+  builds, with no flag in either; the tests of the flag itself are deleted (11 unit tests and the
+  3 e2e specs of a build without the view), and the tests of an export with no funding data stay.
+  e2e is 82 specs, all passing and none skipped. The JavaScript is 143.2 KB gzipped, from 143.3.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -362,9 +371,9 @@ routes reachable from it.
 
 **The overview and Funding impact are peers.** Their shared header has a switch between them, a
 `<nav>` of two links, and each link carries the query string, so a filter survives the switch in
-both directions. The funding routes are built behind the `VITE_FUNDING` flag until the view is
-released. Without it they are no route, and nothing links to them. An agency or grant key is
-everything after its prefix, as a DOI is for a publication.
+both directions. Every build has the funding routes: the `VITE_FUNDING` flag that kept them off
+the public page while the view was built was removed at release (2026-09-27). An agency or grant
+key is everything after its prefix, as a DOI is for a publication.
 
 **The detail view must not cost the reader the filter they spent a minute building.** That is the
 requirement; a visual overlay is not. Keeping the overview mounted behind a modal means either two
@@ -488,8 +497,8 @@ contact for corrections. An override exists precisely so a reported mistake can 
 
 Renders [05](05-metrics-and-data-contract.md) §6 in that order: identity; links; authors with
 affiliations and staff markers; research areas at all four levels; citations; **why this is a UWPR
-publication**; the funding the publication lists ([09](09-funding-impact.md) §12.8, in a build
-with the Funding impact view); other versions; retraction if flagged.
+publication**; the funding the publication lists ([09](09-funding-impact.md) §12.8); other
+versions; retraction if flagged.
 
 The evidence section is the one that must not be templated carelessly. Three cases each need their
 own wording, and a generic template produces something false in all three:

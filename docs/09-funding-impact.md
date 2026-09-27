@@ -892,6 +892,34 @@ plan. [08](08-implementation.md) records them as they are built.
     no funding page, nor the publication with the most grants, scrolls sideways at 390 pixels
     with every table open, and the grants table draws 50, fits its column and downloads every
     grant. The JavaScript is 143.3 KB gzipped, from 142.2.
+- *2026-09-27, R2 — the flag removed.* §12.12's `VITE_FUNDING` kept the view out of `pages.yml`'s
+  production build while it was built on `main` in slices. Every slice is in, R1a and R1b read it
+  on the real export, and its data has been on `gh-pages` since the seed, so removing the flag is
+  the release: the push that deploys it puts the view on the public page. Nothing a reader of a
+  funding page sees changes, only whether the pages exist.
+  - **Where it lived.** `fundingEnabled()` in `contract/config.ts`, and the variable's type in
+    `vite-env.d.ts`, which is back to its form before W1; `App.tsx`, which gave the view switch,
+    the three funding routes and the publication's Funding section only with it; `parseRoute`'s
+    `funding` option, without which the routes were no route; `Method.tsx`'s gate on `#funding`,
+    whose own one-sentence no-data state stays; Vitest's `env` in `vite.config.ts`; `check.yml`'s
+    env on the build and e2e steps; and `pages.yml`'s comment saying it was deliberately unset.
+    All are gone. The doc comments that said a page was "built behind" the flag, or existed "only
+    in a build with the view", now say what is true of the released app. The components keep
+    their optional props, which the app now always passes.
+  - **What was deleted, and why.** The tests of the flag itself, since a flag that no longer
+    exists has nothing to test: `FundingFlagOff.test.tsx` (7 tests), and one flag-off test each
+    in the method page's funding tests, the funding routes, the header and the publication's
+    Funding section — 11 unit tests in all. In e2e, the `FUNDING` constant and the skips it drove,
+    so every funding spec runs in every build, and the two flag-off describes (3 specs). **Every
+    test of the no-funding-data state (§12.10) stays:** that is the data, not the flag, and a
+    rolled-back export still needs it.
+  - **The gate.** e2e is one run, with no flag-off build beside it: 82 pass and none skip, where
+    the flag-on run passed the same 82 and skipped the 3 flag-off specs. All 42 funding specs run,
+    38 in `funding.spec.ts` and 4 in `method-funding.spec.ts`. On the sample, 1,633 unit tests
+    pass (1,644 less the 11) at 98.7% statement and 92.2% branch coverage; on the real export,
+    1,538 pass and 95 skip, and the 82 e2e specs pass. A plain `npm run build`, which is what
+    `pages.yml` runs, carries the view's headings, and `/funding` from cold renders the view
+    behind `vite preview`. The JavaScript is 143.2 KB gzipped, from 143.3.
 
 ---
 
@@ -2409,12 +2437,13 @@ These extend [05](05-metrics-and-data-contract.md) §11 to every funding string:
 
 ### 12.12 Build flag, budgets, accessibility
 
-**`VITE_FUNDING`**, on in CI builds and e2e and off in `pages.yml`'s production build: with it off,
-every funding entry point is absent. Release (R) removes the flag. The JavaScript budget stays at
-**250 KiB gzipped** (level 9), and no dependency is added: currency formatting uses `Intl`, CSV
-is written by hand. One `h1` per route; `nav` with `aria-current`; every table with a caption,
-`th scope` and `aria-sort` on sortable headers; a labelled search box; only the filter bar is a
-live region; every static mark `role="img"`.
+**`VITE_FUNDING`**, on in CI builds and e2e and off in `pages.yml`'s production build, kept every
+funding entry point off the public page while the view was built. **It was removed at release
+(R2, 2026-09-27):** every build has the view. The JavaScript budget stays at **250 KiB gzipped**
+(level 9), and no dependency is added: currency formatting uses `Intl`, CSV is written by hand.
+One `h1` per route; `nav` with `aria-current`; every table with a caption, `th scope` and
+`aria-sort` on sortable headers; a labelled search box; only the filter bar is a live region;
+every static mark `role="img"`.
 
 ## 13. Operations and legal
 
