@@ -335,11 +335,8 @@ def test_the_first_round_asks_for_everything_the_strings_could_be() -> None:
     assert plan.nsf == {"1933311", "1443474"}
     assert ("NOAA", "NA140AR4170078") in plan.usaspending and ("NOAA", "NA14OAR4170078") in plan.usaspending
     assert ("NASA", "NNX13AJ12G") in plan.usaspending
-    assert plan.openalex_awards == {
-        "G1",
-        "G2",
-        "G3",
-    }  # not the resource code's, a not-grant's or an override's
+    # Not the resource code's or a not-grant's; an override's grant is valued by its award (B9a).
+    assert plan.openalex_awards == {"G1", "G2", "G3", "G6"}
     assert plan.reporter_splits == frozenset()
 
 

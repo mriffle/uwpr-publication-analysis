@@ -1427,7 +1427,11 @@ class FundingStage:
         """One string's line: its sightings pooled with the stored ones, and its decision.
 
         The stored decision stands unless every source that has shown the string was read this
-        run, its new decision needs no funder, or the override that made it has been lifted.
+        run, its new decision needs no funder and lists something else (or is an override's), or
+        the override that made it has been lifted. A decision that needs no funder but lists the
+        same grants is not taken: read from fewer of the string's written forms, the same core can
+        come with another method (`R01-HL1-26028` is normalised, `R01HL126028` exact), and the
+        line would change every week (B9a).
         """
         new: StoredString = {
             "raw": outcome.raw,
@@ -1444,7 +1448,11 @@ class FundingStage:
             return new
         sources = sorted({*old["sources"], *(outcome.sources if fresh else ())})
         lifted = old["method"] == "override" and outcome.method != "override"
-        decided = new if (fresh and set(sources) <= read) or lifted or self._independent(outcome) else old
+        changed = (new["outcome"], new["grants"]) != (old["outcome"], old["grants"]) or (
+            new["method"] == "override" and old["method"] != "override"
+        )
+        independent = changed and self._independent(outcome)
+        decided = new if (fresh and set(sources) <= read) or lifted or independent else old
         last = old["last_seen"]
         return {
             "raw": old["raw"],

@@ -774,6 +774,42 @@ def test_a_fragment_lists_its_whole_when_only_the_fragments_source_is_read(run: 
         assert run.funding() == before, when
 
 
+def test_a_strings_method_stands_when_fewer_of_its_forms_are_read(run: Runner) -> None:
+    """OpenAlex writes `R01 GM08668 8`, a split serial; PubMed and JATS write `R01 GM086688`. At a
+    full refresh the most frequent form, exact, names the string; a week on OpenAlex alone is read,
+    and the same core, now normalised, must not rewrite the line. B9a's rehearsal found eight
+    strings whose method moved so between a full refresh and a rerun the same day."""
+    split = replace(A, awards=(award("R01 GM08668 8", NIH_FUNDER, "G1"), *A.awards[1:]))
+    run.world.papers = (split, B, C, D)
+    assert run(SATURDAY).status == "ok"
+    before = run.funding()
+    string = run.strings(split)["R01 GM086688"]
+    assert (string["method"], string["grants"]) == ("exact", ["NIH:R01GM086688"])
+
+    result = run(WEEK_LATER)
+    assert result.status == "ok", result.errors
+    assert run.manifest(result)["funding"]["mode"] == "incremental"
+    assert run.funding() == before
+
+
+def test_an_overridden_strings_openalex_awards_are_read_the_first_time(tmp_path: Path) -> None:
+    """An override decides its string before any source is asked, and planning skipped it, so the
+    OpenAlex award it carries was first read a run later, when the grant came up for a refresh:
+    the seed's rerun the same day added award facts to NIH:U19AG023122 and EU:115766 (B9a)."""
+    runner = Runner(tmp_path)
+    runner.world.openalex_awards = {
+        **OPENALEX_AWARDS,
+        "G10": {"amount": 250000, "currency": "USD", "provenance": "nih_exporter", "start_year": 2004},
+    }
+    runner()  # to learn the work's ID
+    runner.overrides = overrides_file(
+        tmp_path, override(runner.work(C), "grant", "  raw: U19AG02312\n  grant: NIH:U19AG023122\n")
+    )
+    assert runner(WEEK_LATER, funding="full").status == "ok"
+    grant = runner.grants()["NIH:U19AG023122"]
+    assert (grant["openalex_awards"], [a["id"] for a in grant["facts"]["openalex"]]) == (["G10"], ["G10"])
+
+
 def test_the_dates_move_once_they_are_28_days_old(seeded: Runner) -> None:
     seeded("2026-10-31T12:00:00+00:00")  # a Saturday, 28 days on: a full refresh
     string = seeded.strings(A)["R01 GM086688"]

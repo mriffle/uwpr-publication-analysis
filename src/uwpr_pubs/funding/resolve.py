@@ -698,7 +698,10 @@ def plan_lookups(  # noqa: PLR0913 - as `resolve_work`, with the first round's a
         _plan_key(key, cores, nsf, usa)
     open_items: list[_Item] = []
     for item in _pool(sightings, overrides, rules):
-        if _before_sources(item, rules, overrides) is not None:
+        before = _before_sources(item, rules, overrides)
+        if before is not None:
+            if before.outcome == "grant":  # an override's grant: its awards value it, as any string's
+                awards |= item.awards
             continue
         open_items.append(item)
         awards |= item.awards
