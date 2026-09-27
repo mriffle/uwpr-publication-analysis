@@ -1,0 +1,98 @@
+{"code": "ADA", "country": "US", "group": "us_nonfederal", "name": "American Diabetes Association", "origin": "config", "parent": null, "schema": 1, "short_name": "ADA"}
+{"code": "AEI", "country": "ES", "group": "non_us", "name": "Agencia Estatal de Investigación", "origin": "config", "parent": null, "schema": 1, "short_name": "AEI"}
+{"code": "AHA", "country": "US", "group": "us_nonfederal", "name": "American Heart Association", "origin": "config", "parent": null, "schema": 1, "short_name": "AHA"}
+{"code": "ALZ", "country": "US", "group": "us_nonfederal", "name": "Alzheimer's Association", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "AMS", "country": "GB", "group": "non_us", "name": "Academy of Medical Sciences", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "ANID", "country": "CL", "group": "non_us", "name": "Agencia Nacional de Investigación y Desarrollo", "origin": "config", "parent": null, "schema": 1, "short_name": "ANID"}
+{"code": "ANR", "country": "FR", "group": "non_us", "name": "Agence Nationale de la Recherche", "origin": "config", "parent": null, "schema": 1, "short_name": "ANR"}
+{"code": "ARC", "country": "AU", "group": "non_us", "name": "Australian Research Council", "origin": "config", "parent": null, "schema": 1, "short_name": "ARC"}
+{"code": "BBSRC", "country": "GB", "group": "non_us", "name": "Biotechnology and Biological Sciences Research Council", "origin": "config", "parent": "UKRI", "schema": 1, "short_name": "BBSRC"}
+{"code": "BMBF", "country": "DE", "group": "non_us", "name": "Bundesministerium für Bildung und Forschung", "origin": "config", "parent": null, "schema": 1, "short_name": "BMBF"}
+{"code": "BMWI", "country": "DE", "group": "non_us", "name": "Bundesministerium für Wirtschaft und Energie", "origin": "config", "parent": null, "schema": 1, "short_name": "BMWi"}
+{"code": "CANCERFONDEN", "country": "SE", "group": "non_us", "name": "Cancerfonden", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "CIHR", "country": "CA", "group": "non_us", "name": "Canadian Institutes of Health Research", "origin": "config", "parent": null, "schema": 1, "short_name": "CIHR"}
+{"code": "CPRIT", "country": "US", "group": "us_nonfederal", "name": "Cancer Prevention and Research Institute of Texas", "origin": "config", "parent": null, "schema": 1, "short_name": "CPRIT"}
+{"code": "CRUK", "country": "GB", "group": "non_us", "name": "Cancer Research UK", "origin": "config", "parent": null, "schema": 1, "short_name": "CRUK"}
+{"code": "CSC", "country": "CN", "group": "non_us", "name": "China Scholarship Council", "origin": "config", "parent": null, "schema": 1, "short_name": "CSC"}
+{"code": "CUHK", "country": "HK", "group": "non_us", "name": "The Chinese University of Hong Kong", "origin": "config", "parent": null, "schema": 1, "short_name": "CUHK"}
+{"code": "DFF", "country": "DK", "group": "non_us", "name": "Independent Research Fund Denmark", "origin": "config", "parent": null, "schema": 1, "short_name": "DFF"}
+{"code": "DFG", "country": "DE", "group": "non_us", "name": "Deutsche Forschungsgemeinschaft", "origin": "config", "parent": null, "schema": 1, "short_name": "DFG"}
+{"code": "DLR", "country": "DE", "group": "non_us", "name": "Deutsches Zentrum für Luft- und Raumfahrt", "origin": "config", "parent": null, "schema": 1, "short_name": "DLR"}
+{"code": "DOD", "country": "US", "group": "us_federal", "name": "U.S. Department of Defense", "origin": "config", "parent": null, "schema": 1, "short_name": "DoD"}
+{"code": "DOE", "country": "US", "group": "us_federal", "name": "U.S. Department of Energy", "origin": "config", "parent": null, "schema": 1, "short_name": "DOE"}
+{"code": "DOI", "country": "US", "group": "us_federal", "name": "U.S. Department of the Interior", "origin": "config", "parent": null, "schema": 1, "short_name": "DOI"}
+{"code": "EMBO", "country": null, "group": "non_us", "name": "European Molecular Biology Organization", "origin": "config", "parent": null, "schema": 1, "short_name": "EMBO"}
+{"code": "EPSRC", "country": "GB", "group": "non_us", "name": "Engineering and Physical Sciences Research Council", "origin": "config", "parent": "UKRI", "schema": 1, "short_name": "EPSRC"}
+{"code": "EU", "country": null, "group": "non_us", "name": "European Union", "origin": "config", "parent": null, "schema": 1, "short_name": "EU"}
+{"code": "F4320337454", "country": "US", "group": "us_nonfederal", "name": "Center for Tobacco Control Research and Education, University of California, San Francisco", "origin": "openalex", "parent": null, "schema": 1, "short_name": null}
+{"code": "FAPESP", "country": "BR", "group": "non_us", "name": "Fundação de Amparo à Pesquisa do Estado de São Paulo", "origin": "config", "parent": null, "schema": 1, "short_name": "FAPESP"}
+{"code": "FNR", "country": "LU", "group": "non_us", "name": "Fonds National de la Recherche Luxembourg", "origin": "config", "parent": null, "schema": 1, "short_name": "FNR"}
+{"code": "FWO", "country": "BE", "group": "non_us", "name": "Fonds Wetenschappelijk Onderzoek", "origin": "config", "parent": null, "schema": 1, "short_name": "FWO"}
+{"code": "GATES", "country": "US", "group": "us_nonfederal", "name": "Gates Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "HFSP", "country": "FR", "group": "non_us", "name": "Human Frontier Science Program", "origin": "config", "parent": null, "schema": 1, "short_name": "HFSP"}
+{"code": "HHMI", "country": "US", "group": "us_nonfederal", "name": "Howard Hughes Medical Institute", "origin": "config", "parent": null, "schema": 1, "short_name": "HHMI"}
+{"code": "HIDOH", "country": "US", "group": "us_nonfederal", "name": "Hawaii State Department of Health", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "JSPS", "country": "JP", "group": "non_us", "name": "Japan Society for the Promotion of Science", "origin": "config", "parent": null, "schema": 1, "short_name": "JSPS"}
+{"code": "JST", "country": "JP", "group": "non_us", "name": "Japan Science and Technology Agency", "origin": "config", "parent": null, "schema": 1, "short_name": "JST"}
+{"code": "KAIST", "country": "KR", "group": "non_us", "name": "Korea Advanced Institute of Science and Technology", "origin": "config", "parent": null, "schema": 1, "short_name": "KAIST"}
+{"code": "KAW", "country": "SE", "group": "non_us", "name": "Knut och Alice Wallenbergs Stiftelse", "origin": "config", "parent": null, "schema": 1, "short_name": "KAW"}
+{"code": "KBSI", "country": "KR", "group": "non_us", "name": "Korea Basic Science Institute", "origin": "config", "parent": null, "schema": 1, "short_name": "KBSI"}
+{"code": "KHIDI", "country": "KR", "group": "non_us", "name": "Korea Health Industry Development Institute", "origin": "config", "parent": null, "schema": 1, "short_name": "KHIDI"}
+{"code": "KIMS", "country": "KR", "group": "non_us", "name": "Korea Institute of Materials Science", "origin": "config", "parent": null, "schema": 1, "short_name": "KIMS"}
+{"code": "LUNDBECK", "country": "DK", "group": "non_us", "name": "Lundbeckfonden", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "MISC", "country": null, "group": "miscellaneous", "name": "Miscellaneous", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "MNISW", "country": "PL", "group": "non_us", "name": "Polish Ministry of Science and Higher Education", "origin": "config", "parent": null, "schema": 1, "short_name": "MNiSW"}
+{"code": "MOORE", "country": "US", "group": "us_nonfederal", "name": "Gordon and Betty Moore Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "MOST", "country": "CN", "group": "non_us", "name": "Ministry of Science and Technology of the People's Republic of China", "origin": "config", "parent": null, "schema": 1, "short_name": "MOST"}
+{"code": "MRC", "country": "GB", "group": "non_us", "name": "Medical Research Council", "origin": "config", "parent": "UKRI", "schema": 1, "short_name": "MRC"}
+{"code": "MSIT", "country": "KR", "group": "non_us", "name": "Ministry of Science and ICT", "origin": "config", "parent": null, "schema": 1, "short_name": "MSIT"}
+{"code": "MWK", "country": "DE", "group": "non_us", "name": "Ministerium für Wissenschaft, Forschung und Kunst Baden-Württemberg", "origin": "config", "parent": null, "schema": 1, "short_name": "MWK"}
+{"code": "NASA", "country": "US", "group": "us_federal", "name": "National Aeronautics and Space Administration", "origin": "config", "parent": null, "schema": 1, "short_name": "NASA"}
+{"code": "NCATS", "country": "US", "group": "us_federal", "name": "National Center for Advancing Translational Sciences", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NCATS"}
+{"code": "NCCIH", "country": "US", "group": "us_federal", "name": "National Center for Complementary and Integrative Health", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NCCIH"}
+{"code": "NCI", "country": "US", "group": "us_federal", "name": "National Cancer Institute", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NCI"}
+{"code": "NCRR", "country": "US", "group": "us_federal", "name": "National Center for Research Resources", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NCRR"}
+{"code": "NEI", "country": "US", "group": "us_federal", "name": "National Eye Institute", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NEI"}
+{"code": "NERC", "country": "GB", "group": "non_us", "name": "Natural Environment Research Council", "origin": "config", "parent": "UKRI", "schema": 1, "short_name": "NERC"}
+{"code": "NFWF", "country": "US", "group": "us_nonfederal", "name": "National Fish and Wildlife Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": "NFWF"}
+{"code": "NHGRI", "country": "US", "group": "us_federal", "name": "National Human Genome Research Institute", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NHGRI"}
+{"code": "NHLBI", "country": "US", "group": "us_federal", "name": "National Heart Lung and Blood Institute", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NHLBI"}
+{"code": "NIA", "country": "US", "group": "us_federal", "name": "National Institute on Aging", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIA"}
+{"code": "NIAID", "country": "US", "group": "us_federal", "name": "National Institute of Allergy and Infectious Diseases", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIAID"}
+{"code": "NIAMS", "country": "US", "group": "us_federal", "name": "National Institute of Arthritis and Musculoskeletal and Skin Diseases", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIAMS"}
+{"code": "NIBIB", "country": "US", "group": "us_federal", "name": "National Institute of Biomedical Imaging and Bioengineering", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIBIB"}
+{"code": "NICHD", "country": "US", "group": "us_federal", "name": "Eunice Kennedy Shriver National Institute of Child Health and Human Development", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NICHD"}
+{"code": "NIDA", "country": "US", "group": "us_federal", "name": "National Institute on Drug Abuse", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIDA"}
+{"code": "NIDCR", "country": "US", "group": "us_federal", "name": "National Institute of Dental and Craniofacial Research", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIDCR"}
+{"code": "NIDDK", "country": "US", "group": "us_federal", "name": "National Institute of Diabetes and Digestive and Kidney Diseases", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIDDK"}
+{"code": "NIEHS", "country": "US", "group": "us_federal", "name": "National Institute of Environmental Health Sciences", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIEHS"}
+{"code": "NIGMS", "country": "US", "group": "us_federal", "name": "National Institute of General Medical Sciences", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIGMS"}
+{"code": "NIH", "country": "US", "group": "us_federal", "name": "National Institutes of Health", "origin": "config", "parent": null, "schema": 1, "short_name": "NIH"}
+{"code": "NIHR", "country": "GB", "group": "non_us", "name": "National Institute for Health and Care Research", "origin": "config", "parent": null, "schema": 1, "short_name": "NIHR"}
+{"code": "NIMH", "country": "US", "group": "us_federal", "name": "National Institute of Mental Health", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NIMH"}
+{"code": "NINDS", "country": "US", "group": "us_federal", "name": "National Institute of Neurological Disorders and Stroke", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NINDS"}
+{"code": "NINR", "country": "US", "group": "us_federal", "name": "National Institute of Nursing Research", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NINR"}
+{"code": "NKFIH", "country": "HU", "group": "non_us", "name": "National Research, Development and Innovation Office", "origin": "config", "parent": null, "schema": 1, "short_name": "NKFIH"}
+{"code": "NLM", "country": "US", "group": "us_federal", "name": "National Library of Medicine", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NLM"}
+{"code": "NOAA", "country": "US", "group": "us_federal", "name": "National Oceanic and Atmospheric Administration", "origin": "config", "parent": null, "schema": 1, "short_name": "NOAA"}
+{"code": "NRF", "country": "KR", "group": "non_us", "name": "National Research Foundation of Korea", "origin": "config", "parent": null, "schema": 1, "short_name": "NRF"}
+{"code": "NSF", "country": "US", "group": "us_federal", "name": "National Science Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": "NSF"}
+{"code": "NSFC", "country": "CN", "group": "non_us", "name": "National Natural Science Foundation of China", "origin": "config", "parent": null, "schema": 1, "short_name": "NSFC"}
+{"code": "NWO", "country": "NL", "group": "non_us", "name": "Nederlandse Organisatie voor Wetenschappelijk Onderzoek", "origin": "config", "parent": null, "schema": 1, "short_name": "NWO"}
+{"code": "OD", "country": "US", "group": "us_federal", "name": "NIH Office of the Director", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "OD"}
+{"code": "OGI", "country": "CA", "group": "non_us", "name": "Ontario Genomics", "origin": "config", "parent": null, "schema": 1, "short_name": "OGI"}
+{"code": "OPENTARGETS", "country": "GB", "group": "non_us", "name": "Open Targets", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "PDF", "country": "US", "group": "us_nonfederal", "name": "Parkinson's Disease Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "RGC", "country": "HK", "group": "non_us", "name": "Research Grants Council of Hong Kong", "origin": "config", "parent": null, "schema": 1, "short_name": "RGC"}
+{"code": "SIMONS", "country": "US", "group": "us_nonfederal", "name": "Simons Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "SNSF", "country": "CH", "group": "non_us", "name": "Swiss National Science Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": "SNSF"}
+{"code": "SSF", "country": "SE", "group": "non_us", "name": "Stiftelsen för Strategisk Forskning", "origin": "config", "parent": null, "schema": 1, "short_name": "SSF"}
+{"code": "STARR", "country": "US", "group": "us_nonfederal", "name": "Starr Foundation", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "TRDRP", "country": "US", "group": "us_nonfederal", "name": "Tobacco-Related Disease Research Program", "origin": "config", "parent": null, "schema": 1, "short_name": "TRDRP"}
+{"code": "UGENT", "country": "BE", "group": "non_us", "name": "Bijzonder Onderzoeksfonds UGent", "origin": "config", "parent": null, "schema": 1, "short_name": null}
+{"code": "UKRI", "country": "GB", "group": "non_us", "name": "UK Research and Innovation", "origin": "config", "parent": null, "schema": 1, "short_name": "UKRI"}
+{"code": "USDA", "country": "US", "group": "us_federal", "name": "U.S. Department of Agriculture", "origin": "config", "parent": null, "schema": 1, "short_name": "USDA"}
+{"code": "UW", "country": "US", "group": "us_nonfederal", "name": "University of Washington", "origin": "config", "parent": null, "schema": 1, "short_name": "UW"}
+{"code": "VA", "country": "US", "group": "us_federal", "name": "U.S. Department of Veterans Affairs", "origin": "config", "parent": null, "schema": 1, "short_name": "VA"}
+{"code": "VR", "country": "SE", "group": "non_us", "name": "Vetenskapsrådet", "origin": "config", "parent": null, "schema": 1, "short_name": "VR"}
+{"code": "WT", "country": "GB", "group": "non_us", "name": "Wellcome", "origin": "config", "parent": null, "schema": 1, "short_name": "Wellcome"}

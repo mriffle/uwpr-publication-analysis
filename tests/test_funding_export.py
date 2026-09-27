@@ -631,11 +631,22 @@ def test_no_funding_data_validates_with_every_list_empty_and_every_count_zero() 
     assert [error for error in report.errors if "lookup" not in error] == []
 
 
-def test_the_real_store_exports_no_funding_data() -> None:
-    document, _ = read(Path("export"))
+def _no_funding_document() -> tuple[Any, Any]:
+    """An export with no funding data, built rather than read: the real one has had funding since
+    the seed (docs/09 B9)."""
+    works = cast(list[Work], json.loads(SAMPLE_CASES.read_text(encoding="utf-8"))["works"])
+    lookup = {"schema_version": SCHEMA_VERSION, "generated_at": "x", "aliases": {}, "not_included": []}
+    return build_export(works, [], _meta()), lookup
+
+
+def test_the_real_export_lists_grants_only_under_a_funding_version() -> None:
+    """Before the seed the real export had no funding data, and since it, it has. Both are exports
+    the weekly run could write, so this asserts the rule each obeys, not which holds (docs/08 §5)."""
+    document, lookup = read(Path("export"))
     assert document["schema_version"] == "1.1"
-    assert document["funding"]["version"] is None
-    assert all(work["grants"] == [] for work in document["works"])
+    if document["funding"]["version"] is None:
+        assert all(work["grants"] == [] for work in document["works"])
+    assert validate_export(document, lookup).errors == []
 
 
 @pytest.mark.parametrize(
@@ -657,8 +668,7 @@ def test_the_real_store_exports_no_funding_data() -> None:
 def test_no_funding_data_means_none_at_all(
     built: tuple[Any, Any], mutate: Callable[[Any, Any, Any], None], message: str
 ) -> None:
-    document, lookup = read(Path("export"))
-    document = copy(document)
+    document, lookup = _no_funding_document()
     mutate(document["funding"], document["works"], built[0]["funding"])
     report = validate_export(document, lookup)
     assert any(message in error for error in report.errors), report.errors

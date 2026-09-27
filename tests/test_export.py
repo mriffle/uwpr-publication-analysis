@@ -680,9 +680,19 @@ def test_the_real_store_exports_without_the_sample_cases(tmp_path: Path) -> None
     which by definition never reaches the export. Applying the §13 guard here made `uwpr-pubs
     export` fail permanently against its most obvious target. Which cases the store lacks is up to
     the weekly run, which can add a retraction, so this asserts only that it exports.
+
+    It is built as `export` builds it, with the store's own overrides beside it: since the seed
+    (docs/09 B9) the store holds grants a grant override decided, and a listing so decided must
+    carry the override's attribution (docs/09 §11.2).
     """
-    config = load_config()
-    document, lookup = build_from_store(REAL_STORE, resource_block(config))
+    config = load_config(overrides_path=REAL_STORE.parent / "overrides.yaml")
+    document, lookup = build_from_store(
+        REAL_STORE,
+        resource_block(config),
+        channels=config.channels,
+        overrides=config.overrides,
+        rate_sources=config.exchange_rates["sources"],
+    )
 
     assert schema_problems(document, lookup) == []
     report = validate_export(document, lookup, run_year=int(document["run_id"][:4]))

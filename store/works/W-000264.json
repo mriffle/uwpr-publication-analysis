@@ -319,7 +319,7 @@
       ],
       "fulltext": {
         "cache": "sha256:38603a357e9bec867237b8888e1e15d567dc7f1d93d0e02cdaa3de9b93e5ed5f",
-        "checked": "2026-09-26",
+        "checked": "2026-09-27",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -547,8 +547,8 @@
       ],
       "fulltext": {
         "cache": null,
-        "checked": "2026-09-26",
-        "recheck_after": "2026-12-25",
+        "checked": "2026-09-27",
+        "recheck_after": "2026-12-26",
         "status": "unavailable"
       },
       "id": "R-000587",
@@ -612,5 +612,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-26"
+  "updated": "2026-09-27"
 }

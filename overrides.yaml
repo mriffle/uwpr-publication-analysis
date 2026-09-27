@@ -30,3 +30,244 @@
     evidence that the resource was used (Phase 1 §2.1, criterion 3).
   by: mriffle
   date: 2026-09-20
+
+# Grant overrides (docs/09 §6.6, Appendix E), seeded with funding (B9). Each names one string as a
+# paper writes it and the grant it means, where the research found independent support but no NIH
+# link to the paper, so no rule may make the correction (F8). The string is matched ignoring case,
+# spaces and dashes; `grant: null` would say "not a grant". S10OD032290 on W-000264 is not here:
+# no source says which instrument grant it means, so it stays Miscellaneous (§16 item 1, decided
+# at the seed).
+- target: W-000222
+  action: grant
+  raw: U19AG02312
+  grant: NIH:U19AG023122
+  reason: >-
+    The only RePORTER core one edit away (the last digit dropped). U19AG023122 is Steven R.
+    Cummings's, FY2004-2026, and seven corpus papers are NIH-linked to it (docs/09 A4.5).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000256
+  action: grant
+  raw: P01HL12803
+  grant: NIH:P01HL128203
+  reason: >-
+    The paper credits "Program Project Grant P01HL12803 (to J. P. S., W. S. D., and J. W. H.)";
+    J. P. S. is Jere P. Segrest, P01HL128203's PI. Found only in the JATS text, which is why full
+    text is read (docs/09 A4.12).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000100
+  action: grant
+  raw: S10RR02510
+  grant: NIH:S10RR025107
+  reason: >-
+    The only corpus-linked candidate for the truncated serial; S10RR025107 is a FY2008 UW
+    instrument award whose PI, James Bruce, is an author (docs/09 A4.17).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000208
+  action: grant
+  raw: R21AO129851
+  grant: NIH:R21AI129851
+  reason: >-
+    AO for AI: AO is no NIH institute, and R21AI129851 is at Cornell, the authors' institution
+    (docs/09 A5.1).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000144
+  action: grant
+  raw: "094352"
+  grant: NIH:R01HL094352
+  reason: >-
+    A bare serial the sources attribute to NIH and PHS. RePORTER holds DP3DK094352 and
+    R01HL094352 under it; R01HL094352 is Alan Chait's, whose lab wrote the paper (docs/09 A5.2).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000287
+  action: grant
+  raw: OPP 144374
+  grant: NSF:1443474
+  reason: >-
+    Six digits as written, and the padded 1443740 does not exist. 1443474 is in NSF's Office of
+    Polar Programs, matching the OPP prefix, and another work (W-000808) cites it correctly
+    (docs/09 A8.1).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000233
+  action: grant
+  raw: IOS‐1922781
+  grant: NSF:1922871
+  reason: >-
+    NSF has no award 1922781. Two adjacent digits exchanged give 1922871, in IOS, matching the
+    prefix, which the same work already lists through another source (docs/09 A8.2).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000094
+  action: grant
+  raw: DGE-071824
+  grant: NSF:0718124
+  reason: >-
+    Six digits, and 0071824 does not exist. 0718124 is in DGE, matching the prefix: UW's
+    Graduate Research Fellowship award, 2007-2013, institution-wide. Assumes one dropped "1"
+    (docs/09 A8.3).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000208
+  action: grant
+  raw: NN13AJ12G
+  grant: USA:NASA:NNX13AJ12G
+  reason: >-
+    NASA numbers of this era are NNX13...; USAspending's recipient for NNX13AJ12G is UC San
+    Diego (2013-2022, on body fluid distribution), and the paper is the NASA Twins Study, two of
+    whose other NASA grants USAspending describes as Twins Study consortium projects (docs/09
+    A8.4).
+  by: mriffle
+  date: 2026-09-27
+
+# Proposed by the seed's rehearsal (B9a), from its review of the unresolved strings and of docs/09
+# §16 item 3 (Appendix A.9's hand merges, and DOE-SC10010566), and approved at the seed. Each has
+# independent support that no rule may act on (F8).
+- target: W-000588
+  action: grant
+  raw: DGE-1256082
+  grant: NSF:1256082
+  reason: >-
+    OpenAlex names NIH for this form and NSF for the same work's "1256082", which NSF's API
+    knows: UW's Graduate Research Fellowship award, in DGE, the prefix written. docs/09 A6.15
+    expected NSF:1256082 here.
+  by: mriffle
+  date: 2026-09-27
+- target: W-000305
+  action: grant
+  raw: IOS-1922541
+  grant: NSF:1922541
+  reason: >-
+    PubMed gives the agency as "Forsgren". NSF's API has 1922541 in IOS, the prefix written: a
+    Collaborative Research award to CSU Fullerton, PI Kristy Forsgren, the paper's last author.
+  by: mriffle
+  date: 2026-09-27
+- target: W-000289
+  action: grant
+  raw: 15POST22700033
+  grant: AHA:15POST22700033
+  reason: >-
+    The paper's funding section reads "the American Heart Association (15POST22700033)"; the
+    JATS funder is named without an ID, and AHA has no name pattern, so no rule reached it.
+  by: mriffle
+  date: 2026-09-27
+- target: W-000829
+  action: grant
+  raw: PJT-206152
+  grant: CIHR:PJT206152
+  reason: >-
+    Crossref's deposit names this award's funder by ROR alone, 01gavpb45, the Canadian
+    Institutes of Health Research, whose Project Grants are numbered PJT-. No rule reads ROR IDs.
+  by: mriffle
+  date: 2026-09-27
+- target: W-000178
+  action: grant
+  raw: "1097737"
+  grant: null
+  reason: >-
+    Not a grant: "The Structural Genomics Consortium is a registered charity (1097737)", in the
+    paper's acknowledgements (PMC5617284). OpenAlex lists it as an award of CIHR and Wellcome.
+  by: mriffle
+  date: 2026-09-27
+- target: W-000178
+  action: grant
+  raw: "115766"
+  grant: EU:115766
+  reason: >-
+    The acknowledgements name "Innovative Medicines Initiative (EU/EFPIA) (ULTRA-DD Grant
+    115766)"; OpenAlex names only EFPIA, Genome Canada and the Ontario Genomics Institute.
+    EU:115766 is IMI's ULTRA-DD, institution-wide (docs/09 Appendix B).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000179
+  action: grant
+  raw: DOE-SC10010566
+  grant: USA:DOE:DESC0010566
+  reason: >-
+    One digit too many for a DOE Office of Science number. DE-SC0010566 is, in USAspending,
+    UC Berkeley's 2013-2018 Office of Science grant "Multi-'omic' analyses of ... carbon
+    turnover in grassland soil", and the paper credits BER for its soil metaproteomics data
+    (docs/09 A9.25, §16 item 3).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000179
+  action: grant
+  raw: SC10010566
+  grant: USA:DOE:DESC0010566
+  reason: >-
+    The same number as DOE-SC10010566 on this work, without its prefix (docs/09 A9.25).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000156
+  action: grant
+  raw: 10-IAHU-01
+  grant: ANR:ANR10IAHU0001
+  reason: >-
+    ANR-10-IAHU-01 written without zero-padding, beside ANR-10-IAHU-0001 on the same work: the
+    Imagine institute's one IHU award (docs/09 A9.18).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000156
+  action: grant
+  raw: ANR-10-IAHU- 01
+  grant: ANR:ANR10IAHU0001
+  reason: >-
+    As 10-IAHU-01: the same IHU award, ANR-10-IAHU-0001, which the work also lists (docs/09
+    A9.18).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000296
+  action: grant
+  raw: RTG 2467
+  grant: DFG:391498659
+  reason: >-
+    The paper writes "RTG 2467 - 391498659": DFG's research training group GRK 2467 and its
+    project number, whose DFG title is "GRK 2467: Intrinsisch ungeordnete Proteine" (docs/09
+    A9.19).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000296
+  action: grant
+  raw: CRC 1423
+  grant: DFG:421152132
+  reason: >-
+    The paper writes "CRC 1423 - 421152132": DFG's collaborative research centre SFB 1423 and
+    its project number, whose DFG title is "SFB 1423: Strukturelle Dynamik der GPCR-Aktivierung"
+    (docs/09 A9.20).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000329
+  action: grant
+  raw: INST 193/90-1 FUGG
+  grant: DFG:497694394
+  reason: >-
+    The paper writes "INST 193/90-1 FUGG; project-ID: 497694394": the instrument grant and its
+    DFG project number, an LC-MS system for shotgun proteomics (docs/09 A9.21).
+  by: mriffle
+  date: 2026-09-27
+- target: W-000581
+  action: grant
+  raw: HBM4EU
+  grant: EU:733032
+  reason: >-
+    HBM4EU is the acronym of H2020 project 733032 (CORDIS: the European Human Biomonitoring
+    Initiative), which the same work lists by number (docs/09 A9.22).
+  by: mriffle
+  date: 2026-09-27
+
+# Decided at the seed (B9). A grant key may be a MISC: key: the string is then counted as an
+# unmatched number, never valued.
+- target: W-000102
+  action: grant
+  raw: "178013_1"            # quoted: YAML reads 178013_1 as the number 1780131
+  grant: MISC:1780131
+  reason: >-
+    OpenAlex matches this string to an unrelated CIHR grant on hepatitis C virus ($674,480),
+    which does not fit this 2013 paper on PARP-1. The probable mismatch is kept out of the total,
+    and the number is shown as unmatched.
+  by: mriffle
+  date: 2026-09-27

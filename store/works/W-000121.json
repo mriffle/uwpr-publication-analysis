@@ -127,7 +127,7 @@
       ],
       "fulltext": {
         "cache": "sha256:93df75c20feca6d68837e553e84ea84e3312c440c5480026d636d27bf45da3bc",
-        "checked": "2026-09-26",
+        "checked": "2026-09-27",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -189,5 +189,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-26"
+  "updated": "2026-09-27"
 }

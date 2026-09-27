@@ -6,8 +6,8 @@
 # which is never a grant (F1), is rules.yaml's r2.code and is not repeated here. Patterns are Python
 # regexes, case-sensitive unless they start with (?i).
 schema: 1
-funding_version: "2026-09-26.3"
-enabled: false                         # true only from the seed (B9); false means the stage is skipped
+funding_version: "2026-09-27.1"
+enabled: true                          # since the seed (B9); false means the stage is skipped
 
 refresh:
   full_every_days: 28                  # a full refresh at least this often (§9.2)

@@ -105,7 +105,11 @@ def test_missing_config_is_reported(tmp_path: Path) -> None:
 
 def test_the_projects_overrides_load() -> None:
     config = load_config(overrides_path=ROOT / "overrides.yaml")
-    assert [override["action"] for override in config.overrides] == ["merge", "exclude"]
+    assert [override["action"] for override in config.overrides] == ["merge", "exclude", *["grant"] * 24]
+    grants = [override for override in config.overrides if override["action"] == "grant"]
+    assert all(isinstance(override["raw"], str) for override in grants)  # "094352", "178013_1" stay strings
+    assert "S10OD032290" not in {override["raw"] for override in grants}  # docs/09 §16 item 1
+    assert {"target": "W-000102", "raw": "178013_1", "grant": "MISC:1780131"}.items() <= grants[-1].items()
 
 
 @pytest.mark.parametrize(
@@ -275,10 +279,10 @@ def test_exchange_rates_are_outside_the_funding_fingerprint(config_dir: Path) ->
     assert after.exchange_rates["rates"]["GBP"]["2025"] == "1.3193"
 
 
-def test_the_projects_funding_config_loads_switched_off() -> None:
+def test_the_projects_funding_config_loads_switched_on() -> None:
     config = load_config(ROOT / "config")  # the committed files, not the copy tests run with
-    assert config.funding["enabled"] is False
-    assert config.funding_version == "2026-09-26.3"
+    assert config.funding["enabled"] is True
+    assert config.funding_version == "2026-09-27.1"
     assert "UWPR95794" not in (ROOT / "config" / "funding.yaml").read_text(encoding="utf-8")
 
 

@@ -18,6 +18,12 @@
       "record": "R-000593"
     },
     {
+      "channel": "B2",
+      "first_seen": "2026-09-27",
+      "last_seen": "2026-09-27",
+      "record": "R-000392"
+    },
+    {
       "channel": "C1",
       "first_seen": "2026-09-20",
       "last_seen": "2026-09-26",
@@ -93,6 +99,26 @@
         "name": "OpenAlex",
         "retrieved": "2026-09-20",
         "url": "https://api.openalex.org/works/W4389669646"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-09-27",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-09-27",
+      "record": "R-000392",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-09-27",
+        "url": "https://api.crossref.org/works/10.1016/j.celrep.2023.113553"
       }
     },
     {
@@ -424,7 +450,7 @@
       ],
       "fulltext": {
         "cache": "sha256:deb3bebf43daee2dd416718a13c50d5cab7a255620ab693c5a7d31ad5618c1a5",
-        "checked": "2026-09-26",
+        "checked": "2026-09-27",
         "recheck_after": null,
         "status": "pmc_xml"
       },
@@ -724,8 +750,8 @@
       ],
       "fulltext": {
         "cache": null,
-        "checked": "2026-09-26",
-        "recheck_after": "2026-12-25",
+        "checked": "2026-09-27",
+        "recheck_after": "2026-12-26",
         "status": "unavailable"
       },
       "id": "R-000593",
@@ -789,5 +815,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-26"
+  "updated": "2026-09-27"
 }
