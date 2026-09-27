@@ -143,6 +143,29 @@ deliberately, dated, and noted in this header.
   drifts on the page fails the check. It runs on the sample export, whose funding is synthetic,
   because the test builders' summaries are zeros. With no funding data it returns the summary
   of none. Nothing on the page changes.
+- *2026-09-26, §7, §9 and §12.2, the funding components, the grants CSV, and the accessibility
+  they owe* ([09](09-funding-impact.md) §12.5, §12.8, §12.11, §12.12). Four components are
+  built, each tested on its own and none yet placed, so nothing on the page changes.
+  `FundingFigures` draws the headline figures and the institution-wide switch. `GrantsTable` and
+  `AgencyTable` are the two funding tables, and each view passes them its own scope, so the
+  agency page reuses them. `FundingSection` is the publication's "Funding listed in this
+  publication". Grant and agency links are real links that the app takes over only on a plain
+  left click, as elsewhere.
+  **§7's first CSV is the grants table's, and it holds exactly the visible rows.** It is built
+  from the array the table renders, searched and sorted, so a reader never downloads rows they
+  did not see, and a test compares the file with the table. It starts with a byte-order mark,
+  because Excel otherwise garbles accented names, and an unknown total is an empty cell. The
+  table's sort and search are its own state and stay out of the URL, by §6's boundary; the search
+  narrows the table and never the publications, and says so beside the box. An unknown amount
+  sorts last in both directions: a comparator that flips its sign would put "not known" first
+  the moment the reader reverses the order. **§9 in these components:** every table has a
+  caption, `th scope` and a row header, and `aria-sort` sits on the sorted header only
+  (`SortHeader`). The search box has a label and a description. The switch is a labelled group of
+  two `aria-pressed` buttons, described by the sentence stating the position. The funder's page is
+  named for its grant ("NIH RePORTER project page for R01GM086688"), since one publication can
+  list several grants. Tags are words, never colour alone, and a wide table scrolls inside itself
+  on a phone. Nothing here is a live region. Each component passes axe in every state its tests
+  render. The contrast half of that check stays with Playwright, once W7 and W8 place them.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.

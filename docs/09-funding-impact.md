@@ -438,6 +438,53 @@ plan. [08](08-implementation.md) records them as they are built.
     before, and no Miscellaneous grant or agency line. Beyond that only dates moved; `works/` and
     `metrics/` are unchanged. The sample export is 26,927 bytes (§11.9).
     `tests/test_sample_funding.py` holds both fixes against the store.
+- *2026-09-26, W6 — the funding components (§12.5 items 2, 4 and 6; §12.8), where §12 was
+  silent.* `FundingFigures`, `GrantsTable`, `AgencyTable` and `FundingSection` are built, and the
+  funding definitions, but none is placed yet (W7–W9). These are the readings W7–W9 build on:
+  - **"Publications listing a grant, *K* of *N*"** counts the publications that list a grant
+    that is not in Miscellaneous (`withGrants`, the summary's `works_with_grants`). Beside it, the
+    figure says how many more list only unmatched numbers, as "grants listed" states the
+    unmatched numbers beside it. The funding sentence keeps W4's count, which includes them.
+  - **The total, empty or unknown:** with no grant listed it shows a dash and says there is no
+    total; with grants but no known amount it shows "Not known", with the count. Neither ever
+    shows $0. **The institution-wide position** is one sentence beside the total. It names the
+    count and the value of the awards included, or of those left out. An unknown value is never
+    given a figure, as in "Including 2 institution-wide awards, none with a known amount". A
+    grant selection that holds an exclusion off is said in words, so the switch is not read as
+    broken. Without a handler, the switch is not drawn and the position is still stated. That is
+    the agency page's case (§12.6), whose figures include every award.
+  - **The grants table lists unmatched numbers as rows**, tagged "unmatched number", under
+    Miscellaneous, with no amount. They are in scope, and a reader searching for a number the
+    paper wrote should find it. With no amount, they sort among the unknowns. The tags are
+    words, in a fixed order: unmatched number, institution-wide, active, amounts from FY1985,
+    amounts from FY2008 and not converted. Each one changes how a total reads.
+  - **The search** matches every word the reader types against a grant's number and key, its
+    title, every agency on its chain (so "NIH" finds an institute's grants), its investigators
+    and its organisation. A number with other spacing or dashes still matches its number or key.
+  - **The CSV's columns** are the key, number, title, agency (label, code, top-level), principal
+    investigators, organisation, start and end years, type, tags, total in US dollars, original
+    amount, currency and rate year, the amount's source and date, first listed, publications
+    and the link. The first-listed year and the publication count are the view's, under the filter.
+  - **The agency table's parent** links to the parent's page, and **Miscellaneous is its last
+    row**, outside the sort, tagged "unmatched numbers".
+  - **The publication's section with funding data but no listing** still appears, and says that
+    no grant is listed in the funding statements read, which is not a finding that the work had
+    no funding. Only with no funding data at all is it omitted. **An NIH link and a corrected
+    listing each say how the grant was reached.** An NIH link reads "the funder's own publication
+    records link this grant … the funding statements read here do not name it", because §12.8
+    gives such a grant nothing else to say. A corrected listing reads "matched … by correcting the
+    number as the paper wrote it". Either stands beside "also written in the paper as …" wherever
+    `cited_as` is present. A converted total shows its original and the rate year; an unknown one
+    says why ("no source read here reports an amount for it"). **Unmatched numbers are quoted
+    as text, without links**: a link would lead to a page with nothing to add. Their grant pages
+    still exist.
+  - **The definition anchors** are `funding-total`, `funding-grants`, `funding-agencies`,
+    `funding-investigators`, `funding-organizations`, `funding-publications` and
+    `funding-institution-wide`. `fundingDefinitions` adds `funding-unmatched` and
+    `funding-first-year`. Each carries its corpus value from the view's own functions, and a test
+    holds the values to `funding.summary`. With no funding data every definition stands and none
+    has a value. They stay out of `metricDefinitions` until W9 places them, so the method page
+    does not change before then.
 
 ---
 
