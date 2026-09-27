@@ -31479,7 +31479,7 @@
     },
     "version": "2026-09-27.1"
   },
-  "generated_at": "2026-09-27T02:15:18Z",
+  "generated_at": "2026-09-27T02:40:46Z",
   "method": {
     "beyond_official_list": 32,
     "criteria": {
@@ -31608,7 +31608,7 @@
     "url": "https://proteomicsresource.washington.edu/"
   },
   "rule_version": "2026-09-26.1",
-  "run_id": "2026-09-27T02-15-live",
+  "run_id": "2026-09-27T02-40-live",
   "schema_version": "1.1",
   "sources": {
     "citations": {
