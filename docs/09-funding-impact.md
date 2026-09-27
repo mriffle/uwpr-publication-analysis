@@ -1007,6 +1007,12 @@ plan. [08](08-implementation.md) records them as they are built.
     skip; the 89 Playwright specs pass. The JavaScript is 148.5 KB gzipped, against the 250 KiB
     budget, and Vite's advisory warning for a chunk over 500 kB minified now shows (502.6 kB; §16
     item 16). The real export is 450,002 bytes gzipped at level 9, from 440,730 (§11.9).
+  - **Tidied after the release, 2026-09-27.** The first-listed chart's code, which nothing drew
+    after M3b, was removed — `FundingOverTimeChart`, `FundingOverTimeTable` and
+    `cumulativeDollars`, with their helpers and tests — and comments still describing F3's chart
+    were corrected. `by_first_year` is still computed, exported and cross-checked, its tests now
+    on the summary. The built JavaScript is byte-identical, and Vite's advisory is set aside
+    (§16 item 16). No view, figure or export changed.
 
 ---
 
@@ -3160,10 +3166,11 @@ Opened by F17 (2026-09-27):
     all of it lands in 2019, its first listing year: most of that year's $889,726,807 by award year
     (§3.6). USAspending's transactions for the award might date its obligations, and so spread it;
     not measured.
-16. **Vite's advisory warning for a chunk over 500 kB minified now shows** in `npm run build`: the
-    app's chunk is 502.6 kB minified. It is not the project's budget, which is 250 KiB gzipped
-    (level 9) and which the app meets at 148.5 KB; nothing fails. Splitting the chunk, or raising
-    Vite's `chunkSizeWarningLimit`, would silence it.
+16. **Closed (2026-09-27):** Vite's advisory warning for a chunk over 500 kB minified showed in
+    `npm run build` once the app's chunk reached 502.6 kB minified. It is not the project's
+    budget, which is 250 KiB gzipped (level 9) and which the app meets at 148.5 KB; nothing
+    failed. `web/vite.config.ts` now sets `build.chunkSizeWarningLimit` to 800 kB, with a comment
+    naming the real budget ([06](06-web-app.md) §10); the chunk is not split.
 17. **The grants table says "the first 50 of *N*" twice,** in its status line and in its caption, a
     redundancy from R1b that predates F17.
 
@@ -3289,12 +3296,23 @@ published before the views that need it; the live headline, chart and grant page
       sample, and 1,791 with 127 skipped on the real export; 89 Playwright specs. The counted total
       is $5,139,499,698 ($4,052,434,757 without institution-wide awards), with no per-grant
       mismatch against the model; the real export is 450,002 bytes gzipped (§3.6, §11.9).
-- [ ] Published data 1.2: the export, rebuilt on the rebased branch, pushed with M1 and M2 and
+- [x] Published data 1.2: the export, rebuilt on the rebased branch, pushed with M1 and M2 and
       published to `gh-pages` with `tools/publish-site.sh data export`, before the views.
-- [ ] Deployed app: M3a, M3b and this record pushed, and `pages.yml` green.
-- [ ] Verified live: `/funding` shows "Grant funding counted" at the export's `counted_usd`, the
+      **Pushed first:** c94e2c1, with `check` run 36338553212, `pages.yml` run 36338553173 and
+      deployment run 36338577553 green. **Published:** the data from c94e2c1 to `gh-pages` as
+      0514a2f, and Pages deployment run 36338908338 succeeded. The live data then read
+      `schema_version` 1.2 with `counted_usd` 5,139,499,698, and the app, not yet changed, still
+      showed the lifetime headline, $7,888,899,029: 8 of 8 pages OK.
+- [x] Deployed app: M3a, M3b and this record pushed, and `pages.yml` green: 8359c22, with `check`
+      run 36338963160, `pages.yml` run 36338963175 and deployment run 36338987707 green.
+- [x] Verified live: `/funding` shows "Grant funding counted" at the export's `counted_usd`, the
       chart by year awarded starts at 2006, and the grant pages of §3.6's table give their counted
-      amounts and reasons.
+      amounts and reasons. **Checked 2026-09-27, 9 of 9:** the live data; `/funding`, at
+      $5,139,499,698, with "Grant funding counted", "Grant funding by year awarded" and
+      $418,540,466 estimated; NIH's agency page, at $3,954,190,395; the grants
+      `NIH:P51RR000166` ($87,011,296 counted of $273,843,530), `NIH:KL2TR002317` (FY2017, began
+      after) and `USA:NASA:NNX16AO69A` ($50,760,504, an estimate); W-000049's Funding section;
+      the method page's `#funding-counting`; and the overview.
 
 ---
 
