@@ -803,9 +803,40 @@ test.describe('a build with the Funding impact view', () => {
     const [, ...rows] = parseCsv(readFileSync(await download.path(), 'utf8').slice(1));
     expect(rows).toHaveLength(all);
 
+    // An institution's name breaks between words, never inside one ("NORTHWESTE / RN").
+    const brokenWords = () =>
+      table.evaluate((element) => {
+        const probe = document.createElement('span');
+        probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+        document.body.append(probe);
+        const broken: string[] = [];
+        for (const cell of element.querySelectorAll<HTMLElement>('td.grants-organisation')) {
+          const style = getComputedStyle(cell);
+          probe.style.font = style.font;
+          const room =
+            cell.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+          for (const word of (cell.textContent ?? '').split(/[\s-]+/).filter(Boolean)) {
+            probe.textContent = word;
+            if (probe.getBoundingClientRect().width > room + 0.5) broken.push(word);
+          }
+        }
+        probe.remove();
+        return broken;
+      });
+    expect(await brokenWords()).toEqual([]);
+
     if (all > 50) {
       await page.getByRole('button', { name: /^Show all [\d,]+ grants$/ }).click();
       await expect(table.getByRole('rowheader')).toHaveCount(all);
+      // Every row drawn, the table still fits its column (docs/09 R1b).
+      expect(
+        await table.evaluate(
+          (element) =>
+            element.getBoundingClientRect().width <=
+            (element.parentElement as HTMLElement).clientWidth,
+        ),
+      ).toBe(true);
+      expect(await brokenWords()).toEqual([]);
     }
   });
 });

@@ -1416,24 +1416,34 @@ button.chart-legend-item.is-selected {
 
 /* A number breaks only past NIH's eleven characters: a seventeen-character contract may break. */
 .grants-table .funding-table tbody th {
-  min-width: 7.5rem;
+  min-width: 7rem;
   overflow-wrap: anywhere;
 }
 
 .funding-table .grants-title,
 .funding-table .grants-agency,
-.funding-table .grants-people,
-.funding-table .grants-organisation {
+.funding-table .grants-people {
   overflow-wrap: anywhere;
 }
 
+/*
+ * An institution breaks between words, never inside one: RePORTER writes them in capitals, and
+ * "anywhere" let the column shrink until "NORTHWESTERN" broke after its tenth letter. Its longest
+ * word ("NEURODIAGNOSTIC") sets the column's least width instead. The least widths below leave the
+ * table about 40 px inside a desktop column with every row drawn on macOS's fonts, which CI's
+ * Linux fonts, 2-3% wider, need: at a few pixels' slack, CI drew it 8 px too wide (docs/09 R1b).
+ */
+.funding-table .grants-organisation {
+  overflow-wrap: break-word;
+}
+
 .funding-table .grants-title {
-  min-width: 10rem;
+  min-width: 8rem;
 }
 
 .funding-table .grants-people,
 .funding-table .grants-organisation {
-  min-width: 6.5rem;
+  min-width: 5.5rem;
 }
 
 .table-more {
