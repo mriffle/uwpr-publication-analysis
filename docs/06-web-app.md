@@ -166,6 +166,23 @@ deliberately, dated, and noted in this header.
   list several grants. Tags are words, never colour alone, and a wide table scrolls inside itself
   on a phone. Nothing here is a live region. Each component passes axe in every state its tests
   render. The contrast half of that check stays with Playwright, once W7 and W8 place them.
+- *2026-09-26, §3 and §4.2, the method page's funding section* ([09](09-funding-impact.md)
+  §12.9, §12.11, §13.3). `/method` gains **`#funding`**, "How the funding figures are assembled",
+  after the publication definitions and before "How current this is". Like the view, it is built
+  only with `VITE_FUNDING`, so the public page is unchanged until the view is released. It ends
+  with the funding definitions, in a list of their own, at the anchors the Funding impact view's
+  figures link to, so §4.2's "every figure links to its definition" holds for them too. A
+  fragment link to one focuses it, as for the overview's figures, and the publication
+  definitions point down to them. The page has no contents list to link the section from.
+  **Every count on it is the export's:** the `method` block for what became of the numbers the
+  publications give as funding, and, for the grants, the same unfiltered scope the view draws,
+  held to `funding.summary` by a test. **Two sources' terms are met on the page, not only in
+  `NOTICE`.** NLM's "Courtesy of the U.S. National Library of Medicine" is shown with the date the
+  PubMed data was read and the statement that it may not be current. The currency paragraph says
+  the published rates are inverted to US dollars per unit, as the OECD's CC BY asks. The funding
+  sources are a list, not a table: a row header "OpenAlex" would repeat one in the evidence
+  sources' table, and a by-name lookup of that table would find two. With no funding data the
+  section is one sentence. A test holds it to §12.11 rule 1, with no wording of credit or cause.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.

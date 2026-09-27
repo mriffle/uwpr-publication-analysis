@@ -485,6 +485,37 @@ plan. [08](08-implementation.md) records them as they are built.
     holds the values to `funding.summary`. With no funding data every definition stands and none
     has a value. They stay out of `metricDefinitions` until W9 places them, so the method page
     does not change before then.
+- *2026-09-26, W9 — the method page's `#funding` section (§12.9) as built, where it was silent.*
+  `web/src/views/MethodFunding.tsx` renders it and `web/src/method/funding.ts` counts what it
+  states. These are the readings R builds on:
+  - **Where, and when.** After the publication definitions and before "How current this is",
+    and only in a build with `VITE_FUNDING`. With no funding data it is one sentence, and **the
+    funding definitions are not shown.** `fundingDefinitions` can state them without values, but
+    under "no funding data" they would define figures the site does not show.
+  - **The method block's counts are stated as they are, with no remainder.** `resolution` counts
+    four of a string's methods, and its `override` includes overrides that decided "not a
+    grant", so the four do not sum to `strings.grant`. The other matched strings are other
+    agencies' numbers standing as written (`agency_number`, `openalex_award`), which the block
+    does not count. The page gives the outcomes, then the four methods, then says that other
+    agencies' numbers stand as written, with no count it does not have. The total of `strings`
+    is "the numbers the publications give as funding, each counted once for each publication".
+  - **What a total means is stated source by source, with each one's grant count** by
+    `amount_source.basis` over the grants listed. A grant whose amount is in a currency no rate
+    covers counts under its source, and a source no grant takes an amount from is not described.
+    The first fiscal years (FY1985, FY2008) and the fiscal year in progress are read from
+    `sources[]`, never written into the app.
+  - **NLM's phrase** (§13.3) is on the method page whenever `sources[]` has `pubmed`, dated by
+    that source's `as_of`. Beside it: "may not reflect the most current data available from the
+    National Library of Medicine", and that NLM does not endorse the site. The Funding impact
+    view does not carry it. Whether the footer should when the view ships is still R's call, as
+    §13.3 left it.
+  - **The inversion is indicated without naming a licence**, since the app hard-codes no
+    source's terms. Of every rate source, the currency paragraph says that most currencies are
+    published per US dollar and that the rates used are inverted and rounded to ten significant
+    digits, "a change made here to the data as published". That covers every OECD rate, and all
+    but four of G.5A's.
+  - **The total's definition** now says "not money spent on this work", §12.11 rule 2's words and
+    the view's, where W6 wrote "not money spent on the work that lists them".
 
 ---
 
