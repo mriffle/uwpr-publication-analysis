@@ -237,6 +237,30 @@ deliberately, dated, and noted in this header.
   table does, where it said "$0". Playwright runs axe on an agency page, a grant page (as a chart
   and as a table), Miscellaneous and a publication's Funding section in both themes. It found
   nothing. The JavaScript is 141.7 KB gzipped, from 136.0.
+- *2026-09-26, §8, §9 and §12, the funding views audited, and a running total that is not
+  "$0"* ([09](09-funding-impact.md) §11.8, §12.11, §14). W10 audited the funding views as a whole
+  against [09](09-funding-impact.md)'s tests and rewrote nothing that held. **§12.1's "every case
+  renders" now has a funding half:** `web/test/funding-coverage.test.tsx` opens with a map of
+  every item of [09](09-funding-impact.md) §14's "App" bullet and every case of §11.8 to the test
+  that holds it, and a test holds the map to `uwpr_pubs.sample.FUNDING_CASES`, so a case added
+  there without a row fails. The cases no view test showed on the sample are rendered there, on
+  the page where a reader meets each: the contract and the task order, the converted CLP and EUR
+  amounts, the unconverted currency, the grant two works list in different years, NASA's grant
+  from USAspending, and the grant known only by an NIH link. The honesty rules no test held on
+  the sample's pages are held there too; the wording of credit or cause found none. **§8 and
+  §9, the running total:** on the funding-over-time chart, which the view and the agency page
+  both draw, a year before any known amount was named "…, $0 cumulative", and its tooltip read
+  "Cumulative $0". A running total with nothing known in it is not a figure, so those years
+  now say "no known amount yet in the running total", and the tooltip gives the table's dash,
+  whose caption now says what the dash means. The year chart gains `describeCumulative` and
+  `tooltipCumulative` for it; their defaults change no other chart. **§12.2's "every rendered
+  state, in both themes"** now holds for funding: Playwright runs axe on the view with
+  institution-wide awards excluded, its three empty states, an agency not found, a
+  publication's Funding section with each kind of listing, and no funding data at all — the
+  view, an agency, a grant, a publication and `/method#funding`. That last is served in the
+  shape of today's real export, since CI serves only the sample, and fails on any uncaught page
+  error. It found nothing. Every whole-page axe test now takes 30 s, as CI's slower runner needs.
+  The JavaScript is 141.9 KB gzipped, from 141.7.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.

@@ -643,6 +643,28 @@ plan. [08](08-implementation.md) records them as they are built.
     `HHSN` contract, and the one linked contract, `N01HV028179`, keeps its core.
   - **§17's B9 figures** are B9b's to record, from the seed itself; the rehearsal proposed the
     overrides the seed commits beyond Appendix E's nine, each with its evidence in its `reason`.
+- *2026-09-26, W10 — the audit of the app against §11.8, §12.11 and §14, where they were
+  silent.* Every §14 "App" item and every §11.8 case is held by a passing test, and
+  `web/test/funding-coverage.test.tsx` maps each to its test. These are the readings it settles:
+  - **A running total with nothing known in it is not a figure.** Rule 3 says unknown is never
+    $0, and W8 applied it to the over-time chart's yearly value; the running total still read
+    "$0 cumulative" in the name of each year before the first known amount, and "$0" in its
+    tooltip. Until a year in which a known amount enters, the running total now reads "no known
+    amount yet in the running total", and the tooltip and the table give a dash. From that year
+    on, it is the sum, as any running total is.
+  - **"Every sample case renders" is a test of the map, not only of the cases.** The map names
+    each case as `uwpr_pubs.sample.FUNDING_CASES` does, and a test reads `sample.py` and fails if
+    a case has no row. Each case is found by the app's own reading of it, not a copy of the
+    Python predicate, and shown on the page where a reader would meet it.
+  - **"Accessibility in both themes" is every state of every funding route**, §12.5's three empty
+    states and §12.10's no funding data included. CI serves only the sample, which has funding
+    data, so the no-data state is checked by serving the export changed to the shape the
+    pipeline writes without funding, today's real export's; the check also fails on any uncaught
+    page error, which is §12.10's "nothing throws".
+  - **Left to R:** the funding unit tests read the sample's funding and are not all marked
+    sample-only. Pointed at today's real export (`UWPR_EXPORT_DIR`), which has none, 69 tests in
+    12 files fail; the Playwright specs, which skip what the served export lacks, pass. R runs the
+    unit suite against the seeded export and marks sample-only what depends on a synthetic case.
 
 ---
 
@@ -2450,7 +2472,11 @@ run succeeds with funding enabled.
 **W1–W10** — as §12 and §14 specify; the existing router, overview, method and e2e tests pass
 unchanged; the flag hides every funding entry point; JavaScript ≤ 250 KiB.
 - [ ] Accepted. *W1 (c281d39, 475373c) and W2 (d9a3271, e8cb8da) landed 2026-09-26; the box is
-      ticked when all ten are accepted.*
+      ticked when all ten are accepted. W10 (575ddcb), the audit, is done: every §14 "App" item
+      and §11.8 case is held by a passing test (`web/test/funding-coverage.test.tsx` maps them),
+      axe is clean on every funding route and state in both themes, and against the real export,
+      which has no funding data yet, every funding page shows its no-data state and nothing
+      throws. The box itself is ticked at release.*
 
 **R** — the web gate green against the real export; the flag removed; data published before the
 app; the live `/funding`, an agency page, a grant page and a publication's Funding section checked
