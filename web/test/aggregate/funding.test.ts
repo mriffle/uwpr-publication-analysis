@@ -35,7 +35,6 @@ import {
   countedOverTime,
   countedRules,
   coverage,
-  cumulativeDollars,
   dollarTotal,
   firstYearDisagreements,
   fundingFigures,
@@ -482,62 +481,6 @@ describe('headline figures', () => {
     const misc = fundingFigures(scopeOf(WORKS, { agencies: ['MISC'] }));
     expect(misc).toMatchObject({ grants: 1, listed: 0, miscellaneous: 1, agencies: 0 });
     expect(misc).toMatchObject({ withListings: 2, withGrants: 0 });
-  });
-});
-
-describe('value over time: each grant’s full amount in its first year (F3)', () => {
-  const series = cumulativeDollars(all, period);
-  const at = (year: number) => series.points.find((point) => point.year === year);
-
-  it('spans the export’s period', () => {
-    expect(series.points.map((point) => point.year)).toEqual([
-      2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026,
-    ]);
-  });
-
-  it('enters each grant once, in its first year, and ends exactly at the total', () => {
-    expect(at(2019)).toMatchObject({ count: 1_000_000, cumulative: 1_000_000, grants: 1 });
-    expect(at(2021)).toMatchObject({ count: 6_500_000, cumulative: 7_500_000, grants: 2 });
-    expect(series.points.at(-1)?.cumulative).toBe(fundingFigures(all).amountUsd);
-    expect(series.amountUsd).toBe(7_500_000);
-    expect(series.grants).toBe(6);
-  });
-
-  it('counts the grants of unknown amount in the year they enter, beside the value', () => {
-    expect(at(2022)).toMatchObject({ count: 0, grants: 3, withAmount: 0, withoutAmount: 3 });
-    expect(series.withoutAmount).toBe(3);
-    const perYear = series.points.reduce((sum, point) => sum + point.withoutAmount, 0);
-    expect(perYear).toBe(series.withoutAmount);
-  });
-
-  it('leaves unmatched numbers out of the grants entering', () => {
-    expect(at(2019)?.grants).toBe(1);
-    expect(at(2020)?.grants).toBe(0);
-  });
-
-  it('marks the partial year', () => {
-    expect(series.points.filter((point) => point.partial).map((point) => point.year)).toEqual([
-      2026,
-    ]);
-  });
-
-  it('moves a grant’s value to its first year under the filter', () => {
-    const later = cumulativeDollars(scopeOf([W2021, W2026]), period);
-    expect(later.points.find((point) => point.year === 2019)?.count).toBe(0);
-    expect(later.points.find((point) => point.year === 2021)?.count).toBe(7_500_000);
-  });
-
-  it('draws a flat zero with every grant counted unknown when no amount is known', () => {
-    const unknown = cumulativeDollars(unknownOnly, period);
-    expect(unknown.points.every((point) => point.cumulative === 0)).toBe(true);
-    expect(unknown.withoutAmount).toBe(3);
-    expect(knownAmount(unknown)).toBeNull();
-  });
-
-  it('draws the frame with nothing in it for an empty scope', () => {
-    const empty = cumulativeDollars(nothing, period);
-    expect(empty.points).toHaveLength(9);
-    expect(empty.grants).toBe(0);
   });
 });
 
@@ -1090,6 +1033,52 @@ describe('summarizeFunding over the hand-built world', () => {
   });
 });
 
+/*
+ * `funding.summary.by_first_year` (docs/09 §11.6): the grants listed by their first year, each with
+ * its lifetime amount — the increments of F3's cumulative rule. F17 superseded the rule and no
+ * view draws them since, but the summary still carries them and the cross-check still holds them.
+ */
+describe('the grants listed by first year: by_first_year', () => {
+  const years = summarizeFunding(WORKS, index).by_first_year;
+
+  it('enters each grant once, in its first year, adding up to the lifetime total', () => {
+    expect(years['2019']).toMatchObject({ grants: 1, amount_usd: 1_000_000 });
+    expect(years['2021']).toMatchObject({ grants: 2, amount_usd: 6_500_000 });
+    const entries = Object.values(years);
+    expect(entries.reduce((sum, entry) => sum + entry.amount_usd, 0)).toBe(
+      fundingFigures(all).amountUsd,
+    );
+    expect(entries.reduce((sum, entry) => sum + entry.grants, 0)).toBe(fundingFigures(all).listed);
+  });
+
+  it('counts the grants of unknown amount in the year they enter, never as dollars', () => {
+    // W2022's three grants: no amount is known for any.
+    expect(years['2022']).toEqual({
+      grants: 3,
+      grants_institution_wide: 0,
+      amount_usd: 0,
+      amount_usd_institution_wide: 0,
+    });
+  });
+
+  it('leaves unmatched numbers out, and a year no grant enters', () => {
+    // 2019's unmatched number is no grant listed; 2020 lists only it, and 2023 nothing.
+    expect(years['2019']?.grants).toBe(1);
+    expect(Object.keys(years)).toEqual(['2019', '2021', '2022']);
+  });
+
+  it('moves a grant’s value to its first year under the filter', () => {
+    expect(summarizeFunding([W2021, W2026], index).by_first_year).toEqual({
+      '2021': {
+        grants: 3,
+        grants_institution_wide: 1,
+        amount_usd: 7_500_000,
+        amount_usd_institution_wide: 4_000_000,
+      },
+    });
+  });
+});
+
 describe('the first-year check', () => {
   it('reports a grant no work lists', () => {
     expect(firstYearDisagreements(WORKS, index)).toEqual([
@@ -1413,7 +1402,6 @@ describe('every dollar figure is a safe integer', () => {
 
   const dollars = (): number[] => {
     const figures = fundingFigures(scope);
-    const series = cumulativeDollars(scope, period);
     const detail = agencyDetail('NIH', works, big, period);
     const counted = countedOverTime(scope, period, counting());
     const stack = countedByAgency(scope, period, counting());
@@ -1421,8 +1409,10 @@ describe('every dollar figure is a safe integer', () => {
     return [
       figures.amountUsd,
       figures.institutionWide.amountUsd,
-      series.amountUsd,
-      ...series.points.flatMap((point) => [point.count, point.cumulative]),
+      ...Object.values(summary.by_first_year).flatMap((year) => [
+        year.amount_usd,
+        year.amount_usd_institution_wide,
+      ]),
       ...rankAgencies(scope, { limit: Infinity }).items.map((row) => row.amountUsd),
       ...grantKinds(scope).map((row) => row.amountUsd),
       ...(detail?.children ?? []).map((row) => row.amountUsd),

@@ -3,14 +3,11 @@
  * it needed: an axis title, a partial-period noun, no running total, and a tooltip value in
  * words. Each option's default leaves every chart already drawn as it was, which the existing
  * chart tests hold; these hold the options themselves.
- *
- * Also the one change to W7's over-time chart: a year with nothing known says so in its tooltip,
- * as its table already did, rather than "$0".
  */
 import { describe, expect, it } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { cumulativeDollars, type FiscalYearPoint } from '../../src/aggregate/funding';
+import type { FiscalYearPoint } from '../../src/aggregate/funding';
 import type { YearPoint } from '../../src/aggregate/series';
 import {
   FISCAL_YEAR_LABEL,
@@ -18,11 +15,8 @@ import {
   FiscalYearTable,
   describeFiscalYear,
 } from '../../src/charts/FiscalYearChart';
-import { FundingOverTimeChart } from '../../src/charts/FundingOverTimeChart';
 import { YearSeriesChart, yearMarkLabel } from '../../src/charts/YearSeriesChart';
-import type { Period } from '../../src/contract/types';
 import { expectNoAxeViolations } from '../support/axe';
-import { worldScope } from '../support/fundingWorld';
 
 const YEARS: FiscalYearPoint[] = [
   { year: 2023, amountUsd: null, partial: false },
@@ -241,41 +235,5 @@ describe('the year chart’s options keep their defaults', () => {
     await userEvent.hover(screen.getByRole('img', { name: /^2021/ }));
     expect(screen.getByTestId('chart-tooltip')).toHaveTextContent('2021 (partial year)');
     expect(screen.getByTestId('chart-tooltip')).toHaveTextContent('Grants1');
-  });
-});
-
-describe('the over-time chart’s tooltip (docs/09 §12.11 rule 3)', () => {
-  const period: Period = {
-    first_year: 2019,
-    last_year: 2023,
-    complete_through: 2022,
-    current_year_partial: true,
-    citation_years_from: null,
-    citations_before_window: 0,
-  };
-
-  it('shows a dash, not $0, for a year with nothing first listed', async () => {
-    render(
-      <FundingOverTimeChart
-        over={cumulativeDollars(worldScope(), period)}
-        width={640}
-        height={320}
-      />,
-    );
-    await userEvent.hover(screen.getByRole('img', { name: /^2020:/ }));
-    expect(screen.getByTestId('chart-tooltip')).toHaveTextContent('Value first listed—');
-  });
-
-  it('says "not known" for a year whose grants all lack an amount', async () => {
-    // Only the NSF project, whose amount is not known, enters: its year has nothing known.
-    render(
-      <FundingOverTimeChart
-        over={cumulativeDollars(worldScope({ grants: ['NSF:1443474'] }), period)}
-        width={640}
-        height={320}
-      />,
-    );
-    await userEvent.hover(screen.getByRole('img', { name: /^2022:/ }));
-    expect(screen.getByTestId('chart-tooltip')).toHaveTextContent('Value first listednot known');
   });
 });

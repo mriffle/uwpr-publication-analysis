@@ -101,6 +101,8 @@ export default defineConfig(({ mode }) => {
       // One JS file keeps the budget check in scripts/check-bundle-budget.mjs honest and simple.
       target: 'es2022',
       sourcemap: mode !== 'production',
+      // Vite's advisory, in kB minified; the budget is check:budget's 250 KB gzipped (docs/06 §10).
+      chunkSizeWarningLimit: 800,
     },
     test: {
       environment: 'jsdom',

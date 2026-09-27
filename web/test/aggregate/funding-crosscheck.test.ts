@@ -18,7 +18,6 @@ import {
   UNFILTERED,
   countedByAgency,
   countedOverTime,
-  cumulativeDollars,
   firstYearDisagreements,
   fundingFigures,
   fundingScope,
@@ -68,6 +67,12 @@ describe('the app’s unfiltered funding figures equal funding.summary', () => {
     }
     expect(Object.keys(computed.by_first_year)).toEqual(Object.keys(summary.by_first_year));
   });
+
+  it('adds by_first_year up to the lifetime total and the grants listed', () => {
+    const years = Object.values(computed.by_first_year);
+    expect(years.reduce((sum, entry) => sum + entry.amount_usd, 0)).toBe(summary.amount_usd);
+    expect(years.reduce((sum, entry) => sum + entry.grants, 0)).toBe(summary.grants_resolved);
+  });
 });
 
 describe('every grant’s unfiltered first year is its exported first_year', () => {
@@ -86,21 +91,6 @@ describe('every grant’s unfiltered first year is its exported first_year', () 
 
 describe('the series the view draws agree with the summary', () => {
   const scope = fundingScope(doc.works, index, UNFILTERED);
-
-  it('draws value over time ending at the headline total', () => {
-    const series = cumulativeDollars(scope, doc.period);
-    expect(series.points.at(-1)?.cumulative).toBe(summary.amount_usd);
-    expect(series.amountUsd).toBe(fundingFigures(scope).amountUsd);
-  });
-
-  it('enters each year’s value as by_first_year does', () => {
-    const series = cumulativeDollars(scope, doc.period);
-    for (const point of series.points) {
-      const entry = summary.by_first_year[String(point.year)];
-      expect(point.count, String(point.year)).toBe(entry?.amount_usd ?? 0);
-      expect(point.grants, String(point.year)).toBe(entry?.grants ?? 0);
-    }
-  });
 
   it('stacks new grants by agency to every grant, Miscellaneous included', () => {
     expect(newGrantsByAgency(scope, doc.period).total).toBe(summary.grants);

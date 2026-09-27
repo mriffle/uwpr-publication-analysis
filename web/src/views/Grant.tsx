@@ -421,7 +421,7 @@ function noYearsReason(detail: GrantDetail): string {
 }
 
 /** Which of a grant's fiscal years the totals count, in a sentence: the table marks them. */
-export function countedYearsSentence(all: number, counted: number): string {
+function countedYearsSentence(all: number, counted: number): string {
   if (counted === 0) return 'No fiscal year shown is counted in the totals, as the table marks.';
   if (counted === all)
     return 'Every fiscal year shown is counted in the totals, as the table marks.';

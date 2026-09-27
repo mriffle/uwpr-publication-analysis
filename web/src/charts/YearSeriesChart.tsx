@@ -15,8 +15,8 @@
  * Clicking or activating a bar toggles that year in the filter (docs/06 §6). **Without an
  * `onSelectYear` the chart is static**: its marks are pictures of numbers (`role="img"`), out of
  * the tab order, and say nothing about activating them. That is for a year axis that is not the
- * publication year — the year a grant is first listed, say — where a click applying the year
- * filter would silently mean something else. The two publication-year charts always pass a
+ * publication year — the year a grant's funding was awarded, say — where a click applying the
+ * year filter would silently mean something else. The two publication-year charts always pass a
  * handler, so they are always controls.
  *
  * The values need not be counts: `formatValue` and `describeValue` let the same frame draw
@@ -54,9 +54,9 @@ export interface YearValueText {
   formatValue?: (value: number) => string;
   /**
    * One year's value in a sentence, for its accessible name: "2 publications",
-   * "$1,200,000 in grants first listed". Defaults to the count and `unit`. It is given the point
-   * too, for a series whose points carry more than their value — a year of grants whose amounts
-   * are not all known says so, rather than reading as $0.
+   * "$650,000 awarded, from 2 grants". Defaults to the count and `unit`. It is given the point
+   * too, for a series whose points carry more than their value — a year with nothing awarded, or
+   * a fiscal year whose source reports no amount, says so, rather than reading as $0.
    */
   describeValue?: (value: number, point: YearPoint) => string;
   /**

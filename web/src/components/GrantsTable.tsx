@@ -86,7 +86,7 @@ export const GRANT_ROW_LIMIT = 50;
 const GRANT_NOUN = { one: 'grant', many: 'grants' };
 
 /** The counted column's note by default: a filter moves what it counts. */
-export const COUNTED_NOTE = 'for the publications shown';
+const COUNTED_NOTE = 'for the publications shown';
 
 const COLUMNS: {
   key: GrantSortKey | null;

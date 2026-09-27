@@ -50,7 +50,7 @@ export type AmountBasis = AmountSource['basis'];
 export const COUNTING_SECTION_ID = 'funding-counting';
 
 /** How the counting rule counted the grants listed, over the whole corpus (docs/09 F17). */
-export interface CountingFacts {
+interface CountingFacts {
   /** The export's constants: the first year counted, the years an ended grant counts, and more. */
   constants: FundingCounting;
   /**

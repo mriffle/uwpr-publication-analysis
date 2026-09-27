@@ -73,7 +73,7 @@ export const UNFILTERED: GrantSelection = { agencies: [], grants: [], institutio
  * --------------------------------------------------------------------------------------------- */
 
 /** What the totals count of a grant (docs/09 F17, §7.4), over the publications given. */
-export interface CountedAmount {
+interface CountedAmount {
   /**
    * Whole US dollars: a safe integer. Null exactly when its amount is unknown — never 0 for
    * that. A `began_after` 0 is a known zero.
@@ -413,7 +413,7 @@ export function fundingFigures(scope: FundingScope): FundingFigures {
 }
 
 /* ------------------------------------------------------------------------------------------------
- * Value over time (docs/09 §12.5 item 3; F3, the cumulative rule).
+ * The grants listed by first year: `funding.summary.by_first_year` (docs/09 §11.6).
  * --------------------------------------------------------------------------------------------- */
 
 interface FirstYearEntry extends DollarTotal {
@@ -421,7 +421,11 @@ interface FirstYearEntry extends DollarTotal {
   institutionWide: DollarTotal & { grants: number };
 }
 
-/** The grants listed, by their first year under the filter: the cumulative rule's increments. */
+/**
+ * The grants listed, by their first year under the filter, each with its lifetime amount: the
+ * increments of F3's cumulative rule, which F17 superseded. No view draws them; the summary still
+ * carries them as `by_first_year`, and the cross-check still holds them to the pipeline's.
+ */
 function byFirstYear(scope: FundingScope): Map<number, FirstYearEntry> {
   const grouped = new Map<number, ScopedGrant[]>();
   for (const entry of listedOf(scope)) {
@@ -439,52 +443,6 @@ function byFirstYear(scope: FundingScope): Map<number, FirstYearEntry> {
     });
   }
   return years;
-}
-
-/**
- * One year of value entering. `count` is the known dollars of the grants whose first year this
- * is, and `cumulative` their running total, so the publication charts' frame draws it
- * (`YearSeriesChart`); `partial` marks an unfinished publication year (docs/05 §4.2).
- */
-export interface FundingYearPoint extends YearPoint {
-  /** Grants listed whose first year this is. */
-  grants: number;
-  /** …of which with a known amount, in `count`. */
-  withAmount: number;
-  /** …of which with no known amount: not in this year's value, never as $0. */
-  withoutAmount: number;
-}
-
-export interface CumulativeDollars extends DollarTotal {
-  points: FundingYearPoint[];
-  /** Grants listed: the sum of every point's `grants`. */
-  grants: number;
-}
-
-/**
- * docs/09 F3: **each grant's full amount enters in its first year** — under the filter, the year
- * of the first publication shown that lists it, which is a publication year and not an award
- * year. The last point's `cumulative` is exactly the figures' total. Grants with no known amount
- * are counted in the year they enter, beside the value, never in it.
- *
- * The axis spans the export's `period` whatever is shown, as the publication charts' does.
- */
-export function cumulativeDollars(scope: FundingScope, period: Period): CumulativeDollars {
-  const years = byFirstYear(scope);
-  const dollars = new Map([...years].map(([year, entry]) => [year, entry.amountUsd]));
-  const first = Math.min(period.first_year, ...years.keys());
-  const last = Math.max(period.last_year, ...years.keys());
-  const points = accumulate(dollars, first, last, period).map((point): FundingYearPoint => {
-    const entry = years.get(point.year);
-    return {
-      ...point,
-      grants: entry?.grants ?? 0,
-      withAmount: entry?.withAmount ?? 0,
-      withoutAmount: entry?.withoutAmount ?? 0,
-    };
-  });
-  const listed = listedOf(scope);
-  return { points, grants: listed.length, ...dollarTotal(listed) };
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -1169,10 +1127,10 @@ export const noFundingSummary = (): FundingSummary => ({
 /**
  * `funding.summary`, recomputed by the app (docs/09 §11.6): unfiltered, institution-wide awards
  * included. **Built from the same functions the views use** — the scope, the figures, the
- * coverage, the agency ranking, the first-year increments of the value over time, the rules that
- * counted each grant and the award-year increments of the counted funding — so that equality
- * with the pipeline's independent computation checks the definitions the page shows, not a
- * second copy of them. With no funding data, the summary of none.
+ * coverage, the agency ranking, the rules that counted each grant and the award-year increments
+ * of the counted funding, beside the first-year increments `by_first_year` still carries — so
+ * that equality with the pipeline's independent computation checks the definitions the page
+ * shows, not a second copy of them. With no funding data, the summary of none.
  */
 export function summarizeFunding(
   works: readonly Work[],

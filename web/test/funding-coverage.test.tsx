@@ -22,12 +22,13 @@
  * |                                         | grant’s value to its first year under the filter         |
  * | …unknown never $0                       | › reads as not known — null, never $0; › says "not       |
  * |                                         | known", never $0; charts/FundingOverTimeChart.test.tsx   |
- * |                                         | › the running total before a known amount enters         |
+ * |                                         | › draws static bars named in words, never "$0" for a     |
+ * |                                         | year or a running total                                  |
  * | …Miscellaneous pinned, top five + Other | › keeps the top five, pins Miscellaneous, and never      |
  * |                                         | merges it into Other                                     |
- * | …cumulative ending at the total         | › enters each grant once, in its first year, and ends    |
- * |                                         | exactly at the total; funding-crosscheck › draws value   |
- * |                                         | over time ending at the headline total                   |
+ * | …cumulative ending at the total         | › ends exactly at the figures’ counted total;            |
+ * |                                         | funding-crosscheck › draws the counted funding by award  |
+ * |                                         | year ending at the counted total                         |
  * | …partial year                           | › marks the partial year; › marks the partial fiscal     |
  * |                                         | year from RePORTER’s source; here › partial years        |
  * | the CSV writer                          | download/csv.test.ts; download/grants.test.ts            |
