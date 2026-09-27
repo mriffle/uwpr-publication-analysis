@@ -9,10 +9,11 @@
  * §12.10): a 1.0 export with no `funding` block at all, and a 1.1 export whose block has a null
  * `version`, which is what the pipeline writes while a store holds no funding.
  *
- * **The generated types cannot say this.** They describe contract 1.1, where the block and each
+ * **The generated types cannot say this.** They describe contract 1.2, where the block and each
  * work's `grants` are required, and the loader checks only the major version. So the checks here
  * read the document as `unknown` first, and a work's listings are read through `listingsOf`,
- * never off the work.
+ * never off the work. The same goes for 1.2's `funding.counting`, which a 1.0 or 1.1 export
+ * lacks: it is read through `countingOf`, and every counted figure is unknown without it.
  *
  * What comes back is an index over the block (docs/09 §11.3–11.5): grants by key, agencies by
  * code, each agency's children and its chain root first, and Miscellaneous — found by its
@@ -25,7 +26,16 @@
  * **Built once per document** and remembered, so the Router, every view and every aggregate can
  * ask for it without it being passed down, and all of them see the same index.
  */
-import type { Agency, ExportDocument, Funding, Grant, GrantListing, Resource, Work } from './types';
+import type {
+  Agency,
+  ExportDocument,
+  Funding,
+  FundingCounting,
+  Grant,
+  GrantListing,
+  Resource,
+  Work,
+} from './types';
 
 export interface FundingIndex {
   /**
@@ -154,4 +164,25 @@ export function listingsOf(work: Work, index: FundingIndex | null): readonly Gra
   const listings: unknown = (work as { grants?: unknown }).grants;
   if (!Array.isArray(listings)) return [];
   return (listings as GrantListing[]).filter((listing) => index.grants.has(listing.grant));
+}
+
+/**
+ * The counting rule's constants (docs/09 F17, §7.4), or null when the export has none: no funding
+ * data, or an export older than contract 1.2 (a 1.1 export, or a rollback of the data), whose
+ * block has no `funding.counting` whatever the generated types say. Without them every counted
+ * amount is unknown and every counted total 0 (`aggregate/funding.ts`); nothing throws.
+ */
+export function countingOf(index: FundingIndex | null): FundingCounting | null {
+  if (index === null) return null;
+  const value: unknown = (index.funding as { counting?: unknown }).counting;
+  if (typeof value !== 'object' || value === null) return null;
+  const block = value as Partial<Record<keyof FundingCounting, unknown>>;
+  if (
+    !Number.isInteger(block.from_year) ||
+    !Number.isInteger(block.last_years) ||
+    !Array.isArray(block.full_amount_categories)
+  ) {
+    return null;
+  }
+  return value as FundingCounting;
 }

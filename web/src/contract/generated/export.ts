@@ -4,6 +4,12 @@
  * Do not edit by hand: run `npm run generate:types`.
  */
 
+export type GrantCategory =
+  'research' | 'center' | 'training' | 'instrument' | 'contract' | 'other';
+/**
+ * Why a grant's counted amount is what it is: the first that applies, in the order full_amount, undated, ended_before, began_after, window
+ */
+export type CountedRule = 'full_amount' | 'undated' | 'ended_before' | 'began_after' | 'window';
 export type Evidence = {
   rule: 'R1' | 'R2' | 'R3' | 'R3d' | 'R4' | 'R5' | 'R6' | 'R7' | 'override';
   criterion: 1 | 2 | 3 | 4 | null;
@@ -158,6 +164,7 @@ export interface Funding {
   exchange_rates: ExchangeRates[];
   method: FundingMethod;
   summary: FundingSummary;
+  counting: FundingCounting;
   /**
    * Every agency a grant names, with every parent, sorted by code
    */
@@ -235,6 +242,34 @@ export interface FundingSummary {
   by_first_year: {
     [k: string]: FundingYear;
   };
+  /**
+   * The grants' counted amounts, summed
+   */
+  counted_usd: number;
+  /**
+   * The part of counted_usd from institution-wide awards
+   */
+  counted_usd_institution_wide: number;
+  /**
+   * The part of counted_usd from resolved grants under NIH
+   */
+  counted_usd_nih: number;
+  /**
+   * Grants with an amount, by the rule that counted them; a rule no grant falls under is omitted
+   */
+  grants_by_counted_rule: {
+    full_amount?: number;
+    undated?: number;
+    ended_before?: number;
+    began_after?: number;
+    window?: number;
+  };
+  /**
+   * The counted amounts by award year, each clamped into from_year and the latest listing year; a year only when its counted_usd is not zero
+   */
+  counted_by_year: {
+    [k: string]: CountedYear;
+  };
 }
 /**
  * This interface was referenced by `undefined`'s JSON-Schema definition
@@ -245,6 +280,31 @@ export interface FundingYear {
   grants_institution_wide: number;
   amount_usd: number;
   amount_usd_institution_wide: number;
+}
+/**
+ * This interface was referenced by `undefined`'s JSON-Schema definition
+ * via the `patternProperty` "^[0-9]{4}$".
+ */
+export interface CountedYear {
+  counted_usd: number;
+  counted_usd_institution_wide: number;
+}
+/**
+ * The counting rule's constants (docs/09 F17, §7.4), present even with no funding data, so the app hard-codes none
+ */
+export interface FundingCounting {
+  /**
+   * No grant money from before this year counts: UWPR began in it
+   */
+  from_year: number;
+  /**
+   * How many final years a grant whose funding ended before from_year counts
+   */
+  last_years: number;
+  /**
+   * Grant categories counted in full, whatever their years
+   */
+  full_amount_categories: GrantCategory[];
 }
 /**
  * An agency (docs/09 §11.5). The app finds Miscellaneous by `group`, never by a key.
@@ -276,7 +336,7 @@ export interface Grant {
    * The display form
    */
   number: string;
-  category: 'research' | 'center' | 'training' | 'instrument' | 'contract' | 'other';
+  category: GrantCategory;
   scope: 'project' | 'institution-wide';
   /**
    * Why it is institution-wide; null for a project
@@ -301,6 +361,10 @@ export interface Grant {
    * The year of the earliest exported work that lists it
    */
   first_year: number | null;
+  /**
+   * The year of the latest exported work that lists it: the ceiling its counted amount stops at
+   */
+  last_listed_year: number | null;
   /**
    * Whole US dollars; null when unknown or unconverted, never 0 for unknown
    */
@@ -328,6 +392,21 @@ export interface Grant {
      */
     [k: string]: number | null;
   } | null;
+  /**
+   * An estimate: amount_usd spread evenly over start_year to end_year in whole dollars, the earliest years taking the remainder, for an amount with no fiscal_years (to no later than amount_source.as_of's year when the basis is an obligation to date); null where none applies. The years sum to amount_usd.
+   */
+  spread_years: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^[0-9]{4}$".
+     */
+    [k: string]: number;
+  } | null;
+  /**
+   * What the totals count of the grant over every exported work listing it (docs/09 §7.4); null exactly when amount_usd is
+   */
+  counted_usd: number | null;
+  counted_rule: CountedRule | null;
   /**
    * A page a reader can open to check the grant
    */

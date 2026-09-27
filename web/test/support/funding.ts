@@ -17,6 +17,7 @@ import type {
   Agency,
   ExportDocument,
   Funding,
+  FundingCounting,
   FundingMethod,
   FundingSource,
   FundingSummary,
@@ -65,7 +66,12 @@ export const miscellaneous = (overrides: Partial<Agency> = {}): Agency =>
     ...overrides,
   });
 
-/** A grant; by default a resolved NIH research project, its amount from RePORTER. */
+/**
+ * A grant; by default a resolved NIH research project, its amount from RePORTER, listed by works
+ * of 2020 alone and so counted in full: both its fiscal years lie between 2006 and 2020. The
+ * counted fields are the pipeline's, and an override that moves the amount, the years or the
+ * listing works leaves them as they are: the app computes its own, which is what a test reads.
+ */
 export function grant(overrides: Partial<Grant> = {}): Grant {
   const url = 'https://reporter.nih.gov/project-details/10000001';
   return {
@@ -82,6 +88,7 @@ export function grant(overrides: Partial<Grant> = {}): Grant {
     start_year: 2019,
     end_year: 2023,
     first_year: 2020,
+    last_listed_year: 2020,
     amount_usd: 1_000_000,
     amount_original: 1_000_000,
     currency: 'USD',
@@ -93,6 +100,9 @@ export function grant(overrides: Partial<Grant> = {}): Grant {
       basis: 'reporter_fiscal_years',
     },
     fiscal_years: { '2019': 500_000, '2020': 500_000 },
+    spread_years: null,
+    counted_usd: 1_000_000,
+    counted_rule: 'window',
     url,
     url_name: 'NIH RePORTER project page',
     flags: [],
@@ -118,6 +128,8 @@ export function unresolvedGrant(overrides: Partial<Grant> = {}): Grant {
     currency: null,
     amount_source: null,
     fiscal_years: null,
+    counted_usd: null,
+    counted_rule: null,
     url: null,
     url_name: null,
     flags: ['amount_not_found'],
@@ -146,6 +158,14 @@ const zeroMethod = (): FundingMethod => ({
   works_without_funding_metadata: 0,
 });
 
+/** The counting rule's constants, as the pipeline states them (docs/09 F17, §7.4). */
+export const counting = (overrides: Partial<FundingCounting> = {}): FundingCounting => ({
+  from_year: 2006,
+  last_years: 5,
+  full_amount_categories: ['instrument'],
+  ...overrides,
+});
+
 /** Every count zero and both years null: the summary of no funding data (docs/09 §11.1). */
 export const zeroSummary = (overrides: Partial<FundingSummary> = {}): FundingSummary => ({
   grants: 0,
@@ -165,6 +185,11 @@ export const zeroSummary = (overrides: Partial<FundingSummary> = {}): FundingSum
   first_year: null,
   last_year: null,
   by_first_year: {},
+  counted_usd: 0,
+  counted_usd_institution_wide: 0,
+  counted_usd_nih: 0,
+  grants_by_counted_rule: {},
+  counted_by_year: {},
   ...overrides,
 });
 
@@ -183,6 +208,7 @@ export function fundingBlock(overrides: Partial<Funding> = {}): Funding {
     exchange_rates: [],
     method: zeroMethod(),
     summary: zeroSummary(),
+    counting: counting(),
     agencies: [agency(), nigms(), miscellaneous()],
     grants: [grant(), unresolvedGrant()],
     ...overrides,
@@ -194,7 +220,10 @@ export function fundingBlock(overrides: Partial<Funding> = {}): Funding {
   };
 }
 
-/** What the pipeline writes while the store holds no funding: a null version and nothing else. */
+/**
+ * What the pipeline writes while the store holds no funding: a null version and nothing else but
+ * the counting rule's constants, which 1.2 states even then.
+ */
 export function noFundingBlock(): Funding {
   return {
     version: null,
@@ -203,13 +232,14 @@ export function noFundingBlock(): Funding {
     exchange_rates: [],
     method: zeroMethod(),
     summary: zeroSummary(),
+    counting: counting(),
     agencies: [],
     grants: [],
   };
 }
 
 /**
- * A whole 1.1 document: the sample around the given block and works. By default its first work
+ * A whole 1.2 document: the sample around the given block and works. By default its first work
  * lists both of `fundingBlock()`'s grants and the others list none. The sample's works are used,
  * not `works.ts`'s, because those are built for arithmetic and are not schema-valid. Its
  * top-level `summary` is the sample's, so it is a document for reading funding, not for the
@@ -226,7 +256,7 @@ export function fundingDocument(parts: { funding?: Funding; works?: Work[] } = {
 
 /**
  * The sample as a 1.0 export, as after a rollback of the data (docs/07 O2): no `funding` block
- * and no `grants` on any work. Not contract 1.1, so not validated against it; the types are
+ * and no `grants` on any work. Not contract 1.2, so not validated against it; the types are
  * bent here, once, so no test has to.
  */
 export function legacyDocument(): ExportDocument {
@@ -239,4 +269,30 @@ export function legacyDocument(): ExportDocument {
   const legacy: Partial<ExportDocument> = { ...sample, schema_version: '1.0' };
   delete legacy.funding;
   return { ...legacy, works } as unknown as ExportDocument;
+}
+
+/**
+ * A funding block as contract 1.1 wrote it, as after a rollback of the data to an export older
+ * than the app (docs/07 O2): no `funding.counting`, no grant with 1.2's `spread_years`,
+ * `last_listed_year`, `counted_usd` or `counted_rule`, and no counted summary fields. Not
+ * contract 1.2, so not validated against it; the types are bent here, once, so no test has to.
+ */
+export function uncountedBlock(overrides: Partial<Funding> = {}): Funding {
+  const block: Partial<Funding> = { ...fundingBlock(overrides) };
+  delete block.counting;
+  const grants = (block.grants ?? []).map((entry) => {
+    const legacy: Partial<Grant> = { ...entry };
+    delete legacy.spread_years;
+    delete legacy.last_listed_year;
+    delete legacy.counted_usd;
+    delete legacy.counted_rule;
+    return legacy;
+  });
+  const summary: Partial<FundingSummary> = { ...block.summary };
+  delete summary.counted_usd;
+  delete summary.counted_usd_institution_wide;
+  delete summary.counted_usd_nih;
+  delete summary.grants_by_counted_rule;
+  delete summary.counted_by_year;
+  return { ...block, grants, summary } as unknown as Funding;
 }

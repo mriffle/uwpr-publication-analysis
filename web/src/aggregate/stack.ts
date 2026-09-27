@@ -82,6 +82,12 @@ export interface StackOptions<T> {
   top?: number;
   /** Years per bucket; three by default (docs/05 §7.5), 1 for single years. */
   bucketYears?: number;
+  /**
+   * Where the axis starts, unless an item's year is earlier; the export's `period.first_year` by
+   * default. The counted-funding stack starts at 2006, when UWPR began, before the first
+   * publication (docs/09 F17).
+   */
+  firstYear?: number;
 }
 
 function bucketLabel(start: number, end: number): string {
@@ -90,8 +96,9 @@ function bucketLabel(start: number, end: number): string {
 
 /**
  * Stack items by year and series. The axis spans the export's `period` whatever is shown, as the
- * publication charts' does, so a filtered stack is read against the same frame; a bucket keeps
- * a partial year's flag, and the last bucket may be shorter than the rest.
+ * publication charts' does (or starts at `firstYear` when one is given), so a filtered stack is
+ * read against the same frame; a bucket keeps a partial year's flag, and the last bucket may be
+ * shorter than the rest.
  */
 export function stackByYear<T>(
   items: readonly T[],
@@ -146,7 +153,7 @@ export function stackByYear<T>(
   }
 
   const years = items.map(options.year);
-  const first = Math.min(period.first_year, ...years);
+  const first = Math.min(options.firstYear ?? period.first_year, ...years);
   const last = Math.max(period.last_year, ...years);
 
   const buckets: StackBucket[] = [];

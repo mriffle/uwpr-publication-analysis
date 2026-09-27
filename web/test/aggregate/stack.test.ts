@@ -157,6 +157,27 @@ describe('buckets', () => {
     expect(stack.buckets.at(-1)).toMatchObject({ label: '2030', total: 1 });
   });
 
+  it('starts the axis where it is told, before the period, and buckets from there', () => {
+    const stack = stackByYear([item('A', 2019)], period, { ...options, firstYear: 2006 });
+    expect(stack.buckets.map((bucket) => bucket.label)).toEqual([
+      '2006–2008',
+      '2009–2011',
+      '2012–2014',
+      '2015–2017',
+      '2018–2020',
+      '2021–2023',
+      '2024–2026',
+    ]);
+    expect(stack.buckets[4]).toMatchObject({ total: 1 });
+    // An item earlier still widens it, as without the option.
+    const earlier = stackByYear([item('A', 2004)], period, {
+      ...options,
+      firstYear: 2006,
+      bucketYears: 1,
+    });
+    expect(earlier.buckets[0]).toMatchObject({ label: '2004', total: 1 });
+  });
+
   it('stacks nothing over the period when there is nothing', () => {
     const stack = stackByYear([], period, options);
     expect(stack.series).toEqual([]);

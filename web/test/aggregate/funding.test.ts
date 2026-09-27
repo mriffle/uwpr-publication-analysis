@@ -14,6 +14,10 @@
  * | W2023 | 2023 | nothing                                 |
  * | W2026 | 2026 | GRFP only (2026 is the partial year)    |
  *
+ * What the totals count of each (docs/09 F17), unfiltered: R01 all $1.0M (FY2019–2020, listed
+ * 2019–2021); P01 $0, since its fiscal years (2023–2026) begin after its only listing work (2021);
+ * GRFP all $4.0M, spread over 2019–2023 and listed 2021–2026. $5.0M counted of $7.5M.
+ *
  * The sample export's agreement with the pipeline is `funding-crosscheck.test.ts`'s.
  */
 import { describe, expect, it } from 'vitest';
@@ -25,6 +29,11 @@ import {
   VALUE_BUCKET_YEARS,
   agencyDetail,
   agencyLabel,
+  awardAxisStart,
+  countedByAgency,
+  countedByAwardYear,
+  countedOverTime,
+  countedRules,
   coverage,
   cumulativeDollars,
   dollarTotal,
@@ -43,20 +52,23 @@ import {
   summarizeFunding,
   valueByAgency,
   type FundingScope,
+  type ScopedGrant,
 } from '../../src/aggregate/funding';
 import { OTHER_SERIES } from '../../src/aggregate/stack';
-import { buildFundingIndex, type FundingIndex } from '../../src/contract/funding';
-import type { Agency, Grant, Period, Work } from '../../src/contract/types';
+import { buildFundingIndex, countingOf, type FundingIndex } from '../../src/contract/funding';
+import type { Agency, Funding, Grant, Period, Work } from '../../src/contract/types';
 import type { GrantSelection } from '../../src/filter/funding';
 import {
   FUNDING_AS_OF,
   agency,
+  counting,
   fundingBlock,
   grant,
   listing,
   miscellaneous,
   nigms,
   reporterSource,
+  uncountedBlock,
   unresolvedGrant,
 } from '../support/funding';
 import { FOUNDATION, NHLBI, NSF, RESOURCE, listings } from '../support/grants';
@@ -77,6 +89,8 @@ const noAmount = {
   currency: null,
   amount_source: null,
   fiscal_years: null,
+  counted_usd: null,
+  counted_rule: null,
 } as const;
 
 const R01 = grant({
@@ -129,6 +143,15 @@ const GRFP = grant({
     url: 'https://www.nsf.gov/awardsearch/show-award/?AWD_ID=0718124',
     as_of: FUNDING_AS_OF,
     basis: 'nsf_obligated',
+  },
+  // Obligated to date and ended before its as-of year: spread over 2019–2023, as the pipeline
+  // spreads it, $800,000 a year.
+  spread_years: {
+    '2019': 800_000,
+    '2020': 800_000,
+    '2021': 800_000,
+    '2022': 800_000,
+    '2023': 800_000,
   },
   // Named without an ID: keyed by the name normalised.
   pis: [{ name: 'C.  Person', id: null }],
@@ -270,7 +293,7 @@ describe('the scope: each grant once, with what the filter changes', () => {
   });
 
   it('says what the exclusion left out, and drops a work listing only that', () => {
-    expect(excluded.leftOut.map((item) => item.key)).toEqual([GRFP.key]);
+    expect(excluded.leftOut.map((item) => item.grant.key)).toEqual([GRFP.key]);
     expect(keys(excluded)).not.toContain(GRFP.key);
     expect(excluded.withListings).toBe(4);
     expect(excluded.withGrants).toBe(3);
@@ -294,17 +317,23 @@ describe('the scope: each grant once, with what the filter changes', () => {
 });
 
 describe('dollars: a known sum beside an unknown count', () => {
-  it('sums only the known amounts and counts the rest', () => {
-    expect(dollarTotal([R01, NIH_DIRECT, P01])).toEqual({
+  /** A grant as the unfiltered scope holds it, with what the totals count of it. */
+  const scoped = (...grants: Grant[]): ScopedGrant[] =>
+    grants.map((item) => all.grants.find((entry) => entry.grant.key === item.key) as ScopedGrant);
+
+  it('sums only the known amounts, lifetime and counted, and counts the rest', () => {
+    expect(dollarTotal(scoped(R01, NIH_DIRECT, P01))).toEqual({
       amountUsd: 3_500_000,
+      // R01 in full; P01 began after its only listing work, a known $0.
+      countedUsd: 1_000_000,
       withAmount: 2,
       withoutAmount: 1,
     });
   });
 
   it('reads as not known — null, never $0 — when every amount is unknown', () => {
-    const total = dollarTotal([NIH_DIRECT, NSF_PROJECT]);
-    expect(total).toEqual({ amountUsd: 0, withAmount: 0, withoutAmount: 2 });
+    const total = dollarTotal(scoped(NIH_DIRECT, NSF_PROJECT));
+    expect(total).toEqual({ amountUsd: 0, countedUsd: 0, withAmount: 0, withoutAmount: 2 });
     expect(knownAmount(total)).toBeNull();
   });
 
@@ -313,7 +342,18 @@ describe('dollars: a known sum beside an unknown count', () => {
   });
 
   it('reads as the sum when any amount is known', () => {
-    expect(knownAmount(dollarTotal([R01, NIH_DIRECT]))).toBe(1_000_000);
+    expect(knownAmount(dollarTotal(scoped(R01, NIH_DIRECT)))).toBe(1_000_000);
+  });
+
+  it('counts a known amount whose counted amount is not known — no counting rule — as known', () => {
+    const [r01] = scoped(R01);
+    const uncounted = { ...r01!, counted: { usd: null, rule: null, byYear: new Map() } };
+    expect(dollarTotal([uncounted])).toEqual({
+      amountUsd: 1_000_000,
+      countedUsd: 0,
+      withAmount: 1,
+      withoutAmount: 0,
+    });
   });
 });
 
@@ -385,6 +425,7 @@ describe('headline figures', () => {
       included: true,
       grants: 1,
       amountUsd: 4_000_000,
+      countedUsd: 4_000_000,
       withAmount: 1,
       withoutAmount: 0,
     });
@@ -984,6 +1025,18 @@ describe('summarizeFunding over the hand-built world', () => {
           amount_usd_institution_wide: 0,
         },
       },
+      counted_usd: 5_000_000,
+      counted_usd_institution_wide: 4_000_000,
+      counted_usd_nih: 1_000_000,
+      grants_by_counted_rule: { began_after: 1, window: 2 },
+      counted_by_year: {
+        // R01's FY2019 and FY2020, $500,000 each, and GRFP's spread, $800,000 a year.
+        '2019': { counted_usd: 1_300_000, counted_usd_institution_wide: 800_000 },
+        '2020': { counted_usd: 1_300_000, counted_usd_institution_wide: 800_000 },
+        '2021': { counted_usd: 800_000, counted_usd_institution_wide: 800_000 },
+        '2022': { counted_usd: 800_000, counted_usd_institution_wide: 800_000 },
+        '2023': { counted_usd: 800_000, counted_usd_institution_wide: 800_000 },
+      },
     });
   });
 
@@ -1021,8 +1074,323 @@ describe('the first-year check', () => {
   });
 });
 
+describe('the counted amount of each grant, under the filter (F17)', () => {
+  const entry = (scope: FundingScope, grant_: Grant) =>
+    scope.grants.find((item) => item.grant.key === grant_.key);
+
+  it('gives each grant its last year under the filter beside its first', () => {
+    expect(entry(all, R01)).toMatchObject({ firstYear: 2019, lastYear: 2021 });
+    expect(entry(all, GRFP)).toMatchObject({ firstYear: 2021, lastYear: 2026 });
+    expect(entry(all, UNMATCHED)).toMatchObject({ firstYear: 2019, lastYear: 2020 });
+    expect(entry(scopeOf([W2019, W2021]), GRFP)).toMatchObject({ firstYear: 2021, lastYear: 2021 });
+  });
+
+  it('counts each grant by the rule, with its dollars by award year', () => {
+    expect(entry(all, R01)?.counted).toEqual({
+      usd: 1_000_000,
+      rule: 'window',
+      byYear: new Map([
+        [2019, 500_000],
+        [2020, 500_000],
+      ]),
+    });
+    expect(entry(all, P01)?.counted).toEqual({ usd: 0, rule: 'began_after', byYear: new Map() });
+    expect(entry(all, GRFP)?.counted.usd).toBe(4_000_000);
+    expect([...(entry(all, GRFP)?.counted.byYear.keys() ?? [])]).toEqual([
+      2019, 2020, 2021, 2022, 2023,
+    ]);
+  });
+
+  it('counts an unknown amount as unknown, never $0', () => {
+    for (const grant_ of [NIH_DIRECT, NSF_PROJECT, FOREIGN, UNMATCHED]) {
+      expect(entry(all, grant_)?.counted, grant_.key).toEqual({
+        usd: null,
+        rule: null,
+        byYear: new Map(),
+      });
+    }
+  });
+
+  it('lowers the ceiling with a Year filter: a grant listed 2012, 2015 and 2020, shown to 2015', () => {
+    // A P30-style centre grant with $100 in each fiscal year 2000–2024.
+    const fiscal = Object.fromEntries(
+      Array.from({ length: 25 }, (_, at) => [String(2000 + at), 100]),
+    );
+    const p30 = grant({
+      key: 'NIH:P30CA000011',
+      number: 'P30CA000011',
+      category: 'center',
+      amount_usd: 2_500,
+      fiscal_years: fiscal,
+    });
+    const centre = buildFundingIndex(fundingBlock({ agencies: AGENCIES, grants: [p30] }), RESOURCE);
+    const [w2012, w2015, w2020] = [2012, 2015, 2020].map((year) =>
+      work({ id: `W-0080${String(year).slice(2)}`, year, grants: listings(centre, p30) }),
+    ) as [Work, Work, Work];
+    const counted = (works: Work[]) =>
+      fundingScope(works, centre, UNFILTERED).grants[0]?.counted ?? null;
+
+    // Unfiltered: FY2006–2020. Through 2015: FY2006–2015. The 2012 work alone: FY2006–2012.
+    expect(counted([w2012, w2015, w2020])?.usd).toBe(1_500);
+    expect(counted([w2012, w2015])?.usd).toBe(1_000);
+    expect([...(counted([w2012, w2015])?.byYear.keys() ?? [])]).toEqual([
+      2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
+    ]);
+    expect(counted([w2012])?.usd).toBe(700);
+    const shown = fundingScope([w2012, w2015], centre, UNFILTERED);
+    expect(fundingFigures(shown)).toMatchObject({ amountUsd: 2_500, countedUsd: 1_000 });
+    expect(countedOverTime(shown, period, counting()).points.at(-1)?.cumulative).toBe(1_000);
+  });
+
+  it('totals the counted amounts beside the lifetime ones, over the same grants', () => {
+    expect(fundingFigures(all)).toMatchObject({
+      amountUsd: 7_500_000,
+      countedUsd: 5_000_000,
+      withAmount: 3,
+      withoutAmount: 3,
+    });
+  });
+
+  it('counts the grants the exclusion left out, as the include position would scope them', () => {
+    expect(fundingFigures(excluded)).toMatchObject({ amountUsd: 3_500_000, countedUsd: 1_000_000 });
+    expect(fundingFigures(excluded).institutionWide).toEqual({
+      included: false,
+      grants: 1,
+      amountUsd: 4_000_000,
+      countedUsd: 4_000_000,
+      withAmount: 1,
+      withoutAmount: 0,
+    });
+    expect(excluded.leftOut[0]).toMatchObject({ firstYear: 2021, lastYear: 2026 });
+    // Shown only to 2021, the award it left out is counted only to 2021.
+    const earlier = scopeOf([W2019, W2021], { institutionWide: 'exclude' });
+    expect(
+      earlier.leftOut.map((item) => [item.grant.key, item.lastYear, item.counted.usd]),
+    ).toEqual([[GRFP.key, 2021, 2_400_000]]);
+    expect(fundingFigures(earlier).institutionWide.countedUsd).toBe(2_400_000);
+  });
+
+  it('carries the counted totals in the ranking, the kinds and the agency page, sorted by value', () => {
+    expect(rankAgencies(all).items.map((row) => [row.code, row.amountUsd, row.countedUsd])).toEqual(
+      [
+        ['NSF', 4_000_000, 4_000_000],
+        ['NIH', 3_500_000, 1_000_000],
+        ['F4399999999', 0, 0],
+      ],
+    );
+    expect(grantKinds(all).map((row) => [row.category, row.countedUsd])).toEqual([
+      ['research', 1_000_000],
+      ['center', 0],
+      ['training', 4_000_000],
+      ['instrument', 0],
+      ['contract', 0],
+      ['other', 0],
+    ]);
+    const nih = agencyDetail('NIH', WORKS, index, period);
+    expect(nih?.figures.countedUsd).toBe(1_000_000);
+    // Still largest lifetime value first: NHLBI's $2.5M counts $0.
+    expect(nih?.children.map((row) => [row.code, row.amountUsd, row.countedUsd])).toEqual([
+      ['NHLBI', 2_500_000, 0],
+      ['NIGMS', 1_000_000, 1_000_000],
+    ]);
+    expect(nih?.unassigned).toMatchObject({ countedUsd: 0, withoutAmount: 1 });
+    expect(nih?.countedOverTime).toMatchObject({ countedUsd: 1_000_000, beganAfter: 1 });
+  });
+
+  it('counts the grants by rule, leaving out a rule none falls under', () => {
+    expect(countedRules(all)).toEqual({ began_after: 1, window: 2 });
+    expect(Object.keys(countedRules(all))).toEqual(['began_after', 'window']);
+    expect(countedRules(nothing)).toEqual({});
+  });
+});
+
+describe('counted funding by the year awarded (F17)', () => {
+  const over = countedOverTime(all, period, counting());
+  const at = (year: number) => over.points.find((point) => point.year === year);
+
+  it('starts the axis at 2006, before the export’s first year, whatever the filter', () => {
+    expect(over.points[0]?.year).toBe(2006);
+    expect(over.points.at(-1)?.year).toBe(2026);
+    expect(over.points).toHaveLength(21);
+    const filtered = countedOverTime(scopeOf([W2022]), period, counting());
+    expect(filtered.points.map((point) => point.year)).toEqual(over.points.map((p) => p.year));
+    expect(awardAxisStart(period, counting())).toBe(2006);
+    // The export's own first year when it is earlier, and without a counting rule.
+    expect(awardAxisStart({ ...period, first_year: 2004 }, counting())).toBe(2004);
+    expect(awardAxisStart(period, null)).toBe(2018);
+  });
+
+  it('adds each year’s counted dollars, with the grants and the institution-wide part', () => {
+    expect(at(2019)).toMatchObject({
+      count: 1_300_000,
+      cumulative: 1_300_000,
+      grants: 2,
+      institutionWide: 800_000,
+    });
+    expect(at(2021)).toMatchObject({ count: 800_000, cumulative: 3_400_000, grants: 1 });
+    expect(at(2024)).toMatchObject({ count: 0, cumulative: 5_000_000, grants: 0 });
+    expect(at(2006)).toMatchObject({ count: 0, cumulative: 0, partial: false });
+  });
+
+  it('ends exactly at the figures’ counted total', () => {
+    expect(over.points.at(-1)?.cumulative).toBe(fundingFigures(all).countedUsd);
+    expect(over.countedUsd).toBe(5_000_000);
+  });
+
+  it('states the unknown amounts and the began-after grants once, not in any year', () => {
+    expect(over).toMatchObject({ withAmount: 3, withoutAmount: 3, beganAfter: 1 });
+    const grants = over.points.reduce((sum, point) => sum + point.grants, 0);
+    // R01 in two years and GRFP in five; neither P01 nor an unknown amount in any.
+    expect(grants).toBe(7);
+  });
+
+  it('marks the partial year', () => {
+    expect(over.points.filter((point) => point.partial).map((point) => point.year)).toEqual([2026]);
+  });
+
+  it('counts only to the latest publication shown', () => {
+    const shown = countedOverTime(scopeOf([W2019, W2021]), period, counting());
+    expect(shown.countedUsd).toBe(3_400_000);
+    expect(shown.points.at(-1)?.cumulative).toBe(3_400_000);
+    expect(shown.points.find((point) => point.year === 2022)?.count).toBe(0);
+  });
+
+  it('draws the frame with nothing in it for an empty scope', () => {
+    const empty = countedOverTime(nothing, period, counting());
+    expect(empty.points).toHaveLength(21);
+    expect(empty).toMatchObject({ countedUsd: 0, withAmount: 0, withoutAmount: 0, beganAfter: 0 });
+  });
+
+  it('gives the same increments as countedByAwardYear, the summary’s', () => {
+    for (const [year, entry] of countedByAwardYear(all)) {
+      expect(at(year)).toMatchObject({ count: entry.usd, grants: entry.grants });
+    }
+  });
+
+  it('stacks the counted dollars by root agency, from 2006, summing to the counted total', () => {
+    const stack = countedByAgency(all, period, counting());
+    expect(stack.bucketYears).toBe(VALUE_BUCKET_YEARS);
+    expect(stack.series.map((series) => [series.key, series.total])).toEqual([
+      ['NSF', 4_000_000],
+      ['NIH', 1_000_000],
+    ]);
+    expect(stack.buckets[0]?.startYear).toBe(2006);
+    expect(stack.buckets).toHaveLength(21);
+    expect(stack.total).toBe(fundingFigures(all).countedUsd);
+    const threes = countedByAgency(all, period, counting(), { bucketYears: 3 });
+    expect(threes.buckets.map((bucket) => bucket.label)).toEqual([
+      '2006–2008',
+      '2009–2011',
+      '2012–2014',
+      '2015–2017',
+      '2018–2020',
+      '2021–2023',
+      '2024–2026',
+    ]);
+    expect(threes.buckets.map((bucket) => bucket.total)).toEqual([
+      0, 0, 0, 0, 2_600_000, 2_400_000, 0,
+    ]);
+  });
+
+  it('keeps the axis start under a filter, and leaves the new-grants stack as it was', () => {
+    const stack = countedByAgency(scopeOf([W2022]), period, counting());
+    expect(stack.buckets[0]?.startYear).toBe(2006);
+    expect(stack.total).toBe(0);
+    expect(newGrantsByAgency(all, period).buckets[0]?.startYear).toBe(period.first_year);
+  });
+});
+
+describe('the grant page: what the totals count of it', () => {
+  it('counts it over every work given, with its last year and the years counted', () => {
+    const grfp = grantDetail(GRFP.key, WORKS, index);
+    expect(grfp).toMatchObject({ firstYear: 2021, lastYear: 2026 });
+    expect(grfp?.counted).toMatchObject({ usd: 4_000_000, rule: 'window' });
+    expect([...(grfp?.countedYears ?? [])]).toEqual([2019, 2020, 2021, 2022, 2023]);
+    const r01 = grantDetail(R01.key, WORKS, index);
+    expect([...(r01?.countedYears ?? [])]).toEqual([2019, 2020]);
+  });
+
+  it('counts nothing, and no year, for a grant that began after its listing work', () => {
+    const p01 = grantDetail(P01.key, WORKS, index);
+    expect(p01?.counted).toEqual({ usd: 0, rule: 'began_after', byYear: new Map() });
+    expect(p01?.countedYears.size).toBe(0);
+  });
+
+  it('has no counted amount and no last year for a grant no work lists', () => {
+    const orphan = grantDetail(ORPHAN.key, WORKS, index);
+    expect(orphan).toMatchObject({ firstYear: null, lastYear: null, counted: null });
+    expect(orphan?.countedYears.size).toBe(0);
+  });
+});
+
+describe('an export without funding.counting (1.1, or a rollback): nothing counted, nothing thrown', () => {
+  const block = uncountedBlock({
+    agencies: AGENCIES,
+    grants: GRANTS,
+    sources: [reporterSource(), NSF_SOURCE],
+  });
+  const old = buildFundingIndex(block, RESOURCE);
+  const scope = fundingScope(WORKS, old, UNFILTERED);
+
+  it('reads no counting rule', () => {
+    expect('counting' in block).toBe(false);
+    expect(countingOf(old)).toBeNull();
+    expect(countingOf(null)).toBeNull();
+    expect(countingOf(index)).toEqual(counting());
+    const malformed = { ...block, counting: { from_year: '2006' } } as unknown as Funding;
+    expect(countingOf(buildFundingIndex(malformed, RESOURCE))).toBeNull();
+    const absent = { ...block, counting: null } as unknown as Funding;
+    expect(countingOf(buildFundingIndex(absent, RESOURCE))).toBeNull();
+  });
+
+  it('treats every counted amount as not known, and every counted total as 0', () => {
+    for (const item of scope.grants) {
+      expect(item.counted, item.grant.key).toEqual({ usd: null, rule: null, byYear: new Map() });
+    }
+    expect(scope.grants.find((item) => item.grant.key === GRFP.key)?.lastYear).toBe(2026);
+    expect(fundingFigures(scope)).toMatchObject({
+      amountUsd: 7_500_000,
+      countedUsd: 0,
+      withAmount: 3,
+      withoutAmount: 3,
+    });
+    expect(countedRules(scope)).toEqual({});
+  });
+
+  it('draws an empty counted chart from the export’s first year, and an empty stack', () => {
+    const over = countedOverTime(scope, period, countingOf(old));
+    expect(over.points[0]?.year).toBe(period.first_year);
+    expect(over.points.every((point) => point.cumulative === 0)).toBe(true);
+    expect(over).toMatchObject({ countedUsd: 0, beganAfter: 0, withoutAmount: 3 });
+    const stack = countedByAgency(scope, period, countingOf(old));
+    expect(stack).toMatchObject({ total: 0, series: [] });
+  });
+
+  it('gives the pages and the summary no counted figure, and their lifetime ones unchanged', () => {
+    const grfp = grantDetail(GRFP.key, WORKS, old);
+    expect(grfp?.counted).toEqual({ usd: null, rule: null, byYear: new Map() });
+    expect(grfp?.countedYears.size).toBe(0);
+    expect(grfp?.lastYear).toBe(2026);
+    expect(agencyDetail('NIH', WORKS, old, period)?.countedOverTime.countedUsd).toBe(0);
+    const summary = summarizeFunding(WORKS, old);
+    expect(summary).toMatchObject({
+      amount_usd: 7_500_000,
+      counted_usd: 0,
+      counted_usd_institution_wide: 0,
+      counted_usd_nih: 0,
+    });
+    expect(summary.grants_by_counted_rule).toEqual({});
+    expect(summary.counted_by_year).toEqual({});
+  });
+});
+
 describe('every dollar figure is a safe integer', () => {
-  const huge = grant({ key: 'NIH:P41GM000010', number: 'P41GM000010', amount_usd: 2 ** 52 });
+  const huge = grant({
+    key: 'NIH:P41GM000010',
+    number: 'P41GM000010',
+    amount_usd: 2 ** 52,
+    fiscal_years: { '2018': 2 ** 51, '2019': 2 ** 51 },
+  });
   const big = buildFundingIndex(
     fundingBlock({ agencies: AGENCIES, grants: [R01, P01, GRFP, huge] }),
     RESOURCE,
@@ -1038,6 +1406,9 @@ describe('every dollar figure is a safe integer', () => {
     const series = cumulativeDollars(scope, period);
     const value = valueByAgency(scope, period);
     const detail = agencyDetail('NIH', works, big, period);
+    const counted = countedOverTime(scope, period, counting());
+    const stack = countedByAgency(scope, period, counting());
+    const summary = summarizeFunding(works, big);
     return [
       figures.amountUsd,
       figures.institutionWide.amountUsd,
@@ -1050,12 +1421,25 @@ describe('every dollar figure is a safe integer', () => {
       ...grantKinds(scope).map((row) => row.amountUsd),
       ...(detail?.children ?? []).map((row) => row.amountUsd),
       detail?.figures.amountUsd ?? 0,
-      summarizeFunding(works, big).amount_usd,
+      summary.amount_usd,
+      figures.countedUsd,
+      figures.institutionWide.countedUsd,
+      counted.countedUsd,
+      ...counted.points.flatMap((point) => [point.count, point.cumulative]),
+      stack.total,
+      ...stack.buckets.flatMap((bucket) => [bucket.total, ...bucket.values]),
+      ...rankAgencies(scope, { limit: Infinity }).items.map((row) => row.countedUsd),
+      ...grantKinds(scope).map((row) => row.countedUsd),
+      ...(detail?.children ?? []).map((row) => row.countedUsd),
+      summary.counted_usd,
+      summary.counted_usd_nih,
     ];
   };
 
   it('sums exactly, well above a billion', () => {
     expect(fundingFigures(scope).amountUsd).toBe(2 ** 52 + 7_500_000);
+    // The huge grant's FY2018–2019, R01's FY2019 alone, GRFP's spread to 2021, P01's $0.
+    expect(fundingFigures(scope).countedUsd).toBe(2 ** 52 + 500_000 + 2_400_000);
   });
 
   it.each(dollars().map((value, at) => [at, value]))('figure %i (%d)', (_, value) => {

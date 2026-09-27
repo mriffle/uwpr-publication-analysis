@@ -27,10 +27,19 @@
  * - **The institution-wide position is stated** (rule 4): while they are included, how many
  *   are in view and their value; while they are excluded, how many the exclusion left out and
  *   theirs.
+ * - **Each grant's counted amount is computed under the filter** (F17, §7.4; `counting.ts`): from
+ *   2006 through the year of the latest publication *shown* listing it, so its last year moves
+ *   with the filter as its first year does. Every `DollarTotal` carries it as `countedUsd` beside
+ *   the lifetime `amountUsd`, over the same grants. Unfiltered, each grant's is its exported
+ *   `counted_usd`, which the cross-check asserts. An export older than 1.2 states no counting
+ *   rule (`countingOf`): every counted amount is then unknown and every counted total 0.
  */
-import { listingsOf, type FundingIndex } from '../contract/funding';
+import { countingOf, listingsOf, type FundingIndex } from '../contract/funding';
 import type {
   Agency,
+  CountedRule,
+  CountedYear,
+  FundingCounting,
   FundingSource,
   FundingSummary,
   FundingYear,
@@ -46,6 +55,7 @@ import {
   listingsInScope,
   type GrantSelection,
 } from '../filter/funding';
+import { COUNTED_RULES, awardYears, counted, countedYears } from './counting';
 import { DEFAULT_SORT, sortWorks } from './explorer';
 import { accumulate, type YearPoint } from './series';
 import { stackByYear, type YearStack } from './stack';
@@ -60,6 +70,19 @@ export const UNFILTERED: GrantSelection = { agencies: [], grants: [], institutio
  * The scope: the grants a view shows, each once, with what the filter changes about it.
  * --------------------------------------------------------------------------------------------- */
 
+/** What the totals count of a grant (docs/09 F17, §7.4), over the publications given. */
+export interface CountedAmount {
+  /**
+   * Whole US dollars: a safe integer. Null exactly when its amount is unknown — never 0 for
+   * that — or when the export states no counting rule. A `began_after` 0 is a known zero.
+   */
+  readonly usd: number | null;
+  /** Why it is what it is; null exactly when `usd` is. */
+  readonly rule: CountedRule | null;
+  /** `usd` by the year it was awarded (`awardYears`): sums to it; no year with nothing. */
+  readonly byYear: ReadonlyMap<number, number>;
+}
+
 export interface ScopedGrant {
   readonly grant: Grant;
   /** The top of its agency's chain (NIH, not NIGMS; docs/09 §4). */
@@ -68,8 +91,15 @@ export interface ScopedGrant {
   readonly miscellaneous: boolean;
   /** Its first year under the filter: the year of the earliest work shown that lists it. */
   readonly firstYear: number;
+  /**
+   * Its last year under the filter: the year of the latest work shown that lists it, the ceiling
+   * its counted amount stops at. Unfiltered, its exported `last_listed_year`.
+   */
+  readonly lastYear: number;
   /** The IDs of the works shown that list it in scope, in the order given. */
   readonly works: readonly string[];
+  /** What the totals count of it, from its first and last years under the filter. */
+  readonly counted: CountedAmount;
 }
 
 export interface FundingScope {
@@ -85,11 +115,12 @@ export interface FundingScope {
   /** Works listing at least one grant in scope that is not in Miscellaneous. */
   readonly withGrants: number;
   /**
-   * The grants the institution-wide exclusion left out: those the `include` position would add.
-   * Empty while they are included, and while a grant is selected, since the selection overrides
-   * the toggle (docs/09 §12.4).
+   * The grants the institution-wide exclusion left out: those the `include` position would add,
+   * scoped as that position would scope them, so their counted amounts exist. Empty while they
+   * are included, and while a grant is selected, since the selection overrides the toggle
+   * (docs/09 §12.4).
    */
-  readonly leftOut: readonly Grant[];
+  readonly leftOut: readonly ScopedGrant[];
 }
 
 /** An agency's chain as agencies, root first, ending with it; empty for a code the export lacks. */
@@ -105,29 +136,42 @@ function rootOf(grant: Grant, index: FundingIndex): string {
 }
 
 /**
- * The grants a view shows (docs/09 §12.4) and the facts the filter changes: each grant's first
- * year and the works listing it, and how many of the works list anything in scope. `works` are
- * the publications the filter already selected; with no funding data nothing is in scope.
+ * What the totals count of a grant listed from `first` to `last`: nothing known without the
+ * export's counting rule (an export older than 1.2), which neither throws nor reads as $0.
  */
-export function fundingScope(
-  works: readonly Work[],
-  index: FundingIndex | null,
-  selection: GrantSelection,
-): FundingScope {
-  const scope = {
-    index,
-    selection,
-    publications: works.length,
-    withListings: 0,
-    withGrants: 0,
+function countedAmount(
+  grant: Grant,
+  first: number,
+  last: number,
+  counting: FundingCounting | null,
+): CountedAmount {
+  if (counting === null) return { usd: null, rule: null, byYear: new Map() };
+  return {
+    ...counted(grant, first, last, counting),
+    byYear: awardYears(grant, first, last, counting),
   };
-  if (index === null) return { ...scope, grants: [], leftOut: [] };
+}
 
-  const facts = new Map<string, { firstYear: number; works: string[] }>();
+interface Facts {
+  firstYear: number;
+  lastYear: number;
+  works: string[];
+}
+
+/** The scope rule's grants under one selection, each with what the filter changes about it. */
+function scopedGrants(
+  works: readonly Work[],
+  index: FundingIndex,
+  selection: GrantSelection,
+  counting: FundingCounting | null,
+): Pick<FundingScope, 'grants' | 'withListings' | 'withGrants'> {
+  let withListings = 0;
+  let withGrants = 0;
+  const facts = new Map<string, Facts>();
   for (const work of works) {
     const listings = listingsInScope(work, index, selection);
     if (listings.length === 0) continue;
-    scope.withListings += 1;
+    withListings += 1;
     let identified = false;
     for (const listing of listings) {
       // `listingsInScope` keeps only listings whose grant the index holds.
@@ -135,37 +179,63 @@ export function fundingScope(
       identified ||= !isMiscellaneous(grant, index);
       const fact = facts.get(grant.key);
       if (fact === undefined) {
-        facts.set(grant.key, { firstYear: work.year, works: [work.id] });
+        facts.set(grant.key, { firstYear: work.year, lastYear: work.year, works: [work.id] });
       } else {
         fact.firstYear = Math.min(fact.firstYear, work.year);
+        fact.lastYear = Math.max(fact.lastYear, work.year);
         if (fact.works.at(-1) !== work.id) fact.works.push(work.id);
       }
     }
-    if (identified) scope.withGrants += 1;
+    if (identified) withGrants += 1;
   }
 
   // The scope rule's own answer is the set and its order; the facts above are the same listings
   // read per work, so every grant it returns has them.
   const grants = grantsInScope(works, index, selection).map((grant): ScopedGrant => {
-    const fact = facts.get(grant.key) as { firstYear: number; works: string[] };
+    const fact = facts.get(grant.key) as Facts;
     return {
       grant,
       root: rootOf(grant, index),
       miscellaneous: isMiscellaneous(grant, index),
       firstYear: fact.firstYear,
+      lastYear: fact.lastYear,
       works: fact.works,
+      counted: countedAmount(grant, fact.firstYear, fact.lastYear, counting),
     };
   });
+  return { grants, withListings, withGrants };
+}
 
-  const kept = new Set(grants.map((entry) => entry.grant.key));
+/**
+ * The grants a view shows (docs/09 §12.4) and the facts the filter changes: each grant's first
+ * and last years, the works listing it and what the totals count of it, and how many of the
+ * works list anything in scope. `works` are the publications the filter already selected; with
+ * no funding data nothing is in scope.
+ */
+export function fundingScope(
+  works: readonly Work[],
+  index: FundingIndex | null,
+  selection: GrantSelection,
+): FundingScope {
+  const scope = { index, selection, publications: works.length };
+  if (index === null) {
+    return { ...scope, grants: [], withListings: 0, withGrants: 0, leftOut: [] };
+  }
+
+  const counting = countingOf(index);
+  const shown = scopedGrants(works, index, selection, counting);
+  const kept = new Set(shown.grants.map((entry) => entry.grant.key));
   const leftOut =
     selection.institutionWide === 'exclude'
-      ? grantsInScope(works, index, { ...selection, institutionWide: 'include' }).filter(
-          (grant) => !kept.has(grant.key),
-        )
+      ? scopedGrants(
+          works,
+          index,
+          { ...selection, institutionWide: 'include' },
+          counting,
+        ).grants.filter((entry) => !kept.has(entry.grant.key))
       : [];
 
-  return { ...scope, grants, leftOut };
+  return { ...scope, ...shown, leftOut };
 }
 
 /** The grants listed: in scope and not in Miscellaneous. */
@@ -177,21 +247,36 @@ const listedOf = (scope: FundingScope): ScopedGrant[] =>
  * --------------------------------------------------------------------------------------------- */
 
 export interface DollarTotal {
-  /** The sum of the amounts that are known, in whole US dollars: a safe integer. */
+  /**
+   * The sum of the amounts that are known — each grant's lifetime total — in whole US dollars:
+   * a safe integer.
+   */
   amountUsd: number;
-  /** Grants whose amount is known, and so in `amountUsd`. */
+  /**
+   * The sum of the same grants' counted amounts (F17, §7.4): what the totals count of each under
+   * the filter. A safe integer; 0 when the export states no counting rule.
+   */
+  countedUsd: number;
+  /** Grants whose amount is known, and so in `amountUsd` and `countedUsd`. */
   withAmount: number;
-  /** Grants with no known amount: counted here, never in `amountUsd` as $0 (§12.11 rule 3). */
+  /** Grants with no known amount: counted here, never in either sum as $0 (§12.11 rule 3). */
   withoutAmount: number;
 }
 
-export function dollarTotal(grants: Iterable<Grant>): DollarTotal {
-  const total: DollarTotal = { amountUsd: 0, withAmount: 0, withoutAmount: 0 };
-  for (const grant of grants) {
-    if (grant.amount_usd === null) {
+/**
+ * Scoped grants' lifetime and counted totals, over exactly the grants whose amount is known,
+ * beside the count of those whose amount is not.
+ */
+export function dollarTotal(
+  entries: Iterable<Pick<ScopedGrant, 'grant' | 'counted'>>,
+): DollarTotal {
+  const total: DollarTotal = { amountUsd: 0, countedUsd: 0, withAmount: 0, withoutAmount: 0 };
+  for (const entry of entries) {
+    if (entry.grant.amount_usd === null) {
       total.withoutAmount += 1;
     } else {
-      total.amountUsd += grant.amount_usd;
+      total.amountUsd += entry.grant.amount_usd;
+      total.countedUsd += entry.counted.usd ?? 0;
       total.withAmount += 1;
     }
   }
@@ -281,11 +366,11 @@ export interface FundingFigures extends DollarTotal {
 
 /** The headline figures of a scope (docs/09 §12.5 item 2). */
 export function fundingFigures(scope: FundingScope): FundingFigures {
-  const listed = listedOf(scope).map((entry) => entry.grant);
+  const listed = listedOf(scope);
 
   const investigators = new Set<string>();
   const organizations = new Set<string>();
-  for (const grant of listed) {
+  for (const { grant } of listed) {
     for (const person of grant.pis) investigators.add(investigatorKey(person));
     // Tested for truth, as the pipeline does: a null or empty organisation counts for nothing.
     if (grant.organization) organizations.add(normalisedName(grant.organization));
@@ -294,7 +379,7 @@ export function fundingFigures(scope: FundingScope): FundingFigures {
   const included =
     scope.selection.institutionWide === 'include' || scope.selection.grants.length > 0;
   const wide = included
-    ? listed.filter((grant) => grant.scope === 'institution-wide')
+    ? listed.filter((entry) => entry.grant.scope === 'institution-wide')
     : scope.leftOut;
 
   return {
@@ -302,7 +387,7 @@ export function fundingFigures(scope: FundingScope): FundingFigures {
     grants: scope.grants.length,
     listed: listed.length,
     miscellaneous: scope.grants.length - listed.length,
-    agencies: new Set(listedOf(scope).map((entry) => entry.root)).size,
+    agencies: new Set(listed.map((entry) => entry.root)).size,
     investigators: investigators.size,
     organizations: organizations.size,
     publications: scope.publications,
@@ -323,15 +408,15 @@ interface FirstYearEntry extends DollarTotal {
 
 /** The grants listed, by their first year under the filter: the cumulative rule's increments. */
 function byFirstYear(scope: FundingScope): Map<number, FirstYearEntry> {
-  const grouped = new Map<number, Grant[]>();
+  const grouped = new Map<number, ScopedGrant[]>();
   for (const entry of listedOf(scope)) {
     const year = grouped.get(entry.firstYear);
-    if (year === undefined) grouped.set(entry.firstYear, [entry.grant]);
-    else year.push(entry.grant);
+    if (year === undefined) grouped.set(entry.firstYear, [entry]);
+    else year.push(entry);
   }
   const years = new Map<number, FirstYearEntry>();
   for (const [year, grants] of grouped) {
-    const wide = grants.filter((grant) => grant.scope === 'institution-wide');
+    const wide = grants.filter((entry) => entry.grant.scope === 'institution-wide');
     years.set(year, {
       ...dollarTotal(grants),
       grants: grants.length,
@@ -384,7 +469,128 @@ export function cumulativeDollars(scope: FundingScope, period: Period): Cumulati
     };
   });
   const listed = listedOf(scope);
-  return { points, grants: listed.length, ...dollarTotal(listed.map((entry) => entry.grant)) };
+  return { points, grants: listed.length, ...dollarTotal(listed) };
+}
+
+/* ------------------------------------------------------------------------------------------------
+ * Counted funding by the year awarded (docs/09 F17, §7.4).
+ * --------------------------------------------------------------------------------------------- */
+
+/** One award year of the counted dollars of the grants listed. */
+export interface CountedYearEntry {
+  /** The counted dollars awarded this year: a safe integer, never 0 (a year with none is absent). */
+  usd: number;
+  /** Grants listed contributing a non-zero amount this year. */
+  grants: number;
+  /** The part of `usd` from institution-wide awards. */
+  institutionWide: number;
+}
+
+/**
+ * The counted dollars of the grants listed, by the year awarded: each grant's `counted.byYear`,
+ * added up. The increments of `countedOverTime`, and of `funding.summary.counted_by_year`.
+ */
+export function countedByAwardYear(scope: FundingScope): Map<number, CountedYearEntry> {
+  const years = new Map<number, CountedYearEntry>();
+  for (const entry of listedOf(scope)) {
+    const wide = entry.grant.scope === 'institution-wide';
+    for (const [year, usd] of entry.counted.byYear) {
+      const at = years.get(year) ?? { usd: 0, grants: 0, institutionWide: 0 };
+      at.usd += usd;
+      at.grants += 1;
+      if (wide) at.institutionWide += usd;
+      years.set(year, at);
+    }
+  }
+  return new Map([...years].sort(([a], [b]) => a - b));
+}
+
+/**
+ * Where an award-year axis starts: `from_year` or the export's first year, whichever is earlier,
+ * whatever the filter shows, so a filtered chart is read against the same frame. Without a
+ * counting rule, the export's first year.
+ */
+export const awardAxisStart = (period: Period, counting: FundingCounting | null): number =>
+  Math.min(counting?.from_year ?? period.first_year, period.first_year);
+
+/**
+ * One award year of counted funding. `count` is the counted dollars awarded this year and
+ * `cumulative` their running total, so the publication charts' frame draws it; `partial` marks
+ * an unfinished year (docs/05 §4.2).
+ */
+export interface CountedYearPoint extends YearPoint {
+  /** Grants listed contributing a non-zero amount this year. */
+  grants: number;
+  /** The part of `count` from institution-wide awards. */
+  institutionWide: number;
+}
+
+export interface CountedOverTime {
+  points: CountedYearPoint[];
+  /** The counted total of the grants listed: the last point's `cumulative`, the figures' own. */
+  countedUsd: number;
+  /** Grants listed with a known amount, whose counted dollars the points hold. */
+  withAmount: number;
+  /** Grants listed with no known amount: stated once beside the chart, never in it as $0. */
+  withoutAmount: number;
+  /**
+   * Grants listed that began after the latest publication shown listing them: counted $0, a
+   * known zero, stated once with its reason.
+   */
+  beganAfter: number;
+}
+
+/**
+ * The counted funding by the year it was awarded (F17): each grant's counted dollars in its
+ * award years, clamped into 2006 and the latest publication shown listing it (`awardYears`), so
+ * the last point's `cumulative` is exactly the figures' `countedUsd`. Unknown amounts and
+ * began-after grants are counted once, beside it, not in any year.
+ *
+ * The axis runs from `awardAxisStart` whatever the filter, through the export's last year or the
+ * latest award year, whichever is later. (An award year before the start, which valid data
+ * cannot have, widens it rather than being lost.)
+ */
+export function countedOverTime(
+  scope: FundingScope,
+  period: Period,
+  counting: FundingCounting | null,
+): CountedOverTime {
+  const years = countedByAwardYear(scope);
+  const dollars = new Map([...years].map(([year, entry]) => [year, entry.usd]));
+  const first = Math.min(awardAxisStart(period, counting), ...years.keys());
+  const last = Math.max(period.last_year, ...years.keys());
+  const points = accumulate(dollars, first, last, period).map((point): CountedYearPoint => ({
+    ...point,
+    grants: years.get(point.year)?.grants ?? 0,
+    institutionWide: years.get(point.year)?.institutionWide ?? 0,
+  }));
+  const listed = listedOf(scope);
+  const total = dollarTotal(listed);
+  return {
+    points,
+    countedUsd: total.countedUsd,
+    withAmount: total.withAmount,
+    withoutAmount: total.withoutAmount,
+    beganAfter: listed.filter((entry) => entry.counted.rule === 'began_after').length,
+  };
+}
+
+/**
+ * The grants listed by the rule that counted them, in the rules' order; a rule no grant falls
+ * under is left out, as `funding.summary.grants_by_counted_rule` leaves it out.
+ */
+export function countedRules(scope: FundingScope): Partial<Record<CountedRule, number>> {
+  const counts = new Map<CountedRule, number>();
+  for (const entry of listedOf(scope)) {
+    const rule = entry.counted.rule;
+    if (rule !== null) counts.set(rule, (counts.get(rule) ?? 0) + 1);
+  }
+  const rules: Partial<Record<CountedRule, number>> = {};
+  for (const rule of COUNTED_RULES) {
+    const count = counts.get(rule);
+    if (count !== undefined) rules[rule] = count;
+  }
+  return rules;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -424,6 +630,34 @@ export function valueByAgency(
     ...stackOptions(scope),
     value: (entry) => entry.grant.amount_usd ?? 0,
     bucketYears: options.bucketYears ?? VALUE_BUCKET_YEARS,
+  });
+}
+
+/**
+ * Counted funding by root agency, by the year awarded (F17): each grant's counted dollars in its
+ * award years, as `countedOverTime` places them, stacked by its root agency. The five largest
+ * agencies by counted value, then "Other"; Miscellaneous would be pinned, but it has no amounts.
+ * Single years by default. The axis starts at `awardAxisStart` whatever the filter, as the
+ * counted chart's does. Bucket totals sum to the figures' `countedUsd`.
+ */
+export function countedByAgency(
+  scope: FundingScope,
+  period: Period,
+  counting: FundingCounting | null,
+  options: { bucketYears?: number } = {},
+): YearStack {
+  const pieces = scope.grants.flatMap((entry) =>
+    [...entry.counted.byYear].map(([year, value]) => ({ year, value, root: entry.root })),
+  );
+  const { label, pinned } = stackOptions(scope);
+  return stackByYear(pieces, period, {
+    year: (piece) => piece.year,
+    series: (piece) => piece.root,
+    value: (piece) => piece.value,
+    label,
+    pinned,
+    bucketYears: options.bucketYears ?? VALUE_BUCKET_YEARS,
+    firstYear: awardAxisStart(period, counting),
   });
 }
 
@@ -490,7 +724,7 @@ function agencyRow(code: string, entries: readonly ScopedGrant[], index: Funding
     group: agency?.group ?? null,
     grants: entries.length,
     publications: new Set(entries.flatMap((entry) => entry.works)).size,
-    ...dollarTotal(entries.map((entry) => entry.grant)),
+    ...dollarTotal(entries),
   };
 }
 
@@ -569,9 +803,9 @@ export interface GrantKindRow extends DollarTotal {
  * export writes as `other`) is left to the figures' own count, not added to "other".
  */
 export function grantKinds(scope: FundingScope): GrantKindRow[] {
-  const listed = listedOf(scope).map((entry) => entry.grant);
+  const listed = listedOf(scope);
   return GRANT_CATEGORIES.map((category) => {
-    const grants = listed.filter((grant) => grant.category === category);
+    const grants = listed.filter((entry) => entry.grant.category === category);
     return { category, grants: grants.length, ...dollarTotal(grants) };
   });
 }
@@ -649,9 +883,9 @@ export interface FundingCoverage {
 
 /** docs/09 §12.5 item 7, over the scope, so that it adds up with the figures above it. */
 export function coverage(scope: FundingScope): FundingCoverage {
-  const listed = listedOf(scope).map((entry) => entry.grant);
+  const listed = listedOf(scope);
   const flagged = (flag: Grant['flags'][number]) =>
-    listed.filter((grant) => grant.flags.includes(flag)).length;
+    listed.filter((entry) => entry.grant.flags.includes(flag)).length;
   const unmatched = scope.grants.filter((entry) => entry.miscellaneous);
   const total = dollarTotal(listed);
   return {
@@ -705,6 +939,8 @@ export interface AgencyDetail {
   unassigned: AgencyShare | null;
   /** Value over time, as the Funding view draws it; static on the page. */
   overTime: CumulativeDollars;
+  /** Its counted funding by the year awarded (F17), as `countedOverTime` draws it. */
+  countedOverTime: CountedOverTime;
   /** The publications listing one of its grants, newest first. */
   publications: Work[];
 }
@@ -715,7 +951,7 @@ function share(code: string, label: string, entries: readonly ScopedGrant[]): Ag
     label,
     grants: entries.length,
     publications: new Set(entries.flatMap((entry) => entry.works)).size,
-    ...dollarTotal(entries.map((entry) => entry.grant)),
+    ...dollarTotal(entries),
   };
 }
 
@@ -766,6 +1002,7 @@ export function agencyDetail(
     children,
     unassigned,
     overTime: cumulativeDollars(scope, period),
+    countedOverTime: countedOverTime(scope, period, countingOf(index)),
     publications: sortWorks(
       works.filter((work) => listing.has(work.id)),
       DEFAULT_SORT,
@@ -803,6 +1040,20 @@ export interface GrantDetail {
   partialFiscalYear: number | null;
   /** The year of the earliest work listing it; its exported `first_year` on valid data. */
   firstYear: number | null;
+  /** The year of the latest work listing it; its exported `last_listed_year` on valid data. */
+  lastYear: number | null;
+  /**
+   * What the totals count of it over every work given — all publications listing it, not the
+   * filter's — so its exported `counted_usd` and `counted_rule` on valid data. Null for a grant
+   * no work lists, which the validator refuses (§11.7).
+   */
+  counted: CountedAmount | null;
+  /**
+   * The years of its breakdown (fiscal or spread) whose dollars `counted` adds up: what the
+   * fiscal-year table marks as counted. Empty when it counts no year (`undated`, `began_after`,
+   * an unknown amount, no counting rule).
+   */
+  countedYears: ReadonlySet<number>;
   /** The works listing it, newest first, each with its listing. */
   listings: GrantListingEntry[];
 }
@@ -848,6 +1099,11 @@ export function grantDetail(
           .sort((a, b) => a.year - b.year);
   const amountSource = grant.amount_source;
 
+  const years = listed.map((work) => work.year);
+  const firstYear = years.length === 0 ? null : Math.min(...years);
+  const lastYear = years.length === 0 ? null : Math.max(...years);
+  const counting = countingOf(index);
+
   return {
     grant,
     agency: index.agencies.get(grant.agency) ?? null,
@@ -859,7 +1115,16 @@ export function grantDetail(
         : (sources.find((source) => source.name === amountSource.name) ?? null),
     fiscalYears,
     partialFiscalYear,
-    firstYear: listed.length === 0 ? null : Math.min(...listed.map((work) => work.year)),
+    firstYear,
+    lastYear,
+    counted:
+      firstYear === null || lastYear === null
+        ? null
+        : countedAmount(grant, firstYear, lastYear, counting),
+    countedYears:
+      firstYear === null || lastYear === null || counting === null
+        ? new Set()
+        : countedYears(grant, firstYear, lastYear, counting),
     listings: listed.map((work) => ({ work, listing: byWork.get(work.id) as GrantListing })),
   };
 }
@@ -868,7 +1133,10 @@ export function grantDetail(
  * The cross-check (docs/06 §12.1, docs/09 §11.6–11.7).
  * --------------------------------------------------------------------------------------------- */
 
-/** The root agency `amount_usd_nih` and `nih_grants` count: the pipeline's own constant. */
+/**
+ * The root agency `amount_usd_nih`, `counted_usd_nih` and `nih_grants` count: the pipeline's own
+ * constant.
+ */
 export const NIH_ROOT = 'NIH';
 
 /** What `funding.summary` is with no funding data: every count zero, both years null. */
@@ -890,14 +1158,20 @@ export const noFundingSummary = (): FundingSummary => ({
   first_year: null,
   last_year: null,
   by_first_year: {},
+  counted_usd: 0,
+  counted_usd_institution_wide: 0,
+  counted_usd_nih: 0,
+  grants_by_counted_rule: {},
+  counted_by_year: {},
 });
 
 /**
  * `funding.summary`, recomputed by the app (docs/09 §11.6): unfiltered, institution-wide awards
  * included. **Built from the same functions the views use** — the scope, the figures, the
- * coverage, the agency ranking and the first-year increments of the value over time — so that
- * equality with the pipeline's independent computation checks the definitions the page shows,
- * not a second copy of them. With no funding data, the summary of none.
+ * coverage, the agency ranking, the first-year increments of the value over time, the rules that
+ * counted each grant and the award-year increments of the counted funding — so that equality
+ * with the pipeline's independent computation checks the definitions the page shows, not a
+ * second copy of them. With no funding data, the summary of none.
  */
 export function summarizeFunding(
   works: readonly Work[],
@@ -919,6 +1193,16 @@ export function summarizeFunding(
     };
   }
 
+  // A year only when its counted dollars are not zero, as the pipeline writes it; every year
+  // `countedByAwardYear` holds has some.
+  const countedByYear: Record<string, CountedYear> = {};
+  for (const [year, entry] of countedByAwardYear(scope)) {
+    countedByYear[String(year)] = {
+      counted_usd: entry.usd,
+      counted_usd_institution_wide: entry.institutionWide,
+    };
+  }
+
   return {
     grants: figures.grants,
     grants_resolved: figures.listed,
@@ -937,6 +1221,11 @@ export function summarizeFunding(
     first_year: years[0]?.[0] ?? null,
     last_year: years.at(-1)?.[0] ?? null,
     by_first_year: byYear,
+    counted_usd: figures.countedUsd,
+    counted_usd_institution_wide: figures.institutionWide.countedUsd,
+    counted_usd_nih: nih?.countedUsd ?? 0,
+    grants_by_counted_rule: countedRules(scope),
+    counted_by_year: countedByYear,
   };
 }
 

@@ -86,6 +86,28 @@
  * |                                                               | title is headed by its number (DFG)    |
  * | "a sub-agency with a parent"                                  | views/Agency › an institute in the     |
  * |                                                               | sample (NIGMS); › NIH in the sample    |
+ * | "funding that ended before 2006, counted by its last five     | here › funding that ended before 2006, |
+ * | years"                                                        | counted by its last five years;        |
+ * |                                                               | aggregate/counting › the sample’s      |
+ * |                                                               | synthetic grants (T32GM999003)         |
+ * | "an instrument counted in full, with years after its latest   | here › an instrument counted in full…; |
+ * | listing work"                                                 | aggregate/counting › the sample’s      |
+ * |                                                               | synthetic grants (S10OD999001)         |
+ * | "a grant that began after its latest listing work, counted as | here › a grant that began after…;      |
+ * | zero"                                                         | aggregate/counting › the sample’s      |
+ * |                                                               | synthetic grants (R01GM999004)         |
+ * | "an amount spread evenly with a remainder, on works in two    | here › an amount spread evenly…;       |
+ * | years"                                                        | aggregate/counting › the sample’s      |
+ * |                                                               | synthetic grants (SMRF99901)           |
+ * | "an obligation to date spread only to its as-of year"         | here › an obligation to date…;         |
+ * |                                                               | aggregate/counting › the sample’s      |
+ * |                                                               | synthetic grants (NSF:2299901)         |
+ * | "a start year and no end year, counted whole"                 | here › a start year and no end year…;  |
+ * |                                                               | aggregate/counting › the sample’s      |
+ * |                                                               | synthetic grants (SMRF99902)           |
+ * | "a grant funded past its latest listing work, counted to that | here › a grant funded past…;           |
+ * | year"                                                         | aggregate/counting › the sample’s      |
+ * |                                                               | synthetic grants (ANID:1599A0999)      |
  * | "real: a multi-project grant valued from its parent rows      | views/Grant › an active grant through  |
  * | alone"                                                        | the fiscal year in progress            |
  * |                                                               | (P30DK017047)                          |
@@ -109,6 +131,9 @@
  *
  * The cases are found by the app's own reading of each, not a copy of the Python predicates, and
  * rendered through `Router` at the address a reader would open, as `FundingImpact.test.tsx` does.
+ * The seven counting cases (docs/09 F17) are held as the app's own arithmetic until the views
+ * show counted amounts: each grant, found by how the app counts it, is counted as the pipeline
+ * counted it and for the reason the case names.
  * The honesty rules of §12.11 that no view test held on the committed sample are held here too,
  * on whichever export is loaded.
  */
@@ -117,7 +142,15 @@ import { resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { Router } from '../src/App';
-import { fundingOf } from '../src/contract/funding';
+import { yearly } from '../src/aggregate/counting';
+import {
+  UNFILTERED,
+  countedOverTime,
+  fundingScope,
+  grantDetail,
+  type ScopedGrant,
+} from '../src/aggregate/funding';
+import { countingOf, fundingOf } from '../src/contract/funding';
 import type { Grant } from '../src/contract/types';
 import { formatDate } from '../src/format/date';
 import { AMOUNT_BASIS_TEXT } from '../src/format/funding';
@@ -222,7 +255,7 @@ describe('the coverage map', () => {
 
   it('names every case of FUNDING_CASES, synthetic and real', () => {
     const cases = [...keysOf('FUNDING_CASES'), ...keysOf('REAL_FUNDING_CASES')];
-    expect(cases).toHaveLength(21);
+    expect(cases).toHaveLength(28);
     // The first column of the map's rows, a wrapped case name joined back into one line.
     const firstColumn = self
       .slice(0, self.indexOf('*/'))
@@ -434,6 +467,152 @@ describe.runIf(isSampleExport)('every §11.8 case renders where a reader would s
     );
   });
 });
+
+/* ------------------------------------------------------------------------------------------------
+ * The counting cases (docs/09 F17), each found by how the app counts it and counted as the
+ * pipeline counted it. The views show lifetime totals until they switch to counted ones.
+ * --------------------------------------------------------------------------------------------- */
+
+describe.runIf(isSampleExport)(
+  'every counting case is counted by the app as the pipeline did',
+  () => {
+    const scope = fundingScope(doc.works, index, UNFILTERED);
+    const counting = countingOf(index)!;
+
+    /** The first grant the app counts so; its counted amount and rule are the exported ones. */
+    const counted = (description: string, keep: (entry: ScopedGrant) => boolean): ScopedGrant => {
+      const found = scope.grants.find(keep);
+      if (found === undefined) throw new Error(`the sample has no ${description}`);
+      expect(found.counted.usd).toBe(found.grant.counted_usd);
+      expect(found.counted.rule).toBe(found.grant.counted_rule);
+      expect(found.lastYear).toBe(found.grant.last_listed_year);
+      return found;
+    };
+    const yearsOf = (entry: ScopedGrant) => [...(yearly(entry.grant)?.keys() ?? [])];
+    const sumOf = (entry: ScopedGrant, keep: (year: number) => boolean) =>
+      [...(yearly(entry.grant) ?? [])].reduce(
+        (sum, [year, usd]) => sum + (keep(year) ? usd : 0),
+        0,
+      );
+    const allocated = (entry: ScopedGrant) =>
+      [...entry.counted.byYear.values()].reduce((sum, usd) => sum + usd, 0);
+
+    it('funding that ended before 2006, counted by its last five years', () => {
+      const ended = counted(
+        'grant that ended before 2006',
+        (entry) =>
+          entry.counted.rule === 'ended_before' && entry.counted.usd !== entry.grant.amount_usd,
+      );
+      const last = Math.max(...yearsOf(ended));
+      expect(last).toBeLessThan(counting.from_year);
+      expect(ended.counted.usd).toBe(sumOf(ended, (year) => year > last - counting.last_years));
+      expect(ended.counted.usd).toBeLessThan(ended.grant.amount_usd ?? 0);
+      // Dollars with no year inside the window go to the first listing year.
+      expect([...ended.counted.byYear]).toEqual([[ended.firstYear, ended.counted.usd]]);
+      const detail = grantDetail(ended.grant.key, doc.works, index);
+      expect([...(detail?.countedYears ?? [])]).toEqual(
+        yearsOf(ended)
+          .filter((year) => year > last - counting.last_years)
+          .sort((a, b) => a - b),
+      );
+    });
+
+    it('an instrument counted in full, with years after its latest listing work', () => {
+      const instrument = counted(
+        'instrument with later years',
+        (entry) =>
+          entry.counted.rule === 'full_amount' &&
+          Math.max(...yearsOf(entry)) > entry.lastYear &&
+          entry.grant.category === 'instrument',
+      );
+      expect(instrument.counted.usd).toBe(instrument.grant.amount_usd);
+      // Its later years land at the latest listing year, not in the future.
+      expect(Math.max(...instrument.counted.byYear.keys())).toBe(instrument.lastYear);
+      expect(allocated(instrument)).toBe(instrument.counted.usd);
+    });
+
+    it('a grant that began after its latest listing work, counted as zero, and said so once', () => {
+      const later = counted(
+        'grant that began after its listing work',
+        (entry) => entry.counted.rule === 'began_after',
+      );
+      expect(later.counted.usd).toBe(0);
+      expect(Math.min(...yearsOf(later))).toBeGreaterThan(later.lastYear);
+      expect(later.counted.byYear.size).toBe(0);
+      // A known zero, not an unknown: its amount is known, and counted among the began-after.
+      expect(later.grant.amount_usd).not.toBeNull();
+      const over = countedOverTime(scope, doc.period, counting);
+      expect(over.beganAfter).toBe(doc.funding.summary.grants_by_counted_rule.began_after);
+      // Listed only by an NIH link: a later attachment, as three of the real five are.
+      const listedBy = doc.works.flatMap((work) =>
+        work.grants.filter((row) => row.grant === later.grant.key).map((row) => [work.id, row.how]),
+      );
+      expect(listedBy).toEqual([['W-000104', 'nih_link']]);
+    });
+
+    it('an amount spread evenly with a remainder, on works in two years', () => {
+      const spread = counted(
+        'uneven spread across two listing years',
+        (entry) =>
+          entry.grant.fiscal_years === null &&
+          entry.grant.spread_years !== null &&
+          new Set(Object.values(entry.grant.spread_years)).size > 1 &&
+          entry.firstYear !== entry.lastYear,
+      );
+      const values = Object.values(spread.grant.spread_years ?? {});
+      expect(values.reduce((a, b) => a + b, 0)).toBe(spread.grant.amount_usd);
+      // The remainder's extra dollars go to the earliest years.
+      expect(values).toEqual([...values].sort((a, b) => b - a));
+      expect(spread.counted.rule).toBe('window');
+      expect(spread.counted.usd).toBe(sumOf(spread, (year) => year <= spread.lastYear));
+      // Under a filter to its earlier listing year alone, it counts less.
+      const earlier = doc.works.filter((work) => work.year === spread.firstYear);
+      const filtered = fundingScope(earlier, index, UNFILTERED).grants.find(
+        (entry) => entry.grant.key === spread.grant.key,
+      );
+      expect(filtered?.counted.usd).toBe(sumOf(spread, (year) => year <= spread.firstYear));
+      expect(filtered?.counted.usd).toBeLessThan(spread.counted.usd ?? 0);
+    });
+
+    it('an obligation to date spread only to its as-of year', () => {
+      const obligation = counted(
+        'obligation spread to its as-of year',
+        (entry) =>
+          entry.grant.spread_years !== null &&
+          (entry.grant.amount_source?.basis === 'nsf_obligated' ||
+            entry.grant.amount_source?.basis === 'usaspending_obligation') &&
+          (entry.grant.end_year ?? 0) > Number(entry.grant.amount_source.as_of.slice(0, 4)),
+      );
+      const asOf = Number(obligation.grant.amount_source?.as_of.slice(0, 4));
+      expect(Math.max(...yearsOf(obligation))).toBe(asOf);
+      expect(obligation.counted.usd).toBe(sumOf(obligation, (year) => year <= obligation.lastYear));
+    });
+
+    it('a start year and no end year, counted whole, in its first listing year', () => {
+      const undated = counted(
+        'start year and no end year',
+        (entry) =>
+          entry.counted.rule === 'undated' &&
+          entry.grant.start_year !== null &&
+          entry.grant.end_year === null,
+      );
+      expect(undated.counted.usd).toBe(undated.grant.amount_usd);
+      expect([...undated.counted.byYear]).toEqual([[undated.firstYear, undated.grant.amount_usd]]);
+    });
+
+    it('a grant funded past its latest listing work, counted to that year', () => {
+      const past = counted(
+        'grant funded past its listing work',
+        (entry) => entry.counted.rule === 'window' && Math.max(...yearsOf(entry)) > entry.lastYear,
+      );
+      expect(past.counted.usd).toBe(
+        sumOf(past, (year) => counting.from_year <= year && year <= past.lastYear),
+      );
+      expect(past.counted.usd).toBeLessThan(past.grant.amount_usd ?? 0);
+      expect(Math.max(...past.counted.byYear.keys())).toBeLessThanOrEqual(past.lastYear);
+    });
+  },
+);
 
 /* ------------------------------------------------------------------------------------------------
  * §12.11's honesty rules, where no view test held them: on every page of whichever export is

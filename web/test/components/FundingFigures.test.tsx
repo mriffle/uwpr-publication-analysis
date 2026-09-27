@@ -257,6 +257,7 @@ describe('the institution-wide sentence, for every mix of known and unknown amou
     withAmount,
     withoutAmount,
     amountUsd: withAmount * 1_000_000,
+    countedUsd: withAmount * 500_000,
   });
 
   it('never gives an unknown amount a value', () => {

@@ -13,6 +13,11 @@
  * | FOREIGN      | foundation  | $750,000, converted from SEK 7,000,000   |                          |
  * | UNMATCHED    | MISC        | none (an unmatched number)               | unmatched number         |
  *
+ * What the totals count of each (docs/09 F17), from 2006 through its latest listing work's year:
+ * R01 FY2019–2020, $1,000,000 in full; P01 FY2020–2021, $2,500,000 in full; GRFP FY2020–2021,
+ * $4,000,000 in full; FOREIGN, spread evenly over 2019–2023 at $150,000 a year and listed in
+ * 2022, $600,000 of its $750,000 — $8,100,000 counted of $8,250,000.
+ *
  * | work  | year | lists                          |
  * |-------|------|--------------------------------|
  * | W2019 | 2019 | R01, UNMATCHED                 |
@@ -46,6 +51,7 @@ export const WORLD = {
       { name: 'Ada Investigator', id: '20000001' },
       { name: 'Émile Coinvestigator', id: null },
     ],
+    last_listed_year: 2021,
     flags: ['active'],
   }),
   p01: grant({
@@ -55,9 +61,19 @@ export const WORLD = {
     amount_usd: 2_500_000,
     amount_original: 2_500_000,
     start_year: 1980,
+    last_listed_year: 2021,
+    fiscal_years: { '2020': 1_000_000, '2021': 1_500_000 },
+    counted_usd: 2_500_000,
     flags: ['starts_before_fy1985'],
   }),
-  grfp: grant({ ...GRFP, amount_usd: 4_000_000, amount_original: 4_000_000 }),
+  grfp: grant({
+    ...GRFP,
+    amount_usd: 4_000_000,
+    amount_original: 4_000_000,
+    last_listed_year: 2021,
+    fiscal_years: { '2020': 2_000_000, '2021': 2_000_000 },
+    counted_usd: 4_000_000,
+  }),
   nsf: grant({
     ...NSF_PROJECT,
     title: null,
@@ -70,6 +86,9 @@ export const WORLD = {
     currency: null,
     amount_source: null,
     fiscal_years: null,
+    last_listed_year: 2022,
+    counted_usd: null,
+    counted_rule: null,
     url: 'https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1443474',
     url_name: 'NSF award page',
     flags: ['amount_not_found'],
@@ -90,6 +109,16 @@ export const WORLD = {
       basis: 'openalex_amount',
     },
     fiscal_years: null,
+    // `grant()`'s start and end years, 2019–2023, as the pipeline spreads an OpenAlex amount.
+    spread_years: {
+      '2019': 150_000,
+      '2020': 150_000,
+      '2021': 150_000,
+      '2022': 150_000,
+      '2023': 150_000,
+    },
+    last_listed_year: 2022,
+    counted_usd: 600_000,
     url: null,
     url_name: null,
     flags: ['amount_from_openalex'],
