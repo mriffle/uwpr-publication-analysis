@@ -346,7 +346,7 @@ plan. [08](08-implementation.md) records them as they are built.
     whole. `FWO G087625N` is under "Research Foundation – Flanders" (ROR 03qtxy027): FWO has no
     name pattern, and no rule reads ROR IDs, as B3a noted for CIHR. The same work lists
     NSF:2140004 from OpenAlex's `2140004`, so its Miscellaneous key is the twin of a resolved grant.
-    A name pattern or a ROR rule in `funding.yaml` is B9's call.
+    A name pattern or a ROR rule in `funding.yaml` is B9's call. *B3b, below, reads both names.*
   - **The sample cases, verified (§11.8; §16 item 12 closed).** Every planned work ID holds but
     one: the grant known only by an NIH link is R35GM150919 on W-000009, since PubMed, Crossref
     and JATS also write W-000011's. T32GM007750 on W-000001 starts before FY1985 (the grant in
@@ -402,6 +402,42 @@ plan. [08](08-implementation.md) records them as they are built.
     a store without `funding/` it says so, and a key exits 1. The CLI reads NIH's institute codes
     from `config/funding.yaml`, so an unresolved string can show its nearest cores. If the config
     does not load, only those lines are lost.
+- *2026-09-26, B3b — OpenAlex is compared only with a lifetime total, and two more funder names
+  are read (§7.1, §6.4).* Two fixes found in review of B8's sample, which was then rebuilt with
+  them.
+  - **`amounts_disagree` compared unlike figures for NIH.** §7.1 flagged any grant whose agency
+    and OpenAlex amounts differ by more than 1%. For an NIH grant that set RePORTER's lifetime sum
+    of parent rows beside an OpenAlex amount of provenance `nih_exporter`, which is one fiscal
+    year's award, so it flagged grants that agree: B8's sample flagged P30DK017047, $52,843,525
+    against $89,000. §3.3's "101 of 102 agree" compared only NSF's and USAspending's figures,
+    which are lifetime totals as OpenAlex's is. **OpenAlex is now compared with the agency's
+    figure only where its basis is `nsf_obligated`, `nsf_estimated` or
+    `usaspending_obligation`**, never a RePORTER basis (`COMPARED_WITH_OPENALEX` in
+    `funding/amounts.py`), and §7.1 says so. NSF 2245300, stale in OpenAlex, is still flagged.
+  - **Two funders Crossref names by ROR, with no registry DOI.** B8 left W-000014's `DGE-2140004`
+    ("National Science Foundation Graduate Research Fellowship Program") and `FWO G087625N`
+    ("Research Foundation – Flanders") in Miscellaneous. B3a's rule is unchanged: whole names,
+    casefolded, only for a sighting with no funder ID. NSF gains patterns for its GRFP, only
+    where the name says it is NSF's ("NSF Graduate Research Fellowship Program (GRFP)", "NSF
+    GRFP"). FWO, configured by ID already, gains its English and Dutch names: "Research
+    Foundation – Flanders" with any dash or none, "Fonds (voor) Wetenschappelijk Onderzoek –
+    Vlaanderen", "Flemish Research Foundation", "FWO" and "FWO-Vlaanderen". The look-alikes are
+    tested: "Graduate Research Fellowship Program", which does not say whose; the NDSEG
+    fellowship; the SNSF; the F.R.S.-FNRS; Austria's FWF; VIB and VLAIO; and sentences that name
+    the GRFP or FWO among other things. Appendix A's 187 cases pass, and Appendix F's rows still
+    come to 267 keys: the names move no Appendix F string, whose one FWO name without an ID sits
+    beside FWO's ID. `funding_version` is `2026-09-26.3`. No rule reads a ROR ID, so a sighting
+    that gives a ROR and no name, as CIHR's `PJT-206152` does (B3a), is still Miscellaneous; B9
+    will see how many the seed has.
+  - **The sample, rebuilt live** inside RePORTER's window, on Saturday evening in New York, which
+    is 2026-09-27 UTC, the date its funding lines now record. The stage sent B8's 26 requests
+    (OpenAlex $0.0002), and a second build, sending 16, PMC's being cached, was byte-identical.
+    P30DK017047 lost `amounts_disagree`, leaving NSF 2245300 the sample's only disagreement.
+    W-000014's `DGE-2140004` is now `NSF:2140004` and `FWO G087625N` is `FWO:G087625N`, grants
+    W-000006 already lists, so the sample holds 55 grants, not 57, with $452,773,861 known as
+    before, and no Miscellaneous grant or agency line. Beyond that only dates moved; `works/` and
+    `metrics/` are unchanged. The sample export is 26,927 bytes (§11.9).
+    `tests/test_sample_funding.py` holds both fixes against the store.
 
 ---
 
@@ -1186,8 +1222,12 @@ NIH's centre mechanisms, for review.
 | Other US federal | USAspending `total_obligation` from the award record | `usaspending_obligation` |
 | Everyone else | The OpenAlex award's `amount` in its `currency`; `gepris` excluded; `anid_github` × 1,000 | `openalex_amount` |
 
-**An agency source outranks OpenAlex.** Where both exist and differ by more than 1%, the agency's
-is used, the grant is flagged `amounts_disagree`, and the report lists it.
+**An agency source outranks OpenAlex.** Where both exist, the agency's is used. Where the agency's
+figure is a lifetime total, as OpenAlex's is — `nsf_obligated`, `nsf_estimated` or
+`usaspending_obligation` — and the two differ by more than 1%, the grant is flagged
+`amounts_disagree`, and the report lists it. RePORTER's bases are never compared: OpenAlex's NIH
+amount (provenance `nih_exporter`) is one fiscal year's award, not the lifetime sum of parent rows
+*(B3b, header)*.
 
 **A grant is active** when its end date is after the data date, or (NIH) it has a row in the
 fiscal year in progress. Its total still grows, and it is flagged `active`.
