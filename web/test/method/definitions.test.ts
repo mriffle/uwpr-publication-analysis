@@ -164,7 +164,7 @@ describe('the funding definitions (docs/09 §12.5 item 2, §12.9)', () => {
 
   it('keeps every figure’s register: dated, not money spent, unknowns beside the total', () => {
     const total = fundingById.get('funding-total')?.definition ?? '';
-    expect(total).toMatch(/not money spent on the work/);
+    expect(total).toMatch(/not money spent on this work/);
     expect(total).toMatch(/never in it as zero/);
     expect(total).toMatch(/counts once/);
     expect(total).toContain(`as of ${formatDate(doc.funding.as_of ?? '')}`);

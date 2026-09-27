@@ -941,6 +941,15 @@ button.chart-legend-item.is-selected {
 }
 
 /*
+ * NLM's attribution (docs/09 §13.3), which its terms ask to be shown "in a clear and conspicuous
+ * manner": full-size text in the body colour, set off from the paragraphs around it.
+ */
+.method-attribution {
+  border-left: 3px solid var(--border);
+  padding-left: 0.75rem;
+}
+
+/*
  * The definitions docs/06 §4.2's headline figures link into. Each is a focus target, so a reader
  * arriving on a fragment link carries on tabbing from the definition rather than from the top of
  * the page; the outline is the one every other focus target uses.

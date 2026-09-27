@@ -25,6 +25,11 @@
  * Register, from docs/05 §11, which governs every string here more than anywhere else on the
  * site: no promotion, no causal claims, every figure with its definition, every proxy labelled,
  * and each limitation stated as the plain thing it is rather than defended.
+ *
+ * **The funding figures have a section of their own** (`MethodFunding.tsx`, docs/09 §12.9), after
+ * the publication definitions and apart from them, with the definitions the Funding impact view
+ * links to. It is rendered only in a build with that view (`fundingEnabled`), so until the view
+ * is released the public page is the page it was.
  */
 import { useEffect } from 'react';
 import { criteriaBars } from '../aggregate/categories';
@@ -46,6 +51,8 @@ import { RankedBarCard } from '../charts/RankedBarCard';
 import { otherColour, seriesColour } from '../charts/palette';
 import { BackLink } from '../components/BackLink';
 import { StalenessNotice } from '../components/StalenessNotice';
+import { fundingEnabled } from '../contract/config';
+import { fundingOf } from '../contract/funding';
 import type { Exclusion, ExportDocument } from '../contract/types';
 import { CRITERION_LABELS } from '../filter/describe';
 import { EMPTY_FILTER } from '../filter/state';
@@ -55,6 +62,7 @@ import { formatCount, pluralize } from '../format/number';
 import { metricDefinitions, type MetricDefinition } from '../method/definitions';
 import { BACK_LABELS } from '../routing/navigation';
 import type { SourceRead } from '../aggregate/method';
+import { FUNDING_DEFINITIONS_ID, FundingMethodSection } from './MethodFunding';
 
 export interface MethodProps {
   doc: ExportDocument;
@@ -164,6 +172,10 @@ export function Method({
   const definitions = metricDefinitions(doc);
   const staffAuthored = worksWithStaffAuthor(works);
   const resource = doc.resource.short_name;
+  // docs/09 §12.9's section, only in a build with the Funding impact view (docs/09 §12.12): the
+  // public page stays as it was until the view is released.
+  const funding = fundingEnabled();
+  const fundingDefinitionsShown = funding && fundingOf(doc) !== null;
 
   useFragmentTarget(true);
 
@@ -511,6 +523,13 @@ export function Method({
       <p>
         The exact definition of every figure the site shows, with its value over the whole corpus.
         The same figures beside the charts respond to whatever filter is active; these do not.
+        {fundingDefinitionsShown ? (
+          <>
+            {' '}
+            The funding figures are defined{' '}
+            <a href={`#${FUNDING_DEFINITIONS_ID}`}>with the funding section</a>, below.
+          </>
+        ) : null}
       </p>
       <dl className="definition-list">
         {definitions.map((definition: MetricDefinition) => (
@@ -528,6 +547,9 @@ export function Method({
           </div>
         ))}
       </dl>
+
+      {/* --- docs/09 §12.9: the funding figures, their sources, rules and definitions ------- */}
+      {funding ? <FundingMethodSection doc={doc} /> : null}
 
       {/* --- docs/05 §10, "How current it is" --------------------------------------------- */}
       <h2 id="how-current-this-is">How current this is</h2>

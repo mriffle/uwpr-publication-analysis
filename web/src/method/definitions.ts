@@ -268,7 +268,7 @@ export function fundingDefinitions(doc: ExportDocument): MetricDefinition[] {
       id: 'funding-total',
       term: 'Total value of grants listed',
       ...valued(dollarsWithUnknowns(figures)),
-      definition: `The sum, in US dollars, of the lifetime award totals of the distinct grants the publications list, each as its funder records it${dated}. It is what the awards are worth, not money spent on the work that lists them. A grant counts once however many publications list it. A grant with no known amount is counted beside the total, never in it as zero. Institution-wide awards are included unless the reader excludes them, and the page always says which.`,
+      definition: `The sum, in US dollars, of the lifetime award totals of the distinct grants the publications list, each as its funder records it${dated}. It is what the awards are worth, not money spent on this work: a total is the whole award’s, not the part of it spent on the research these publications report. A grant counts once however many publications list it. A grant with no known amount is counted beside the total, never in it as zero. Institution-wide awards are included unless the reader excludes them, and the page always says which.`,
     },
     {
       id: 'funding-grants',
