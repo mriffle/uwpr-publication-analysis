@@ -1,8 +1,10 @@
 /**
  * The grants table as a CSV (docs/09 §12.5 item 6; docs/06 §7).
  *
- * **Exactly the visible rows**: the caller passes the array the table renders — searched and
- * sorted — so the file cannot hold a grant the reader did not see, or miss one they did. Each
+ * **Every row the search matches, in the order shown**: the caller passes the array the table
+ * draws its rows from — searched and sorted — so the file cannot hold a grant the search left out,
+ * or miss one it kept. The table draws the first 50 until asked for all (docs/09 R1b); the file
+ * holds them all, and its button says how many. Each
  * cell obeys `csv.ts`: RFC 4180, CRLF, the formula-injection guard, and an unknown value as an
  * empty cell, never 0 — above all the total, where a 0 would be a false figure someone later
  * adds up. Numeric columns carry numbers, so a spreadsheet can sum them.
@@ -34,7 +36,11 @@ export function grantCsvColumns(index: FundingIndex | null): CsvColumn<ScopedGra
     { header: 'Organisation', value: (entry) => entry.grant.organization },
     { header: 'Start year', value: (entry) => entry.grant.start_year },
     { header: 'End year', value: (entry) => entry.grant.end_year },
-    { header: 'Type', value: (entry) => CATEGORY_LABELS[entry.grant.category] },
+    // An unmatched number is no kind of award (docs/09 §4): an empty cell, as the table's "not known".
+    {
+      header: 'Type',
+      value: (entry) => (entry.miscellaneous ? null : CATEGORY_LABELS[entry.grant.category]),
+    },
     {
       header: 'Tags',
       value: (entry) => grantTags(entry.grant, entry.miscellaneous).join('; ') || null,

@@ -56,9 +56,10 @@ const quoted = (forms: readonly string[]): string => forms.map((form) => `“${f
 
 /**
  * An unmatched number is quoted as the paper wrote it, so of `cited_as` only the other forms are
- * worth saying: `MISC:1780131`'s listing cites "178013_1", which is the number shown.
+ * worth saying: `MISC:1780131`'s listing cites "178013_1", which is the number shown. Its grant
+ * page, whose heading is that number, says the same (R1b).
  */
-function otherForms(listing: GrantListing, grant: Grant): GrantListing {
+export function otherForms(listing: GrantListing, grant: Grant): GrantListing {
   const { cited_as: forms, ...rest } = listing;
   const [first, ...more] = (forms ?? []).filter((form) => form !== grant.number);
   return first === undefined ? rest : { ...rest, cited_as: [first, ...more] };
@@ -117,6 +118,19 @@ export function ListingNotes({
       )}
     </>
   );
+}
+
+/**
+ * Why the section's unmatched numbers are unmatched: no funder's record matched them, or a
+ * recorded decision kept them apart, whose reason each gives below (W-000102's `178013_1`,
+ * docs/09 B9). Said as "no funder's record matched" of both, the decision contradicted it (R1b).
+ */
+function unmatchedWhy(decided: number, all: number): string {
+  if (decided === 0) return 'Numbers the paper gives as funding that no funder’s record matched.';
+  if (decided === all) {
+    return 'Numbers the paper gives as funding that a recorded decision kept unmatched, for the reason given with each.';
+  }
+  return 'Numbers the paper gives as funding that no funder’s record matched, or that a recorded decision kept unmatched, for the reason given with it.';
 }
 
 function GrantItem({
@@ -246,8 +260,11 @@ export function FundingSection({ work, index, resource, links }: FundingSectionP
         <>
           <h3>Miscellaneous (not matched to a grant record)</h3>
           <p className="chart-card-description">
-            Numbers the paper gives as funding that no funder’s record matched. They have no agency,
-            title or amount, and are not counted as grants.
+            {unmatchedWhy(
+              unmatched.filter(({ listing }) => listing.override !== undefined).length,
+              unmatched.length,
+            )}{' '}
+            They have no agency, title or amount, and are not counted as grants.
           </p>
           <ul className="funding-unmatched">
             {unmatched.map(({ listing, grant }) => (

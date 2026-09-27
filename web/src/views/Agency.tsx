@@ -28,6 +28,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import {
   agencyDetail,
   agencyLabel,
+  keptUnmatched,
   knownAmount,
   type AgencyDetail,
   type AgencyShare,
@@ -35,6 +36,7 @@ import {
 import { ChartCard } from '../charts/ChartCard';
 import { FundingOverTimeChart, FundingOverTimeTable } from '../charts/FundingOverTimeChart';
 import { ResponsiveChart } from '../charts/ResponsiveChart';
+import { AgencyFullName } from '../components/AgencyTable';
 import { BackLink, useCloseOnEscape } from '../components/BackLink';
 import { EntityNotFound } from '../components/EntityNotFound';
 import { EntityPublications } from '../components/EntityPublications';
@@ -178,7 +180,7 @@ function AgencyPage({
 
       {detail.miscellaneous ? (
         <p className="detail-identity">
-          Not a funding agency: where the numbers no funder’s record matched are kept
+          Not a funding agency: where the numbers matched to no grant are kept
         </p>
       ) : (
         <>
@@ -374,9 +376,12 @@ function Breakdown({
                 {own ? (
                   'Assigned to no institute'
                 ) : (
-                  <AgencyLink links={links} code={share.code}>
-                    {share.label}
-                  </AgencyLink>
+                  <>
+                    <AgencyLink links={links} code={share.code}>
+                      {share.label}
+                    </AgencyLink>
+                    <AgencyFullName agency={detail.scope.index?.agencies.get(share.code)} />
+                  </>
                 )}
               </th>
               <td className="numeric">{formatCount(share.grants)}</td>
@@ -391,6 +396,9 @@ function Breakdown({
   );
 }
 
+/** Its table's rows are numbers, not grants: they are counted as grants in no figure. */
+const UNMATCHED_NOUN = { one: 'unmatched number', many: 'unmatched numbers' };
+
 /** Miscellaneous: the unmatched numbers, counted and listed, with no figure a grant would have. */
 function Unmatched({
   doc,
@@ -402,12 +410,17 @@ function Unmatched({
   links: FundingLinks;
 }) {
   const figures = detail.figures;
+  // A number a recorded decision kept apart was matched, and set aside: not "no record matched".
+  const decided = keptUnmatched(detail.publications, detail.scope.index).size;
   return (
     <>
       <p>
-        These are numbers the publications give as funding that no funder’s record matched. They
-        have no agency, title or amount, are not counted as grants in any figure, and are shown as
-        the paper wrote them. Over every publication here, whatever the filter:
+        These are numbers the publications give as funding that{' '}
+        {decided === figures.miscellaneous
+          ? 'recorded decisions kept unmatched'
+          : `no funder’s record matched${decided === 0 ? '' : `, or, for ${formatCount(decided)} of them, that a recorded decision kept unmatched`}`}
+        . They have no agency, title or amount, are not counted as grants in any figure, and are
+        shown as the paper wrote them. Over every publication here, whatever the filter:
       </p>
       <ul className="figure-grid" aria-label="Unmatched numbers">
         <li>
@@ -428,6 +441,7 @@ function Unmatched({
         links={links}
         csvFilename={csvName(doc, detail.agency.code)}
         caption="Every unmatched number given on a publication here, whatever the filter"
+        noun={UNMATCHED_NOUN}
       />
     </>
   );

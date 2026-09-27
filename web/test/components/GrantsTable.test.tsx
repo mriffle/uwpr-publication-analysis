@@ -255,6 +255,122 @@ describe('the CSV of the whole table', () => {
   });
 });
 
+/*
+ * R1b: the real export lists 755 grants, and drawing every one made `/funding` tens of thousands
+ * of pixels long. The table draws the first `limit` in the order chosen, says so in its count and
+ * its caption, and offers the rest; the CSV holds every row the search matches.
+ */
+describe('the first rows only, until the reader asks for all (R1b)', () => {
+  function showFirst(limit = 3) {
+    const { links } = recordingLinks();
+    render(
+      <GrantsTable
+        scope={worldScope()}
+        links={links}
+        csvFilename="uwpr-grants.csv"
+        limit={limit}
+      />,
+    );
+  }
+
+  it('draws the first rows in the order chosen, and says how many of how many', () => {
+    showFirst();
+    expect(visibleNumbers()).toEqual([WORLD.grfp.number, WORLD.p01.number, WORLD.r01.number]);
+    expect(
+      screen.getByText(
+        '6 grants, each listed once however many publications list it. The first 3, in the order chosen, are shown; the download holds all 6.',
+      ),
+    ).toBeInTheDocument();
+    expect(table()).toHaveAccessibleName(
+      /^Every grant listed on the publications shown: the first 3 of 6, in the order chosen\. /,
+    );
+  });
+
+  it('downloads every row, not only the rows drawn, and its button says so', async () => {
+    showFirst();
+    expect(screen.getByRole('button', { name: 'Download these 6 grants as CSV' })).toBeEnabled();
+    const [header = [], ...records] = await downloaded();
+    expect(records.map((record) => record[header.indexOf('Number')])).toEqual([
+      WORLD.grfp.number,
+      WORLD.p01.number,
+      WORLD.r01.number,
+      WORLD.foreign.number,
+      WORLD.unmatched.number,
+      WORLD.nsf.number,
+    ]);
+  });
+
+  it('draws them all on request, and goes back to the first rows', async () => {
+    showFirst();
+    await userEvent.click(screen.getByRole('button', { name: 'Show all 6 grants' }));
+    expect(visibleNumbers()).toHaveLength(6);
+    expect(table()).toHaveAccessibleName(/^Every grant listed on the publications shown\. /);
+    expect(
+      screen.getByText('6 grants, each listed once however many publications list it.'),
+    ).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Show only the first 3' }));
+    expect(visibleNumbers()).toHaveLength(3);
+  });
+
+  it('takes the first rows of a new order, and of a search', async () => {
+    showFirst();
+    await userEvent.click(screen.getByRole('button', { name: 'Total' }));
+    expect(visibleNumbers()).toEqual([WORLD.foreign.number, WORLD.r01.number, WORLD.p01.number]);
+    await userEvent.type(screen.getByRole('searchbox'), 'NIH');
+    // Two match, fewer than the limit: all are drawn, and nothing more is offered.
+    expect(visibleNumbers()).toEqual([WORLD.r01.number, WORLD.p01.number]);
+    expect(screen.queryByRole('button', { name: /^Show / })).toBeNull();
+    expect(screen.getByText('2 of 6 grants match the search.')).toBeInTheDocument();
+  });
+
+  it('offers nothing more when every row fits', () => {
+    show();
+    expect(screen.queryByRole('button', { name: /^Show / })).toBeNull();
+  });
+
+  it('passes axe with the rest held back', async () => {
+    const { links } = recordingLinks();
+    const { container } = render(
+      <GrantsTable scope={worldScope()} links={links} csvFilename="uwpr-grants.csv" limit={3} />,
+    );
+    await expectNoAxeViolations(container);
+  });
+});
+
+describe('unmatched numbers', () => {
+  it('give an unmatched number no type: it is no kind of award (R1b)', async () => {
+    show();
+    const row = within(table())
+      .getByRole('rowheader', { name: WORLD.unmatched.number })
+      .closest('tr') as HTMLElement;
+    const type = within(row).getAllByRole('cell')[5]!;
+    expect(type).toHaveTextContent(/^not known unmatched number$/);
+    const [header = [], ...records] = await downloaded();
+    const unmatched = records.find(
+      (record) => record[header.indexOf('Number')] === WORLD.unmatched.number,
+    )!;
+    expect(unmatched[header.indexOf('Type')]).toBe('');
+  });
+
+  it('are called numbers, not grants, on a table of them alone', () => {
+    const { links } = recordingLinks();
+    render(
+      <GrantsTable
+        scope={worldScope({ agencies: ['MISC'] })}
+        links={links}
+        csvFilename="misc.csv"
+        noun={{ one: 'unmatched number', many: 'unmatched numbers' }}
+      />,
+    );
+    expect(
+      screen.getByText('1 unmatched number, each listed once however many publications list it.'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Download this unmatched number as CSV' }),
+    ).toBeEnabled();
+  });
+});
+
 describe('every amount unknown', () => {
   it('shows "not known" for each and never $0', () => {
     show(worldScope({ agencies: ['NSF'], institutionWide: 'exclude' }));

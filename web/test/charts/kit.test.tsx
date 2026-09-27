@@ -45,6 +45,13 @@ describe('ChartCard', () => {
     expect(screen.getByText('the chart')).toBeInTheDocument();
   });
 
+  // R1b: value by agency's table, a column per series, ran 905 pixels wide on a 390-pixel phone.
+  it('puts the table alternative in its own scrolling container, never the page’s', async () => {
+    card();
+    await userEvent.click(screen.getByRole('button', { name: 'View as table' }));
+    expect(screen.getByText('the table').parentElement).toHaveClass('table-scroll');
+  });
+
   it('shows a skeleton while loading, not a blank panel (docs/06 §7)', () => {
     card({ loading: true });
     expect(screen.getByRole('status')).toHaveTextContent(/Loading publications per year/);

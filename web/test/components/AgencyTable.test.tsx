@@ -25,10 +25,13 @@ function show(scope: FundingScope = worldScope()) {
 }
 
 const table = () => screen.getByRole('table');
+/** Each row's agency as it is labelled, less the full name beneath a short one. */
 const agencies = () =>
   within(table())
     .getAllByRole('rowheader')
-    .map((cell) => cell.textContent);
+    .map((cell) =>
+      cell.textContent.replace(cell.querySelector('.agency-name')?.textContent ?? '', '').trim(),
+    );
 const row = (name: string) =>
   within(table())
     .getAllByRole('rowheader')
@@ -66,6 +69,18 @@ describe('the normal state', () => {
         .getAllByRole('cell')
         .map((cell) => cell.textContent),
     ).toEqual(['—', 'United States', '2', '$4,000,000', '1', '2']);
+  });
+
+  it('gives an agency known by a short name its full name beneath it (R1b)', () => {
+    show();
+    const nigms = within(table()).getByRole('rowheader', {
+      name: 'NIGMS National Institute of General Medical Sciences',
+    });
+    // The link still reads as the short name, which is what the chart and the filter call it.
+    expect(within(nigms).getByRole('link')).toHaveAccessibleName('NIGMS');
+    // An agency with no short name, and Miscellaneous, have nothing more to say.
+    expect(row('SAMPLE Research Foundation').querySelector('.agency-name')).toBeNull();
+    expect(row('Miscellaneous').querySelector('.agency-name')).toBeNull();
   });
 
   it('has a caption, and a sortable header for every column', () => {

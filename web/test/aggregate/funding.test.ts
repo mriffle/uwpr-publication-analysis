@@ -34,9 +34,11 @@ import {
   grantDetail,
   grantKinds,
   investigatorKey,
+  keptUnmatched,
   knownAmount,
   newGrantsByAgency,
   normalisedName,
+  otherKind,
   rankAgencies,
   summarizeFunding,
   valueByAgency,
@@ -710,6 +712,31 @@ describe('grant types', () => {
   it('leaves unmatched numbers out of "other"', () => {
     const total = grantKinds(all).reduce((sum, row) => sum + row.grants, 0);
     expect(total).toBe(fundingFigures(all).listed);
+  });
+
+  // R1b: every one of the real export's 208 "other" grants is outside NIH and NSF, whose grants
+  // alone are typed; the page says so, so that "Other" is not read as a kind of award.
+  it('counts the "other" grants, and those of agencies whose grants are not typed', () => {
+    // NIH's OT2 is "other" and typed by NIH's table; the foundation's is not typed at all.
+    expect(otherKind(all)).toEqual({ grants: 2, untyped: 1 });
+    expect(otherKind(all).grants).toBe(grantKinds(all).at(-1)?.grants);
+    expect(otherKind(nothing)).toEqual({ grants: 0, untyped: 0 });
+  });
+});
+
+describe('unmatched numbers a decision kept apart (R1b)', () => {
+  it('names only a Miscellaneous number some listing reaches through an override', () => {
+    // W2021's override decides a real grant, P01, which is not an unmatched number.
+    expect(keptUnmatched(WORKS, index).size).toBe(0);
+    const decided = work({
+      id: 'W-009030',
+      year: 2020,
+      grants: [
+        listing({ grant: UNMATCHED.key, agencies: ['MISC'], how: 'override', override: OVERRIDE }),
+      ],
+    });
+    expect([...keptUnmatched([...WORKS, decided], index)]).toEqual([UNMATCHED.key]);
+    expect(keptUnmatched([decided], null).size).toBe(0);
   });
 });
 

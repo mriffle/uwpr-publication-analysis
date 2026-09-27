@@ -189,7 +189,8 @@ a {
 .chart-card-toggle,
 .chart-empty button,
 .notice button,
-.download-button {
+.download-button,
+.table-more {
   font: inherit;
   font-size: 0.875rem;
   color: var(--text);
@@ -837,6 +838,9 @@ button.chart-legend-item.is-selected {
   background: var(--panel-bg);
   border-radius: 8px;
   padding: 0.75rem 1rem;
+  /* A funding excerpt can run DOIs and award numbers together with no space ("…/1BB/T…"): one
+     such run widened the whole list past a phone's edge (docs/09 R1b). */
+  overflow-wrap: anywhere;
 }
 
 .evidence-item p {
@@ -1369,9 +1373,21 @@ button.chart-legend-item.is-selected {
   font-size: 0.9rem;
 }
 
-/* A table wider than a phone scrolls inside itself, never the page (docs/06 §8). */
+/*
+ * A table wider than a phone scrolls inside itself, never the page (docs/06 §8). A caption is as
+ * wide as its table, so on a phone it ran off the right-hand edge with the columns; it now stays
+ * in the part that shows, as wide as the container, while the columns scroll (docs/09 R1b).
+ */
 .table-scroll {
   overflow-x: auto;
+  container-type: inline-size;
+}
+
+.table-scroll caption {
+  position: sticky;
+  left: 0;
+  max-width: 100cqw;
+  box-sizing: border-box;
 }
 
 .funding-table th,
@@ -1379,13 +1395,57 @@ button.chart-legend-item.is-selected {
   vertical-align: top;
 }
 
-.funding-table thead th {
-  white-space: nowrap;
-}
-
+/*
+ * Headers and row headers wrap at spaces (docs/09 R1b). Held on one line, one long agency name or
+ * written grant number set its column's width for all 755 rows, and the totals went off the
+ * right-hand edge of a desktop page.
+ */
 .funding-table tbody th {
   font-weight: 600;
-  white-space: nowrap;
+}
+
+/* The grants table: ten columns, so a little smaller, and its long free text may break. */
+.grants-table .funding-table {
+  font-size: 0.85rem;
+}
+
+.grants-table .funding-table th,
+.grants-table .funding-table td {
+  padding: 0.35rem 0.3rem;
+}
+
+/* A number breaks only past NIH's eleven characters: a seventeen-character contract may break. */
+.grants-table .funding-table tbody th {
+  min-width: 7.5rem;
+  overflow-wrap: anywhere;
+}
+
+.funding-table .grants-title,
+.funding-table .grants-agency,
+.funding-table .grants-people,
+.funding-table .grants-organisation {
+  overflow-wrap: anywhere;
+}
+
+.funding-table .grants-title {
+  min-width: 10rem;
+}
+
+.funding-table .grants-people,
+.funding-table .grants-organisation {
+  min-width: 6.5rem;
+}
+
+.table-more {
+  margin-top: 0.5rem;
+}
+
+/* An agency's full name beneath the short one it is known by: "NCRR", then its name. */
+.agency-name {
+  display: block;
+  font-weight: normal;
+  color: var(--text-muted);
+  font-size: 0.8rem;
 }
 
 /* Miscellaneous: a row apart from the ranked ones above it. */
@@ -1456,6 +1516,7 @@ button.chart-legend-item.is-selected {
   background: var(--panel-bg);
   border-radius: 8px;
   padding: 0.75rem 1rem;
+  overflow-wrap: anywhere;
 }
 
 .funding-item p {

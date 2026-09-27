@@ -16,8 +16,8 @@ import { fundingOf, type FundingIndex } from '../../src/contract/funding';
 import type { GrantListing, Work } from '../../src/contract/types';
 import { expectNoAxeViolations } from '../support/axe';
 import { sampleExport } from '../support/fixture';
-import { listing } from '../support/funding';
-import { WORLD, recordingLinks, worldIndex } from '../support/fundingWorld';
+import { listing, unresolvedGrant } from '../support/funding';
+import { WORLD, WORLD_GRANTS, recordingLinks, worldIndex } from '../support/fundingWorld';
 import { listings } from '../support/grants';
 import { work } from '../support/works';
 
@@ -227,6 +227,36 @@ describe('an override that keeps a number unmatched', () => {
       'OpenAlex matches this string to an unrelated grant, which does not fit.',
     );
     expect(item).toHaveTextContent('Decided by mriffle on 27 September 2026');
+  });
+
+  // R1b: the heading's sentence said "no funder's record matched", which the decision beneath it
+  // contradicted: OpenAlex matched the number, and a decision set the match aside.
+  it('says a recorded decision kept it unmatched, not that no record matched it', () => {
+    kept();
+    expect(section()).toHaveTextContent(
+      'Numbers the paper gives as funding that a recorded decision kept unmatched, for the reason given with each. They have no agency, title or amount, and are not counted as grants.',
+    );
+    expect(section()).not.toHaveTextContent('no funder’s record matched');
+  });
+
+  it('says both when one number matched nothing and another was kept apart', () => {
+    const other = unresolvedGrant({ key: 'MISC:OTHER1', number: 'OTHER 1' });
+    show(
+      [
+        listing({ grant: WORLD.unmatched.key, agencies: ['MISC'] }),
+        listing({
+          grant: other.key,
+          agencies: ['MISC'],
+          how: 'override',
+          override: { reason: 'Does not fit.', by: 'mriffle', date: '2026-09-27' },
+        }),
+      ],
+      {},
+      worldIndex([...WORLD_GRANTS, other]),
+    );
+    expect(section()).toHaveTextContent(
+      'Numbers the paper gives as funding that no funder’s record matched, or that a recorded decision kept unmatched, for the reason given with it.',
+    );
   });
 
   it('says only the forms the paper wrote besides the number quoted', () => {

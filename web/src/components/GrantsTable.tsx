@@ -8,10 +8,17 @@
  *   header re-sorts. The sort and the search are this table's own state, out of the URL (§12.4).
  * - **The search narrows this table only.** It never touches the filter, the publications or a
  *   figure, and the page says so beside the box.
- * - **The CSV holds exactly the visible rows**, searched and sorted, because it is built from the
- *   very array the table renders (`download/grants.ts`).
+ * - **The first 50 rows are drawn, with a control to draw them all** (docs/09 R1b). The real
+ *   export lists 755 grants: drawn at once they made `/funding` tens of thousands of pixels long,
+ *   with the coverage section beyond every one of them. The count and the caption say how many
+ *   are shown of how many, and in what order.
+ * - **The CSV holds every row the search matches**, in the order shown, those beyond the first
+ *   50 included: it is built from the array the rows are drawn from, before the cut
+ *   (`download/grants.ts`), and its button names the count it holds.
  * - **A grant is one row** however many publications list it (§12.11 rule 7), and the count
- *   beneath says so. A total is never $0 for "not known" (rule 3); a converted one shows its
+ *   beneath says so. An unmatched number is no kind of award (docs/09 §4), so its type reads
+ *   "not known", as the grant-types chart counts it under none; Miscellaneous's page calls its
+ *   rows numbers, not grants. A total is never $0 for "not known" (rule 3); a converted one shows its
  *   original and rate year (rule 5); an active grant is tagged, its total still growing (rule 6);
  *   investigators are named as the funder publishes them, with no link (rule 9).
  *
@@ -19,7 +26,7 @@
  * `SortHeader`, the number as each row's header, and a labelled search box. Nothing here is a live
  * region; the filter bar is the page's only one.
  */
-import { useDeferredValue, useId, useMemo, useState } from 'react';
+import { Fragment, useDeferredValue, useId, useMemo, useState } from 'react';
 import type { FundingScope, ScopedGrant } from '../aggregate/funding';
 import {
   DEFAULT_GRANT_SORT,
@@ -54,7 +61,16 @@ export interface GrantsTableProps {
   csvFilename: string;
   /** What the rows are, for the caption: "Every grant listed on the publications shown". */
   caption?: string;
+  /** How many rows are drawn until the reader asks for every one. */
+  limit?: number;
+  /** What a row is, in the count and the button: an unmatched number on Miscellaneous's page. */
+  noun?: { one: string; many: string };
 }
+
+/** The rows drawn at first. The real export's 755 made a page no reader could get past. */
+export const GRANT_ROW_LIMIT = 50;
+
+const GRANT_NOUN = { one: 'grant', many: 'grants' };
 
 const COLUMNS: {
   key: GrantSortKey | null;
@@ -75,6 +91,25 @@ const COLUMNS: {
 
 const None = ({ children }: { children: string }) => <span className="cell-none">{children}</span>;
 
+/**
+ * A number as written, free to break after each "/" and ":", where a browser otherwise will not:
+ * "ANID/BASAL/FB210008" was one word, and it set the number column's width for every row (R1b).
+ * `<wbr>` adds no text, so the link's name and a copied number are unchanged.
+ */
+function Breakable({ text }: { text: string }) {
+  const parts = text.split(/(?<=[/:])/);
+  return (
+    <>
+      {parts.map((part, at) => (
+        <Fragment key={at}>
+          {at === 0 ? null : <wbr />}
+          {part}
+        </Fragment>
+      ))}
+    </>
+  );
+}
+
 function GrantRow({
   entry,
   index,
@@ -94,20 +129,22 @@ function GrantRow({
     <tr>
       <th scope="row">
         <GrantLink links={links} grantKey={grant.key}>
-          {grant.number}
+          <Breakable text={grant.number} />
         </GrantLink>
       </th>
-      <td>{grant.title ?? <None>No title recorded</None>}</td>
-      <td>
+      <td className="grants-title">{grant.title ?? <None>No title recorded</None>}</td>
+      <td className="grants-agency">
         <AgencyLink links={links} code={grant.agency}>
           {agencyLabel(index, grant.agency)}
         </AgencyLink>
       </td>
-      <td>{people ?? <None>None recorded</None>}</td>
-      <td>{grant.organization ?? <None>Not recorded</None>}</td>
-      <td className="cell-nowrap">{years ?? <None>Not recorded</None>}</td>
+      <td className="grants-people">{people ?? <None>None recorded</None>}</td>
+      <td className="grants-organisation">{grant.organization ?? <None>Not recorded</None>}</td>
       <td>
-        {CATEGORY_LABELS[grant.category]}
+        {years === null ? <None>Not recorded</None> : <span className="cell-nowrap">{years}</span>}
+      </td>
+      <td>
+        {entry.miscellaneous ? <None>not known</None> : CATEGORY_LABELS[grant.category]}
         {tags.map((tag) => (
           <span key={tag}>
             {' '}
@@ -117,7 +154,11 @@ function GrantRow({
       </td>
       <td className="numeric">
         {amount ?? <None>not known</None>}
-        {original === null ? null : <span className="cell-note">{original}</span>}
+        {original === null ? null : (
+          // Intl joins a currency code to its figure with a no-break space, so "CLP 4,500,000,000"
+          // was one word that widened the column for every row (R1b); it may break there.
+          <span className="cell-note">{original.replace(/\u00a0/g, ' ')}</span>
+        )}
       </td>
       <td className="numeric">{entry.firstYear}</td>
       <td className="numeric">{formatCount(entry.works.length)}</td>
@@ -130,14 +171,19 @@ export function GrantsTable({
   links,
   csvFilename,
   caption = 'Every grant listed on the publications shown',
+  limit = GRANT_ROW_LIMIT,
+  noun = GRANT_NOUN,
 }: GrantsTableProps) {
   const searchId = useId();
   const noteId = useId();
+  const tableId = useId();
   const [sort, setSort] = useState<GrantSort>(DEFAULT_GRANT_SORT);
   const [query, setQuery] = useState('');
+  const [showAll, setShowAll] = useState(false);
   // The rows follow the box a beat behind on a large table, so typing never waits on them.
   const deferredQuery = useDeferredValue(query);
   const index = scope.index;
+  // Every row the search matches, in order: what the CSV holds. The table draws the first `limit`.
   const rows = useMemo(
     () => sortGrants(searchGrants(scope.grants, deferredQuery, index), sort, index),
     [scope.grants, deferredQuery, index, sort],
@@ -148,11 +194,18 @@ export function GrantsTable({
     return <p className="chart-card-description">No grant is listed on the publications shown.</p>;
   }
 
+  const counted = (n: number) => pluralize(n, noun.one, noun.many);
   const all = scope.grants.length;
+  const long = rows.length > limit;
+  const shown = long && !showAll ? rows.slice(0, limit) : rows;
+  const cut = shown.length < rows.length;
   const count =
     deferredQuery.trim() === ''
-      ? `${pluralize(all, 'grant')}, each listed once however many publications list it.`
-      : `${formatCount(rows.length)} of ${pluralize(all, 'grant')} match the search.`;
+      ? `${counted(all)}, each listed once however many publications list it.`
+      : `${formatCount(rows.length)} of ${counted(all)} match the search.`;
+  const drawn = cut
+    ? ` The first ${formatCount(shown.length)}, in the order chosen, are shown; the download holds all ${formatCount(rows.length)}.`
+    : '';
 
   return (
     <div className="grants-table">
@@ -175,7 +228,7 @@ export function GrantsTable({
           </p>
         </div>
         <DownloadButton
-          label={`Download ${rows.length === 1 ? 'this grant' : `these ${formatCount(rows.length)} grants`} as CSV`}
+          label={`Download ${rows.length === 1 ? `this ${noun.one}` : `these ${counted(rows.length)}`} as CSV`}
           filename={csvFilename}
           type={CSV_MEDIA_TYPE}
           disabled={rows.length === 0}
@@ -183,16 +236,24 @@ export function GrantsTable({
         />
       </div>
 
-      <p className="table-count">{count}</p>
+      <p className="table-count">
+        {count}
+        {drawn}
+      </p>
 
       {rows.length === 0 ? (
-        <p className="table-empty">No grant here matches “{deferredQuery.trim()}”.</p>
+        <p className="table-empty">
+          No {noun.one} here matches “{deferredQuery.trim()}”.
+        </p>
       ) : (
         <div className="table-scroll">
-          <table className="chart-table funding-table">
+          <table className="chart-table funding-table" id={tableId}>
             <caption>
-              {caption}. Grants with no known amount are listed last, whichever way the table is
-              sorted.
+              {caption}
+              {cut
+                ? `: the first ${formatCount(shown.length)} of ${formatCount(rows.length)}, in the order chosen`
+                : ''}
+              . Grants with no known amount are listed last, whichever way the table is sorted.
             </caption>
             <thead>
               <tr>
@@ -217,13 +278,28 @@ export function GrantsTable({
               </tr>
             </thead>
             <tbody>
-              {rows.map((entry) => (
+              {shown.map((entry) => (
                 <GrantRow key={entry.grant.key} entry={entry} index={index} links={links} />
               ))}
             </tbody>
           </table>
         </div>
       )}
+
+      {long ? (
+        <button
+          type="button"
+          className="table-more"
+          aria-controls={tableId}
+          onClick={() => {
+            setShowAll((value) => !value);
+          }}
+        >
+          {showAll
+            ? `Show only the first ${formatCount(limit)}`
+            : `Show all ${counted(rows.length)}`}
+        </button>
+      ) : null}
     </div>
   );
 }

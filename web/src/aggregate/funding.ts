@@ -28,7 +28,7 @@
  *   are in view and their value; while they are excluded, how many the exclusion left out and
  *   theirs.
  */
-import type { FundingIndex } from '../contract/funding';
+import { listingsOf, type FundingIndex } from '../contract/funding';
 import type {
   Agency,
   FundingSource,
@@ -574,6 +574,50 @@ export function grantKinds(scope: FundingScope): GrantKindRow[] {
     const grants = listed.filter((grant) => grant.category === category);
     return { category, grants: grants.length, ...dollarTotal(grants) };
   });
+}
+
+/** The root agencies whose grants the pipeline types from their records (docs/09 §11.4). */
+const TYPED_ROOTS: ReadonlySet<string> = new Set(['NIH', 'NSF']);
+
+export interface OtherKind {
+  /** Grants listed whose category is `other`. */
+  grants: number;
+  /** …of which under a root agency other than NIH and NSF, whose grants are not typed. */
+  untyped: number;
+}
+
+/**
+ * What "Other" holds (docs/09 §11.4): NIH's grants are typed by activity code and NSF's by
+ * programme, and every other agency's are `other` unless its configuration says more. So "Other"
+ * is mostly grants whose kind is not known, not a kind of award — 208 of the real export's 748,
+ * every one outside NIH and NSF (R1b). Unmatched numbers are no kind at all, and not counted.
+ */
+export function otherKind(scope: FundingScope): OtherKind {
+  const other = listedOf(scope).filter((entry) => entry.grant.category === 'other');
+  return {
+    grants: other.length,
+    untyped: other.filter((entry) => !TYPED_ROOTS.has(entry.root)).length,
+  };
+}
+
+/**
+ * The unmatched numbers a recorded decision kept apart (docs/09 B9), by key: those some listing
+ * in the works given reaches through an override. The real export's `MISC:1780131` is one:
+ * OpenAlex matched it to an unrelated grant, and an override keeps it out. The rest of
+ * Miscellaneous matched no funder's record at all, and a page saying why a number is unmatched
+ * must tell the two apart (R1b).
+ */
+export function keptUnmatched(works: readonly Work[], index: FundingIndex | null): Set<string> {
+  const kept = new Set<string>();
+  if (index === null) return kept;
+  for (const work of works) {
+    for (const listing of listingsOf(work, index)) {
+      // `listingsOf` keeps only listings whose grant the index holds.
+      const grant = index.grants.get(listing.grant) as Grant;
+      if (listing.override !== undefined && isMiscellaneous(grant, index)) kept.add(grant.key);
+    }
+  }
+  return kept;
 }
 
 export interface FundingCoverage {

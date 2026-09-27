@@ -34,13 +34,16 @@ import {
   fundingFigures,
   fundingScope,
   grantKinds,
+  keptUnmatched,
   knownAmount,
   newGrantsByAgency,
+  otherKind,
   rankAgencies,
   valueByAgency,
   type AgencyMeasure,
   type FundingFigures as Figures,
   type FundingScope,
+  type OtherKind,
 } from '../aggregate/funding';
 import { ChartCard } from '../charts/ChartCard';
 import { ChartEmpty } from '../charts/ChartEmpty';
@@ -65,7 +68,7 @@ import { PageFooter } from '../components/PageFooter';
 import { SiteHeader, type ViewSwitch } from '../components/SiteHeader';
 import { StalenessNotice } from '../components/StalenessNotice';
 import { fundingOf, type FundingIndex } from '../contract/funding';
-import type { ExportDocument } from '../contract/types';
+import type { ExportDocument, Work } from '../contract/types';
 import { buildLabels, describeFilter, filterSentence, fundingSentence } from '../filter/describe';
 import { DEFAULT_INSTITUTION_WIDE, grantSelection, type InstitutionWide } from '../filter/funding';
 import { applyFilter } from '../filter/predicate';
@@ -198,6 +201,21 @@ function Switch<T extends string>({
   );
 }
 
+/**
+ * What "Other" holds, when it holds grants no record here types (`otherKind`): not a kind of
+ * award, but every grant of an agency other than NIH and NSF. Empty when there are none.
+ */
+export function otherNote({ grants, untyped }: OtherKind): string {
+  if (untyped === 0) return '';
+  const whose = 'whose records here do not say what kind of award a grant is.';
+  if (untyped === grants) {
+    return grants === 1
+      ? ` “Other” is not a kind of award: its one grant is from an agency other than NIH and NSF, ${whose}`
+      : ` “Other” is not a kind of award: all ${formatCount(grants)} of its grants are from agencies other than NIH and NSF, ${whose}`;
+  }
+  return ` “Other” is not a kind of award: ${formatCount(untyped)} of its ${formatCount(grants)} grants ${untyped === 1 ? 'is from an agency' : 'are from agencies'} other than NIH and NSF, ${whose}`;
+}
+
 /** How many ranked agencies the bar chart draws before saying how many it leaves out. */
 const AGENCY_LIMIT = 15;
 
@@ -272,6 +290,7 @@ function FundingImpact({
     body = (
       <FundingSections
         doc={doc}
+        works={works}
         scope={scope}
         figures={figures}
         filter={filter}
@@ -358,6 +377,8 @@ function NoGrantListed({
 
 interface FundingSectionsProps {
   doc: ExportDocument;
+  /** The publications the filter selected, which the scope was read from. */
+  works: readonly Work[];
   scope: FundingScope;
   figures: Figures;
   filter: FilterState;
@@ -377,6 +398,7 @@ interface FundingSectionsProps {
 /** §12.5 items 3 to 7, over a scope that has at least one grant in it. */
 function FundingSections({
   doc,
+  works,
   scope,
   figures,
   filter,
@@ -409,7 +431,13 @@ function FundingSections({
     [scope, agencyMeasure],
   );
   const kinds = useMemo(() => grantKinds(scope), [scope]);
+  const other = useMemo(() => otherKind(scope), [scope]);
   const cover = useMemo(() => coverage(scope), [scope]);
+  // How many of the unmatched numbers in view a recorded decision kept apart, not a failed match.
+  const decided = useMemo(() => {
+    const kept = keptUnmatched(works, scope.index);
+    return scope.grants.filter((entry) => entry.miscellaneous && kept.has(entry.grant.key)).length;
+  }, [works, scope]);
 
   const toggleAgency = (code: string) => {
     onFilter(toggleString(filter, 'agency', code));
@@ -429,6 +457,7 @@ function FundingSections({
     return {
       key: row.code,
       label: row.label,
+      name: row.name,
       value: byValue ? row.amountUsd : row.grants,
       selected: filter.agency.includes(row.code),
       detail: byValue
@@ -550,8 +579,14 @@ function FundingSections({
         }
         note={
           <>
+            {/* Said so that it adds up to the agencies figure: the real export's 71 were "the 15
+                largest of 21 agencies", the 50 with no known amount told apart only after. */}
             {agencyNotShown > 0
-              ? `The ${formatCount(AGENCY_LIMIT)} ${byValue ? 'largest' : 'most frequent'} of ${pluralize(drawable.length, 'agency', 'agencies')}; ${formatCount(agencyNotShown)} are not shown. `
+              ? `${
+                  byValue
+                    ? `The ${formatCount(AGENCY_LIMIT)} largest of the ${formatCount(drawable.length)} agencies${unknownOnly > 0 ? ' with a known amount' : ''}`
+                    : `The ${formatCount(AGENCY_LIMIT)} of the ${formatCount(drawable.length)} agencies with the most grants`
+                } are drawn; the other ${formatCount(agencyNotShown)} ${agencyNotShown === 1 ? 'is' : 'are'} in the table of every agency below. `
               : ''}
             {byValue && unknownOnly > 0
               ? `${pluralize(unknownOnly, 'agency', 'agencies')} whose grants have no known amount ${unknownOnly === 1 ? 'is' : 'are'} not drawn; rank by grants to see ${unknownOnly === 1 ? 'it' : 'them'}. `
@@ -667,6 +702,9 @@ function FundingSections({
               ? ` ${pluralize(unknownCount, 'grant')} with no known amount ${unknownCount === 1 ? 'is' : 'are'} not in the values.`
               : ''}
             {unmatched > 0 ? ' Unmatched numbers are not counted as any type.' : ''}
+            {/* The real export's "Other" is its second type by count and third by value, and
+                reads as a kind of award, which it is not (R1b). */}
+            {otherNote(other)}
           </>
         }
         controls={
@@ -790,8 +828,8 @@ function FundingSections({
           ) : (
             <>
               {cover.miscellaneous.grants === 1
-                ? `One unmatched number, on ${pluralize(cover.miscellaneous.publications, 'publication')}, is kept apart in Miscellaneous: a number written in a paper that no source matched to a grant record. It has no amount and is not counted as a grant.`
-                : `${formatCount(cover.miscellaneous.grants)} unmatched numbers, on ${pluralize(cover.miscellaneous.publications, 'publication')}, are kept apart in Miscellaneous: numbers written in the papers that no source matched to a grant record. They have no amount and are not counted as grants.`}{' '}
+                ? `One unmatched number, on ${pluralize(cover.miscellaneous.publications, 'publication')}, is kept apart in Miscellaneous: a number written in a paper that ${decided === 1 ? 'a recorded decision kept unmatched' : 'no source matched to a grant record'}. It has no amount and is not counted as a grant.`
+                : `${formatCount(cover.miscellaneous.grants)} unmatched numbers, on ${pluralize(cover.miscellaneous.publications, 'publication')}, are kept apart in Miscellaneous: numbers written in the papers that ${decided === cover.miscellaneous.grants ? 'recorded decisions kept unmatched' : `no source matched to a grant record${decided === 0 ? '' : `, or, for ${formatCount(decided)} of them, that a recorded decision kept unmatched`}`}. They have no amount and are not counted as grants.`}{' '}
               {onlyUnmatchedFilter === null ||
               (filter.agency.length === 1 && filter.agency[0] === misc?.code) ? null : (
                 <a

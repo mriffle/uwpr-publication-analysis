@@ -6,8 +6,8 @@
  * the agency and grant pages all cross the URL. Nothing is hard-coded: every figure is read from
  * the document under test, and the headline figures are held to `funding.summary`, which the
  * pipeline computed independently — so the same assertions hold against the real export
- * (`UWPR_EXPORT_DIR`). Every state is put through axe; on the real export, the whole view's two
- * are left to the e2e step for time (R1a).
+ * (`UWPR_EXPORT_DIR`). Every state is put through axe, on either export: the grants table draws
+ * its first 50 rows (R1b), where R1a had left the whole view's two to the e2e step for time.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
@@ -19,7 +19,7 @@ import type { ExportDocument } from '../../src/contract/types';
 import { formatUsd } from '../../src/format/number';
 import { FUNDING_DEFINITION_IDS } from '../../src/method/definitions';
 import { expectNoAxeViolations } from '../support/axe';
-import { isSampleExport, sampleExport } from '../support/fixture';
+import { sampleExport } from '../support/fixture';
 import { legacyDocument } from '../support/funding';
 
 const doc = sampleExport();
@@ -116,17 +116,12 @@ describe('the sample, unfiltered', () => {
     expect(new Set(hrefs)).toEqual(new Set(FUNDING_DEFINITION_IDS.map((id) => `/method#${id}`)));
   });
 
-  // Sample-only for time (R1a): on the real export, whose grants table has 755 rows, axe takes
-  // 6.5 s alone in jsdom and 14 s beside the rest of the suite. Axe on the real data is the e2e
-  // step's, in a real browser and both themes (e2e/funding.spec.ts).
-  it.runIf(isSampleExport)(
-    'passes axe',
-    async () => {
-      const { container } = at('/funding');
-      await expectNoAxeViolations(container);
-    },
-    30_000,
-  );
+  // R1a made this sample-only for time: the real export's grants table drew 755 rows, and axe
+  // took 6.5 s alone in jsdom. It draws the first 50 now (R1b), so it runs on any export again.
+  it('passes axe', async () => {
+    const { container } = at('/funding');
+    await expectNoAxeViolations(container);
+  }, 30_000);
 });
 
 describe('grant funding over time', () => {
@@ -339,15 +334,11 @@ describe('institution-wide awards excluded', () => {
     expect(here()).toBe('/funding?year=2020&institution_wide=exclude');
   });
 
-  // Sample-only for time, as the unfiltered view's is (R1a).
-  it.runIf(isSampleExport)(
-    'passes axe',
-    async () => {
-      const { container } = at('/funding?institution_wide=exclude');
-      await expectNoAxeViolations(container);
-    },
-    30_000,
-  );
+  // On any export, as the unfiltered view's is (R1b).
+  it('passes axe', async () => {
+    const { container } = at('/funding?institution_wide=exclude');
+    await expectNoAxeViolations(container);
+  }, 30_000);
 });
 
 describe('empty states', () => {

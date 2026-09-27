@@ -166,7 +166,15 @@ const find = (description: string, keep: (grant: Grant) => boolean): Grant => {
   return found;
 };
 
-const grantsTable = () => screen.getByRole('table', { name: /Every grant listed/ });
+/**
+ * The grants table with every row drawn: it draws the first 50 until asked (R1b), and the sample
+ * lists 55, so a case beyond the first 50 is found only once the reader asks for all of them.
+ */
+const grantsTable = () => {
+  const more = screen.queryByRole('button', { name: /^Show all [\d,]+ grants$/ });
+  if (more !== null) fireEvent.click(more);
+  return screen.getByRole('table', { name: /Every grant listed/ });
+};
 
 /** The grants table's row for a grant, found by its number, the row's header. */
 const rowOf = (grant: Grant) =>

@@ -73,7 +73,9 @@ export function ChartCard({
         ) : empty ? (
           empty
         ) : asTable ? (
-          table
+          // A table with a column per series is wider than a phone: it scrolls here, never the
+          // page (docs/06 §8). Value by agency's eight columns ran 905 pixels wide (docs/09 R1b).
+          <div className="table-scroll">{table}</div>
         ) : (
           chart
         )}

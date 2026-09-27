@@ -34,7 +34,7 @@ import { BackLink, useCloseOnEscape } from '../components/BackLink';
 import { EntityNotFound } from '../components/EntityNotFound';
 import { EntityPublications } from '../components/EntityPublications';
 import { AgencyLink, type FundingLinks } from '../components/FundingLinks';
-import { ListingNotes } from '../components/FundingSection';
+import { ListingNotes, otherForms } from '../components/FundingSection';
 import { NlmAttribution } from '../components/NlmAttribution';
 import { fundingOf, type FundingIndex } from '../contract/funding';
 import type { ExportDocument, Work } from '../contract/types';
@@ -191,15 +191,7 @@ function GrantPage({
         ))}
       </p>
 
-      {detail.miscellaneous ? (
-        <p>
-          No funder’s record matched this number, so it has no agency, title or amount, and it is
-          counted in no figure as a grant. It is kept as the publications below wrote it, in
-          Miscellaneous.
-        </p>
-      ) : (
-        <GrantFacts detail={detail} />
-      )}
+      {detail.miscellaneous ? <p>{unmatchedSentence(detail)}</p> : <GrantFacts detail={detail} />}
 
       {grant.url === null || grant.url_name === null ? null : (
         <p className="entity-source">
@@ -212,10 +204,19 @@ function GrantPage({
       {detail.miscellaneous ? null : <FiscalYears detail={detail} />}
 
       <EntityPublications
-        heading="Publications listing this grant"
+        heading={
+          detail.miscellaneous
+            ? 'Publications giving this number'
+            : 'Publications listing this grant'
+        }
         entries={detail.listings.map(({ work, listing }) => ({
           work,
-          notes: <ListingNotes listing={listing} unmatched={detail.miscellaneous} />,
+          // An unmatched number is shown as written, so only the paper's other forms are news.
+          notes: detail.miscellaneous ? (
+            <ListingNotes listing={otherForms(listing, grant)} unmatched />
+          ) : (
+            <ListingNotes listing={listing} />
+          ),
         }))}
         summary={
           detail.miscellaneous
@@ -229,6 +230,26 @@ function GrantPage({
       <NlmAttribution sources={index.funding.sources} />
     </main>
   );
+}
+
+/**
+ * Why an unmatched number is unmatched, as its listings say. Most matched no funder's record. One
+ * an override decided was matched, by OpenAlex, to a grant that does not fit the paper, and a
+ * recorded decision kept it apart (`MISC:1780131`, docs/09 B9): "no funder's record matched" is
+ * not what happened to it (R1b). The override's reason, by whom and when, is with its listing.
+ */
+export function unmatchedSentence(detail: Pick<GrantDetail, 'listings'>): string {
+  const decided = detail.listings.filter(({ listing }) => listing.override !== undefined).length;
+  const kept =
+    'so it has no agency, title or amount, and it is counted in no figure as a grant. It is kept as';
+  const one = detail.listings.length === 1;
+  if (decided === 0) {
+    return `No funder’s record matched this number, ${kept} the ${one ? 'publication' : 'publications'} below wrote it, in Miscellaneous.`;
+  }
+  if (decided === detail.listings.length) {
+    return `A recorded decision, not a rule, kept this number unmatched, and gives its reason with the ${one ? 'publication' : 'publications'} below; ${kept} the ${one ? 'publication' : 'publications'} wrote it, in Miscellaneous.`;
+  }
+  return `No funder’s record matched this number, and where a publication below says so, a recorded decision kept it unmatched; ${kept} the publications wrote it, in Miscellaneous.`;
 }
 
 /** The facts list (§12.7): amount, its source and caveats, people, organisation, years, scope. */

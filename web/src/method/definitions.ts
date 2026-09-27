@@ -321,7 +321,7 @@ export function fundingDefinitions(doc: ExportDocument): MetricDefinition[] {
         `${formatCount(unmatched.grants)}, on ${pluralize(unmatched.publications, 'publication')}`,
       ),
       definition:
-        'Numbers the publications give as funding that no funder’s record matched. They are kept apart, under Miscellaneous, with no agency, kind or amount, and are not counted as grants.',
+        'Numbers the publications give as funding that no funder’s record matched, or that a recorded decision kept unmatched because the record matched does not fit the paper. They are kept apart, under Miscellaneous, with no agency, kind or amount, and are not counted as grants.',
     },
     {
       id: 'funding-first-year',

@@ -143,6 +143,42 @@ describe('the tooltip gives exact values (docs/06 §7)', () => {
   });
 });
 
+/*
+ * R1b: the real export's agencies are known by acronyms a reader cannot expand — VR, SSF, ANID —
+ * so a row may carry a full name, which the axis leaves out and everything else gives.
+ */
+describe('a short label with a full name', () => {
+  const agencies: BarRow[] = [
+    { key: 'VR', label: 'VR', name: 'Vetenskapsrådet', value: 7 },
+    { key: 'GATES', label: 'Gates Foundation', name: 'Gates Foundation', value: 3 },
+  ];
+
+  it('gives both in the accessible name and the tooltip, and the short one on the axis', async () => {
+    const { container } = draw({ rows: agencies, onSelect: vi.fn() });
+    const bar = screen.getByRole('button', { name: /^VR \(Vetenskapsrådet\): 7 publications/ });
+    // A name the same as its label is not said twice.
+    expect(screen.getByRole('button', { name: /^Gates Foundation: 3 publications/ })).toBeVisible();
+    const axis = container.querySelector('.visx-axis-left')?.textContent ?? '';
+    expect(axis).toContain('VR');
+    expect(axis).not.toContain('Vetenskapsrådet');
+    await userEvent.hover(bar);
+    expect(screen.getByTestId('chart-tooltip')).toHaveTextContent('VR (Vetenskapsrådet)');
+  });
+
+  it('gives both in the table alternative', () => {
+    render(
+      <HorizontalBarTable
+        rows={agencies}
+        caption="Agencies"
+        categoryHeader="Agency"
+        valueHeader="Grants"
+      />,
+    );
+    expect(screen.getByRole('rowheader', { name: 'VR (Vetenskapsrådet)' })).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: 'Gates Foundation' })).toBeInTheDocument();
+  });
+});
+
 describe('long labels', () => {
   it('truncates only the axis, never the accessible name or the table', () => {
     const long = 'Journal of the American Society for Mass Spectrometry and Related Topics';

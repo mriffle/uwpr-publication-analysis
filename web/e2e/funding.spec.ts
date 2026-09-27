@@ -726,6 +726,88 @@ test.describe('a build with the Funding impact view', () => {
       });
     });
   }
+
+  /*
+   * R1b: on the real export the grants table drew 755 rows, a desktop page pushed its totals off
+   * the right-hand edge, and on a phone the chart tables and a publication's topics scrolled the
+   * whole page sideways. Each holds for any export: the page never scrolls sideways at 390 pixels,
+   * whatever table is open, and a caption stays within the width that shows.
+   */
+  test.describe('at phone width', () => {
+    test.use({ viewport: { width: 390, height: 844 } });
+
+    async function expectNoSidewaysScroll(page: Page, where: string) {
+      // Every chart's table alternative open, and the stacked view of value by agency.
+      const byAgency = page.getByRole('button', { name: 'By agency', exact: true });
+      if ((await byAgency.count()) > 0) await byAgency.first().click();
+      const toTable = page.getByRole('button', { name: 'View as table' });
+      while ((await toTable.count()) > 0) await toTable.first().click();
+      const widths = await page.evaluate(() => ({
+        page: document.documentElement.scrollWidth,
+        view: document.documentElement.clientWidth,
+        captions: [...document.querySelectorAll('caption')].map((caption) =>
+          Math.round(caption.getBoundingClientRect().right),
+        ),
+      }));
+      expect(widths.page, `${where} scrolls sideways`).toBeLessThanOrEqual(widths.view);
+      for (const right of widths.captions) {
+        expect(right, `a caption on ${where} runs off the screen`).toBeLessThanOrEqual(widths.view);
+      }
+    }
+
+    test('no funding page scrolls sideways, whatever table is open', async ({ page }) => {
+      const doc = await readExport(page);
+      test.skip(!hasFunding(doc), 'The served export carries no funding data.');
+      const agency = agencyWithChildren(doc);
+      const grant = grantWithYears(doc);
+      const misc = doc.funding?.agencies.find((entry) => entry.group === 'miscellaneous');
+      const most = [...doc.works].sort(
+        (a, b) => (b.grants?.length ?? 0) - (a.grants?.length ?? 0),
+      )[0]!;
+      const paths = [
+        '/funding',
+        `/funding/agency/${encodeURIComponent(agency!.code)}`,
+        `/funding/grant/${encodeURIComponent(grant!.key)}`,
+        ...(misc === undefined ? [] : [`/funding/agency/${encodeURIComponent(misc.code)}`]),
+        `/publication/${most.id}`,
+        '/method#funding',
+      ];
+      for (const path of paths) {
+        await page.goto(path);
+        await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+        await expectNoSidewaysScroll(page, path);
+      }
+    });
+  });
+
+  test('the grants table draws the first 50, and its CSV holds every grant', async ({ page }) => {
+    const doc = await readExport(page);
+    test.skip(!hasFunding(doc), 'The served export carries no funding data.');
+    const all = doc.funding?.grants.length ?? 0;
+    await page.goto('/funding');
+    const table = page.getByRole('table', { name: /Every grant listed/ });
+    await expect(table.getByRole('rowheader')).toHaveCount(Math.min(all, 50));
+    // On a desktop the totals are on the page, not beyond the table's right-hand edge.
+    const width = await table.evaluate((element) => ({
+      table: element.getBoundingClientRect().width,
+      box: (element.parentElement as HTMLElement).clientWidth,
+    }));
+    expect(width.table).toBeLessThanOrEqual(width.box);
+
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      page
+        .getByRole('button', { name: /^Download (this grant|these [\d,]+ grants) as CSV$/ })
+        .click(),
+    ]);
+    const [, ...rows] = parseCsv(readFileSync(await download.path(), 'utf8').slice(1));
+    expect(rows).toHaveLength(all);
+
+    if (all > 50) {
+      await page.getByRole('button', { name: /^Show all [\d,]+ grants$/ }).click();
+      await expect(table.getByRole('rowheader')).toHaveCount(all);
+    }
+  });
 });
 
 test.describe('a build without the Funding impact view', () => {

@@ -29,6 +29,12 @@ export interface BarRow {
   /** The value a click puts into the filter. */
   key: string;
   label: string;
+  /**
+   * The full name, where `label` is a short form a reader may not know — an agency's acronym,
+   * "VR" for Vetenskapsrådet. The axis keeps the label; the accessible name, the tooltip and the
+   * table give both (`fullBarLabel`).
+   */
+  name?: string;
   value: number;
   /**
    * A short word after the label carrying a fact that colour must not carry alone (docs/06 §8):
@@ -101,6 +107,10 @@ export const describeBarValue =
   (value: number): string =>
     unit === undefined ? formatValue(value) : pluralize(value, unit.one, unit.many);
 
+/** "NIH (National Institutes of Health)" where the row has a full name, else its label. */
+export const fullBarLabel = (row: Pick<BarRow, 'label' | 'name'>): string =>
+  row.name === undefined || row.name === row.label ? row.label : `${row.label} (${row.name})`;
+
 export function barRowLabel(
   row: BarRow,
   unit: BarUnit | undefined,
@@ -115,7 +125,7 @@ export function barRowLabel(
     : row.selected
       ? ` Selected. Activate to remove this from the filter.`
       : ` Activate to ${selectVerb}.`;
-  return `${row.label}${tag}: ${describeValue(row.value)}${detail === '' ? '' : `, ${detail}`}.${action}`;
+  return `${fullBarLabel(row)}${tag}: ${describeValue(row.value)}${detail === '' ? '' : `, ${detail}`}.${action}`;
 }
 
 export function HorizontalBarChart({
@@ -236,7 +246,11 @@ export function HorizontalBarChart({
         <ChartTooltip
           x={margin.left + Math.max(0, xScale(hovered.value)) / 2}
           y={margin.top + (yScale(hovered.key) ?? 0)}
-          title={hovered.tag === undefined ? hovered.label : `${hovered.label} (${hovered.tag})`}
+          title={
+            hovered.tag === undefined
+              ? fullBarLabel(hovered)
+              : `${fullBarLabel(hovered)} (${hovered.tag})`
+          }
           rows={[
             { label: valueAxisLabel, value: formatValue(hovered.value) },
             ...(hovered.detail ?? []),
@@ -276,7 +290,7 @@ export function HorizontalBarTable({
       rows={rows}
       rowKey={(row) => row.key}
       columns={[
-        { key: 'label', header: categoryHeader, value: (row) => row.label },
+        { key: 'label', header: categoryHeader, value: (row) => fullBarLabel(row) },
         ...(hasTag ? [{ key: 'tag', header: 'Note', value: (row: BarRow) => row.tag ?? '' }] : []),
         {
           key: 'value',

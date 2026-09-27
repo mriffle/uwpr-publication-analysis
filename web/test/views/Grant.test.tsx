@@ -13,8 +13,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import type { GrantDetail } from '../../src/aggregate/funding';
 import type { ExportDocument, Work } from '../../src/contract/types';
-import { Grant } from '../../src/views/Grant';
+import { Grant, unmatchedSentence } from '../../src/views/Grant';
 import { expectNoAxeViolations } from '../support/axe';
 import { isSampleExport, sampleExport } from '../support/fixture';
 import { fundingBlock, fundingDocument, grant, listing, reporterSource } from '../support/funding';
@@ -58,8 +59,9 @@ function words(container: HTMLElement): string {
   return copy.textContent ?? '';
 }
 
+/** A grant's publications list it; an unmatched number's give it, since it is no grant. */
 const publicationsList = () =>
-  screen.getByRole('list', { name: 'Publications listing this grant' });
+  screen.getByRole('list', { name: /^Publications (listing this grant|giving this number)$/ });
 
 beforeEach(() => {
   vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(800);
@@ -245,6 +247,55 @@ describe('an unmatched number an override kept', () => {
     expect(item).not.toHaveTextContent('Matched by a recorded decision');
     expect(item).toHaveTextContent('OpenAlex matches this string to an unrelated grant.');
     expect(item).toHaveTextContent('Decided by mriffle on 27 September 2026');
+  });
+
+  // R1b: the real export's MISC:1780131 said "No funder's record matched this number", which is
+  // not why it is unmatched: OpenAlex matched it, and a decision kept it apart.
+  it('says a decision kept the number unmatched, not that no record matched it', () => {
+    show('MISC:R01GM999999', { doc });
+    expect(
+      screen.getByText(
+        'A recorded decision, not a rule, kept this number unmatched, and gives its reason with the publication below; so it has no agency, title or amount, and it is counted in no figure as a grant. It is kept as the publication wrote it, in Miscellaneous.',
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/No funder’s record matched/)).toBeNull();
+    expect(publicationsList()).toHaveAccessibleName('Publications giving this number');
+    // The number is its heading, written as the paper wrote it: "also written as" it is no news.
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('R01 GM999999');
+    expect(within(publicationsList()).getByRole('listitem')).not.toHaveTextContent(
+      'Also written in the paper',
+    );
+  });
+});
+
+describe('why an unmatched number is unmatched, in words', () => {
+  const listingWith = (override: boolean) => ({
+    listing: override
+      ? { grant: 'MISC:X', agencies: ['MISC'], override: { reason: 'r', by: 'b', date: 'd' } }
+      : { grant: 'MISC:X', agencies: ['MISC'] },
+  });
+  const sentence = (...overrides: boolean[]) =>
+    unmatchedSentence({
+      listings: overrides.map(listingWith) as unknown as GrantDetail['listings'],
+    });
+
+  it('says no record matched when no listing was decided', () => {
+    expect(sentence(false)).toMatch(
+      /^No funder’s record matched this number, .* the publication below wrote it/,
+    );
+    expect(sentence(false, false)).toMatch(/the publications below wrote it, in Miscellaneous\.$/);
+  });
+
+  it('gives the decision when every listing was decided', () => {
+    expect(sentence(true, true)).toMatch(
+      /^A recorded decision, not a rule, kept this number unmatched, and gives its reason with the publications below;/,
+    );
+  });
+
+  it('says both when some listings were decided and some not', () => {
+    expect(sentence(true, false)).toMatch(
+      /^No funder’s record matched this number, and where a publication below says so, a recorded decision kept it unmatched;/,
+    );
   });
 });
 

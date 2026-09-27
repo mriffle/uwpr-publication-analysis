@@ -140,7 +140,7 @@ describe('an agency with institutes, one grant its own', () => {
     const table = screen.getByRole('table', { name: /by the agency within it/ });
     const rows = within(table).getAllByRole('row').slice(1);
     expect(rows.map((row) => within(row).getByRole('rowheader').textContent)).toEqual([
-      'NIGMS',
+      'NIGMS National Institute of General Medical Sciences',
       'Assigned to no institute',
     ]);
     expect(within(rows[0]!).getByRole('link', { name: 'NIGMS' })).toHaveAttribute(
@@ -309,11 +309,15 @@ describe.runIf(isSampleExport)('NIH in the sample, its grants all under institut
     const detail = agencyDetail('NIH', sample.works, fundingOf(sample), sample.period)!;
     show('NIH');
     const table = screen.getByRole('table', { name: /by the agency within it/ });
+    // Each institute by its short name, its full name beneath it (R1b).
+    const index = fundingOf(sample)!;
     expect(
       within(table)
         .getAllByRole('rowheader')
         .map((cell) => cell.textContent),
-    ).toEqual(detail.children.map((child) => child.label));
+    ).toEqual(
+      detail.children.map((child) => `${child.label} ${index.agencies.get(child.code)!.name}`),
+    );
     expect(detail.unassigned).toBeNull();
     expect(screen.queryByText('Assigned to no institute')).not.toBeInTheDocument();
   });

@@ -245,37 +245,40 @@ export function PublicationDetail({
       {topics.length === 0 ? (
         <p>OpenAlex reports no topics for this publication.</p>
       ) : (
-        <table className="topic-table">
-          <caption>
-            The topics OpenAlex assigns, at all four of its levels, primary first. This is
-            OpenAlex’s vocabulary, not one of our own.
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Topic</th>
-              <th scope="col">Subfield</th>
-              <th scope="col">Field</th>
-              <th scope="col">Domain</th>
-              <th scope="col" className="numeric">
-                Score
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {topics.map((topic) => (
-              <tr key={`${topic.topic}-${String(topic.score)}`}>
-                <th scope="row">
-                  {topic.topic}
-                  {topic.primary ? <span className="badge"> primary</span> : null}
+        // Five columns of long names are wider than a phone: they scroll here, not the page.
+        <div className="table-scroll">
+          <table className="topic-table">
+            <caption>
+              The topics OpenAlex assigns, at all four of its levels, primary first. This is
+              OpenAlex’s vocabulary, not one of our own.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Topic</th>
+                <th scope="col">Subfield</th>
+                <th scope="col">Field</th>
+                <th scope="col">Domain</th>
+                <th scope="col" className="numeric">
+                  Score
                 </th>
-                <td>{topic.subfield}</td>
-                <td>{topic.field}</td>
-                <td>{topic.domain}</td>
-                <td className="numeric">{formatDecimal(topic.score)}</td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {topics.map((topic) => (
+                <tr key={`${topic.topic}-${String(topic.score)}`}>
+                  <th scope="row">
+                    {topic.topic}
+                    {topic.primary ? <span className="badge"> primary</span> : null}
+                  </th>
+                  <td>{topic.subfield}</td>
+                  <td>{topic.field}</td>
+                  <td>{topic.domain}</td>
+                  <td className="numeric">{formatDecimal(topic.score)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {/* 5. Citations (docs/05 §6.5). */}

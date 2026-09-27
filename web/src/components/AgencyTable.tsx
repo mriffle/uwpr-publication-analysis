@@ -4,7 +4,8 @@
  *
  * Each grant is counted under its own agency, the most specific one, with the parent beside it
  * (`rankAgencies` at `level: 'agency'`: NIGMS, parent NIH), so the table says which institute
- * awarded what while the ranked bar chart above it counts root agencies. **Miscellaneous is its
+ * awarded what while the ranked bar chart above it counts root agencies. An agency known by a
+ * short name has its full name beneath it (`AgencyFullName`). **Miscellaneous is its
  * own last row, outside the sort**: its unmatched numbers are not known to be any agency's
  * grants, and have no amount to rank (docs/09 §4).
  *
@@ -24,6 +25,7 @@ import {
 } from '../aggregate/fundingTables';
 import { agencyLabel } from '../aggregate/funding';
 import type { FundingIndex } from '../contract/funding';
+import type { Agency as AgencyRecord } from '../contract/types';
 import { countryName } from '../format/country';
 import { formatCount, formatUsd } from '../format/number';
 import { AgencyLink, type FundingLinks } from './FundingLinks';
@@ -49,6 +51,28 @@ const COLUMNS: { key: AgencySortKey; label: string; numeric?: boolean }[] = [
 
 const None = ({ children }: { children: string }) => <span className="cell-none">{children}</span>;
 
+/**
+ * An agency's full name beneath the short name a table row is labelled by — "NCRR", then
+ * "National Center for Research Resources" — or nothing when it has no other name. The real
+ * export has 98 agencies, most known by an acronym a reader cannot expand (VR, SSF, OD, DOI),
+ * and a table of them said nothing more (docs/09 R1b).
+ */
+export function AgencyFullName({
+  agency,
+}: {
+  agency: Pick<AgencyRecord, 'name' | 'short_name'> | undefined;
+}) {
+  if (agency === undefined || agency.short_name === null || agency.short_name === agency.name) {
+    return null;
+  }
+  return (
+    <>
+      {' '}
+      <span className="agency-name">{agency.name}</span>
+    </>
+  );
+}
+
 function Row({
   row,
   index,
@@ -73,6 +97,7 @@ function Row({
             <span className="badge">unmatched numbers</span>
           </>
         ) : null}
+        <AgencyFullName agency={index.agencies.get(row.code)} />
       </th>
       <td>
         {row.parent === null ? (
