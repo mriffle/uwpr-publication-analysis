@@ -6,7 +6,7 @@
 # which is never a grant (F1), is rules.yaml's r2.code and is not repeated here. Patterns are Python
 # regexes, case-sensitive unless they start with (?i).
 schema: 1
-funding_version: "2026-09-26.2"
+funding_version: "2026-09-26.3"
 enabled: false                         # true only from the seed (B9); false means the stage is skipped
 
 refresh:
@@ -100,9 +100,13 @@ agencies:
     pubmed_agency_patterns:
       - '^National Science Foundation\b'
       - '^(?:Division of Integrative Organismal Systems|Directorate for Biological Sciences|Center for Dark Energy Biosphere Investigations)$'
-    # "NSF" without an ID names OCE 1633939 on W-000184. Whole names only: not the Swiss National
-    # Science Foundation, nor the National (Natural) Science Foundation of China.
-    funder_names: ['(?:u\.?s\.? )?national science foundation(?: \(nsf\))?', 'nsf']
+    # "NSF" without an ID names OCE 1633939 on W-000184, and "National Science Foundation Graduate
+    # Research Fellowship Program" (Crossref gives its ROR, not a registry DOI) DGE-2140004 on
+    # W-000014. Whole names only: not the Swiss National Science Foundation, nor the National
+    # (Natural) Science Foundation of China, nor a fellowship that does not say it is NSF's.
+    funder_names: ['(?:u\.?s\.? )?national science foundation(?: \(nsf\))?', 'nsf',
+                   '(?:(?:u\.?s\.? )?national science foundation(?: \(nsf\))?|nsf) graduate research fellowships?(?: program(?:me)?)?(?: \((?:nsf[ -])?grfp\))?',
+                   'nsf[ -]grfp']
     number_prefixes: [NSF-CDEBI, NSF]
     number_pattern: '[0-9]{7}'             # §6.8: seven digits once the division prefix is removed
     year_prefix: false
@@ -368,9 +372,16 @@ agencies:
      crossref_funder_dois: [10.13039/501100001866],
      pubmed_agency_patterns: ['^Fonds National de la Recherche Luxembourg$'], number_prefixes: [],
      number_pattern: null, year_prefix: false}
+  # By name without an ID, in English or Dutch: "Research Foundation – Flanders" (Crossref gives its
+  # ROR, not a registry DOI) names FWO G087625N on W-000014. Not the F.R.S.-FNRS, its French-speaking
+  # counterpart, nor Flanders' other agencies (VIB, VLAIO), nor Austria's FWF.
   - {code: FWO, name: Fonds Wetenschappelijk Onderzoek, short_name: FWO, group: non_us, country: "BE",
      amount_source: openalex, openalex_funders: [F4320321730], crossref_funder_dois: [10.13039/501100003130],
-     pubmed_agency_patterns: [], number_prefixes: [FWO], number_pattern: null, year_prefix: false}
+     pubmed_agency_patterns: [],
+     funder_names: ['(?:the )?research foundation(?: ?[-–—] ?| )flanders(?: \(fwo(?:[ -]vlaanderen)?\))?',
+                    'fonds (?:voor )?wetenschappelijk onderzoek(?:(?: ?[-–—] ?| )vlaanderen)?(?: \(fwo\))?',
+                    'flemish research foundation(?: \(fwo\))?', 'fwo(?:[ -]vlaanderen)?'],
+     number_prefixes: [FWO], number_pattern: null, year_prefix: false}
   - {code: UGENT, name: Bijzonder Onderzoeksfonds UGent, group: non_us, country: "BE", amount_source: openalex,
      openalex_funders: [F4320335227], crossref_funder_dois: [10.13039/501100007229], pubmed_agency_patterns: [],
      number_prefixes: [], number_pattern: null, year_prefix: false}

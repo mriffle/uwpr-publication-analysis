@@ -5,7 +5,6 @@
 {"code": "EU", "country": null, "group": "non_us", "name": "European Union", "origin": "config", "parent": null, "schema": 1, "short_name": "EU"}
 {"code": "FWO", "country": "BE", "group": "non_us", "name": "Fonds Wetenschappelijk Onderzoek", "origin": "config", "parent": null, "schema": 1, "short_name": "FWO"}
 {"code": "KAW", "country": "SE", "group": "non_us", "name": "Knut och Alice Wallenbergs Stiftelse", "origin": "config", "parent": null, "schema": 1, "short_name": "KAW"}
-{"code": "MISC", "country": null, "group": "miscellaneous", "name": "Miscellaneous", "origin": "config", "parent": null, "schema": 1, "short_name": null}
 {"code": "NASA", "country": "US", "group": "us_federal", "name": "National Aeronautics and Space Administration", "origin": "config", "parent": null, "schema": 1, "short_name": "NASA"}
 {"code": "NCRR", "country": "US", "group": "us_federal", "name": "National Center for Research Resources", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NCRR"}
 {"code": "NHGRI", "country": "US", "group": "us_federal", "name": "National Human Genome Research Institute", "origin": "reporter", "parent": "NIH", "schema": 1, "short_name": "NHGRI"}

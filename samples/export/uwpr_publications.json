@@ -194,7 +194,7 @@
         "short_name": "VR"
       }
     ],
-    "as_of": "2026-09-26",
+    "as_of": "2026-09-27",
     "exchange_rates": [
       {
         "currencies": [
@@ -264,7 +264,7 @@
         "agency": "AHA",
         "amount_original": 90000,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "openalex_amount",
           "name": "OpenAlex",
           "url": null
@@ -493,7 +493,7 @@
         "agency": "EU",
         "amount_original": 9986185.75,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "openalex_amount",
           "name": "OpenAlex",
           "url": null
@@ -648,58 +648,6 @@
         "category": "other",
         "currency": null,
         "end_year": null,
-        "first_year": 2026,
-        "fiscal_years": null,
-        "flags": [
-          "amount_not_found"
-        ],
-        "key": "MISC:DGE2140004",
-        "number": "DGE-2140004",
-        "organization": null,
-        "pis": [],
-        "rate_year": null,
-        "scope": "project",
-        "scope_reason": null,
-        "start_year": null,
-        "status": "unresolved",
-        "title": null,
-        "url": null,
-        "url_name": null
-      },
-      {
-        "agency": "MISC",
-        "amount_original": null,
-        "amount_source": null,
-        "amount_usd": null,
-        "category": "other",
-        "currency": null,
-        "end_year": null,
-        "first_year": 2026,
-        "fiscal_years": null,
-        "flags": [
-          "amount_not_found"
-        ],
-        "key": "MISC:FWOG087625N",
-        "number": "FWO G087625N",
-        "organization": null,
-        "pis": [],
-        "rate_year": null,
-        "scope": "project",
-        "scope_reason": null,
-        "start_year": null,
-        "status": "unresolved",
-        "title": null,
-        "url": null,
-        "url_name": null
-      },
-      {
-        "agency": "MISC",
-        "amount_original": null,
-        "amount_source": null,
-        "amount_usd": null,
-        "category": "other",
-        "currency": null,
-        "end_year": null,
         "first_year": 2019,
         "fiscal_years": null,
         "flags": [
@@ -787,7 +735,7 @@
         "agency": "NIDDK",
         "amount_original": 1599819,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/9036727"
@@ -827,7 +775,7 @@
         "agency": "NHLBI",
         "amount_original": 23474601,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/9691951"
@@ -872,7 +820,7 @@
         "agency": "NHLBI",
         "amount_original": 22620278,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11389434"
@@ -918,7 +866,7 @@
         "agency": "NHLBI",
         "amount_original": 17091864,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11369809"
@@ -1000,7 +948,7 @@
         "agency": "NIGMS",
         "amount_original": 52929230,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11092649"
@@ -1052,7 +1000,7 @@
         "agency": "NIDDK",
         "amount_original": 52843525,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11374793"
@@ -1106,8 +1054,7 @@
           "2026": 1421361
         },
         "flags": [
-          "active",
-          "amounts_disagree"
+          "active"
         ],
         "key": "NIH:P30DK017047",
         "number": "P30DK017047",
@@ -1131,7 +1078,7 @@
         "agency": "NIGMS",
         "amount_original": 11133956,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/9412834"
@@ -1197,7 +1144,7 @@
         "agency": "NIGMS",
         "amount_original": 4524340,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/9989505"
@@ -1245,7 +1192,7 @@
         "agency": "NIGMS",
         "amount_original": 6747731,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11003703"
@@ -1294,7 +1241,7 @@
         "agency": "NIGMS",
         "amount_original": 1766507,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/10337224"
@@ -1334,7 +1281,7 @@
         "agency": "NIGMS",
         "amount_original": 776295,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/9748343"
@@ -1372,7 +1319,7 @@
         "agency": "NIGMS",
         "amount_original": 1770644,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/10878778"
@@ -1454,7 +1401,7 @@
         "agency": "NHLBI",
         "amount_original": 2351718,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/7878717"
@@ -1498,7 +1445,7 @@
         "agency": "NHLBI",
         "amount_original": 2232081,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/8300144"
@@ -1538,7 +1485,7 @@
         "agency": "NHLBI",
         "amount_original": 2793099,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/10318179"
@@ -1577,7 +1524,7 @@
         "agency": "NHLBI",
         "amount_original": 2762050,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/10523119"
@@ -1620,7 +1567,7 @@
         "agency": "NHLBI",
         "amount_original": 3318186,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11013961"
@@ -1661,7 +1608,7 @@
         "agency": "NINDS",
         "amount_original": 2206078,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11352560"
@@ -1701,7 +1648,7 @@
         "agency": "NIGMS",
         "amount_original": 6663390,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11420890"
@@ -1744,7 +1691,7 @@
         "agency": "NIGMS",
         "amount_original": 3497735,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/10551264"
@@ -1784,7 +1731,7 @@
         "agency": "NIGMS",
         "amount_original": 3010633,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11330368"
@@ -1829,7 +1776,7 @@
         "agency": "NIGMS",
         "amount_original": 4735263,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11321925"
@@ -1873,7 +1820,7 @@
         "agency": "NIGMS",
         "amount_original": 3822420,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11355452"
@@ -1917,7 +1864,7 @@
         "agency": "NIGMS",
         "amount_original": 1555000,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11380304"
@@ -1958,7 +1905,7 @@
         "agency": "NHLBI",
         "amount_original": 6150289,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11061021"
@@ -2001,7 +1948,7 @@
         "agency": "NCRR",
         "amount_original": 782028,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/6500621"
@@ -2037,7 +1984,7 @@
         "agency": "NIGMS",
         "amount_original": 15497946,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/10615629"
@@ -2113,7 +2060,7 @@
         "agency": "NIGMS",
         "amount_original": 10732300,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/10650707"
@@ -2188,7 +2135,7 @@
         "agency": "NHGRI",
         "amount_original": 25921234,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "reporter_fiscal_years",
           "name": "NIH RePORTER",
           "url": "https://reporter.nih.gov/project-details/11393065"
@@ -2294,7 +2241,7 @@
         "agency": "NSF",
         "amount_original": 47474312,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "nsf_obligated",
           "name": "NSF Award API",
           "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=0939564"
@@ -2328,7 +2275,7 @@
         "agency": "NSF",
         "amount_original": 1999857,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "nsf_obligated",
           "name": "NSF Award API",
           "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1542240"
@@ -2362,7 +2309,7 @@
         "agency": "NSF",
         "amount_original": 24605190,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "nsf_obligated",
           "name": "NSF Award API",
           "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1762114"
@@ -2396,7 +2343,7 @@
         "agency": "NSF",
         "amount_original": 900000,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "nsf_obligated",
           "name": "NSF Award API",
           "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=1908587"
@@ -2430,7 +2377,7 @@
         "agency": "NSF",
         "amount_original": 45382136,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "nsf_obligated",
           "name": "NSF Award API",
           "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2140004"
@@ -2466,7 +2413,7 @@
         "agency": "NSF",
         "amount_original": 1199760,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "nsf_obligated",
           "name": "NSF Award API",
           "url": "https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2245300"
@@ -2503,7 +2450,7 @@
         "agency": "SSF",
         "amount_original": 33969611,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "openalex_amount",
           "name": "OpenAlex",
           "url": null
@@ -2534,7 +2481,7 @@
         "agency": "NASA",
         "amount_original": 7414441.28,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "usaspending_obligation",
           "name": "USAspending",
           "url": "https://www.usaspending.gov/award/ASST_NON_NNA15BB03A_080"
@@ -2563,7 +2510,7 @@
         "agency": "NASA",
         "amount_original": 796089.19,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "usaspending_obligation",
           "name": "USAspending",
           "url": "https://www.usaspending.gov/award/ASST_NON_NNX14AJ87G_080"
@@ -2626,7 +2573,7 @@
         "agency": "VR",
         "amount_original": 25200000,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "openalex_amount",
           "name": "OpenAlex",
           "url": null
@@ -2662,7 +2609,7 @@
         "agency": "VR",
         "amount_original": 40000000,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "openalex_amount",
           "name": "OpenAlex",
           "url": null
@@ -2693,7 +2640,7 @@
         "agency": "VR",
         "amount_original": 3200000,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "openalex_amount",
           "name": "OpenAlex",
           "url": null
@@ -2724,7 +2671,7 @@
         "agency": "VR",
         "amount_original": 12000000,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "openalex_amount",
           "name": "OpenAlex",
           "url": null
@@ -2760,7 +2707,7 @@
         "agency": "VR",
         "amount_original": 4800000,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "openalex_amount",
           "name": "OpenAlex",
           "url": null
@@ -2796,7 +2743,7 @@
         "agency": "VR",
         "amount_original": 30000000,
         "amount_source": {
-          "as_of": "2026-09-26",
+          "as_of": "2026-09-27",
           "basis": "openalex_amount",
           "name": "OpenAlex",
           "url": null
@@ -2839,17 +2786,17 @@
       },
       "strings": {
         "facility_contract": 1,
-        "grant": 87,
+        "grant": 89,
         "not_a_grant": 4,
         "resource_code": 4,
-        "unresolved": 3
+        "unresolved": 1
       },
       "works_without_funding_metadata": 0
     },
     "sources": [
       {
         "amounts_from": 1985,
-        "as_of": "2026-09-26",
+        "as_of": "2026-09-27",
         "id": "reporter",
         "name": "NIH RePORTER",
         "partial_year": 2026,
@@ -2857,7 +2804,7 @@
       },
       {
         "amounts_from": null,
-        "as_of": "2026-09-26",
+        "as_of": "2026-09-27",
         "id": "nsf",
         "name": "NSF Award API",
         "partial_year": null,
@@ -2865,7 +2812,7 @@
       },
       {
         "amounts_from": 2008,
-        "as_of": "2026-09-26",
+        "as_of": "2026-09-27",
         "id": "usaspending",
         "name": "USAspending",
         "partial_year": null,
@@ -2873,7 +2820,7 @@
       },
       {
         "amounts_from": null,
-        "as_of": "2026-09-26",
+        "as_of": "2026-09-27",
         "id": "openalex",
         "name": "OpenAlex",
         "partial_year": null,
@@ -2881,7 +2828,7 @@
       },
       {
         "amounts_from": null,
-        "as_of": "2026-09-26",
+        "as_of": "2026-09-27",
         "id": "pubmed",
         "name": "PubMed",
         "partial_year": null,
@@ -2889,7 +2836,7 @@
       },
       {
         "amounts_from": null,
-        "as_of": "2026-09-26",
+        "as_of": "2026-09-27",
         "id": "crossref",
         "name": "Crossref",
         "partial_year": null,
@@ -2897,7 +2844,7 @@
       },
       {
         "amounts_from": null,
-        "as_of": "2026-09-26",
+        "as_of": "2026-09-27",
         "id": "pmc",
         "name": "PubMed Central",
         "partial_year": null,
@@ -2966,7 +2913,7 @@
         }
       },
       "first_year": 2008,
-      "grants": 66,
+      "grants": 64,
       "grants_institution_wide": 6,
       "grants_resolved": 63,
       "grants_unconverted": 1,
@@ -2978,7 +2925,7 @@
       "works_with_grants": 17,
       "works_with_listings": 17
     },
-    "version": "2026-09-26.2"
+    "version": "2026-09-26.3"
   },
   "generated_at": "2026-09-19T00:00:00Z",
   "method": {
@@ -3971,16 +3918,9 @@
       "grants": [
         {
           "agencies": [
-            "MISC"
+            "FWO"
           ],
-          "grant": "MISC:DGE2140004",
-          "how": "listed"
-        },
-        {
-          "agencies": [
-            "MISC"
-          ],
-          "grant": "MISC:FWOG087625N",
+          "grant": "FWO:G087625N",
           "how": "listed"
         },
         {

@@ -356,6 +356,7 @@ def test_funder_names_are_written_casefolded() -> None:
 
 NO_BREAK_SPACE, FULLWIDTH_NSF = chr(0xA0), "".join(chr(0xFEE0 + ord(letter)) for letter in "NSF")
 APOSTROPHE, OKINA = chr(0x2019), chr(0x02BB)  # as the sources write them
+EM_DASH = chr(0x2014)
 
 
 def test_a_funders_name_is_compared_normalised() -> None:
@@ -378,6 +379,13 @@ FUNDER_NAMES = {
         "U.S. National Science Foundation",
         "US National Science Foundation",
         "National Science Foundation (NSF)",
+        "National Science Foundation Graduate Research Fellowship Program",  # W-000014, B3b
+        "NSF Graduate Research Fellowship Program",
+        "National Science Foundation Graduate Research Fellowship",
+        "U.S. National Science Foundation Graduate Research Fellowships",
+        "NSF Graduate Research Fellowship Program (GRFP)",
+        "NSF GRFP",
+        "NSF-GRFP",
     ],
     "NOAA": [
         "National Oceanic and Atmospheric Administration",
@@ -412,6 +420,23 @@ FUNDER_NAMES = {
         "Hong Kong University Grants Committee Area of Excellence Scheme",
         "University Grants Committee of Hong Kong",
     ],
+    "FWO": [
+        f"Research Foundation {EN_DASH} Flanders",  # an en dash, as Crossref writes it on W-000014 (B3b)
+        "Research Foundation - Flanders",
+        "Research Foundation Flanders",
+        "Research Foundation-Flanders",
+        "Research Foundation - Flanders (FWO)",
+        "Research Foundation Flanders (FWO-Vlaanderen)",
+        f"The Research Foundation {EM_DASH} Flanders",
+        "Fonds Wetenschappelijk Onderzoek",
+        f"Fonds Wetenschappelijk Onderzoek {EN_DASH} Vlaanderen",
+        "Fonds voor Wetenschappelijk Onderzoek - Vlaanderen",
+        "Fonds Wetenschappelijk Onderzoek (FWO)",
+        "Flemish Research Foundation",
+        "FWO",
+        "FWO Vlaanderen",
+        "FWO-Vlaanderen",
+    ],
 }
 LOOK_ALIKES = [
     "Swiss National Science Foundation",
@@ -442,6 +467,21 @@ LOOK_ALIKES = [
     "University Grants Commission",
     "University Grants Committee",
     "Innovation and Technology Commission, Hong Kong Special Administrative Region Government",
+    "Graduate Research Fellowship Program",  # it does not say whose
+    "National Defense Science and Engineering Graduate Fellowship",
+    "Swiss National Science Foundation Graduate Research Fellowship",
+    "NSF Graduate Research Fellowship Program under Grant No. DGE-2140004",
+    "NSF Graduate Research Fellowship Program and the Hertz Foundation",
+    "Research Foundation",
+    "National Research Foundation",
+    "Flanders Institute for Biotechnology",
+    "Flanders Innovation & Entrepreneurship",
+    "Fonds de la Recherche Scientifique - FNRS",
+    "F.R.S.-FNRS",
+    "Austrian Science Fund FWF",
+    "FWF",
+    f"Research Foundation {EN_DASH} Flanders and the Special Research Fund of Ghent University",
+    "Research Foundation Flanders Odysseus programme",
 ]
 
 

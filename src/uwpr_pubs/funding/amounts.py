@@ -14,8 +14,10 @@ so any row with a `subproject_id` is dropped here, whatever the query asked: P30
 rows come to $52,843,525 and all its rows to $86,010,763.
 
 **An agency's own source beats OpenAlex**; where both have an amount and they differ by more
-than 1%, the grant is flagged `amounts_disagree`. **Unknown is not zero:** a grant without an
-amount has `amount` null and a flag saying why.
+than 1%, the grant is flagged `amounts_disagree`, but only where the agency's figure is a
+lifetime total as OpenAlex's is: NSF's and USAspending's. RePORTER's is a sum of fiscal years and
+OpenAlex's NIH amount (`nih_exporter`) one year's award, so those two are never compared.
+**Unknown is not zero:** a grant without an amount has `amount` null and a flag saying why.
 
 Pure: facts, the configuration, the rates and the date in; `Valuation` out.
 """
@@ -46,6 +48,12 @@ from uwpr_pubs.store.models import (
 FIRST_REPORTER_YEAR = 1985  # RePORTER holds no amount before FY1985
 USASPENDING_FROM = dt.date(2007, 10, 1)  # the first day of FY2008, where USAspending starts
 DISAGREEMENT = Decimal("0.01")
+# The agency bases OpenAlex's amount is compared with: an award's lifetime total, as OpenAlex's
+# is. Not RePORTER's: its lifetime sum of parent rows, set beside OpenAlex's `nih_exporter` amount,
+# which is one fiscal year's award, flagged grants that agree (P30DK017047: $52,843,525, $89,000).
+COMPARED_WITH_OPENALEX: frozenset[AmountBasis] = frozenset(
+    {"nsf_obligated", "nsf_estimated", "usaspending_obligation"}
+)
 SOURCE: Mapping[AmountBasis, AmountSource] = {
     "reporter_fiscal_years": "NIH RePORTER",
     "reporter_contract": "NIH RePORTER",
@@ -313,7 +321,10 @@ def value_grant(  # noqa: PLR0913 - the grant's family and facts, and what they 
 
 
 def _disagree(agency: Amount, openalex: Amount) -> bool:
-    """More than 1% apart, in US dollars; an amount not in dollars cannot be compared."""
+    """More than 1% apart, in US dollars, where the agency's figure is a lifetime total as
+    OpenAlex's is (`COMPARED_WITH_OPENALEX`); an amount not in dollars cannot be compared."""
+    if agency["basis"] not in COMPARED_WITH_OPENALEX:
+        return False
     if agency["usd"] is None or openalex["usd"] is None or agency["usd"] == 0:
         return False
     return abs(Decimal(agency["usd"] - openalex["usd"])) > DISAGREEMENT * abs(Decimal(agency["usd"]))

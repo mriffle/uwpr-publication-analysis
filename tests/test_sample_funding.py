@@ -4,7 +4,8 @@
 stage over the sample's thirteen real papers. `uwpr_pubs.sample.REAL_FUNDING_CASES` holds most of
 §11.8's real cases against the export. Four are facts of the store that the export leaves out: a
 supplement's written number, the funder a source names, the resource code, and the provenance of
-an amount the rules refuse. They are held here, against the store.
+an amount the rules refuse. They are held here, against the store, with B3b's two fixes as the
+sample shows them: funders named by name alone, and an NIH amount OpenAlex is not compared with.
 """
 
 from pathlib import Path
@@ -16,6 +17,7 @@ from uwpr_pubs.store.read import read_store
 SAMPLE = Path(__file__).resolve().parents[1] / "samples" / "store"
 FUNDING = read_store(SAMPLE).funding
 RESOURCE_CODE = "UWPR95794"
+EN_DASH = chr(0x2013)  # as Crossref writes FWO's English name
 
 
 def strings(work: str) -> dict[str, Any]:
@@ -47,6 +49,35 @@ def test_an_nih_number_a_source_gives_to_another_funder_stays_nih() -> None:
     assert FUNDING.grants["NIH:P30DK017047"]["agency"] == "NIDDK"
     assert FUNDING.grants["AHA:15POST22700033"]["agency"] == "AHA"
     assert "AHA:15POST22700033" in FUNDING.citations["W-000007"]["grants"]
+
+
+def test_a_funder_named_without_an_id_is_read_by_its_whole_name() -> None:
+    """B3b: W-000014's Crossref names two funders by name and ROR alone, with no registry DOI.
+    NSF's GRFP and FWO's English name are whole-name patterns, so the strings are the grants
+    W-000006 lists under their IDs, and none is Miscellaneous."""
+    found = strings("W-000014")
+    grfp, fwo = found["DGE-2140004"], found["FWO G087625N"]
+    assert (grfp["funders"], grfp["sources"]) == (
+        ["National Science Foundation Graduate Research Fellowship Program"],
+        ["crossref"],
+    )
+    assert (fwo["funders"], fwo["sources"]) == ([f"Research Foundation {EN_DASH} Flanders"], ["crossref"])
+    assert (grfp["grants"], fwo["grants"]) == (["NSF:2140004"], ["FWO:G087625N"])
+    for key in ("NSF:2140004", "FWO:G087625N"):
+        assert key in FUNDING.citations["W-000006"]["grants"], key
+    assert not [key for key in FUNDING.grants if key.startswith("MISC:")]
+
+
+def test_only_a_lifetime_total_is_compared_with_openalex() -> None:
+    """B3b: OpenAlex's $89,000 for P30DK017047 is one fiscal year's award (`nih_exporter`), not a
+    lifetime total like RePORTER's, so it is no disagreement; NSF 2245300's stale $905,320 is."""
+    p30 = FUNDING.grants["NIH:P30DK017047"]
+    assert ("89000", "nih_exporter") in [(a["amount"], a["provenance"]) for a in p30["facts"]["openalex"]]
+    assert "amounts_disagree" not in p30["flags"]
+    nsf = FUNDING.grants["NSF:2245300"]
+    assert [a["amount"] for a in nsf["facts"]["openalex"]] == ["905320"]
+    assert nsf["amount"] is not None and nsf["amount"]["usd"] == 1_199_760
+    assert "amounts_disagree" in nsf["flags"]
 
 
 def test_the_resource_code_is_never_a_grant() -> None:

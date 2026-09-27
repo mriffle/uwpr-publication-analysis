@@ -45,16 +45,18 @@ export).
 | W-000020 | Peer-review report carrying the award code |
 | W-000021 | Dissertation carrying the award code |
 
-**Funding (`store/funding/`, built 2026-09-26):** a citations line for each of the 13 included
-works, 57 grants and $452.8M of known amounts: 29 NIH grants valued by RePORTER from parent rows,
-6 NSF by the NSF Award API, 2 NASA by USAspending, and 9 in SEK, EUR or USD by OpenAlex; 11 have no
-amount, among them two DFG grants whose GEPRIS amounts the rules refuse. Five are
-institution-wide: two GRFP institutional awards (2140004 and 1762114), C-DEBI, the EPIC-XS
-consortium, and a Swedish Research Council national-infrastructure grant. Two strings are Miscellaneous, both on W-000014 and both written only in
-Crossref, under funder names no rule reads. docs/09 §11.8 lists the cases the app is tested on:
-`uwpr_pubs.sample.FUNDING_CASES` holds them against the export, and `tests/test_sample_funding.py`
-holds the four the export does not carry against the store. `export_cases.json` adds the
-synthetic funding beside the synthetic works.
+**Funding (`store/funding/`, rebuilt 2026-09-27 UTC):** a citations line for each of the 13
+included works, 55 grants and $452.8M of known amounts: 29 NIH grants valued by RePORTER from
+parent rows, 6 NSF by the NSF Award API, 2 NASA by USAspending, and 9 in SEK, EUR or USD by
+OpenAlex; 9 have no amount, among them two DFG grants whose GEPRIS amounts the rules refuse. Five
+are institution-wide: two GRFP institutional awards (2140004 and 1762114), C-DEBI, the EPIC-XS
+consortium, and a Swedish Research Council national-infrastructure grant. None is Miscellaneous:
+W-000014's two Crossref-only strings, under funder names given without an ID, are NSF's 2140004
+and FWO's G087625N, which W-000006 also lists (docs/09, B3b). One grant is flagged
+`amounts_disagree`, NSF's 2245300, whose OpenAlex amount is stale. docs/09 §11.8 lists the
+cases the app is tested on: `uwpr_pubs.sample.FUNDING_CASES` holds them against the export, and
+`tests/test_sample_funding.py` holds the four the export does not carry against the store.
+`export_cases.json` adds the synthetic funding beside the synthetic works.
 
 ## Rebuild and validate
 
@@ -73,7 +75,7 @@ uv run uwpr-pubs validate samples/store
   the stage's own adapter, one request a second, so the build **runs only inside RePORTER's
   window** (weekends, or 21:00-05:00 New York time) and stops otherwise. It also stops if any
   source degrades, rather than build the sample from partial answers. On 2026-09-26 the stage
-  sent 27 requests (RePORTER 3, NSF 6, USAspending 3, OpenAlex 2, Crossref 1, PubMed 1, PMC 10),
+  sent 26 requests (RePORTER 3, NSF 6, USAspending 3, OpenAlex 2, Crossref 1, PubMed 1, PMC 10),
   took 15 s and cost $0.0002 in OpenAlex award pages.
 - Then rebuild the export: `uv run uwpr-pubs export --store samples/store --out samples/export
   --cases samples/export_cases.json`.

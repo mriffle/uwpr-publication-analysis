@@ -12,6 +12,7 @@ import pytest
 
 from uwpr_pubs.config import load_config
 from uwpr_pubs.funding.amounts import (
+    COMPARED_WITH_OPENALEX,
     Valuation,
     fiscal_year,
     nsf_amount,
@@ -303,6 +304,48 @@ def test_the_agency_beats_openalex_and_a_difference_is_flagged() -> None:
     close = grant_facts(nsf=nsf("1000000", "1000000", "2020-01-01"), openalex=[award("1005000", "USD", "x")])
     agreed = value_grant("nsf", close, end=None, first_year=2019, rules=rules(), rates=rates(), today=TODAY)
     assert agreed.flags == ()
+
+
+def test_only_a_lifetime_total_is_compared_with_openalex() -> None:
+    """RePORTER's figure is a sum over fiscal years, and OpenAlex's NIH amount (`nih_exporter`)
+    one year's award, so the two are never compared: P30DK017047's $52,843,525 against OpenAlex's
+    $89,000 is no disagreement (B3b, seen on the sample). NSF's and USAspending's figures are
+    lifetime totals, as OpenAlex's is, and a difference there is still flagged."""
+    assert {"nsf_obligated", "nsf_estimated", "usaspending_obligation"} == COMPARED_WITH_OPENALEX
+    facts = reporter_facts(ROWS["P30DK017047"])
+    p30 = grant_facts(reporter=facts, openalex=[award("89000", "USD", "nih_exporter", 2024)])
+    valued = value_grant(
+        "reporter", p30, end=None, first_year=1977, rules=rules(), rates=rates(), today=TODAY
+    )
+    assert valued.amount is not None and valued.amount["usd"] == 52_843_525
+    assert valued.flags == reporter_amount(facts, "reporter_fiscal_years", end=None, today=TODAY).flags
+    assert "amounts_disagree" not in valued.flags
+    rows = grant_facts(
+        reporter=reporter_facts([row(2020, 10), row(2021, 20, appl=2)]),
+        openalex=[award("5", "USD", "nih_exporter", 2020)],
+    )
+    nih_families: tuple[GrantFamily, ...] = ("reporter", "nih_contract", "nih_task_order")
+    for family in nih_families:
+        nih = value_grant(family, rows, end=None, first_year=2020, rules=rules(), rates=rates(), today=TODAY)
+        assert nih.amount is not None and nih.amount["usd"] == 30
+        assert nih.flags == (), family
+    federal = grant_facts(
+        usaspending=usaspending("583518208", "1997-04-01", "2027-09-30"),
+        openalex=[award("139600000", "USD", "usaspending", 2017)],
+    )
+    usa = value_grant(
+        "us_federal", federal, end=None, first_year=2018, rules=rules(), rates=rates(), today=TODAY
+    )
+    assert usa.amount is not None and usa.amount["basis"] == "usaspending_obligation"
+    assert usa.flags == ("active", "starts_before_fy2008", "amounts_disagree")
+    continuing = grant_facts(
+        nsf=nsf("900000", "600000", "2028-08-31"), openalex=[award("600000", "USD", "nsf_award_search", 2024)]
+    )
+    estimated = value_grant(
+        "nsf", continuing, end=None, first_year=2025, rules=rules(), rates=rates(), today=TODAY
+    )
+    assert estimated.amount is not None and estimated.amount["basis"] == "nsf_estimated"
+    assert estimated.flags == ("active", "amounts_disagree")
 
 
 def test_openalex_fills_in_where_the_agency_has_nothing() -> None:
