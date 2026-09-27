@@ -213,6 +213,30 @@ deliberately, dated, and noted in this header.
   tooltip, table and accessible name exact. The frames take a margin, and `WIDE_MARGIN` keeps a
   "$120M" tick off the rotated axis title, which `DEFAULT_MARGIN`'s counts had room for and
   dollars did not. The JavaScript is 130.2 KB gzipped, from 119.3.
+- *2026-09-26, §3, §5, §8 and §9, the agency and grant pages, and the publication's funding*
+  ([09](09-funding-impact.md) §12.3, §12.6–12.8). `/funding/agency/<code>` and
+  `/funding/grant/<key>` are now the pages, behind the flag still, and W1's placeholder stays as
+  their not-found state. Both are whole-corpus facts, like a publication, and say so; the query
+  string is kept only for their ways out. **§5 gains a section:** the publication detail places
+  "Funding listed in this publication" after "Why this is a UWPR publication" and before "Other
+  versions". The app gives the detail the funding only in a build with the view, so the public
+  page is unchanged until release, and the section is omitted with no funding data. **§3, the
+  chain holds.** Every agency, grant and publication link on these pages, and in the section,
+  opens through the one set of links the funding view uses, so funding → agency → grant →
+  publication goes back three times, each back naming its page. A cold arrival links to the
+  funding view with the reader's query. An agency page's two links into a view add the agency to
+  the reader's filter. They are the switch's own step, so the publications heading takes focus
+  after one, as §9 has it after the switch. **§3, Escape** still closes a page only when it was
+  opened in the app, and now never from a text field: on an agency page, Escape in the grants
+  search clears the box, as a search box does, and pressing it there to leave the page would be a
+  surprise. **§8, the year chart gains four small options**, each tested, with defaults that change
+  no chart already drawn: an axis title and a partial-period noun ("Fiscal year (October to
+  September)", "fiscal year"), no running total, and a tooltip value in words. A long series thins
+  its year labels by the room each needs, which never thins the publications' nineteen years more
+  than the widths already did. The over-time chart's tooltip now says "not known" or a dash, as its
+  table does, where it said "$0". Playwright runs axe on an agency page, a grant page (as a chart
+  and as a table), Miscellaneous and a publication's Funding section in both themes. It found
+  nothing. The JavaScript is 141.7 KB gzipped, from 136.0.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -408,7 +432,8 @@ contact for corrections. An override exists precisely so a reported mistake can 
 
 Renders [05](05-metrics-and-data-contract.md) §6 in that order: identity; links; authors with
 affiliations and staff markers; research areas at all four levels; citations; **why this is a UWPR
-publication**; other versions; retraction if flagged.
+publication**; the funding the publication lists ([09](09-funding-impact.md) §12.8, in a build
+with the Funding impact view); other versions; retraction if flagged.
 
 The evidence section is the one that must not be templated carelessly. Three cases each need their
 own wording, and a generic template produces something false in all three:

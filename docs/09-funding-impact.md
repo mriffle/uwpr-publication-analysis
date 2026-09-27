@@ -551,6 +551,50 @@ plan. [08](08-implementation.md) records them as they are built.
     lands on the same address as the in-app open.
   - **The grants CSV is named `<short name>-grants-<export date>.csv`**, as
     `uwpr-grants-2026-09-26.csv`.
+- *2026-09-26, W8 — the agency and grant pages and the publication's Funding section (§12.3,
+  §12.6–12.8) as built, where they were silent.* These are the readings R builds on:
+  - **Both of the agency page's links carry the reader's filter plus the agency**, the rest of
+    the query kept. §12.6 said so of the first only. The switch keeps one filter meaning one
+    thing, so "See funding impact for this agency" is the same selection in the other view. An
+    agency already selected is not added twice. The links sit under the facts, where a reader
+    deciding where to go next finds them, rather than after the publications. Each is the
+    switch's own step, and pushes no way back.
+  - **The agency's figures are W6's, over every exported work**, with the agency selected and
+    institution-wide awards included, and no switch. Two differ from the view's. "Funding
+    agencies" is left out, since it is one agency by construction. *K* of *N* reads "of every
+    publication here, whatever the filter", not "of the publications shown". The facts add the
+    agency's kind (`group`).
+  - **The breakdown** is a table of the agencies within it that have a grant, largest known
+    total first, each linking to its page. The remainder is its last row, "Assigned to no
+    institute", which is not a link: it is the page's own agency. With no amount known at all,
+    the page draws no value over time and says why, rather than bars at $0.
+  - **Miscellaneous's page** has no facts, total or value over time. A Miscellaneous number is
+    not known to be any agency's grant, or to have any value (§4). It counts the unmatched
+    numbers and the publications giving one, lists the numbers in the grants table as written,
+    and words its two links for the numbers ("Filter the publications to those giving an
+    unmatched number"), not for "this agency", which the page says it is not.
+  - **The per-fiscal-year chart draws no running total.** Before the first reported amount a
+    running total is "$0 so far", which reads as a figure. The facts state the lifetime total, and
+    the note says the years with an amount add up to it. A grant whose every fiscal year reports
+    no amount, as the VA's may, gets the table alone and a sentence saying there is nothing to
+    draw. A grant with no fiscal years says which source gave its total instead, or that none
+    gives an amount. An unmatched number's page has no amount section at all.
+  - **The facts say what the total adds up**, by `amount_source.basis`, in a clause that
+    summarises the method page's account of that source, with the date it was read. They give the year the source's amounts
+    begin from `sources[].amounts_from`, as W9 reads it, and add the first-listed year. The
+    identity line links the agency and its parent.
+  - **A publication on the grant page carries `ListingNotes`**, the Funding section's own words
+    for a listing: "Also written in the paper as …" wherever `cited_as` is present, how an NIH
+    link or a correction reached the grant, and an override's reason, by whom and when. The two
+    places cannot word a listing differently.
+  - **The Funding section is given only in a build with `VITE_FUNDING`**, and is omitted with no
+    funding data (§12.10). With data, a work listing nothing keeps the section and its sentence,
+    as W6 built it.
+  - **Escape never closes a page from a text field.** On an agency page it clears the grants
+    search, as a search box does. The pages are keyed by code or key, so moving from one agency
+    to another starts afresh, and the grants table's search and sort with it.
+  - **W7's over-time tooltip** now says "not known" or a dash for a year with nothing known, as
+    its table does, where it said "$0" (§12.11 rule 3).
 
 ---
 
