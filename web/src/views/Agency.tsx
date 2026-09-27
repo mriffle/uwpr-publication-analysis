@@ -21,8 +21,7 @@
  * as the funder publishes them, with no link to a person. At its foot, NLM's attribution when
  * PubMed is a source (§13.3, `NlmAttribution`).
  *
- * Built behind `VITE_FUNDING` (`contract/config.ts`). An unknown code, or an export with no
- * funding data (§12.10), is the designed not-found state.
+ * An unknown code, or an export with no funding data (§12.10), is the designed not-found state.
  */
 import { useEffect, useMemo, useRef } from 'react';
 import {

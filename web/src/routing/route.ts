@@ -21,11 +21,6 @@
  * The agency and grant segments follow the same rule, for the same reason: a key is the
  * pipeline's own grammar (`NIH:R01GM086688`, `NIH-contract:HHSN272201700036I:75N93020F00001`,
  * `MISC:<as written>`), and a key written as a paper printed it can carry a slash or a space.
- *
- * The funding routes exist only in a build that has the Funding impact view (`VITE_FUNDING`,
- * `contract/config.ts`). The router says which with `{ funding }`; without the view they are no
- * route at all, exactly as they were before it, so a production build carries no half-built view
- * behind a guessable address.
  */
 
 export type Route =
@@ -44,11 +39,6 @@ const LOOKUP = 'lookup';
 const FUNDING = 'funding';
 const AGENCY = 'funding/agency/';
 const GRANT = 'funding/grant/';
-
-export interface RouteOptions {
-  /** Whether this build has the Funding impact view; off, its routes are unknown. Default on. */
-  funding?: boolean;
-}
 
 /** A hand-edited or double-encoded URL is a normal thing to receive; it is never an exception. */
 function safeDecode(value: string): string {
@@ -72,7 +62,7 @@ export function stripBase(pathname: string, base: string): string {
   return rest.replace(/^\/+|\/+$/g, '');
 }
 
-export function parseRoute(pathname: string, base = '/', options: RouteOptions = {}): Route {
+export function parseRoute(pathname: string, base = '/'): Route {
   const rest = stripBase(pathname, base);
   if (rest === '') return { kind: 'overview' };
   if (rest === METHOD) return { kind: 'method' };
@@ -81,20 +71,18 @@ export function parseRoute(pathname: string, base = '/', options: RouteOptions =
     const id = safeDecode(rest.slice(PUBLICATION.length));
     return id === '' ? { kind: 'unknown', path: rest } : { kind: 'publication', id };
   }
-  if (options.funding ?? true) {
-    // The two prefixes before the exact match, and each before anything shorter: `funding` alone
-    // is the view, and `funding/agency` with no key is no route rather than an empty agency.
-    for (const [prefix, kind] of [
-      [AGENCY, 'agency'],
-      [GRANT, 'grant'],
-    ] as const) {
-      if (rest.startsWith(prefix)) {
-        const key = safeDecode(rest.slice(prefix.length));
-        return key === '' ? { kind: 'unknown', path: rest } : { kind, key };
-      }
+  // The two prefixes before the exact match, and each before anything shorter: `funding` alone
+  // is the view, and `funding/agency` with no key is no route rather than an empty agency.
+  for (const [prefix, kind] of [
+    [AGENCY, 'agency'],
+    [GRANT, 'grant'],
+  ] as const) {
+    if (rest.startsWith(prefix)) {
+      const key = safeDecode(rest.slice(prefix.length));
+      return key === '' ? { kind: 'unknown', path: rest } : { kind, key };
     }
-    if (rest === FUNDING) return { kind: 'funding' };
   }
+  if (rest === FUNDING) return { kind: 'funding' };
   return { kind: 'unknown', path: rest };
 }
 

@@ -2,8 +2,7 @@
  * `/funding` — Funding impact (docs/09 §12.5), top to bottom: header, staleness, the filter bar
  * with the funding sentence, the headline figures with the institution-wide switch, grant funding
  * over time, agencies, grant types, all grants, coverage, footer. That is §12.5's enumeration
- * exactly, built behind `VITE_FUNDING` (`contract/config.ts`) until release. Above the footer,
- * NLM's attribution when PubMed is a source (§13.3, `NlmAttribution`).
+ * exactly. Above the footer, NLM's attribution when PubMed is a source (§13.3, `NlmAttribution`).
  *
  * **One filter, one scope.** The publications are filtered exactly as the overview filters them
  * (`applyFilter`), and the grants shown are decided once, by the scope rule (`fundingScope`,

@@ -22,8 +22,7 @@
  * what the papers wrote. At its foot, NLM's attribution when PubMed is a source (§13.3,
  * `NlmAttribution`).
  *
- * Built behind `VITE_FUNDING` (`contract/config.ts`). An unknown key, or an export with no
- * funding data (§12.10), is the designed not-found state.
+ * An unknown key, or an export with no funding data (§12.10), is the designed not-found state.
  */
 import { useEffect, useMemo, useRef, type ReactNode } from 'react';
 import { agencyLabel, grantDetail, type GrantDetail } from '../aggregate/funding';

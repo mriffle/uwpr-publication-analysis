@@ -1,7 +1,7 @@
 /**
  * The method page's `#funding` section (docs/09 §12.9), as the page renders it.
  *
- * Rendered through `Router` where the route matters (the anchor, the fragment focus, the flag),
+ * Rendered through `Router` where the route matters (the anchor, the fragment focus),
  * and through `Method` where only the document changes. **Nothing here hard-codes a figure**:
  * every count is read from the document under test, so the same assertions hold over the sample
  * and a real export (`UWPR_EXPORT_DIR`), as the rest of the method page's do.
@@ -65,7 +65,6 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  vi.unstubAllEnvs();
   vi.restoreAllMocks();
   window.history.replaceState(null, '', '/');
 });
@@ -400,23 +399,6 @@ describe('an export with no funding data (docs/09 §12.10)', () => {
     },
     30_000,
   );
-});
-
-describe('a build without the Funding impact view (VITE_FUNDING off)', () => {
-  it('has no funding section, anchor or link, and the page is otherwise whole', () => {
-    vi.stubEnv('VITE_FUNDING', '');
-    const { container } = show();
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('How this was assembled');
-    expect(screen.queryByRole('region', { name: SECTION })).toBeNull();
-    expect(container.querySelector('#funding')).toBeNull();
-    for (const id of FUNDING_DEFINITION_IDS) expect(container.querySelector(`#${id}`)).toBeNull();
-    expect(screen.queryByRole('link', { name: 'with the funding section' })).toBeNull();
-    expect(container.textContent).not.toMatch(/National Library of Medicine/);
-    // The publication definitions are all still there.
-    for (const definition of metricDefinitions(doc)) {
-      expect(container.querySelector(`#${definition.id}`)).not.toBeNull();
-    }
-  });
 });
 
 describe('funding data that varies what the section can say', () => {

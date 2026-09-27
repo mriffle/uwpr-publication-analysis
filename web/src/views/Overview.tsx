@@ -86,7 +86,7 @@ export interface OverviewProps {
   onOpenMethod: () => void;
   lookupHref: string;
   onOpenLookup: () => void;
-  /** The switch to the Funding impact view, in a build that has it (`VITE_FUNDING`). */
+  /** The switch to the Funding impact view, which the app always gives (docs/09 §12.2). */
   views?: ViewSwitch;
   /**
    * Move focus to the heading as the view opens: when the switch brought the reader here from

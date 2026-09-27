@@ -1,8 +1,7 @@
 /**
  * The publication's Funding section as the detail places it (docs/09 §12.8): after "Why this is
  * a UWPR publication" and before "Other versions", with in-app links to agency and grant pages,
- * and omitted with no funding data — or in a build without the Funding impact view, where the
- * app gives the detail no funding at all.
+ * and omitted with no funding data.
  *
  * The section's own wording per case is `test/components/FundingSection.test.tsx`'s; this holds
  * the sample's real listings to it in place: a listed grant, a corrected reference (`cited_as`),
@@ -27,7 +26,7 @@ const byId = (id: string): Work => {
   return work;
 };
 
-function show(work: Work, funding: { index: FundingIndex | null } | null = { index }) {
+function show(work: Work, funding: { index: FundingIndex | null } = { index }) {
   const { links, opened } = recordingLinks();
   const view = render(
     <PublicationDetail
@@ -35,7 +34,7 @@ function show(work: Work, funding: { index: FundingIndex | null } | null = { ind
       resource={doc.resource}
       citationsAsOf={doc.sources.citations.as_of}
       overviewHref="/"
-      {...(funding === null ? {} : { funding: { index: funding.index, links } })}
+      funding={{ index: funding.index, links }}
     />,
   );
   return { ...view, opened };
@@ -68,11 +67,6 @@ describe('where the section goes', () => {
 describe('no funding to show', () => {
   it('is omitted when the export has no funding data (§12.10)', () => {
     show(doc.works[0]!, { index: null });
-    expect(screen.queryByRole('heading', { name: SECTION })).not.toBeInTheDocument();
-  });
-
-  it('is omitted when the app gives the detail no funding, as a build without the view does', () => {
-    show(doc.works[0]!, null);
     expect(screen.queryByRole('heading', { name: SECTION })).not.toBeInTheDocument();
   });
 });

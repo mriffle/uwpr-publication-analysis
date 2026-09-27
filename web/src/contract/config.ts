@@ -34,15 +34,3 @@ export const lookupUrl = (): string => join(base, dataPath, LOOKUP_FILE);
  * deployment without reloading the module.
  */
 export const basePath = (): string => base;
-
-/**
- * Whether this build has the Funding impact view (docs/09): `VITE_FUNDING=1` at build time.
- *
- * The view is built on `main` in slices, and every push to `main` that touches `web/` deploys the
- * app (`pages.yml`). So CI builds and tests with the flag on, the production build leaves it off,
- * and a half-built view never reaches the public page. Off, nothing links to the view and its
- * routes are no route at all. The flag is removed when the view is released.
- *
- * Read on every call rather than once, so a test can build either app without a reload.
- */
-export const fundingEnabled = (): boolean => import.meta.env?.VITE_FUNDING === '1';

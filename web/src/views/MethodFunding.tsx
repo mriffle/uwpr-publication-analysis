@@ -25,8 +25,6 @@
  * currency paragraph says they are.
  *
  * With no funding data the section says so in a sentence and states nothing else (§12.10).
- * `Method` renders it only in a build with the Funding impact view (`fundingEnabled`), so the
- * public page does not change until the view is released.
  */
 import type { ReactNode } from 'react';
 import { NlmAttribution } from '../components/NlmAttribution';

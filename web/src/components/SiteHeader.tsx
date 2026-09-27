@@ -43,7 +43,7 @@ export interface SiteHeaderProps {
   onOpenMethod: () => void;
   lookupHref: string;
   onOpenLookup: () => void;
-  /** The switch between the views. Absent in a build without the Funding impact view. */
+  /** The switch between the views, which the app always gives; a test may render without it. */
   views?: ViewSwitch;
   /**
    * Move focus to the heading when the page mounts, so a keyboard or screen-reader user who

@@ -8,10 +8,6 @@
  * CSV as the browser actually saves it, and axe against resolved colours in both themes — the
  * contrast half of the check jsdom cannot make for the funding components.
  *
- * The view exists only in a build made with `VITE_FUNDING=1` (`src/contract/config.ts`), which is
- * how CI builds it. Without the flag the view's specs are skipped, and one spec checks the other
- * half of the promise: that such a build has no funding entry point at all.
- *
  * Nothing is hard-coded: the year, the agency, the grant, the publication and the counts come from
  * whatever export the preview server serves — `samples/export/` by default, the real one under
  * `UWPR_EXPORT_DIR`. The not-found keys are made up on purpose, because the page under test is the
@@ -23,8 +19,6 @@
 import { readFileSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
-
-const FUNDING = process.env.VITE_FUNDING === '1';
 
 interface Listing {
   grant: string;
@@ -248,9 +242,7 @@ async function expectClean(page: Page) {
   ).toEqual([]);
 }
 
-test.describe('a build with the Funding impact view', () => {
-  test.skip(!FUNDING, 'The Funding impact view is built only with VITE_FUNDING=1 (docs/09).');
-
+test.describe('the Funding impact view', () => {
   test('the switch keeps the filter both ways, and back and forward retrace it (docs/09)', async ({
     page,
   }) => {
@@ -837,41 +829,6 @@ test.describe('a build with the Funding impact view', () => {
         ),
       ).toBe(true);
       expect(await brokenWords()).toEqual([]);
-    }
-  });
-});
-
-test.describe('a build without the Funding impact view', () => {
-  test.skip(FUNDING, 'Only a build without VITE_FUNDING=1 leaves the view out (docs/09 §12.12).');
-
-  test('has no funding entry point, and /funding is no route', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.getByRole('region', { name: 'Publications per year' })).toBeVisible();
-    await expect(page.getByRole('navigation', { name: 'Views' })).toHaveCount(0);
-    for (const href of await page
-      .getByRole('link')
-      .evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''))) {
-      expect(href).not.toMatch(/funding/);
-    }
-
-    for (const path of ['/funding', '/funding/agency/NIH', '/funding/grant/NIH%3AR01GM086688']) {
-      await page.goto(path);
-      await expect(page.getByRole('alert')).toContainText('There is no page at this address.');
-    }
-  });
-
-  test('gives a publication no Funding section and no funding link (§12.12)', async ({ page }) => {
-    const doc = await readExport(page);
-    const work = doc.works.find((entry) => (entry.grants ?? []).length > 0) ?? doc.works[0];
-    await page.goto(`/publication/${work!.id}`);
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(work!.title);
-    await expect(
-      page.getByRole('heading', { name: 'Funding listed in this publication' }),
-    ).toHaveCount(0);
-    for (const href of await page
-      .getByRole('link')
-      .evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''))) {
-      expect(href).not.toMatch(/funding/);
     }
   });
 });

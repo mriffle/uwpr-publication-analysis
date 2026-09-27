@@ -57,9 +57,6 @@ jobs:
           # or a fork needs no edit here; serving it from UWPR's own site later is this same
           # build with a different value, and no code change.
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
-          # VITE_FUNDING is deliberately not set: the Funding impact view is built on `main` in
-          # slices, and this build leaves it out until it is released, when the flag is removed
-          # from the code altogether (docs/09). CI builds and tests with it on (check.yml).
         run: npm run build
 
       # Replaces the app files and leaves `data/` alone, so a deploy never clobbers the weekly

@@ -28,8 +28,8 @@
  *
  * **The funding figures have a section of their own** (`MethodFunding.tsx`, docs/09 §12.9), after
  * the publication definitions and apart from them, with the definitions the Funding impact view
- * links to. It is rendered only in a build with that view (`fundingEnabled`), so until the view
- * is released the public page is the page it was.
+ * links to. With no funding data it is one sentence, and the publication definitions do not point
+ * down to definitions that are not there.
  */
 import { useEffect } from 'react';
 import { criteriaBars } from '../aggregate/categories';
@@ -51,7 +51,6 @@ import { RankedBarCard } from '../charts/RankedBarCard';
 import { otherColour, seriesColour } from '../charts/palette';
 import { BackLink } from '../components/BackLink';
 import { StalenessNotice } from '../components/StalenessNotice';
-import { fundingEnabled } from '../contract/config';
 import { fundingOf } from '../contract/funding';
 import type { Exclusion, ExportDocument } from '../contract/types';
 import { CRITERION_LABELS } from '../filter/describe';
@@ -172,10 +171,8 @@ export function Method({
   const definitions = metricDefinitions(doc);
   const staffAuthored = worksWithStaffAuthor(works);
   const resource = doc.resource.short_name;
-  // docs/09 §12.9's section, only in a build with the Funding impact view (docs/09 §12.12): the
-  // public page stays as it was until the view is released.
-  const funding = fundingEnabled();
-  const fundingDefinitionsShown = funding && fundingOf(doc) !== null;
+  // docs/09 §12.9's section has definitions to point down to only when there is funding data.
+  const fundingDefinitionsShown = fundingOf(doc) !== null;
 
   useFragmentTarget(true);
 
@@ -549,7 +546,7 @@ export function Method({
       </dl>
 
       {/* --- docs/09 §12.9: the funding figures, their sources, rules and definitions ------- */}
-      {funding ? <FundingMethodSection doc={doc} /> : null}
+      <FundingMethodSection doc={doc} />
 
       {/* --- docs/05 §10, "How current it is" --------------------------------------------- */}
       <h2 id="how-current-this-is">How current this is</h2>

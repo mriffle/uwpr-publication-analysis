@@ -71,18 +71,6 @@ describe('parsing', () => {
     expect(parseRoute('/funding/nowhere')).toEqual({ kind: 'unknown', path: 'funding/nowhere' });
     expect(parseRoute('/fundingx')).toEqual({ kind: 'unknown', path: 'fundingx' });
   });
-
-  it('has no funding routes at all in a build without the view', () => {
-    for (const path of ['/funding', '/funding/agency/NIH', '/funding/grant/NIH%3AR01']) {
-      expect(parseRoute(path, '/', { funding: false }).kind).toBe('unknown');
-    }
-    // Every other route is unaffected by the flag.
-    expect(parseRoute('/method', '/', { funding: false })).toEqual({ kind: 'method' });
-    expect(parseRoute('/publication/W-1', '/', { funding: false })).toEqual({
-      kind: 'publication',
-      id: 'W-1',
-    });
-  });
 });
 
 describe('building', () => {

@@ -7,17 +7,11 @@
  * visible, since its terms ask for it "in a clear and conspicuous manner"; and axe against
  * resolved colours in both themes, with the section on the page.
  *
- * The section exists only in a build made with `VITE_FUNDING=1` (`src/contract/config.ts`), as
- * the view does. Without the flag, the one spec here that runs checks that it is absent, so the
- * production page is the page it was.
- *
  * Nothing is hard-coded: the dates and names come from whatever export the preview server serves
  * — `samples/export/` by default, the real one under `UWPR_EXPORT_DIR`.
  */
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
-
-const FUNDING = process.env.VITE_FUNDING === '1';
 
 interface ExportDocument {
   /** Absent in a 1.0 export; its `version` is null in a 1.1 export with no funding data. */
@@ -38,9 +32,7 @@ const hasFunding = (doc: ExportDocument): boolean => (doc.funding?.version ?? nu
 const section = (page: Page) =>
   page.getByRole('region', { name: 'How the funding figures are assembled' });
 
-test.describe('with the Funding impact view', () => {
-  test.skip(!FUNDING, 'The funding section is built only with VITE_FUNDING=1 (docs/09).');
-
+test.describe('the funding section', () => {
   test('a funding figure’s definition resolves by fragment from cold, and takes focus', async ({
     page,
   }) => {
@@ -99,17 +91,4 @@ test.describe('with the Funding impact view', () => {
       });
     });
   }
-});
-
-test.describe('without the Funding impact view', () => {
-  test.skip(FUNDING, 'Only a build without VITE_FUNDING leaves the section out.');
-
-  test('the method page has no funding section, anchor or attribution', async ({ page }) => {
-    await page.goto('/method');
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('How this was assembled');
-    await expect(section(page)).toHaveCount(0);
-    await expect(page.locator('#funding')).toHaveCount(0);
-    await expect(page.locator('#funding-total')).toHaveCount(0);
-    await expect(page.getByText(/National Library of Medicine/)).toHaveCount(0);
-  });
 });

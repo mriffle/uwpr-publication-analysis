@@ -147,22 +147,6 @@ describe('the view switch', () => {
     expect(onSwitch).not.toHaveBeenCalled();
   });
 
-  it('is absent from a build without the Funding impact view', () => {
-    render(
-      <SiteHeader
-        title="A title"
-        lead="A lead."
-        current="publications"
-        doc={doc}
-        methodHref="/method"
-        onOpenMethod={() => undefined}
-        lookupHref="/lookup"
-        onOpenLookup={() => undefined}
-      />,
-    );
-    expect(screen.queryByRole('navigation')).not.toBeInTheDocument();
-  });
-
   it('passes axe', async () => {
     const { container } = show();
     await expectNoAxeViolations(container);

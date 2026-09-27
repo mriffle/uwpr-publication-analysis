@@ -19,7 +19,7 @@ import { toggleSort, type SortKey } from './aggregate/explorer';
 import type { FundingLinks } from './components/FundingLinks';
 import { NotIncludedAnswer } from './components/NotIncludedAnswer';
 import type { SiteView, ViewSwitch } from './components/SiteHeader';
-import { basePath, exportUrl, fundingEnabled, lookupUrl } from './contract/config';
+import { basePath, exportUrl, lookupUrl } from './contract/config';
 import { parseIdentifier } from './contract/identifier';
 import { describeFailure } from './contract/load';
 import { fundingOf } from './contract/funding';
@@ -84,9 +84,7 @@ export function App({
 
   // The address is known before the data is, so the loading and failure states are titled for
   // the page the reader asked for rather than all claiming to be the publications.
-  const title = shellTitle(
-    parseRoute(window.location.pathname, basePath(), { funding: fundingEnabled() }),
-  );
+  const title = shellTitle(parseRoute(window.location.pathname, basePath()));
 
   if (state.status === 'loading') {
     // A skeleton layout, not a spinner over an empty page (docs/06 §7).
@@ -136,11 +134,8 @@ interface RouterProps {
 
 export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: RouterProps) {
   const base = basePath();
-  // Off in the production build until the Funding impact view is released: its routes are then
-  // no route at all, and nothing links to it (`contract/config.ts`).
-  const funding = fundingEnabled();
   const { pathname, search, state, navigate } = useLocation();
-  const route = parseRoute(pathname, base, { funding });
+  const route = parseRoute(pathname, base);
   const view = useMemo(() => decodeView(search), [search]);
   const index = useMemo(() => buildWorkIndex(doc), [doc]);
 
@@ -264,17 +259,15 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
     },
     [navigate, base],
   );
-  const views: ViewSwitch | undefined = funding
-    ? {
-        hrefs: {
-          publications: `${overviewPath(base)}${search}`,
-          funding: `${fundingPath(base)}${search}`,
-        },
-        onSwitch: (to) => {
-          switchView(to);
-        },
-      }
-    : undefined;
+  const views: ViewSwitch = {
+    hrefs: {
+      publications: `${overviewPath(base)}${search}`,
+      funding: `${fundingPath(base)}${search}`,
+    },
+    onSwitch: (to) => {
+      switchView(to);
+    },
+  };
 
   // docs/06 §7: the export's own aliases resolve retired work IDs and are already loaded; an
   // external identifier resolves only through the lookup index, which is fetched only when the
@@ -297,7 +290,7 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
         onOpenMethod={openMethod}
         lookupHref={lookupRoutePath}
         onOpenLookup={openLookup}
-        {...(views ? { views } : {})}
+        views={views}
         focusHeading={switchedTo === 'publications'}
         {...(now ? { now } : {})}
         {...(searchDebounceMs === undefined ? {} : { searchDebounceMs })}
@@ -319,7 +312,7 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
         onOpenMethod={openMethod}
         lookupHref={lookupRoutePath}
         onOpenLookup={openLookup}
-        {...(views ? { views } : {})}
+        views={views}
         {...(now ? { now } : {})}
       />
     );
@@ -421,9 +414,9 @@ export function Router({ doc, fetcher, lookupHref, now, searchDebounceMs }: Rout
       standalone={back === null}
       overviewHref={`${overviewPath(base)}${search}`}
       resolvedFrom={resolvedFrom}
-      // Only a build with the Funding impact view has the section (docs/09 §12.12), and its
-      // agency and grant links open as the view's do, recording the publication as the way back.
-      {...(funding ? { funding: { index: fundingOf(doc), links: fundingLinks } } : {})}
+      // The Funding section's agency and grant links open as the view's do, recording the
+      // publication as the way back (docs/09 §12.8).
+      funding={{ index: fundingOf(doc), links: fundingLinks }}
       {...close}
     />
   );

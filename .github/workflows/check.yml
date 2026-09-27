@@ -72,13 +72,7 @@ jobs:
       - run: npm test -- --run
         env:
           UWPR_EXPORT_DIR: ${{ github.workspace }}/export
-      # The gate builds and tests the Funding impact view, which is built on `main` in slices
-      # behind `VITE_FUNDING` (docs/09). The production build in pages.yml leaves it off until
-      # release, so the budget below is measured on the larger of the two builds. (Vitest turns
-      # the flag on in its own config.)
       - run: npm run build
-        env:
-          VITE_FUNDING: "1"
       - run: npm run check:budget      # JS ≤ 250 KB gzipped; the job fails on an overrun (§10)
       # First load's data ≤ 500 KiB gzipped at level 9 (§10, docs/09 §11.9), on `export/` and
       # `samples/export/`. The weekly run's export is committed by the bot, which starts no
@@ -89,5 +83,3 @@ jobs:
       # component test cannot reach them (docs/06 §12.2).
       - run: npm run e2e:install
       - run: npm run e2e
-        env:
-          VITE_FUNDING: "1"

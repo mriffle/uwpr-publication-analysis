@@ -6,9 +6,8 @@
  * the publication lists (docs/09 §12.8); other versions; retraction if flagged. "Every element is
  * already in the store; nothing is generated, summarised or paraphrased."
  *
- * The funding section is drawn only when the app gives it the funding index and the links, which
- * it does only in a build with the Funding impact view (`VITE_FUNDING`), and it draws nothing
- * when the export has no funding data (§12.10).
+ * The funding section is drawn when the app gives it the funding index and the links, which the
+ * app always does, and it draws nothing when the export has no funding data (§12.10).
  *
  * **Everything is rendered as stored** (docs/06 §5). One work's title is a filename and one
  * excerpt carries an undecoded XML entity; both appear exactly as the pipeline wrote them,
@@ -61,8 +60,8 @@ export interface PublicationDetailProps {
   resolvedFrom?: string | null;
   /**
    * "Funding listed in this publication" (docs/09 §12.8): the export's funding index —
-   * `fundingOf(doc)`, null when it has no funding data — and the agency and grant links. Both are
-   * given only in a build with the Funding impact view; without them there is no section.
+   * `fundingOf(doc)`, null when it has no funding data — and the agency and grant links. The app
+   * always gives both; a test that renders the page without them gets no section.
    */
   funding?: { index: FundingIndex | null; links: FundingLinks };
 }
