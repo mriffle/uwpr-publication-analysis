@@ -556,12 +556,12 @@ uv run uwpr-pubs run --funding full        # against the real store, as in §3; 
 ```
 
 **Start it only inside RePORTER's window: a Saturday or Sunday, or between 21:00 and 05:00 New
-York time.** A full refresh sends RePORTER 100–150 requests, and RePORTER's terms ask that large
-jobs keep to those hours; an address that ignores them can be blocked. `--funding full` is an
-instruction, so it skips the window guard and the weekday cap of 60 requests: nothing will stop
-you on a Tuesday morning. Without it, a refresh that falls due outside the window is deferred and
-the run goes ahead incrementally. The workflow's *Run workflow* button has no funding input; it
-does what the schedule does.
+York time.** A full refresh sends RePORTER 100–150 requests (the seed's, on 2026-09-27, sent 58),
+and RePORTER's terms ask that large jobs keep to those hours; an address that ignores them can be
+blocked. `--funding full` is an instruction, so it skips the window guard and the weekday cap of
+60 requests: nothing will stop you on a Tuesday morning. Without it, a refresh that falls due
+outside the window is deferred and the run goes ahead incrementally. The workflow's *Run
+workflow* button has no funding input; it does what the schedule does.
 
 ### NIH RePORTER answered 403
 

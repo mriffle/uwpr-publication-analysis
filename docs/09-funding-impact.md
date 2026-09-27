@@ -1,7 +1,8 @@
 # Phase 9 — Funding Impact Specification
 
 **Status:** Agreed · 2026-09-26 · the input to implementation. Changes from here are made
-deliberately, dated, and noted in this header.
+deliberately, dated, and noted in this header. **Built and live 2026-09-27:** the store was seeded
+and the Funding impact view released that day (§17; [08](08-implementation.md) §3.8 is the record).
 **Purpose:** show the funding behind the publications UWPR supports — the grants those papers list,
 what the grants are worth, which agencies award them, and how that total accumulates over time —
 with every grant traceable to the paper that lists it and every amount to the funder's own record.
@@ -691,7 +692,9 @@ plan. [08](08-implementation.md) records them as they are built.
       resource-code strings are excluded.
     - All 23 Appendix B keys are listed and tagged.
     - The 11 CLP grants are converted at OECD's rate for their start year.
-    - The export is 440,753 bytes gzipped at level 9 (430.4 KiB).
+    - The export is 440,753 bytes gzipped at level 9 (430.4 KiB). *(That is the `gzip -9`
+      command’s figure, whose header carries the file’s name; by the budget’s own measure, §11.9,
+      it is 440,730.)*
     - Funding adds 2.1 minutes to a full run: 286 s, against the rehearsal's 160 s without
       funding. It adds about 20 s to an incremental one: stage 8b of a same-day rerun, which took
       105 s in all.
@@ -920,6 +923,27 @@ plan. [08](08-implementation.md) records them as they are built.
     1,538 pass and 95 skip, and the 82 e2e specs pass. A plain `npm run build`, which is what
     `pages.yml` runs, carries the view's headings, and `/funding` from cold renders the view
     behind `vite preview`. The JavaScript is 143.2 KB gzipped, from 143.3.
+- *2026-09-27, R — the release, checked live.* The maintainer approved the release, and decided
+  §16 item 4 at the same time: NIH centre grants stay project-scope. R2's push was the release.
+  `pages.yml` run 36297800111 deployed e5dc3a6 at 05:39 UTC (01:39 Eastern), and `check` run
+  36297800148 was green. The data it reads had been on `gh-pages` since the first update run with
+  funding enabled (36289188785, `2026-09-27T02-40-live`): schema 1.1, `funding.version`
+  `2026-09-27.1` and 755 grants, confirmed before the push, so the data was published before the
+  app. A Playwright script then loaded each of these cold on
+  <https://mriffle.github.io/uwpr-publication-analysis/>:
+  - `/funding`: its h1, "University of Washington Proteomics Resource — funding impact", the
+    headline $7,888,899,029, and NLM's line;
+  - `/funding/agency/NIH`: "National Institutes of Health", and "not affected by the filter";
+  - `/funding/grant/NIH%3AP30DK017047`: "Diabetes Research Center", $52,843,525, and its NIH
+    RePORTER link;
+  - `/funding/grant/MISC%3A1780131`: "178013_1", and "recorded decision";
+  - `/publication/W-000102`: its Funding section, with "Kept unmatched by a recorded decision";
+  - `/publication/W-000277`: its Funding section;
+  - `/method#funding`: "How the funding figures are assembled";
+  - `/`: the Publications | Funding impact switch.
+
+  All eight rendered with no page error. The rollback, if it is ever needed, is to re-run
+  `pages.yml` at fd7d0d8, the commit before R2 (`RUNBOOK.md` §8).
 
 ---
 
@@ -2635,9 +2659,11 @@ Each lands, dated, with the milestone that makes it true.
    - `R/SFA-8`: Washington Sea Grant's internal project number (A6.43).
    - `5300-155`: the California Citrus Research Board's, which no configured agency covers.
    - Moore's `6000`: already one key.
-4. **Should NIH centre grants be institution-wide?** P30, P41, UL1 and similar grants fund an
-   institution's shared cores, and some are large. They are categorised `center` and counted as
-   project-scope (§4); the category chart shows them apart. A policy call for the maintainer.
+4. **Decided (2026-09-27, the maintainer): NIH centre grants stay project-scope.** P30, P41, UL1
+   and similar grants fund an institution's shared cores, and some are large. They are
+   categorised `center`, counted as project-scope (§4), and shown apart as "Centre or programme":
+   $4.91B of the $7.89B on the seeded data. Tagging them institution-wide later is a config change
+   and a `funding_version` bump.
 5. **Closed:** USAspending's TLS is verified under httpx with its default verification (B2,
    2026-09-26; no `truststore`), and Crossref's batch filter works (B6, 2026-09-26; 376 of 377
    DOIs, §5.6).
@@ -2744,17 +2770,32 @@ run succeeds with funding enabled.
 
 **W1–W10** — as §12 and §14 specify; the existing router, overview, method and e2e tests pass
 unchanged; the flag hides every funding entry point; JavaScript ≤ 250 KiB.
-- [ ] Accepted. *W1 (c281d39, 475373c) and W2 (d9a3271, e8cb8da) landed 2026-09-26; the box is
-      ticked when all ten are accepted. W10 (575ddcb), the audit, is done: every §14 "App" item
-      and §11.8 case is held by a passing test (`web/test/funding-coverage.test.tsx` maps them),
-      axe is clean on every funding route and state in both themes, and against the real export,
-      which has no funding data yet, every funding page shows its no-data state and nothing
-      throws. The box itself is ticked at release.*
+- [x] Accepted 2026-09-26, all ten, and the box ticked at release, 2026-09-27: W1 c281d39, W2
+      d9a3271, W3 fdc80d4, W4 63cd8a8, W5 b30b606, W6 971ddd8, W7 1c35a82 (with 4134417, which gave
+      the whole-page axe checks 30 s), W8 9e41346, W9 6270016 and W10 db271e9. W10's audit holds
+      every §14 "App" item and §11.8 case with a passing test (`web/test/funding-coverage.test.tsx`
+      maps them), with axe clean on every funding route and state in both themes; against the real
+      export of that day, which had no funding data yet, every funding page showed its no-data
+      state and nothing threw. Until R2 removed it, the flag hid every funding entry point: without
+      it, W10's e2e ran 43 specs and skipped the 40 funding ones. The JavaScript is 143.2 KB
+      gzipped at release (R2), against the 250 KiB budget.
 
 **R** — the web gate green against the real export; the flag removed; data published before the
 app; the live `/funding`, an agency page, a grant page and a publication's Funding section checked
 by hand; docs/08's Phase 9 record written and these boxes ticked.
-- [ ] Accepted.
+- [x] Accepted 2026-09-27: R1a 28da6c1, R1b 5b74606 and its fix-up fee1be4, R2 6c1698f. **The web
+      gate is green against the real export:** 1,538 unit tests pass and 95 skip (the sample's own
+      cases), and the 82 e2e specs pass, axe included (R2). **The flag is removed** (R2, the
+      release). **The data was published before the app:** the seed's data has been on `gh-pages`
+      since the first update run with funding (36289188785, `2026-09-27T02-40-live`), and was
+      confirmed there before the push (schema 1.1, `funding.version` `2026-09-27.1`, 755 grants).
+      **Checked live:** at 05:39 UTC `pages.yml` run 36297800111 deployed e5dc3a6, with `check` run
+      36297800148 green, and a Playwright script loaded eight pages cold on the public site:
+      `/funding`, NIH's agency page, the grants `NIH:P30DK017047` and `MISC:1780131`, the
+      publications W-000102 and W-000277 with their Funding sections, `/method#funding` and the
+      overview's switch. All eight rendered with no page error (the R entry in this document's
+      header). [08](08-implementation.md)'s Phase 9 record is §3.8, with §1, §2, §4, §5 and §8.
+      Rollback, if ever needed: re-run `pages.yml` at fd7d0d8 (`RUNBOOK.md` §8).
 
 ---
 

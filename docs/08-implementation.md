@@ -1,16 +1,21 @@
 # Phase 8 — Implementation: status and handoff
 
 **Status:** Record — the build is done and live, and this is appended to as it runs · last
-updated 2026-09-26
+updated 2026-09-27 (Phase 9, funding impact, built and live: §1, §2, §3.8, §4, §5 and §8)
 **Purpose:** everything needed to pick this work up: what was built, what was measured, what was
 decided along the way, and the approved plan in full (§6).
 **Depends on:** the frozen specs [01](01-discovery-strategy.md), [01a](01a-discovery-calibration.md),
 [02](02-data-model.md) and [03](03-retrieval-pipeline.md), and the agreed specs
-[05](05-metrics-and-data-contract.md), [06](06-web-app.md) and [07](07-operations.md). They are
-the authority; this document records how they were built and what building them taught us.
+[05](05-metrics-and-data-contract.md), [06](06-web-app.md), [07](07-operations.md) and
+[09](09-funding-impact.md). They are the authority; this document records how they were built and
+what building them taught us.
 **Tidied 2026-09-26:** §1, §2, §7 and §8 describe the present, and were brought up to date: they
 still read as if the app were unbuilt. §8's settled questions are cut to one line each; their full
 text is in git history. The dated sections (§3–§5) and the plan (§6) were only added to.
+**Phase 9, 2026-09-27:** its record is added in the same shape as Phase 8's: §1 and §2 say what
+exists, §3.8 what was measured, and §4 and §5 gain a Phase 9 group each. Phase 9's milestone by
+milestone account is [09](09-funding-impact.md)'s header, "Changes since agreement", and its own
+open items are 09 §16.
 
 ---
 
@@ -30,14 +35,19 @@ text is in git history. The dated sections (§3–§5) and the plan (§6) were o
 | The web app ([06](06-web-app.md)) | **Done** 2026-09-20 — `web/`: React, TypeScript, Vite, visx |
 | Publishing ([07](07-operations.md)) | **Done** 2026-09-20 — `gh-pages`, with the data and the app published separately |
 | Scheduled running | **Done, after a false start** — the first scheduled run failed on 2026-09-21; fixed, and caught up on 2026-09-26 (§3.5) |
+| Phase 9, funding impact ([09](09-funding-impact.md)): M0, B1–B10, W1–W10, R | **Done** — specified and built 2026-09-26, seeded and released 2026-09-27 (§3.8) |
 
-**The app is live** at <https://mriffle.github.io/uwpr-publication-analysis/>.
+**The app is live** at <https://mriffle.github.io/uwpr-publication-analysis/>, and since
+2026-09-27 05:39 UTC with its Funding impact view.
 
-**The checks, as of 2026-09-26:** 510 Python tests and 707 web unit tests, all offline, plus 40
-Playwright tests against the built app. ruff, `ruff format`, mypy `--strict`, ESLint, Prettier,
-`tsc`, the bundle budget and the store validator are all clean. `check.yml` is green on every
-push. Besides the code, it validates the committed `store/`, runs the Phase 1 §12 test papers
-against it, and checks that the committed export matches the committed store.
+**The checks, as of the release on 2026-09-27:** 1,511 Python tests and 1,633 web unit tests, all
+offline, plus 82 Playwright tests against the built app (510, 707 and 40 when this section was
+tidied on 2026-09-26). ruff, `ruff format`, mypy `--strict`, ESLint, Prettier, `tsc`, both
+budgets (JavaScript, and the data's 500 KiB) and the store validator are all clean. `check.yml` is
+green on every push. Besides the code, it validates the committed `store/`, runs the Phase 1 §12
+test papers against it, checks that the committed export matches the committed store, and runs
+the web unit suite a second time against that export (1,538 pass; the 95 that test the sample's
+own cases skip).
 
 **`store/` was seeded on 2026-09-20**: 339 works, 455 candidates, 306 list entries, 754 metrics
 lines, 0 errors and 0 warnings. The ~1,100 work and record IDs it minted are permanent from here.
@@ -53,6 +63,17 @@ store is now 338 works, 477 candidates, 306 list entries and 754 metrics lines, 
 turned out to be a second copy of W-000237's preprint. Recall (208/253) and the test papers are
 unchanged. The committed change matched the scratch measurement except for six cache pointers,
 which only the local cache had moved (§3.7).
+
+**Phase 9, funding impact, is built, seeded and live** ([09](09-funding-impact.md)). The grants
+the included papers list sit beside the work files, in `store/funding/`, and never affect
+inclusion. The seed (run `2026-09-27T02-15-live`, d91c784) enabled funding at `funding_version`
+`2026-09-27.1` with 24 grant overrides: **755 grants** (748 resolved, 7 Miscellaneous) and
+**$7,888,899,029** of known lifetime award totals. The export is contract 1.1 (`works[].grants[]`
+and a top-level `funding` block). The weekly run has carried funding since the first
+`workflow_dispatch` with it enabled (run 36289188785), which also put the data on `gh-pages`. The
+Funding impact view, its agency and grant pages and each publication's Funding section went public
+on 2026-09-27 at 05:39 UTC, when R2's removal of the `VITE_FUNDING` flag (6c1698f, e5dc3a6)
+deployed, so the data was published before the app. §3.8 has the figures.
 
 ## 2. What exists
 
@@ -85,20 +106,32 @@ src/uwpr_pubs/
   git.py         clean-tree, reset, and the run's one data commit
   runtime.py     builds the client from config; reads .env for local runs
   smoke.py       `uwpr-pubs smoke`, the only live test
-  sources/       uwpr_site, openalex, ncbi, crossref, europepmc, biorxiv, pride
+  funding/       Phase 9's pure core (docs/09 §6–§8, §11): numbers (the tolerant parser, grant
+                 keys), classify, resolve, amounts, currency, overrides, jats; summary, export and
+                 contract (the funding half of contract 1.1); report (the Funding section, the
+                 total-drop alert)
+  sources/       uwpr_site, openalex, ncbi, crossref, europepmc, biorxiv, pride; and for funding,
+                 reporter (NIH RePORTER), nsf (the NSF Award API) and usaspending
   rules/         one module per rule, plus staff name forms and the §6.4 signals
-  stages/        export.py: stage 11, the shell around export.py (stage 10 retired with Phase 4)
+  stages/        export.py: stage 11, the shell around export.py (stage 10 retired with Phase 4);
+                 funding.py: stage 8b, funding (docs/09 §9), between stages 8 and 9
   store/         models (TypedDicts), io, ids, paths, read
 
+store/funding/   citations, grants, agencies and lookups (.jsonl): funding, beside works/ (docs/09 §8)
+config/          funding.yaml (versioned by `funding_version`) and exchange_rates.yaml join the rest
 web/             the app (docs/06): contract/ (types generated from schemas/), aggregate/ and
-                 filter/ (no React), charts/, views/; e2e/ holds the Playwright tests
+                 filter/ (no React), charts/, views/; e2e/ holds the Playwright tests. Phase 9 adds
+                 the Funding impact view (`/funding`), the agency and grant pages, a publication's
+                 Funding section and the method page's `#funding`
 tools/           publish-site.sh (the two halves of gh-pages); redact_jats.py
 .github/         check.yml, update.yml (weekly), pages.yml (app deploy), dependabot.yml
 ```
 
 Commands: the full Phase 3 §8 set — `validate`, `config`, `smoke`, `run`, `explain`, `report`
 and `fixtures` — plus `export`. `run` takes `--mode`, `--store`, `--cache`, `--dry-run`,
-`--channels`, `--no-commit` and `--summary-out`.
+`--channels`, `--no-commit`, `--summary-out` and, since Phase 9, `--funding auto|full|skip`;
+`explain` also takes a grant key (`NIH:R01GM086688`), and `smoke` checks the funding sources
+without ever blocking on them.
 
 ## 3. Measurements so far
 
@@ -498,6 +531,117 @@ candidate read again.
 Both week-on runs ended **ALERT**, which is correct: bioRxiv's `details` had now failed in three
 runs in a row of that scratch store's history (§3.5).
 
+### 3.8 Phase 9, funding impact, 2026-09-26/27 (UTC)
+
+Each figure here is one a milestone recorded in [09](09-funding-impact.md): in its header's
+"Changes since agreement" entry, or in §5 and §17. The milestone is named so the entry can be
+found.
+
+**The sources, live through the new adapters** (B6, 2026-09-26, fiscal years up to 2026). RePORTER's
+figures are the research's exactly (09 §5.1):
+
+| | Measured | 09 §17's target |
+|---|---|---|
+| Works RePORTER links to a grant | 260 | 260 ± 2 |
+| Cores | 454 | 454 |
+| Parent rows, none a sub-project | 5,437 | 5,437 ± 1% |
+| Their total | $6,217,332,093 | $6,217.3M ± 0.1% |
+| NSF awards found | 56 of 57; NSF does not know `0659680` | ≥ 56 of 57 |
+| USAspending, award types 02–05 | 21 of 27 rows (20 grants) | 21 of 27 |
+| PubMed `GrantList` | 276 works | ≥ 276 |
+| OpenAlex award entities | 1,534 of 1,534, for $0.0043 | 1,534 |
+| Crossref funder batches | 376 of 377 DOIs, in 8 requests | batching works |
+
+The contracts: `HHSN272201700059C` $24,791,405, `HHSN268201000033C` $10,781,559,
+`HHSN272201800004C` $18,117,838, and task order `75N93020F00001` $1,471,125. In the 237 cached PMC
+XMLs, the JATS reader found 341 award IDs in the `<award-group>`s of 74 records, and in prose 726
+full-format NIH numbers and 11 contract numbers (09 §5.8). B10 confirmed the seven funding smoke
+checks live the same day: 8 requests, $0.0001 of OpenAlex, all `PASS` (09 §13.2).
+
+**The seed** (B9b; run `2026-09-27T02-15-live`, d91c784). It was a full live refresh at
+`funding_version` `2026-09-27.1`, started on Saturday evening in New York, inside RePORTER's
+window:
+
+| | The seed |
+|---|---|
+| Grants | **755**: 748 resolved, 7 Miscellaneous |
+| With an amount | 617 |
+| Total value of grants listed | **$7,888,899,029** |
+| NIH | $6,556,225,823 |
+| Institution-wide | $1,214,918,218; all 23 Appendix B keys listed and tagged |
+| RePORTER cores | 479: 478 NIH, and `VA:I01BX000531` (target ≥ 473) |
+| The 454 linked cores | $6,217,332,093, exactly the target |
+| The three contracts and the task order | exactly their targets |
+| NIH-format strings left in Miscellaneous | exactly `S10OD032290`, `R01GM122864` (two works) and `P01 HL0996` |
+| Works listing a grant not in Miscellaneous | 310 (target ≥ 309) |
+| Works with any funding string | 319 (target ≥ 329, redefined below) |
+| Excluded, never grants | 26 facility-contract strings, 132 resource-code strings |
+| Chilean peso grants | 11, converted at OECD's rate for their start year |
+| OpenAlex agreeing with the agency | 62 of 63 comparable grants (target ≥ 99%, redefined below) |
+| Investigators | 472 |
+| Grant overrides | 24: Appendix E's nine, the rehearsal's 14, and CIHR's `178013_1` → `MISC:1780131` |
+| The export, gzipped at level 9 | 440,730 bytes (430.4 KiB) by the budget’s measure, against a 500 KiB budget; 440,753 from the `gzip -9` command, whose header carries the file’s name |
+
+**Two targets the rehearsal redefined** (09's B9 entry). 329 works carry funding *information*,
+but 10 of them name a funder with no number in any source, so 319 carry a string and nothing is
+missing. OpenAlex's one disagreement is `NSF:2245300`, whose OpenAlex amount is stale ($905,320
+against NSF's $1,199,760); the research's 101 of 102 also compared sources v1 does not read.
+**Against the rehearsal** (B9a), every figure is the same but for the CIHR override, which takes
+$674,480 out of its $7,889,573,509.
+
+**Time.** The seed took 286 s on a warm cache, stage 8b about two minutes of it. Funding adds 2.1
+minutes to a full run, against the rehearsal's 160 s without funding, and about 20 s to an
+incremental one (stage 8b of a same-day rerun, 105 s in all). The rehearsal timed the stage at
+124–131 s full and 22–25 s incremental. The acceptance limits were 5 minutes and 1 minute.
+
+**Requests, by source.** A full refresh, the seed's and the rehearsal's exactly: RePORTER 58, NSF
+56, USAspending 26, OpenAlex 30, Crossref 9, PubMed 2. An incremental one, the first weekly run's
+below: 31, of which RePORTER 13, OpenAlex 8, NSF 6 and USAspending 4. 09 §9.2 had estimated
+100–150 RePORTER requests for a full refresh and 10–20 for an incremental one.
+
+**OpenAlex cost across the phase: about $0.2**, every other source being free. The rehearsal
+spent $0.116, against a $0.10 cap it slightly exceeded; the seed $0.0130, and a same-day rerun
+$0.011 more; each live sample build $0.0002 (B8, B3b, B9c); B6's read of every award entity
+$0.0043.
+
+**Determinism.** A same-day rerun on a copy of the seeded store changed only `runs/` and the
+export's `generated_at` and `run_id`. The rehearsal's +7-day replay rewrote no work, candidate,
+alias or funding file. The rehearsal's rerun is what found three of B9a's five faults (§4).
+Besides funding, the seed rewrote every work file's dates once: the last committed manifest had
+no `overrides_fingerprint`, so all 377 records were read again. W-000392 gained R2 from Crossref's
+award metadata, whose deposit had changed, and six cache pointers name the local cache's copies of
+PMC texts (§5).
+
+**The first weekly run with funding** (`workflow_dispatch`, run 36289188785,
+`2026-09-27T02-40-live`, data commit d0c566b). Funding ran incrementally: 755 grants, the total
+unchanged at $7,888,899,029, 0 new and 0 no longer listed, no funding degradation, and 31 funding
+requests. The data was pushed and published to `gh-pages`. The job ended red only at its alert
+step, for bioRxiv's `details` endpoint failing a third run in a row (§3.5): a discovery source,
+not funding. The weekly bot will keep raising that alert while the endpoint answers empty bodies.
+
+**The app on the real data** (R1a, R1b). The seeded export has 755 grants, 71 root agencies (98 in
+all, 53 with no known amount), 208 grants typed `other`, and a publication listing 25 grants, and
+none of these had been seen on a page. Drawn whole, the grants table made `/funding` 58,024 pixels
+tall at 1,280 wide; drawing the first 50 rows made it 13,721. From navigation to the grants table
+drawn took 48–100 ms in Chromium on the development machine. Every cross-check held on the real
+export (the summary, the funding summary field by field, and the first years), and neither side was
+wrong.
+
+**The gate at release** (R2): 1,633 unit tests on the sample, at 98.7% statement and 92.2% branch
+coverage; 1,538 pass and 95 skip on the real export; 82 Playwright specs on each, none skipped;
+the JavaScript 143.2 KB gzipped, against the 250 KiB budget.
+
+**The release, checked live.** On 2026-09-27 at 05:39 UTC (01:39 Eastern) `pages.yml` run
+36297800111 deployed e5dc3a6, and `check` run 36297800148 was green. The data it reads had been on
+`gh-pages` since run 36289188785 (schema 1.1, `funding.version` `2026-09-27.1`, 755 grants),
+confirmed before the push. A Playwright script then loaded eight pages cold on the public site:
+`/funding` (its heading, the headline $7,888,899,029 and NLM's line), `/funding/agency/NIH`,
+`/funding/grant/NIH%3AP30DK017047` ("Diabetes Research Center", $52,843,525 and its RePORTER link),
+`/funding/grant/MISC%3A1780131` (a recorded decision), `/publication/W-000102` and
+`/publication/W-000277` (their Funding sections), `/method#funding` and `/` (the Publications |
+Funding impact switch). All eight rendered with no page error. The rollback, if ever needed, is
+`pages.yml` re-run at fd7d0d8 (`RUNBOOK.md` §8).
+
 ## 4. Decisions taken during implementation
 
 Each is already reflected in the code, the config or a dated spec note. They are listed here
@@ -590,6 +734,65 @@ because they are the things a reader would otherwise have to rediscover.
 - **Phase 1 §8's title repair is still not built.** Its one case turned out to be a duplicate,
   and the fix above removes it. Crossref's record for that revision DOI had the same file name,
   so "take the title from Crossref" would not have mended it anyway.
+
+**Made while building Phase 9** (each is under its milestone in [09](09-funding-impact.md)'s
+header, "Changes since agreement", unless another place is named):
+- **A work's strings are pooled by the override match key** (B3; 09 §6.6). Case, spaces, dashes,
+  and droppable parentheses and trailing punctuation do not count, so a number written with a
+  Unicode hyphen in one source and a plain one in another is one string, named by both sources'
+  funders. It is shown in its most frequent form, and the other forms are kept for `cited_as`.
+  One function makes the key, for pooling and for overrides alike.
+- **An agency is named by funder ID or PubMed's agency; then, for agencies other than NIH, HHS
+  and PHS, by a whole funder name given without an ID** (B3, B3a; 09 §6.4, §8.4). ID alone sent 15
+  of Appendix F's 270 rows to Miscellaneous on some work; `funder_names` left 4. NIH, HHS and PHS
+  never have names, and the schema and the rules both refuse them: a name pattern is what once
+  swept USDA numbers into NIH. No rule reads a ROR ID, so a sighting that gives a ROR and no name
+  (CIHR's `PJT-206152`) stays Miscellaneous.
+- **OpenAlex's amount is compared only with a lifetime total** (B3b; 09 §7.1). `amounts_disagree`
+  set RePORTER's lifetime sum beside OpenAlex's `nih_exporter` amount, which is one fiscal year's,
+  and flagged grants that agree (P30DK017047: $52,843,525 against $89,000). It now compares only
+  where the agency's basis is `nsf_obligated`, `nsf_estimated` or `usaspending_obligation`
+  (`COMPARED_WITH_OPENALEX`).
+- **A string is decided afresh only when every source that has shown it was read in this run**
+  (B7a; 09 §9). PubMed and Crossref are read only for new records and at a full refresh, and JATS
+  once, so otherwise a string that OpenAlex and PubMed both write would be decided from both at a
+  full refresh and from OpenAlex alone the week after, and could move between agencies every
+  month.
+- **The total-drop alert is silenced only by funding's own degradation** (B7b, narrowed at merge;
+  09 §9.5): `stage:funding`, or a source degradation whose cause begins `funding:`. As first built,
+  any `source:*` degradation silenced it, so a discovery-only outage would have hidden a real fall
+  for good, because the next run compares with the lowered total.
+- **B9a's five faults**, found by rehearsing the seed on a scratch copy and running it again the
+  same day and a week on. A component's number after a six-digit NIH serial is a suffix (15 strings
+  had become 8 spurious Miscellaneous keys). The tests run on a copy of `config/` with
+  `enabled: false` (switching funding on had failed 31 of them). A stored whole number stays in
+  the company of this run's fragments. A string's method no longer flips between `exact` and
+  `normalised` with the forms read. An OpenAlex-valued grant's record comes from the
+  lowest-numbered award that has one, and stands until every award is read again (19 grants had
+  lost theirs to a bare award). The rerun found three of the five: a first run cannot show that a
+  second one changes it.
+- **24 grant overrides, the maintainer's** (B9; 09 §16 item 3): Appendix E's nine, the
+  rehearsal's 14, and CIHR's `178013_1` on W-000102, overridden to `MISC:1780131`. OpenAlex matches
+  that one to an unrelated hepatitis C grant ($674,480), which does not fit a 2013 paper on PARP-1,
+  so the probable mismatch is kept out of the total and shown as unmatched. A grant override may
+  name a `MISC:` key for exactly this. `S10OD032290` stays Miscellaneous (09 §16 item 1).
+- **NIH centre grants stay project-scope** (the maintainer, 2026-09-27; 09 §16 item 4). They are
+  shown apart as "Centre or programme", $4.91B of the $7.89B. Tagging them later is a config change
+  and a `funding_version` bump.
+- **The grants table draws its first 50 rows, and its CSV holds every row the search matches**
+  (R1b; 09 §12.5 item 6). The spec's "a CSV of exactly the visible rows" is read that way: the
+  search decides which rows the reader asked for, and the cut only how many are drawn.
+- **The web unit suite runs against `export/` in CI** (R1a). The bot's data commits start no
+  workflow (§5), so every push holds the app's figures, and the cross-checks above all, to the real
+  data the site serves. Tests of the sample's own synthetic cases skip themselves there.
+- **NLM's attribution is on every page that shows funding data** (R1a; 09 §13.3). One component,
+  `NlmAttribution`, words it on the method page, at the foot of `/funding`, on agency and grant
+  pages, and as a line ending a publication's Funding section: NLM's phrase, the data's date, that
+  it may not be current, and that NLM does not endorse the site.
+- **The flag's removal was the release, and data went first** (F15, R2; 09 §12.12). `VITE_FUNDING`
+  kept the view out of the production build while it landed on `main` in slices. Its data was on
+  `gh-pages` from the first update run, so the push that removed the flag published the view. The
+  tests of the no-funding-data state stay: a rolled-back export still needs them.
 
 ## 5. Gotchas found while building
 
@@ -688,6 +891,63 @@ because they are the things a reader would otherwise have to rediscover.
   store lacks, which the first retraction a run finds would change; it now asserts only that the
   store exports, and the guard's scope is tested on the fixed sample store instead. **A test that
   reads `store/` must hold for any store the weekly run could write.**
+
+**Found while building Phase 9 (2026-09-26/27)** — the sources' traps are in
+[09](09-funding-impact.md) §5, measured:
+- **RePORTER needs a `sort_field` on every request, and not the same one everywhere.** Unsorted
+  pages repeat and drop rows: P30CA015704 fetched unsorted gave 1,105 rows, 1,097 of them distinct,
+  and lost a $4.94M renewal year. Project searches sort by `appl_id`. `publications/search`
+  answers HTTP 500 to that, and to anything but `coreproject` or `pmid`, so it sorts by
+  `coreproject`.
+- **Send RePORTER `exclude_subprojects: true`**, and an `include_fields` without `AbstractText` and
+  `PhrText`. A sub-project's cost is already inside its parent's row; summing every row inflates a
+  multi-project grant by 50–100% (P30DK017047: $52.8M, against $86.0M).
+- **RePORTER mangles contract numbers.** It drops `HHSN` and truncates the core to 11 characters
+  (`27220170005`); newer `75N` contracts keep the prefix but are truncated the same way. A
+  contract's rows are line items, several a fiscal year (56 for `HHSN272201700059C`), and all
+  count. A task order is its own row with its letters removed (`272201700036I-0-759302000001-1` is
+  `75N93020F00001`), and an amendment adds a segment (`…-P00004-759302000001-1`). Key a contract by
+  its contract number, never by RePORTER's core.
+- **VA grants are in RePORTER with no amounts** (`I01BX…`, `agency_code` VA). The seed lists one,
+  `VA:I01BX000531`.
+- **USAspending:** use `total_obligation`, not `total_funding`, which adds non-federal matching
+  money (Washington Sea Grant: $20.8M, against $13.4M obligated). `award_ids` match exactly, not as
+  substrings. A request may name award types of one group only, and mixing grants and contracts
+  is refused with HTTP 422. The search reaches only awards with activity since FY2008. Its TLS
+  verifies under httpx's defaults (B2), where the research's urllib client failed; never
+  `verify=False`.
+- **NSF's total is the obligated amount for an expired grant, and the larger of estimated and
+  obligated for an active one.** `estimatedTotalAmt` is never updated after the award;
+  `fundsObligatedAmt` includes supplements, and the two differ on 11 of 56. An award NSF does not
+  know is HTTP 200 with an empty list. A reply carries the abstract and the PI's and programme
+  officer's e-mail addresses and telephone numbers, so the adapter keeps named fields only.
+- **Two of OpenAlex's amount provenances are wrong.** DFG's `gepris` amounts are refused: two
+  unrelated grants carry the identical €109,941.6654. ANID's are multiplied by 1,000: ANID states
+  its figures in "Miles de pesos", which OpenAlex labels CLP.
+- **OpenAlex's `institution_awarded` is a list.** B7a read it as a mapping, which would have left
+  every OpenAlex-valued grant without an organisation. It was caught at merge by checking the
+  stage's assumptions against B6's saved live replies, which is worth doing whenever code was
+  written against a shape nobody had seen.
+- **G.5A quotes four currencies the other way.** AUD, EUR, NZD and GBP are US dollars per unit; the
+  rest are units per dollar. Every rate is stored as US dollars per unit, the inverted ones
+  computed in decimal and rounded to ten significant digits, halves to even.
+- **PubMed's XML carries abstracts,** so recordings strip `<Abstract>…</Abstract>` (P10).
+- **Cron runs when *either* day-of-month or day-of-week matches**, if both are set, so "the first
+  Saturday of the month" cannot be written in cron (09 §13.1).
+- **The pipeline dates in UTC.** A Saturday-evening run in New York is dated Sunday: the seed,
+  started on Saturday evening, is `2026-09-27T02-15-live`, its `funding_version` `2026-09-27.1`,
+  and its overrides are dated 2026-09-27.
+- **`178013_1` must stay quoted in `overrides.yaml`.** YAML 1.1 reads it unquoted as the integer
+  1780131. A pin test checks it.
+- **Any edit to `config/funding.yaml` must bump `funding_version`**, or stage 0 refuses the run
+  ("funding.yaml changed without a new funding_version"). `config/exchange_rates.yaml` is outside
+  the fingerprint.
+- **Whole-page axe tests need a 30 s timeout on CI.** W7's axe test of `/funding` took 5.5 s on the
+  runner against Vitest's 5 s default, and failed `check` while passing locally (fixed in
+  4134417). W8's ten were given 30 s at merge.
+- **A table tuned to macOS's fonts can overflow on CI's Linux fonts,** which are 2–3% wider. R1b's
+  grants table fitted locally with 2–22 pixels to spare and measured 1,064 pixels in a 1,056-pixel
+  column on CI. Its least widths now leave about 40 pixels (fee1be4).
 
 ## 6. The approved implementation plan
 
@@ -991,7 +1251,8 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
 
 ## 8. Open questions for the maintainer
 
-*Brought up to date 2026-09-26.*
+*Brought up to date 2026-09-26; item 10 added 2026-09-27.* Phase 9's own open items are
+[09](09-funding-impact.md) §16, and are not repeated here.
 
 **Settled**, each with where the answer is recorded:
 - **Workflow token permissions.** `update.yml`'s own `permissions: {contents: write}` is honoured,
@@ -1005,6 +1266,9 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
 - **Maintainer and fallback.** Michael Riffle is the maintainer, and Michael Hoopmann the
   fallback (2026-09-26; `RUNBOOK.md` §1). The fallback does not receive the scheduled run's
   failure email; [07](07-operations.md) §6 says why, and what they watch instead.
+- **Phase 9, funding impact.** Agreed 2026-09-26, built, and live since 2026-09-27 (§1, §3.8).
+  The release and NIH centre grants' scope were the maintainer's calls
+  ([09](09-funding-impact.md) §16 item 4).
 
 **Open:**
 1. ~~**Two data defects found while specifying Phase 5**~~ (2026-09-20). **Fixed 2026-09-26 by
@@ -1055,3 +1319,6 @@ run, reading a report, rolling back — is `RUNBOOK.md`'s.
    so the first run after reads nothing extra. A test edits `channels.yaml` and runs again on a
    cold cache; it fails on the old code with all three PMC texts fetched again. Phase 3's header
    has the change, and Phase 2's the optional manifest field.
+10. **`uwpr-pubs run --mode record` records nothing** (found 2026-09-26, in B9a). The CLI builds its
+    client without a recordings folder, so a record-mode run writes no recording. It predates
+    Phase 9, which only came across it.

@@ -21,7 +21,7 @@ Status is not decoration. It says what you are allowed to do with the document.
 | [06-web-app.md](06-web-app.md) | What does the app show, how does it behave, and how is it built and tested? | **Agreed** 2026-09-20 |
 | [07-operations.md](07-operations.md) | Where does it run, how is it published, and how do we know it still works? | **Agreed** 2026-09-20 |
 | [08-implementation.md](08-implementation.md) | What was actually built, what was measured, and what did building it teach us? | **Record** — appended to, not rewritten |
-| [09-funding-impact.md](09-funding-impact.md) | Which grants do the publications list, what are they worth, and how is each resolved, stored and shown? | **Agreed** 2026-09-26 |
+| [09-funding-impact.md](09-funding-impact.md) | Which grants do the publications list, what are they worth, and how is each resolved, stored and shown? | **Agreed** 2026-09-26; **built and live** 2026-09-27 |
 | [archive/](archive/) | Superseded documents, kept because they are cited | — |
 
 **Frozen** means the document is the authority and changes to it are deliberate: dated, explained

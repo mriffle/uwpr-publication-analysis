@@ -1,9 +1,11 @@
 # UWPR Publication Impact — Project Phases
 
 **Status:** the pipeline, export and app are built and live (see 08). Phase 9, funding impact, is
-agreed and being built.
-**Last updated:** 2026-09-26 (Phase 9 added and agreed: the funding behind the publications, in
-[09](09-funding-impact.md)). Before that, 2026-09-20: Phase 4 retired, and 5, 6 and 7 agreed.
+built and live too, since 2026-09-27.
+**Last updated:** 2026-09-27 (Phase 9 built and live: the store seeded with funding, and the
+Funding impact view released; [08](08-implementation.md) §3.8). Before that, 2026-09-26: Phase 9
+added and agreed, the funding behind the publications, in [09](09-funding-impact.md); and
+2026-09-20: Phase 4 retired, and 5, 6 and 7 agreed.
 
 ## Goal
 
@@ -47,7 +49,7 @@ is shown, it is labelled as a preprint.
 | 6 | Web app | What does the single-page app show, how does it behave, and how does data get into it? | [06-web-app.md](06-web-app.md) | **Agreed** 2026-09-20 |
 | 7 | Operations *(added)* | Where does it run, how often, where is it hosted, and how do we know it is still correct? | [07-operations.md](07-operations.md) | **Agreed** 2026-09-20 |
 | 8 | Implementation | Build to the specs, in the order below. | [08-implementation.md](08-implementation.md) | **Done** — the pipeline, export, app and publishing are built and live; the record is appended to as later phases are built |
-| 9 | Funding impact *(added)* | Which grants do the supported publications list, what are they worth, and who awards them? | [09-funding-impact.md](09-funding-impact.md) | **Agreed** 2026-09-26 |
+| 9 | Funding impact *(added)* | Which grants do the supported publications list, what are they worth, and who awards them? | [09-funding-impact.md](09-funding-impact.md) | **Agreed** 2026-09-26; **built and live** 2026-09-27 |
 
 ### Why Phase 4 was retired (2026-09-20)
 
@@ -104,7 +106,8 @@ starting with the sample export, which the app cannot be developed or tested wit
 
 **9 was added on 2026-09-26**, after everything above was built and live. It depends on all of
 them and changes 02, 03, 05, 06 and 07, each by a dated note as its milestone lands
-([09](09-funding-impact.md) §15).
+([09](09-funding-impact.md) §15). It was built on 2026-09-26, and seeded and released on
+2026-09-27.
 
 Suggested implementation order once specs are agreed:
 
