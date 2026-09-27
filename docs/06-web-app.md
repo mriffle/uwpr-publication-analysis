@@ -261,6 +261,22 @@ deliberately, dated, and noted in this header.
   shape of today's real export, since CI serves only the sample, and fails on any uncaught page
   error. It found nothing. Every whole-page axe test now takes 30 s, as CI's slower runner needs.
   The JavaScript is 141.9 KB gzipped, from 141.7.
+- *2026-09-27, §12.3 and §15, the suite against the real export, and NLM's attribution*
+  ([09](09-funding-impact.md) R1a, §13.3). **§12.3 gains a step:** after the coverage run, the web
+  job runs the unit and component tests again with `UWPR_EXPORT_DIR` pointing at the committed
+  `export/`. The weekly bot's data commits start no workflow, so without it nothing checked the
+  app against the data the site serves; now every push does, the summary and funding
+  cross-checks above all. It takes about 30 s locally. The tests of the sample's own cases skip
+  themselves there, as do the two whole-view axe tests of `/funding`, whose 755-row grants table
+  takes axe 6.5 s alone in jsdom; the e2e step runs axe on the real data when pointed at it.
+  **§15's last box is ticked.** The seeded export failed 8 tests on first contact, each naming a
+  sample value, and revealed one defect: an unmatched number an override decided lost its
+  override's reason on the publication (09's R1a entry). **§5 and the funding pages carry NLM's
+  attribution** — "Courtesy of the U.S. National Library of Medicine", the date PubMed was read,
+  that the data may not be current, and that NLM does not endorse the site — at the foot of the
+  Funding impact view, an agency page and a grant page, and as one short line ending a
+  publication's Funding section, whenever PubMed is a funding source. One component words it,
+  on the method page too. The JavaScript is 142.2 KB gzipped, from 141.9.
 **Purpose:** specify the single-page app that presents the publications supported by the UW
 Proteomics Resource — what it shows, how it behaves, how it is built, and how it is tested.
 **Depends on:** [05](05-metrics-and-data-contract.md) (agreed), which is the app's *only* input.
@@ -766,9 +782,10 @@ of the generic ones.
 
 A `web` job alongside the existing `check` job, on every push and pull request: pinned Node,
 `npm ci` from the committed lockfile, then the generated-types freshness check, lint, format,
-type-check, unit and component tests with coverage, build against the budgets of §10 (the
-JavaScript bundle, and the data first load fetches, on `export/` and `samples/export/`), and
-Playwright. The job fails on a budget overrun, so neither can grow unnoticed.
+type-check, unit and component tests with coverage, the same tests against the committed real
+export (`UWPR_EXPORT_DIR`), build against the budgets of §10 (the JavaScript bundle, and the data
+first load fetches, on `export/` and `samples/export/`), and Playwright. The job fails on a budget
+overrun, so neither can grow unnoticed.
 
 **Playwright runs against the built app behind `vite preview`, not the dev server.** The two
 behaviours it exists to cover — the `404.html` fallback of §3 and the on-demand lookup fetch of §7
@@ -814,4 +831,5 @@ data commit change only the JSON it fetches.**
       built or tested before it exists.
 - [ ] Chart kit built, with one chart end to end through it.
 - [ ] Accessibility walkthrough passed on every route.
-- [ ] The summary cross-check asserted against the real export.
+- [x] The summary cross-check asserted against the real export — 2026-09-27, in CI on every push
+      ([09](09-funding-impact.md) R1a), with the funding cross-check and the first-year check.

@@ -757,6 +757,64 @@ plan. [08](08-implementation.md) records them as they are built.
   - The build's docstrings said funding is disabled in `funding.yaml`; it has been enabled since
     the seed. They now say so, and that the build still passes `even_if_disabled`, so the sample's
     funding does not depend on the switch.
+- *2026-09-27, R1a — the app against the real, seeded export.* W10 left the funding unit tests
+  reading the sample's funding; the seeded `export/` (755 grants, $7,888,899,029 known) was their
+  first real data. Run against it (`UWPR_EXPORT_DIR`), the suite failed 8 tests in 4 files, and
+  the e2e specs, which read their keys from the served export, all passed.
+  - **What failed, and why.** Every failure named a sample value, not a real fault. Five
+    `describe` tests and one `FundingFilter` test named the sample's synthetic grants
+    (`NIH:R01GM999001`, `ANID:1599A0999`), which the real export does not have, so their chips read
+    the raw key. `Funding.test` used `NIH:R01GM086688` as a key no export has, and the real one
+    lists it on 34 works. `FundingFlagOff`'s sweep of every publication timed out at 5 s: the
+    real export's 338 pages take 3.7 s alone in jsdom and 8.9 s beside the rest of the suite.
+  - **Rewritten to hold for any export (8).** The tests name grants both exports list
+    (`NIH:P30DK017047`, `CANCERFONDEN:222380PJ`, `NSF:1908587`), or a key asserted absent first,
+    and the sweep has the page sweeps' 30 s. The sample's synthetic grant, task order, funder and
+    unmatched number keep their assertions, in two new sample-only cases.
+  - **Sample-only until now, and holding for any export (10).** They asserted invariants, and were
+    marked sample-only while the real export had no funding: the honesty rules on every funding
+    page (rules 1, 2, 6, 7 and 10), the funding definitions' corpus values, the method page's
+    partial year, and the Funding section over every listing. Rule 1 read the export's own words
+    as the app's: real grants are titled "Cancer Center Support Grant" and "…to enable novel
+    analysis approaches". It now leaves out the titles, names and organisations the page quotes.
+    Two sweeps are added for any export: **rule 3** on the view and every agency page, as charts
+    and as tables, in the words and in each mark's name (39 real agency pages have years before
+    any known amount, each named "no known amount yet in the running total", never "$0"), and
+    **rule 4**, the headline's institution-wide position both ways. The funding cross-check's
+    "reads an export with funding data" no longer skips a real export without any.
+  - **Made sample-only (2), for time.** The two whole-view axe tests of `/funding`: on the real
+    export, whose grants table has 755 rows, axe takes 6.5 s alone in jsdom and 14 s under the
+    suite's load. Axe on the real `/funding` is the e2e step's, in both themes. The 97 tests the
+    real export skips are the sample's own cases — docs/05 §13's, the synthetic funding cases, and
+    the pages and chain built on the sample's grants and works — and these two.
+  - **The cross-checks hold on the real export.** The summary cross-check, the funding cross-check
+    (every field of `funding.summary`, investigators and organisations with the same keys, and
+    every year of `by_first_year`) and the first-year check run and pass on both exports. Neither
+    side was wrong.
+  - **One defect the real data revealed.** W-000102 lists `MISC:1780131`, the string B9's
+    maintainer decision keeps unmatched. The Funding section quoted an unmatched number and dropped
+    its listing, so the override's reason, author and date, which §12.8 asks of every override,
+    were shown nowhere on the publication; and the grant page's listing notes called the decision
+    "Matched by a recorded decision". The sample has no override to a `MISC:` key, which B9 was the
+    first to write. The section now gives an unmatched number its listing notes, less the form it
+    already quotes, and both places say "Kept unmatched by a recorded decision, not by a rule".
+    Found by running the listings test on the real export; tests on built documents hold both.
+  - **NLM's attribution where funding data is shown** (§13.3). `NlmAttribution` is W9's wording, now
+    the one component: shown when `sources[]` has `pubmed`, dated by its `as_of`, with the
+    statement that the data may not be current and that NLM does not endorse the site. It is on
+    the method page, at the foot of `/funding` (above the footer), an agency page and a grant page,
+    and as one short line ending a publication's Funding section. It is absent without `pubmed`,
+    and with no funding data. Axe is clean on it in jsdom, and in both themes in the browser on
+    every page that carries it, on the real export.
+  - **CI.** `check.yml`'s web job runs the unit suite against `export/` after the coverage run.
+    The weekly bot's commits start no workflow, so every push holds the app's figures to the
+    committed real data. It takes 23–31 s locally, against the job's 15 minutes. The e2e step
+    still serves the sample.
+  - **The gate.** On the real export: 1,516 unit tests pass and 97 skip; build, both budgets and
+    the 80 e2e specs with the flag pass, axe included on `/funding`, NIH's page, a grant page, a
+    publication's Funding section and `/method#funding`, in both themes. On the sample: 1,613 pass
+    at 98.6% line and 91.9% branch coverage, and e2e passes with and without the flag. The
+    JavaScript is 142.2 KB gzipped, from 141.9; the real export 440,730 bytes (430.4 KiB).
 
 ---
 
@@ -2340,9 +2398,11 @@ RePORTER may be the block §13.7 fears.
 **What the re-reading changed** (B10, 2026-09-26). `NOTICE` and `README.md` say what each source's
 terms ask, and three things follow beyond them:
 - **NLM's phrase belongs where a reader of the page sees funding data**, not only in `NOTICE`.
-  The method page's funding section (W9), or the footer when the view ships (R), carries
+  The method page's funding section (W9) and, since R1a, the foot of the Funding impact view, of
+  an agency page and of a grant page, and the end of a publication's Funding section carry
   "Courtesy of the U.S. National Library of Medicine" and the data's date, which is the statement
-  of currency NLM asks for.
+  of currency NLM asks for, with the statement that NLM does not endorse the site. One component
+  (`NlmAttribution`) words all five, whenever PubMed is among the export's funding sources.
 - **The stored OECD rates are inverted** to US dollars per unit (§5.10), which CC BY counts as a
   change; `NOTICE` says so, and so should the method page's note on currency.
 - **USAspending's data carries no stated licence.** It is US government information, attributed;
