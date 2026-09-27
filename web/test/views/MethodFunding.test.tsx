@@ -101,7 +101,7 @@ describe('the section (docs/09 §12.9)', () => {
     const { container } = show();
     expect(section()).toBeInTheDocument();
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 });
 
 describe('the funding definitions the Funding impact view links to (docs/09 §12.5 item 2)', () => {

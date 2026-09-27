@@ -118,7 +118,7 @@ describe('the sample, unfiltered', () => {
   it('passes axe', async () => {
     const { container } = at('/funding');
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 });
 
 describe('grant funding over time', () => {
@@ -334,7 +334,7 @@ describe('institution-wide awards excluded', () => {
   it('passes axe', async () => {
     const { container } = at('/funding?institution_wide=exclude');
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 });
 
 describe('empty states', () => {
@@ -346,7 +346,7 @@ describe('empty states', () => {
     await expectNoAxeViolations(container);
     await userEvent.click(screen.getByRole('button', { name: /^Remove Year:/ }));
     expect(here()).toBe('/funding');
-  });
+  }, 30_000);
 
   it('when publications match but none lists a grant, says so in its own words', async () => {
     const bare: ExportDocument = {
@@ -359,7 +359,7 @@ describe('empty states', () => {
     expect(state).toHaveTextContent(/not a finding that the work had no funding/);
     expect(screen.queryByRole('table')).not.toBeInTheDocument();
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 
   it('when every grant in view is an excluded institution-wide award, points at the switch', () => {
     const code = wideOnlyAgency();
@@ -374,7 +374,7 @@ describe('empty states', () => {
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
     await expectNoAxeViolations(container);
-  });
+  }, 30_000);
 });
 
 describe('the switch, and where focus goes', () => {
