@@ -121,9 +121,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Melissa L. Kelley",
-          "openalex": "A5054251605",
-          "orcid": "0000-0003-2207-8936",
+          "name": "Melissa Kelley",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -251,5 +251,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

@@ -128,7 +128,7 @@
           ],
           "corresponding": false,
           "name": "Euan Murray",
-          "openalex": "A5047478900",
+          "openalex": null,
           "orcid": null,
           "staff": null
         },
@@ -299,5 +299,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

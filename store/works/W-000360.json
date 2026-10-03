@@ -157,10 +157,10 @@
               "ror": null
             },
             {
-              "country": null,
-              "name": null,
+              "country": "RU",
+              "name": "Russian Academy of Sciences",
               "raw": "Vavilov Institute for General Genetics, Russian Academy of Sciences, Moscow, Russia",
-              "ror": null
+              "ror": "05qrfxd25"
             }
           ],
           "corresponding": false,
@@ -330,5 +330,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

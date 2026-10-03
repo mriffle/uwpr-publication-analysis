@@ -216,8 +216,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael Riffle",
-          "openalex": "A5134114528",
+          "name": "Michael E. Riffle",
+          "openalex": "A5067746093",
           "orcid": "0000-0003-1633-8607",
           "staff": "riffle"
         },
@@ -412,5 +412,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

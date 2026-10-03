@@ -142,21 +142,21 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "Vanderbilt University Medical Center",
+              "name": "Vanderbilt University",
               "raw": "Department of Cancer Biology, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
-              "ror": "05dq2gs74"
+              "ror": "02vm5rt34"
             },
             {
               "country": "US",
-              "name": "Vanderbilt University Medical Center",
+              "name": "Vanderbilt University",
               "raw": "Department of Neurological Surgery, Vanderbilt University Medical Center, 1161 21st Ave South, T4224 Medical Center North, Nashville, TN, 37232-2380, USA",
-              "ror": "05dq2gs74"
+              "ror": "02vm5rt34"
             },
             {
               "country": "US",
-              "name": "Vanderbilt University Medical Center",
+              "name": "Vanderbilt University",
               "raw": "Vanderbilt-Ingram Cancer Center, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
-              "ror": "05dq2gs74"
+              "ror": "02vm5rt34"
             }
           ],
           "corresponding": true,
@@ -279,10 +279,10 @@
               "ror": "05dq2gs74"
             },
             {
-              "country": "US",
-              "name": "Vanderbilt University Medical Center",
+              "country": null,
+              "name": "Vanderbilt-Ingram Cancer Center",
               "raw": "Vanderbilt-Ingram Cancer Center, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
-              "ror": "05dq2gs74"
+              "ror": "02rjj2m04"
             }
           ],
           "corresponding": false,
@@ -356,5 +356,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

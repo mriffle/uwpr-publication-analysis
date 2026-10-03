@@ -141,16 +141,16 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "Institute of Biotechnology in Medicine, National Yang Ming University, Taipei, Taiwan, Republic of China",
-              "ror": null
+              "ror": "009h5ks85"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "National Yang Ming University",
-              "ror": null
+              "ror": "009h5ks85"
             }
           ],
           "corresponding": false,
@@ -186,16 +186,16 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "† Institute of Biotechnology in Medicine, ‡ Institute of Biomedical Informatics, and # Department of Biotechnology and Laboratory Science in Medicine, National Yang Ming University, Taipei, Taiwan, Republic of China",
-              "ror": null
+              "ror": "009h5ks85"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "National Yang Ming University",
-              "ror": null
+              "ror": "009h5ks85"
             }
           ],
           "corresponding": false,
@@ -231,16 +231,16 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "† Institute of Biotechnology in Medicine, ‡ Institute of Biomedical Informatics, and # Department of Biotechnology and Laboratory Science in Medicine, National Yang Ming University, Taipei, Taiwan, Republic of China",
-              "ror": null
+              "ror": "009h5ks85"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "National Yang Ming University",
-              "ror": null
+              "ror": "009h5ks85"
             }
           ],
           "corresponding": false,
@@ -276,16 +276,16 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "† Institute of Biotechnology in Medicine, ‡ Institute of Biomedical Informatics, and # Department of Biotechnology and Laboratory Science in Medicine, National Yang Ming University, Taipei, Taiwan, Republic of China",
-              "ror": null
+              "ror": "009h5ks85"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "National Yang Ming University",
-              "ror": null
+              "ror": "009h5ks85"
             }
           ],
           "corresponding": false,
@@ -351,16 +351,16 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "† Institute of Biotechnology in Medicine, ‡ Institute of Biomedical Informatics, and # Department of Biotechnology and Laboratory Science in Medicine, National Yang Ming University, Taipei, Taiwan, Republic of China",
-              "ror": null
+              "ror": "009h5ks85"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "National Yang Ming University",
-              "ror": null
+              "ror": "009h5ks85"
             }
           ],
           "corresponding": false,
@@ -396,16 +396,16 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "† Institute of Biotechnology in Medicine, ‡ Institute of Biomedical Informatics, and # Department of Biotechnology and Laboratory Science in Medicine, National Yang Ming University, Taipei, Taiwan, Republic of China",
-              "ror": null
+              "ror": "009h5ks85"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "TW",
+              "name": "National Yang Ming University",
               "raw": "National Yang Ming University",
-              "ror": null
+              "ror": "009h5ks85"
             }
           ],
           "corresponding": false,
@@ -554,5 +554,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

@@ -205,9 +205,9 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "Vanderbilt University Medical Center",
+              "name": "Vanderbilt University",
               "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, USA. Electronic address: j.segrest@vumc.org",
-              "ror": "05dq2gs74"
+              "ror": "02vm5rt34"
             }
           ],
           "corresponding": true,
@@ -281,5 +281,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

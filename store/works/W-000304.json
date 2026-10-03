@@ -181,9 +181,9 @@
             },
             {
               "country": null,
-              "name": null,
+              "name": "Genentech",
               "raw": "Genentech, South San Francisco, CA, 94080, USA",
-              "ror": null
+              "ror": "04gndp242"
             }
           ],
           "corresponding": false,
@@ -208,9 +208,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Tony Brown",
-          "openalex": "A5027698582",
-          "orcid": "0000-0002-1411-9331",
+          "name": "T. Brown",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -433,9 +433,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Tony Brown",
-          "openalex": "A5027698582",
-          "orcid": "0000-0002-1411-9331",
+          "name": "T Brown",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -493,9 +493,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Francis Jeffrey Dilworth",
-          "openalex": "A5075623400",
-          "orcid": "0000-0002-6265-8102",
+          "name": "J Dilworth",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -619,5 +619,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

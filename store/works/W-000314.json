@@ -156,10 +156,10 @@
               "ror": null
             },
             {
-              "country": null,
-              "name": null,
+              "country": "BE",
+              "name": "Ghent University",
               "raw": "Ghent University",
-              "ror": null
+              "ror": "00cv9y106"
             },
             {
               "country": "BE",
@@ -240,10 +240,10 @@
         {
           "affiliations": [
             {
-              "country": "BG",
+              "country": "US",
               "name": "National Center for Supercomputing Applications",
               "raw": "National Center for Supercomputing Applications & Siebel School of Computing and Data Science & School of Information Sciences",
-              "ror": "03g9ch715"
+              "ror": "03r10zj06"
             },
             {
               "country": null,
@@ -324,10 +324,10 @@
               "ror": null
             },
             {
-              "country": null,
-              "name": null,
+              "country": "BE",
+              "name": "Ghent University",
               "raw": "Ghent University",
-              "ror": null
+              "ror": "00cv9y106"
             },
             {
               "country": "BE",
@@ -919,5 +919,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

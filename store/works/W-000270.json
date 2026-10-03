@@ -204,8 +204,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Richard Y. Zhu",
-          "openalex": "A5109191848",
+          "name": "Richard Zhu",
+          "openalex": null,
           "orcid": null,
           "staff": null
         },
@@ -249,7 +249,7 @@
             }
           ],
           "corresponding": false,
-          "name": "John Philip Moore",
+          "name": "John P. Moore",
           "openalex": "A5022966532",
           "orcid": "0000-0002-9902-6096",
           "staff": null
@@ -266,7 +266,7 @@
           "corresponding": false,
           "name": "Shiu‐Lok Hu",
           "openalex": "A5103514890",
-          "orcid": "0000-0002-0589-1813",
+          "orcid": "0000-0003-4336-7964",
           "staff": null
         },
         {
@@ -376,5 +376,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

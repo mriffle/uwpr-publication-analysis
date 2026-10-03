@@ -97,10 +97,10 @@
         {
           "affiliations": [
             {
-              "country": "US",
-              "name": "Brown Foundation",
+              "country": null,
+              "name": null,
               "raw": "The Brown Foundation Institute of Molecular Medicine, McGovern Medical School, University of Texas Health Science Center at Houston, Houston, TX 77030, USA",
-              "ror": "04j0y0e37"
+              "ror": null
             }
           ],
           "corresponding": false,
@@ -118,10 +118,10 @@
               "ror": null
             },
             {
-              "country": "US",
-              "name": "Brown Foundation",
+              "country": null,
+              "name": null,
               "raw": "The Brown Foundation Institute of Molecular Medicine, McGovern Medical School, University of Texas Health Science Center at Houston, Houston, TX 77030, USA",
-              "ror": "04j0y0e37"
+              "ror": null
             }
           ],
           "corresponding": false,
@@ -315,5 +315,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

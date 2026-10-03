@@ -346,9 +346,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Justin J. Sanders",
-          "openalex": "A5063712330",
-          "orcid": "0000-0001-8928-4051",
+          "name": "Justin Sanders",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -706,9 +706,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Justin J. Sanders",
-          "openalex": "A5063712330",
-          "orcid": "0000-0001-8928-4051",
+          "name": "Justin Sanders",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -912,5 +912,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

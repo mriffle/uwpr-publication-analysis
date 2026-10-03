@@ -312,9 +312,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Chirag R. Rao",
-          "openalex": "A5012972614",
-          "orcid": "0000-0002-3786-6436",
+          "name": "Chirag Rao",
+          "openalex": null,
+          "orcid": "0000-0002-6106-1144",
           "staff": null
         },
         {
@@ -513,9 +513,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Ok‐Hee Jeon",
-          "openalex": "A5103037319",
-          "orcid": "0000-0002-5151-3653",
+          "name": "Ok Hee Jeon",
+          "openalex": "A5052623517",
+          "orcid": "0000-0002-3725-7526",
           "staff": null
         },
         {
@@ -558,9 +558,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Chirag R. Rao",
-          "openalex": "A5012972614",
-          "orcid": "0000-0002-3786-6436",
+          "name": "Chirag Rao",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -733,5 +733,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

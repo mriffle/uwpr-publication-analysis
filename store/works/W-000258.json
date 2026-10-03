@@ -220,10 +220,10 @@
               "ror": "02grkyz14"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "CA",
+              "name": "Robarts Research Institute",
               "raw": "Robarts Research Institute",
-              "ror": null
+              "ror": "01psf3m26"
             }
           ],
           "corresponding": false,
@@ -333,5 +333,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

@@ -248,10 +248,10 @@
         {
           "affiliations": [
             {
-              "country": "CH",
-              "name": "Università della Svizzera italiana",
+              "country": null,
+              "name": "Institute for Research in Biomedicine",
               "raw": "Institute for Research in Biomedicine, Faculty of Biomedical Sciences, Università della Svizzera italiana, 6500 Bellinzona, Switzerland",
-              "ror": "03c4atk17"
+              "ror": "05gfswd81"
             }
           ],
           "corresponding": false,
@@ -391,5 +391,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

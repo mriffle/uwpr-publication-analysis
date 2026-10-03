@@ -71,9 +71,9 @@
             },
             {
               "country": "US",
-              "name": "United States Department of Agriculture",
+              "name": "Agricultural Research Service",
               "raw": "Robert W. Holley\rCenter for Agriculture\rand Health, United States Department of Agriculture, Agricultural Research Service, Ithaca, New York, 14853",
-              "ror": "01na82s61"
+              "ror": "02d2m2044"
             },
             {
               "country": "US",
@@ -83,9 +83,9 @@
             },
             {
               "country": "US",
-              "name": "United States Department of Agriculture",
+              "name": "Agricultural Research Service",
               "raw": "Robert W. Holley#R#Center for Agriculture#R#and Health, United States Department of Agriculture, Agricultural Research Service, Ithaca, New York, 14853",
-              "ror": "01na82s61"
+              "ror": "02d2m2044"
             }
           ],
           "corresponding": false,
@@ -173,9 +173,9 @@
             },
             {
               "country": "US",
-              "name": "United States Department of Agriculture",
+              "name": "Agricultural Research Service",
               "raw": "Robert W. Holley\rCenter for Agriculture\rand Health, United States Department of Agriculture, Agricultural Research Service, Ithaca, New York, 14853",
-              "ror": "01na82s61"
+              "ror": "02d2m2044"
             },
             {
               "country": "US",
@@ -185,9 +185,9 @@
             },
             {
               "country": "US",
-              "name": "United States Department of Agriculture",
+              "name": "Agricultural Research Service",
               "raw": "Robert W. Holley#R#Center for Agriculture#R#and Health, United States Department of Agriculture, Agricultural Research Service, Ithaca, New York, 14853",
-              "ror": "01na82s61"
+              "ror": "02d2m2044"
             }
           ],
           "corresponding": false,
@@ -282,5 +282,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

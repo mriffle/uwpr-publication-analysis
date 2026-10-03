@@ -80,8 +80,8 @@
             }
           ],
           "corresponding": false,
-          "name": "John H. M. Hill",
-          "openalex": "A5109958175",
+          "name": "John H. Hill",
+          "openalex": null,
           "orcid": "0009-0006-2475-0158",
           "staff": null
         },
@@ -140,9 +140,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Ying He",
-          "openalex": "A5045687590",
-          "orcid": "0000-0002-0072-8566",
+          "name": "Yi He",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -215,7 +215,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Hyun Ho Song",
+          "name": "Hyun Song",
           "openalex": "A5037832288",
           "orcid": "0000-0002-8261-0173",
           "staff": null
@@ -360,5 +360,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

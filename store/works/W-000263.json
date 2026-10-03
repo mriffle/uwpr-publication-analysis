@@ -126,8 +126,8 @@
           ],
           "corresponding": false,
           "name": "Stephen G. Aller",
-          "openalex": null,
-          "orcid": null,
+          "openalex": "A5010436344",
+          "orcid": "0000-0003-0379-5534",
           "staff": null
         },
         {
@@ -285,5 +285,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

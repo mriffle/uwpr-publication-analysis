@@ -92,9 +92,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Anthony S. Valente",
-          "openalex": "A5109283350",
-          "orcid": null,
+          "name": "Anthony S. Barente",
+          "openalex": "A5090022399",
+          "orcid": "0000-0002-8641-3775",
           "staff": null
         },
         {
@@ -252,5 +252,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

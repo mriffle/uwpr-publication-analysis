@@ -910,7 +910,7 @@
           "corresponding": false,
           "name": "Robert A. Pietrzyk",
           "openalex": "A5032796033",
-          "orcid": "0000-0002-6837-4581",
+          "orcid": null,
           "staff": null
         },
         {
@@ -1163,8 +1163,8 @@
             }
           ],
           "corresponding": true,
-          "name": "Graham Scott",
-          "openalex": "A5015214393",
+          "name": "Graham B. I. Scott",
+          "openalex": null,
           "orcid": "0000-0003-3467-5957",
           "staff": null
         },
@@ -1407,5 +1407,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

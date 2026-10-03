@@ -541,8 +541,8 @@
           ],
           "corresponding": false,
           "name": "John C. Kraft",
-          "openalex": "A5036801059",
-          "orcid": "0000-0002-7931-7478",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -1525,8 +1525,8 @@
           ],
           "corresponding": false,
           "name": "John C. Kraft",
-          "openalex": "A5036801059",
-          "orcid": "0000-0002-7931-7478",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -2113,5 +2113,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

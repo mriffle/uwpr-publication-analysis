@@ -138,9 +138,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Kate Brown",
-          "openalex": "A5002519106",
-          "orcid": "0009-0007-5006-8379",
+          "name": "K Brown",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -153,9 +153,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Pan‐Chyr Yang",
-          "openalex": "A5006814522",
-          "orcid": "0000-0001-6330-6048",
+          "name": "P Yang",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -340,5 +340,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

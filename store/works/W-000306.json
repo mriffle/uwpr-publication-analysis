@@ -43,10 +43,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
               "country": null,
@@ -64,10 +64,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
               "country": null,
@@ -85,10 +85,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
               "country": null,
@@ -106,10 +106,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
               "country": null,
@@ -140,18 +140,18 @@
             }
           ],
           "corresponding": false,
-          "name": "Andreas Hülsmeier",
-          "openalex": null,
-          "orcid": null,
+          "name": "Andreas J. Hülsmeier",
+          "openalex": "A5009689811",
+          "orcid": "0000-0001-6987-8979",
           "staff": null
         },
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
               "country": null,
@@ -169,16 +169,16 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "Department of Surgery, New York University Langone Medical Center (M.P.)",
-              "ror": null
+              "ror": "0190ak572"
             }
           ],
           "corresponding": false,
@@ -190,10 +190,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "Department of Surgery, New York University Langone Medical Center (M.P.)",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
               "country": null,
@@ -223,22 +223,22 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "NYU Center for the Prevention of Cardiovascular Disease (E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
               "country": null,
@@ -310,22 +310,22 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "Department of Medicine, Leon H. Charney Division of Cardiology (S.Z., B.-X.L., A.C., M.F., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "NYU Cardiovascular Research Center (F.S., M.A.G., E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "New York University",
               "raw": "NYU Center for the Prevention of Cardiovascular Disease (E.A.F., S.P.H.), New York University Langone Medical Center",
-              "ror": null
+              "ror": "0190ak572"
             }
           ],
           "corresponding": false,
@@ -399,5 +399,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

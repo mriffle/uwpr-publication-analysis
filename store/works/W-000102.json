@@ -56,9 +56,9 @@
             }
           ],
           "corresponding": false,
-          "name": "J. D. Chapman",
-          "openalex": "A5107345722",
-          "orcid": "0000-0002-2926-8962",
+          "name": "John D Chapman",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -189,5 +189,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

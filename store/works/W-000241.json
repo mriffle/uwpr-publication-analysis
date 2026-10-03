@@ -266,7 +266,7 @@
           "corresponding": false,
           "name": "Ted R. Kohler",
           "openalex": "A5047018613",
-          "orcid": "0009-0004-2685-0502",
+          "orcid": null,
           "staff": null
         },
         {
@@ -460,5 +460,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

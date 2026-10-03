@@ -65,9 +65,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Jamie B. Morris",
-          "openalex": "A5083486805",
-          "orcid": "0000-0002-3887-9386",
+          "name": "Jamie Morris",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -381,5 +381,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

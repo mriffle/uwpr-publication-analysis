@@ -503,8 +503,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Katherine E. Tyson",
-          "openalex": "A5031641584",
+          "name": "Katherine Tyson",
+          "openalex": null,
           "orcid": null,
           "staff": null
         },
@@ -603,5 +603,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

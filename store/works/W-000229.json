@@ -209,9 +209,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Eric Alden Smith",
-          "openalex": "A5050258066",
-          "orcid": "0000-0002-9482-9666",
+          "name": "Eric Smith",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -301,7 +301,7 @@
           "corresponding": false,
           "name": "Shey‐Shing Sheu",
           "openalex": "A5112031056",
-          "orcid": null,
+          "orcid": "0000-0003-3838-3601",
           "staff": null
         },
         {
@@ -390,5 +390,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

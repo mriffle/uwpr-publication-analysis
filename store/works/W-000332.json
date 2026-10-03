@@ -222,7 +222,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Qing Hua Yu",
+          "name": "Qing Yu",
           "openalex": "A5040242042",
           "orcid": "0000-0003-0468-5353",
           "staff": null
@@ -388,5 +388,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

@@ -103,10 +103,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Division of Metabolism, Endocrinology and Nutrition and Diabetes Institute at the University of Washington School of Medicine, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -118,10 +118,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Division of Metabolism, Endocrinology and Nutrition and Diabetes Institute at the University of Washington School of Medicine, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -133,10 +133,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Division of Metabolism, Endocrinology and Nutrition and Diabetes Institute at the University of Washington School of Medicine, Seattle, WA, USA",
-              "ror": null
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -263,5 +263,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

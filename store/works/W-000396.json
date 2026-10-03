@@ -90,8 +90,8 @@
             }
           ],
           "corresponding": false,
-          "name": "K Kovács",
-          "openalex": "A5101736711",
+          "name": "Kinga Bernadett Kovács",
+          "openalex": null,
           "orcid": "0000-0003-0912-3843",
           "staff": null
         },
@@ -196,5 +196,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

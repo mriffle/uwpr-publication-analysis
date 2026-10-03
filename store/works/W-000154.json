@@ -210,10 +210,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "Seattle Children's Research Institute",
               "raw": "Department of Laboratories, Seattle Children's Research Institute, Seattle, Wash",
-              "ror": null
+              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -371,5 +371,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

@@ -91,8 +91,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Marie B. A. Peters",
-          "openalex": "A5123397102",
+          "name": "Marie Berit Akprioro Peters",
+          "openalex": "A5058662155",
           "orcid": "0000-0001-8994-0864",
           "staff": null
         },
@@ -112,18 +112,18 @@
             }
           ],
           "corresponding": false,
-          "name": "Richard P. Lindqvist",
-          "openalex": "A5072467906",
-          "orcid": "0000-0001-9798-0129",
+          "name": "Richard Lindqvist",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "SE",
+              "name": "Uppsala University",
               "raw": "Department of Chemistry for Life Sciences, Uppsala University, Uppsala, Sweden",
-              "ror": null
+              "ror": "048a87296"
             }
           ],
           "corresponding": false,
@@ -222,10 +222,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "SE",
+              "name": "Uppsala University",
               "raw": "Department of Chemistry for Life Sciences, Uppsala University, Uppsala, Sweden",
-              "ror": null
+              "ror": "048a87296"
             }
           ],
           "corresponding": false,
@@ -555,5 +555,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

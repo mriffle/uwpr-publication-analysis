@@ -732,6 +732,7 @@
     "doi:10.3390/biomedicines12071387": "W-000767",
     "doi:10.3390/cancers12061534": "W-000238",
     "doi:10.3390/cancers13215503": "W-000768",
+    "doi:10.3390/cimb48090955": "W-000868",
     "doi:10.3390/genes17080850": "W-000769",
     "doi:10.3390/ijms25137483": "W-000731",
     "doi:10.3390/ijms26125669": "W-000771",
@@ -817,6 +818,7 @@
     "doi:10.64898/2026.08.06.743235": "W-000827",
     "doi:10.64898/2026.08.06.743244": "W-000828",
     "doi:10.64898/2026.09.08.750141": "W-000829",
+    "doi:10.70675/bec7ad29z0494z4e18z8685zf3f9e26114e5": "W-000869",
     "doi:10.7150/thno.14394": "W-000830",
     "doi:10.7287/peerj.14158v0.1/reviews/1": "W-000831",
     "doi:10.7287/peerj.14158v0.1/reviews/2": "W-000832",
@@ -1644,6 +1646,7 @@
     "openalex:W7135059984": "W-000687",
     "openalex:W7138937732": "W-000328",
     "openalex:W7139118645": "W-000694",
+    "openalex:W7148276934": "W-000869",
     "openalex:W7152076691": "W-000329",
     "openalex:W7154152434": "W-000330",
     "openalex:W7155076391": "W-000819",
@@ -1701,6 +1704,7 @@
     "openalex:W7213104871": "W-000864",
     "openalex:W7213238526": "W-000737",
     "openalex:W7213483729": "W-000847",
+    "openalex:W7214021923": "W-000868",
     "openalex:W768464191": "W-000134",
     "openalex:W784462454": "W-000378",
     "openalex:W818589921": "W-000033",
@@ -1872,6 +1876,7 @@
     "pmcid:PMC13512127": "W-000769",
     "pmcid:PMC13518854": "W-000499",
     "pmcid:PMC13568782": "W-000714",
+    "pmcid:PMC13605456": "W-000868",
     "pmcid:PMC1393142": "W-000644",
     "pmcid:PMC151416": "W-000522",
     "pmcid:PMC16874": "W-000526",
@@ -2983,6 +2988,8 @@
     "pmid:42649221": "W-000499",
     "pmid:42650043": "W-000769",
     "pmid:42730203": "W-000714",
+    "pmid:42793311": "W-000868",
+    "pmid:42818358": "W-000829",
     "pmid:6486668": "W-000333",
     "pmid:735322": "W-000334",
     "pmid:8437002": "W-000648",
@@ -3039,7 +3046,7 @@
     "work:W-000837": "W-000608",
     "work:W-000839": "W-000608"
   },
-  "generated_at": "2026-09-27T02:40:46Z",
+  "generated_at": "2026-10-03T12:37:05Z",
   "not_included": [
     {
       "id": "W-000001",
@@ -4185,8 +4192,8 @@
         "pmcid": "PMC11058760",
         "pmid": "38594562"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is a co-author, which on its own is not evidence"
       ],
@@ -7381,8 +7388,8 @@
         "pmcid": "PMC12889315",
         "pmid": "41674802"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is a co-author, which on its own is not evidence"
       ],
@@ -9656,8 +9663,8 @@
         "pmcid": null,
         "pmid": null
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is a co-author, which on its own is not evidence"
       ],
@@ -11025,6 +11032,36 @@
       ],
       "title": "SchweppeLab/Helios: Dev build 0.1.0-dev.9",
       "year": 2026
+    },
+    {
+      "id": "W-000868",
+      "ids": {
+        "doi": "10.3390/cimb48090955",
+        "openalex": "W7214021923",
+        "pmcid": "PMC13605456",
+        "pmid": "42793311"
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [],
+      "signals": [],
+      "title": "Peptidome and Metabolome Profiling of Fermented Milk Products Reveal Accumulation of Bioactive Compounds During Cold Storage",
+      "year": 2026
+    },
+    {
+      "id": "W-000869",
+      "ids": {
+        "doi": "10.70675/bec7ad29z0494z4e18z8685zf3f9e26114e5",
+        "openalex": "W7148276934",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [],
+      "signals": [],
+      "title": "Incidence de la multi-contamination aux mycotoxines de Fusarium sur cellules humaines : évaluation de la cytotoxicité et approche toxico-protéomique",
+      "year": 2017
     }
   ],
   "schema_version": "1.2"

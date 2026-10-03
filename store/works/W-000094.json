@@ -204,7 +204,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Eric N. Haugen",
+          "name": "Eric Haugen",
           "openalex": "A5026268911",
           "orcid": "0000-0001-7444-8981",
           "staff": null
@@ -340,8 +340,8 @@
           ],
           "corresponding": false,
           "name": "Hao Wang",
-          "openalex": "A5011231655",
-          "orcid": "0000-0002-5270-9463",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -386,7 +386,7 @@
           "corresponding": false,
           "name": "Daniel L. Bates",
           "openalex": "A5046943348",
-          "orcid": null,
+          "orcid": "0000-0002-7792-5621",
           "staff": null
         },
         {
@@ -571,8 +571,8 @@
           ],
           "corresponding": false,
           "name": "Miaohua Zhang",
-          "openalex": "A5063479373",
-          "orcid": "0000-0002-5281-7851",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -651,9 +651,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Michael A. Bender",
-          "openalex": "A5103139303",
-          "orcid": "0000-0001-5330-6255",
+          "name": "M. A. Bender",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -784,5 +784,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

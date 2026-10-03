@@ -67,7 +67,7 @@
           ],
           "corresponding": true,
           "name": "Michael E. Wright",
-          "openalex": "A5058458319",
+          "openalex": null,
           "orcid": "0000-0002-4243-2931",
           "staff": null
         }
@@ -136,5 +136,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

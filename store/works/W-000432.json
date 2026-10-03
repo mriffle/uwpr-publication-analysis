@@ -160,9 +160,9 @@
             },
             {
               "country": "JP",
-              "name": "Tohoku University",
+              "name": "Frontier Research Institute for Interdisciplinary Sciences, Tohoku University",
               "raw": "Frontier Research Institute for Interdisciplinary Sciences, Tohoku University, Sendai, Japan",
-              "ror": "01dq60k83"
+              "ror": "0388qbr12"
             },
             {
               "country": "KR",
@@ -272,5 +272,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

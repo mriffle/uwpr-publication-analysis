@@ -166,9 +166,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Meredith A. Roberts",
-          "openalex": "A5111930455",
-          "orcid": null,
+          "name": "Meredith A. Redd",
+          "openalex": "A5001603007",
+          "orcid": "0000-0002-4143-1726",
           "staff": null
         },
         {
@@ -428,5 +428,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

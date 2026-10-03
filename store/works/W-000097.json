@@ -218,8 +218,8 @@
           ],
           "corresponding": false,
           "name": "Song Xue",
-          "openalex": "A5019758949",
-          "orcid": "0000-0003-3986-6197",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -350,5 +350,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

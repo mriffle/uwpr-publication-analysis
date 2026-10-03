@@ -77,9 +77,9 @@
             },
             {
               "country": "GB",
-              "name": "Cancer Research UK",
+              "name": "Cancer Research UK Scotland Institute",
               "raw": "Cancer Research UK Scotland Institute, Garscube Estate. Switchback Road, Bearsden, Glasgow, G61 1BD, UK",
-              "ror": "054225q67"
+              "ror": "03pv69j64"
             },
             {
               "country": "CL",
@@ -104,9 +104,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Patricio H. Contreras",
-          "openalex": "A5009977048",
-          "orcid": "0000-0002-4258-2454",
+          "name": "P. Contreras",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -360,5 +360,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

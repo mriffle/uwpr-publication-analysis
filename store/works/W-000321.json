@@ -184,15 +184,15 @@
             },
             {
               "country": null,
-              "name": null,
+              "name": "Genentech",
               "raw": "Genentech, Inc",
-              "ror": null
+              "ror": "04gndp242"
             },
             {
               "country": null,
-              "name": null,
+              "name": "Genentech",
               "raw": "Department of Proteomic and Genomic Technologies, Genentech, Inc., South San Francisco, California 94080, United States",
-              "ror": null
+              "ror": "04gndp242"
             }
           ],
           "corresponding": false,
@@ -340,9 +340,9 @@
           "affiliations": [
             {
               "country": null,
-              "name": null,
+              "name": "Genentech",
               "raw": "Department of Proteomic and Genomic Technologies, Genentech, Inc., South San Francisco, California, USA",
-              "ror": null
+              "ror": "04gndp242"
             }
           ],
           "corresponding": false,
@@ -439,5 +439,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

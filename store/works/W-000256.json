@@ -122,9 +122,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Jay Jerome",
-          "openalex": "A5037874029",
-          "orcid": null,
+          "name": "W. Gray Jerome",
+          "openalex": "A5049038844",
+          "orcid": "0000-0002-9933-4558",
           "staff": null
         },
         {
@@ -318,5 +318,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

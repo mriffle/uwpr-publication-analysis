@@ -361,9 +361,9 @@
           "affiliations": [
             {
               "country": "BE",
-              "name": "VIB-UGent Center for Medical Biotechnology",
+              "name": "Ghent University",
               "raw": "VIB-UGent Center for Medical Biotechnology, Ghent University, 9000 Ghent, Belgium",
-              "ror": "04hbttm44"
+              "ror": "00cv9y106"
             }
           ],
           "corresponding": false,
@@ -766,9 +766,9 @@
           "affiliations": [
             {
               "country": "BE",
-              "name": "VIB-UGent Center for Medical Biotechnology",
+              "name": "Ghent University",
               "raw": "VIB-UGent Center for Medical Biotechnology, Ghent University, 9000 Ghent, Belgium",
-              "ror": "04hbttm44"
+              "ror": "00cv9y106"
             }
           ],
           "corresponding": false,
@@ -860,5 +860,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

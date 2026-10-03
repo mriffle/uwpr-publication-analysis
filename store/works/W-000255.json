@@ -100,7 +100,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Andy Lai Lin",
+          "name": "Andy Lin",
           "openalex": "A5035859876",
           "orcid": "0000-0003-0072-612X",
           "staff": null
@@ -221,5 +221,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

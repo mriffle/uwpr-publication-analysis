@@ -314,15 +314,15 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "Vanderbilt University Medical Center",
+              "name": "Vanderbilt University",
               "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN (H.D.S., J.P.S.)",
-              "ror": "05dq2gs74"
+              "ror": "02vm5rt34"
             },
             {
               "country": "US",
-              "name": "Vanderbilt University Medical Center",
+              "name": "Vanderbilt University",
               "raw": "Hyun D. Song https://orcid.org/0000-0002-9768-5055 Department of Medicine, Vanderbilt University Medical Center, Nashville, TN (H.D.S., J.P.S.)",
-              "ror": "05dq2gs74"
+              "ror": "02vm5rt34"
             }
           ],
           "corresponding": false,
@@ -370,7 +370,7 @@
           "corresponding": false,
           "name": "Alan Thomas Remaley",
           "openalex": "A5068951391",
-          "orcid": "0000-0001-5839-7280",
+          "orcid": "0000-0003-2473-5549",
           "staff": null
         },
         {
@@ -418,16 +418,16 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "University of Cincinnati",
               "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati College of Medicine, OH (W.S.D.)",
-              "ror": null
+              "ror": "01e3m7079"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "University of Cincinnati",
               "raw": "W. Sean Davidson https://orcid.org/0000-0003-2756-2989 Department of Pathology and Laboratory Medicine, University of Cincinnati College of Medicine, OH (W.S.D.)",
-              "ror": null
+              "ror": "01e3m7079"
             }
           ],
           "corresponding": false,
@@ -526,10 +526,10 @@
               "ror": "012pb6c26"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "University of Pittsburgh",
               "raw": "University of Pittsburgh, PA (T.C.). Depart-ment of Pathology and Laboratory Medicine, University of Cincinnati College of Medicine, OH (W.S.D.)",
-              "ror": null
+              "ror": "01an3r305"
             },
             {
               "country": "US",
@@ -790,7 +790,7 @@
           "corresponding": false,
           "name": "Alan Thomas Remaley",
           "openalex": "A5068951391",
-          "orcid": "0000-0001-5839-7280",
+          "orcid": "0000-0003-2473-5549",
           "staff": null
         },
         {
@@ -838,16 +838,16 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "University of Cincinnati",
               "raw": "Department of Pathology and Laboratory Medicine, University of Cincinnati College of Medicine, Cincinnati, OH, 45237, USA",
-              "ror": null
+              "ror": "01e3m7079"
             },
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "University of Cincinnati",
               "raw": "University of Cincinnati College of Medicine",
-              "ror": null
+              "ror": "01e3m7079"
             }
           ],
           "corresponding": false,
@@ -1008,5 +1008,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

@@ -107,8 +107,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Richard Y. Zhu",
-          "openalex": "A5109191848",
+          "name": "Richard Zhu",
+          "openalex": null,
           "orcid": null,
           "staff": null
         },
@@ -258,5 +258,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

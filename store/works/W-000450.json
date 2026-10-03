@@ -53,8 +53,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Chris D McGann",
-          "openalex": "A5110699303",
+          "name": "Christopher D. McGann",
+          "openalex": "A5023198924",
           "orcid": "0000-0001-9379-1910",
           "staff": null
         },
@@ -288,5 +288,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

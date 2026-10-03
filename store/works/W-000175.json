@@ -234,8 +234,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Linda S. Jung",
-          "openalex": "A5112307461",
+          "name": "Linda Jung",
+          "openalex": null,
           "orcid": null,
           "staff": null
         },
@@ -355,5 +355,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

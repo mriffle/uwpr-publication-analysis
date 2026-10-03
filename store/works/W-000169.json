@@ -307,9 +307,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Catherine Qiurong Pan",
+          "name": "Catherine Pan",
           "openalex": "A5110273966",
-          "orcid": "0009-0004-6755-1429",
+          "orcid": null,
           "staff": null
         },
         {
@@ -363,10 +363,10 @@
               "ror": "00cvxb145"
             },
             {
-              "country": "US",
-              "name": "Geriatric Research Education and Clinical Center",
+              "country": null,
+              "name": null,
               "raw": "Parkinson's Disease Research and Geriatric Research Education and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
-              "ror": "01nh3sx96"
+              "ror": null
             },
             {
               "country": "US",
@@ -527,5 +527,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

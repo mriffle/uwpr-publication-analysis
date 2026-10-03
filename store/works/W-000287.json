@@ -141,7 +141,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Kristofer Gomes",
+          "name": "Kristofer M. Gomes",
           "openalex": "A5023830247",
           "orcid": "0000-0002-7645-6018",
           "staff": null
@@ -171,15 +171,15 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "College of Marin",
+              "name": "University of South Florida",
               "raw": "College of Marine Science, University of South Florida  Florida St. Petersburg USA",
-              "ror": "006tpsn23"
+              "ror": "032db5x82"
             },
             {
               "country": "US",
-              "name": "College of Marin",
+              "name": "University of South Florida",
               "raw": "College of Marine Science, University of South Florida, Florida, St. Petersburg, USA",
-              "ror": "006tpsn23"
+              "ror": "032db5x82"
             }
           ],
           "corresponding": false,
@@ -286,5 +286,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

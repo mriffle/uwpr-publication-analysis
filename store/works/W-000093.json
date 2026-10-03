@@ -147,9 +147,9 @@
             }
           ],
           "corresponding": true,
-          "name": "Dragan S. Radulović",
-          "openalex": "A5006783222",
-          "orcid": "0000-0001-8210-8100",
+          "name": "Dragan Radulovic",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -391,5 +391,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

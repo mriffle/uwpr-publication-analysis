@@ -49,10 +49,10 @@
         {
           "affiliations": [
             {
-              "country": "CH",
-              "name": "ETH Zurich",
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, Institute of Computational Science, ETH Zurich, Zurich, Switzerland, and Institute of Plant Sciences, ETH Zurich, Zurich, Switzerland",
-              "ror": "05a28rw58"
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": true,
@@ -64,10 +64,10 @@
         {
           "affiliations": [
             {
-              "country": "CH",
-              "name": "ETH Zurich",
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, Institute of Computational Science, ETH Zurich, Zurich, Switzerland, and Institute of Plant Sciences, ETH Zurich, Zurich, Switzerland",
-              "ror": "05a28rw58"
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -79,10 +79,10 @@
         {
           "affiliations": [
             {
-              "country": "CH",
-              "name": "ETH Zurich",
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, Institute of Computational Science, ETH Zurich, Zurich, Switzerland, and Institute of Plant Sciences, ETH Zurich, Zurich, Switzerland",
-              "ror": "05a28rw58"
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -94,10 +94,10 @@
         {
           "affiliations": [
             {
-              "country": "CH",
-              "name": "ETH Zurich",
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, Institute of Computational Science, ETH Zurich, Zurich, Switzerland, and Institute of Plant Sciences, ETH Zurich, Zurich, Switzerland",
-              "ror": "05a28rw58"
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -171,5 +171,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

@@ -136,9 +136,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Catherine Qiurong Pan",
+          "name": "Catherine Pan",
           "openalex": "A5110273966",
-          "orcid": "0009-0004-6755-1429",
+          "orcid": null,
           "staff": null
         },
         {
@@ -222,7 +222,7 @@
           "corresponding": false,
           "name": "Yanchun Zhao",
           "openalex": "A5108302967",
-          "orcid": "0000-0002-2726-3965",
+          "orcid": null,
           "staff": null
         },
         {
@@ -482,5 +482,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }

@@ -553,10 +553,10 @@
               "ror": null
             },
             {
-              "country": "US",
-              "name": "Institute for Molecular Medicine",
+              "country": null,
+              "name": null,
               "raw": "Institute for Molecular Medicine, Martin-Luther-University Halle-Wittenberg",
-              "ror": "053k5y417"
+              "ror": null
             }
           ],
           "corresponding": false,
@@ -774,5 +774,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-03"
 }
