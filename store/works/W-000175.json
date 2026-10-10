@@ -318,25 +318,25 @@
       "title": "Disrupting glutamine metabolic pathways to sensitize gemcitabine-resistant pancreatic cancer",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
-          "subfield": "Cancer Research",
-          "topic": "Cancer, Hypoxia, and Metabolism"
-        },
-        {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9991000294685364,
+          "score": 0.7300000190734863,
           "subfield": "Oncology",
           "topic": "Pancreatic and Hepatic Oncology Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9972000122070312,
-          "subfield": "Molecular Biology",
-          "topic": "Glycosylation and Glycoproteins Research"
+          "score": 0.19679999351501465,
+          "subfield": "Cancer Research",
+          "topic": "Cancer, Hypoxia, and Metabolism"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.016899999231100082,
+          "subfield": "Biochemistry",
+          "topic": "Amino Acid Enzymes and Metabolism"
         }
       ],
       "venue": {
@@ -355,5 +355,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

@@ -616,25 +616,25 @@
       "title": "The ProteomeXchange consortium at 10 years: 2023 update",
       "topics": [
         {
-          "domain": "Social Sciences",
-          "field": "Decision Sciences",
-          "score": 0.9966999888420105,
-          "subfield": "Information Systems and Management",
-          "topic": "Scientific Computing and Data Management"
-        },
-        {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9958000183105469,
+          "score": 0.9911999702453613,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Computer Science",
-          "score": 0.9908000230789185,
+          "score": 0.006599999964237213,
           "subfield": "Information Systems",
           "topic": "Research Data Management Practices"
+        },
+        {
+          "domain": "Social Sciences",
+          "field": "Decision Sciences",
+          "score": 0.0005000000237487257,
+          "subfield": "Information Systems and Management",
+          "topic": "Scientific Computing and Data Management"
         }
       ],
       "venue": {
@@ -653,5 +653,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

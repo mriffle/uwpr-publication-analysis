@@ -325,23 +325,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998999834060669,
+          "score": 0.8511000275611877,
+          "subfield": "Cell Biology",
+          "topic": "Caveolin-1 and cellular processes"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.13760000467300415,
           "subfield": "Molecular Biology",
           "topic": "Extracellular vesicles in disease"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9998999834060669,
+          "score": 0.0017999999690800905,
           "subfield": "Immunology and Allergy",
           "topic": "Cell Adhesion Molecules Research"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991999864578247,
-          "subfield": "Cell Biology",
-          "topic": "Caveolin-1 and cellular processes"
         }
       ],
       "venue": {
@@ -360,5 +360,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

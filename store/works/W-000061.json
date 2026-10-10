@@ -160,23 +160,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9998999834060669,
+          "score": 0.986299991607666,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Engineering",
-          "score": 0.9957000017166138,
-          "subfield": "Electrical and Electronic Engineering",
-          "topic": "Molecular Junctions and Nanostructures"
+          "field": "Physics and Astronomy",
+          "score": 0.0071000000461936,
+          "subfield": "Atomic and Molecular Physics, and Optics",
+          "topic": "Atomic and Molecular Physics"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9914000034332275,
-          "subfield": "Spectroscopy",
-          "topic": "Analytical Chemistry and Chromatography"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0006000000284984708,
+          "subfield": "Molecular Biology",
+          "topic": "Chemical Synthesis and Analysis"
         }
       ],
       "venue": {
@@ -195,5 +195,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

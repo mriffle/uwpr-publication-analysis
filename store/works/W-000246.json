@@ -328,16 +328,16 @@
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9957000017166138,
+          "score": 0.0,
           "subfield": "Ecology",
           "topic": "Physiological and biochemical adaptations"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9957000017166138,
-          "subfield": "Global and Planetary Change",
-          "topic": "Marine Bivalve and Aquaculture Studies"
+          "field": "Earth and Planetary Sciences",
+          "score": 0.0,
+          "subfield": "Paleontology",
+          "topic": "Marine Invertebrate Physiology and Ecology"
         }
       ],
       "venue": {
@@ -356,5 +356,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

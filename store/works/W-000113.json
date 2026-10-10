@@ -447,23 +447,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9993000030517578,
+          "score": 0.8090999722480774,
           "subfield": "Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9873999953269958,
-          "subfield": "Neurology",
-          "topic": "Neurological disorders and treatments"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.11789999902248383,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
-          "field": "Neuroscience",
-          "score": 0.9864000082015991,
-          "subfield": "Cellular and Molecular Neuroscience",
-          "topic": "Nuclear Receptors and Signaling"
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.01119999960064888,
+          "subfield": "Molecular Biology",
+          "topic": "Glycosylation and Glycoproteins Research"
         }
       ],
       "venue": {
@@ -482,5 +482,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

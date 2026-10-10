@@ -305,23 +305,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9995999932289124,
-          "subfield": "Ecology",
-          "topic": "Microbial Community Ecology and Physiology"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9955999851226807,
-          "subfield": "Molecular Biology",
-          "topic": "Protist diversity and phylogeny"
+          "score": 0.6352999806404114,
+          "subfield": "Environmental Chemistry",
+          "topic": "Aquatic Ecosystems and Phytoplankton Dynamics"
         },
         {
           "domain": "Physical Sciences",
           "field": "Earth and Planetary Sciences",
-          "score": 0.9911999702453613,
+          "score": 0.2289000004529953,
           "subfield": "Oceanography",
           "topic": "Marine and coastal ecosystems"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.07400000095367432,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
         }
       ],
       "venue": {
@@ -340,5 +340,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

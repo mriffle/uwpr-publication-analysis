@@ -364,23 +364,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9631999731063843,
+          "score": 0.9624000191688538,
           "subfield": "Surgery",
           "topic": "Bariatric Surgery and Outcomes"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.008100000210106373,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Cardiovascular Function and Risk Factors"
+          "score": 0.015399999916553497,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.007699999958276749,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Cardiovascular Disease and Adiposity"
+          "score": 0.009700000286102295,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
       "venue": {
@@ -399,5 +399,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

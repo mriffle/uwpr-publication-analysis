@@ -551,23 +551,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.994700014591217,
+          "score": 0.9609000086784363,
+          "subfield": "Genetics",
+          "topic": "Mesenchymal stem cell research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.03709999844431877,
           "subfield": "Physiology",
-          "topic": "Adipose Tissue and Metabolism"
+          "topic": "Telomeres, Telomerase, and Senescence"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9894999861717224,
-          "subfield": "Molecular Biology",
-          "topic": "Mitochondrial Function and Pathology"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9869999885559082,
-          "subfield": "Cell Biology",
-          "topic": "Muscle metabolism and nutrition"
+          "score": 0.0003000000142492354,
+          "subfield": "Aging",
+          "topic": "Genetics, Aging, and Longevity in Model Organisms"
         }
       ],
       "venue": {
@@ -586,5 +586,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

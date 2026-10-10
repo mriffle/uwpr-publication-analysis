@@ -195,24 +195,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
-          "field": "Earth and Planetary Sciences",
-          "score": 0.9987999796867371,
-          "subfield": "Oceanography",
-          "topic": "Marine and coastal ecosystems"
+          "field": "Environmental Science",
+          "score": 0.9707000255584717,
+          "subfield": "Ecology",
+          "topic": "Physiological and biochemical adaptations"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.010499999858438969,
+          "subfield": "Endocrine and Autonomic Systems",
+          "topic": "Circadian rhythm and melatonin"
         },
         {
           "domain": "Physical Sciences",
           "field": "Earth and Planetary Sciences",
-          "score": 0.9979000091552734,
+          "score": 0.007699999958276749,
           "subfield": "Oceanography",
           "topic": "Marine Biology and Ecology Research"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9968000054359436,
-          "subfield": "Molecular Biology",
-          "topic": "Protist diversity and phylogeny"
         }
       ],
       "venue": {
@@ -231,5 +231,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

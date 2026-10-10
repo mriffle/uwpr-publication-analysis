@@ -215,25 +215,25 @@
       "title": "Probing the Protein Interaction Network of Pseudomonas aeruginosa Cells by Chemical Cross-Linking Mass Spectrometry",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9962999820709229,
-          "subfield": "Molecular Biology",
-          "topic": "Metabolomics and Mass Spectrometry Studies"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.7821999788284302,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.1216999962925911,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9959999918937683,
-          "subfield": "Molecular Biology",
-          "topic": "Protein Structure and Dynamics"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9912999868392944,
-          "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
+          "score": 0.030700000002980232,
+          "subfield": "Genetics",
+          "topic": "Bacterial Genetics and Biotechnology"
         }
       ],
       "venue": {
@@ -252,5 +252,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

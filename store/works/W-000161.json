@@ -566,23 +566,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9995999932289124,
+          "score": 0.9922000169754028,
           "subfield": "Molecular Medicine",
           "topic": "Antibiotic Resistance in Bacteria"
         },
         {
           "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9962000250816345,
-          "subfield": "Microbiology",
-          "topic": "Antimicrobial Peptides and Activities"
-        },
-        {
-          "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9958000183105469,
+          "score": 0.00570000009611249,
           "subfield": "Genetics",
           "topic": "Bacterial Genetics and Biotechnology"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.00019999999494757503,
+          "subfield": "Oncology",
+          "topic": "Drug Transport and Resistance Mechanisms"
         }
       ],
       "venue": {
@@ -601,5 +601,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -361,25 +361,25 @@
       "title": "Reproductive resilience: pathways to gametogenic success in Montipora capitata after bleaching",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.98580002784729,
-          "subfield": "Insect Science",
-          "topic": "Biological Control of Invasive Species"
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 1.0,
+          "subfield": "Ecology",
+          "topic": "Coral and Marine Ecosystems Studies"
         },
         {
           "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9747999906539917,
-          "subfield": "Plant Science",
-          "topic": "Flowering Plant Growth and Cultivation"
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0,
+          "subfield": "Physiology",
+          "topic": "Reproductive biology and impacts on aquatic species"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9657999873161316,
-          "subfield": "Plant Science",
-          "topic": "Weed Control and Herbicide Applications"
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.0,
+          "subfield": "Paleontology",
+          "topic": "Marine Invertebrate Physiology and Ecology"
         }
       ],
       "venue": {
@@ -619,5 +619,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

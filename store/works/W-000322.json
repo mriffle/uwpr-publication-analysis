@@ -289,23 +289,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9922999739646912,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Viral Infections and Immunology Research"
+          "score": 0.7968999743461609,
+          "subfield": "Rheumatology",
+          "topic": "Rheumatoid Arthritis Research and Therapies"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9884999990463257,
+          "score": 0.050700001418590546,
           "subfield": "Molecular Biology",
-          "topic": "Signaling Pathways in Disease"
+          "topic": "Cancer-related gene regulation"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9847000241279602,
-          "subfield": "Immunology",
-          "topic": "Toxin Mechanisms and Immunotoxins"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.02419999986886978,
+          "subfield": "Complementary and alternative medicine",
+          "topic": "Natural Compounds in Disease Treatment"
         }
       ],
       "venue": {
@@ -324,5 +324,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

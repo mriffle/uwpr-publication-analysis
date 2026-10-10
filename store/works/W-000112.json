@@ -421,23 +421,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9240000247955322,
+          "score": 0.9028000235557556,
           "subfield": "Surgery",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.009200000204145908,
-          "subfield": "Biochemistry",
-          "topic": "Antioxidant Activity and Oxidative Stress"
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.06449999660253525,
+          "subfield": "Immunology",
+          "topic": "Atherosclerosis and Cardiovascular Diseases"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.006599999964237213,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.017100000753998756,
+          "subfield": "Clinical Biochemistry",
+          "topic": "Paraoxonase enzyme and polymorphisms"
         }
       ],
       "venue": {
@@ -456,5 +456,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

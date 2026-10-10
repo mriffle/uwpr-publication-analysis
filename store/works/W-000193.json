@@ -409,23 +409,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9995999932289124,
-          "subfield": "Molecular Biology",
-          "topic": "Congenital heart defects research"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9954000115394592,
+          "score": 0.5547000169754028,
           "subfield": "Molecular Biology",
           "topic": "Pluripotent Stem Cells Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9927999973297119,
-          "subfield": "Genetics",
-          "topic": "Genetics and Neurodevelopmental Disorders"
+          "score": 0.3840000033378601,
+          "subfield": "Molecular Biology",
+          "topic": "Congenital heart defects research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.025599999353289604,
+          "subfield": "Molecular Biology",
+          "topic": "Wnt/β-catenin signaling in development and cancer"
         }
       ],
       "venue": {
@@ -444,5 +444,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

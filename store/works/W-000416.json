@@ -244,25 +244,25 @@
       "title": "A model of human APOA2 on HDL",
       "topics": [
         {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.864300012588501,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
+        },
+        {
           "domain": "Life Sciences",
-          "field": "Neuroscience",
-          "score": 0.05979999899864197,
-          "subfield": "Endocrine and Autonomic Systems",
-          "topic": "Neuroscience of respiration and sleep"
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.09009999781847,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.024299999698996544,
-          "subfield": "Pediatrics, Perinatology and Child Health",
-          "topic": "Neonatal and fetal brain pathology"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.02280000038444996,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Cardiovascular Function and Risk Factors"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.031599998474121094,
+          "subfield": "Molecular Biology",
+          "topic": "Lipid Membrane Structure and Behavior"
         }
       ],
       "venue": {
@@ -281,5 +281,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

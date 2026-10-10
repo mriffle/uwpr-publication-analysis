@@ -158,25 +158,25 @@
       "title": "The radical SAM enzyme EpeE exhibits distinct site reactivity during the biosynthesis of the RiPP natural product epipeptide",
       "topics": [
         {
-          "domain": "Physical Sciences",
-          "field": "Energy",
-          "score": 0.9052000045776367,
-          "subfield": "Renewable Energy, Sustainability and the Environment",
-          "topic": "Metalloenzymes and iron-sulfur proteins"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.9320999979972839,
+          "subfield": "Pharmacology",
+          "topic": "Microbial Natural Products and Biosynthesis"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.03539999946951866,
+          "score": 0.025599999353289604,
           "subfield": "Inorganic Chemistry",
           "topic": "Metal-Catalyzed Oxygenation Mechanisms"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.010499999858438969,
-          "subfield": "Organic Chemistry",
-          "topic": "Cyclopropane Reaction Mechanisms"
+          "field": "Materials Science",
+          "score": 0.004800000227987766,
+          "subfield": "Materials Chemistry",
+          "topic": "Enzyme Structure and Function"
         }
       ],
       "venue": {
@@ -195,5 +195,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

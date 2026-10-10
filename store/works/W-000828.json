@@ -101,23 +101,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.3140000104904175,
+          "score": 0.32179999351501465,
           "subfield": "Molecular Biology",
-          "topic": "Receptor Mechanisms and Signaling"
+          "topic": "Genomics and Chromatin Dynamics"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.2865999937057495,
+          "subfield": "Pulmonary and Respiratory Medicine",
+          "topic": "Prostate Cancer Treatment and Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.1729000061750412,
-          "subfield": "Molecular Biology",
-          "topic": "Ubiquitin and proteasome pathways"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.05429999902844429,
-          "subfield": "Spectroscopy",
-          "topic": "Advanced Proteomics Techniques and Applications"
+          "score": 0.07450000196695328,
+          "subfield": "Genetics",
+          "topic": "Estrogen and related hormone effects"
         }
       ],
       "venue": {
@@ -136,5 +136,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

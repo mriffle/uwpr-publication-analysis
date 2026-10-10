@@ -288,23 +288,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9998999834060669,
+          "score": 0.9262999892234802,
           "subfield": "Physiology",
           "topic": "Alzheimer's disease research and treatments"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9958999752998352,
-          "subfield": "Psychiatry and Mental health",
-          "topic": "Dementia and Cognitive Impairment Research"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.03929999843239784,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9634000062942505,
-          "subfield": "Plant Science",
-          "topic": "Aluminum toxicity and tolerance in plants and animals"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.018300000578165054,
+          "subfield": "Psychiatry and Mental health",
+          "topic": "Dementia and Cognitive Impairment Research"
         }
       ],
       "venue": {
@@ -323,5 +323,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

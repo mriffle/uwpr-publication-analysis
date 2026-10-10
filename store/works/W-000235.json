@@ -215,25 +215,25 @@
       "title": "Proteome and Phosphoproteome Analysis of Brown Adipocytes Reveals That RICTOR Loss Dampens Global Insulin/AKT Signaling",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
-          "subfield": "Biochemistry",
-          "topic": "Lipid metabolism and biosynthesis"
-        },
-        {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9993000030517578,
+          "score": 0.9945999979972839,
           "subfield": "Physiology",
           "topic": "Adipose Tissue and Metabolism"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9883999824523926,
-          "subfield": "Cancer Research",
-          "topic": "Cancer, Hypoxia, and Metabolism"
+          "score": 0.0010000000474974513,
+          "subfield": "Molecular Biology",
+          "topic": "PI3K/AKT/mTOR signaling in cancer"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0008999999845400453,
+          "subfield": "Biochemistry",
+          "topic": "Lipid metabolism and biosynthesis"
         }
       ],
       "venue": {
@@ -252,5 +252,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

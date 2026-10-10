@@ -152,25 +152,25 @@
       "title": "An Experimentally Robust Model of Monomeric Apolipoprotein A-I Created from a Chimera of Two X-ray Structures and Molecular Dynamics Simulations",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9980999827384949,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
-        },
-        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.996999979019165,
-          "subfield": "Molecular Biology",
-          "topic": "Peroxisome Proliferator-Activated Receptors"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9961000084877014,
+          "score": 0.9800000190734863,
           "subfield": "Molecular Biology",
           "topic": "Protein Structure and Dynamics"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.010400000028312206,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.003100000089034438,
+          "subfield": "Molecular Biology",
+          "topic": "Lipid Membrane Structure and Behavior"
         }
       ],
       "venue": {
@@ -189,5 +189,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

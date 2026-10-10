@@ -393,23 +393,23 @@
         {
           "domain": "Life Sciences",
           "field": "Pharmacology, Toxicology and Pharmaceutics",
-          "score": 0.9969000220298767,
+          "score": 0.6118000149726868,
           "subfield": "Pharmacology",
           "topic": "Pharmacogenetics and Drug Metabolism"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Computer Science",
-          "score": 0.9954000115394592,
-          "subfield": "Computational Theory and Mathematics",
-          "topic": "Computational Drug Discovery Methods"
+          "field": "Chemistry",
+          "score": 0.28029999136924744,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9937000274658203,
-          "subfield": "Oncology",
-          "topic": "Drug Transport and Resistance Mechanisms"
+          "domain": "Life Sciences",
+          "field": "Pharmacology, Toxicology and Pharmaceutics",
+          "score": 0.04019999876618385,
+          "subfield": "Pharmacology",
+          "topic": "Drug-Induced Hepatotoxicity and Protection"
         }
       ],
       "venue": {
@@ -428,5 +428,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

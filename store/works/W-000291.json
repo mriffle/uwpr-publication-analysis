@@ -196,23 +196,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9114999771118164,
+          "score": 0.4738999903202057,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.34380000829696655,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.10499999672174454,
           "subfield": "Endocrinology, Diabetes and Metabolism",
           "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.020099999383091927,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes Management and Research"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.007600000128149986,
-          "subfield": "Pulmonary and Respiratory Medicine",
-          "topic": "Blood properties and coagulation"
         }
       ],
       "venue": {
@@ -231,5 +231,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

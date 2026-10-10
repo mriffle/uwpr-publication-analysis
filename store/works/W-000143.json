@@ -175,7 +175,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Amy A. Ferreccio",
+          "name": "Amy Ferreccio",
           "openalex": "A5090358699",
           "orcid": null,
           "staff": null
@@ -669,23 +669,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
+          "score": 0.9926999807357788,
+          "subfield": "Molecular Biology",
+          "topic": "Pluripotent Stem Cells Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.006399999838322401,
           "subfield": "Molecular Biology",
           "topic": "Epigenetics and DNA Methylation"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9972000122070312,
+          "score": 0.00019999999494757503,
           "subfield": "Molecular Biology",
-          "topic": "Cancer-related gene regulation"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.994700014591217,
-          "subfield": "Molecular Biology",
-          "topic": "RNA modifications and cancer"
+          "topic": "Developmental Biology and Gene Regulation"
         }
       ],
       "venue": {
@@ -704,5 +704,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

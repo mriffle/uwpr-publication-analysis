@@ -245,24 +245,24 @@
       "topics": [
         {
           "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9927999973297119,
-          "subfield": "Immunology",
-          "topic": "Galectins and Cancer Biology"
-        },
-        {
-          "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.006099999882280827,
+          "score": 0.92330002784729,
           "subfield": "Molecular Biology",
           "topic": "Glycosylation and Glycoproteins Research"
         },
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.02070000022649765,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.0003000000142492354,
-          "subfield": "Molecular Biology",
-          "topic": "Studies on Chitinases and Chitosanases"
+          "field": "Immunology and Microbiology",
+          "score": 0.016599999740719795,
+          "subfield": "Immunology",
+          "topic": "Galectins and Cancer Biology"
         }
       ],
       "venue": {
@@ -281,5 +281,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

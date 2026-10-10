@@ -298,23 +298,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991999864578247,
-          "subfield": "Molecular Biology",
-          "topic": "Bacterial biofilms and quorum sensing"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.998199999332428,
+          "score": 0.6791999936103821,
           "subfield": "Genetics",
           "topic": "Bacterial Genetics and Biotechnology"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9976999759674072,
-          "subfield": "Ecology",
-          "topic": "Bacteriophages and microbial interactions"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.1906999945640564,
+          "subfield": "Molecular Biology",
+          "topic": "Heat shock proteins research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.09880000352859497,
+          "subfield": "Molecular Biology",
+          "topic": "Bacterial biofilms and quorum sensing"
         }
       ],
       "venue": {
@@ -333,5 +333,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

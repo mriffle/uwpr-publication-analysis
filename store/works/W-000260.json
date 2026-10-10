@@ -262,23 +262,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998999834060669,
+          "score": 0.9955999851226807,
           "subfield": "Clinical Biochemistry",
           "topic": "Paraoxonase enzyme and polymorphisms"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9861999750137329,
-          "subfield": "Surgery",
-          "topic": "Pancreatitis Pathology and Treatment"
+          "score": 0.00139999995008111,
+          "subfield": "Nephrology",
+          "topic": "Chronic Kidney Disease and Diabetes"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9319999814033508,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+          "score": 0.00139999995008111,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
       "venue": {
@@ -297,5 +297,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

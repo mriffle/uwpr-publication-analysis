@@ -386,23 +386,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9997000098228455,
+          "score": 0.9994999766349792,
           "subfield": "Immunology",
           "topic": "interferon and immune responses"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9993000030517578,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Viral Infections and Immunology Research"
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.0,
+          "subfield": "Immunology",
+          "topic": "Immune Response and Inflammation"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9975000023841858,
-          "subfield": "Molecular Biology",
-          "topic": "RNA regulation and disease"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0,
+          "subfield": "Epidemiology",
+          "topic": "Virology and Viral Diseases"
         }
       ],
       "venue": {
@@ -421,5 +421,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

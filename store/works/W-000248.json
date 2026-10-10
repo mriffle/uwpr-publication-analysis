@@ -365,24 +365,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9861000180244446,
-          "subfield": "Physical and Theoretical Chemistry",
-          "topic": "thermodynamics and calorimetric analyses"
-        },
-        {
-          "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9819999933242798,
+          "score": 0.9990000128746033,
           "subfield": "Ecology",
           "topic": "Polar Research and Ecology"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Materials Science",
-          "score": 0.9476000070571899,
-          "subfield": "Biomaterials",
-          "topic": "Diatoms and Algae Research"
+          "field": "Environmental Science",
+          "score": 0.00039999998989515007,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.00019999999494757503,
+          "subfield": "Genetics",
+          "topic": "Bacterial Genetics and Biotechnology"
         }
       ],
       "venue": {
@@ -401,5 +401,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

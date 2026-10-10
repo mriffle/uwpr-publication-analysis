@@ -185,24 +185,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9939000010490417,
-          "subfield": "Global and Planetary Change",
-          "topic": "Marine Bivalve and Aquaculture Studies"
-        },
-        {
-          "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9926000237464905,
+          "score": 0.9961000084877014,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9890999794006348,
-          "subfield": "Ecology",
-          "topic": "Physiological and biochemical adaptations"
+          "score": 0.0012000000569969416,
+          "subfield": "Global and Planetary Change",
+          "topic": "Marine Bivalve and Aquaculture Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0005000000237487257,
+          "subfield": "Molecular Biology",
+          "topic": "Genomics and Phylogenetic Studies"
         }
       ],
       "venue": {
@@ -221,5 +221,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

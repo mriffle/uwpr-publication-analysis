@@ -420,7 +420,7 @@
         "publisher": "Cold Spring Harbor Laboratory"
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000846"
       },
       "year": 2018
@@ -433,5 +433,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

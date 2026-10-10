@@ -14,6 +14,18 @@
       "first_seen": "2026-09-20",
       "last_seen": "2026-09-26",
       "record": "R-000350"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-10-10",
+      "last_seen": "2026-10-10",
+      "record": "R-000350"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-10-10",
+      "last_seen": "2026-10-10",
+      "record": "R-000350"
     }
   ],
   "evidence": [
@@ -78,6 +90,48 @@
         "name": "Crossref",
         "retrieved": "2026-09-20",
         "url": "https://api.crossref.org/works/10.1002/lno.12175"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-10-10"
+      },
+      "excerpt": null,
+      "first_seen": "2026-10-10",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-10-10",
+      "record": "R-000350",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-10-10",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1002%2Flno.12175"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-10-10"
+      },
+      "excerpt": null,
+      "first_seen": "2026-10-10",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-10-10",
+      "record": "R-000350",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-10-10",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1002%2Flno.12175"
       }
     }
   ],
@@ -228,7 +282,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Robert Francis Strzepek",
+          "name": "Robert F. Strzepek",
           "openalex": "A5087477436",
           "orcid": "0000-0002-6442-7121",
           "staff": null
@@ -284,23 +338,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Earth and Planetary Sciences",
-          "score": 0.9986000061035156,
+          "score": 0.9951000213623047,
           "subfield": "Oceanography",
           "topic": "Marine and coastal ecosystems"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Earth and Planetary Sciences",
-          "score": 0.9919000267982483,
-          "subfield": "Oceanography",
-          "topic": "Marine Biology and Ecology Research"
+          "field": "Environmental Science",
+          "score": 0.002899999963119626,
+          "subfield": "Environmental Chemistry",
+          "topic": "Aquatic Ecosystems and Phytoplankton Dynamics"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9912999868392944,
-          "subfield": "Ecology",
-          "topic": "Microbial Community Ecology and Physiology"
+          "field": "Earth and Planetary Sciences",
+          "score": 0.00039999998989515007,
+          "subfield": "Oceanography",
+          "topic": "Ocean Acidification Effects and Responses"
         }
       ],
       "venue": {
@@ -319,5 +373,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -310,25 +310,25 @@
       "title": "Integrating Discovery-driven Proteomics and Selected Reaction Monitoring To Develop a Noninvasive Assay for Geoduck Reproductive Maturation",
       "topics": [
         {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.5321999788284302,
+          "subfield": "Physiology",
+          "topic": "Reproductive biology and impacts on aquatic species"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.4000999927520752,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9958999752998352,
+          "score": 0.05290000140666962,
           "subfield": "Global and Planetary Change",
           "topic": "Marine Bivalve and Aquaculture Studies"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Engineering",
-          "score": 0.9955000281333923,
-          "subfield": "Ocean Engineering",
-          "topic": "Marine Biology and Environmental Chemistry"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9793000221252441,
-          "subfield": "Aquatic Science",
-          "topic": "Aquaculture Nutrition and Growth"
         }
       ],
       "venue": {
@@ -472,25 +472,25 @@
       "title": "Integrating discovery-driven proteomics and selected reaction monitoring to develop a non-invasive assay for geoduck reproductive maturation",
       "topics": [
         {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.7792999744415283,
+          "subfield": "Physiology",
+          "topic": "Reproductive biology and impacts on aquatic species"
+        },
+        {
           "domain": "Physical Sciences",
-          "field": "Engineering",
-          "score": 0.9968000054359436,
-          "subfield": "Ocean Engineering",
-          "topic": "Marine Biology and Environmental Chemistry"
+          "field": "Chemistry",
+          "score": 0.14229999482631683,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9959999918937683,
+          "score": 0.06599999964237213,
           "subfield": "Global and Planetary Change",
           "topic": "Marine Bivalve and Aquaculture Studies"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9664000272750854,
-          "subfield": "Health, Toxicology and Mutagenesis",
-          "topic": "Environmental Toxicology and Ecotoxicology"
         }
       ],
       "venue": {
@@ -512,5 +512,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

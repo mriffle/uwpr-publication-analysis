@@ -263,25 +263,25 @@
       "title": "XLink-DB: Database and Software Tools for Storing and Visualizing Protein Interaction Topology Data",
       "topics": [
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.4966000020503998,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991999864578247,
+          "score": 0.35030001401901245,
           "subfield": "Molecular Biology",
           "topic": "Bioinformatics and Genomic Networks"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9847000241279602,
-          "subfield": "Molecular Biology",
-          "topic": "Microbial Metabolic Engineering and Bioproduction"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9764999747276306,
-          "subfield": "Molecular Biology",
-          "topic": "Protein Structure and Dynamics"
+          "domain": "Physical Sciences",
+          "field": "Materials Science",
+          "score": 0.009600000455975533,
+          "subfield": "Materials Chemistry",
+          "topic": "Enzyme Structure and Function"
         }
       ],
       "venue": {
@@ -300,5 +300,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

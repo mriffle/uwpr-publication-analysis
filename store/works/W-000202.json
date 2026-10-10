@@ -229,23 +229,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9997000098228455,
+          "score": 0.5976999998092651,
           "subfield": "Surgery",
-          "topic": "Lipoproteins and Cardiovascular Health"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9988999962806702,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+          "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9988999962806702,
-          "subfield": "Cancer Research",
-          "topic": "Cancer, Lipids, and Metabolism"
+          "score": 0.27149999141693115,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0640999972820282,
+          "subfield": "Molecular Biology",
+          "topic": "Lipid Membrane Structure and Behavior"
         }
       ],
       "venue": {
@@ -264,5 +264,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

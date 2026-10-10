@@ -341,7 +341,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/9667921"
+        "url": "https://doi.org/10.1101/2021.08.13.456027"
       },
       "published": "2022-09-09",
       "retracted": false,
@@ -353,23 +353,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
+          "score": 0.8086000084877014,
           "subfield": "Molecular Biology",
           "topic": "Mitochondrial Function and Pathology"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9991999864578247,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Cardiovascular Function and Risk Factors"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.12139999866485596,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9957000017166138,
-          "subfield": "Molecular Biology",
-          "topic": "Microbial Metabolic Engineering and Bioproduction"
+          "score": 0.007400000002235174,
+          "subfield": "Cell Biology",
+          "topic": "Biotin and Related Studies"
         }
       ],
       "venue": {
@@ -388,5 +388,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

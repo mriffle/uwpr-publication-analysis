@@ -242,9 +242,16 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9359999895095825,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+          "score": 0.0,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0,
+          "subfield": "Biochemistry",
+          "topic": "Lipid metabolism and biosynthesis"
         }
       ],
       "venue": {
@@ -263,5 +270,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

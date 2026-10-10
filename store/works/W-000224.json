@@ -237,23 +237,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9991999864578247,
-          "subfield": "Spectroscopy",
-          "topic": "Mass Spectrometry Techniques and Applications"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9988999962806702,
+          "score": 0.46140000224113464,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Materials Science",
-          "score": 0.9976000189781189,
-          "subfield": "Materials Chemistry",
-          "topic": "Enzyme Structure and Function"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.2354000061750412,
+          "subfield": "Cell Biology",
+          "topic": "Microtubule and mitosis dynamics"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.18860000371932983,
+          "subfield": "Oncology",
+          "topic": "Cancer Treatment and Pharmacology"
         }
       ],
       "venue": {
@@ -272,5 +272,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

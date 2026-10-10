@@ -241,7 +241,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/11554524"
+        "url": "http://dx.doi.org/10.1101/2023.02.08.527705"
       },
       "published": "2023-08-09",
       "retracted": false,
@@ -253,21 +253,21 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 1.0,
+          "score": 0.9984999895095825,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9987000226974487,
+          "score": 0.0003000000142492354,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9972000122070312,
+          "score": 0.00019999999494757503,
           "subfield": "Molecular Biology",
           "topic": "Advanced Biosensing Techniques and Applications"
         }
@@ -288,5 +288,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

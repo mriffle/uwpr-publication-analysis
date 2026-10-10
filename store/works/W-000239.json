@@ -267,25 +267,25 @@
       "title": "Presence of serum amyloid A3 in mouse plasma is dependent on the nature and extent of the inflammatory stimulus",
       "topics": [
         {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.7836999893188477,
+          "subfield": "Epidemiology",
+          "topic": "Adipokines, Inflammation, and Metabolic Diseases"
+        },
+        {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 1.0,
-          "subfield": "Molecular Biology",
-          "topic": "Amyloidosis: Diagnosis, Treatment, Outcomes"
+          "field": "Immunology and Microbiology",
+          "score": 0.1420000046491623,
+          "subfield": "Immunology",
+          "topic": "Biomarkers in Disease Mechanisms"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9980999827384949,
-          "subfield": "Surgery",
-          "topic": "Pancreatitis Pathology and Treatment"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9871000051498413,
-          "subfield": "Physiology",
-          "topic": "Alzheimer's disease research and treatments"
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.029999999329447746,
+          "subfield": "Immunology",
+          "topic": "Immune Response and Inflammation"
         }
       ],
       "venue": {
@@ -304,5 +304,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

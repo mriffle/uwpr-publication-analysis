@@ -215,7 +215,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -236,7 +236,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -257,7 +257,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -278,7 +278,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -324,23 +324,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9997000098228455,
+          "score": 0.9961000084877014,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9919999837875366,
-          "subfield": "Biophysics",
-          "topic": "Cell Image Analysis Techniques"
+          "score": 0.0003000000142492354,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Kinase Regulation and GTPase Signaling"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9873999953269958,
-          "subfield": "Spectroscopy",
-          "topic": "Mass Spectrometry Techniques and Applications"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0003000000142492354,
+          "subfield": "Molecular Biology",
+          "topic": "Redox biology and oxidative stress"
         }
       ],
       "venue": {
@@ -493,7 +493,7 @@
         "publisher": "Cold Spring Harbor Laboratory"
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000228"
       },
       "year": 2019
@@ -506,5 +506,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

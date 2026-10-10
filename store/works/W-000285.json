@@ -223,23 +223,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9998999834060669,
+          "score": 0.9961000084877014,
           "subfield": "Infectious Diseases",
           "topic": "SARS-CoV-2 and COVID-19 Research"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9882000088691711,
-          "subfield": "Infectious Diseases",
-          "topic": "COVID-19 Clinical Research Studies"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.000699999975040555,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9836999773979187,
-          "subfield": "Animal Science and Zoology",
-          "topic": "Animal Virus Infections Studies"
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0005000000237487257,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
         }
       ],
       "venue": {
@@ -258,5 +258,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

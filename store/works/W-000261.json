@@ -340,23 +340,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9994000196456909,
+          "score": 0.7958999872207642,
           "subfield": "Immunology",
-          "topic": "Immune Cell Function and Interaction"
+          "topic": "Immunotherapy and Immune Responses"
         },
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9991999864578247,
+          "score": 0.10180000215768814,
           "subfield": "Immunology",
           "topic": "Immune cells in cancer"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9983999729156494,
-          "subfield": "Immunology",
-          "topic": "Immunotherapy and Immune Responses"
+          "domain": "Physical Sciences",
+          "field": "Engineering",
+          "score": 0.025200000032782555,
+          "subfield": "Biomedical Engineering",
+          "topic": "Nanoplatforms for cancer theranostics"
         }
       ],
       "venue": {
@@ -375,5 +375,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

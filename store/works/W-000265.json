@@ -345,25 +345,25 @@
       "title": "Discovery and Visualization of Uncharacterized Drug–Protein Adducts Using Mass Spectrometry",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991999864578247,
-          "subfield": "Molecular Biology",
-          "topic": "Metabolomics and Mass Spectrometry Studies"
-        },
-        {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9990000128746033,
+          "score": 0.9063000082969666,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9987000226974487,
+          "score": 0.07559999823570251,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Pharmacology, Toxicology and Pharmaceutics",
+          "score": 0.006300000008195639,
+          "subfield": "Pharmacology",
+          "topic": "Pharmacogenetics and Drug Metabolism"
         }
       ],
       "venue": {
@@ -580,5 +580,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

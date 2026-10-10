@@ -75,10 +75,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9922000169754028,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9905999898910522,
+          "score": 0.0066999997943639755,
           "subfield": "Ecology",
           "topic": "Bacteriophages and microbial interactions"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.000699999975040555,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         }
       ],
       "venue": {
@@ -97,5 +111,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -340,25 +340,25 @@
       "title": "A Tandem Mass Spectrometry Sequence Database Search Method for Identification of O-Fucosylated Proteins by Mass Spectrometry",
       "topics": [
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.6093999743461609,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9990000128746033,
+          "score": 0.21809999644756317,
           "subfield": "Molecular Biology",
           "topic": "Glycosylation and Glycoproteins Research"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9940999746322632,
-          "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.993399977684021,
-          "subfield": "Molecular Biology",
-          "topic": "Studies on Chitinases and Chitosanases"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.15309999883174896,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         }
       ],
       "venue": {
@@ -377,5 +377,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

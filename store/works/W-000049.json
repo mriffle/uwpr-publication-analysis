@@ -349,23 +349,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9976999759674072,
+          "score": 0.9682999849319458,
           "subfield": "Pulmonary and Respiratory Medicine",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.993399977684021,
-          "subfield": "Immunology and Allergy",
-          "topic": "Cell Adhesion Molecules Research"
+          "score": 0.007799999788403511,
+          "subfield": "Pulmonary and Respiratory Medicine",
+          "topic": "Prostate Cancer Diagnosis and Treatment"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9926999807357788,
+          "score": 0.00279999990016222,
           "subfield": "Oncology",
-          "topic": "Peptidase Inhibition and Analysis"
+          "topic": "Cancer Cells and Metastasis"
         }
       ],
       "venue": {
@@ -384,5 +384,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

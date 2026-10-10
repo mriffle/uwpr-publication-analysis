@@ -28,6 +28,18 @@
       "record": "R-000222"
     },
     {
+      "channel": "C2",
+      "first_seen": "2026-10-10",
+      "last_seen": "2026-10-10",
+      "record": "R-000222"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-10-10",
+      "last_seen": "2026-10-10",
+      "record": "R-000222"
+    },
+    {
       "channel": "G",
       "first_seen": "2026-09-20",
       "last_seen": "2026-09-26",
@@ -567,23 +579,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9991999864578247,
+          "score": 0.989300012588501,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Social Sciences",
-          "field": "Decision Sciences",
-          "score": 0.9937000274658203,
-          "subfield": "Information Systems and Management",
-          "topic": "Scientific Computing and Data Management"
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.008200000040233135,
+          "subfield": "Information Systems",
+          "topic": "Research Data Management Practices"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9909999966621399,
+          "score": 0.0006000000284984708,
           "subfield": "Molecular Biology",
-          "topic": "Genetics, Bioinformatics, and Biomedical Research"
+          "topic": "Bioinformatics and Genomic Networks"
         }
       ],
       "venue": {
@@ -602,5 +614,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

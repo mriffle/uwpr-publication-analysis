@@ -264,23 +264,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9998999834060669,
+          "score": 0.9839000105857849,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9979000091552734,
-          "subfield": "Cancer Research",
-          "topic": "Cancer, Hypoxia, and Metabolism"
+          "score": 0.004800000227987766,
+          "subfield": "Genetics",
+          "topic": "Estrogen and related hormone effects"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9976999759674072,
-          "subfield": "Spectroscopy",
-          "topic": "Mass Spectrometry Techniques and Applications"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.002400000113993883,
+          "subfield": "Pulmonary and Respiratory Medicine",
+          "topic": "Prostate Cancer Treatment and Research"
         }
       ],
       "venue": {
@@ -299,5 +299,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

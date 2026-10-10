@@ -321,23 +321,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998999834060669,
+          "score": 0.9883000254631042,
           "subfield": "Molecular Biology",
           "topic": "Genomics and Chromatin Dynamics"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9990000128746033,
+          "score": 0.0032999999821186066,
           "subfield": "Molecular Biology",
-          "topic": "RNA Research and Splicing"
+          "topic": "Fungal and yeast genetics research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9984999895095825,
+          "score": 0.002099999925121665,
           "subfield": "Molecular Biology",
-          "topic": "Ubiquitin and proteasome pathways"
+          "topic": "Chromatin Remodeling and Cancer"
         }
       ],
       "venue": {
@@ -356,5 +356,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

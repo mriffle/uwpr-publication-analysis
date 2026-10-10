@@ -172,23 +172,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9365000128746033,
+          "score": 0.9994999766349792,
           "subfield": "Molecular Biology",
           "topic": "Protein Hydrolysis and Bioactive Peptides"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.02759999968111515,
-          "subfield": "Plant Science",
-          "topic": "GABA and Rice Research"
+          "domain": "Health Sciences",
+          "field": "Nursing",
+          "score": 0.0,
+          "subfield": "Nutrition and Dietetics",
+          "topic": "Biochemical Analysis and Sensing Techniques"
         },
         {
           "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.006899999920278788,
-          "subfield": "Animal Science and Zoology",
-          "topic": "Meat and Animal Product Quality"
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0,
+          "subfield": "Molecular Biology",
+          "topic": "Enzyme Catalysis and Immobilization"
         }
       ],
       "venue": {
@@ -207,5 +207,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

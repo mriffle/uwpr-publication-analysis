@@ -220,21 +220,21 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9934999942779541,
+          "score": 0.9951000213623047,
           "subfield": "Oncology",
           "topic": "Pancreatic and Hepatic Oncology Research"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9930999875068665,
+          "score": 0.001500000013038516,
           "subfield": "Oncology",
-          "topic": "CAR-T cell therapy research"
+          "topic": "Cancer Immunotherapy and Biomarkers"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9926999807357788,
+          "score": 0.0003000000142492354,
           "subfield": "Oncology",
           "topic": "Cancer Cells and Metastasis"
         }
@@ -255,5 +255,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

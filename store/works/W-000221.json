@@ -166,23 +166,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998999834060669,
+          "score": 0.9994999766349792,
           "subfield": "Cell Biology",
           "topic": "Endoplasmic Reticulum Stress and Disease"
         },
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9962999820709229,
-          "subfield": "Molecular Biology",
-          "topic": "CRISPR and Genetic Engineering"
+          "field": "Neuroscience",
+          "score": 0.0,
+          "subfield": "Sensory Systems",
+          "topic": "Ion Channels and Receptors"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9835000038146973,
-          "subfield": "Molecular Biology",
-          "topic": "RNA regulation and disease"
+          "score": 0.0,
+          "subfield": "Cell Biology",
+          "topic": "Cellular transport and secretion"
         }
       ],
       "venue": {
@@ -201,5 +201,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

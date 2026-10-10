@@ -136,25 +136,25 @@
       "title": "Impact of HDL oxidation by the myeloperoxidase system on sterol efflux by the ABCA1 pathway",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9998999834060669,
-          "subfield": "Immunology",
-          "topic": "Neutrophil, Myeloperoxidase and Oxidative Mechanisms"
-        },
-        {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9972000122070312,
-          "subfield": "Physiology",
-          "topic": "Nitric Oxide and Endothelin Effects"
+          "score": 0.6812000274658203,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9965999722480774,
-          "subfield": "Clinical Biochemistry",
-          "topic": "Advanced Glycation End Products research"
+          "field": "Immunology and Microbiology",
+          "score": 0.14589999616146088,
+          "subfield": "Immunology",
+          "topic": "Atherosclerosis and Cardiovascular Diseases"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.07930000126361847,
+          "subfield": "Immunology",
+          "topic": "Neutrophil, Myeloperoxidase and Oxidative Mechanisms"
         }
       ],
       "venue": {
@@ -173,5 +173,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

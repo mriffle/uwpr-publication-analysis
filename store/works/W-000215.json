@@ -331,23 +331,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9972000122070312,
-          "subfield": "Pharmacology",
-          "topic": "Apelin-related biomedical research"
+          "score": 0.8217999935150146,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Lipid metabolism and disorders"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.994700014591217,
+          "score": 0.14730000495910645,
           "subfield": "Endocrinology, Diabetes and Metabolism",
           "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9922999739646912,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes Management and Research"
+          "score": 0.019700000062584877,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
       "venue": {
@@ -366,5 +366,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -1,0 +1,357 @@
+{
+  "aliases": [],
+  "canonical": "R-000876",
+  "created": "2026-10-10",
+  "discovery": [
+    {
+      "channel": "B1",
+      "first_seen": "2026-10-10",
+      "last_seen": "2026-10-10",
+      "record": "R-000876"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-10-10",
+      "last_seen": "2026-10-10",
+      "record": "R-000876"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-10-10",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-10-10",
+      "record": "R-000876",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-10-10",
+        "url": "https://api.openalex.org/works/W7220928429"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-10-10",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-10-10",
+      "record": "R-000876",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-10-10",
+        "url": "https://api.crossref.org/works/10.1093/clinchem/hvag132"
+      }
+    }
+  ],
+  "id": "W-000872",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alexandra Emmanuel",
+          "openalex": "A5013852705",
+          "orcid": "0000-0003-0953-4220",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Kelly D. Smith",
+          "openalex": "A5027246219",
+          "orcid": "0000-0002-2368-4957",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "William Catungal",
+          "openalex": "A5157987992",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Erinn Kuest",
+          "openalex": "A5157957794",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Han-Yin Yang",
+          "openalex": "A5067770963",
+          "orcid": "0000-0003-0953-9574",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Deanna L. Plubell",
+          "openalex": "A5000236735",
+          "orcid": "0000-0002-6580-8073",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "CN",
+              "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
+              "raw": "Department of Laboratory Medicine, Peking Union Medical College Hospital, Chinese Academy of Medical Sciences & Peking Union Medical College , Beijing ,",
+              "ror": "02drdmm93"
+            }
+          ],
+          "corresponding": false,
+          "name": "Songlin Yu",
+          "openalex": "A5134502381",
+          "orcid": "0009-0009-7438-8830",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Jingxiang Ma",
+          "openalex": "A5157968941",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Niklas Krumm",
+          "openalex": "A5059817097",
+          "orcid": "0009-0008-6288-6341",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Christine C Wu",
+          "openalex": "A5157985846",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "William Stafford Noble",
+          "openalex": "A5057375933",
+          "orcid": "0000-0001-7283-4715",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Mayo Clinic",
+              "raw": "Department of Quantitative Health Sciences, Mayo Clinic , Rochester, MN ,",
+              "ror": "02qp3tb03"
+            }
+          ],
+          "corresponding": false,
+          "name": "Brian C. Searle",
+          "openalex": "A5032151945",
+          "orcid": "0000-0001-8760-6731",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Andrew N. Hoofnagle",
+          "openalex": "A5031218554",
+          "orcid": "0000-0002-6449-0243",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "William S. Phipps",
+          "openalex": "A5055624776",
+          "orcid": null,
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-10-10",
+        "recheck_after": "2027-01-08",
+        "status": "unavailable"
+      },
+      "id": "R-000876",
+      "ids": {
+        "doi": "10.1093/clinchem/hvag132",
+        "openalex": "W7220928429",
+        "pmcid": null,
+        "pmid": "42838732"
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "closed",
+        "url": null
+      },
+      "published": "2026-09-10",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-10-10"
+      },
+      "title": "Reproducible Amyloid Typing by Data-Independent Acquisition Mass Spectrometry",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.6147000193595886,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.2750999927520752,
+          "subfield": "Molecular Biology",
+          "topic": "Amyloidosis: Diagnosis, Treatment, Outcomes"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.08789999783039093,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        }
+      ],
+      "venue": {
+        "issn_l": "0009-9147",
+        "name": "Clinical Chemistry",
+        "publisher": "American Association for Clinical Chemistry"
+      },
+      "version_link": null,
+      "year": 2026
+    }
+  ],
+  "rule_version": "2026-09-26.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-10-10"
+  },
+  "updated": "2026-10-10"
+}

@@ -264,23 +264,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9995999932289124,
+          "score": 0.9531000256538391,
           "subfield": "Molecular Biology",
           "topic": "Protein purification and stability"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9983999729156494,
-          "subfield": "Molecular Biology",
-          "topic": "Viral Infectious Diseases and Gene Expression in Insects"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.01850000023841858,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9983000159263611,
-          "subfield": "Radiology, Nuclear Medicine and Imaging",
-          "topic": "Monoclonal and Polyclonal Antibodies Research"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.008500000461935997,
+          "subfield": "Molecular Biology",
+          "topic": "Viral Infectious Diseases and Gene Expression in Insects"
         }
       ],
       "venue": {
@@ -299,5 +299,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

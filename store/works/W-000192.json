@@ -298,23 +298,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9987999796867371,
+          "score": 0.798799991607666,
           "subfield": "Immunology",
           "topic": "Atherosclerosis and Cardiovascular Diseases"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9976999759674072,
-          "subfield": "Epidemiology",
-          "topic": "Adipokines, Inflammation, and Metabolic Diseases"
+          "score": 0.17870000004768372,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9965999722480774,
-          "subfield": "Immunology",
-          "topic": "Immune cells in cancer"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.017500000074505806,
+          "subfield": "Epidemiology",
+          "topic": "Adipokines, Inflammation, and Metabolic Diseases"
         }
       ],
       "venue": {
@@ -333,5 +333,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

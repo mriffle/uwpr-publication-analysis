@@ -256,9 +256,9 @@
       },
       "kind": "article",
       "oa": {
-        "license": null,
+        "license": "cc-by-nc",
         "status": "green",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/40690708/"
+        "url": "https://doi.org/10.1101/2025.05.06.652494"
       },
       "published": "2025-07-21",
       "retracted": false,
@@ -270,23 +270,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9991000294685364,
+          "score": 0.9692000150680542,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9986000061035156,
-          "subfield": "Molecular Biology",
-          "topic": "Metabolomics and Mass Spectrometry Studies"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.019200000911951065,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9918000102043152,
-          "subfield": "Ecology",
-          "topic": "Isotope Analysis in Ecology"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.00419999985024333,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
         }
       ],
       "venue": {
@@ -426,7 +426,7 @@
         "publisher": "Cold Spring Harbor Laboratory"
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000321"
       },
       "year": 2025
@@ -439,5 +439,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

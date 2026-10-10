@@ -216,23 +216,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998999834060669,
-          "subfield": "Aging",
-          "topic": "Genetics, Aging, and Longevity in Model Organisms"
+          "score": 0.6395999789237976,
+          "subfield": "Cell Biology",
+          "topic": "Cellular Mechanics and Interactions"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Energy",
-          "score": 0.9628000259399414,
-          "subfield": "Renewable Energy, Sustainability and the Environment",
-          "topic": "Algal biology and biofuel production"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.29660001397132874,
+          "subfield": "Molecular Biology",
+          "topic": "Developmental Biology and Gene Regulation"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Materials Science",
-          "score": 0.9381999969482422,
-          "subfield": "Materials Chemistry",
-          "topic": "Nanoparticles: synthesis and applications"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.010099999606609344,
+          "subfield": "Cell Biology",
+          "topic": "Skin and Cellular Biology Research"
         }
       ],
       "venue": {
@@ -251,5 +251,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

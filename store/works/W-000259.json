@@ -238,18 +238,18 @@
           "topic": "Coral and Marine Ecosystems Studies"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9965999722480774,
-          "subfield": "Biotechnology",
-          "topic": "Marine Sponges and Natural Products"
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.0,
+          "subfield": "Paleontology",
+          "topic": "Marine Invertebrate Physiology and Ecology"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Earth and Planetary Sciences",
-          "score": 0.9843999743461609,
-          "subfield": "Oceanography",
-          "topic": "Marine and coastal plant biology"
+          "field": "Environmental Science",
+          "score": 0.0,
+          "subfield": "Ecology",
+          "topic": "Physiological and biochemical adaptations"
         }
       ],
       "venue": {
@@ -268,5 +268,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

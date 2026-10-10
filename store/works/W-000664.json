@@ -237,7 +237,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Ellen Marie Wijsman",
+          "name": "Ellen M. Wijsman",
           "openalex": "A5003873348",
           "orcid": "0000-0002-2725-6669",
           "staff": null
@@ -497,23 +497,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9987000226974487,
+          "score": 0.8726000189781189,
           "subfield": "Oncology",
           "topic": "Clusterin in disease pathology"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.0003000000142492354,
-          "subfield": "Cell Biology",
-          "topic": "Caveolin-1 and cellular processes"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.04619999974966049,
+          "subfield": "Epidemiology",
+          "topic": "Adipokines, Inflammation, and Metabolic Diseases"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 9.999999747378752e-05,
-          "subfield": "Rheumatology",
-          "topic": "GDF15 and Related Biomarkers"
+          "score": 0.027400000020861626,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
         }
       ],
       "venue": {
@@ -532,5 +532,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

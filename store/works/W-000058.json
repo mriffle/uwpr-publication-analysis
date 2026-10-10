@@ -185,22 +185,22 @@
       "topics": [
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
-          "subfield": "Molecular Biology",
-          "topic": "Metabolomics and Mass Spectrometry Studies"
-        },
-        {
-          "domain": "Life Sciences",
           "field": "Pharmacology, Toxicology and Pharmaceutics",
-          "score": 0.9994000196456909,
+          "score": 0.9984999895095825,
           "subfield": "Pharmacology",
           "topic": "Drug-Induced Hepatotoxicity and Protection"
         },
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.0003000000142492354,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Pharmacology, Toxicology and Pharmaceutics",
-          "score": 0.9976000189781189,
+          "score": 0.0003000000142492354,
           "subfield": "Pharmacology",
           "topic": "Pharmacogenetics and Drug Metabolism"
         }
@@ -221,5 +221,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

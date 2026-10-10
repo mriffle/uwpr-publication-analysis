@@ -296,23 +296,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 1.0,
+          "score": 0.5503000020980835,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Engineering",
-          "score": 0.9998000264167786,
-          "subfield": "Computational Mechanics",
-          "topic": "Ion-surface interactions and analysis"
-        },
-        {
-          "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9887999892234802,
+          "score": 0.3725999891757965,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.04859999939799309,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
         }
       ],
       "venue": {
@@ -331,5 +331,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

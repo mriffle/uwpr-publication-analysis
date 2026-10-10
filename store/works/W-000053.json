@@ -175,21 +175,21 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9559000134468079,
+          "score": 0.9843999743461609,
           "subfield": "Urology",
           "topic": "Urinary Bladder and Prostate Research"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.008799999952316284,
-          "subfield": "Surgery",
-          "topic": "Bladder and Urothelial Cancer Treatments"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.002899999963119626,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.004399999976158142,
+          "score": 0.0017000000225380063,
           "subfield": "Epidemiology",
           "topic": "Urinary Tract Infections Management"
         }
@@ -210,5 +210,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

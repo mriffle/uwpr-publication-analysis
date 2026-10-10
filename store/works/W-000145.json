@@ -259,23 +259,23 @@
         {
           "domain": "Life Sciences",
           "field": "Agricultural and Biological Sciences",
-          "score": 0.989300012588501,
+          "score": 0.9990000128746033,
           "subfield": "Plant Science",
           "topic": "Plant Virus Research Studies"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.003100000089034438,
-          "subfield": "Ecology",
-          "topic": "Bacteriophages and microbial interactions"
+          "field": "Chemistry",
+          "score": 0.0003000000142492354,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Agricultural and Biological Sciences",
-          "score": 0.0007999999797903001,
-          "subfield": "Animal Science and Zoology",
-          "topic": "Animal Virus Infections Studies"
+          "score": 0.00019999999494757503,
+          "subfield": "Plant Science",
+          "topic": "Phytoplasmas and Hemiptera pathogens"
         }
       ],
       "venue": {
@@ -294,5 +294,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

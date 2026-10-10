@@ -178,25 +178,25 @@
       "title": "A Quantitative Proteomic Analysis of Hemogenic Endothelium Reveals Differential Regulation of Hematopoiesis by SOX17",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
-          "subfield": "Cell Biology",
-          "topic": "Zebrafish Biomedical Research Applications"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.8471999764442444,
+          "subfield": "Hematology",
+          "topic": "Hematopoietic Stem Cell Transplantation"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9955999851226807,
+          "score": 0.13840000331401825,
           "subfield": "Molecular Biology",
-          "topic": "Single-cell and spatial transcriptomics"
+          "topic": "Pluripotent Stem Cells Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9955000281333923,
+          "score": 0.0027000000700354576,
           "subfield": "Molecular Biology",
-          "topic": "Epigenetics and DNA Methylation"
+          "topic": "Developmental Biology and Gene Regulation"
         }
       ],
       "venue": {
@@ -215,5 +215,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

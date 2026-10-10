@@ -263,23 +263,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 1.0,
+          "score": 0.9937000274658203,
           "subfield": "Molecular Biology",
           "topic": "Ubiquitin and proteasome pathways"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9975000023841858,
-          "subfield": "Molecular Biology",
-          "topic": "Glycosylation and Glycoproteins Research"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.005100000184029341,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9965000152587891,
-          "subfield": "Oncology",
-          "topic": "Peptidase Inhibition and Analysis"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 9.999999747378752e-05,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         }
       ],
       "venue": {
@@ -298,5 +298,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

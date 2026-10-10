@@ -164,24 +164,24 @@
       "topics": [
         {
           "domain": "Life Sciences",
+          "field": "Pharmacology, Toxicology and Pharmaceutics",
+          "score": 0.5121999979019165,
+          "subfield": "Toxicology",
+          "topic": "Forensic Toxicology and Drug Analysis"
+        },
+        {
+          "domain": "Life Sciences",
           "field": "Agricultural and Biological Sciences",
-          "score": 0.9987000226974487,
+          "score": 0.15629999339580536,
           "subfield": "Plant Science",
           "topic": "Pesticide Exposure and Toxicity"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9980000257492065,
-          "subfield": "Ecology",
-          "topic": "Animal Ecology and Behavior Studies"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9966999888420105,
-          "subfield": "Pharmacology",
-          "topic": "Cholinesterase and Neurodegenerative Diseases"
+          "field": "Chemistry",
+          "score": 0.10000000149011612,
+          "subfield": "Analytical Chemistry",
+          "topic": "Analytical Methods in Pharmaceuticals"
         }
       ],
       "venue": {
@@ -200,5 +200,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

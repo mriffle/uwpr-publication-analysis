@@ -360,23 +360,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 1.0,
+          "score": 0.9984999895095825,
           "subfield": "Epidemiology",
           "topic": "Virology and Viral Diseases"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.994700014591217,
-          "subfield": "Epidemiology",
-          "topic": "Respiratory viral infections research"
+          "score": 0.00019999999494757503,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9927999973297119,
-          "subfield": "Infectious Diseases",
-          "topic": "Viral Infections and Vectors"
+          "score": 0.00019999999494757503,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
         }
       ],
       "venue": {
@@ -395,5 +395,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

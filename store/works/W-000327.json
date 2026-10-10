@@ -547,21 +547,21 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.7340999841690063,
+          "score": 0.8270999789237976,
           "subfield": "Epidemiology",
           "topic": "Adipokines, Inflammation, and Metabolic Diseases"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.09650000184774399,
+          "score": 0.11400000005960464,
           "subfield": "Physiology",
           "topic": "Adipose Tissue and Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.056699998676776886,
+          "score": 0.0340999998152256,
           "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Cardiovascular Disease and Adiposity"
         }
@@ -868,23 +868,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.5120999813079834,
+          "score": 0.8481000065803528,
           "subfield": "Epidemiology",
           "topic": "Adipokines, Inflammation, and Metabolic Diseases"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.20180000364780426,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Cardiovascular Disease and Adiposity"
+          "score": 0.09449999779462814,
+          "subfield": "Physiology",
+          "topic": "Adipose Tissue and Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.06750000268220901,
-          "subfield": "Physiology",
-          "topic": "Adipose Tissue and Metabolism"
+          "score": 0.032099999487400055,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Cardiovascular Disease and Adiposity"
         }
       ],
       "venue": {
@@ -906,5 +906,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

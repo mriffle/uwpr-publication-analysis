@@ -139,23 +139,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9998999834060669,
+          "score": 0.384799987077713,
           "subfield": "Immunology",
           "topic": "Neutrophil, Myeloperoxidase and Oxidative Mechanisms"
         },
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9986000061035156,
-          "subfield": "Clinical Biochemistry",
-          "topic": "Advanced Glycation End Products research"
+          "field": "Immunology and Microbiology",
+          "score": 0.2759000062942505,
+          "subfield": "Immunology",
+          "topic": "Atherosclerosis and Cardiovascular Diseases"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9980999827384949,
-          "subfield": "Physiology",
-          "topic": "Nitric Oxide and Endothelin Effects"
+          "score": 0.14329999685287476,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
         }
       ],
       "venue": {
@@ -174,5 +174,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

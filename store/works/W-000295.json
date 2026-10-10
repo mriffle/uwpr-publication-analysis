@@ -222,23 +222,23 @@
         {
           "domain": "Life Sciences",
           "field": "Neuroscience",
-          "score": 0.9940999746322632,
-          "subfield": "Cellular and Molecular Neuroscience",
-          "topic": "Neurobiology and Insect Physiology Research"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Neuroscience",
-          "score": 0.9937999844551086,
+          "score": 0.9980000257492065,
           "subfield": "Endocrine and Autonomic Systems",
           "topic": "Circadian rhythm and melatonin"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Neuroscience",
-          "score": 0.9886999726295471,
-          "subfield": "Cellular and Molecular Neuroscience",
-          "topic": "Photoreceptor and optogenetics research"
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.0012000000569969416,
+          "subfield": "Ecology",
+          "topic": "Physiological and biochemical adaptations"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.0,
+          "subfield": "Oceanography",
+          "topic": "Marine Biology and Ecology Research"
         }
       ],
       "venue": {
@@ -257,5 +257,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

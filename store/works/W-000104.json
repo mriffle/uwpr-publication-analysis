@@ -237,23 +237,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9995999932289124,
+          "score": 1.0,
           "subfield": "Immunology",
           "topic": "Phagocytosis and Immune Regulation"
         },
         {
           "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.0,
-          "subfield": "Immunology",
-          "topic": "Immune Cell Function and Interaction"
+          "subfield": "Molecular Biology",
+          "topic": "Cell death mechanisms and regulation"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
+          "domain": "Health Sciences",
+          "field": "Nursing",
           "score": 0.0,
-          "subfield": "Immunology",
-          "topic": "Immune responses and vaccinations"
+          "subfield": "Nutrition and Dietetics",
+          "topic": "Fatty Acid Research and Health"
         }
       ],
       "venue": {
@@ -272,5 +272,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -185,7 +185,7 @@
           "corresponding": false,
           "name": "Dorothy Lartey",
           "openalex": "A5116826247",
-          "orcid": "0000-0002-3655-9987",
+          "orcid": null,
           "staff": null
         },
         {
@@ -443,7 +443,7 @@
         "doi": "10.1242/jcs.264084",
         "openalex": "W4415790750",
         "pmcid": "PMC12752501",
-        "pmid": "41178558"
+        "pmid": "40196599"
       },
       "kind": "article",
       "oa": {
@@ -461,23 +461,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9797999858856201,
+          "score": 0.9765999913215637,
           "subfield": "Molecular Biology",
-          "topic": "Hedgehog Signaling Pathway Studies"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Neuroscience",
-          "score": 0.004600000102072954,
-          "subfield": "Endocrine and Autonomic Systems",
-          "topic": "Regulation of Appetite and Obesity"
+          "topic": "Ubiquitin and proteasome pathways"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.0035000001080334187,
+          "score": 0.005900000222027302,
           "subfield": "Cell Biology",
           "topic": "melanin and skin pigmentation"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0019000000320374966,
+          "subfield": "Molecular Biology",
+          "topic": "Receptor Mechanisms and Signaling"
         }
       ],
       "venue": {
@@ -756,7 +756,7 @@
         "publisher": "Cold Spring Harbor Laboratory"
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000325"
       },
       "year": 2025
@@ -769,5 +769,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -250,7 +250,7 @@
         "doi": "10.1038/s41592-025-02719-x",
         "openalex": "W4411328567",
         "pmcid": "PMC12240826",
-        "pmid": "40524023"
+        "pmid": "38895431"
       },
       "kind": "article",
       "oa": {
@@ -268,23 +268,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 1.0,
+          "score": 0.9980000257492065,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9983000159263611,
+          "score": 0.0006000000284984708,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9968000054359436,
+          "score": 9.999999747378752e-05,
           "subfield": "Molecular Biology",
-          "topic": "Metabolomics and Mass Spectrometry Studies"
+          "topic": "Bioinformatics and Genomic Networks"
         }
       ],
       "venue": {
@@ -485,7 +485,7 @@
         "publisher": "Cold Spring Harbor Laboratory"
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000318"
       },
       "year": 2024
@@ -498,5 +498,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -161,25 +161,25 @@
       "title": "Determination of pyrophosphorylated forms of lipid A in Gram-negative bacteria using a multivaried mass spectrometric approach",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9973000288009644,
-          "subfield": "Molecular Biology",
-          "topic": "Metabolomics and Mass Spectrometry Studies"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9853000044822693,
-          "subfield": "Genetics",
-          "topic": "Yersinia bacterium, plague, ectoparasites research"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9878000020980835,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Engineering",
-          "score": 0.9660999774932861,
-          "subfield": "Biomedical Engineering",
-          "topic": "Advanced Chemical Sensor Technologies"
+          "field": "Chemistry",
+          "score": 0.005200000014156103,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.003100000089034438,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
         }
       ],
       "venue": {
@@ -198,5 +198,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

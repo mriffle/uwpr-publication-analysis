@@ -425,23 +425,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.29499998688697815,
+          "score": 0.7612000107765198,
           "subfield": "Immunology",
           "topic": "Atherosclerosis and Cardiovascular Diseases"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.2393999993801117,
-          "subfield": "Surgery",
-          "topic": "Coronary Interventions and Diagnostics"
+          "score": 0.07500000298023224,
+          "subfield": "Pulmonary and Respiratory Medicine",
+          "topic": "Cerebrovascular and Carotid Artery Diseases"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.10890000313520432,
-          "subfield": "Cancer Research",
-          "topic": "Protease and Inhibitor Mechanisms"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.049800001084804535,
+          "subfield": "Hematology",
+          "topic": "Blood Coagulation and Thrombosis Mechanisms"
         }
       ],
       "venue": {
@@ -460,5 +460,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

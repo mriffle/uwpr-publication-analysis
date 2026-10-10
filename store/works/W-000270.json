@@ -341,23 +341,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9998999834060669,
+          "score": 0.9868000149726868,
           "subfield": "Virology",
           "topic": "HIV Research and Treatment"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9993000030517578,
-          "subfield": "Radiology, Nuclear Medicine and Imaging",
-          "topic": "Monoclonal and Polyclonal Antibodies Research"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0035000001080334187,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9934999942779541,
-          "subfield": "Infectious Diseases",
-          "topic": "HIV/AIDS drug development and treatment"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.0010999999940395355,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         }
       ],
       "venue": {
@@ -376,5 +376,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

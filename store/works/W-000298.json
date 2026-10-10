@@ -357,9 +357,9 @@
       },
       "kind": "article",
       "oa": {
-        "license": null,
+        "license": "cc-by-nc-nd",
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/11296897"
+        "url": "https://doi.org/10.26434/chemrxiv-2024-33v24-v2"
       },
       "published": "2024-07-05",
       "retracted": false,
@@ -371,23 +371,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9959999918937683,
+          "score": 0.5702999830245972,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9908999800682068,
-          "subfield": "Molecular Biology",
-          "topic": "Metabolomics and Mass Spectrometry Studies"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.36160001158714294,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9901000261306763,
+          "score": 0.024299999698996544,
           "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
+          "topic": "Protein Structure and Dynamics"
         }
       ],
       "venue": {
@@ -534,11 +534,25 @@
       "title": "Identifying Site-Specific Crosslinks Originating from a Genetically Incorporated, Photoreactive Amino Acid",
       "topics": [
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.673799991607666,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.21629999577999115,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.91839998960495,
+          "score": 0.0617000013589859,
           "subfield": "Molecular Biology",
-          "topic": "bioluminescence and chemiluminescence research"
+          "topic": "Protein Structure and Dynamics"
         }
       ],
       "venue": {
@@ -560,5 +574,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

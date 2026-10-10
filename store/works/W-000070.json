@@ -242,25 +242,25 @@
       "title": "The Fasted/Fed Mouse Metabolic Acetylome: N6-Acetylation Differences Suggest Acetylation Coordinates Organ-Specific Fuel Switching",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9991999864578247,
-          "subfield": "Physiology",
-          "topic": "Adipose Tissue and Metabolism"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9975000023841858,
-          "subfield": "Geriatrics and Gerontology",
-          "topic": "Sirtuins and Resveratrol in Medicine"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.2800000011920929,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.995199978351593,
+          "score": 0.07029999792575836,
+          "subfield": "Biochemistry",
+          "topic": "Lipid metabolism and biosynthesis"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.041600000113248825,
           "subfield": "Molecular Biology",
-          "topic": "Ubiquitin and proteasome pathways"
+          "topic": "Metabolism, Diabetes, and Cancer"
         }
       ],
       "venue": {
@@ -279,5 +279,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

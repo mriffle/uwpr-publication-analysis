@@ -234,24 +234,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
-          "field": "Computer Science",
-          "score": 0.989300012588501,
-          "subfield": "Signal Processing",
-          "topic": "Data Management and Algorithms"
-        },
-        {
-          "domain": "Social Sciences",
-          "field": "Social Sciences",
-          "score": 0.9397000074386597,
-          "subfield": "Geography, Planning and Development",
-          "topic": "Geographic Information Systems Studies"
+          "field": "Chemistry",
+          "score": 0.9717000126838684,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Computer Science",
-          "score": 0.9330999851226807,
-          "subfield": "Computer Vision and Pattern Recognition",
-          "topic": "Data Visualization and Analytics"
+          "score": 0.019899999722838402,
+          "subfield": "Information Systems",
+          "topic": "Research Data Management Practices"
+        },
+        {
+          "domain": "Social Sciences",
+          "field": "Decision Sciences",
+          "score": 0.002400000113993883,
+          "subfield": "Information Systems and Management",
+          "topic": "Scientific Computing and Data Management"
         }
       ],
       "venue": {
@@ -270,5 +270,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

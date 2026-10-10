@@ -261,25 +261,25 @@
       "title": "Comparative Analysis of Protein Quantification by the SomaScan Assay versus Orthogonal Methods in Urine from People with Diabetic Kidney Disease",
       "topics": [
         {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9987000226974487,
-          "subfield": "Spectroscopy",
-          "topic": "Advanced Proteomics Techniques and Applications"
-        },
-        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.996999979019165,
+          "score": 0.5473999977111816,
           "subfield": "Molecular Biology",
-          "topic": "Advanced biosensing and bioanalysis techniques"
+          "topic": "Advanced Biosensing Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9819999933242798,
-          "subfield": "Molecular Biology",
-          "topic": "Molecular Biology Techniques and Applications"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.19920000433921814,
+          "subfield": "Nephrology",
+          "topic": "Chronic Kidney Disease and Diabetes"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.17069999873638153,
+          "subfield": "Physiology",
+          "topic": "Clinical Laboratory Practices and Quality Control"
         }
       ],
       "venue": {
@@ -298,5 +298,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

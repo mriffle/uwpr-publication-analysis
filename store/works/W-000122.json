@@ -270,21 +270,21 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9351000189781189,
+          "score": 0.9839000105857849,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.02319999970495701,
+          "score": 0.009399999864399433,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.009800000116229057,
+          "score": 0.0013000000035390258,
           "subfield": "Molecular Biology",
           "topic": "Metabolomics and Mass Spectrometry Studies"
         }
@@ -305,5 +305,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

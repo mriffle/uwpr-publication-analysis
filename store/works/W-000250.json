@@ -407,25 +407,25 @@
       "title": "Neutrophil elastase selectively kills cancer cells and attenuates tumorigenesis",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9995999932289124,
-          "subfield": "Immunology and Allergy",
-          "topic": "Cell Adhesion Molecules Research"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.6859999895095825,
+          "subfield": "Cancer Research",
+          "topic": "Protease and Inhibitor Mechanisms"
         },
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9994000196456909,
+          "score": 0.21699999272823334,
           "subfield": "Immunology",
-          "topic": "Phagocytosis and Immune Regulation"
+          "topic": "Neutrophil, Myeloperoxidase and Oxidative Mechanisms"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991999864578247,
-          "subfield": "Cancer Research",
-          "topic": "Protease and Inhibitor Mechanisms"
+          "score": 0.026399999856948853,
+          "subfield": "Molecular Biology",
+          "topic": "Cell death mechanisms and regulation"
         }
       ],
       "venue": {
@@ -444,5 +444,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

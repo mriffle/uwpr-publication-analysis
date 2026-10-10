@@ -188,23 +188,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9983000159263611,
-          "subfield": "Molecular Biology",
-          "topic": "Genomics and Phylogenetic Studies"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9980999827384949,
-          "subfield": "Endocrinology",
-          "topic": "Plant and Fungal Interactions Research"
+          "score": 0.6234999895095825,
+          "subfield": "Cancer Research",
+          "topic": "Cancer-related molecular mechanisms research"
         },
         {
           "domain": "Life Sciences",
           "field": "Agricultural and Biological Sciences",
-          "score": 0.9961000084877014,
+          "score": 0.16019999980926514,
           "subfield": "Plant Science",
-          "topic": "Plant Disease Resistance and Genetics"
+          "topic": "Chromosomal and Genetic Variations"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.1273999959230423,
+          "subfield": "Plant Science",
+          "topic": "Plant Molecular Biology Research"
         }
       ],
       "venue": {
@@ -223,5 +223,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

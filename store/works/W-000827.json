@@ -116,23 +116,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.5302000045776367,
+          "score": 0.9506999850273132,
           "subfield": "Pulmonary and Respiratory Medicine",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.1581999957561493,
-          "subfield": "Molecular Biology",
-          "topic": "Nuclear Structure and Function"
+          "score": 0.034699998795986176,
+          "subfield": "Cell Biology",
+          "topic": "Biotin and Related Studies"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.09350000321865082,
-          "subfield": "Cell Biology",
-          "topic": "Biotin and Related Studies"
+          "score": 0.002099999925121665,
+          "subfield": "Genetics",
+          "topic": "Estrogen and related hormone effects"
         }
       ],
       "venue": {
@@ -151,5 +151,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

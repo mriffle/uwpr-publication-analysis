@@ -320,24 +320,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.4616999924182892,
+          "subfield": "Environmental Chemistry",
+          "topic": "Marine Toxins and Detection Methods"
+        },
+        {
+          "domain": "Physical Sciences",
           "field": "Earth and Planetary Sciences",
-          "score": 0.9997000098228455,
+          "score": 0.3540000021457672,
           "subfield": "Oceanography",
           "topic": "Marine and coastal ecosystems"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9991000294685364,
-          "subfield": "Ecology",
-          "topic": "Microbial Community Ecology and Physiology"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Earth and Planetary Sciences",
-          "score": 0.9962000250816345,
-          "subfield": "Oceanography",
-          "topic": "Marine and coastal plant biology"
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.0966000035405159,
+          "subfield": "Plant Science",
+          "topic": "Allelopathy and phytotoxic interactions"
         }
       ],
       "venue": {
@@ -356,5 +356,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

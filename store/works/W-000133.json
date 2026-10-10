@@ -222,23 +222,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9814000129699707,
+          "score": 0.975600004196167,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.019099999219179153,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9722999930381775,
-          "subfield": "Ecology",
-          "topic": "Isotope Analysis in Ecology"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Physics and Astronomy",
-          "score": 0.9674000144004822,
-          "subfield": "Astronomy and Astrophysics",
-          "topic": "Astro and Planetary Science"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.00039999998989515007,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
         }
       ],
       "venue": {
@@ -257,5 +257,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

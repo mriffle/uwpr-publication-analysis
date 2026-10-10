@@ -336,23 +336,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.939300000667572,
+          "score": 0.9937000274658203,
           "subfield": "Immunology",
           "topic": "Mast cells and histamine"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.00839999970048666,
-          "subfield": "Pulmonary and Respiratory Medicine",
-          "topic": "Blood properties and coagulation"
+          "score": 0.00419999985024333,
+          "subfield": "Genetics",
+          "topic": "Coagulation, Bradykinin, Polyphosphates, and Angioedema"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.008299999870359898,
-          "subfield": "Cell Biology",
-          "topic": "Skin and Cellular Biology Research"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.00039999998989515007,
+          "subfield": "Hematology",
+          "topic": "Blood Coagulation and Thrombosis Mechanisms"
         }
       ],
       "venue": {
@@ -371,5 +371,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

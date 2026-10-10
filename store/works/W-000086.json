@@ -156,23 +156,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9990000128746033,
+          "score": 0.6317999958992004,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.3499000072479248,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9976000189781189,
+          "score": 0.001500000013038516,
           "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9898999929428101,
-          "subfield": "Oncology",
-          "topic": "PARP inhibition in cancer therapy"
+          "topic": "Glycosylation and Glycoproteins Research"
         }
       ],
       "venue": {
@@ -191,5 +191,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

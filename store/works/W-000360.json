@@ -295,23 +295,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9879000186920166,
-          "subfield": "Molecular Biology",
-          "topic": "Bone Metabolism and Diseases"
+          "score": 0.9872999787330627,
+          "subfield": "Genetics",
+          "topic": "Inflammatory Bowel Disease"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9879000186920166,
-          "subfield": "Immunology",
-          "topic": "Galectins and Cancer Biology"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0010000000474974513,
+          "subfield": "Oncology",
+          "topic": "Colorectal Cancer Screening and Detection"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9872000217437744,
-          "subfield": "Genetics",
-          "topic": "Inflammatory Bowel Disease"
+          "score": 0.0008999999845400453,
+          "subfield": "Cancer Research",
+          "topic": "Protease and Inhibitor Mechanisms"
         }
       ],
       "venue": {
@@ -330,5 +330,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

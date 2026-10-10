@@ -137,24 +137,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
-          "field": "Engineering",
-          "score": 0.994700014591217,
-          "subfield": "Biomedical Engineering",
-          "topic": "Nanoplatforms for cancer theranostics"
+          "field": "Chemistry",
+          "score": 0.32839998602867126,
+          "subfield": "Organic Chemistry",
+          "topic": "Photopolymerization techniques and applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9901000261306763,
-          "subfield": "Biotechnology",
-          "topic": "Cancer Research and Treatments"
+          "domain": "Physical Sciences",
+          "field": "Engineering",
+          "score": 0.1421000063419342,
+          "subfield": "Biomedical Engineering",
+          "topic": "3D Printing in Biomedical Research"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.987500011920929,
-          "subfield": "Physiology",
-          "topic": "Spaceflight effects on biology"
+          "score": 0.08449999988079071,
+          "subfield": "Surgery",
+          "topic": "Tissue Engineering and Regenerative Medicine"
         }
       ],
       "venue": {
@@ -173,5 +173,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

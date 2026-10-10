@@ -347,7 +347,7 @@
           ],
           "corresponding": false,
           "name": "Justin Sanders",
-          "openalex": null,
+          "openalex": "A5109770319",
           "orcid": null,
           "staff": null
         },
@@ -520,9 +520,9 @@
       },
       "kind": "article",
       "oa": {
-        "license": null,
-        "status": "closed",
-        "url": null
+        "license": "cc-by",
+        "status": "green",
+        "url": "https://doi.org/10.1101/2025.07.25.666826"
       },
       "published": "2025-12-30",
       "retracted": false,
@@ -534,23 +534,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.5241000056266785,
+          "score": 0.9663000106811523,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.16619999706745148,
-          "subfield": "Molecular Biology",
-          "topic": "Machine Learning in Bioinformatics"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.011900000274181366,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.14399999380111694,
+          "score": 0.0071000000461936,
           "subfield": "Molecular Biology",
-          "topic": "vaccines and immunoinformatics approaches"
+          "topic": "Machine Learning in Bioinformatics"
         }
       ],
       "venue": {
@@ -912,5 +912,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

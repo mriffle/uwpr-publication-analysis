@@ -415,23 +415,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.979200005531311,
+          "score": 0.8618000149726868,
           "subfield": "Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9710999727249146,
-          "subfield": "Molecular Biology",
-          "topic": "S100 Proteins and Annexins"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.11100000143051147,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9685999751091003,
-          "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.00419999985024333,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         }
       ],
       "venue": {
@@ -450,5 +450,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

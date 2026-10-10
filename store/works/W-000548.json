@@ -403,23 +403,23 @@
         {
           "domain": "Life Sciences",
           "field": "Neuroscience",
-          "score": 1.0,
+          "score": 0.9628999829292297,
           "subfield": "Cellular and Molecular Neuroscience",
           "topic": "Genetic Neurodegenerative Diseases"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9835000038146973,
-          "subfield": "Molecular Biology",
-          "topic": "Mitochondrial Function and Pathology"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.01360000018030405,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9649999737739563,
-          "subfield": "Molecular Biology",
-          "topic": "Fungal and yeast genetics research"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.00139999995008111,
+          "subfield": "Physiology",
+          "topic": "Alzheimer's disease research and treatments"
         }
       ],
       "venue": {
@@ -438,5 +438,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

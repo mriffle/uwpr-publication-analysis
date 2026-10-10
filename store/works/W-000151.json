@@ -269,25 +269,25 @@
       "title": "XLinkDB 2.0: integrated, large-scale structural analysis of protein crosslinking data",
       "topics": [
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.6406000256538391,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.38659998774528503,
+          "score": 0.11079999804496765,
           "subfield": "Molecular Biology",
           "topic": "Bioinformatics and Genomic Networks"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.2840000092983246,
-          "subfield": "Molecular Biology",
-          "topic": "Protein Structure and Dynamics"
-        },
-        {
           "domain": "Physical Sciences",
-          "field": "Computer Science",
-          "score": 0.12280000001192093,
-          "subfield": "Computational Theory and Mathematics",
-          "topic": "Computational Drug Discovery Methods"
+          "field": "Chemistry",
+          "score": 0.09809999912977219,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         }
       ],
       "venue": {
@@ -306,5 +306,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

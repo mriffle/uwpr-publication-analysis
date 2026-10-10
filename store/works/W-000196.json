@@ -182,24 +182,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.9541000127792358,
+          "subfield": "Ecology",
+          "topic": "Physiological and biochemical adaptations"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.033799998462200165,
+          "subfield": "Endocrine and Autonomic Systems",
+          "topic": "Circadian rhythm and melatonin"
+        },
+        {
+          "domain": "Physical Sciences",
           "field": "Earth and Planetary Sciences",
-          "score": 0.9984999895095825,
+          "score": 0.005200000014156103,
           "subfield": "Oceanography",
           "topic": "Marine and coastal ecosystems"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9868999719619751,
-          "subfield": "Spectroscopy",
-          "topic": "Mass Spectrometry Techniques and Applications"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9789000153541565,
-          "subfield": "Ecology",
-          "topic": "Microbial Community Ecology and Physiology"
         }
       ],
       "venue": {
@@ -218,5 +218,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

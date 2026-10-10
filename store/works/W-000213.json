@@ -252,7 +252,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Margaret Ruth Mulholland",
+          "name": "Margaret R. Mulholland",
           "openalex": "A5040921892",
           "orcid": "0000-0001-8819-189X",
           "staff": null
@@ -331,24 +331,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9998000264167786,
-          "subfield": "Ecology",
-          "topic": "Microbial Community Ecology and Physiology"
-        },
-        {
-          "domain": "Physical Sciences",
           "field": "Earth and Planetary Sciences",
-          "score": 0.9979000091552734,
+          "score": 0.9580000042915344,
           "subfield": "Oceanography",
           "topic": "Marine and coastal ecosystems"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9968000054359436,
+          "score": 0.023800000548362732,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.003700000001117587,
           "subfield": "Environmental Chemistry",
-          "topic": "Methane Hydrates and Related Phenomena"
+          "topic": "Aquatic Ecosystems and Phytoplankton Dynamics"
         }
       ],
       "venue": {
@@ -367,5 +367,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

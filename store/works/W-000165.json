@@ -312,23 +312,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9995999932289124,
+          "score": 0.6187000274658203,
+          "subfield": "Cell Biology",
+          "topic": "Zebrafish Biomedical Research Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.20919999480247498,
+          "subfield": "Molecular Biology",
+          "topic": "Planarian Biology and Electrostimulation"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.13279999792575836,
           "subfield": "Molecular Biology",
           "topic": "Developmental Biology and Gene Regulation"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9936000108718872,
-          "subfield": "Cell Biology",
-          "topic": "Hippo pathway signaling and YAP/TAZ"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9904999732971191,
-          "subfield": "Molecular Biology",
-          "topic": "Congenital heart defects research"
         }
       ],
       "venue": {
@@ -347,5 +347,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

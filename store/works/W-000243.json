@@ -280,7 +280,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, Washington, 98105, USA. strigg@uw.edu",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington",
               "ror": "00cvxb145"
             },
             {
@@ -301,6 +301,12 @@
             {
               "country": "US",
               "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
               "raw": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, Washington, 98105, USA",
               "ror": "00cvxb145"
             }
@@ -313,6 +319,12 @@
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington",
+              "ror": "00cvxb145"
+            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -331,6 +343,12 @@
             {
               "country": null,
               "name": null,
+              "raw": "Taylor Shellfish Hatchery",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
               "raw": "Taylor Shellfish Hatchery, Quilcene, Washington, USA",
               "ror": null
             }
@@ -343,6 +361,12 @@
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Washington Sea Grant, University of Washington",
+              "ror": "00cvxb145"
+            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -361,6 +385,12 @@
             {
               "country": "US",
               "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington, USA",
               "ror": "00cvxb145"
             }
@@ -373,6 +403,12 @@
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "School of Aquatic and Fishery Sciences, University of Washington",
+              "ror": "00cvxb145"
+            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -416,23 +452,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.8910999894142151,
+          "score": 0.8838000297546387,
           "subfield": "Global and Planetary Change",
           "topic": "Marine Bivalve and Aquaculture Studies"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.010900000110268593,
-          "subfield": "Immunology",
-          "topic": "Invertebrate Immune Response Mechanisms"
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.09629999846220016,
+          "subfield": "Ecology",
+          "topic": "Physiological and biochemical adaptations"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.00989999994635582,
-          "subfield": "Ecology",
-          "topic": "Physiological and biochemical adaptations"
+          "field": "Chemistry",
+          "score": 0.0038999998942017555,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         }
       ],
       "venue": {
@@ -648,7 +684,7 @@
         "publisher": "Cold Spring Harbor Laboratory"
       },
       "version_link": {
-        "method": "biorxiv_published",
+        "method": "openalex_locations",
         "to": "R-000243"
       },
       "year": 2020
@@ -661,5 +697,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

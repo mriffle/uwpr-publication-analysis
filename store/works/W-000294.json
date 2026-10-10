@@ -411,23 +411,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 1.0,
+          "score": 0.9907000064849854,
           "subfield": "Virology",
           "topic": "HIV Research and Treatment"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9991000294685364,
+          "score": 0.0026000000070780516,
           "subfield": "Radiology, Nuclear Medicine and Imaging",
           "topic": "Monoclonal and Polyclonal Antibodies Research"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9944999814033508,
-          "subfield": "Ecology",
-          "topic": "Bacteriophages and microbial interactions"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0008999999845400453,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
         }
       ],
       "venue": {
@@ -642,23 +642,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 1.0,
+          "score": 0.9901999831199646,
           "subfield": "Virology",
           "topic": "HIV Research and Treatment"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9959999918937683,
-          "subfield": "Epidemiology",
-          "topic": "Cytomegalovirus and herpesvirus research"
+          "score": 0.0027000000700354576,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9952999949455261,
-          "subfield": "Radiology, Nuclear Medicine and Imaging",
-          "topic": "Monoclonal and Polyclonal Antibodies Research"
+          "score": 0.0010000000474974513,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
         }
       ],
       "venue": {
@@ -680,5 +680,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

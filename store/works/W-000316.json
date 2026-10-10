@@ -325,23 +325,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
+          "score": 1.0,
           "subfield": "Molecular Biology",
           "topic": "Heat shock proteins research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9994000196456909,
+          "score": 9.999999747378752e-05,
           "subfield": "Molecular Biology",
-          "topic": "Connexins and lens biology"
+          "topic": "Protein Structure and Dynamics"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9936000108718872,
-          "subfield": "Genetics",
-          "topic": "Yersinia bacterium, plague, ectoparasites research"
+          "score": 0.0,
+          "subfield": "Molecular Biology",
+          "topic": "Protein purification and stability"
         }
       ],
       "venue": {
@@ -360,5 +360,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

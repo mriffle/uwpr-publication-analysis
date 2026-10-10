@@ -334,25 +334,25 @@
       "title": "HCN Channel Phosphorylation Sites Mapped by Mass Spectrometry in Human Epilepsy Patients and in an Animal Model of Temporal Lobe Epilepsy",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Neuroscience",
-          "score": 0.9998000264167786,
-          "subfield": "Cellular and Molecular Neuroscience",
-          "topic": "Neuroscience and Neuropharmacology Research"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.6836000084877014,
+          "subfield": "Psychiatry and Mental health",
+          "topic": "Epilepsy research and treatment"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9987000226974487,
+          "score": 0.30399999022483826,
           "subfield": "Molecular Biology",
           "topic": "Ion channel regulation and function"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9984999895095825,
-          "subfield": "Psychiatry and Mental health",
-          "topic": "Epilepsy research and treatment"
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.0032999999821186066,
+          "subfield": "Cellular and Molecular Neuroscience",
+          "topic": "Neuroscience and Neuropharmacology Research"
         }
       ],
       "venue": {
@@ -371,5 +371,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

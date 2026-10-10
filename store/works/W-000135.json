@@ -393,23 +393,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998999834060669,
-          "subfield": "Molecular Biology",
-          "topic": "Congenital heart defects research"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9973000288009644,
+          "score": 0.9702000021934509,
           "subfield": "Molecular Biology",
           "topic": "Pluripotent Stem Cells Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9909999966621399,
+          "score": 0.016100000590085983,
           "subfield": "Molecular Biology",
-          "topic": "Renal and related cancers"
+          "topic": "Developmental Biology and Gene Regulation"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.005900000222027302,
+          "subfield": "Molecular Biology",
+          "topic": "Congenital heart defects research"
         }
       ],
       "venue": {
@@ -428,5 +428,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

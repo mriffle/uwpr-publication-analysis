@@ -174,7 +174,7 @@
           "corresponding": false,
           "name": "Ané Korff",
           "openalex": "A5017635876",
-          "orcid": "0009-0001-7189-254X",
+          "orcid": null,
           "staff": null
         },
         {
@@ -672,23 +672,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.4307999908924103,
+          "score": 0.9682999849319458,
           "subfield": "Physiology",
           "topic": "Alzheimer's disease research and treatments"
         },
         {
           "domain": "Life Sciences",
-          "field": "Neuroscience",
-          "score": 0.12120000272989273,
-          "subfield": "Neurology",
-          "topic": "Barrier Structure and Function Studies"
-        },
-        {
-          "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.12030000239610672,
+          "score": 0.028699999675154686,
           "subfield": "Molecular Biology",
           "topic": "Extracellular vesicles in disease"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0005000000237487257,
+          "subfield": "Psychiatry and Mental health",
+          "topic": "Dementia and Cognitive Impairment Research"
         }
       ],
       "venue": {
@@ -707,5 +707,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

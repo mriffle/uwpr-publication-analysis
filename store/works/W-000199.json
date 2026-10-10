@@ -201,23 +201,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9995999932289124,
+          "score": 0.8041999936103821,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9983999729156494,
+          "score": 0.09059999883174896,
           "subfield": "Molecular Biology",
           "topic": "Bioinformatics and Genomic Networks"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9945999979972839,
-          "subfield": "Cell Biology",
-          "topic": "Biotin and Related Studies"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.031199999153614044,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         }
       ],
       "venue": {
@@ -236,5 +236,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

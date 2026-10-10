@@ -436,24 +436,24 @@
       "topics": [
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9987999796867371,
-          "subfield": "Endocrinology",
-          "topic": "Vibrio bacteria research studies"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9957000017166138,
-          "subfield": "Infectious Diseases",
-          "topic": "Clostridium difficile and Clostridium perfringens research"
+          "field": "Immunology and Microbiology",
+          "score": 0.4661000072956085,
+          "subfield": "Immunology",
+          "topic": "Toxin Mechanisms and Immunotoxins"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9926999807357788,
+          "score": 0.3991999924182892,
           "subfield": "Genetics",
           "topic": "Bacterial Genetics and Biotechnology"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.030899999663233757,
+          "subfield": "Endocrinology",
+          "topic": "Escherichia coli research studies"
         }
       ],
       "venue": {
@@ -472,5 +472,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

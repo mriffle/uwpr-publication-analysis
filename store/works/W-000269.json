@@ -316,25 +316,25 @@
       "title": "Tandem Mass Spectrometry–Based Amyloid Typing Using Manual Microdissection and Open-Source Data Processing",
       "topics": [
         {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9907000064849854,
+          "subfield": "Molecular Biology",
+          "topic": "Amyloidosis: Diagnosis, Treatment, Outcomes"
+        },
+        {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.3986999988555908,
+          "score": 0.006500000134110451,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.31540000438690186,
-          "subfield": "Physiology",
-          "topic": "Alzheimer's disease research and treatments"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.17319999635219574,
-          "subfield": "Molecular Biology",
-          "topic": "Amyloidosis: Diagnosis, Treatment, Outcomes"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.0010999999940395355,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         }
       ],
       "venue": {
@@ -353,5 +353,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

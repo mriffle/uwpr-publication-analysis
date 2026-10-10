@@ -235,23 +235,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9998999834060669,
+          "score": 0.9961000084877014,
           "subfield": "Virology",
           "topic": "HIV Research and Treatment"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9987999796867371,
-          "subfield": "Immunology",
-          "topic": "Immune Cell Function and Interaction"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0024999999441206455,
+          "subfield": "Immunology and Allergy",
+          "topic": "Cell Adhesion Molecules Research"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9959999918937683,
-          "subfield": "Immunology",
-          "topic": "T-cell and B-cell Immunology"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 9.999999747378752e-05,
+          "subfield": "Oncology",
+          "topic": "Chemokine receptors and signaling"
         }
       ],
       "venue": {
@@ -270,5 +270,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

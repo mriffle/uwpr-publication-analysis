@@ -235,25 +235,25 @@
       "title": "Visualization and Dissemination of Multidimensional Proteomics Data Comparing Protein Abundance During Caenorhabditis elegans Development",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991000294685364,
-          "subfield": "Aging",
-          "topic": "Genetics, Aging, and Longevity in Model Organisms"
-        },
-        {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9947999715805054,
+          "score": 0.9980000257492065,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.0005000000237487257,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9884999990463257,
+          "score": 0.00019999999494757503,
           "subfield": "Molecular Biology",
-          "topic": "Microbial Metabolic Engineering and Bioproduction"
+          "topic": "Bioinformatics and Genomic Networks"
         }
       ],
       "venue": {
@@ -272,5 +272,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

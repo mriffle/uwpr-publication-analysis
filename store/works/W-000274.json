@@ -236,23 +236,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9994000196456909,
+          "score": 0.6021000146865845,
           "subfield": "Global and Planetary Change",
           "topic": "Marine Bivalve and Aquaculture Studies"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9864000082015991,
+          "score": 0.38499999046325684,
           "subfield": "Ecology",
           "topic": "Physiological and biochemical adaptations"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9853000044822693,
-          "subfield": "Aquatic Science",
-          "topic": "Aquaculture Nutrition and Growth"
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.0031999999191612005,
+          "subfield": "Health, Toxicology and Mutagenesis",
+          "topic": "Environmental Toxicology and Ecotoxicology"
         }
       ],
       "venue": {
@@ -271,5 +271,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

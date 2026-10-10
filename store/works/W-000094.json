@@ -384,7 +384,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Daniel L. Bates",
+          "name": "Daniel Bates",
           "openalex": "A5046943348",
           "orcid": "0000-0002-7792-5621",
           "staff": null
@@ -749,23 +749,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998999834060669,
+          "score": 0.9984999895095825,
           "subfield": "Molecular Biology",
           "topic": "Genomics and Chromatin Dynamics"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
+          "score": 0.0003000000142492354,
           "subfield": "Molecular Biology",
           "topic": "Epigenetics and DNA Methylation"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9994000196456909,
-          "subfield": "Genetics",
-          "topic": "Genetic Syndromes and Imprinting"
+          "score": 0.00019999999494757503,
+          "subfield": "Molecular Biology",
+          "topic": "Chromatin Remodeling and Cancer"
         }
       ],
       "venue": {
@@ -784,5 +784,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

@@ -143,25 +143,25 @@
       "title": "Decoding Post-Translational Modification Crosstalk With Proteomics",
       "topics": [
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9937000274658203,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991000294685364,
+          "score": 0.0012000000569969416,
           "subfield": "Molecular Biology",
           "topic": "Ubiquitin and proteasome pathways"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9991000294685364,
-          "subfield": "Oncology",
-          "topic": "Peptidase Inhibition and Analysis"
-        },
-        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9937999844551086,
+          "score": 0.0010999999940395355,
           "subfield": "Molecular Biology",
-          "topic": "Protein Degradation and Inhibitors"
+          "topic": "Redox biology and oxidative stress"
         }
       ],
       "venue": {
@@ -180,5 +180,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

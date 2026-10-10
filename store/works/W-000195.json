@@ -229,25 +229,25 @@
       "title": "Urine Complement Proteins and the Risk of Kidney Disease Progression and Mortality in Type 2 Diabetes",
       "topics": [
         {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.8730000257492065,
+          "subfield": "Nephrology",
+          "topic": "Chronic Kidney Disease and Diabetes"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9276000261306763,
+          "score": 0.11569999903440475,
           "subfield": "Immunology",
           "topic": "Complement system in diseases"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.019200000911951065,
+          "score": 0.003100000089034438,
           "subfield": "Nephrology",
           "topic": "Renal Diseases and Glomerulopathies"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.009600000455975533,
-          "subfield": "Hematology",
-          "topic": "Erythropoietin and Anemia Treatment"
         }
       ],
       "venue": {
@@ -266,5 +266,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

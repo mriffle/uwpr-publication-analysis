@@ -306,23 +306,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.7300999760627747,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Viral Infections and Immunology Research"
+          "score": 0.9320999979972839,
+          "subfield": "Public Health, Environmental and Occupational Health",
+          "topic": "Mosquito-borne diseases and control"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.04639999940991402,
-          "subfield": "Immunology",
-          "topic": "interferon and immune responses"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.013899999670684338,
+          "subfield": "Infectious Diseases",
+          "topic": "Viral Infections and Vectors"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.0414000004529953,
-          "subfield": "Agronomy and Crop Science",
-          "topic": "Animal Disease Management and Epidemiology"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.007899999618530273,
+          "subfield": "Epidemiology",
+          "topic": "Virology and Viral Diseases"
         }
       ],
       "venue": {
@@ -531,9 +531,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9922999739646912,
+          "score": 0.9839000105857849,
           "subfield": "Public Health, Environmental and Occupational Health",
           "topic": "Mosquito-borne diseases and control"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0024999999441206455,
+          "subfield": "Infectious Diseases",
+          "topic": "Viral Infections and Vectors"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.00139999995008111,
+          "subfield": "Epidemiology",
+          "topic": "Virology and Viral Diseases"
         }
       ],
       "venue": {
@@ -555,5 +569,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

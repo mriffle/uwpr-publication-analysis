@@ -128,25 +128,25 @@
       "title": "Perturbing Peptide Cation-Radical Electronic States by Thioxoamide Groups: Formation, Dissociations, and Energetics of Thioxopeptide Cation-Radicals",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Neuroscience",
-          "score": 0.9986000061035156,
-          "subfield": "Cellular and Molecular Neuroscience",
-          "topic": "Photoreceptor and optogenetics research"
-        },
-        {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9983999729156494,
+          "score": 0.9932000041007996,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9959999918937683,
-          "subfield": "Organic Chemistry",
-          "topic": "Radical Photochemical Reactions"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0007999999797903001,
+          "subfield": "Molecular Biology",
+          "topic": "Redox biology and oxidative stress"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.000699999975040555,
+          "subfield": "Molecular Biology",
+          "topic": "Chemical Synthesis and Analysis"
         }
       ],
       "venue": {
@@ -165,5 +165,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

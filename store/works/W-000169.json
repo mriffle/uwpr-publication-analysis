@@ -492,23 +492,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9714000225067139,
+          "score": 0.9750999808311462,
           "subfield": "Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.011300000362098217,
-          "subfield": "Neurology",
-          "topic": "Neurological disorders and treatments"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.013299999758601189,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.00559999980032444,
-          "subfield": "Physiology",
-          "topic": "Voice and Speech Disorders"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.0034000000450760126,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         }
       ],
       "venue": {
@@ -527,5 +527,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

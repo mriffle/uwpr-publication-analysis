@@ -322,23 +322,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9987000226974487,
+          "score": 0.9883000254631042,
           "subfield": "Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9944999814033508,
-          "subfield": "Cell Biology",
-          "topic": "Cellular transport and secretion"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.006500000134110451,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9840999841690063,
-          "subfield": "Cell Biology",
-          "topic": "Biotin and Related Studies"
+          "field": "Neuroscience",
+          "score": 0.00039999998989515007,
+          "subfield": "Cellular and Molecular Neuroscience",
+          "topic": "Nuclear Receptors and Signaling"
         }
       ],
       "venue": {
@@ -357,5 +357,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

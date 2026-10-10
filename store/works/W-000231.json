@@ -342,21 +342,21 @@
         {
           "domain": "Physical Sciences",
           "field": "Earth and Planetary Sciences",
-          "score": 1.0,
+          "score": 0.9994999766349792,
           "subfield": "Oceanography",
           "topic": "Ocean Acidification Effects and Responses"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9987000226974487,
+          "score": 0.00019999999494757503,
           "subfield": "Global and Planetary Change",
           "topic": "Marine Bivalve and Aquaculture Studies"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9916999936103821,
+          "score": 0.0,
           "subfield": "Ecology",
           "topic": "Physiological and biochemical adaptations"
         }
@@ -377,5 +377,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

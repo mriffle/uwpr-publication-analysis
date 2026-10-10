@@ -415,9 +415,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9388999938964844,
-          "subfield": "Pharmacology",
-          "topic": "Apelin-related biomedical research"
+          "score": 0.823199987411499,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Lipid metabolism and disorders"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.10779999941587448,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.04360000044107437,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
         }
       ],
       "venue": {
@@ -436,5 +450,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

@@ -271,23 +271,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9973000288009644,
+          "score": 0.8784000277519226,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9957000017166138,
-          "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
+          "score": 0.03400000184774399,
+          "subfield": "Genetics",
+          "topic": "Genomics and Rare Diseases"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9896000027656555,
+          "score": 0.033900000154972076,
           "subfield": "Molecular Biology",
-          "topic": "Genomics and Phylogenetic Studies"
+          "topic": "Protein Structure and Dynamics"
         }
       ],
       "venue": {
@@ -306,5 +306,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

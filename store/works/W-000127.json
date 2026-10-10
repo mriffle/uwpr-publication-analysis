@@ -239,23 +239,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.482699990272522,
+          "score": 0.8906000256538391,
           "subfield": "Molecular Biology",
-          "topic": "Protein Structure and Dynamics"
+          "topic": "Genomics and Phylogenetic Studies"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.15389999747276306,
+          "score": 0.025599999353289604,
           "subfield": "Molecular Biology",
-          "topic": "Genomics and Chromatin Dynamics"
+          "topic": "Genetics, Bioinformatics, and Biomedical Research"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.03139999881386757,
-          "subfield": "Molecular Biology",
-          "topic": "Bioinformatics and Genomic Networks"
+          "domain": "Social Sciences",
+          "field": "Decision Sciences",
+          "score": 0.023099999874830246,
+          "subfield": "Information Systems and Management",
+          "topic": "Scientific Computing and Data Management"
         }
       ],
       "venue": {
@@ -274,5 +274,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

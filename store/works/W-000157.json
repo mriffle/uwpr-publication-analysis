@@ -313,21 +313,21 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9998999834060669,
+          "score": 0.961899995803833,
           "subfield": "Infectious Diseases",
           "topic": "SARS-CoV-2 and COVID-19 Research"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9991999864578247,
-          "subfield": "Infectious Diseases",
-          "topic": "Viral gastroenteritis research and epidemiology"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.008500000461935997,
+          "subfield": "Structural Biology",
+          "topic": "Advanced Electron Microscopy Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Agricultural and Biological Sciences",
-          "score": 0.9991000294685364,
+          "score": 0.006399999838322401,
           "subfield": "Animal Science and Zoology",
           "topic": "Animal Virus Infections Studies"
         }
@@ -348,5 +348,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

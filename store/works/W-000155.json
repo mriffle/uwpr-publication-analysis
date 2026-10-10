@@ -224,17 +224,17 @@
         },
         {
           "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9666000008583069,
-          "subfield": "Immunology",
-          "topic": "Toxin Mechanisms and Immunotoxins"
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0,
+          "subfield": "Molecular Biology",
+          "topic": "Ubiquitin and proteasome pathways"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9567000269889832,
-          "subfield": "Molecular Biology",
-          "topic": "ATP Synthase and ATPases Research"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.0,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         }
       ],
       "venue": {
@@ -253,5 +253,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

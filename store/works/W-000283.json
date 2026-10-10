@@ -256,23 +256,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
+          "score": 0.8931000232696533,
           "subfield": "Molecular Biology",
           "topic": "Inflammasome and immune disorders"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9944000244140625,
-          "subfield": "Immunology",
-          "topic": "Atherosclerosis and Cardiovascular Diseases"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.04859999939799309,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9861999750137329,
-          "subfield": "Surgery",
-          "topic": "Kawasaki Disease and Coronary Complications"
+          "score": 0.0210999995470047,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Lipid metabolism and disorders"
         }
       ],
       "venue": {
@@ -291,5 +291,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

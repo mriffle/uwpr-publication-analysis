@@ -283,31 +283,31 @@
         "status": "bronze",
         "url": "https://doi.org/10.1016/j.cbd.2019.01.010"
       },
-      "published": "2019-01-27",
+      "published": "2018-10-02",
       "retracted": false,
       "sources": {
         "openalex": "2026-09-26"
       },
-      "title": "Pacific geoduck (Panopea generosa) resilience to natural pH variation",
+      "title": "Pacific geoduck ( Panopea generosa ) resilience to natural pH variation",
       "topics": [
         {
           "domain": "Physical Sciences",
           "field": "Earth and Planetary Sciences",
-          "score": 1.0,
+          "score": 0.9785000085830688,
           "subfield": "Oceanography",
           "topic": "Ocean Acidification Effects and Responses"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9991999864578247,
+          "score": 0.018300000578165054,
           "subfield": "Global and Planetary Change",
           "topic": "Marine Bivalve and Aquaculture Studies"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9976000189781189,
+          "score": 0.0010000000474974513,
           "subfield": "Ecology",
           "topic": "Physiological and biochemical adaptations"
         }
@@ -318,7 +318,7 @@
         "publisher": "Elsevier BV"
       },
       "version_link": null,
-      "year": 2019
+      "year": 2018
     }
   ],
   "rule_version": "2026-09-26.1",
@@ -328,5 +328,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

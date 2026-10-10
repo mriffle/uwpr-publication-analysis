@@ -231,7 +231,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Robert Francis Strzepek",
+          "name": "Robert F. Strzepek",
           "openalex": "A5087477436",
           "orcid": "0000-0002-6442-7121",
           "staff": null
@@ -265,24 +265,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
+          "field": "Earth and Planetary Sciences",
+          "score": 0.9326000213623047,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
+        },
+        {
+          "domain": "Physical Sciences",
           "field": "Materials Science",
-          "score": 0.9950000047683716,
+          "score": 0.0284000001847744,
           "subfield": "Biomaterials",
           "topic": "Diatoms and Algae Research"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9883999824523926,
-          "subfield": "Spectroscopy",
-          "topic": "Advanced Proteomics Techniques and Applications"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Earth and Planetary Sciences",
-          "score": 0.988099992275238,
-          "subfield": "Oceanography",
-          "topic": "Marine and coastal ecosystems"
+          "field": "Environmental Science",
+          "score": 0.006200000178068876,
+          "subfield": "Environmental Chemistry",
+          "topic": "Aquatic Ecosystems and Phytoplankton Dynamics"
         }
       ],
       "venue": {
@@ -301,5 +301,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

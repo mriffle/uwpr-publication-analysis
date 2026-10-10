@@ -318,25 +318,25 @@
       "title": "Activation of γ2-AMPK Suppresses Ribosome Biogenesis and Protects Against Myocardial Ischemia/Reperfusion Injury",
       "topics": [
         {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.5054000020027161,
+          "subfield": "Pathology and Forensic Medicine",
+          "topic": "Cardiac Ischemia and Reperfusion"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9890999794006348,
+          "score": 0.40230000019073486,
           "subfield": "Molecular Biology",
           "topic": "Metabolism, Diabetes, and Cancer"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.0012000000569969416,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Cardiovascular Function and Risk Factors"
-        },
-        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.0007999999797903001,
-          "subfield": "Cancer Research",
-          "topic": "Cancer, Hypoxia, and Metabolism"
+          "score": 0.006800000090152025,
+          "subfield": "Cell Biology",
+          "topic": "Endoplasmic Reticulum Stress and Disease"
         }
       ],
       "venue": {
@@ -355,5 +355,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

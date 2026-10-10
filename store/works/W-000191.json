@@ -169,23 +169,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9979000091552734,
+          "score": 0.7095000147819519,
           "subfield": "Endocrinology, Diabetes and Metabolism",
           "topic": "Hormonal and reproductive studies"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.0003000000142492354,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Menopause: Health Impacts and Treatments"
+          "score": 0.2533999979496002,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.00019999999494757503,
-          "subfield": "Psychiatry and Mental health",
-          "topic": "Sexual function and dysfunction studies"
+          "score": 0.026200000196695328,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
       "venue": {
@@ -204,5 +204,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

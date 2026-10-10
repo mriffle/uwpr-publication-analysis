@@ -223,23 +223,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.7570000290870667,
+          "score": 0.295199990272522,
           "subfield": "Molecular Biology",
-          "topic": "RNA modifications and cancer"
+          "topic": "Bioinformatics and Genomic Networks"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.08969999849796295,
+          "score": 0.2847000062465668,
           "subfield": "Molecular Biology",
-          "topic": "RNA Research and Splicing"
+          "topic": "Genomics and Chromatin Dynamics"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.019600000232458115,
+          "score": 0.1428000032901764,
           "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
+          "topic": "Epigenetics and DNA Methylation"
         }
       ],
       "venue": {
@@ -258,5 +258,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

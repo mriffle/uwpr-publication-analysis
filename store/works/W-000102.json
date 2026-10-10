@@ -152,25 +152,25 @@
       "title": "Mapping PARP-1 Auto-ADP-ribosylation Sites by Liquid Chromatography–Tandem Mass Spectrometry",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9998000264167786,
-          "subfield": "Oncology",
-          "topic": "PARP inhibition in cancer therapy"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.8779000043869019,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9660999774932861,
+          "score": 0.08649999648332596,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Engineering",
-          "score": 0.9544000029563904,
-          "subfield": "Electrical and Electronic Engineering",
-          "topic": "Integrated Circuits and Semiconductor Failure Analysis"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.008799999952316284,
+          "subfield": "Oncology",
+          "topic": "PARP inhibition in cancer therapy"
         }
       ],
       "venue": {
@@ -189,5 +189,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

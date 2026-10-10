@@ -226,23 +226,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9998999834060669,
+          "score": 0.9994999766349792,
           "subfield": "Pulmonary and Respiratory Medicine",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9983000159263611,
-          "subfield": "Molecular Biology",
-          "topic": "Ubiquitin and proteasome pathways"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9966999888420105,
+          "score": 9.999999747378752e-05,
           "subfield": "Genetics",
           "topic": "Estrogen and related hormone effects"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 9.999999747378752e-05,
+          "subfield": "Reproductive Medicine",
+          "topic": "Sperm and Testicular Function"
         }
       ],
       "venue": {
@@ -261,5 +261,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

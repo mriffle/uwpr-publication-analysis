@@ -182,7 +182,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Connor E. Weidle",
+          "name": "Connor Weidle",
           "openalex": "A5012310621",
           "orcid": "0000-0002-9354-2276",
           "staff": null
@@ -343,23 +343,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9998000264167786,
+          "score": 0.9282000064849854,
           "subfield": "Oncology",
           "topic": "Viral-associated cancers and disorders"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9980000257492065,
+          "score": 0.025100000202655792,
           "subfield": "Epidemiology",
           "topic": "Cytomegalovirus and herpesvirus research"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9926999807357788,
-          "subfield": "Pathology and Forensic Medicine",
-          "topic": "Lymphoma Diagnosis and Treatment"
+          "score": 0.018400000408291817,
+          "subfield": "Epidemiology",
+          "topic": "Herpesvirus Infections and Treatments"
         }
       ],
       "venue": {
@@ -378,5 +378,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

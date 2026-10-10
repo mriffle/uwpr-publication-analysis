@@ -265,9 +265,9 @@
       },
       "kind": "article",
       "oa": {
-        "license": null,
+        "license": "cc-by-nc",
         "status": "green",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/40526826/"
+        "url": "https://doi.org/10.1101/2024.10.11.617953"
       },
       "published": "2025-06-17",
       "retracted": false,
@@ -279,23 +279,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9994999766349792,
-          "subfield": "Spectroscopy",
-          "topic": "Mass Spectrometry Techniques and Applications"
-        },
-        {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9976000189781189,
+          "score": 0.9970999956130981,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9643999934196472,
+          "score": 0.0013000000035390258,
           "subfield": "Spectroscopy",
-          "topic": "Analytical Chemistry and Chromatography"
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 9.999999747378752e-05,
+          "subfield": "Molecular Biology",
+          "topic": "Genomics and Phylogenetic Studies"
         }
       ],
       "venue": {
@@ -498,7 +498,7 @@
         "publisher": "Cold Spring Harbor Laboratory"
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000319"
       },
       "year": 2024
@@ -511,5 +511,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

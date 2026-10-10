@@ -254,25 +254,25 @@
       "title": "Larval Geoduck (Panopea generosa) Proteomic Response to Ciliates",
       "topics": [
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.996399998664856,
-          "subfield": "Global and Planetary Change",
-          "topic": "Marine Bivalve and Aquaculture Studies"
-        },
-        {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9907000064849854,
+          "score": 0.9883000254631042,
           "subfield": "Immunology",
           "topic": "Invertebrate Immune Response Mechanisms"
         },
         {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.006500000134110451,
+          "subfield": "Immunology",
+          "topic": "Aquaculture disease management and microbiota"
+        },
+        {
           "domain": "Physical Sciences",
-          "field": "Engineering",
-          "score": 0.9757000207901001,
-          "subfield": "Ocean Engineering",
-          "topic": "Marine Biology and Environmental Chemistry"
+          "field": "Environmental Science",
+          "score": 0.0026000000070780516,
+          "subfield": "Global and Planetary Change",
+          "topic": "Marine Bivalve and Aquaculture Studies"
         }
       ],
       "venue": {
@@ -291,5 +291,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

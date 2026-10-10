@@ -355,23 +355,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9282000064849854,
+          "score": 0.9794999957084656,
           "subfield": "Molecular Biology",
           "topic": "Mitochondrial Function and Pathology"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.013000000268220901,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Cardiovascular Function and Risk Factors"
+          "score": 0.006300000008195639,
+          "subfield": "Epidemiology",
+          "topic": "Autophagy in Disease and Therapy"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.009800000116229057,
+          "score": 0.0035000001080334187,
           "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Cardiac Fibrosis and Remodeling"
+          "topic": "Cardiovascular Function and Risk Factors"
         }
       ],
       "venue": {
@@ -390,5 +390,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

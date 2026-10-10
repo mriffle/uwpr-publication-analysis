@@ -160,21 +160,21 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9998000264167786,
+          "score": 0.9984999895095825,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.993399977684021,
-          "subfield": "Molecular Biology",
-          "topic": "bioluminescence and chemiluminescence research"
+          "domain": "Physical Sciences",
+          "field": "Physics and Astronomy",
+          "score": 0.0003000000142492354,
+          "subfield": "Atomic and Molecular Physics, and Optics",
+          "topic": "Atomic and Molecular Physics"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9932000041007996,
+          "score": 0.00019999999494757503,
           "subfield": "Molecular Biology",
           "topic": "Chemical Synthesis and Analysis"
         }
@@ -195,5 +195,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

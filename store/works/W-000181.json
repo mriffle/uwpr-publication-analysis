@@ -270,23 +270,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9998000264167786,
+          "score": 0.4916999936103821,
           "subfield": "Infectious Diseases",
-          "topic": "Viral gastroenteritis research and epidemiology"
+          "topic": "SARS-CoV-2 and COVID-19 Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Agricultural and Biological Sciences",
-          "score": 0.9988999962806702,
+          "score": 0.48019999265670776,
           "subfield": "Animal Science and Zoology",
           "topic": "Animal Virus Infections Studies"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9986000061035156,
-          "subfield": "Genetics",
-          "topic": "Virus-based gene therapy research"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.004000000189989805,
+          "subfield": "Infectious Diseases",
+          "topic": "Viral gastroenteritis research and epidemiology"
         }
       ],
       "venue": {
@@ -305,5 +305,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

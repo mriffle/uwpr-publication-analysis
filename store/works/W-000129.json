@@ -175,23 +175,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9995999932289124,
+          "score": 0.9980000257492065,
           "subfield": "Surgery",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9958999752998352,
+          "score": 0.0007999999797903001,
           "subfield": "Immunology",
           "topic": "Atherosclerosis and Cardiovascular Diseases"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9952999949455261,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+          "score": 0.0006000000284984708,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
       "venue": {
@@ -210,5 +210,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

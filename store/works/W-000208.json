@@ -1278,7 +1278,7 @@
           ],
           "corresponding": true,
           "name": "Emmanuel Jean-Marie Mignot",
-          "openalex": "A5073040042",
+          "openalex": "A5107994045",
           "orcid": "0000-0002-6928-5310",
           "staff": null
         },
@@ -1372,23 +1372,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9995999932289124,
+          "score": 1.0,
           "subfield": "Physiology",
           "topic": "Spaceflight effects on biology"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9535999894142151,
-          "subfield": "Genetics",
-          "topic": "High Altitude and Hypoxia"
+          "domain": "Physical Sciences",
+          "field": "Physics and Astronomy",
+          "score": 0.0,
+          "subfield": "Astronomy and Astrophysics",
+          "topic": "Space exploration and regulation"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9502000212669373,
-          "subfield": "Health, Toxicology and Mutagenesis",
-          "topic": "Health, Environment, Cognitive Aging"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Effects of Radiation Exposure"
         }
       ],
       "venue": {
@@ -1407,5 +1407,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

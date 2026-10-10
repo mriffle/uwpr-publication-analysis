@@ -16,9 +16,21 @@
       "record": "R-000180"
     },
     {
+      "channel": "C2",
+      "first_seen": "2026-10-10",
+      "last_seen": "2026-10-10",
+      "record": "R-000180"
+    },
+    {
       "channel": "D1",
       "first_seen": "2026-09-20",
       "last_seen": "2026-09-26",
+      "record": "R-000180"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-10-10",
+      "last_seen": "2026-10-10",
       "record": "R-000180"
     }
   ],
@@ -44,6 +56,48 @@
         "name": "UWPR website",
         "retrieved": "2026-09-26",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-10-10"
+      },
+      "excerpt": null,
+      "first_seen": "2026-10-10",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-10-10",
+      "record": "R-000180",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-10-10",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1073%2Fpnas.1708727114"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-10-10"
+      },
+      "excerpt": null,
+      "first_seen": "2026-10-10",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-10-10",
+      "record": "R-000180",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-10-10",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1073%2Fpnas.1708727114"
       }
     }
   ],
@@ -199,23 +253,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9994000196456909,
+          "score": 0.9922000169754028,
           "subfield": "Infectious Diseases",
           "topic": "SARS-CoV-2 and COVID-19 Research"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9994000196456909,
-          "subfield": "Ecology",
-          "topic": "Bacteriophages and microbial interactions"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0010000000474974513,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9987999796867371,
-          "subfield": "Animal Science and Zoology",
-          "topic": "Animal Virus Infections Studies"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0007999999797903001,
+          "subfield": "Epidemiology",
+          "topic": "Virology and Viral Diseases"
         }
       ],
       "venue": {
@@ -234,5 +288,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

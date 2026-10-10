@@ -279,23 +279,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.5993000268936157,
+          "score": 0.8804000020027161,
           "subfield": "Molecular Biology",
           "topic": "Biochemical and Structural Characterization"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.10520000010728836,
-          "subfield": "Genetics",
-          "topic": "Bacterial Genetics and Biotechnology"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.10490000247955322,
+          "score": 0.07280000299215317,
           "subfield": "Endocrinology",
           "topic": "Escherichia coli research studies"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.012900000438094139,
+          "subfield": "Epidemiology",
+          "topic": "Urinary Tract Infections Management"
         }
       ],
       "venue": {
@@ -314,5 +314,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

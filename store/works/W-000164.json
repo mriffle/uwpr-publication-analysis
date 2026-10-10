@@ -305,23 +305,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9997000098228455,
+          "score": 0.9937000274658203,
           "subfield": "Molecular Biology",
           "topic": "Wnt/β-catenin signaling in development and cancer"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9990000128746033,
-          "subfield": "Molecular Biology",
-          "topic": "Cancer-related gene regulation"
+          "score": 0.0015999999595806003,
+          "subfield": "Cancer Research",
+          "topic": "Cancer, Hypoxia, and Metabolism"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9986000061035156,
-          "subfield": "Epidemiology",
-          "topic": "Autophagy in Disease and Therapy"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.00019999999494757503,
+          "subfield": "Molecular Biology",
+          "topic": "Melanoma and MAPK Pathways"
         }
       ],
       "venue": {
@@ -340,5 +340,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

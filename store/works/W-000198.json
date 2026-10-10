@@ -123,7 +123,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Connor E. Weidle",
+          "name": "Connor Weidle",
           "openalex": "A5012310621",
           "orcid": "0000-0002-9354-2276",
           "staff": null
@@ -348,25 +348,25 @@
       "title": "Germline VRC01 antibody recognition of a modified clade C HIV-1 envelope trimer and a glycosylated HIV-1 gp120 core",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9998999834060669,
-          "subfield": "Radiology, Nuclear Medicine and Imaging",
-          "topic": "Monoclonal and Polyclonal Antibodies Research"
-        },
-        {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9998000264167786,
+          "score": 0.9945999979972839,
           "subfield": "Virology",
           "topic": "HIV Research and Treatment"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9994000196456909,
-          "subfield": "Molecular Biology",
-          "topic": "Glycosylation and Glycoproteins Research"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0015999999595806003,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0007999999797903001,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
         }
       ],
       "venue": {
@@ -385,5 +385,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

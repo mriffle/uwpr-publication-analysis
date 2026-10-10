@@ -169,23 +169,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9998000264167786,
+          "score": 0.9595000147819519,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9986000061035156,
-          "subfield": "Spectroscopy",
-          "topic": "Mass Spectrometry Techniques and Applications"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.020400000736117363,
+          "subfield": "Oncology",
+          "topic": "Metal complexes synthesis and properties"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9911999702453613,
-          "subfield": "Molecular Biology",
-          "topic": "Advanced biosensing and bioanalysis techniques"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0017999999690800905,
+          "subfield": "Oncology",
+          "topic": "Drug Transport and Resistance Mechanisms"
         }
       ],
       "venue": {
@@ -204,5 +204,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

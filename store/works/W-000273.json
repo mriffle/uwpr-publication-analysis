@@ -229,23 +229,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.3783000111579895,
+          "score": 0.4480000138282776,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.31520000100135803,
           "subfield": "Endocrinology, Diabetes and Metabolism",
           "topic": "Hormonal and reproductive studies"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.3037000000476837,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.08079999685287476,
-          "subfield": "Pulmonary and Respiratory Medicine",
-          "topic": "Prostate Cancer Diagnosis and Treatment"
+          "score": 0.21400000154972076,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
       "venue": {
@@ -264,5 +264,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

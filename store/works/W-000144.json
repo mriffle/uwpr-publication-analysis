@@ -340,23 +340,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9995999932289124,
+          "score": 0.79830002784729,
           "subfield": "Surgery",
-          "topic": "Pancreatitis Pathology and Treatment"
+          "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9965999722480774,
+          "score": 0.17790000140666962,
           "subfield": "Epidemiology",
-          "topic": "Liver Disease Diagnosis and Treatment"
+          "topic": "Adipokines, Inflammation, and Metabolic Diseases"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9923999905586243,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.004600000102072954,
+          "subfield": "Immunology",
+          "topic": "Atherosclerosis and Cardiovascular Diseases"
         }
       ],
       "venue": {
@@ -375,5 +375,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

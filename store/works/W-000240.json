@@ -42,25 +42,7 @@
             {
               "country": "US",
               "name": "NASA Astrobiology Institute",
-              "raw": "NASA Astrobiology Institute, Alternative Earths Team  Mountain View CA USA",
-              "ror": "01qxmdg18"
-            },
-            {
-              "country": "US",
-              "name": "Georgia Institute of Technology",
-              "raw": "School of Biological Sciences Georgia Institute of Technology  Atlanta GA USA",
-              "ror": "01zkghx44"
-            },
-            {
-              "country": "US",
-              "name": "Georgia Institute of Technology",
-              "raw": "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA",
-              "ror": "01zkghx44"
-            },
-            {
-              "country": "US",
-              "name": "NASA Astrobiology Institute",
-              "raw": "NASA Astrobiology Institute, Alternative Earths Team, Mountain View, CA, USA",
+              "raw": "NASA Astrobiology Institute, Alternative Earths Team, Mountain View, CA",
               "ror": "01qxmdg18"
             },
             {
@@ -74,6 +56,12 @@
               "name": "Georgia Institute of Technology",
               "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
               "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "NASA Astrobiology Institute",
+              "raw": "NASA Astrobiology Institute, Alternative Earths Team, Mountain View, CA, USA",
+              "ror": "01qxmdg18"
             }
           ],
           "corresponding": false,
@@ -84,12 +72,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Genome Sciences University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -108,12 +90,6 @@
             {
               "country": "US",
               "name": "Georgia Institute of Technology",
-              "raw": "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA",
-              "ror": "01zkghx44"
-            },
-            {
-              "country": "US",
-              "name": "Georgia Institute of Technology",
               "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
               "ror": "01zkghx44"
             }
@@ -129,19 +105,13 @@
             {
               "country": "CA",
               "name": "University of British Columbia",
-              "raw": "Department of Earth, Ocean, and Atmospheric Sciences University of British Columbia  Vancouver BC Canada",
-              "ror": "03rmrcq20"
-            },
-            {
-              "country": "CA",
-              "name": "University of British Columbia",
-              "raw": "Department of Microbiology and Immunology University of British Columbia  Vancouver BC Canada",
+              "raw": "Department of Microbiology & Immunology and Department of Earth, Ocean, & Atmospheric Sciences, University of British Columbia, Vancouver, Canada",
               "ror": "03rmrcq20"
             },
             {
               "country": "US",
               "name": "Georgia Institute of Technology",
-              "raw": "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA",
+              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
               "ror": "01zkghx44"
             },
             {
@@ -155,12 +125,6 @@
               "name": "University of British Columbia",
               "raw": "Department of Microbiology and Immunology, University of British Columbia, Vancouver, BC, Canada",
               "ror": "03rmrcq20"
-            },
-            {
-              "country": "US",
-              "name": "Georgia Institute of Technology",
-              "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
-              "ror": "01zkghx44"
             }
           ],
           "corresponding": false,
@@ -174,19 +138,7 @@
             {
               "country": "US",
               "name": "Montana State University",
-              "raw": "Department of Microbiology and Immunology Montana State University  Bozeman MT USA",
-              "ror": "02w0trx84"
-            },
-            {
-              "country": "US",
-              "name": "Georgia Institute of Technology",
-              "raw": "School of Biological Sciences Georgia Institute of Technology  Atlanta GA USA",
-              "ror": "01zkghx44"
-            },
-            {
-              "country": "US",
-              "name": "Montana State University",
-              "raw": "Department of Microbiology and Immunology, Montana State University, Bozeman, MT, USA",
+              "raw": "Department of Microbiology and Immunology, Montana State University, Bozeman, Montana",
               "ror": "02w0trx84"
             },
             {
@@ -194,6 +146,12 @@
               "name": "Georgia Institute of Technology",
               "raw": "School of Biological Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
               "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "Montana State University",
+              "raw": "Department of Microbiology and Immunology, Montana State University, Bozeman, MT, USA",
+              "ror": "02w0trx84"
             }
           ],
           "corresponding": false,
@@ -204,12 +162,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "Georgia Institute of Technology",
-              "raw": "School of Biological Sciences Georgia Institute of Technology  Atlanta GA USA",
-              "ror": "01zkghx44"
-            },
             {
               "country": "US",
               "name": "Georgia Institute of Technology",
@@ -228,19 +180,7 @@
             {
               "country": "US",
               "name": "NASA Astrobiology Institute",
-              "raw": "NASA Astrobiology Institute, Alternative Earths Team  Mountain View CA USA",
-              "ror": "01qxmdg18"
-            },
-            {
-              "country": "US",
-              "name": "Georgia Institute of Technology",
-              "raw": "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA",
-              "ror": "01zkghx44"
-            },
-            {
-              "country": "US",
-              "name": "NASA Astrobiology Institute",
-              "raw": "NASA Astrobiology Institute, Alternative Earths Team, Mountain View, CA, USA",
+              "raw": "NASA Astrobiology Institute, Alternative Earths Team, Mountain View, CA",
               "ror": "01qxmdg18"
             },
             {
@@ -248,6 +188,12 @@
               "name": "Georgia Institute of Technology",
               "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
               "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "NASA Astrobiology Institute",
+              "raw": "NASA Astrobiology Institute, Alternative Earths Team, Mountain View, CA, USA",
+              "ror": "01qxmdg18"
             }
           ],
           "corresponding": false,
@@ -261,19 +207,7 @@
             {
               "country": "US",
               "name": "NASA Astrobiology Institute",
-              "raw": "NASA Astrobiology Institute, Alternative Earths Team  Mountain View CA USA",
-              "ror": "01qxmdg18"
-            },
-            {
-              "country": "US",
-              "name": "Georgia Institute of Technology",
-              "raw": "School of Earth and Atmospheric Sciences Georgia Institute of Technology  Atlanta GA USA",
-              "ror": "01zkghx44"
-            },
-            {
-              "country": "US",
-              "name": "NASA Astrobiology Institute",
-              "raw": "NASA Astrobiology Institute, Alternative Earths Team, Mountain View, CA, USA",
+              "raw": "NASA Astrobiology Institute, Alternative Earths Team, Mountain View, CA",
               "ror": "01qxmdg18"
             },
             {
@@ -281,6 +215,12 @@
               "name": "Georgia Institute of Technology",
               "raw": "School of Earth and Atmospheric Sciences, Georgia Institute of Technology, Atlanta, GA, USA",
               "ror": "01zkghx44"
+            },
+            {
+              "country": "US",
+              "name": "NASA Astrobiology Institute",
+              "raw": "NASA Astrobiology Institute, Alternative Earths Team, Mountain View, CA, USA",
+              "ror": "01qxmdg18"
             }
           ],
           "corresponding": true,
@@ -305,9 +245,9 @@
       },
       "kind": "article",
       "oa": {
-        "license": null,
+        "license": "cc-by-nd",
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7775658"
+        "url": "https://doi.org/10.1101/695007"
       },
       "published": "2020-07-02",
       "retracted": false,
@@ -319,23 +259,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9980999827384949,
+          "score": 0.9872999787330627,
           "subfield": "Environmental Engineering",
           "topic": "Microbial Fuel Cells and Bioremediation"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Earth and Planetary Sciences",
-          "score": 0.9954000115394592,
-          "subfield": "Geochemistry and Petrology",
-          "topic": "Geochemistry and Elemental Analysis"
+          "field": "Environmental Science",
+          "score": 0.00570000009611249,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9954000115394592,
-          "subfield": "Ecology",
-          "topic": "Microbial Community Ecology and Physiology"
+          "field": "Earth and Planetary Sciences",
+          "score": 0.0044999998062849045,
+          "subfield": "Geochemistry and Petrology",
+          "topic": "Geochemistry and Elemental Analysis"
         }
       ],
       "venue": {
@@ -354,5 +294,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

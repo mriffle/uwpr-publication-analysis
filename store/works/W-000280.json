@@ -223,9 +223,9 @@
       },
       "kind": "article",
       "oa": {
-        "license": null,
+        "license": "cc-by",
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/10166710"
+        "url": "https://doi.org/10.26434/chemrxiv-2022-3c75n"
       },
       "published": "2023-01-17",
       "retracted": false,
@@ -237,23 +237,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 1.0,
+          "score": 0.9990000128746033,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9998000264167786,
+          "score": 0.00039999998989515007,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991000294685364,
+          "score": 9.999999747378752e-05,
           "subfield": "Molecular Biology",
-          "topic": "Metabolomics and Mass Spectrometry Studies"
+          "topic": "Bioinformatics and Genomic Networks"
         }
       ],
       "venue": {
@@ -427,7 +427,7 @@
         "publisher": null
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000280"
       },
       "year": 2022
@@ -440,5 +440,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

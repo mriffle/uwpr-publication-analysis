@@ -354,23 +354,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9994000196456909,
+          "score": 0.9740999937057495,
           "subfield": "Infectious Diseases",
           "topic": "SARS-CoV-2 and COVID-19 Research"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9990000128746033,
-          "subfield": "Infectious Diseases",
-          "topic": "Viral gastroenteritis research and epidemiology"
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.003599999938160181,
+          "subfield": "Animal Science and Zoology",
+          "topic": "Animal Virus Infections Studies"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9987000226974487,
-          "subfield": "Ecology",
-          "topic": "Bacteriophages and microbial interactions"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0012000000569969416,
+          "subfield": "Epidemiology",
+          "topic": "Virology and Viral Diseases"
         }
       ],
       "venue": {
@@ -389,5 +389,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

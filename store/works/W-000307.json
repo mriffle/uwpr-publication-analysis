@@ -282,25 +282,25 @@
       "title": "Elevated levels of serum alpha-2-macroglobulin associate with diabetes status and incident CVD in type 1 diabetes",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9987999796867371,
-          "subfield": "Molecular Biology",
-          "topic": "Metabolism, Diabetes, and Cancer"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9969000220298767,
-          "subfield": "Genetics",
-          "topic": "Diabetes and associated disorders"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.6025000214576721,
+          "subfield": "Endocrinology, Diabetes and Metabolism",
+          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.994700014591217,
+          "score": 0.14390000700950623,
           "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes Treatment and Management"
+          "topic": "Diabetes Management and Research"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.08640000224113464,
+          "subfield": "Epidemiology",
+          "topic": "Adipokines, Inflammation, and Metabolic Diseases"
         }
       ],
       "venue": {
@@ -319,5 +319,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

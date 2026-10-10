@@ -204,24 +204,24 @@
       "topics": [
         {
           "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9984999895095825,
-          "subfield": "Immunology",
-          "topic": "Galectins and Cancer Biology"
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.5253999829292297,
+          "subfield": "Molecular Biology",
+          "topic": "Extracellular vesicles in disease"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9969000220298767,
+          "score": 0.4641000032424927,
           "subfield": "Surgery",
           "topic": "Helicobacter pylori-related gastroenterology studies"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9958000183105469,
-          "subfield": "Molecular Biology",
-          "topic": "Extracellular vesicles in disease"
+          "score": 0.0003000000142492354,
+          "subfield": "Cancer Research",
+          "topic": "MicroRNA in disease regulation"
         }
       ],
       "venue": {
@@ -240,5 +240,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

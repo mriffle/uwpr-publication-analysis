@@ -355,23 +355,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9998999834060669,
+          "score": 0.9965999722480774,
           "subfield": "Virology",
           "topic": "HIV Research and Treatment"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9970999956130981,
-          "subfield": "Radiology, Nuclear Medicine and Imaging",
-          "topic": "Monoclonal and Polyclonal Antibodies Research"
+          "score": 0.0007999999797903001,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.992900013923645,
-          "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.0003000000142492354,
+          "subfield": "Organic Chemistry",
+          "topic": "Carbohydrate Chemistry and Synthesis"
         }
       ],
       "venue": {
@@ -390,5 +390,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

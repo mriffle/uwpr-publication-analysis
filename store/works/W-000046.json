@@ -100,21 +100,21 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 1.0,
+          "score": 0.9990000128746033,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9961000084877014,
-          "subfield": "Spectroscopy",
-          "topic": "Analytical Chemistry and Chromatography"
+          "field": "Physics and Astronomy",
+          "score": 9.999999747378752e-05,
+          "subfield": "Atomic and Molecular Physics, and Optics",
+          "topic": "Atomic and Molecular Physics"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9839000105857849,
+          "score": 9.999999747378752e-05,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         }
@@ -135,5 +135,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

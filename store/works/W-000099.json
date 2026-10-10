@@ -155,25 +155,25 @@
       "title": "Protein Interactions, Post-translational Modifications and Topologies in Human Cells",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9979000091552734,
-          "subfield": "Molecular Biology",
-          "topic": "Protein Structure and Dynamics"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9550999999046326,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Computer Science",
-          "score": 0.9973999857902527,
-          "subfield": "Computational Theory and Mathematics",
-          "topic": "Computational Drug Discovery Methods"
+          "field": "Chemistry",
+          "score": 0.029200000688433647,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9973999857902527,
-          "subfield": "Molecular Biology",
-          "topic": "Bioinformatics and Genomic Networks"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.002400000113993883,
+          "subfield": "Organic Chemistry",
+          "topic": "Click Chemistry and Applications"
         }
       ],
       "venue": {
@@ -192,5 +192,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -149,25 +149,25 @@
       "title": "Comprehensive structure characterization of lipid a extracted from Yersinia pestis for determination of its phosphorylation configuration",
       "topics": [
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.49320000410079956,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.09880000352859497,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9945999979972839,
+          "score": 0.08470000326633453,
           "subfield": "Molecular Biology",
           "topic": "Metabolomics and Mass Spectrometry Studies"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9922999739646912,
-          "subfield": "Molecular Biology",
-          "topic": "Natural product bioactivities and synthesis"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9908999800682068,
-          "subfield": "Ecology, Evolution, Behavior and Systematics",
-          "topic": "Botanical Research and Chemistry"
         }
       ],
       "venue": {
@@ -186,5 +186,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

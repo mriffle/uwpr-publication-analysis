@@ -256,25 +256,25 @@
       "title": "In Vivo Application of Photocleavable Protein Interaction Reporter Technology",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9952999949455261,
-          "subfield": "Molecular Biology",
-          "topic": "bioluminescence and chemiluminescence research"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9948999881744385,
-          "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
-        },
-        {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9879999756813049,
-          "subfield": "Organic Chemistry",
-          "topic": "Click Chemistry and Applications"
+          "score": 0.8744999766349792,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.03060000017285347,
+          "subfield": "Cell Biology",
+          "topic": "Biotin and Related Studies"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.020800000056624413,
+          "subfield": "Molecular Biology",
+          "topic": "Biochemical and Structural Characterization"
         }
       ],
       "venue": {
@@ -293,5 +293,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

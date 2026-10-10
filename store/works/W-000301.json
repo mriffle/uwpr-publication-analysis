@@ -273,6 +273,12 @@
             {
               "country": "US",
               "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington School of Medicine, Seattle, WA, United States of America",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
               "raw": "Department of Microbiology, University of Washington School of Medicine, Seattle, Washington, United States of America",
               "ror": "00cvxb145"
             }
@@ -285,6 +291,12 @@
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Microbiology, University of Washington School of Medicine, Seattle, WA, United States of America",
+              "ror": "00cvxb145"
+            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -310,7 +322,7 @@
         "doi": "10.1371/journal.ppat.1012179",
         "openalex": "W4402917543",
         "pmcid": "PMC11463830",
-        "pmid": "39331659"
+        "pmid": "38645187"
       },
       "kind": "article",
       "oa": {
@@ -328,23 +340,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9998999834060669,
+          "score": 0.989300012588501,
           "subfield": "Public Health, Environmental and Occupational Health",
           "topic": "Mosquito-borne diseases and control"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9969000220298767,
-          "subfield": "Plant Science",
-          "topic": "Plant Virus Research Studies"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0038999998942017555,
+          "subfield": "Infectious Diseases",
+          "topic": "Viral Infections and Vectors"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9925000071525574,
-          "subfield": "Molecular Biology",
-          "topic": "CRISPR and Genetic Engineering"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0013000000035390258,
+          "subfield": "Epidemiology",
+          "topic": "Virology and Viral Diseases"
         }
       ],
       "venue": {
@@ -468,5 +480,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

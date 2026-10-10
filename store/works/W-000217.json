@@ -326,23 +326,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9998000264167786,
+          "score": 0.8794000148773193,
           "subfield": "Ecology",
           "topic": "Microbial Community Ecology and Physiology"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9926000237464905,
-          "subfield": "Environmental Chemistry",
-          "topic": "Methane Hydrates and Related Phenomena"
+          "field": "Earth and Planetary Sciences",
+          "score": 0.093299999833107,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9884999990463257,
-          "subfield": "Molecular Biology",
-          "topic": "Genomics and Phylogenetic Studies"
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.006000000052154064,
+          "subfield": "Ecology",
+          "topic": "Polar Research and Ecology"
         }
       ],
       "venue": {
@@ -361,5 +361,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

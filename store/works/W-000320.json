@@ -307,23 +307,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9990000128746033,
+          "score": 0.9262999892234802,
           "subfield": "Rheumatology",
           "topic": "Rheumatoid Arthritis Research and Therapies"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9944999814033508,
+          "score": 0.021900000050663948,
           "subfield": "Rheumatology",
           "topic": "Systemic Lupus Erythematosus Research"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Immunology and Microbiology",
-          "score": 0.9854999780654907,
-          "subfield": "Immunology",
-          "topic": "Immunotoxicology and immune responses"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.006599999964237213,
+          "subfield": "Complementary and alternative medicine",
+          "topic": "Natural Compounds in Disease Treatment"
         }
       ],
       "venue": {
@@ -342,5 +342,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -180,7 +180,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Josephine J. Trichka",
+          "name": "Josephine Trichka",
           "openalex": "A5049705126",
           "orcid": "0000-0002-1997-3502",
           "staff": null
@@ -210,7 +210,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Connor E. Weidle",
+          "name": "Connor Weidle",
           "openalex": "A5012310621",
           "orcid": "0000-0002-9354-2276",
           "staff": null
@@ -503,23 +503,23 @@
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.9998999834060669,
+          "score": 0.9922000169754028,
           "subfield": "Virology",
           "topic": "HIV Research and Treatment"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9977999925613403,
-          "subfield": "Epidemiology",
-          "topic": "Cytomegalovirus and herpesvirus research"
+          "score": 0.0032999999821186066,
+          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "topic": "Monoclonal and Polyclonal Antibodies Research"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9976999759674072,
-          "subfield": "Epidemiology",
-          "topic": "Herpesvirus Infections and Treatments"
+          "score": 0.0010000000474974513,
+          "subfield": "Infectious Diseases",
+          "topic": "SARS-CoV-2 and COVID-19 Research"
         }
       ],
       "venue": {
@@ -538,5 +538,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

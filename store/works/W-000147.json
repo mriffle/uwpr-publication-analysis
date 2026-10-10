@@ -196,23 +196,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9998999834060669,
+          "score": 0.9990000128746033,
           "subfield": "Surgery",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9966999888420105,
-          "subfield": "Oncology",
-          "topic": "Drug Transport and Resistance Mechanisms"
+          "score": 0.0006000000284984708,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9940999746322632,
-          "subfield": "Molecular Biology",
-          "topic": "Peroxisome Proliferator-Activated Receptors"
+          "score": 9.999999747378752e-05,
+          "subfield": "Clinical Biochemistry",
+          "topic": "Paraoxonase enzyme and polymorphisms"
         }
       ],
       "venue": {
@@ -231,5 +231,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -247,23 +247,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 1.0,
+          "score": 0.37869998812675476,
           "subfield": "Molecular Biology",
-          "topic": "RNA modifications and cancer"
+          "topic": "Bioinformatics and Genomic Networks"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.996999979019165,
+          "score": 0.15440000593662262,
           "subfield": "Molecular Biology",
-          "topic": "Epigenetics and DNA Methylation"
+          "topic": "Genomics and Chromatin Dynamics"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9957000017166138,
+          "score": 0.15230000019073486,
           "subfield": "Molecular Biology",
-          "topic": "Cancer-related gene regulation"
+          "topic": "Single-cell and spatial transcriptomics"
         }
       ],
       "venue": {
@@ -282,5 +282,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

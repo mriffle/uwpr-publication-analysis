@@ -218,23 +218,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9993000030517578,
+          "score": 0.7314000129699707,
           "subfield": "Organic Chemistry",
           "topic": "Click Chemistry and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991999864578247,
-          "subfield": "Molecular Biology",
-          "topic": "Protein Degradation and Inhibitors"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.09629999846220016,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9980999827384949,
-          "subfield": "Molecular Biology",
-          "topic": "Ubiquitin and proteasome pathways"
+          "score": 0.07859999686479568,
+          "subfield": "Cell Biology",
+          "topic": "Biotin and Related Studies"
         }
       ],
       "venue": {
@@ -253,5 +253,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

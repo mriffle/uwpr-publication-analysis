@@ -268,21 +268,21 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.996999979019165,
+          "score": 0.8490999937057495,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.996999979019165,
-          "subfield": "Molecular Biology",
-          "topic": "Bioinformatics and Genomic Networks"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.12399999797344208,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Materials Science",
-          "score": 0.9922999739646912,
+          "score": 0.002899999963119626,
           "subfield": "Materials Chemistry",
           "topic": "Enzyme Structure and Function"
         }
@@ -303,5 +303,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

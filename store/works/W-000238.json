@@ -280,23 +280,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.8123999834060669,
+          "score": 0.9824000000953674,
           "subfield": "Oncology",
-          "topic": "Clusterin in disease pathology"
+          "topic": "Pancreatic and Hepatic Oncology Research"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.03370000049471855,
+          "score": 0.004699999932199717,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.020999999716877937,
-          "subfield": "Rheumatology",
-          "topic": "GDF15 and Related Biomarkers"
+          "score": 0.002300000051036477,
+          "subfield": "Surgery",
+          "topic": "Pancreatitis Pathology and Treatment"
         }
       ],
       "venue": {
@@ -315,5 +315,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

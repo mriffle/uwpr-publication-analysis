@@ -555,23 +555,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9987000226974487,
+          "score": 0.9994999766349792,
           "subfield": "Molecular Biology",
           "topic": "Wnt/β-catenin signaling in development and cancer"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9977999925613403,
-          "subfield": "Cell Biology",
-          "topic": "Hippo pathway signaling and YAP/TAZ"
+          "score": 9.999999747378752e-05,
+          "subfield": "Molecular Biology",
+          "topic": "Signaling Pathways in Disease"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9962000250816345,
+          "score": 0.0,
           "subfield": "Molecular Biology",
-          "topic": "Ubiquitin and proteasome pathways"
+          "topic": "Protein Kinase Regulation and GTPase Signaling"
         }
       ],
       "venue": {
@@ -590,5 +590,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

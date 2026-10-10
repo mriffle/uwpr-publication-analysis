@@ -214,23 +214,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9991000294685364,
-          "subfield": "Molecular Biology",
-          "topic": "Phosphodiesterase function and regulation"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9973999857902527,
+          "score": 0.9613999724388123,
           "subfield": "Molecular Biology",
           "topic": "Protein Kinase Regulation and GTPase Signaling"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9940000176429749,
+          "score": 0.019999999552965164,
           "subfield": "Molecular Biology",
-          "topic": "Retinal Development and Disorders"
+          "topic": "Phosphodiesterase function and regulation"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.003599999938160181,
+          "subfield": "Molecular Biology",
+          "topic": "Signaling Pathways in Disease"
         }
       ],
       "venue": {
@@ -249,5 +249,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

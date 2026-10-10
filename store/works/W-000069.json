@@ -283,25 +283,25 @@
       "title": "Cross-linking Measurements of In Vivo Protein Complex Topologies",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9983999729156494,
-          "subfield": "Molecular Biology",
-          "topic": "Glycosylation and Glycoproteins Research"
-        },
-        {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9979000091552734,
+          "score": 0.8310999870300293,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.026599999517202377,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9962000250816345,
-          "subfield": "Molecular Biology",
-          "topic": "Bioinformatics and Genomic Networks"
+          "score": 0.01979999989271164,
+          "subfield": "Cell Biology",
+          "topic": "Biotin and Related Studies"
         }
       ],
       "venue": {
@@ -320,5 +320,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

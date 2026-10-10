@@ -163,24 +163,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9976000189781189,
-          "subfield": "Spectroscopy",
-          "topic": "Advanced Proteomics Techniques and Applications"
+          "field": "Earth and Planetary Sciences",
+          "score": 0.836899995803833,
+          "subfield": "Oceanography",
+          "topic": "Marine and coastal ecosystems"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9944000244140625,
+          "score": 0.10610000044107437,
           "subfield": "Ecology",
           "topic": "Microbial Community Ecology and Physiology"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.974399983882904,
+          "score": 0.01140000019222498,
           "subfield": "Spectroscopy",
-          "topic": "Mass Spectrometry Techniques and Applications"
+          "topic": "Advanced Proteomics Techniques and Applications"
         }
       ],
       "venue": {
@@ -199,5 +199,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

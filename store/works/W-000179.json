@@ -250,21 +250,21 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.8040000200271606,
+          "score": 0.9955999851226807,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.11029999703168869,
+          "score": 0.001500000013038516,
           "subfield": "Molecular Biology",
-          "topic": "vaccines and immunoinformatics approaches"
+          "topic": "Genomics and Phylogenetic Studies"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.03009999915957451,
+          "score": 0.0003000000142492354,
           "subfield": "Molecular Biology",
           "topic": "Machine Learning in Bioinformatics"
         }
@@ -285,5 +285,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

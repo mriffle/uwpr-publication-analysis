@@ -269,23 +269,23 @@
       "title": "A targeted proteomics method for quantifying plasma apolipoprotein kinetics in individual mice using stable isotope labeling",
       "topics": [
         {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.5785999894142151,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
+        },
+        {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9991000294685364,
+          "score": 0.2053000032901764,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9972000122070312,
-          "subfield": "Cancer Research",
-          "topic": "Cancer, Lipids, and Metabolism"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9954000115394592,
+          "score": 0.048500001430511475,
           "subfield": "Molecular Biology",
           "topic": "Metabolomics and Mass Spectrometry Studies"
         }
@@ -306,5 +306,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -234,21 +234,21 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9987000226974487,
+          "score": 0.9916999936103821,
           "subfield": "Oncology",
           "topic": "Viral-associated cancers and disorders"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9987000226974487,
+          "score": 0.002199999988079071,
           "subfield": "Epidemiology",
           "topic": "Cytomegalovirus and herpesvirus research"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.998199999332428,
+          "score": 0.0015999999595806003,
           "subfield": "Epidemiology",
           "topic": "Herpesvirus Infections and Treatments"
         }
@@ -269,5 +269,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

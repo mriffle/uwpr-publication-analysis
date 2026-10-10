@@ -519,23 +519,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9925000071525574,
+          "score": 0.29809999465942383,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9904999732971191,
+          "score": 0.2361000031232834,
           "subfield": "Molecular Biology",
-          "topic": "Metabolomics and Mass Spectrometry Studies"
+          "topic": "Genomics and Phylogenetic Studies"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9904999732971191,
-          "subfield": "Ecology",
-          "topic": "Physiological and biochemical adaptations"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.16539999842643738,
+          "subfield": "Molecular Biology",
+          "topic": "Bioinformatics and Genomic Networks"
         }
       ],
       "venue": {
@@ -554,5 +554,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

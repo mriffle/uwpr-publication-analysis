@@ -321,23 +321,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.984499990940094,
+          "score": 0.7588000297546387,
           "subfield": "Rheumatology",
           "topic": "Bone and Dental Protein Studies"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.005400000140070915,
-          "subfield": "Oncology",
-          "topic": "Cancer Cells and Metastasis"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.16580000519752502,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.0013000000035390258,
-          "subfield": "Biotechnology",
-          "topic": "Cancer Research and Treatments"
+          "score": 0.017899999395012856,
+          "subfield": "Molecular Biology",
+          "topic": "S100 Proteins and Annexins"
         }
       ],
       "venue": {
@@ -356,5 +356,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

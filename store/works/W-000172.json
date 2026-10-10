@@ -327,23 +327,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9994999766349792,
+          "score": 0.7109000086784363,
           "subfield": "Molecular Biology",
           "topic": "Mitochondrial Function and Pathology"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9983000159263611,
+          "score": 0.1965000033378601,
           "subfield": "Aging",
           "topic": "Genetics, Aging, and Longevity in Model Organisms"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Neuroscience",
-          "score": 0.9980999827384949,
-          "subfield": "Cellular and Molecular Neuroscience",
-          "topic": "Genetic Neurodegenerative Diseases"
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.0348999984562397,
+          "subfield": "Epidemiology",
+          "topic": "Autophagy in Disease and Therapy"
         }
       ],
       "venue": {
@@ -362,5 +362,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

@@ -276,23 +276,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.8029999732971191,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
-        },
-        {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.040699999779462814,
-          "subfield": "Molecular Biology",
-          "topic": "Sphingolipid Metabolism and Signaling"
+          "score": 0.8734999895095825,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.03139999881386757,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diet, Metabolism, and Disease"
+          "score": 0.04309999942779541,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.025100000202655792,
+          "subfield": "Cardiology and Cardiovascular Medicine",
+          "topic": "Lipid metabolism and disorders"
         }
       ],
       "venue": {
@@ -311,5 +311,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

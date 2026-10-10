@@ -332,23 +332,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9997000098228455,
+          "score": 0.9771000146865845,
           "subfield": "Molecular Biology",
           "topic": "Protein Kinase Regulation and GTPase Signaling"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Computer Science",
-          "score": 0.9909999966621399,
-          "subfield": "Computational Theory and Mathematics",
-          "topic": "Computational Drug Discovery Methods"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.005400000140070915,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9909999966621399,
-          "subfield": "Radiology, Nuclear Medicine and Imaging",
-          "topic": "Monoclonal and Polyclonal Antibodies Research"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0031999999191612005,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Tyrosine Phosphatases"
         }
       ],
       "venue": {
@@ -531,18 +531,25 @@
       "title": "1_manuscript_2020-04-14.pdf",
       "topics": [
         {
-          "domain": "Physical Sciences",
-          "field": "Computer Science",
-          "score": 0.926800012588501,
-          "subfield": "Computational Theory and Mathematics",
-          "topic": "Computational Drug Discovery Methods"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9574999809265137,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Kinase Regulation and GTPase Signaling"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9089000225067139,
-          "subfield": "Cell Biology",
-          "topic": "Microtubule and mitosis dynamics"
+          "score": 0.0210999995470047,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.0027000000700354576,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Tyrosine Phosphatases"
         }
       ],
       "venue": {
@@ -730,23 +737,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9900000095367432,
+          "score": 0.9824000000953674,
           "subfield": "Molecular Biology",
           "topic": "Protein Kinase Regulation and GTPase Signaling"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Computer Science",
-          "score": 0.9667999744415283,
-          "subfield": "Computational Theory and Mathematics",
-          "topic": "Computational Drug Discovery Methods"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.005100000184029341,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9147999882698059,
+          "score": 0.002400000113993883,
           "subfield": "Molecular Biology",
-          "topic": "PI3K/AKT/mTOR signaling in cancer"
+          "topic": "Protein Tyrosine Phosphatases"
         }
       ],
       "venue": {
@@ -768,5 +775,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

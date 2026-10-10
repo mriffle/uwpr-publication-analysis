@@ -314,25 +314,25 @@
       "title": "Defining the Features of Complement-Active IgM",
       "topics": [
         {
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
+          "score": 0.9818999767303467,
+          "subfield": "Immunology",
+          "topic": "Complement system in diseases"
+        },
+        {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9988999962806702,
+          "score": 0.014499999582767487,
           "subfield": "Radiology, Nuclear Medicine and Imaging",
           "topic": "Monoclonal and Polyclonal Antibodies Research"
         },
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9969000220298767,
-          "subfield": "Biotechnology",
-          "topic": "Transgenic Plants and Applications"
-        },
-        {
-          "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.989799976348877,
+          "score": 0.00039999998989515007,
           "subfield": "Immunology",
-          "topic": "Immune Cell Function and Interaction"
+          "topic": "Biomarkers in Disease Mechanisms"
         }
       ],
       "venue": {
@@ -351,5 +351,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

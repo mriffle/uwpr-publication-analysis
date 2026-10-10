@@ -210,25 +210,25 @@
       "title": "Type I interferons increase expression of endogenous retrovirus K102 and envelope protein in myeloid cells from patients with autoimmune disease",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.9998000264167786,
-          "subfield": "Plant Science",
-          "topic": "Chromosomal and Genetic Variations"
-        },
-        {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.998199999332428,
-          "subfield": "Cardiology and Cardiovascular Medicine",
-          "topic": "Viral Infections and Immunology Research"
+          "score": 0.7577999830245972,
+          "subfield": "Rheumatology",
+          "topic": "Systemic Lupus Erythematosus Research"
         },
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.996399998664856,
-          "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
+          "field": "Immunology and Microbiology",
+          "score": 0.0843999981880188,
+          "subfield": "Immunology",
+          "topic": "interferon and immune responses"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
+          "score": 0.05550000071525574,
+          "subfield": "Plant Science",
+          "topic": "Chromosomal and Genetic Variations"
         }
       ],
       "venue": {
@@ -247,5 +247,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

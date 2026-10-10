@@ -258,24 +258,24 @@
       "topics": [
         {
           "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.8730000257492065,
+          "subfield": "Surgery",
+          "topic": "Cholesterol and Lipid Metabolism"
+        },
+        {
+          "domain": "Health Sciences",
           "field": "Nursing",
-          "score": 0.9988999962806702,
+          "score": 0.11860000342130661,
           "subfield": "Nutrition and Dietetics",
           "topic": "Fatty Acid Research and Health"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9987000226974487,
-          "subfield": "Molecular Biology",
-          "topic": "Peroxisome Proliferator-Activated Receptors"
-        },
-        {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9984999895095825,
-          "subfield": "Endocrinology, Diabetes and Metabolism",
-          "topic": "Diet, Metabolism, and Disease"
+          "score": 0.0017999999690800905,
+          "subfield": "Surgery",
+          "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
       "venue": {
@@ -294,5 +294,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

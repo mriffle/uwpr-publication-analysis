@@ -124,25 +124,25 @@
       "title": "Sequence assignment of ADP‐ribosylated peptides is facilitated as peptide length increases",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9993000030517578,
-          "subfield": "Molecular Biology",
-          "topic": "RNA and protein synthesis mechanisms"
-        },
-        {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.998199999332428,
+          "score": 0.6371999979019165,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.33640000224113464,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9889000058174133,
+          "score": 0.0031999999191612005,
           "subfield": "Molecular Biology",
-          "topic": "Biochemical and Structural Characterization"
+          "topic": "Chemical Synthesis and Analysis"
         }
       ],
       "venue": {
@@ -161,5 +161,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

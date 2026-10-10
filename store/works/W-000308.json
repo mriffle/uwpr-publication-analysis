@@ -174,24 +174,24 @@
       "topics": [
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9994000196456909,
-          "subfield": "Health, Toxicology and Mutagenesis",
-          "topic": "Chemical Analysis and Environmental Impact"
-        },
-        {
-          "domain": "Physical Sciences",
           "field": "Physics and Astronomy",
-          "score": 0.9993000030517578,
+          "score": 0.9409000277519226,
           "subfield": "Astronomy and Astrophysics",
           "topic": "Planetary Science and Exploration"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.987500011920929,
-          "subfield": "Physiology",
-          "topic": "Spaceflight effects on biology"
+          "domain": "Physical Sciences",
+          "field": "Environmental Science",
+          "score": 0.04390000179409981,
+          "subfield": "Ecology",
+          "topic": "Polar Research and Ecology"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Physics and Astronomy",
+          "score": 0.005100000184029341,
+          "subfield": "Astronomy and Astrophysics",
+          "topic": "Space Science and Extraterrestrial Life"
         }
       ],
       "venue": {
@@ -210,5 +210,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

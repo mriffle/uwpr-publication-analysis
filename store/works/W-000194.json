@@ -281,23 +281,23 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9994000196456909,
+          "score": 0.9961000084877014,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Environmental Science",
-          "score": 0.9991000294685364,
-          "subfield": "Ecology",
-          "topic": "Microbial Community Ecology and Physiology"
+          "field": "Chemistry",
+          "score": 0.0013000000035390258,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
-          "field": "Chemistry",
-          "score": 0.9976999759674072,
-          "subfield": "Spectroscopy",
-          "topic": "Mass Spectrometry Techniques and Applications"
+          "field": "Environmental Science",
+          "score": 0.0006000000284984708,
+          "subfield": "Ecology",
+          "topic": "Microbial Community Ecology and Physiology"
         }
       ],
       "venue": {
@@ -316,5 +316,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }

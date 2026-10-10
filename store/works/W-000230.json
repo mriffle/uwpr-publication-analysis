@@ -443,23 +443,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9994999766349792,
-          "subfield": "Rheumatology",
-          "topic": "GDF15 and Related Biomarkers"
-        },
-        {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9984999895095825,
+          "score": 0.9932000041007996,
           "subfield": "Physiology",
           "topic": "Telomeres, Telomerase, and Senescence"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9894000291824341,
+          "score": 0.005900000222027302,
           "subfield": "Aging",
           "topic": "Genetics, Aging, and Longevity in Model Organisms"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 9.999999747378752e-05,
+          "subfield": "Molecular Biology",
+          "topic": "Single-cell and spatial transcriptomics"
         }
       ],
       "venue": {
@@ -695,23 +695,23 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.9991000294685364,
+          "score": 0.9887999892234802,
           "subfield": "Physiology",
           "topic": "Telomeres, Telomerase, and Senescence"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Materials Science",
-          "score": 0.9884999990463257,
-          "subfield": "Materials Chemistry",
-          "topic": "Advanced Nanomaterials in Catalysis"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.00930000003427267,
+          "subfield": "Aging",
+          "topic": "Genetics, Aging, and Longevity in Model Organisms"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9879000186920166,
-          "subfield": "Rheumatology",
-          "topic": "GDF15 and Related Biomarkers"
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.00019999999494757503,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         }
       ],
       "venue": {
@@ -733,5 +733,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

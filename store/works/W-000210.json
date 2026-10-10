@@ -403,9 +403,9 @@
       },
       "kind": "article",
       "oa": {
-        "license": null,
+        "license": "cc-by",
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6642660"
+        "url": "https://doi.org/10.1101/624494"
       },
       "published": "2019-05-13",
       "retracted": false,
@@ -417,21 +417,21 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9998999834060669,
+          "score": 0.9980000257492065,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9958000183105469,
+          "score": 0.000699999975040555,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9955999851226807,
+          "score": 0.0003000000142492354,
           "subfield": "Molecular Biology",
           "topic": "Genomics and Phylogenetic Studies"
         }
@@ -847,7 +847,7 @@
         "publisher": "Cold Spring Harbor Laboratory"
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000210"
       },
       "year": 2019
@@ -860,5 +860,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-03"
+  "updated": "2026-10-10"
 }

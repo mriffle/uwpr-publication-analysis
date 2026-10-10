@@ -373,23 +373,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9998000264167786,
+          "score": 1.0,
           "subfield": "Molecular Biology",
           "topic": "Wnt/β-catenin signaling in development and cancer"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9997000098228455,
+          "score": 0.0,
           "subfield": "Molecular Biology",
-          "topic": "Cancer-related gene regulation"
+          "topic": "Signaling Pathways in Disease"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9994999766349792,
+          "score": 0.0,
           "subfield": "Molecular Biology",
-          "topic": "Genomics and Chromatin Dynamics"
+          "topic": "Bioinformatics and Genomic Networks"
         }
       ],
       "venue": {
@@ -408,5 +408,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-09-27"
+  "updated": "2026-10-10"
 }
