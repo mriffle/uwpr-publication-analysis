@@ -71,9 +71,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Bernd Michael Fischer",
-          "openalex": "A5087826232",
-          "orcid": "0000-0001-9437-2099",
+          "name": "Bernd Fischer",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -123,8 +123,8 @@
       "kind": "article",
       "oa": {
         "license": null,
-        "status": "closed",
-        "url": null
+        "status": "green",
+        "url": "https://doi.org/10.5167/uzh-25057"
       },
       "published": "2008-09-06",
       "retracted": false,
@@ -171,5 +171,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

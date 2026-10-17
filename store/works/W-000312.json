@@ -141,8 +141,8 @@
           ],
           "corresponding": false,
           "name": "Yi He",
-          "openalex": null,
-          "orcid": null,
+          "openalex": "A5054938728",
+          "orcid": "0000-0002-5565-5579",
           "staff": null
         },
         {
@@ -215,9 +215,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Hyun Song",
-          "openalex": "A5037832288",
-          "orcid": "0000-0002-8261-0173",
+          "name": "Hyun Deok Song",
+          "openalex": "A5049572208",
+          "orcid": "0000-0002-9768-5055",
           "staff": null
         },
         {
@@ -360,5 +360,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

@@ -223,9 +223,9 @@
             }
           ],
           "corresponding": false,
-          "name": "J B Axworthy",
-          "openalex": "A5114190660",
-          "orcid": null,
+          "name": "Jeremy B. Axworthy",
+          "openalex": "A5023125515",
+          "orcid": "0000-0002-6559-1417",
           "staff": null
         },
         {
@@ -268,9 +268,9 @@
             }
           ],
           "corresponding": false,
-          "name": "John R. Dilworth",
-          "openalex": "A5002065251",
-          "orcid": "0000-0001-6589-5990",
+          "name": "J. Dilworth",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -619,5 +619,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

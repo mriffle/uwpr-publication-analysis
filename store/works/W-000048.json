@@ -146,7 +146,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Gregory Hather",
+          "name": "Gregory J. Hather",
           "openalex": "A5081579689",
           "orcid": null,
           "staff": null
@@ -318,5 +318,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

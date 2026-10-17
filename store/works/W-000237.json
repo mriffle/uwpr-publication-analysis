@@ -214,8 +214,8 @@
           ],
           "corresponding": false,
           "name": "Sujata Chakraborty",
-          "openalex": "A5032347056",
-          "orcid": "0000-0003-0080-3180",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -435,9 +435,9 @@
             }
           ],
           "corresponding": false,
-          "name": "zachary potter",
-          "openalex": "A5082101583",
-          "orcid": null,
+          "name": "Zachary E. Potter",
+          "openalex": "A5067945060",
+          "orcid": "0000-0002-9063-7923",
           "staff": null
         },
         {
@@ -762,7 +762,7 @@
         "publisher": null
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000237"
       },
       "year": 2020
@@ -775,5 +775,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

@@ -209,8 +209,8 @@
       "kind": "article",
       "oa": {
         "license": null,
-        "status": "closed",
-        "url": null
+        "status": "green",
+        "url": "https://doi.org/10.2139/ssrn.4248096"
       },
       "published": "2024-05-01",
       "retracted": false,
@@ -257,5 +257,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

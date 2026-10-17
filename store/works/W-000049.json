@@ -257,7 +257,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Richard Smith",
+          "name": "Richard D. Smith",
           "openalex": "A5023982706",
           "orcid": "0000-0002-2381-2349",
           "staff": null
@@ -314,8 +314,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Alvin Y. Liu",
-          "openalex": "A5025193657",
+          "name": "Alvin Y.C. Liu",
+          "openalex": "A5051104212",
           "orcid": null,
           "staff": null
         }
@@ -384,5 +384,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

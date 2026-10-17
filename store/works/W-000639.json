@@ -112,8 +112,8 @@
           ],
           "corresponding": false,
           "name": "Linfeng Wu",
-          "openalex": "A5064192521",
-          "orcid": "0000-0003-0036-0455",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -226,5 +226,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

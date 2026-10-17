@@ -285,9 +285,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Samuel Wrenn",
+          "name": "Samuel P. Wrenn",
           "openalex": "A5019060363",
-          "orcid": null,
+          "orcid": "0000-0002-4280-1012",
           "staff": null
         },
         {
@@ -1065,7 +1065,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Timothy P. Sheahan",
+          "name": "Timothy Patrick Sheahan",
           "openalex": "A5001891655",
           "orcid": "0000-0001-9181-2183",
           "staff": null
@@ -2113,5 +2113,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

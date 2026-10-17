@@ -529,7 +529,7 @@
         "doi": "10.1038/s41597-026-06948-3",
         "openalex": "W7133978235",
         "pmcid": "PMC13079756",
-        "pmid": "41786761"
+        "pmid": "41648401"
       },
       "kind": "data-paper",
       "oa": {
@@ -893,7 +893,7 @@
         "publisher": "Cold Spring Harbor Laboratory"
       },
       "version_link": {
-        "method": "crossref_relation",
+        "method": "openalex_locations",
         "to": "R-000327"
       },
       "year": 2026
@@ -906,5 +906,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

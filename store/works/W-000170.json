@@ -167,9 +167,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Veronique Brault",
-          "openalex": null,
-          "orcid": null,
+          "name": "Véronique Brault",
+          "openalex": "A5064024620",
+          "orcid": "0000-0002-5460-3523",
           "staff": null
         },
         {
@@ -291,5 +291,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

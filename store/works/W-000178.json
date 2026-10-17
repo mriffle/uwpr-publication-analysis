@@ -718,9 +718,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Hannele Ruohola‐Baker",
-          "openalex": "A5021999547",
-          "orcid": "0000-0002-5588-4531",
+          "name": "David A. Baker",
+          "openalex": "A5053192926",
+          "orcid": "0000-0001-7896-6217",
           "staff": null
         }
       ],
@@ -788,5 +788,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

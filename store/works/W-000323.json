@@ -140,9 +140,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Laura den Hartigh",
-          "openalex": "A5040858172",
-          "orcid": null,
+          "name": "Laura J. den Hartigh",
+          "openalex": "A5013199923",
+          "orcid": "0000-0002-6789-5916",
           "staff": null
         },
         {
@@ -450,5 +450,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

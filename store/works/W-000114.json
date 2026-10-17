@@ -238,7 +238,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Facundo Machado Fernández",
+          "name": "Facundo M. Fernández",
           "openalex": "A5039977060",
           "orcid": "0000-0002-0302-2534",
           "staff": null
@@ -356,5 +356,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

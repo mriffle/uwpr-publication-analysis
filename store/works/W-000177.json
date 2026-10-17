@@ -119,8 +119,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Priska von Haller",
-          "openalex": "A5061349330",
+          "name": "Priska D. von Haller",
+          "openalex": "A5083225847",
           "orcid": null,
           "staff": "vonhaller"
         },
@@ -270,5 +270,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

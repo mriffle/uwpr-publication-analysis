@@ -370,7 +370,7 @@
           "corresponding": true,
           "name": "Martin W. McIntosh",
           "openalex": "A5109208118",
-          "orcid": "0009-0007-3672-7489",
+          "orcid": null,
           "staff": null
         }
       ],
@@ -438,5 +438,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

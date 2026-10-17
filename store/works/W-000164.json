@@ -153,8 +153,8 @@
             }
           ],
           "corresponding": false,
-          "name": "P Yang",
-          "openalex": null,
+          "name": "Pei‐Tzu Yang",
+          "openalex": "A5100888003",
           "orcid": null,
           "staff": null
         },
@@ -234,9 +234,9 @@
             }
           ],
           "corresponding": false,
-          "name": "A J Chien",
-          "openalex": "A5110633928",
-          "orcid": null,
+          "name": "Andy J. Chien",
+          "openalex": "A5110325366",
+          "orcid": "0000-0003-2810-682X",
           "staff": null
         },
         {
@@ -340,5 +340,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

@@ -312,9 +312,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Kaitlyn R. Mitchell",
-          "openalex": "A5108833257",
-          "orcid": null,
+          "name": "Kaitlyn Mitchell",
+          "openalex": "A5018954800",
+          "orcid": "0009-0001-8799-1518",
           "staff": null
         },
         {
@@ -697,5 +697,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

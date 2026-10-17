@@ -57,8 +57,8 @@
           ],
           "corresponding": false,
           "name": "Wen Guo",
-          "openalex": "A5101959903",
-          "orcid": "0000-0002-5998-4257",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -194,9 +194,9 @@
             }
           ],
           "corresponding": true,
-          "name": "Shalender Bhasin",
-          "openalex": "A5110029215",
-          "orcid": "0000-0003-4359-5131",
+          "name": "Shalender Bhasin M. D",
+          "openalex": "A5071176339",
+          "orcid": "0000-0002-3982-6200",
           "staff": null
         }
       ],
@@ -264,5 +264,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

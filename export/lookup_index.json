@@ -167,6 +167,7 @@
     "doi:10.1016/j.mcpro.2025.100947": "W-000421",
     "doi:10.1016/j.mcpro.2025.100995": "W-000422",
     "doi:10.1016/j.molcel.2024.10.045": "W-000423",
+    "doi:10.1016/j.molcel.2026.09.008": "W-000889",
     "doi:10.1016/j.molpha.2025.100061": "W-000424",
     "doi:10.1016/j.neuroscience.2021.01.038": "W-000247",
     "doi:10.1016/j.redox.2018.05.011": "W-000425",
@@ -600,6 +601,7 @@
     "doi:10.1172/jci.insight.127305": "W-000668",
     "doi:10.1172/jci127308": "W-000215",
     "doi:10.1172/jci153285": "W-000258",
+    "doi:10.1172/jci185791": "W-000890",
     "doi:10.1172/jci66963": "W-000106",
     "doi:10.1172/jci83475": "W-000144",
     "doi:10.1177/1947601910365896": "W-000669",
@@ -1644,7 +1646,14 @@
     "openalex:W4417517385": "W-000685",
     "openalex:W52620269": "W-000365",
     "openalex:W576163326": "W-000025",
+    "openalex:W7112576033": "W-000882",
     "openalex:W7112754252": "W-000026",
+    "openalex:W7112879307": "W-000883",
+    "openalex:W7113059339": "W-000884",
+    "openalex:W7113113701": "W-000885",
+    "openalex:W7113422193": "W-000886",
+    "openalex:W7113622382": "W-000887",
+    "openalex:W7113682501": "W-000888",
     "openalex:W7115012329": "W-000380",
     "openalex:W7117358448": "W-000434",
     "openalex:W7117537506": "W-000457",
@@ -1714,6 +1723,7 @@
     "openalex:W7204836489": "W-000714",
     "openalex:W7208794779": "W-000031",
     "openalex:W7210984832": "W-000032",
+    "openalex:W7212108586": "W-000890",
     "openalex:W7212108724": "W-000829",
     "openalex:W7212492053": "W-000867",
     "openalex:W7212784842": "W-000865",
@@ -1724,6 +1734,7 @@
     "openalex:W7213238526": "W-000737",
     "openalex:W7213483729": "W-000847",
     "openalex:W7214021923": "W-000868",
+    "openalex:W7220853450": "W-000889",
     "openalex:W7220897902": "W-000881",
     "openalex:W7220928429": "W-000872",
     "openalex:W7220953359": "W-000877",
@@ -1854,6 +1865,7 @@
     "pmcid:PMC12592563": "W-000498",
     "pmcid:PMC12597595": "W-000424",
     "pmcid:PMC12629138": "W-000846",
+    "pmcid:PMC12633433": "W-000889",
     "pmcid:PMC12636291": "W-000615",
     "pmcid:PMC12660040": "W-000455",
     "pmcid:PMC12695630": "W-000501",
@@ -1902,6 +1914,7 @@
     "pmcid:PMC13518854": "W-000499",
     "pmcid:PMC13568782": "W-000714",
     "pmcid:PMC13605456": "W-000868",
+    "pmcid:PMC13668624": "W-000890",
     "pmcid:PMC1393142": "W-000644",
     "pmcid:PMC151416": "W-000522",
     "pmcid:PMC16874": "W-000526",
@@ -2988,6 +3001,7 @@
     "pmid:41251312": "W-000463",
     "pmid:41266628": "W-000516",
     "pmid:41278827": "W-000615",
+    "pmid:41279401": "W-000889",
     "pmid:41315740": "W-000502",
     "pmid:41372642": "W-000501",
     "pmid:41419928": "W-000685",
@@ -3025,6 +3039,7 @@
     "pmid:42620099": "W-000825",
     "pmid:42649221": "W-000499",
     "pmid:42650043": "W-000769",
+    "pmid:42720986": "W-000890",
     "pmid:42730203": "W-000714",
     "pmid:42793311": "W-000868",
     "pmid:42818358": "W-000829",
@@ -3085,7 +3100,7 @@
     "work:W-000837": "W-000608",
     "work:W-000839": "W-000608"
   },
-  "generated_at": "2026-10-10T13:48:25Z",
+  "generated_at": "2026-10-17T11:39:58Z",
   "not_included": [
     {
       "id": "W-000001",
@@ -5100,8 +5115,8 @@
       "reason_label": "No evidence of UWPR support was found in this paper",
       "signal_labels": [],
       "signals": [],
-      "title": "Chronic effects of pulsed high intensity focused ultrasound aided delivery of gemcitabine in a mouse model of pancreatic cancer",
-      "year": 2023
+      "title": "Chronic Effects of Pulsed High Intensity Focused Ultrasound Aided Delivery of Gemcitabine in a Mouse Model of Pancreatic Cancer",
+      "year": 2022
     },
     {
       "id": "W-000431",
@@ -6429,7 +6444,7 @@
         "doi": "10.1038/s41597-024-04013-5",
         "openalex": "W4404615564",
         "pmcid": "PMC11584781",
-        "pmid": "39578464"
+        "pmid": "39386737"
       },
       "reason": "no_rule_fired",
       "reason_label": "No evidence of UWPR support was found in this paper",
@@ -6709,7 +6724,7 @@
         "doi": "10.1073/pnas.2405901121",
         "openalex": "W4401635266",
         "pmcid": "PMC11348334",
-        "pmid": "39150780"
+        "pmid": "38405978"
       },
       "reason": "no_rule_fired",
       "reason_label": "No evidence of UWPR support was found in this paper",
@@ -6726,8 +6741,8 @@
         "pmcid": "PMC3083184",
         "pmid": "21372125"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Lipoxygenase-mediated Oxidation of Polyunsaturated N-Acylethanolamines in Arabidopsis",
@@ -7290,7 +7305,7 @@
         "doi": "10.1093/g3journal/jkad293",
         "openalex": "W4390126898",
         "pmcid": "PMC10917522",
-        "pmid": "38135291"
+        "pmid": "37790497"
       },
       "reason": "no_rule_fired",
       "reason_label": "No evidence of UWPR support was found in this paper",
@@ -11285,6 +11300,169 @@
         "staff_coauthor:hoopmann"
       ],
       "title": "SchweppeLab/Nova: Nova version 1.1.0",
+      "year": 2026
+    },
+    {
+      "id": "W-000882",
+      "ids": {
+        "doi": null,
+        "openalex": "W7112576033",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:eng"
+      ],
+      "title": "The PeptideAtlas Project",
+      "year": 2006
+    },
+    {
+      "id": "W-000883",
+      "ids": {
+        "doi": null,
+        "openalex": "W7112879307",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:eng"
+      ],
+      "title": "Annotation of the yeast Proteome with PeptideAtlas",
+      "year": 2006
+    },
+    {
+      "id": "W-000884",
+      "ids": {
+        "doi": null,
+        "openalex": "W7113059339",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:eng"
+      ],
+      "title": "New functionality for the Trans-Proteomic Pipeline: tools for analysis of proteomics data",
+      "year": 2015
+    },
+    {
+      "id": "W-000885",
+      "ids": {
+        "doi": null,
+        "openalex": "W7113113701",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:eng"
+      ],
+      "title": "New functionality for the Trans-Proteomic Pipeline: tools for analysis of proteomics data",
+      "year": 2009
+    },
+    {
+      "id": "W-000886",
+      "ids": {
+        "doi": null,
+        "openalex": "W7113422193",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:eng"
+      ],
+      "title": "SpectraST: An open-source MS/MS spectra-matching search tool for targeted proteomics",
+      "year": 2006
+    },
+    {
+      "id": "W-000887",
+      "ids": {
+        "doi": null,
+        "openalex": "W7113622382",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:eng"
+      ],
+      "title": "Development of a spectral library building tool and re-analysis of Human Plasma PeptideAtlas datasets using spectral searching",
+      "year": 2007
+    },
+    {
+      "id": "W-000888",
+      "ids": {
+        "doi": null,
+        "openalex": "W7113682501",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
+      "signal_labels": [
+        "A UWPR staff member is a co-author, which on its own is not evidence"
+      ],
+      "signals": [
+        "staff_coauthor:eng"
+      ],
+      "title": "New developments for open-source shotgun proteomics analysis with the Trans-Proteomic Pipeline",
+      "year": 2008
+    },
+    {
+      "id": "W-000889",
+      "ids": {
+        "doi": "10.1016/j.molcel.2026.09.008",
+        "openalex": "W7220853450",
+        "pmcid": "PMC12633433",
+        "pmid": "41279401"
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [],
+      "signals": [],
+      "title": "Ribosome remodeling drives translation adaptation during viral infection and cellular stress",
+      "year": 2026
+    },
+    {
+      "id": "W-000890",
+      "ids": {
+        "doi": "10.1172/jci185791",
+        "openalex": "W7212108586",
+        "pmcid": "PMC13668624",
+        "pmid": "42720986"
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [],
+      "signals": [],
+      "title": "Microglial GRB2 is essential for brain ventriculogenesis and cerebrospinal fluid homeostasis",
       "year": 2026
     }
   ],

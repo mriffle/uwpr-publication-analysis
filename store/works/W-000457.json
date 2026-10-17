@@ -452,8 +452,8 @@
           ],
           "corresponding": false,
           "name": "Sewoong Oh",
-          "openalex": "A5121526070",
-          "orcid": null,
+          "openalex": "A5028243041",
+          "orcid": "0000-0002-8975-8306",
           "staff": null
         },
         {
@@ -912,5 +912,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

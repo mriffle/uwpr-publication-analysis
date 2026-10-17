@@ -97,7 +97,7 @@
           "corresponding": false,
           "name": "Wei Hao",
           "openalex": "A5100448246",
-          "orcid": "0000-0002-1475-6488",
+          "orcid": "0009-0006-0990-4382",
           "staff": null
         },
         {
@@ -247,7 +247,7 @@
           "corresponding": false,
           "name": "Maria C. de Beer",
           "openalex": "A5113546599",
-          "orcid": null,
+          "orcid": "0000-0003-2024-8938",
           "staff": null
         },
         {
@@ -375,5 +375,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

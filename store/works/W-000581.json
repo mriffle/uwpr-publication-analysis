@@ -75,9 +75,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Christopher S. Chen",
-          "openalex": "A5100609547",
-          "orcid": "0000-0003-2445-8449",
+          "name": "Christopher Chen",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -268,5 +268,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

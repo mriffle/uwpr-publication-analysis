@@ -360,9 +360,9 @@
             }
           ],
           "corresponding": false,
-          "name": "Alfred L. McAlister",
-          "openalex": "A5061893798",
-          "orcid": "0000-0001-5490-357X",
+          "name": "A. McAlister",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -610,5 +610,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

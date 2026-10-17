@@ -267,8 +267,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Wendel L. Nelson",
-          "openalex": "A5109936030",
+          "name": "Wendel Lane Nelson",
+          "openalex": "A5111627999",
           "orcid": null,
           "staff": null
         },
@@ -283,8 +283,8 @@
           ],
           "corresponding": false,
           "name": "Deepak Dalvie",
-          "openalex": "A5136004069",
-          "orcid": null,
+          "openalex": "A5047357717",
+          "orcid": "0000-0001-6196-5314",
           "staff": null
         },
         {
@@ -412,5 +412,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

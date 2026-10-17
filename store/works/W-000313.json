@@ -261,8 +261,8 @@
           ],
           "corresponding": false,
           "name": "John F. Kearney",
-          "openalex": "A5091682295",
-          "orcid": null,
+          "openalex": "A5015718586",
+          "orcid": "0000-0003-2569-2560",
           "staff": null
         },
         {
@@ -351,5 +351,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

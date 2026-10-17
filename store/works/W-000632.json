@@ -48,7 +48,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Xiao Rong Lin",
+          "name": "Xiao Lin",
           "openalex": "A5059616081",
           "orcid": "0000-0002-2559-2343",
           "staff": null
@@ -223,5 +223,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

@@ -124,8 +124,8 @@
           ],
           "corresponding": false,
           "name": "Sujata Chakraborty",
-          "openalex": "A5032347056",
-          "orcid": "0000-0003-0080-3180",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -253,5 +253,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

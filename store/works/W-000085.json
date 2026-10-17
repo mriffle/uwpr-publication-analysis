@@ -158,7 +158,7 @@
           "corresponding": false,
           "name": "Arti Navare",
           "openalex": "A5022103345",
-          "orcid": null,
+          "orcid": "0000-0002-7171-2406",
           "staff": null
         },
         {
@@ -397,5 +397,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }

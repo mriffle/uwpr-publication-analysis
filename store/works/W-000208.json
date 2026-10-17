@@ -123,8 +123,8 @@
           ],
           "corresponding": true,
           "name": "Ling Lin",
-          "openalex": "A5100438682",
-          "orcid": "0000-0002-3146-8648",
+          "openalex": "A5107306080",
+          "orcid": "0000-0002-3406-0058",
           "staff": null
         },
         {
@@ -473,7 +473,7 @@
             }
           ],
           "corresponding": false,
-          "name": "George E. Chlipala",
+          "name": "George Edward Chlipala",
           "openalex": "A5003746188",
           "orcid": "0000-0003-0203-3191",
           "staff": null
@@ -1089,8 +1089,8 @@
           ],
           "corresponding": false,
           "name": "Jing Zhang",
-          "openalex": "A5100345419",
-          "orcid": "0000-0002-6566-6693",
+          "openalex": null,
+          "orcid": null,
           "staff": null
         },
         {
@@ -1322,7 +1322,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Michael Snyder",
+          "name": "Michael P. Snyder",
           "openalex": "A5024120181",
           "orcid": "0000-0003-0784-7987",
           "staff": null
@@ -1407,5 +1407,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-17"
 }
