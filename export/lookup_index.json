@@ -113,6 +113,7 @@
     "doi:10.1016/j.cub.2023.01.012": "W-000400",
     "doi:10.1016/j.cub.2025.08.064": "W-000846",
     "doi:10.1016/j.ejpn.2015.09.008": "W-000401",
+    "doi:10.1016/j.ensci.2026.100624": "W-000891",
     "doi:10.1016/j.febslet.2014.01.065": "W-000402",
     "doi:10.1016/j.freeradbiomed.2018.12.031": "W-000403",
     "doi:10.1016/j.gpb.2018.02.002": "W-000404",
@@ -242,6 +243,7 @@
     "doi:10.1021/acs.jproteome.6b00744": "W-000459",
     "doi:10.1021/acs.jproteome.6b00752": "W-000167",
     "doi:10.1021/acs.jproteome.6b00829": "W-000166",
+    "doi:10.1021/acs.jproteome.6c00617": "W-000824",
     "doi:10.1021/acs.jproteome.7b00288": "W-000174",
     "doi:10.1021/acs.jproteome.8b00638": "W-000200",
     "doi:10.1021/acs.jproteome.8b00703": "W-000199",
@@ -262,6 +264,7 @@
     "doi:10.1021/ja907808h": "W-000051",
     "doi:10.1021/jacs.9b02963": "W-000214",
     "doi:10.1021/jasms.5c00141": "W-000321",
+    "doi:10.1021/jasms.6c00300": "W-000893",
     "doi:10.1021/jasms.9b00021": "W-000232",
     "doi:10.1021/jp305865q": "W-000092",
     "doi:10.1021/pr050436j": "W-000464",
@@ -833,6 +836,7 @@
     "doi:10.64898/2026.08.06.743235": "W-000827",
     "doi:10.64898/2026.08.06.743244": "W-000828",
     "doi:10.64898/2026.09.08.750141": "W-000829",
+    "doi:10.64898/2026.10.19.760133": "W-000894",
     "doi:10.70675/bec7ad29z0494z4e18z8685zf3f9e26114e5": "W-000869",
     "doi:10.7150/thno.14394": "W-000830",
     "doi:10.7287/peerj.14158v0.1/reviews/1": "W-000831",
@@ -1734,6 +1738,7 @@
     "openalex:W7213238526": "W-000737",
     "openalex:W7213483729": "W-000847",
     "openalex:W7214021923": "W-000868",
+    "openalex:W7215038408": "W-000891",
     "openalex:W7220853450": "W-000889",
     "openalex:W7220897902": "W-000881",
     "openalex:W7220928429": "W-000872",
@@ -1741,6 +1746,9 @@
     "openalex:W7220967019": "W-000880",
     "openalex:W7220979101": "W-000878",
     "openalex:W7221032638": "W-000879",
+    "openalex:W7222927100": "W-000824",
+    "openalex:W7222963189": "W-000893",
+    "openalex:W7222994318": "W-000894",
     "openalex:W768464191": "W-000134",
     "openalex:W784462454": "W-000378",
     "openalex:W818589921": "W-000033",
@@ -1915,6 +1923,7 @@
     "pmcid:PMC13568782": "W-000714",
     "pmcid:PMC13605456": "W-000868",
     "pmcid:PMC13668624": "W-000890",
+    "pmcid:PMC13670938": "W-000891",
     "pmcid:PMC1393142": "W-000644",
     "pmcid:PMC151416": "W-000522",
     "pmcid:PMC16874": "W-000526",
@@ -3044,6 +3053,7 @@
     "pmid:42793311": "W-000868",
     "pmid:42818358": "W-000829",
     "pmid:42838732": "W-000872",
+    "pmid:42889715": "W-000891",
     "pmid:6486668": "W-000333",
     "pmid:735322": "W-000334",
     "pmid:8437002": "W-000648",
@@ -3098,9 +3108,10 @@
     "work:W-000834": "W-000608",
     "work:W-000835": "W-000608",
     "work:W-000837": "W-000608",
-    "work:W-000839": "W-000608"
+    "work:W-000839": "W-000608",
+    "work:W-000892": "W-000824"
   },
-  "generated_at": "2026-10-17T11:39:58Z",
+  "generated_at": "2026-10-24T12:03:29Z",
   "not_included": [
     {
       "id": "W-000001",
@@ -3627,8 +3638,8 @@
         "pmcid": "PMC1804850",
         "pmid": "19312705"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The Inventum Novum of Joseph Leopold Auenbrugger.",
@@ -3642,8 +3653,8 @@
         "pmcid": "PMC2493662",
         "pmid": "6486668"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The surgical anatomy of the marginal artery.",
@@ -3657,8 +3668,8 @@
         "pmcid": null,
         "pmid": "735322"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "[Diseases, complaints, symptoms in the inguinal region. Attempt at an overview].",
@@ -3782,8 +3793,8 @@
         "pmcid": "PMC7714387",
         "pmid": "26780384"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Extracellular matrix protein expression is brain region dependent",
@@ -3797,8 +3808,8 @@
         "pmcid": "PMC5496529",
         "pmid": "28690824"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "High invasion potential of Hydrilla verticillata in the Americas predicted using ecological niche modeling combined with genetic data",
@@ -3902,8 +3913,8 @@
         "pmcid": "PMC7314491",
         "pmid": "32596501"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Vestibular function after cochlear implantation: A test battery and case‐by‐case approach",
@@ -3917,8 +3928,8 @@
         "pmcid": "PMC6088231",
         "pmid": "27741559"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The arc of Mass Spectrometry Exchange Formats is long, but it bends toward HDF5",
@@ -4038,8 +4049,8 @@
         "pmcid": "PMC3517139",
         "pmid": "21656683"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -4057,8 +4068,8 @@
         "pmcid": "PMC8250278",
         "pmid": "33811468"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Resourcing, annotating, and analysing synthetic peptides of SARS‐CoV‐2 for immunopeptidomics and other immunological studies",
@@ -4072,8 +4083,8 @@
         "pmcid": "PMC3069718",
         "pmid": "21448875"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -4091,8 +4102,8 @@
         "pmcid": "PMC3292704",
         "pmid": "22213233"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Adolescent female rats exhibiting activity‐based anorexia express elevated levels of GABAAreceptor α4 and δ subunits at the plasma membrane of hippocampal CA1 spines",
@@ -4125,8 +4136,8 @@
         "pmcid": "PMC3076596",
         "pmid": "20013378"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -4144,8 +4155,8 @@
         "pmcid": "PMC3073315",
         "pmid": "20013381"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -4182,8 +4193,8 @@
         "pmcid": "PMC5937865",
         "pmid": "29755159"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Kuhnian revolutions in neuroscience: the role of tool development",
@@ -4197,8 +4208,8 @@
         "pmcid": "PMC5306227",
         "pmid": "28239195"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Who is the Scientist-Subject? A Critique of the Neo-Kantian Scientist-Subject in Lorraine Daston and Peter Galison’s Objectivity",
@@ -4212,8 +4223,8 @@
         "pmcid": "PMC10246603",
         "pmid": "34185225"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Psychometric examination of short forms from the University of Washington pain-related self-efficacy and concerns about pain item banks in patients with low back pain",
@@ -4227,8 +4238,8 @@
         "pmcid": "PMC4169985",
         "pmid": "25254002"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "An identifier resembling the UWPR award code appears, but does not match"
       ],
@@ -4265,8 +4276,8 @@
         "pmcid": "PMC9768078",
         "pmid": "36322234"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Elamipretide effects on the skeletal muscle phosphoproteome in aged female mice",
@@ -4310,8 +4321,8 @@
         "pmcid": "PMC4871837",
         "pmid": "27298550"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Surgical Excision of Carotid Body Tumor Through Modified Approach–A Case Report",
@@ -4325,8 +4336,8 @@
         "pmcid": "PMC3771051",
         "pmid": "24426745"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Paragangliomas of the Carotid Body: Current Management Protocols and Review of Literature",
@@ -4355,8 +4366,8 @@
         "pmcid": "PMC4607603",
         "pmid": "26122518"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -4374,8 +4385,8 @@
         "pmcid": "PMC5711562",
         "pmid": "28721671"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "The paper used a UWPR hardware design, which is not use of the facility"
       ],
@@ -4423,8 +4434,8 @@
         "pmcid": "PMC12747560",
         "pmid": "41176219"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Rationale and design of the A-STAC study: A multi-stage, hybrid effectiveness-implementation trial to prevent and reduce racial disparities in postpartum hypertension",
@@ -4468,8 +4479,8 @@
         "pmcid": "PMC9907019",
         "pmid": "36736301"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Human IRF1 governs macrophagic IFN-γ immunity to mycobacteria",
@@ -4498,8 +4509,8 @@
         "pmcid": "PMC11227895",
         "pmid": "38815580"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "RNA quality control factors nucleate Clr4/SUV39H and trigger constitutive heterochromatin assembly",
@@ -4547,8 +4558,8 @@
         "pmcid": "PMC5986710",
         "pmid": "29791858"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "A Multi-layered Quantitative In Vivo Expression Atlas of the Podocyte Unravels Kidney Disease Candidate Genes",
@@ -4562,8 +4573,8 @@
         "pmcid": "PMC9933948",
         "pmid": "36198266"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "MCL-1 is a master regulator of cancer dependency on fatty acid oxidation",
@@ -4577,8 +4588,8 @@
         "pmcid": "PMC11922642",
         "pmid": "37961719"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The Hao-Fountain syndrome protein USP7 regulates neuronal connectivity in the brain via a novel p53-independent ubiquitin signaling pathway",
@@ -4626,8 +4637,8 @@
         "pmcid": "PMC2893224",
         "pmid": "20142100"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "A Macrophage Sterol-Responsive Network Linked to Atherogenesis",
@@ -4656,8 +4667,8 @@
         "pmcid": "PMC12296481",
         "pmid": "39975278"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Deuterium labeling enables proteome-wide turnover kinetics analysis in cell culture",
@@ -4671,8 +4682,8 @@
         "pmcid": "PMC9992315",
         "pmid": "36736323"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Multi-site phosphorylation of yeast Mif2/CENP-C promotes inner kinetochore assembly",
@@ -4701,8 +4712,8 @@
         "pmcid": "PMC3982309",
         "pmid": "24530533"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The putative tRNA 2‐thiouridine synthetase Ncs6 is an essential sulfur carrier in Methanococcus maripaludis",
@@ -4716,8 +4727,8 @@
         "pmcid": "PMC6588449",
         "pmid": "30597195"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Improving mitochondrial function with SS-31 reverses age-related redox stress and improves exercise tolerance in aged mice",
@@ -4731,8 +4742,8 @@
         "pmcid": "PMC6000253",
         "pmid": "29496591"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Lessons Learned as President of the Institute for Systems Biology (2000–2018)",
@@ -4746,8 +4757,8 @@
         "pmcid": "PMC7218026",
         "pmid": "32420483"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "ACLY is the novel signaling target of PIP2/PIP3 and Lyn in acute myeloid leukemia",
@@ -4791,8 +4802,8 @@
         "pmcid": "PMC11539149",
         "pmid": "39507244"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Time course transcriptomic profiling suggests Crp/Fnr transcriptional regulation of nosZ gene in a N2O-reducing thermophile",
@@ -4806,8 +4817,8 @@
         "pmcid": "PMC11960661",
         "pmid": "40171493"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The network response to Egf is tissue-specific",
@@ -4821,8 +4832,8 @@
         "pmcid": "PMC12221657",
         "pmid": "40612512"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Combining light-induced aggregation and biotin proximity labeling implicates endolysosomal proteins in early α-synuclein oligomerization",
@@ -4836,8 +4847,8 @@
         "pmcid": "PMC13314794",
         "pmid": "42383001"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "In vitro recapitulation of intramuscular mRNA vaccination with naive and recall antigens using a human lymphoid follicle chip platform",
@@ -4851,8 +4862,8 @@
         "pmcid": "PMC7887026",
         "pmid": "33288437"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Perimenopausal transdermal estradiol replacement reduces serum HDL cholesterol efflux capacity but improves cardiovascular risk factors",
@@ -4866,8 +4877,8 @@
         "pmcid": "PMC11327452",
         "pmid": "38945450"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "In-depth mapping of DNA-PKcs signaling uncovers noncanonical features of its kinase specificity",
@@ -4881,8 +4892,8 @@
         "pmcid": "PMC7134330",
         "pmid": "15896867"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Optimising two-dye microarray designs for estimating associations with a quantitative trait",
@@ -4896,8 +4907,8 @@
         "pmcid": "PMC7669727",
         "pmid": "32900591"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Glycation of HDL blunts its anti-inflammatory and cholesterol efflux capacities in vitro, but has no effect in poorly controlled type 1 diabetes subjects",
@@ -4930,8 +4941,8 @@
         "pmcid": "PMC11298636",
         "pmid": "38880243"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Profiling Proteins and Phosphorylation Sites During T Cell Activation Using an Integrated Thermal Shift Assay",
@@ -5002,8 +5013,8 @@
         "pmcid": "PMC11663112",
         "pmid": "39603239"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The PNUTS phosphatase complex controls transcription pause release",
@@ -5017,8 +5028,8 @@
         "pmcid": "PMC12597595",
         "pmid": "39464120"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Liver CYP4A autophagic lysosomal degradation: A major role for the autophagic receptor SQSTM1/p62 through an uncommon target interaction site",
@@ -5032,8 +5043,8 @@
         "pmcid": "PMC6007084",
         "pmid": "29857311"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Fatiguing contractions increase protein S-glutathionylation occupancy in mouse skeletal muscle",
@@ -5081,8 +5092,8 @@
         "pmcid": null,
         "pmid": "39509912"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Ultrasound biometry for estimating delivery dates in small and medium breed cats",
@@ -5141,8 +5152,8 @@
         "pmcid": "PMC12926194",
         "pmid": "41237784"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Predominant mutated non-canonical tumor-specific antigens identified by proteogenomics demonstrate immunogenicity and tumor suppression in CRC",
@@ -5156,8 +5167,8 @@
         "pmcid": "PMC12803804",
         "pmid": "41456280"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Protocol for dissecting the aggregation-prone protein interactome with optogenetic-induced aggregation and biotin labeling proximity assay",
@@ -5171,8 +5182,8 @@
         "pmcid": "PMC12994065",
         "pmid": "41818233"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Protocol to measure protein half-life in cell culture using heavy water",
@@ -5269,8 +5280,8 @@
         "pmcid": "PMC3073871",
         "pmid": "20364823"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "The paper used a UWPR hardware design, which is not use of the facility"
       ],
@@ -5307,8 +5318,8 @@
         "pmcid": "PMC7845485",
         "pmid": "32812743"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "The paper used a UWPR hardware design, which is not use of the facility"
       ],
@@ -5326,8 +5337,8 @@
         "pmcid": "PMC8388574",
         "pmid": "34165955"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "The paper used a UWPR hardware design, which is not use of the facility"
       ],
@@ -5398,8 +5409,8 @@
         "pmcid": "PMC10243106",
         "pmid": "37093777"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -5455,8 +5466,8 @@
         "pmcid": "PMC11296898",
         "pmid": "38426863"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -5474,8 +5485,8 @@
         "pmcid": "PMC11972692",
         "pmid": "38538550"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "SpectiCal: m/z Calibration of MS2 Peptide Spectra Using Known Low Mass Ions",
@@ -5489,8 +5500,8 @@
         "pmcid": "PMC11867029",
         "pmid": "38915502"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Combining Quantitative Proteomics and Interactomics for a Deeper Insight into Molecular Differences between Human Cell Lines",
@@ -5504,8 +5515,8 @@
         "pmcid": "PMC12660040",
         "pmid": "40111914"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Quetzal: Comprehensive Peptide Fragmentation Annotation and Visualization",
@@ -5576,8 +5587,8 @@
         "pmcid": "PMC6898736",
         "pmid": "31290668"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -5629,8 +5640,8 @@
         "pmcid": "PMC13162157",
         "pmid": "41251312"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Enrichment-Free, Targeted Covalent Drug Discovery in Live Cells",
@@ -5777,8 +5788,8 @@
         "pmcid": "PMC2948606",
         "pmid": "20712337"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -5796,8 +5807,8 @@
         "pmcid": "PMC3166376",
         "pmid": "21761931"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -5830,8 +5841,8 @@
         "pmcid": "PMC4039175",
         "pmid": "24350770"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "MOPED Enables Discoveries through Consistently Processed Proteomics Data",
@@ -5864,8 +5875,8 @@
         "pmcid": "PMC2667385",
         "pmid": "18505281"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Rapid and Accurate Peptide Identification from Tandem Mass Spectra",
@@ -5936,8 +5947,8 @@
         "pmcid": null,
         "pmid": null
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Exocytosis in plants",
@@ -5951,8 +5962,8 @@
         "pmcid": "PMC3002786",
         "pmid": "21170291"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "MicroRNA-21 dysregulates the expression of MEF2C in neurons in monkey and human SIV/HIV neurological disease",
@@ -5996,8 +6007,8 @@
         "pmcid": "PMC2829300",
         "pmid": "19349973"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Mass-spectrometric identification and relative quantification of N-linked cell surface glycoproteins",
@@ -6049,8 +6060,8 @@
         "pmcid": "PMC3078768",
         "pmid": "21196936"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Histone H2B ubiquitylation disrupts local and higher-order chromatin compaction",
@@ -6136,8 +6147,8 @@
         "pmcid": "PMC3060656",
         "pmid": "20228802"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6170,8 +6181,8 @@
         "pmcid": "PMC8196013",
         "pmid": "34117231"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6189,8 +6200,8 @@
         "pmcid": "PMC9894840",
         "pmid": "36732331"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Sample multiplexing-based targeted pathway proteomics with real-time analytics reveals the impact of genetic variation on protein expression",
@@ -6204,8 +6215,8 @@
         "pmcid": "PMC12043825",
         "pmid": "40307229"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "METTL14 regulates chondrogenesis through the GDF5–RUNX–extracellular matrix gene axis during limb development",
@@ -6257,8 +6268,8 @@
         "pmcid": "PMC13518854",
         "pmid": "42649221"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Next-generation multiplexed targeted proteomics quantifies post-translational modifications in disease and compound-protein interactions with high throughput",
@@ -6291,8 +6302,8 @@
         "pmcid": "PMC12695630",
         "pmid": "41372642"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Observation of deuteron and antideuteron formation from resonance-decay nucleons",
@@ -6340,8 +6351,8 @@
         "pmcid": "PMC12339374",
         "pmid": "39322764"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "The paper used a UWPR hardware design, which is not use of the facility"
       ],
@@ -6359,8 +6370,8 @@
         "pmcid": "PMC8831450",
         "pmid": "34862502"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6412,8 +6423,8 @@
         "pmcid": "PMC6439476",
         "pmid": "30518910"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "A comprehensive pipeline for translational top-down proteomics from a single blood draw",
@@ -6484,8 +6495,8 @@
         "pmcid": "PMC8592995",
         "pmid": "34782677"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6503,8 +6514,8 @@
         "pmcid": "PMC7244511",
         "pmid": "32444788"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -6537,8 +6548,8 @@
         "pmcid": "PMC12705447",
         "pmid": "41266628"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Proteogenomics in cerebrospinal fluid and plasma reveals new biological fingerprint of cerebral small vessel disease",
@@ -6624,8 +6635,8 @@
         "pmcid": "PMC151416",
         "pmid": "12601166"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Quantitative proteomic analysis indicates increased synthesis of a quinolone by Pseudomonas aeruginosa isolates from cystic fibrosis airways",
@@ -6658,8 +6669,8 @@
         "pmcid": "PMC4260545",
         "pmid": "25404328"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Reducing the genetic code induces massive rearrangement of the proteome",
@@ -6692,8 +6703,8 @@
         "pmcid": "PMC16874",
         "pmid": "10920198"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Evaluation of two-dimensional gel electrophoresis-based proteome analysis technology",
@@ -6756,8 +6767,8 @@
         "pmcid": "PMC3375569",
         "pmid": "22549780"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Molecular and Biological Characterization of Streptococcal SpyA-mediated ADP-ribosylation of Intermediate Filament Protein Vimentin",
@@ -6801,8 +6812,8 @@
         "pmcid": "PMC3047157",
         "pmid": "21193536"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Profiling Cys34 Adducts of Human Serum Albumin by Fixed-Step Selected Reaction Monitoring",
@@ -6835,8 +6846,8 @@
         "pmcid": "PMC3394945",
         "pmid": "22375074"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The mzIdentML Data Standard for Mass Spectrometry-Based Proteomics Results",
@@ -6850,8 +6861,8 @@
         "pmcid": "PMC3879624",
         "pmid": "23820513"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Maximizing Peptide Identification Events in Proteomic Workflows Using Data-Dependent Acquisition (DDA)",
@@ -6884,8 +6895,8 @@
         "pmcid": "PMC4563719",
         "pmid": "26100116"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Using Data Independent Acquisition (DIA) to Model High-responding Peptides for Targeted Proteomics Experiments",
@@ -6899,8 +6910,8 @@
         "pmcid": "PMC4813695",
         "pmid": "26704149"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Opening a SWATH Window on Posttranslational Modifications: Automated Pursuit of Modified Peptides",
@@ -6933,8 +6944,8 @@
         "pmcid": "PMC1783978",
         "pmid": "16684767"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "High Dynamic Range Characterization of the Trauma Patient Plasma Proteome",
@@ -7039,8 +7050,8 @@
         "pmcid": "PMC4159662",
         "pmid": "24895379"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Computing Exact p-values for a Cross-correlation Shotgun Proteomics Score Function",
@@ -7069,8 +7080,8 @@
         "pmcid": "PMC3013463",
         "pmid": "20716697"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -7088,8 +7099,8 @@
         "pmcid": "PMC6692776",
         "pmid": "31088857"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Interactive Peptide Spectral Annotator: A Versatile Web-based Tool for Proteomic Applications",
@@ -7118,8 +7129,8 @@
         "pmcid": "PMC7614296",
         "pmid": "36529941"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Proteomic repository data submission, dissemination, and reuse: key messages",
@@ -7133,8 +7144,8 @@
         "pmcid": "PMC11602344",
         "pmid": "39512072"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Proteomic insights into the extracellular matrix: a focus on proteoforms and their implications in health and disease",
@@ -7163,8 +7174,8 @@
         "pmcid": "PMC7307697",
         "pmid": "32024452"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Cumulative Influence of Inflammatory Response Genetic Variation on Long-Term Neurobehavioral Outcomes after Pediatric Traumatic Brain Injury Relative to Orthopedic Injury: An Exploratory Polygenic Risk Score",
@@ -7178,8 +7189,8 @@
         "pmcid": "PMC4048574",
         "pmid": "24910945"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "MOPED 2.5—An Integrated Multi-Omics Resource: Multi-Omics Profiling Expression Database Now Includes Transcriptomics Data",
@@ -7337,8 +7348,8 @@
         "pmcid": "PMC8728291",
         "pmid": "34871441"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "iProX in 2021: connecting proteomics data sharing with big data",
@@ -7352,8 +7363,8 @@
         "pmcid": "PMC8728293",
         "pmid": "34570216"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "SPENCER: a comprehensive database for small peptides encoded by noncoding RNAs in cancer patients",
@@ -7367,8 +7378,8 @@
         "pmcid": "PMC117061",
         "pmid": "12087162"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Use of fluorescent sequence-specific polyamides to discriminate human chromosomes by microscopy and flow cytometry",
@@ -7382,8 +7393,8 @@
         "pmcid": "PMC3245040",
         "pmid": "22139914"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "MOPED: Model Organism Protein Expression Database",
@@ -7397,8 +7408,8 @@
         "pmcid": "PMC5210561",
         "pmid": "27899654"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "jPOSTrepo: an international standard data repository for proteomes",
@@ -7412,8 +7423,8 @@
         "pmcid": "PMC6030980",
         "pmid": "29741719"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "xiSPEC: web-based visualization, analysis and sharing of proteomics data",
@@ -7514,8 +7525,8 @@
         "pmcid": "PMC11042255",
         "pmid": "38659763"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Spatiotemporal proteomic profiling of cellular responses to NLRP3 agonists",
@@ -7635,8 +7646,8 @@
         "pmcid": "PMC2675977",
         "pmid": "19411605"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Proteomic discovery of previously unannotated, rapidly evolving seminal fluid genes in Drosophila",
@@ -7650,8 +7661,8 @@
         "pmcid": "PMC2798826",
         "pmid": "19846609"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "ProPhylER: A curated online resource for protein function and structure based on evolutionary constraint analyses",
@@ -7703,8 +7714,8 @@
         "pmcid": "PMC515325",
         "pmid": "15342561"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "De Novo Repeat Classification and Fragment Assembly",
@@ -7718,8 +7729,8 @@
         "pmcid": "PMC2742308",
         "pmid": "17493132"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Growth phenotypes of Pseudomonas aeruginosa lasR mutants adapted to the airways of cystic fibrosis patients",
@@ -7733,8 +7744,8 @@
         "pmcid": "PMC2745257",
         "pmid": "19432795"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Biogenesis of bacterial membrane vesicles",
@@ -7748,8 +7759,8 @@
         "pmcid": "PMC2747775",
         "pmid": "15447677"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Proteomic analysis of native metabotropic glutamate receptor 5 protein complexes reveals novel molecular constituents",
@@ -7838,8 +7849,8 @@
         "pmcid": "PMC2583584",
         "pmid": "18852243"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Staphylococcus aureus Elicits Marked Alterations in the Airway Proteome during Early Pneumonia",
@@ -7883,8 +7894,8 @@
         "pmcid": "PMC10653903",
         "pmid": "37646531"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -7917,8 +7928,8 @@
         "pmcid": "PMC83965",
         "pmid": "10022859"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Correlation between Protein and mRNA Abundance in Yeast",
@@ -7932,8 +7943,8 @@
         "pmcid": "PMC1014812",
         "pmid": "8437002"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Neurological stamp. Hermann Boerhaave 1668-1738.",
@@ -7947,8 +7958,8 @@
         "pmcid": "PMC1737575",
         "pmid": "11511708"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "A new nephelometric assay for beta-trace protein (prostaglandin D synthase) as an indicator of liquorrhoea",
@@ -7962,8 +7973,8 @@
         "pmcid": "PMC1737533",
         "pmid": "11511709"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Ammon's horn and the hippocampus",
@@ -7977,8 +7988,8 @@
         "pmcid": "PMC1737987",
         "pmid": null
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Quantitative T2 mapping demonstrates abnormalities in localisation-related epilepsy",
@@ -7992,8 +8003,8 @@
         "pmcid": "PMC5350271",
         "pmid": "28031399"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Neurons derived from different brain regions are inherently different in vitro: a novel multiregional brain-on-a-chip",
@@ -8216,8 +8227,8 @@
         "pmcid": "PMC13426059",
         "pmid": "41072037"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Integrated Longitudinal Transcriptomic and Proteomic Analysis of the Murine Lung Response to Influenza A Virus",
@@ -8371,8 +8382,8 @@
         "pmcid": "PMC4168248",
         "pmid": "25220473"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Medical and non-medical complications among children and adolescents with excessive body weight",
@@ -8386,8 +8397,8 @@
         "pmcid": "PMC194173",
         "pmid": "12946274"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -8441,8 +8452,8 @@
         "pmcid": "PMC549070",
         "pmid": "15642101"
       },
-      "reason": "before_window",
-      "reason_label": "Published before 2006, where the project's search window opens",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -8498,8 +8509,8 @@
         "pmcid": "PMC10408117",
         "pmid": "37553584"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "CryoGrid-PIXUL-RNA: high throughput RNA isolation platform for tissue transcript analysis",
@@ -8528,8 +8539,8 @@
         "pmcid": "PMC12838088",
         "pmid": "41419928"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Neuronal TDP-43 pathology drives astrocytic interferon response in a mouse model of ALS",
@@ -8558,8 +8569,8 @@
         "pmcid": "PMC12980870",
         "pmid": "41821120"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Blood proteomics: insights from public data",
@@ -8573,8 +8584,8 @@
         "pmcid": "PMC13449647",
         "pmid": "42231464"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -8656,8 +8667,8 @@
         "pmcid": "PMC13096879",
         "pmid": "42022900"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Temporal models for estimation and short-term forecasting of neonatal mortality rates in sub-Saharan Africa",
@@ -8671,8 +8682,8 @@
         "pmcid": "PMC2818196",
         "pmid": "20103535"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "RNAase-III enzyme Dicer maintains signaling pathways for differentiation and survival in mouse cortical neural stem cells",
@@ -8686,8 +8697,8 @@
         "pmcid": "PMC7841698",
         "pmid": "32936035"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The Use of Quantitative Digital Pathology to Measure Proteoglycan and Glycosaminoglycan Expression and Accumulation in Healthy and Diseased Tissues",
@@ -8735,8 +8746,8 @@
         "pmcid": "PMC2275314",
         "pmid": "18421371"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -8788,8 +8799,8 @@
         "pmcid": "PMC2982831",
         "pmid": "21103371"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -8807,8 +8818,8 @@
         "pmcid": "PMC3093388",
         "pmid": "21589862"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -8826,8 +8837,8 @@
         "pmcid": "PMC3299764",
         "pmid": "22428014"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Unique Proteomic Signatures Distinguish Macrophages and Dendritic Cells",
@@ -8841,8 +8852,8 @@
         "pmcid": "PMC3565968",
         "pmid": "23405203"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -8875,8 +8886,8 @@
         "pmcid": "PMC4335053",
         "pmid": "25695747"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "An identifier resembling the UWPR award code appears, but does not match"
       ],
@@ -8909,8 +8920,8 @@
         "pmcid": "PMC7685475",
         "pmid": "33232379"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Predicting who responds to spinal manipulative therapy using a short-time frame methodology: Results from a 238-participant study",
@@ -8954,8 +8965,8 @@
         "pmcid": "PMC11424118",
         "pmid": "39328336"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Analysis of Pancreatic Cancer Genetic Risk Factors in a Multi-Ethnic Population Sample",
@@ -8984,8 +8995,8 @@
         "pmcid": "PMC5946579",
         "pmid": "29192815"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "New Strategies and Challenges in Lung Proteomics and Metabolomics. An Official American Thoracic Society Workshop Report",
@@ -8999,8 +9010,8 @@
         "pmcid": "PMC10875718",
         "pmid": "38164564"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Microbiome Depletion Increases Fentanyl Self-Administration and Alters the Striatal Proteome Through Short-Chain Fatty Acids",
@@ -9029,8 +9040,8 @@
         "pmcid": "PMC4283410",
         "pmid": "25216679"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Architecture of the Saccharomyces cerevisiae SAGA transcription coactivator complex",
@@ -9059,8 +9070,8 @@
         "pmcid": "PMC5371734",
         "pmid": "28320772"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Mechanism for microbial population collapse in a fluctuating resource environment",
@@ -9074,8 +9085,8 @@
         "pmcid": "PMC6753376",
         "pmid": "31556486"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -9146,8 +9157,8 @@
         "pmcid": "PMC6872666",
         "pmid": "31798765"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "HDAC8 affects MGMT levels in glioblastoma cell lines via interaction with the proteasome receptor ADRM1",
@@ -9236,8 +9247,8 @@
         "pmcid": "PMC12337001",
         "pmid": "40799479"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Protein Turnover Dynamics Analysis With Subcellular Spatial Resolution",
@@ -9251,8 +9262,8 @@
         "pmcid": "PMC10026629",
         "pmid": "36881099"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Expression of Foxp3 in Fibromas and Fibrosarcomas of Skin and Subcutaneous Tissue in Dogs",
@@ -9326,8 +9337,8 @@
         "pmcid": "PMC10923567",
         "pmid": "38464679"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The Consequences of Performance Standards in Need-Based Aid",
@@ -9341,8 +9352,8 @@
         "pmcid": "PMC9179230",
         "pmid": "35694194"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Property Values, Water Quality, and Benefit Transfer: A Nationwide Meta-analysis",
@@ -9371,8 +9382,8 @@
         "pmcid": "PMC8060510",
         "pmid": "33898427"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Proteome Profile of Myelin in the Zebrafish Brain",
@@ -9386,8 +9397,8 @@
         "pmcid": "PMC6280682",
         "pmid": "30547015"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -9420,8 +9431,8 @@
         "pmcid": "PMC9441560",
         "pmid": "36072432"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -9454,8 +9465,8 @@
         "pmcid": "PMC10185886",
         "pmid": "37205196"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -9488,8 +9499,8 @@
         "pmcid": "PMC7953902",
         "pmid": "33719285"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [
         "A UWPR staff member is thanked, but not for analysis or technical help"
       ],
@@ -9507,8 +9518,8 @@
         "pmcid": "PMC11772424",
         "pmid": "39877741"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Phytolith assemblages from palm leaves and palm-leaf manuscripts: what is the difference and what it could mean?",
@@ -9522,8 +9533,8 @@
         "pmcid": "PMC12440893",
         "pmid": "40969648"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Decoding the association between health level and human settlements environment: a machine learning-driven provincial analysis in China",
@@ -9552,8 +9563,8 @@
         "pmcid": "PMC11275094",
         "pmid": "39061961"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Longitudinal Genome-Wide Association Study of Cognitive Impairment after Subarachnoid Hemorrhage",
@@ -9612,8 +9623,8 @@
         "pmcid": "PMC13207279",
         "pmid": "42196601"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The Effective Biodegradation of Poly(ε-caprolactone) by Engineered Yeast Yarrowia lipolytica Producing Lipase B",
@@ -9642,8 +9653,8 @@
         "pmcid": "PMC9415073",
         "pmid": "36005578"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "NPvis: An Interactive Visualizer of Peptidic Natural Product–MS/MS Matches",
@@ -9657,8 +9668,8 @@
         "pmcid": "PMC6418599",
         "pmid": "30965905"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The Effects of Using Sodium Alginate Hydrosols Treated with Direct Electric Current as Coatings for Sausages",
@@ -9751,8 +9762,8 @@
         "pmcid": "PMC5088702",
         "pmid": "27829797"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Oenanthe millefolia (Umbelliferae), a new species record for the Turkish and Greek Flora",
@@ -9830,8 +9841,8 @@
         "pmcid": "PMC2688295",
         "pmid": "19816138"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Quantitative proteomics identifies oxidant-induced, AtMPK6-dependent changes inArabidopsis thalianaprotein profiles",
@@ -10160,8 +10171,8 @@
         "pmcid": "PMC4677742",
         "pmid": "26672472"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Systemic Infection of Maize, Sorghum, Rice, and Beet Seedlings with Fumonisin-Producing and Nonproducing Fusarium verticillioides Strains",
@@ -10472,10 +10483,10 @@
     {
       "id": "W-000824",
       "ids": {
-        "doi": "10.64898/2026.07.11.737889",
-        "openalex": "W7169511116",
-        "pmcid": "PMC13404742",
-        "pmid": "42523267"
+        "doi": "10.1021/acs.jproteome.6c00617",
+        "openalex": "W7222927100",
+        "pmcid": null,
+        "pmid": null
       },
       "reason": "no_rule_fired",
       "reason_label": "No evidence of UWPR support was found in this paper",
@@ -10485,7 +10496,7 @@
       "signals": [
         "staff_coauthor:riffle"
       ],
-      "title": "CasanovoGUI: a cross-platform desktop application for deep learning-based de novo peptide sequencing with Casanovo",
+      "title": "CasanovoGUI: A Cross-Platform Desktop Application for Deep Learning-Based De Novo Peptide Sequencing with Casanovo",
       "year": 2026
     },
     {
@@ -10670,8 +10681,8 @@
         "pmcid": "PMC12925409",
         "pmid": "41732721"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Adjusted effect size, area under the curve, and c-statistic for evaluating the association between uric acid and mortality in US adults using unweighted and survey-weighted regression, propensity, and prognostic score",
@@ -10685,8 +10696,8 @@
         "pmcid": "PMC12629138",
         "pmid": "40975050"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "The kinesin motor Kif9 regulates centriolar satellite positioning during interphase",
@@ -11095,8 +11106,8 @@
         "pmcid": "PMC13605456",
         "pmid": "42793311"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Peptidome and Metabolome Profiling of Fermented Milk Products Reveal Accumulation of Bioactive Compounds During Cold Storage",
@@ -11443,8 +11454,8 @@
         "pmcid": "PMC12633433",
         "pmid": "41279401"
       },
-      "reason": "no_rule_fired",
-      "reason_label": "No evidence of UWPR support was found in this paper",
+      "reason": "excluded_record_type",
+      "reason_label": "Not a publication type this project counts",
       "signal_labels": [],
       "signals": [],
       "title": "Ribosome remodeling drives translation adaptation during viral infection and cellular stress",
@@ -11463,6 +11474,36 @@
       "signal_labels": [],
       "signals": [],
       "title": "Microglial GRB2 is essential for brain ventriculogenesis and cerebrospinal fluid homeostasis",
+      "year": 2026
+    },
+    {
+      "id": "W-000891",
+      "ids": {
+        "doi": "10.1016/j.ensci.2026.100624",
+        "openalex": "W7215038408",
+        "pmcid": "PMC13670938",
+        "pmid": "42889715"
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [],
+      "signals": [],
+      "title": "A comprehensive literature review of Wilson Disease in Africa",
+      "year": 2026
+    },
+    {
+      "id": "W-000894",
+      "ids": {
+        "doi": "10.64898/2026.10.19.760133",
+        "openalex": "W7222994318",
+        "pmcid": null,
+        "pmid": null
+      },
+      "reason": "no_rule_fired",
+      "reason_label": "No evidence of UWPR support was found in this paper",
+      "signal_labels": [],
+      "signals": [],
+      "title": "Deep learning-based counting and body-area measurement enable sensitive population-level endpoints in the Collembola reproduction test",
       "year": 2026
     }
   ],

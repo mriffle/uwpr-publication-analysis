@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000189"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000189"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000189"
     },
     {
@@ -39,14 +39,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-26",
+        "last_seen": "2026-10-24",
         "list_key": "list:older:3bdadf3a833a",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000189",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -54,7 +54,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-26",
+        "retrieved": "2026-10-24",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -86,7 +86,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-10-24",
       "record": "R-000189",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -94,7 +94,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-10-24",
         "url": "https://api.openalex.org/works/W2802763804"
       }
     },
@@ -106,7 +106,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-10-24",
       "record": "R-000189",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -114,7 +114,7 @@
       "source": {
         "cache": null,
         "name": "Crossref",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-10-24",
         "url": "https://api.crossref.org/works/10.1016/j.immuni.2018.03.026"
       }
     },
@@ -336,7 +336,7 @@
       "published": "2018-04-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-26"
+        "openalex": "2026-10-24"
       },
       "title": "An Antibody Targeting the Fusion Machinery Neutralizes Dual-Tropic Infection and Defines a Site of Vulnerability on Epstein-Barr Virus",
       "topics": [
@@ -378,5 +378,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-24"
 }

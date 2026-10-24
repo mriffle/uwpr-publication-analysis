@@ -6,7 +6,7 @@
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000757"
     }
   ],
@@ -15,12 +15,12 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington Proteomics Resource",
-        "query_date": "2026-09-26"
+        "query_date": "2026-10-24"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Phrase found in OpenAlex's full-text index of the paper",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-10-24",
       "record": "R-000757",
       "rule": "R6",
       "rule_version": "2026-09-26.1",
@@ -28,7 +28,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-26",
+        "retrieved": "2026-10-24",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.3389%2Ffmars.2021.757245"
       }
     }
@@ -157,7 +157,7 @@
       "published": "2022-01-21",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-26"
+        "openalex": "2026-10-24"
       },
       "title": "Degradation of Diatom Protein in Seawater: A Peptide-Level View",
       "topics": [
@@ -199,5 +199,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-24"
 }

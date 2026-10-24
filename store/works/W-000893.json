@@ -1,0 +1,208 @@
+{
+  "aliases": [],
+  "canonical": "R-000897",
+  "created": "2026-10-24",
+  "discovery": [
+    {
+      "channel": "B2",
+      "first_seen": "2026-10-24",
+      "last_seen": "2026-10-24",
+      "record": "R-000897"
+    },
+    {
+      "channel": "F",
+      "first_seen": "2026-10-24",
+      "last_seen": "2026-10-24",
+      "record": "R-000897"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-10-24",
+      "last_seen": "2026-10-24",
+      "record": "R-000897"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-10-24",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-10-24",
+      "record": "R-000897",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-10-24",
+        "url": "https://api.crossref.org/works/10.1021/jasms.6c00300"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "University of Washington Proteomics Resource , , ,",
+      "first_seen": "2026-10-24",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-10-24",
+      "record": "R-000897",
+      "rule": "R5",
+      "rule_version": "2026-09-26.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-10-24",
+        "url": "https://api.openalex.org/works/W7222963189"
+      }
+    }
+  ],
+  "id": "W-000893",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , , ,",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington Proteomics Resource , , ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael R. Hoopmann",
+          "openalex": "A5018903678",
+          "orcid": "0000-0001-7029-7792",
+          "staff": "hoopmann"
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of Washington Proteomics Resource , , ,",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Jimmy K. Eng",
+          "openalex": "A5011565192",
+          "orcid": "0000-0001-6352-6737",
+          "staff": "eng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , , ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Conor P. Herlihy",
+          "openalex": "A5079557723",
+          "orcid": "0000-0001-9818-4204",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "Brotman Baty Institute",
+              "raw": "Brotman Baty Institute for Precision Medicine , , ,",
+              "ror": "03jxvbk42"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington , , , ,",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Devin K. Schweppe",
+          "openalex": "A5065677258",
+          "orcid": "0000-0002-3241-6276",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-10-24",
+        "recheck_after": "2027-01-22",
+        "status": "unavailable"
+      },
+      "id": "R-000897",
+      "ids": {
+        "doi": "10.1021/jasms.6c00300",
+        "openalex": "W7222963189",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "article",
+      "oa": {
+        "license": null,
+        "status": "closed",
+        "url": null
+      },
+      "published": "2026-10-19",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-10-24"
+      },
+      "title": "Telescope: A Database Search Sandbox for Software Development",
+      "topics": [
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.9883000254631042,
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
+          "score": 0.00860000029206276,
+          "subfield": "Spectroscopy",
+          "topic": "Mass Spectrometry Techniques and Applications"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 9.999999747378752e-05,
+          "subfield": "Molecular Biology",
+          "topic": "Metabolomics and Mass Spectrometry Studies"
+        }
+      ],
+      "venue": {
+        "issn_l": "1044-0305",
+        "name": "Journal of the American Society for Mass Spectrometry",
+        "publisher": "American Chemical Society"
+      },
+      "version_link": null,
+      "year": 2026
+    }
+  ],
+  "rule_version": "2026-09-26.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-10-24"
+  },
+  "updated": "2026-10-24"
+}

@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000287"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000287"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000287"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000287"
     }
   ],
@@ -39,14 +39,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-09-26",
+        "last_seen": "2026-10-24",
         "list_key": "list:2023:fadbbf64ba6b",
         "page": "2023"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-10-24",
       "record": "R-000287",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -54,7 +54,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-09-26",
+        "retrieved": "2026-10-24",
         "url": "https://proteomicsresource.washington.edu/publications/2023/"
       }
     },
@@ -66,7 +66,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-10-24",
       "record": "R-000287",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -74,7 +74,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-10-24",
         "url": "https://api.openalex.org/works/W4386116857"
       }
     },
@@ -86,7 +86,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-10-24",
       "record": "R-000287",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -94,7 +94,7 @@
       "source": {
         "cache": null,
         "name": "Crossref",
-        "retrieved": "2026-09-20",
+        "retrieved": "2026-10-24",
         "url": "https://api.crossref.org/works/10.1111/jpy.13379"
       }
     },
@@ -102,12 +102,12 @@
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-09-26"
+        "query_date": "2026-10-24"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Phrase found in OpenAlex's full-text index of the paper",
-      "last_seen": "2026-09-20",
+      "last_seen": "2026-10-24",
       "record": "R-000287",
       "rule": "R6",
       "rule_version": "2026-09-26.1",
@@ -115,7 +115,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-09-26",
+        "retrieved": "2026-10-24",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1111%2Fjpy.13379"
       }
     }
@@ -244,7 +244,7 @@
       "published": "2023-08-24",
       "retracted": false,
       "sources": {
-        "openalex": "2026-09-26"
+        "openalex": "2026-10-24"
       },
       "title": "Subcellular proteomics for determining iron‐limited remodeling of plastids in the model diatom Thalassiosira pseudonana (Bacillariophyta)",
       "topics": [
@@ -286,5 +286,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-10"
+  "updated": "2026-10-24"
 }
