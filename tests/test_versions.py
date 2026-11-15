@@ -5,12 +5,14 @@ from uwpr_pubs.versions import (
     Link,
     Merge,
     VersionRecord,
+    identifier_merges,
     index_by_doi,
     links_by_title_author,
     links_from_locations,
     links_from_published,
     merges,
     resolve,
+    shared_identifiers,
     versionless,
 )
 
@@ -202,3 +204,43 @@ def test_a_location_doi_field_is_used_when_openalex_gives_one() -> None:
 
 def test_a_record_with_no_locations_points_nowhere() -> None:
     assert dois_in_locations({"ids": {"doi": ARTICLE_DOI}}) == []
+
+
+def test_works_claiming_one_openalex_id_merge_into_the_lowest() -> None:
+    """OpenAlex folded W4402684882 into W4402684852 in 2026-11, and two stored works held them."""
+    claims = {
+        "W-000658": ["doi:10.1158/2767-9764.27073983.v1", "openalex:W4402684852"],
+        "W-000657": ["doi:10.1158/2767-9764.27073983", "openalex:W4402684852"],
+        "W-000001": ["doi:10.1/unrelated", "openalex:W1"],
+    }
+    assert shared_identifiers(claims) == {"openalex:W4402684852": ["W-000657", "W-000658"]}
+    assert identifier_merges(claims) == [Merge(into="W-000657", retired="W-000658")]
+
+
+def test_a_chain_of_shared_identifiers_collapses_into_one_work() -> None:
+    claims = {
+        "W-000003": ["doi:10.1/c", "pmid:2"],
+        "W-000002": ["doi:10.1/b", "openalex:W1"],
+        "W-000001": ["openalex:W1"],
+        "W-000004": ["pmid:2"],
+    }
+    assert identifier_merges(claims) == [
+        Merge(into="W-000001", retired="W-000002"),
+        Merge(into="W-000003", retired="W-000004"),
+    ]
+    claims["W-000003"].append("doi:10.1/b")  # now one chain: 1-2 by OpenAlex, 2-3 by DOI, 3-4 by PMID
+    assert identifier_merges(claims) == [
+        Merge(into="W-000001", retired="W-000002"),
+        Merge(into="W-000001", retired="W-000003"),
+        Merge(into="W-000001", retired="W-000004"),
+    ]
+
+
+def test_a_shared_pride_accession_or_list_key_joins_nothing() -> None:
+    """Several papers can share one PRIDE dataset; only identifiers of a publication join works."""
+    claims = {
+        "W-000001": ["doi:10.1/a", "pride:PXD000001", "list:2023:0123456789ab"],
+        "W-000002": ["doi:10.1/b", "pride:PXD000001", "list:2023:0123456789ab"],
+    }
+    assert shared_identifiers(claims) == {}
+    assert identifier_merges(claims) == []

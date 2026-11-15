@@ -203,10 +203,47 @@ def resolve(
 
 
 def merges(links: Sequence[Link], records: Mapping[RecordId, VersionRecord]) -> list[Merge]:
-    """The works these links join, as `retired → survivor` pairs with the lower ID surviving.
+    """The works these links join, as `retired → survivor` pairs with the lower ID surviving."""
+    pairs: list[tuple[WorkId, WorkId]] = []
+    for link in sorted(links):
+        left = records.get(link.preprint)
+        right = records.get(link.article)
+        if left is not None and right is not None:
+            pairs.append((left.work, right.work))
+    return _joined(pairs)
 
-    A chain of links can join more than two works, so the groups are built by union-find rather
-    than pairwise: linking A→B and B→C must retire both B and C into A.
+
+# The identifiers that name one publication. A PRIDE accession can be shared by several papers,
+# and a list key is the official list's own business, so neither joins two works.
+IDENTIFYING_PREFIXES = ("doi:", "pmid:", "pmcid:", "openalex:")
+
+
+def shared_identifiers(claims: Mapping[WorkId, Iterable[str]]) -> dict[str, list[WorkId]]:
+    """Each identifying external ID that more than one work claims, with the works claiming it."""
+    owners: dict[str, set[WorkId]] = {}
+    for work, keys in claims.items():
+        for key in keys:
+            if key.startswith(IDENTIFYING_PREFIXES):
+                owners.setdefault(key, set()).add(work)
+    return {key: sorted(works) for key, works in sorted(owners.items()) if len(works) > 1}
+
+
+def identifier_merges(claims: Mapping[WorkId, Iterable[str]]) -> list[Merge]:
+    """Works that claim one identifier are one work (docs/02 §4), lower ID surviving.
+
+    It happens when a source merges two of its records: OpenAlex folded pairs of figure records into
+    one in 2026-11, so two stored works each came back holding the same OpenAlex ID. Every external
+    ID must resolve to exactly one work (docs/02 §14 invariant 2), and the gate refused the run.
+    """
+    pairs = [(works[0], other) for works in shared_identifiers(claims).values() for other in works[1:]]
+    return _joined(pairs)
+
+
+def _joined(pairs: Iterable[tuple[WorkId, WorkId]]) -> list[Merge]:
+    """Union-find over work IDs: the lowest in each group survives and the rest retire into it.
+
+    A chain can join more than two works, so the groups are built by union-find rather than
+    pairwise: joining A to B and B to C must retire both B and C into A.
     """
     parent: dict[WorkId, WorkId] = {}
 
@@ -217,12 +254,8 @@ def merges(links: Sequence[Link], records: Mapping[RecordId, VersionRecord]) -> 
             work = parent[work]
         return work
 
-    for link in sorted(links):
-        left = records.get(link.preprint)
-        right = records.get(link.article)
-        if left is None or right is None:
-            continue
-        low, high = sorted((find(left.work), find(right.work)))
+    for left, right in pairs:
+        low, high = sorted((find(left), find(right)))
         if low != high:
             parent[high] = low
 
