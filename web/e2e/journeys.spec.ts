@@ -10,7 +10,8 @@
  * the real one under `UWPR_EXPORT_DIR` — so nothing here hard-codes a work, a DOI or a figure.
  * Each spec reads what it needs from the served file first.
  */
-import { expect, test, type Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 interface Work {
   id: string;

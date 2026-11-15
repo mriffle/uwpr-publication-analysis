@@ -1002,6 +1002,12 @@ header, "Changes since agreement", unless another place is named):
   the weekly runs of 2026-10-31, 11-07 and 11-14, writing nothing. Smoke still passed, because its
   PMCID check reads the NCBI converter. Every source's PMCID now goes through `normalise_pmcid`
   (`store/ids.py`), which also keeps the `pmcid:` alias keys matching.
+- **The e2e specs must not read today's date either.** The app's staleness notice (over 14 days,
+  docs/06 §7) is a `role="status"` placed before the others, so from 2026-10-03, 14 days after
+  the sample export's date, nine specs reading `getByRole('status').first()` read it instead.
+  No `check` ran on `main` that month, so the failure showed first on the 2026-11-01 Dependabot
+  PRs. `e2e/fixtures.ts` pins the browser's `Date` to the served export's `generated_at`; every
+  spec imports `test` from it.
 
 ## 6. The approved implementation plan
 
