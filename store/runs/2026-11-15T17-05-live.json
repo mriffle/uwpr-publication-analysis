@@ -1,0 +1,247 @@
+{
+  "api": {
+    "biorxiv": {
+      "calls": 23,
+      "cost_usd": 0.0
+    },
+    "crossref": {
+      "calls": 44,
+      "cost_usd": 0.0
+    },
+    "europepmc": {
+      "calls": 22,
+      "cost_usd": 0.0
+    },
+    "ncbi": {
+      "calls": 19,
+      "cost_usd": 0.0
+    },
+    "nsf": {
+      "calls": 56,
+      "cost_usd": 0.0
+    },
+    "openalex": {
+      "calls": 67,
+      "cost_usd": 0.0139
+    },
+    "pride": {
+      "calls": 4,
+      "cost_usd": 0.0
+    },
+    "reporter": {
+      "calls": 57,
+      "cost_usd": 0.0
+    },
+    "usaspending": {
+      "calls": 25,
+      "cost_usd": 0.0
+    },
+    "uwpr_site": {
+      "calls": 6,
+      "cost_usd": 0.0
+    }
+  },
+  "changes": {
+    "added": [
+      "W-000907",
+      "W-000908"
+    ],
+    "list_appeared": [],
+    "list_disappeared": [],
+    "merged": [
+      {
+        "into": "W-000284",
+        "retired": "W-000288"
+      },
+      {
+        "into": "W-000255",
+        "retired": "W-000585"
+      },
+      {
+        "into": "W-000497",
+        "retired": "W-000595"
+      },
+      {
+        "into": "W-000515",
+        "retired": "W-000599"
+      },
+      {
+        "into": "W-000532",
+        "retired": "W-000618"
+      },
+      {
+        "into": "W-000657",
+        "retired": "W-000658"
+      },
+      {
+        "into": "W-000659",
+        "retired": "W-000660"
+      }
+    ],
+    "removed": []
+  },
+  "channels": {
+    "A": {
+      "errors": [],
+      "new": 0,
+      "nominated": 298,
+      "queries": 1
+    },
+    "B1": {
+      "errors": [],
+      "new": 0,
+      "nominated": 133,
+      "queries": 1
+    },
+    "B2": {
+      "errors": [],
+      "new": 0,
+      "nominated": 67,
+      "queries": 1
+    },
+    "C1": {
+      "errors": [],
+      "new": 0,
+      "nominated": 262,
+      "queries": 1
+    },
+    "C2": {
+      "errors": [],
+      "new": 0,
+      "nominated": 103,
+      "queries": 1
+    },
+    "D1": {
+      "errors": [],
+      "new": 0,
+      "nominated": 351,
+      "queries": 2
+    },
+    "D2": {
+      "errors": [],
+      "new": 0,
+      "nominated": 363,
+      "queries": 3
+    },
+    "D3": {
+      "errors": [],
+      "new": 0,
+      "nominated": 147,
+      "queries": 6
+    },
+    "E": {
+      "errors": [],
+      "new": 0,
+      "nominated": 127,
+      "queries": 9
+    },
+    "F": {
+      "errors": [],
+      "new": 0,
+      "nominated": 99,
+      "queries": 2
+    },
+    "G": {
+      "errors": [],
+      "new": 0,
+      "nominated": 266,
+      "queries": 5
+    },
+    "J": {
+      "errors": [],
+      "new": 0,
+      "nominated": 4,
+      "queries": 2
+    }
+  },
+  "code_version": "0.1.0",
+  "config_fingerprint": "sha256:62b6992cdb87d8913cf4571895691d2e443bdc79dffbd3ae8182cbaeb46155c6",
+  "degradations": [],
+  "ended": "2026-11-15T17:08:35Z",
+  "fixtures": {
+    "A": "pass",
+    "B": "known_miss",
+    "B2": "known_miss",
+    "C": "pass",
+    "D": "pass",
+    "E": "pass",
+    "F": "pass",
+    "G": "pass",
+    "H": "pass",
+    "I": "pass",
+    "J": "pass",
+    "neg-calculator": "pass",
+    "neg-comet-url": "pass",
+    "neg-core-only": "pass",
+    "neg-fred-hutch": "pass",
+    "neg-hunt-lab-guide": "pass",
+    "neg-isb": "pass",
+    "neg-nanospray": "pass",
+    "neg-panorama": "pass",
+    "neg-peer-review": "pass",
+    "neg-sawn": "pass"
+  },
+  "funding": {
+    "amount_usd": 7918237325,
+    "fingerprint": "sha256:f67575610a8f98b1571af8697732b73d7f7b656c05a76382bcd014317ade4d69",
+    "grants": 759,
+    "mode": "full",
+    "requests": {
+      "crossref": 9,
+      "nsf": 56,
+      "openalex": 39,
+      "pmc": 1,
+      "pubmed": 2,
+      "reporter": 57,
+      "usaspending": 25
+    },
+    "version": "2026-09-27.1"
+  },
+  "mode": "live",
+  "note": "OpenAlex has 3 records for doi:10.1136/jnnp.73.2.213 (W2611546935, W2622106973, W4293529577); taking the lowest id | unmapped record type 'other'; treated as excluded | unmapped record type 'book'; treated as excluded | unmapped record type 'conference-paper'; treated as excluded | no metadata for pmcid:PMC10187017; skipped this run | no metadata for pmcid:PMC1082671; skipped this run | no metadata for pmcid:PMC7123294; skipped this run | no metadata for pmcid:PMC7167816; skipped this run | no metadata for pmid:36993219; skipped this run | no metadata for pmid:37961344; skipped this run | no metadata for pmid:38464296; skipped this run | unmapped record type 'editorial'; treated as excluded | unmapped record type 'book-review'; treated as excluded | no metadata for doi:10.1101/2020.08.11.247395; skipped this run | no metadata for doi:10.1101/2023.09.21.558736; skipped this run | no metadata for doi:10.1101/2025.07.25.666826; skipped this run | unmapped record type 'conference-abstract'; treated as excluded | no metadata for doi:10.21203/rs.3.rs-9517980/v1; skipped this run | unmapped record type 'report'; treated as excluded | unmapped record type 'software'; treated as excluded | openalex:W4402684664 is held by W-000659 and W-000660; merged as one work | openalex:W4402684852 is held by W-000657 and W-000658; merged as one work",
+  "official_list_recall": {
+    "assessable": 253,
+    "with_evidence": 208
+  },
+  "overrides_fingerprint": "sha256:148f25e95edf3412862a6b95a5edf9eb80356595973be4c3f35b23d7e418f150",
+  "rule_version": "2026-09-26.1",
+  "rules": {
+    "R1": {
+      "new": 0,
+      "works": 306
+    },
+    "R2": {
+      "new": 3,
+      "works": 380
+    },
+    "R3": {
+      "new": 0,
+      "works": 188
+    },
+    "R3d": {
+      "new": 0,
+      "works": 2
+    },
+    "R4": {
+      "new": 0,
+      "works": 1
+    },
+    "R5": {
+      "new": 1,
+      "works": 63
+    },
+    "R6": {
+      "new": 6,
+      "works": 123
+    },
+    "R7": {
+      "new": 0,
+      "works": 21
+    }
+  },
+  "rules_fingerprint": "sha256:5113e791113befc50258ddadb5a531c8d9603f9fea7585b7fd4955ef960ffa47",
+  "run_id": "2026-11-15T17-05-live",
+  "schema": 1,
+  "started": "2026-11-15T17:05:08Z",
+  "status": "ok"
+}

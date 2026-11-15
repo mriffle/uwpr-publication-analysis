@@ -200,7 +200,7 @@
           "field": "Earth and Planetary Sciences",
           "score": 0.2849000096321106,
           "subfield": "Oceanography",
-          "topic": "Marine and coastal ecosystems"
+          "topic": "Marine Plankton and Biogeochemistry"
         },
         {
           "domain": "Physical Sciences",
@@ -226,5 +226,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

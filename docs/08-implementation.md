@@ -996,6 +996,27 @@ header, "Changes since agreement", unless another place is named):
 - **The run report's funding total, and its drop alert, are the store's lifetime sum**, not the
   site's counted headline (F17). A change to the counting rule moves the headline and leaves the
   report's total where it was.
+- **OpenAlex dropped the `PMC` from `ids.pmcid`** in late October 2026: it now ends
+  `.../pmc/articles/3073872`, where every PMCID the store took from it before had the prefix.
+  Kept as given, the bare number failed the schema on every refreshed work, and the gate refused
+  the weekly runs of 2026-10-31, 11-07 and 11-14, writing nothing. Smoke still passed, because its
+  PMCID check reads the NCBI converter. Every source's PMCID now goes through `normalise_pmcid`
+  (`store/ids.py`), which also keeps the `pmcid:` alias keys matching.
+- **A source merging two of its records merges two stored works.** OpenAlex folded W4402684882
+  into W4402684852 (and W4402685013 into W4402684664) in 2026-11. Those were the figure
+  candidates W-000657/658 and W-000659/660, one figure DOI and its `.v1` each. The refresh gave
+  both works of each pair one OpenAlex ID, and the gate refused the 2026-11-15 run (invariant 2).
+  The PMCID errors above had hidden it: the report lists only the first 20. Stage 6 now merges
+  works whose records share a DOI, PMID, PMCID or OpenAlex ID, lower ID surviving (docs/02 §4).
+  A shared PRIDE accession or list key does not merge them. `Draft.record_for_ids` also matches
+  in docs/02 §4's order now: when it took the first record sharing any key, the merged work's
+  two records traded DOIs, and the next week's run rewrote the work.
+- **The e2e specs must not read today's date either.** The app's staleness notice (over 14 days,
+  docs/06 §7) is a `role="status"` placed before the others, so from 2026-10-03, 14 days after
+  the sample export's date, nine specs reading `getByRole('status').first()` read it instead.
+  No `check` ran on `main` that month, so the failure showed first on the 2026-11-01 Dependabot
+  PRs. `e2e/fixtures.ts` pins the browser's `Date` to the served export's `generated_at`; every
+  spec imports `test` from it.
 
 ## 6. The approved implementation plan
 

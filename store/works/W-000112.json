@@ -73,7 +73,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Baohai Shao",
           "openalex": "A5026547402",
           "orcid": "0000-0001-8832-2845",
@@ -419,10 +419,10 @@
       "title": "Humans With Atherosclerosis Have Impaired ABCA1 Cholesterol Efflux and Enhanced High-Density Lipoprotein Oxidation by Myeloperoxidase",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.9028000235557556,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
@@ -456,5 +456,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

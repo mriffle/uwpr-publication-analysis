@@ -47,12 +47,6 @@
               "name": null,
               "raw": "University of Aarhus, DANDRITE-Danish Research Institute of Translational Neuroscience & Department of Biomedicine, Aarhus, Denmark",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "University of Aarhus, DANDRITE—Danish Research Institute of Translational Neuroscience & Department of Biomedicine, Aarhus, Denmark",
-              "ror": null
             }
           ],
           "corresponding": false,
@@ -128,12 +122,6 @@
               "name": null,
               "raw": "University of Aarhus, DANDRITE-Danish Research Institute of Translational Neuroscience & Department of Biomedicine, Aarhus, Denmark",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "University of Aarhus, DANDRITE—Danish Research Institute of Translational Neuroscience & Department of Biomedicine, Aarhus, Denmark",
-              "ror": null
             }
           ],
           "corresponding": true,
@@ -173,14 +161,14 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.9994999766349792,
-          "subfield": "Neurology",
+          "subfield": "Clinical Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
           "score": 9.999999747378752e-05,
-          "subfield": "Physiology",
+          "subfield": "Cellular and Molecular Neuroscience",
           "topic": "Alzheimer's disease research and treatments"
         },
         {
@@ -207,5 +195,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

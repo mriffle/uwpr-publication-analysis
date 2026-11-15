@@ -144,10 +144,10 @@
       "title": "A Spatiotemporal Atlas of the Androgen Receptor Proximal Interactome",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.8256999850273132,
-          "subfield": "Pulmonary and Respiratory Medicine",
+          "subfield": "Cancer Research",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
@@ -161,7 +161,7 @@
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.0008999999845400453,
-          "subfield": "Genetics",
+          "subfield": "Endocrinology",
           "topic": "Estrogen and related hormone effects"
         }
       ],
@@ -181,5 +181,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

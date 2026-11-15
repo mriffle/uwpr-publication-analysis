@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000248"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000248"
     }
   ],
@@ -95,18 +95,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Molecular and Cellular Biology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             },
@@ -125,18 +113,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Astrobiology Program University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Genome Sciences University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -161,12 +137,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Applied Physics Lab, Polar Science Center University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Applied Physics Lab, Polar Science Center, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -179,12 +149,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Applied Physics Lab, Polar Science Center University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -203,12 +167,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -224,12 +182,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -242,18 +194,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Genome Sciences University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Paul G. Allen School of Computer Science and Engineering University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -278,12 +218,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Earth and Space Sciences University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Earth and Space Sciences, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -299,12 +233,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Applied Physics Lab, Polar Science Center University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Applied Physics Lab, Polar Science Center, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -317,12 +245,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Applied Physics Lab, Polar Science Center University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -354,7 +276,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/8475265"
+        "url": "http://europepmc.org/pmc/articles/PMC8475265"
       },
       "published": "2021-03-24",
       "retracted": false,
@@ -401,5 +323,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

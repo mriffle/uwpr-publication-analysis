@@ -8,7 +8,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000301"
     },
     {
@@ -32,7 +32,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000301"
     },
     {
@@ -50,7 +50,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000301"
     },
     {
@@ -322,7 +322,7 @@
         "doi": "10.1371/journal.ppat.1012179",
         "openalex": "W4402917543",
         "pmcid": "PMC11463830",
-        "pmid": "38645187"
+        "pmid": "39331659"
       },
       "kind": "article",
       "oa": {
@@ -340,21 +340,21 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.989300012588501,
+          "score": 0.9901999831199646,
           "subfield": "Public Health, Environmental and Occupational Health",
           "topic": "Mosquito-borne diseases and control"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.0038999998942017555,
+          "score": 0.0034000000450760126,
           "subfield": "Infectious Diseases",
           "topic": "Viral Infections and Vectors"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.0013000000035390258,
+          "score": 0.0012000000569969416,
           "subfield": "Epidemiology",
           "topic": "Virology and Viral Diseases"
         }
@@ -480,5 +480,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

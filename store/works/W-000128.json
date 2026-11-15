@@ -146,7 +146,7 @@
           "field": "Chemistry",
           "score": 0.00019999999494757503,
           "subfield": "Physical and Theoretical Chemistry",
-          "topic": "Chemical Reactions and Mechanisms"
+          "topic": "Photolysis and Reactive Intermediates"
         }
       ],
       "venue": {
@@ -165,5 +165,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

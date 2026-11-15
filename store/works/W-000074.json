@@ -163,10 +163,10 @@
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
           "score": 0.00039999998989515007,
-          "subfield": "Molecular Biology",
+          "subfield": "Organic Chemistry",
           "topic": "Chemical Synthesis and Analysis"
         }
       ],
@@ -186,5 +186,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

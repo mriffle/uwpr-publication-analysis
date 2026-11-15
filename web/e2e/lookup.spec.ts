@@ -10,7 +10,8 @@
  * Nothing is hard-coded. Each identifier is read out of whatever export the preview server is
  * serving — `samples/export/` by default, the real 339-work one under `UWPR_EXPORT_DIR`.
  */
-import { expect, test, type Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 interface Row {
   id: string;

@@ -9,7 +9,7 @@ import unicodedata
 from dataclasses import dataclass
 from difflib import SequenceMatcher
 
-from uwpr_pubs.store.ids import external_keys, normalise_doi
+from uwpr_pubs.store.ids import external_keys, normalise_doi, normalise_pmcid
 from uwpr_pubs.store.models import Ids, WorkId
 
 TITLE_SIMILARITY = 0.85  # Phase 1 §8
@@ -67,6 +67,6 @@ def normalise_ids(ids: Ids) -> Ids:
     if doi:
         cleaned["doi"] = normalise_doi(str(doi))
     pmcid = cleaned.get("pmcid")
-    if pmcid and not str(pmcid).startswith("PMC"):
-        cleaned["pmcid"] = f"PMC{pmcid}"
+    if pmcid:
+        cleaned["pmcid"] = normalise_pmcid(str(pmcid))
     return cleaned

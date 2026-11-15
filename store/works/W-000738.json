@@ -31,6 +31,27 @@
         "retrieved": "2026-10-24",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.21220%2Fs2-jfyf-3r27"
       }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000738",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.21220%2Fs2-jfyf-3r27"
+      }
     }
   ],
   "id": "W-000738",
@@ -66,7 +87,7 @@
         "status": "green",
         "url": "https://scholarworks.wm.edu/etd/1550154018"
       },
-      "published": "2019-02-14",
+      "published": "2018-01-01",
       "retracted": false,
       "sources": {
         "openalex": "2026-10-24"
@@ -81,10 +102,10 @@
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Environmental Science",
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
           "score": 0.0066999997943639755,
-          "subfield": "Ecology",
+          "subfield": "Virology",
           "topic": "Bacteriophages and microbial interactions"
         },
         {
@@ -101,7 +122,7 @@
         "publisher": "William & Mary"
       },
       "version_link": null,
-      "year": 2019
+      "year": 2018
     }
   ],
   "rule_version": "2026-09-26.1",
@@ -111,5 +132,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

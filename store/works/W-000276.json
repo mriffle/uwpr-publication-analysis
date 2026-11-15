@@ -213,7 +213,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.4641000032424927,
-          "subfield": "Surgery",
+          "subfield": "Gastroenterology",
           "topic": "Helicobacter pylori-related gastroenterology studies"
         },
         {
@@ -240,5 +240,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

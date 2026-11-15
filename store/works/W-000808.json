@@ -84,6 +84,27 @@
         "retrieved": "2026-10-24",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.59720%2F16-082"
       }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000808",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.59720%2F16-082"
+      }
     }
   ],
   "id": "W-000808",
@@ -93,18 +114,6 @@
       "authors": [
         {
           "affiliations": [
-            {
-              "country": null,
-              "name": null,
-              "raw": "Telluride High School ; 725 West Colorado Avenue , Telluride CO 81435 ",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "University of Washington , Department of Genome Sciences ; Seattle WA 98195 ",
-              "ror": "00cvxb145"
-            },
             {
               "country": null,
               "name": null,
@@ -129,12 +138,6 @@
             {
               "country": "US",
               "name": "Old Dominion University",
-              "raw": "Old Dominion University , Ocean , Earth & Atmospheric Sciences ; Norfolk , VA 23529 ",
-              "ror": "04zjtrb98"
-            },
-            {
-              "country": "US",
-              "name": "Old Dominion University",
               "raw": "Old Dominion University, Ocean, Earth & Atmospheric Sciences; Norfolk, VA 23529",
               "ror": "04zjtrb98"
             }
@@ -147,12 +150,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Rhode Island",
-              "raw": "University of Rhode Island , Department of Cell and Molecular Biology , Rhode Island 02881 ",
-              "ror": "013ckk937"
-            },
             {
               "country": "US",
               "name": "University of Rhode Island",
@@ -192,12 +189,6 @@
             {
               "country": "US",
               "name": "University of Rhode Island",
-              "raw": "University of Rhode Island , Department of Cell and Molecular Biology , Rhode Island 02881 ",
-              "ror": "013ckk937"
-            },
-            {
-              "country": "US",
-              "name": "University of Rhode Island",
               "raw": "University of Rhode Island, Department of Cell and Molecular Biology, Rhode Island 02881",
               "ror": "013ckk937"
             }
@@ -210,12 +201,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "University of Washington , Department of Genome Sciences ; Seattle WA 98195 ",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -268,7 +253,7 @@
           "field": "Earth and Planetary Sciences",
           "score": 0.09440000355243683,
           "subfield": "Oceanography",
-          "topic": "Marine and coastal ecosystems"
+          "topic": "Marine Plankton and Biogeochemistry"
         },
         {
           "domain": "Physical Sciences",
@@ -294,5 +279,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

@@ -184,7 +184,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7970438"
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7970438/"
       },
       "published": "2019-11-21",
       "retracted": false,
@@ -194,10 +194,10 @@
       "title": "In Vivo Cross-Linking MS Reveals Conservation in OmpA Linkage to Different Classes of β-Lactamase Enzymes",
       "topics": [
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
+          "domain": "Health Sciences",
+          "field": "Medicine",
           "score": 0.9883000254631042,
-          "subfield": "Molecular Medicine",
+          "subfield": "Microbiology (medical)",
           "topic": "Antibiotic Resistance in Bacteria"
         },
         {
@@ -231,5 +231,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

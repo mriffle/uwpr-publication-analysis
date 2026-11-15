@@ -194,7 +194,7 @@
             }
           ],
           "corresponding": true,
-          "name": "Shalender Bhasin M. D",
+          "name": "Shalender Bhasin",
           "openalex": "A5071176339",
           "orcid": "0000-0002-3982-6200",
           "staff": null
@@ -227,10 +227,10 @@
       "title": "Effect of Selective Androgen Receptor Modulator on Cholesterol Efflux Capacity, Size, and Subspecies of HDL Particles",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.4480000138282776,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
@@ -244,7 +244,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.21400000154972076,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
@@ -264,5 +264,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

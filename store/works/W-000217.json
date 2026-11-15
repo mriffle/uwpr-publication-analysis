@@ -18,7 +18,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000217"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000217"
     },
     {
@@ -139,12 +139,6 @@
             {
               "country": "US",
               "name": "Old Dominion University",
-              "raw": "Ocean, Earth and Atmospheric Sciences, Old Dominion University, 406 Oceanography & Physical Sciences Building , Norfolk, VA 23529, USA",
-              "ror": "04zjtrb98"
-            },
-            {
-              "country": "US",
-              "name": "Old Dominion University",
               "raw": "Ocean, Earth and Atmospheric Sciences, Old Dominion University, 406 Oceanography & Physical Sciences Building, Norfolk, VA, 23529, USA",
               "ror": "04zjtrb98"
             }
@@ -160,12 +154,6 @@
             {
               "country": "US",
               "name": "Old Dominion University",
-              "raw": "Ocean, Earth and Atmospheric Sciences, Old Dominion University, 406 Oceanography & Physical Sciences Building , Norfolk, VA 23529, USA",
-              "ror": "04zjtrb98"
-            },
-            {
-              "country": "US",
-              "name": "Old Dominion University",
               "raw": "Ocean, Earth and Atmospheric Sciences, Old Dominion University, 406 Oceanography & Physical Sciences Building, Norfolk, VA, 23529, USA",
               "ror": "04zjtrb98"
             }
@@ -178,12 +166,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington , William H. Foege Hall, 3720 15th Ave NE, Seattle, WA 98195, USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -214,12 +196,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington , William H. Foege Hall, 3720 15th Ave NE, Seattle, WA 98195, USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -259,12 +235,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington , William H. Foege Hall, 3720 15th Ave NE, Seattle, WA 98195, USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, William H. Foege Hall, 3720 15th Ave NE, Seattle, WA, 98195, USA",
               "ror": "00cvxb145"
             }
@@ -280,17 +250,11 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington , William H. Foege Hall, 3720 15th Ave NE, Seattle, WA 98195, USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, William H. Foege Hall, 3720 15th Ave NE, Seattle, WA, 98195, USA",
               "ror": "00cvxb145"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Brook L. Nunn",
           "openalex": "A5082833460",
           "orcid": "0000-0002-7361-4359",
@@ -335,7 +299,7 @@
           "field": "Earth and Planetary Sciences",
           "score": 0.093299999833107,
           "subfield": "Oceanography",
-          "topic": "Marine and coastal ecosystems"
+          "topic": "Marine Plankton and Biogeochemistry"
         },
         {
           "domain": "Physical Sciences",
@@ -361,5 +325,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

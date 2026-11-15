@@ -361,7 +361,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 9.999999747378752e-05,
-          "subfield": "Pathology and Forensic Medicine",
+          "subfield": "Rheumatology",
           "topic": "Systemic Sclerosis and Related Diseases"
         }
       ],
@@ -381,5 +381,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

@@ -4,6 +4,12 @@
   "created": "2026-09-20",
   "discovery": [
     {
+      "channel": "A",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000529"
+    },
+    {
       "channel": "B1",
       "first_seen": "2026-09-20",
       "last_seen": "2026-10-24",
@@ -260,8 +266,8 @@
       "ids": {
         "doi": "10.1073/pnas.2519139123",
         "openalex": "W4413051416",
-        "pmcid": "PMC12330562",
-        "pmid": "40777506"
+        "pmcid": "PMC13229197",
+        "pmid": "42201957"
       },
       "kind": "article",
       "oa": {
@@ -279,23 +285,23 @@
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.8804000020027161,
+          "score": 0.9452999830245972,
           "subfield": "Molecular Biology",
           "topic": "Biochemical and Structural Characterization"
         },
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.07280000299215317,
-          "subfield": "Endocrinology",
+          "field": "Immunology and Microbiology",
+          "score": 0.028999999165534973,
+          "subfield": "Microbiology",
           "topic": "Escherichia coli research studies"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.012900000438094139,
-          "subfield": "Epidemiology",
-          "topic": "Urinary Tract Infections Management"
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.007799999788403511,
+          "subfield": "Molecular Biology",
+          "topic": "Protein Structure and Dynamics"
         }
       ],
       "venue": {
@@ -314,5 +320,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

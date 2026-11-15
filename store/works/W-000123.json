@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000123"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000123"
     }
   ],
@@ -57,12 +57,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104;",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104",
               "ror": "00cvxb145"
             }
@@ -75,12 +69,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104;",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -99,12 +87,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104;",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104",
               "ror": "00cvxb145"
             }
@@ -117,12 +99,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104;",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -141,12 +117,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104;",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104",
               "ror": "00cvxb145"
             }
@@ -159,12 +129,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104;",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -210,12 +174,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "¶Department of Environmental and Occupational Health Sciences, University of Washington, Seattle, Washington 98195;",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "¶Department of Environmental and Occupational Health Sciences, University of Washington, Seattle, Washington 98195",
               "ror": "00cvxb145"
             }
@@ -228,12 +186,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "From the ‡Department of Pathology, University of Washington School of Medicine, Seattle, Washington 98104;",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -333,12 +285,6 @@
             {
               "country": null,
               "name": null,
-              "raw": "¶¶Department of Neurology, Oregon Health and Science University, Portland, Oregon 97239;",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
               "raw": "¶¶Department of Neurology, Oregon Health and Science University, Portland, Oregon 97239",
               "ror": null
             }
@@ -416,7 +362,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.8618000149726868,
-          "subfield": "Neurology",
+          "subfield": "Clinical Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
@@ -450,5 +396,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

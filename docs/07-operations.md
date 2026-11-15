@@ -83,6 +83,15 @@ F17, §11.1):
   against it. §10 now says so. Should 1.1 data ever be served to the new app, its funding pages
   show that no-data state, never a wrong figure, and the publications are unaffected.
 
+**Changed 2026-11-15, when Dependabot moved past the pinned uv:**
+- *§11, uv moves to 0.13* (`required-version = ">=0.13,<0.14"`, `uv_build>=0.13,<0.14`).
+  Dependabot's uv updater now runs uv 0.13.5 and refused the 0.12 pin
+  (`tool_version_not_supported`), so from 2026-11-01 it opened no `uv.lock` pull request at all.
+  The pin's purpose stands: the minor was taken by hand, per RUNBOOK §11. 0.13's breaking
+  changes were read first, and none reaches this project: Python is pinned to 3.12 in
+  `.python-version` and in both workflows, and no constraints files are used. `uv sync --locked`
+  needed no lock change, and the checks pass and the package builds under 0.13.8.
+
 **Purpose:** define where this runs, how the app is published, how a failure becomes visible, and
 who is responsible when it does.
 **Depends on:** [03](03-retrieval-pipeline.md) (frozen), which already specifies the run, its

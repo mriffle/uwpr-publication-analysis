@@ -12,7 +12,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000416"
     },
     {
@@ -24,7 +24,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000416"
     },
     {
@@ -205,9 +205,9 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "Vanderbilt University",
+              "name": "Vanderbilt University Medical Center",
               "raw": "Department of Medicine, Vanderbilt University Medical Center, Nashville, TN, USA. Electronic address: j.segrest@vumc.org",
-              "ror": "02vm5rt34"
+              "ror": "05dq2gs74"
             }
           ],
           "corresponding": true,
@@ -244,10 +244,10 @@
       "title": "A model of human APOA2 on HDL",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.864300012588501,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
@@ -281,5 +281,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

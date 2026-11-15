@@ -50,8 +50,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Masami Shimizu-Albergine",
-          "openalex": null,
+          "name": "Masami Shimizu‐Albergine",
+          "openalex": "A5036947726",
           "orcid": "0000-0002-7989-6051",
           "staff": null
         },
@@ -66,7 +66,7 @@
           ],
           "corresponding": false,
           "name": "Debapriya Basu",
-          "openalex": null,
+          "openalex": "A5101504135",
           "orcid": "0000-0002-5312-8169",
           "staff": null
         },
@@ -81,7 +81,7 @@
           ],
           "corresponding": false,
           "name": "Jenny E. Kanter",
-          "openalex": null,
+          "openalex": "A5002224107",
           "orcid": "0000-0003-3212-772X",
           "staff": null
         },
@@ -170,8 +170,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Noemie Clouet-Foraison",
-          "openalex": null,
+          "name": "Noémie Clouet-Foraison",
+          "openalex": "A5083292466",
           "orcid": "0000-0002-3966-2453",
           "staff": null
         },
@@ -263,8 +263,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Karin E. Bornfeldt",
-          "openalex": null,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
           "orcid": "0000-0001-9208-6523",
           "staff": null
         }
@@ -303,10 +303,10 @@
           "topic": "Lipid metabolism and disorders"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.0008999999845400453,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
@@ -333,5 +333,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

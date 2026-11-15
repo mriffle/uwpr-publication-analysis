@@ -18,13 +18,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000259"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000259"
     }
   ],
@@ -238,10 +238,10 @@
           "topic": "Coral and Marine Ecosystems Studies"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Earth and Planetary Sciences",
+          "domain": "Life Sciences",
+          "field": "Agricultural and Biological Sciences",
           "score": 0.0,
-          "subfield": "Paleontology",
+          "subfield": "Animal Science and Zoology",
           "topic": "Marine Invertebrate Physiology and Ecology"
         },
         {
@@ -268,5 +268,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

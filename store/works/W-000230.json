@@ -32,7 +32,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000230"
     },
     {
@@ -50,7 +50,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000230"
     },
     {
@@ -232,6 +232,12 @@
             {
               "country": "US",
               "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
               "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
               "ror": "050sv4x28"
             }
@@ -244,6 +250,12 @@
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
             {
               "country": "US",
               "name": "Buck Institute for Research on Aging",
@@ -262,6 +274,12 @@
             {
               "country": "US",
               "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
               "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
               "ror": "050sv4x28"
             }
@@ -274,6 +292,12 @@
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
             {
               "country": "US",
               "name": "Buck Institute for Research on Aging",
@@ -292,6 +316,12 @@
             {
               "country": "US",
               "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
               "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
               "ror": "050sv4x28"
             }
@@ -307,6 +337,12 @@
             {
               "country": "US",
               "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
               "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
               "ror": "050sv4x28"
             }
@@ -314,11 +350,17 @@
           "corresponding": false,
           "name": "Chirag Rao",
           "openalex": null,
-          "orcid": "0000-0002-6106-1144",
+          "orcid": null,
           "staff": null
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
             {
               "country": "US",
               "name": "Buck Institute for Research on Aging",
@@ -337,6 +379,12 @@
             {
               "country": "US",
               "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
               "raw": "The Buck Institute for Research on Aging, Novato, California, United States of America",
               "ror": "050sv4x28"
             }
@@ -349,6 +397,12 @@
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "University of Washington, Seattle, Washington 98195, USA",
+              "ror": "00cvxb145"
+            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -367,6 +421,12 @@
             {
               "country": "US",
               "name": "National Institute on Aging",
+              "raw": "National Institute on Aging, Bethesda, Maryland 20892, USA",
+              "ror": "049v75w11"
+            },
+            {
+              "country": "US",
+              "name": "National Institute on Aging",
               "raw": "Intramural Research Program of the National Institute on Aging, NIH, Baltimore, Maryland, United States of America",
               "ror": "049v75w11"
             }
@@ -379,6 +439,18 @@
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "University of California, Berkeley",
+              "raw": "Lawrence Berkeley Laboratory, University of California, Berkeley, California 94720, USA",
+              "ror": "01an7q238"
+            },
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
             {
               "country": "US",
               "name": "University of California, Berkeley",
@@ -400,6 +472,12 @@
         },
         {
           "affiliations": [
+            {
+              "country": "US",
+              "name": "Buck Institute for Research on Aging",
+              "raw": "The Buck Institute for Research on Aging, Novato, California 94947, USA",
+              "ror": "050sv4x28"
+            },
             {
               "country": "US",
               "name": "Buck Institute for Research on Aging",
@@ -441,25 +519,25 @@
       "title": "A proteomic atlas of senescence-associated secretomes for aging biomarker development",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9932000041007996,
-          "subfield": "Physiology",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.9901999831199646,
+          "subfield": "Cell Biology",
           "topic": "Telomeres, Telomerase, and Senescence"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.005900000222027302,
+          "score": 0.008100000210106373,
           "subfield": "Aging",
           "topic": "Genetics, Aging, and Longevity in Model Organisms"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
           "score": 9.999999747378752e-05,
-          "subfield": "Molecular Biology",
-          "topic": "Single-cell and spatial transcriptomics"
+          "subfield": "Spectroscopy",
+          "topic": "Advanced Proteomics Techniques and Applications"
         }
       ],
       "venue": {
@@ -733,5 +811,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

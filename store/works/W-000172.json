@@ -18,7 +18,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000172"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000172"
     },
     {
@@ -103,6 +103,27 @@
         "name": "OpenAlex",
         "retrieved": "2026-10-24",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1038%2Fcdd.2017.101"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000172",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1038%2Fcdd.2017.101"
       }
     },
     {
@@ -238,7 +259,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Marc Ryan Van Gilst",
+          "name": "Marc R. Van Gilst",
           "openalex": "A5088525691",
           "orcid": "0000-0002-4511-7689",
           "staff": null
@@ -339,10 +360,10 @@
           "topic": "Genetics, Aging, and Longevity in Model Organisms"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.0348999984562397,
-          "subfield": "Epidemiology",
+          "subfield": "Cell Biology",
           "topic": "Autophagy in Disease and Therapy"
         }
       ],
@@ -362,5 +383,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

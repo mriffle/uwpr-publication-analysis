@@ -8,6 +8,12 @@
       "first_seen": "2026-09-20",
       "last_seen": "2026-10-24",
       "record": "R-000328"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000328"
     }
   ],
   "evidence": [
@@ -124,7 +130,7 @@
               "ror": "02w0trx84"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Joan B. Broderick",
           "openalex": "A5073568934",
           "orcid": "0000-0001-7057-9124",
@@ -158,10 +164,10 @@
       "title": "The radical SAM enzyme EpeE exhibits distinct site reactivity during the biosynthesis of the RiPP natural product epipeptide",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
           "score": 0.9320999979972839,
-          "subfield": "Pharmacology",
+          "subfield": "Applied Microbiology and Biotechnology",
           "topic": "Microbial Natural Products and Biosynthesis"
         },
         {
@@ -172,10 +178,10 @@
           "topic": "Metal-Catalyzed Oxygenation Mechanisms"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Materials Science",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.004800000227987766,
-          "subfield": "Materials Chemistry",
+          "subfield": "Structural Biology",
           "topic": "Enzyme Structure and Function"
         }
       ],
@@ -195,5 +201,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

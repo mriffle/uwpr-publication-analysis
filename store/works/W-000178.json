@@ -18,7 +18,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000178"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000178"
     },
     {
@@ -103,6 +103,27 @@
         "name": "OpenAlex",
         "retrieved": "2026-10-24",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1073%2Fpnas.1706907114"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000178",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1073%2Fpnas.1706907114"
       }
     },
     {
@@ -235,12 +256,6 @@
               "name": null,
               "raw": "Harvard Medical School, Boston, MA 02115;",
               "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Boston Children's Hospital",
-              "raw": "Department of Hematology/Oncology, Boston Children's Hospital, Boston, MA 02115;",
-              "ror": "00dvg7y05"
             }
           ],
           "corresponding": false,
@@ -423,12 +438,6 @@
               "ror": "03dbr7087"
             },
             {
-              "country": "CN",
-              "name": "Jinggangshan University",
-              "raw": "School of Life Sciences in Jinggangshan University, Jiangxi Province, People's Republic of China;",
-              "ror": "04exd0a76"
-            },
-            {
               "country": "CA",
               "name": "University of Toronto",
               "raw": "Structural Genomics Consortium, University of Toronto, Toronto, ON, Canada M5G 1L7; i Department of Pharmacology,",
@@ -475,12 +484,6 @@
               "name": "University of Toronto",
               "raw": "Structural Genomics Consortium, University of Toronto, Toronto, ON, Canada M5G 1L7;",
               "ror": "03dbr7087"
-            },
-            {
-              "country": "CN",
-              "name": "University of Science and Technology of China",
-              "raw": "School of Life Sciences, University of Science and Technology of China, Hefei, Anhui 230027, People's Republic of China;",
-              "ror": "04c4dkn09"
             },
             {
               "country": "CA",
@@ -658,12 +661,6 @@
             },
             {
               "country": "US",
-              "name": "Boston Children's Hospital",
-              "raw": "Department of Hematology/Oncology, Boston Children's Hospital, Boston, MA 02115;",
-              "ror": "00dvg7y05"
-            },
-            {
-              "country": "US",
               "name": "Harvard Stem Cell Institute",
               "raw": "Harvard Stem Cell Institute, Harvard Medical School, Boston, MA 02115; and",
               "ror": "04kj1hn59"
@@ -718,9 +715,9 @@
             }
           ],
           "corresponding": false,
-          "name": "David A. Baker",
-          "openalex": "A5053192926",
-          "orcid": "0000-0001-7896-6217",
+          "name": "Hannele Ruohola‐Baker",
+          "openalex": "A5021999547",
+          "orcid": "0000-0002-5588-4531",
           "staff": null
         }
       ],
@@ -788,5 +785,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

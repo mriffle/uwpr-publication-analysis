@@ -12,7 +12,8 @@
  * The fixture is whatever export the preview server serves — `samples/export/` by default, the
  * real one under `UWPR_EXPORT_DIR` — so nothing here hard-codes a figure.
  */
-import { expect, test, type Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 interface ExportDocument {
   works: { year: number }[];

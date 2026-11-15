@@ -347,17 +347,17 @@
       "title": "CD90/THY1 is overexpressed in prostate cancer-associated fibroblasts and could serve as a cancer biomarker",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.9682999849319458,
-          "subfield": "Pulmonary and Respiratory Medicine",
+          "subfield": "Cancer Research",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.007799999788403511,
-          "subfield": "Pulmonary and Respiratory Medicine",
+          "subfield": "Urology",
           "topic": "Prostate Cancer Diagnosis and Treatment"
         },
         {
@@ -384,5 +384,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

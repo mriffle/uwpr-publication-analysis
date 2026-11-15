@@ -12,7 +12,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000100"
     },
     {
@@ -96,12 +96,6 @@
       "authors": [
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Chemistry, University of Washington, Seattle, Washington, United\rStates",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -277,10 +271,10 @@
           "topic": "Bioinformatics and Genomic Networks"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Materials Science",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.009600000455975533,
-          "subfield": "Materials Chemistry",
+          "subfield": "Structural Biology",
           "topic": "Enzyme Structure and Function"
         }
       ],
@@ -300,5 +294,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

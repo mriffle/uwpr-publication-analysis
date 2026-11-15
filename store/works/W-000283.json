@@ -240,7 +240,7 @@
         "pmcid": "PMC9992333",
         "pmid": "36781985"
       },
-      "kind": "article",
+      "kind": "letter",
       "oa": {
         "license": "other-oa",
         "status": "green",
@@ -264,7 +264,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.04859999939799309,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         },
         {
@@ -291,5 +291,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

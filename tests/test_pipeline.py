@@ -4,6 +4,7 @@ import datetime as dt
 import json
 import shutil
 import subprocess
+import sys
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
@@ -461,6 +462,84 @@ def test_a_resolved_pmcid_is_kept_and_aliased(client: HttpClient, tmp_path: Path
     pmcids = {r["ids"]["pmcid"] for work in works for r in work["records"] if r["ids"].get("pmcid")}
     assert pmcids == set(PMCIDS.values())
     assert all(f"pmcid:{pmcid}" in aliases for pmcid in pmcids)
+
+
+def test_openalex_pmc_urls_without_the_prefix_still_give_a_pmcid(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Since late October 2026 OpenAlex ends `ids.pmcid` in the bare number, not "PMC…".
+
+    Kept as given, it failed the schema on every refreshed work, and the gate refused three weekly
+    runs in a row (2026-10-31 to 2026-11-14). It must also key the same `pmcid:` alias as before.
+    """
+
+    def with_bare_pmc_url(index: int, **kwargs: Any) -> dict[str, Any]:
+        work = original(index, **kwargs)
+        pmid = work["ids"]["pmid"].rsplit("/", 1)[-1]
+        if pmid in PMCIDS:
+            number = PMCIDS[pmid].removeprefix("PMC")
+            work["ids"]["pmcid"] = f"https://www.ncbi.nlm.nih.gov/pmc/articles/{number}"
+        return work
+
+    original = openalex_work
+    monkeypatch.setattr(sys.modules[__name__], "openalex_work", with_bare_pmc_url)
+    store = tmp_path / "store"
+    result = do_run(client, store)
+    assert result.status == "ok", result.errors
+    before = _weekly_data(store)
+
+    later = do_run(client, store, day="2026-09-28")
+
+    assert later.status == "ok", later.errors
+    assert _weekly_data(store) == before
+    aliases = io.read_json(store / "aliases.json")["aliases"]
+    works = [io.read_json(p) for p in sorted((store / "works").glob("W-*.json"))]
+    pmcids = {r["ids"]["pmcid"] for work in works for r in work["records"] if r["ids"].get("pmcid")}
+    assert pmcids == set(PMCIDS.values())
+    assert all(f"pmcid:{pmcid}" in aliases for pmcid in pmcids)
+
+
+def test_two_works_openalex_merged_upstream_become_one(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """OpenAlex folding one record into another leaves two stored works holding one OpenAlex ID.
+
+    In 2026-11 it folded W4402684882 into W4402684852, held by W-000657 and W-000658, and the
+    gate refused the run: an external ID must resolve to exactly one work (docs/02 §14). Here
+    work 3's record comes back under work 4's OpenAlex ID, and the two are merged, lower ID
+    surviving, with each record keeping its own DOI.
+    """
+    store = tmp_path / "store"
+    assert do_run(client, store).status == "ok"
+    aliases = io.read_json(store / "aliases.json")["aliases"]
+    third, fourth = aliases["doi:10.1234/example.3"], aliases["doi:10.1234/example.4"]
+    assert third < fourth
+
+    def folded_into_w4(index: int, **kwargs: Any) -> dict[str, Any]:
+        work = original(index, **kwargs)
+        if index == 3:
+            work["id"] = work["ids"]["openalex"] = "https://openalex.org/W4"
+        return work
+
+    original = openalex_work
+    monkeypatch.setattr(sys.modules[__name__], "openalex_work", folded_into_w4)
+    result = do_run(client, store, day="2026-09-28")
+
+    assert result.status == "ok", result.errors
+    aliases = io.read_json(store / "aliases.json")["aliases"]
+    assert aliases[f"work:{fourth}"] == third
+    assert aliases["openalex:W4"] == third
+    assert not (store / "works" / f"{fourth}.json").exists()
+    manifest = io.read_json(store / "runs" / f"{result.run_id}.json")
+    assert {"into": third, "retired": fourth} in manifest["changes"]["merged"]
+    work = io.read_json(store / "works" / f"{third}.json")
+    dois = sorted(record["ids"]["doi"] for record in work["records"])
+    assert dois == ["10.1234/example.3", "10.1234/example.4"]
+
+    # Settled: a week later the merged work matches each record by its own DOI, and rewrites nothing.
+    before = _weekly_data(store)
+    assert do_run(client, store, day="2026-10-05").status == "ok"
+    assert _weekly_data(store) == before
 
 
 def test_every_list_entry_maps_to_an_included_work(client: HttpClient, tmp_path: Path) -> None:

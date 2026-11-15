@@ -261,10 +261,10 @@
           "topic": "Plant Virus Research Studies"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Materials Science",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.0017999999690800905,
-          "subfield": "Materials Chemistry",
+          "subfield": "Structural Biology",
           "topic": "Enzyme Structure and Function"
         },
         {
@@ -291,5 +291,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

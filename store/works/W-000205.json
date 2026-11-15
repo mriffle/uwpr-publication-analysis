@@ -18,7 +18,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000205"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000205"
     },
     {
@@ -549,17 +549,17 @@
       "title": "Metabolism as an early predictor of DPSCs aging",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.9609000086784363,
-          "subfield": "Genetics",
+          "subfield": "Cell Biology",
           "topic": "Mesenchymal stem cell research"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.03709999844431877,
-          "subfield": "Physiology",
+          "subfield": "Cell Biology",
           "topic": "Telomeres, Telomerase, and Senescence"
         },
         {
@@ -586,5 +586,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

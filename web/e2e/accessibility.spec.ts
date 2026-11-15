@@ -21,7 +21,8 @@
  * serving — `samples/export/` by default, the real 339-work one under `UWPR_EXPORT_DIR`.
  */
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test, type Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 interface Work {
   id: string;

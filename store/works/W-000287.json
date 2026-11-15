@@ -24,7 +24,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000287"
     },
     {
@@ -130,12 +130,6 @@
             {
               "country": "US",
               "name": "University of Rhode Island",
-              "raw": "Department of Biological Sciences University of Rhode Island  Rhode Island Kingston USA",
-              "ror": "013ckk937"
-            },
-            {
-              "country": "US",
-              "name": "University of Rhode Island",
               "raw": "Department of Biological Sciences, University of Rhode Island, Rhode Island, Kingston, USA",
               "ror": "013ckk937"
             }
@@ -148,12 +142,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Genome Sciences University of Washington  Washington Seattle USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -172,12 +160,6 @@
             {
               "country": "US",
               "name": "University of South Florida",
-              "raw": "College of Marine Science, University of South Florida  Florida St. Petersburg USA",
-              "ror": "032db5x82"
-            },
-            {
-              "country": "US",
-              "name": "University of South Florida",
               "raw": "College of Marine Science, University of South Florida, Florida, St. Petersburg, USA",
               "ror": "032db5x82"
             }
@@ -190,18 +172,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Rhode Island",
-              "raw": "Department of Cell and Molecular Biology University of Rhode Island  Rhode Island Kingston USA",
-              "ror": "013ckk937"
-            },
-            {
-              "country": "US",
-              "name": "University of Rhode Island",
-              "raw": "Graduate School of Oceanography University of Rhode Island  Rhode Island Narragansett USA",
-              "ror": "013ckk937"
-            },
             {
               "country": "US",
               "name": "University of Rhode Island",
@@ -267,7 +237,7 @@
           "field": "Earth and Planetary Sciences",
           "score": 0.03889999911189079,
           "subfield": "Oceanography",
-          "topic": "Marine and coastal ecosystems"
+          "topic": "Marine Plankton and Biogeochemistry"
         }
       ],
       "venue": {
@@ -286,5 +256,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

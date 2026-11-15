@@ -259,21 +259,21 @@
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.9872999787330627,
+          "score": 0.9878000020980835,
           "subfield": "Environmental Engineering",
           "topic": "Microbial Fuel Cells and Bioremediation"
         },
         {
           "domain": "Physical Sciences",
           "field": "Environmental Science",
-          "score": 0.00570000009611249,
+          "score": 0.005499999970197678,
           "subfield": "Ecology",
           "topic": "Microbial Community Ecology and Physiology"
         },
         {
           "domain": "Physical Sciences",
           "field": "Earth and Planetary Sciences",
-          "score": 0.0044999998062849045,
+          "score": 0.004100000020116568,
           "subfield": "Geochemistry and Petrology",
           "topic": "Geochemistry and Elemental Analysis"
         }
@@ -294,5 +294,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

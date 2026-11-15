@@ -98,7 +98,7 @@ from uwpr_pubs.stages.funding import (
 )
 from uwpr_pubs.status import STATUS_OVERRIDE_ACTIONS, Status, StatusInput, decide
 from uwpr_pubs.store import io
-from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi, retired_key
+from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi, normalise_pmcid, retired_key
 from uwpr_pubs.store.models import (
     Candidate,
     CandidateRecord,
@@ -207,15 +207,26 @@ class Draft:
 
         Candidate lines keep a smaller record shape, but their ids are permanent too, so they are
         searched as well: a candidate that becomes included keeps its record id.
+
+        The strongest identifier decides, in docs/02 §4's matching order (DOI, PMID, PMCID, then
+        OpenAlex ID), which is the order `external_keys` gives. Once two works are merged because
+        their records share an OpenAlex ID, the first record sharing any key could be the wrong
+        one, and the other record's DOI would have been written over it.
         """
-        wanted = set(external_keys(ids))
-        for record_id, record in self.records.items():
-            if wanted & set(external_keys(record["ids"])):
-                return record_id
-        for candidate in self.candidate_records:
-            if wanted & set(external_keys(candidate["ids"])):
-                return candidate["id"]
+        for key in external_keys(ids):
+            for record_id, record in self.records.items():
+                if key in external_keys(record["ids"]):
+                    return record_id
+            for candidate in self.candidate_records:
+                if key in external_keys(candidate["ids"]):
+                    return candidate["id"]
         return None
+
+    def external_keys(self) -> list[str]:
+        """Every external ID the records written for this work will carry (cf. `_candidate_records`)."""
+        written = [record["ids"] for record in self.records.values()]
+        written += [c["ids"] for c in self.candidate_records if c["id"] not in self.records]
+        return sorted({key for ids in written for key in external_keys(ids)})
 
 
 class Pipeline:
@@ -970,7 +981,8 @@ class Pipeline:
                     continue
                 draft, record_id = found
                 record = draft.records[record_id]
-                updated = cast(Record, {**record, "ids": {**record["ids"], "pmcid": str(pmcid)}})
+                ids = {**record["ids"], "pmcid": normalise_pmcid(str(pmcid))}
+                updated = cast(Record, {**record, "ids": ids})
                 draft.records[record_id] = updated
                 for key in external_keys(updated["ids"]):
                     self.aliases[key] = draft.id  # a new identifier is a new alias (invariant 2)
@@ -1170,6 +1182,7 @@ class Pipeline:
         channel found and the journal article that another found, with no link between them. The
         trusted signals come from metadata, and only the title fallback can be wrong (§8).
         """
+        self._merge_shared_identifiers()
         published = self._published_versions()
         self._create_published_records(published)
         records = self._version_records()
@@ -1180,6 +1193,19 @@ class Pipeline:
         self._apply_links(links)
         self._apply_override_merges()
         self._apply_override_splits()
+
+    def _merge_shared_identifiers(self) -> None:
+        """Works whose records share a DOI, PMID, PMCID or OpenAlex ID are one work (docs/02 §4).
+
+        A source merging two of its records does this: the refresh hands both stored works the
+        same identifier, and the gate refuses the store (docs/02 §14 invariant 2). First, so the
+        version links below are worked out over the merged works.
+        """
+        claims = {work_id: draft.external_keys() for work_id, draft in self.drafts.items()}
+        for key, works in versions.shared_identifiers(claims).items():
+            self.recorder.note(f"{key} is held by {' and '.join(works)}; merged as one work")
+        for merge in versions.identifier_merges(claims):
+            self._merge_drafts(merge.into, merge.retired)
 
     def _current_work(self, target: str) -> WorkId | None:
         """Where a work ID points now: itself, or whatever it was merged into."""

@@ -174,9 +174,9 @@
       "topics": [
         {
           "domain": "Physical Sciences",
-          "field": "Physics and Astronomy",
+          "field": "Earth and Planetary Sciences",
           "score": 0.9409000277519226,
-          "subfield": "Astronomy and Astrophysics",
+          "subfield": "Space and Planetary Science",
           "topic": "Planetary Science and Exploration"
         },
         {
@@ -195,7 +195,7 @@
         }
       ],
       "venue": {
-        "issn_l": "1531-1074",
+        "issn_l": "1557-8070",
         "name": "Astrobiology",
         "publisher": "Mary Ann Liebert, Inc."
       },
@@ -210,5 +210,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

@@ -208,7 +208,7 @@
         {
           "affiliations": [
             {
-              "country": null,
+              "country": "US",
               "name": "Benaroya Research Institute",
               "raw": "Matrix Biology Program, Benaroya Research Institute, Seattle, Washington, USA",
               "ror": "04j9rp686"
@@ -338,17 +338,17 @@
       "title": "Serum amyloid A impairs the antiinflammatory properties of HDL",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.79830002784729,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.17790000140666962,
-          "subfield": "Epidemiology",
+          "subfield": "Endocrinology, Diabetes and Metabolism",
           "topic": "Adipokines, Inflammation, and Metabolic Diseases"
         },
         {
@@ -375,5 +375,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

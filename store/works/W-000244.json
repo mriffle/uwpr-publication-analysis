@@ -8,7 +8,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000244"
     },
     {
@@ -26,7 +26,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000244"
     },
     {
@@ -44,7 +44,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000244"
     },
     {
@@ -287,7 +287,7 @@
           "corresponding": false,
           "name": "Samuel P. Wrenn",
           "openalex": "A5019060363",
-          "orcid": "0000-0002-4280-1012",
+          "orcid": null,
           "staff": null
         },
         {
@@ -1130,7 +1130,7 @@
         "doi": "10.1016/j.cell.2020.10.043",
         "openalex": "W3094860119",
         "pmcid": "PMC7604136",
-        "pmid": "32817941"
+        "pmid": "33160446"
       },
       "kind": "article",
       "oa": {
@@ -2113,5 +2113,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

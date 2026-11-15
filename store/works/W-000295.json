@@ -18,13 +18,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000295"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000295"
     }
   ],
@@ -100,12 +100,6 @@
               "name": "Bermuda Institute of Ocean Sciences",
               "raw": "Bermuda Institute of Ocean Sciences, Arizona State University, St. George’s 98C3+8F, Bermuda",
               "ror": "05j1wxv23"
-            },
-            {
-              "country": "BM",
-              "name": "Bermuda Institute of Ocean Sciences",
-              "raw": "Bermuda Institute of Ocean Sciences, Arizona State University, St. George's 98C3+8F, Bermuda",
-              "ror": "05j1wxv23"
             }
           ],
           "corresponding": false,
@@ -141,12 +135,6 @@
               "country": "BM",
               "name": "Bermuda Institute of Ocean Sciences",
               "raw": "Bermuda Institute of Ocean Sciences, Arizona State University, St. George’s 98C3+8F, Bermuda",
-              "ror": "05j1wxv23"
-            },
-            {
-              "country": "BM",
-              "name": "Bermuda Institute of Ocean Sciences",
-              "raw": "Bermuda Institute of Ocean Sciences, Arizona State University, St. George's 98C3+8F, Bermuda",
               "ror": "05j1wxv23"
             }
           ],
@@ -257,5 +245,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

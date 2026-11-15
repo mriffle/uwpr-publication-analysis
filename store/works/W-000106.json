@@ -18,13 +18,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000106"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000106"
     }
   ],
@@ -84,12 +84,6 @@
               "country": "US",
               "name": "University of Washington",
               "raw": "Department of Pediatrics, University of Washington School of Medicine, Seattle, Washington, USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Pediatrics University of Washington School of Medicine  Seattle Washington USA",
               "ror": "00cvxb145"
             }
           ],
@@ -267,7 +261,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3638909"
+        "url": "http://europepmc.org/articles/PMC3638909"
       },
       "published": "2013-04-23",
       "retracted": false,
@@ -314,5 +308,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

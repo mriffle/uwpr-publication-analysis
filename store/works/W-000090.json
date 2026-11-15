@@ -115,7 +115,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "František Tureček",
           "openalex": "A5042952795",
           "orcid": "0000-0001-7321-7858",
@@ -139,7 +139,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3619414"
+        "url": "http://europepmc.org/articles/PMC3619414"
       },
       "published": "2012-06-05",
       "retracted": false,
@@ -163,10 +163,10 @@
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
           "score": 0.0,
-          "subfield": "Molecular Biology",
+          "subfield": "Organic Chemistry",
           "topic": "Chemical Synthesis and Analysis"
         }
       ],
@@ -186,5 +186,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

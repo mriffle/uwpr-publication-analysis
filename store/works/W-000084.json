@@ -215,7 +215,7 @@
           "domain": "Physical Sciences",
           "field": "Engineering",
           "score": 0.00019999999494757503,
-          "subfield": "Biomedical Engineering",
+          "subfield": "Electrical and Electronic Engineering",
           "topic": "Acoustic Wave Resonator Technologies"
         },
         {
@@ -242,5 +242,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

@@ -218,7 +218,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.9945999979972839,
-          "subfield": "Physiology",
+          "subfield": "Physiology (medical)",
           "topic": "Adipose Tissue and Metabolism"
         },
         {
@@ -252,5 +252,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

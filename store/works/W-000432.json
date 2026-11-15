@@ -235,18 +235,18 @@
       "title": "Plasma-driven disassembly of amyloid-β aggregates by the interplay of physicochemical stimuli",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.9897000193595886,
-          "subfield": "Physiology",
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.9976000189781189,
+          "subfield": "Cellular and Molecular Neuroscience",
           "topic": "Alzheimer's disease research and treatments"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
-          "score": 0.0044999998062849045,
-          "subfield": "Radiology, Nuclear Medicine and Imaging",
-          "topic": "Plasma Applications and Diagnostics"
+          "domain": "Physical Sciences",
+          "field": "Physics and Astronomy",
+          "score": 0.0020000000949949026,
+          "subfield": "Atomic and Molecular Physics, and Optics",
+          "topic": "Atmospheric-Pressure Plasma Applications"
         },
         {
           "domain": "Health Sciences",
@@ -272,5 +272,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

@@ -131,7 +131,7 @@
             }
           ],
           "corresponding": false,
-          "name": "John Sawyer Ramsey",
+          "name": "John S. Ramsey",
           "openalex": "A5032120483",
           "orcid": "0000-0003-1439-500X",
           "staff": null
@@ -223,7 +223,7 @@
               "ror": "02d2m2044"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Michelle Cilia",
           "openalex": "A5108391104",
           "orcid": null,
@@ -294,5 +294,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }
