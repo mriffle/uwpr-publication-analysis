@@ -24,19 +24,40 @@ export interface SortHeaderProps {
    * ("for the publications shown"). The button stays named by the label alone.
    */
   note?: string;
+  /**
+   * The label as drawn, when it differs: a long word with soft hyphens, so a narrow column can
+   * break it ("Publi-cations") rather than widen the table. The button is still named `label`.
+   */
+  shown?: string;
 }
 
-export function SortHeader({ label, direction, onSort, numeric = false, note }: SortHeaderProps) {
+export function SortHeader({
+  label,
+  direction,
+  onSort,
+  numeric = false,
+  note,
+  shown,
+}: SortHeaderProps) {
+  // Drawn with soft hyphens, the header and its button are named by the label as written, so a
+  // name never depends on how an engine treats U+00AD.
+  const named = shown !== undefined && shown !== label;
   return (
     <th
       scope="col"
       className={numeric ? 'numeric' : undefined}
+      {...(named ? { 'aria-label': note === undefined ? label : `${label} ${note}` } : {})}
       {...(direction === null
         ? {}
         : { 'aria-sort': direction === 'asc' ? 'ascending' : 'descending' })}
     >
-      <button type="button" className="sort-header" onClick={onSort}>
-        {label}
+      <button
+        type="button"
+        className="sort-header"
+        onClick={onSort}
+        {...(named ? { 'aria-label': label } : {})}
+      >
+        {shown ?? label}
         <span className="sort-header-arrow" aria-hidden="true">
           {direction === null ? '' : direction === 'asc' ? ' ↑' : ' ↓'}
         </span>

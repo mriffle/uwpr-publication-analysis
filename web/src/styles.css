@@ -1439,10 +1439,12 @@ button.chart-legend-item.is-selected {
 /*
  * An institution breaks between words, never inside one: RePORTER writes them in capitals, and
  * "anywhere" let the column shrink until "NORTHWESTERN" broke after its tenth letter. Its longest
- * word ("NEURODIAGNOSTIC") sets the column's least width instead. The least widths below leave the
- * table about 40 px inside a desktop column with every row drawn on macOS's fonts, which CI's
- * Linux fonts, 2-3% wider, need: at a few pixels' slack, CI drew it 8 px too wide (docs/09 R1b).
- * With the counted column added, the real export's least width is 1,017 px of 1,056.
+ * word ("NEURODIAGNOSTIC") sets the column's least width instead. The least widths below, and the
+ * soft hyphens in two headers (GrantsTable.tsx), leave the table at least 40 px inside a desktop
+ * column with every row drawn, in DejaVu Sans: the widest common default sans-serif, about 8%
+ * wider than Noto Sans or Liberation Sans, and the face e2e measures in (docs/09 R1b, docs/08 §5).
+ * Measured 2026-11-15 on the real export's 759 grants: 1,010 px of 1,056 in DejaVu Sans (it was
+ * 1,069 before the hyphens), 956 in Noto Sans, 947 in Liberation Sans.
  */
 .funding-table .grants-organisation {
   overflow-wrap: break-word;

@@ -259,6 +259,32 @@ async function expectClean(page: Page) {
   ).toEqual([]);
 }
 
+/**
+ * The default sans-serif on many Linux systems (Debian, WSL) is DejaVu Sans, and it is about 8%
+ * wider than Noto Sans, Liberation Sans, Ubuntu or Roboto. A width that fits in the runner's own
+ * face can still overflow for those readers: the grants table did, by 13 px with every row drawn,
+ * while CI passed (docs/08 §5). So the width checks draw the page in it, ahead of the app's stack.
+ */
+const WIDEST_FACE = 'DejaVu Sans';
+
+/** Puts the widest face first, and says which face the browser actually drew `selector` in. */
+async function inWidestFace(page: Page, selector: string): Promise<string | undefined> {
+  await page.evaluate((face) => {
+    const root = document.documentElement;
+    const stack = getComputedStyle(root).getPropertyValue('--font');
+    root.style.setProperty('--font', `'${face}', ${stack}`);
+  }, WIDEST_FACE);
+  await page.evaluate(() => document.fonts.ready);
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('DOM.enable');
+  await cdp.send('CSS.enable');
+  const { root } = await cdp.send('DOM.getDocument');
+  const { nodeId } = await cdp.send('DOM.querySelector', { nodeId: root.nodeId, selector });
+  const { fonts } = await cdp.send('CSS.getPlatformFontsForNode', { nodeId });
+  await cdp.detach();
+  return fonts[0]?.familyName;
+}
+
 test.describe('the Funding impact view', () => {
   test('the switch keeps the filter both ways, and back and forward retrace it (docs/09)', async ({
     page,
@@ -911,6 +937,9 @@ test.describe('the Funding impact view', () => {
     await page.goto('/funding');
     const table = page.getByRole('table', { name: /Every grant listed/ });
     await expect(table.getByRole('rowheader')).toHaveCount(Math.min(all, 50));
+    // Measured in the widest common default face, so the answer does not depend on the runner's.
+    const face = await inWidestFace(page, '.grants-table tbody td.grants-organisation');
+    if (process.env.CI) expect(face, 'CI must measure the table in DejaVu Sans').toBe(WIDEST_FACE);
     // On a desktop the totals are on the page, not beyond the table's right-hand edge.
     const width = await table.evaluate((element) => ({
       table: element.getBoundingClientRect().width,

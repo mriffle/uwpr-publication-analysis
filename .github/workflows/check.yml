@@ -46,7 +46,7 @@ jobs:
   # Playwright and the visual-regression pass of §12.2 arrive with the views they cover.
   web:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: web
@@ -82,4 +82,14 @@ jobs:
       # cover — the 404 fallback and the on-demand lookup fetch — do not exist in dev, so a
       # component test cannot reach them (docs/06 §12.2).
       - run: npm run e2e:install
+      # The width checks draw the page in DejaVu Sans, the widest common default sans-serif, and
+      # fail on CI if it is missing rather than measure in a narrower face (docs/08 §5). Playwright's
+      # --with-deps has just refreshed apt's lists.
+      - run: sudo apt-get install -y --no-install-recommends fonts-dejavu-core
       - run: npm run e2e
+      # Again on the committed real export, the only one with more than 50 grants: the sample never
+      # draws every row, which is where the grants table overflowed. Set for both the build and the
+      # specs, since Playwright's web server builds the app (CLAUDE.md).
+      - run: npm run e2e
+        env:
+          UWPR_EXPORT_DIR: ${{ github.workspace }}/export

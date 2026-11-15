@@ -245,7 +245,12 @@ const COUNTED = 'Counted for the publications shown';
 function cells(row: HTMLElement): Record<string, string> {
   const headers = within(grantsTable())
     .getAllByRole('columnheader')
-    .map((cell) => cell.textContent.replace(/[↑↓]/g, '').replace(/\s+/g, ' ').trim());
+    .map((cell) =>
+      cell.textContent
+        .replace(/[↑↓\u00AD]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim(),
+    );
   const values = [...row.querySelectorAll('th, td')].map((cell) => cell.textContent);
   return Object.fromEntries(headers.map((header, at_) => [header, values[at_] ?? '']));
 }

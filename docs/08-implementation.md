@@ -988,6 +988,15 @@ header, "Changes since agreement", unless another place is named):
 - **A table tuned to macOS's fonts can overflow on CI's Linux fonts,** which are 2–3% wider. R1b's
   grants table fitted locally with 2–22 pixels to spare and measured 1,064 pixels in a 1,056-pixel
   column on CI. Its least widths now leave about 40 pixels (fee1be4).
+  **CI's face was not the widest, though** (2026-11-15). Where DejaVu Sans is the default
+  sans-serif (Debian, WSL), the table with all 759 grants still measured 1,069 px in 1,056, and
+  scrolled. It had done so since F17 added the counted column, with the same width on the Oct 24
+  export. CI never saw it: its e2e ran only on the sample, whose few grants never reach "Show
+  all". Two header words set their columns' least widths, so `GrantsTable.tsx` gives them soft
+  hyphens ("Publi-cations", "investi-gators"), named without them. That leaves 1,010 px in
+  DejaVu Sans, 956 in Noto Sans. In the narrower faces "Publications" breaks too, because the
+  table fills its column. The width checks now draw the page in DejaVu Sans (`inWidestFace`, and
+  CI fails without it), and `check.yml` runs the e2e suite a second time on the real export.
 - **An export must not read today's date** (F17, 2026-09-27). An amount obligated to date is spread
   only to a year already paid, and that year is the grant's own `amount_source.as_of`, not the
   current one. `check.yml` rebuilds the export from the committed store and diffs it, so a spread

@@ -88,22 +88,42 @@ const GRANT_NOUN = { one: 'grant', many: 'grants' };
 /** The counted column's note by default: a filter moves what it counts. */
 const COUNTED_NOTE = 'for the publications shown';
 
+/*
+ * Two headers' words set their columns' least widths, not the data: "investigators" and
+ * "Publications". With every row drawn the table has no width to spare, and in DejaVu Sans, the
+ * default sans-serif on many Linux systems, it was 13 px wider than a desktop column (1,069 of
+ * 1,056) and scrolled. A soft hyphen lets each break only when its column needs it: 46 px spare in
+ * DejaVu Sans, measured with all 759 grants (docs/09 R1b, docs/08 §5).
+ */
+const SOFT_HYPHEN = '\u00AD';
+
 const COLUMNS: {
   key: GrantSortKey | null;
   label: string;
+  /** The label as drawn, where a soft hyphen lets a long word break. */
+  shown?: string;
   numeric?: boolean;
 }[] = [
   { key: 'number', label: 'Number' },
   { key: 'title', label: 'Title' },
   { key: 'agency', label: 'Agency' },
-  { key: null, label: 'Principal investigators' },
+  {
+    key: null,
+    label: 'Principal investigators',
+    shown: `Principal investi${SOFT_HYPHEN}gators`,
+  },
   { key: null, label: 'Institution' },
   { key: null, label: 'Years' },
   { key: null, label: 'Type' },
   { key: 'counted', label: 'Counted', numeric: true },
   { key: 'lifetime', label: 'Lifetime total', numeric: true },
   { key: 'first', label: 'First listed', numeric: true },
-  { key: 'publications', label: 'Publications', numeric: true },
+  {
+    key: 'publications',
+    label: 'Publications',
+    shown: `Publi${SOFT_HYPHEN}cations`,
+    numeric: true,
+  },
 ];
 
 const None = ({ children }: { children: string }) => <span className="cell-none">{children}</span>;
@@ -316,13 +336,18 @@ export function GrantsTable({
               <tr>
                 {COLUMNS.map((column) =>
                   column.key === null ? (
-                    <th key={column.label} scope="col">
-                      {column.label}
+                    <th
+                      key={column.label}
+                      scope="col"
+                      {...(column.shown === undefined ? {} : { 'aria-label': column.label })}
+                    >
+                      {column.shown ?? column.label}
                     </th>
                   ) : (
                     <SortHeader
                       key={column.label}
                       label={column.label}
+                      {...(column.shown === undefined ? {} : { shown: column.shown })}
                       {...(column.key === 'counted' ? { note: countedNote } : {})}
                       direction={sort.key === column.key ? sort.direction : null}
                       numeric={column.numeric ?? false}

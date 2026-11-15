@@ -99,7 +99,12 @@ describe('the normal state', () => {
     );
     const headers = within(table())
       .getAllByRole('columnheader')
-      .map((cell) => cell.textContent.replace(/[↑↓]/g, '').replace(/\s+/g, ' ').trim());
+      .map((cell) =>
+        cell.textContent
+          .replace(/[↑↓\u00AD]/g, '')
+          .replace(/\s+/g, ' ')
+          .trim(),
+      );
     expect(headers).toEqual([
       'Number',
       'Title',
@@ -116,6 +121,20 @@ describe('the normal state', () => {
     for (const cell of within(table()).getAllByRole('columnheader')) {
       expect(cell).toHaveAttribute('scope', 'col');
     }
+  });
+
+  it('lets two long header words break at a soft hyphen, and names them without one', () => {
+    // At its least width the table is set by these two words; in DejaVu Sans it overflowed (R1b).
+    show();
+    const investigators = within(table()).getByRole('columnheader', {
+      name: 'Principal investigators',
+    });
+    expect(investigators).toHaveTextContent('Principal investi\u00ADgators', {
+      normalizeWhitespace: false,
+    });
+    const publications = within(table()).getByRole('button', { name: 'Publications' });
+    expect(publications).toHaveTextContent('Publi\u00ADcations', { normalizeWhitespace: false });
+    expect(within(table()).getByRole('columnheader', { name: 'Publications' })).toBeInTheDocument();
   });
 
   it('shows each row’s facts: links, tags, not known, the original of a converted amount', () => {
