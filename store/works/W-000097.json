@@ -12,19 +12,19 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000097"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000097"
     },
     {
       "channel": "E",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000097"
     }
   ],
@@ -102,12 +102,6 @@
               "country": "US",
               "name": "University of Washington",
               "raw": "Department of Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington 98195, United States",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department\rof Medicinal Chemistry, University of Washington, Box 357610, Seattle, Washington\r98195, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -350,5 +344,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

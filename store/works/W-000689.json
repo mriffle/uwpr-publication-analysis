@@ -6,7 +6,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000689"
     },
     {
@@ -212,22 +212,22 @@
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.7577999830245972,
+          "score": 0.7860999703407288,
           "subfield": "Rheumatology",
           "topic": "Systemic Lupus Erythematosus Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Immunology and Microbiology",
-          "score": 0.0843999981880188,
+          "score": 0.0731000006198883,
           "subfield": "Immunology",
           "topic": "interferon and immune responses"
         },
         {
           "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
-          "score": 0.05550000071525574,
-          "subfield": "Plant Science",
+          "field": "Biochemistry, Genetics and Molecular Biology",
+          "score": 0.045099999755620956,
+          "subfield": "Genetics",
           "topic": "Chromosomal and Genetic Variations"
         }
       ],
@@ -247,5 +247,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

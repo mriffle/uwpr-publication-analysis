@@ -18,7 +18,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000239"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000239"
     },
     {
@@ -204,7 +204,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Ilona M. Babenko",
+          "name": "Ilona Babenko",
           "openalex": "A5112384425",
           "orcid": null,
           "staff": null
@@ -270,7 +270,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.7836999893188477,
-          "subfield": "Epidemiology",
+          "subfield": "Endocrinology, Diabetes and Metabolism",
           "topic": "Adipokines, Inflammation, and Metabolic Diseases"
         },
         {
@@ -304,5 +304,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

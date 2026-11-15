@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000171"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000171"
     }
   ],
@@ -95,12 +95,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Medicine University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -113,12 +107,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Medicine University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -137,12 +125,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Medicine University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -155,12 +137,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Pittsburgh",
-              "raw": "Department of Medicine University of Pittsburgh  Pittsburgh PA USA",
-              "ror": "01an3r305"
-            },
             {
               "country": "US",
               "name": "University of Pittsburgh",
@@ -179,12 +155,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Medicine University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Medicine, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -197,12 +167,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Medicine University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -234,7 +198,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/5880677"
+        "url": "http://europepmc.org/pmc/articles/PMC5880677"
       },
       "published": "2017-06-19",
       "retracted": false,
@@ -281,5 +245,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

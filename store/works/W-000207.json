@@ -12,7 +12,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000207"
     }
   ],
@@ -194,10 +194,10 @@
       "title": "Autophagy accounts for approximately one-third of mitochondrial protein turnover and is protein selective",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 1.0,
-          "subfield": "Epidemiology",
+          "subfield": "Cell Biology",
           "topic": "Autophagy in Disease and Therapy"
         },
         {
@@ -231,5 +231,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

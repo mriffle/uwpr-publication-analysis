@@ -142,10 +142,10 @@
           "topic": "Redox biology and oxidative stress"
         },
         {
-          "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
+          "domain": "Physical Sciences",
+          "field": "Chemistry",
           "score": 0.000699999975040555,
-          "subfield": "Molecular Biology",
+          "subfield": "Organic Chemistry",
           "topic": "Chemical Synthesis and Analysis"
         }
       ],
@@ -165,5 +165,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

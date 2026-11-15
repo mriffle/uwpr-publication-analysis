@@ -18,7 +18,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000098"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000098"
     },
     {
@@ -156,6 +156,27 @@
     {
       "criterion": 4,
       "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000098",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1074%2Fmcp.o112.019166"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
         "phrase": "Washington's Proteomics Resource",
         "query_date": "2026-10-24"
       },
@@ -214,12 +235,6 @@
               "name": "Institute for Systems Biology",
               "raw": "Institute for Systems Biology, Seattle, Washington",
               "ror": "02tpgw303"
-            },
-            {
-              "country": "US",
-              "name": "Institute for Systems Biology",
-              "raw": "§Institute for Systems Biology, Seattle, Washington;",
-              "ror": "02tpgw303"
             }
           ],
           "corresponding": false,
@@ -235,12 +250,6 @@
               "name": "University of Washington",
               "raw": "UW Proteomics Resource, University of Washington, Seattle, Washington, 98109",
               "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "¶UW Proteomics Resource, University of Washington, Seattle, Washington, 98109;",
-              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -255,12 +264,6 @@
               "country": "US",
               "name": "Institute for Systems Biology",
               "raw": "Institute for Systems Biology, Seattle, Washington",
-              "ror": "02tpgw303"
-            },
-            {
-              "country": "US",
-              "name": "Institute for Systems Biology",
-              "raw": "§Institute for Systems Biology, Seattle, Washington;",
               "ror": "02tpgw303"
             }
           ],
@@ -283,18 +286,6 @@
               "name": null,
               "raw": "Seattle Biomedical Research Institute, Seattle, Washington 98109",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "**Seattle Biomedical Research Institute, Seattle, Washington 98109",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Institute for Systems Biology",
-              "raw": "§Institute for Systems Biology, Seattle, Washington;",
-              "ror": "02tpgw303"
             }
           ],
           "corresponding": false,
@@ -310,16 +301,10 @@
               "name": "Institute for Systems Biology",
               "raw": "Institute for Systems Biology, Seattle, Washington",
               "ror": "02tpgw303"
-            },
-            {
-              "country": "US",
-              "name": "Institute for Systems Biology",
-              "raw": "§Institute for Systems Biology, Seattle, Washington;",
-              "ror": "02tpgw303"
             }
           ],
           "corresponding": false,
-          "name": "Leslie Rae Miller",
+          "name": "Leslie R. Miller",
           "openalex": "A5040675957",
           "orcid": "0000-0002-2555-2771",
           "staff": null
@@ -337,18 +322,6 @@
               "name": null,
               "raw": "Seattle Biomedical Research Institute, Seattle, Washington 98109",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "**Seattle Biomedical Research Institute, Seattle, Washington 98109",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Institute for Systems Biology",
-              "raw": "§Institute for Systems Biology, Seattle, Washington;",
-              "ror": "02tpgw303"
             }
           ],
           "corresponding": false,
@@ -385,18 +358,6 @@
               "name": null,
               "raw": "Seattle Biomedical Research Institute, Seattle, Washington 98109",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "**Seattle Biomedical Research Institute, Seattle, Washington 98109",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Institute for Systems Biology",
-              "raw": "§Institute for Systems Biology, Seattle, Washington;",
-              "ror": "02tpgw303"
             }
           ],
           "corresponding": true,
@@ -470,5 +431,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

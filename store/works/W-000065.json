@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000065"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000065"
     },
     {
@@ -133,12 +133,6 @@
               "name": "Hong Kong University of Science and Technology",
               "raw": "Department of Chemical and Biomolecular Engineering, the Hong Kong University of Science and Technology, Hong Kong, China",
               "ror": "00q4vv597"
-            },
-            {
-              "country": "HK",
-              "name": "Hong Kong University of Science and Technology",
-              "raw": "Department of Chemical and Biomolecular Engineering, The Hong Kong University of Science and Technology, Hong Kong, China",
-              "ror": "00q4vv597"
             }
           ],
           "corresponding": false,
@@ -242,5 +236,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

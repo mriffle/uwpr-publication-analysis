@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000200"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000200"
     },
     {
@@ -190,12 +190,6 @@
               "name": null,
               "raw": "Center for Global Infectious Disease Research, Seattle Children’s Research Institute, Seattle, Washington 98101, United States",
               "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Seattle Children's Research Institute",
-              "raw": "Center for Global Infectious Disease Research, Seattle Children's Research Institute, Seattle, Washington 98101, United States",
-              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -211,12 +205,6 @@
               "name": null,
               "raw": "Harvard Medical School and Boston Children’s Hospital, Boston, Massachusetts 02115, United States",
               "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Boston Children's Hospital",
-              "raw": "Harvard Medical School and Boston Children's Hospital, Boston, Massachusetts 02115, United States",
-              "ror": "00dvg7y05"
             }
           ],
           "corresponding": false,
@@ -247,12 +235,6 @@
               "name": null,
               "raw": "Center for Global Infectious Disease Research, Seattle Children’s Research Institute, Seattle, Washington 98101, United States",
               "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Seattle Children's Research Institute",
-              "raw": "Center for Global Infectious Disease Research, Seattle Children's Research Institute, Seattle, Washington 98101, United States",
-              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -283,12 +265,6 @@
               "name": null,
               "raw": "Center for Global Infectious Disease Research, Seattle Children’s Research Institute, Seattle, Washington 98101, United States",
               "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Seattle Children's Research Institute",
-              "raw": "Center for Global Infectious Disease Research, Seattle Children's Research Institute, Seattle, Washington 98101, United States",
-              "ror": "00cz0md82"
             }
           ],
           "corresponding": false,
@@ -330,7 +306,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6445572"
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6445572/"
       },
       "published": "2018-12-07",
       "retracted": false,
@@ -377,5 +353,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

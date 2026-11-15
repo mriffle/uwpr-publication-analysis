@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000137"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000137"
     }
   ],
@@ -218,9 +218,9 @@
         },
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
+          "field": "Immunology and Microbiology",
           "score": 0.03290000185370445,
-          "subfield": "Endocrinology",
+          "subfield": "Microbiology",
           "topic": "Escherichia coli research studies"
         }
       ],
@@ -240,5 +240,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

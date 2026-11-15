@@ -18,13 +18,13 @@
     {
       "channel": "C2",
       "first_seen": "2026-10-10",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000350"
     },
     {
       "channel": "D2",
       "first_seen": "2026-10-10",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000350"
     }
   ],
@@ -96,12 +96,12 @@
       "criterion": 2,
       "detail": {
         "phrase": "UWPR95794",
-        "query_date": "2026-10-10"
+        "query_date": "2026-11-15"
       },
       "excerpt": null,
       "first_seen": "2026-10-10",
       "label": "Phrase found in OpenAlex's full-text index of the paper",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000350",
       "rule": "R6",
       "rule_version": "2026-09-26.1",
@@ -109,7 +109,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-10-10",
+        "retrieved": "2026-11-15",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1002%2Flno.12175"
       }
     },
@@ -117,12 +117,12 @@
       "criterion": 4,
       "detail": {
         "phrase": "Washington Proteomics Resource",
-        "query_date": "2026-10-10"
+        "query_date": "2026-11-15"
       },
       "excerpt": null,
       "first_seen": "2026-10-10",
       "label": "Phrase found in OpenAlex's full-text index of the paper",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000350",
       "rule": "R6",
       "rule_version": "2026-09-26.1",
@@ -130,8 +130,29 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-10-10",
+        "retrieved": "2026-11-15",
         "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1002%2Flno.12175"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000350",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.1002%2Flno.12175"
       }
     }
   ],
@@ -142,12 +163,6 @@
       "authors": [
         {
           "affiliations": [
-            {
-              "country": "AU",
-              "name": "University of Tasmania",
-              "raw": "Institute for Marine and Antarctic Studies University of Tasmania  Hobart Tasmania Australia",
-              "ror": "01nfmeh72"
-            },
             {
               "country": "AU",
               "name": "University of Tasmania",
@@ -166,12 +181,6 @@
             {
               "country": "US",
               "name": "University of Virginia",
-              "raw": "Department of Environmental Sciences University of Virginia  Charlottesville Virginia",
-              "ror": "0153tk833"
-            },
-            {
-              "country": "US",
-              "name": "University of Virginia",
               "raw": "Department of Environmental Sciences, University of Virginia, Charlottesville, Virginia",
               "ror": "0153tk833"
             }
@@ -184,12 +193,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "AU",
-              "name": "Australian National University",
-              "raw": "Research School of Earth Sciences Australian National University  Canberra Australian Capital Territory Australia",
-              "ror": "019wvm592"
-            },
             {
               "country": "AU",
               "name": "Australian National University",
@@ -208,12 +211,6 @@
             {
               "country": "AU",
               "name": "Australian National University",
-              "raw": "Research School of Earth Sciences Australian National University  Canberra Australian Capital Territory Australia",
-              "ror": "019wvm592"
-            },
-            {
-              "country": "AU",
-              "name": "Australian National University",
               "raw": "Research School of Earth Sciences, Australian National University, Canberra, Australian Capital Territory, Australia",
               "ror": "019wvm592"
             }
@@ -226,12 +223,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "AU",
-              "name": "University of Tasmania",
-              "raw": "Institute for Marine and Antarctic Studies University of Tasmania  Hobart Tasmania Australia",
-              "ror": "01nfmeh72"
-            },
             {
               "country": "AU",
               "name": "University of Tasmania",
@@ -250,12 +241,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences University of Washington  Seattle Washington",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington",
               "ror": "00cvxb145"
             }
@@ -271,12 +256,6 @@
             {
               "country": "AU",
               "name": "University of Tasmania",
-              "raw": "Institute for Marine and Antarctic Studies University of Tasmania  Hobart Tasmania Australia",
-              "ror": "01nfmeh72"
-            },
-            {
-              "country": "AU",
-              "name": "University of Tasmania",
               "raw": "Institute for Marine and Antarctic Studies, University of Tasmania, Hobart, Tasmania, Australia",
               "ror": "01nfmeh72"
             }
@@ -289,12 +268,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Genome Sciences University of Washington  Seattle Washington",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -340,7 +313,7 @@
           "field": "Earth and Planetary Sciences",
           "score": 0.9951000213623047,
           "subfield": "Oceanography",
-          "topic": "Marine and coastal ecosystems"
+          "topic": "Marine Plankton and Biogeochemistry"
         },
         {
           "domain": "Physical Sciences",
@@ -373,5 +346,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

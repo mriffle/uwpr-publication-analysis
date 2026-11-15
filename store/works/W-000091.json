@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000091"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000091"
     }
   ],
@@ -330,7 +330,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6037164"
+        "url": "http://europepmc.org/pmc/articles/PMC6037164"
       },
       "published": "2012-06-28",
       "retracted": false,
@@ -350,7 +350,7 @@
           "domain": "Physical Sciences",
           "field": "Engineering",
           "score": 0.0005000000237487257,
-          "subfield": "Biomedical Engineering",
+          "subfield": "Electrical and Electronic Engineering",
           "topic": "Acoustic Wave Resonator Technologies"
         },
         {
@@ -377,5 +377,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

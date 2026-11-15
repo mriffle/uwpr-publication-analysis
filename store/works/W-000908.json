@@ -1,0 +1,270 @@
+{
+  "aliases": [],
+  "canonical": "R-000912",
+  "created": "2026-11-15",
+  "discovery": [
+    {
+      "channel": "B1",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000912"
+    },
+    {
+      "channel": "B2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000912"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000912"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000912"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000912"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000912"
+    },
+    {
+      "channel": "G",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000912"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-11-15",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-11-15",
+      "record": "R-000912",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works/W7225065916"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "funder[].award[]"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-11-15",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-11-15",
+      "record": "R-000912",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "Crossref",
+        "retrieved": "2026-11-15",
+        "url": "https://api.crossref.org/works/10.64898/2026.10.28.762630"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "phrase": "UWPR95794",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000912",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.64898%2F2026.10.28.762630"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000912",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.64898%2F2026.10.28.762630"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000912",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.64898%2F2026.10.28.762630"
+      }
+    }
+  ],
+  "id": "W-000908",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, 98195",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": true,
+          "name": "Michael E. Riffle",
+          "openalex": "A5067746093",
+          "orcid": "0000-0003-1633-8607",
+          "staff": "riffle"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, 98195",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Alex Zelter",
+          "openalex": "A5061213874",
+          "orcid": "0000-0002-5331-0577",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, 98195",
+              "ror": "00cvxb145"
+            }
+          ],
+          "corresponding": false,
+          "name": "Michael J. MacCoss",
+          "openalex": "A5043959168",
+          "orcid": "0000-0003-1853-0256",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-11-15",
+        "recheck_after": "2027-02-13",
+        "status": "unavailable"
+      },
+      "id": "R-000912",
+      "ids": {
+        "doi": "10.64898/2026.10.28.762630",
+        "openalex": "W7225065916",
+        "pmcid": null,
+        "pmid": null
+      },
+      "kind": "preprint",
+      "oa": {
+        "license": "cc-by",
+        "status": "green",
+        "url": "https://doi.org/10.64898/2026.10.28.762630"
+      },
+      "published": "2026-11-01",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-11-15"
+      },
+      "title": "The Findings Workflow: An agentic, collaborative, provenance-tracked framework for scientific data analysis with Claude Code",
+      "topics": [
+        {
+          "domain": "Social Sciences",
+          "field": "Decision Sciences",
+          "score": 0.9926999807357788,
+          "subfield": "Information Systems and Management",
+          "topic": "Scientific Computing and Data Management"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.002300000051036477,
+          "subfield": "Information Systems",
+          "topic": "Research Data Management Practices"
+        },
+        {
+          "domain": "Physical Sciences",
+          "field": "Computer Science",
+          "score": 0.0013000000035390258,
+          "subfield": "Artificial Intelligence",
+          "topic": "Artificial Intelligence Applications"
+        }
+      ],
+      "venue": {
+        "issn_l": null,
+        "name": "bioRxiv (Cold Spring Harbor Laboratory)",
+        "publisher": "Cold Spring Harbor Laboratory"
+      },
+      "version_link": null,
+      "year": 2026
+    }
+  ],
+  "rule_version": "2026-09-26.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-11-15"
+  },
+  "updated": "2026-11-15"
+}

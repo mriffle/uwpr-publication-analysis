@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000169"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000169"
     }
   ],
@@ -95,12 +95,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -113,12 +107,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -137,12 +125,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -155,12 +137,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -179,12 +155,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -197,18 +167,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": null,
-              "name": null,
-              "raw": "Department of Pathology No. 3 Hospital of Beijing University  Beijing China",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": null,
               "name": null,
@@ -233,12 +191,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -251,12 +203,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -275,12 +221,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Pathology, University of Washington, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -293,12 +233,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -317,12 +251,6 @@
             {
               "country": "US",
               "name": "Pacific Northwest National Laboratory",
-              "raw": "Pacific Northwest National Laboratory  Richland WA USA",
-              "ror": "05h992307"
-            },
-            {
-              "country": "US",
-              "name": "Pacific Northwest National Laboratory",
               "raw": "Pacific Northwest National Laboratory, Richland, WA, USA",
               "ror": "05h992307"
             }
@@ -338,12 +266,6 @@
             {
               "country": "US",
               "name": "Pacific Northwest National Laboratory",
-              "raw": "Pacific Northwest National Laboratory  Richland WA USA",
-              "ror": "05h992307"
-            },
-            {
-              "country": "US",
-              "name": "Pacific Northwest National Laboratory",
               "raw": "Pacific Northwest National Laboratory, Richland, WA, USA",
               "ror": "05h992307"
             }
@@ -356,18 +278,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Neurology University of Washington School of Medicine  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Parkinson's Disease Research and Geriatric Research Education and Clinical Center Veterans Affairs Puget Sound Health Care System  Seattle WA USA",
-              "ror": null
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -392,12 +302,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Neurology University of Washington School of Medicine  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Neurology, University of Washington School of Medicine, Seattle, WA, USA",
               "ror": "00cvxb145"
             }
@@ -413,12 +317,6 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Neurology Oregon Health and Science University  Portland OR USA",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
               "raw": "Department of Neurology, Oregon Health and Science University, Portland, OR, USA",
               "ror": null
             }
@@ -431,18 +329,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "CN",
-              "name": "Peking University",
-              "raw": "Department of Pathology Peking University Health Science Centre and Third Hospital  Beijing 100083 China",
-              "ror": "02v51f717"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Pathology University of Washington  Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "CN",
               "name": "Peking University",
@@ -493,7 +379,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.9750999808311462,
-          "subfield": "Neurology",
+          "subfield": "Clinical Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
@@ -527,5 +413,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

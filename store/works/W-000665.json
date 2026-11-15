@@ -6,13 +6,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000665"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000665"
     },
     {
@@ -321,7 +321,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.5054000020027161,
-          "subfield": "Pathology and Forensic Medicine",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Cardiac Ischemia and Reperfusion"
         },
         {
@@ -355,5 +355,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

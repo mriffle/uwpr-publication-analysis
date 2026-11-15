@@ -281,17 +281,17 @@
       "title": "Apolipoprotein A-I modulates HDL particle size in the absence of apolipoprotein A-II",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.9779999852180481,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.011900000274181366,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         },
         {
@@ -318,5 +318,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

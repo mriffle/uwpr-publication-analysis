@@ -24,13 +24,25 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
+      "record": "R-000281"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
       "record": "R-000281"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
+      "record": "R-000281"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
       "record": "R-000281"
     }
   ],
@@ -451,14 +463,14 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 1.0,
-          "subfield": "Neurology",
+          "subfield": "Clinical Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
           "score": 9.999999747378752e-05,
-          "subfield": "Physiology",
+          "subfield": "Cellular and Molecular Neuroscience",
           "topic": "Alzheimer's disease research and treatments"
         },
         {
@@ -485,5 +497,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

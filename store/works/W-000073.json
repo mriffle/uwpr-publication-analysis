@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000073"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000073"
     }
   ],
@@ -272,14 +272,14 @@
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.004800000227987766,
-          "subfield": "Genetics",
+          "subfield": "Endocrinology",
           "topic": "Estrogen and related hormone effects"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.002400000113993883,
-          "subfield": "Pulmonary and Respiratory Medicine",
+          "subfield": "Cancer Research",
           "topic": "Prostate Cancer Treatment and Research"
         }
       ],
@@ -299,5 +299,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

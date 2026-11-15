@@ -73,12 +73,6 @@
               "name": "Bermuda Institute of Ocean Sciences",
               "raw": "1Bermuda Institute of Ocean Sciences, 17 Biological Station, St. George’s GE01, Bermuda",
               "ror": "05j1wxv23"
-            },
-            {
-              "country": "BM",
-              "name": "Bermuda Institute of Ocean Sciences",
-              "raw": "1Bermuda Institute of Ocean Sciences, 17 Biological Station, St. George's GE01, Bermuda",
-              "ror": "05j1wxv23"
             }
           ],
           "corresponding": true,
@@ -93,12 +87,6 @@
               "country": "BM",
               "name": "Bermuda Institute of Ocean Sciences",
               "raw": "1Bermuda Institute of Ocean Sciences, 17 Biological Station, St. George’s GE01, Bermuda",
-              "ror": "05j1wxv23"
-            },
-            {
-              "country": "BM",
-              "name": "Bermuda Institute of Ocean Sciences",
-              "raw": "1Bermuda Institute of Ocean Sciences, 17 Biological Station, St. George's GE01, Bermuda",
               "ror": "05j1wxv23"
             }
           ],
@@ -199,7 +187,7 @@
           "field": "Earth and Planetary Sciences",
           "score": 0.005200000014156103,
           "subfield": "Oceanography",
-          "topic": "Marine and coastal ecosystems"
+          "topic": "Marine Plankton and Biogeochemistry"
         }
       ],
       "venue": {
@@ -218,5 +206,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

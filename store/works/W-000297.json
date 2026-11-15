@@ -24,7 +24,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000297"
     }
   ],
@@ -276,9 +276,9 @@
         },
         {
           "domain": "Health Sciences",
-          "field": "Medicine",
+          "field": "Health Professions",
           "score": 0.17069999873638153,
-          "subfield": "Physiology",
+          "subfield": "Medical Laboratory Technology",
           "topic": "Clinical Laboratory Practices and Quality Control"
         }
       ],
@@ -298,5 +298,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

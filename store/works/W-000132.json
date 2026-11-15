@@ -12,7 +12,7 @@
     {
       "channel": "E",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000132"
     }
   ],
@@ -53,12 +53,6 @@
               "name": null,
               "raw": "Seattle Children’s Research Institute , Seattle WA 98101",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "*Seattle Children’s Research Institute, Seattle WA 98101;",
-              "ror": null
             }
           ],
           "corresponding": true,
@@ -73,12 +67,6 @@
               "country": null,
               "name": null,
               "raw": "Seattle Children’s Research Institute , Seattle WA 98101",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "*Seattle Children’s Research Institute, Seattle WA 98101;",
               "ror": null
             }
           ],
@@ -95,12 +83,6 @@
               "name": null,
               "raw": "Celgene Avilomics Research , Bedford, MA 01730",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "†Celgene Avilomics Research, Bedford, MA 01730;",
-              "ror": null
             }
           ],
           "corresponding": false,
@@ -115,12 +97,6 @@
               "country": null,
               "name": null,
               "raw": "Seattle Children’s Research Institute , Seattle WA 98101",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "*Seattle Children’s Research Institute, Seattle WA 98101;",
               "ror": null
             }
           ],
@@ -137,12 +113,6 @@
               "name": null,
               "raw": "Seattle Children’s Research Institute , Seattle WA 98101",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "*Seattle Children’s Research Institute, Seattle WA 98101;",
-              "ror": null
             }
           ],
           "corresponding": true,
@@ -157,12 +127,6 @@
               "country": null,
               "name": null,
               "raw": "Seattle Children’s Research Institute , Seattle WA 98101",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "*Seattle Children’s Research Institute, Seattle WA 98101;",
               "ror": null
             }
           ],
@@ -179,12 +143,6 @@
               "name": null,
               "raw": "Seattle Children’s Research Institute , Seattle WA 98101",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "*Seattle Children’s Research Institute, Seattle WA 98101;",
-              "ror": null
             }
           ],
           "corresponding": false,
@@ -198,7 +156,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Immunology, University of Washington School of Medicine , Seattle WA 98195",
+              "raw": "Department of Immunology, University of Washington School of Medicine, Seattle WA 98195",
               "ror": "00cvxb145"
             },
             {
@@ -206,18 +164,6 @@
               "name": null,
               "raw": "Seattle Children’s Research Institute , Seattle WA 98101",
               "ror": null
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Immunology, University of Washington School of Medicine, Seattle WA 98195",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "‡Department of Immunology, University of Washington School of Medicine, Seattle WA 98195;",
-              "ror": "00cvxb145"
             }
           ],
           "corresponding": true,
@@ -232,12 +178,6 @@
               "country": null,
               "name": null,
               "raw": "Celgene Avilomics Research , Bedford, MA 01730",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "†Celgene Avilomics Research, Bedford, MA 01730;",
               "ror": null
             }
           ],
@@ -254,12 +194,6 @@
               "name": null,
               "raw": "Celgene Avilomics Research , Bedford, MA 01730",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "†Celgene Avilomics Research, Bedford, MA 01730;",
-              "ror": null
             }
           ],
           "corresponding": false,
@@ -274,12 +208,6 @@
               "country": "US",
               "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington School of Medicine , Seattle WA 98195",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "§Department of Genome Sciences, University of Washington School of Medicine, Seattle WA 98195;",
               "ror": "00cvxb145"
             }
           ],
@@ -296,12 +224,6 @@
               "name": null,
               "raw": "Celgene Avilomics Research , Bedford, MA 01730",
               "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "†Celgene Avilomics Research, Bedford, MA 01730;",
-              "ror": null
             }
           ],
           "corresponding": false,
@@ -316,12 +238,6 @@
               "country": "US",
               "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington School of Medicine , Seattle WA 98195",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "§Department of Genome Sciences, University of Washington School of Medicine, Seattle WA 98195;",
               "ror": "00cvxb145"
             }
           ],
@@ -355,7 +271,7 @@
         {
           "affiliations": [
             {
-              "country": null,
+              "country": "US",
               "name": "Benaroya Research Institute",
               "raw": "Benaroya Research Institute , Seattle WA 98101",
               "ror": "04j9rp686"
@@ -367,16 +283,10 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
+              "country": "US",
               "name": "Benaroya Research Institute",
               "raw": "‖Benaroya Research Institute, Seattle WA 98101; and",
               "ror": "04j9rp686"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "‡Department of Immunology, University of Washington School of Medicine, Seattle WA 98195;",
-              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -396,7 +306,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Pediatrics, University of Washington School of Medicine , Seattle WA 98195",
+              "raw": "#Department of Pediatrics, University of Washington School of Medicine, Seattle WA 98195",
               "ror": "00cvxb145"
             },
             {
@@ -404,24 +314,6 @@
               "name": null,
               "raw": "Seattle Children’s Research Institute , Seattle WA 98101",
               "ror": null
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "#Department of Pediatrics, University of Washington School of Medicine, Seattle WA 98195",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Pediatrics, University of Washington School of Medicine, Seattle WA 98195",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "‡Department of Immunology, University of Washington School of Medicine, Seattle WA 98195;",
-              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -435,7 +327,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Pediatrics, University of Washington School of Medicine , Seattle WA 98195",
+              "raw": "#Department of Pediatrics, University of Washington School of Medicine, Seattle WA 98195",
               "ror": "00cvxb145"
             },
             {
@@ -443,18 +335,6 @@
               "name": null,
               "raw": "Seattle Children’s Research Institute , Seattle WA 98101",
               "ror": null
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "#Department of Pediatrics, University of Washington School of Medicine, Seattle WA 98195",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Pediatrics, University of Washington School of Medicine, Seattle WA 98195",
-              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -528,5 +408,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

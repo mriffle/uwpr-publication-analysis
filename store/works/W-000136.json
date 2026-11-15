@@ -224,17 +224,17 @@
       "title": "Research Resource: Androgen Receptor Activity Is Regulated Through the Mobilization of Cell Surface Receptor Networks",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.9994999766349792,
-          "subfield": "Pulmonary and Respiratory Medicine",
+          "subfield": "Cancer Research",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 9.999999747378752e-05,
-          "subfield": "Genetics",
+          "subfield": "Endocrinology",
           "topic": "Estrogen and related hormone effects"
         },
         {
@@ -261,5 +261,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

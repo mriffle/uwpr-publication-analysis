@@ -49,7 +49,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Karin Bornfeldt",
           "openalex": "A5011658040",
           "orcid": "0000-0001-9208-6523",
@@ -423,14 +423,14 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.10779999941587448,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.04360000044107437,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         }
       ],
@@ -450,5 +450,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

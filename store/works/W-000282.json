@@ -109,7 +109,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Rachel E. Klevit",
           "openalex": "A5064867080",
           "orcid": "0000-0002-3476-969X",
@@ -157,10 +157,10 @@
           "topic": "Protein Structure and Dynamics"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Materials Science",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.0,
-          "subfield": "Materials Chemistry",
+          "subfield": "Structural Biology",
           "topic": "Enzyme Structure and Function"
         }
       ],
@@ -180,5 +180,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

@@ -12,7 +12,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000300"
     },
     {
@@ -24,7 +24,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000300"
     },
     {
@@ -127,7 +127,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Ilona M. Babenko",
+          "name": "Ilona Babenko",
           "openalex": "A5112384425",
           "orcid": null,
           "staff": null
@@ -205,17 +205,17 @@
       "title": "Relationships between HDL subpopulation proteome and HDL function in overweight/obese people with and without coronary heart disease",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.9307000041007996,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.03959999978542328,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         },
         {
@@ -242,5 +242,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

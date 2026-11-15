@@ -26,7 +26,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000294"
     },
     {
@@ -44,7 +44,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000294"
     },
     {
@@ -215,12 +215,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA, 98195, USA",
               "ror": "00cvxb145"
             }
@@ -233,12 +227,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": null,
-              "name": null,
-              "raw": "Molecular Biophysics Unit, Indian Institute of Science, Bangalore, Karnataka 560012 India",
-              "ror": null
-            },
             {
               "country": null,
               "name": null,
@@ -263,12 +251,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA, 98195, USA",
               "ror": "00cvxb145"
             }
@@ -284,12 +266,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA, 98195, USA",
               "ror": "00cvxb145"
             }
@@ -302,12 +278,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -338,12 +308,6 @@
             {
               "country": null,
               "name": null,
-              "raw": "Molecular Biophysics Unit, Indian Institute of Science, Bangalore, Karnataka 560012 India",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
               "raw": "Molecular Biophysics Unit, Indian Institute of Science, Bangalore, Karnataka, 560012, India",
               "ror": null
             }
@@ -359,19 +323,13 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA 98195 USA",
+              "raw": "Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA, 98195, USA",
               "ror": "00cvxb145"
             },
             {
               "country": "US",
               "name": "University of Washington",
               "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, WA 98195 USA",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Biological Physics, Structure and Design Graduate Program, University of Washington, Seattle, WA, 98195, USA",
               "ror": "00cvxb145"
             }
           ],
@@ -416,10 +374,10 @@
           "topic": "HIV Research and Treatment"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Immunology and Microbiology",
           "score": 0.0026000000070780516,
-          "subfield": "Radiology, Nuclear Medicine and Imaging",
+          "subfield": "Immunology",
           "topic": "Monoclonal and Polyclonal Antibodies Research"
         },
         {
@@ -680,5 +638,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

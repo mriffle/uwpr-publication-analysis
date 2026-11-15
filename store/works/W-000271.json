@@ -257,10 +257,10 @@
       "title": "10,12-Conjugated linoleic acid supplementation improves HDL composition and function in mice",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.8730000257492065,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
@@ -274,7 +274,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.0017999999690800905,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
@@ -294,5 +294,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

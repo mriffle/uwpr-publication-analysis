@@ -99,12 +99,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington 98109,\rUnited States",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Genome Sciences, University of Washington , Seattle Washington 98109, United States",
               "ror": "00cvxb145"
             }
@@ -144,12 +138,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington 98109,\rUnited States",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -198,12 +186,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington 98109,\rUnited States",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -282,5 +264,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

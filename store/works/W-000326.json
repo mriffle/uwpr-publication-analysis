@@ -24,13 +24,25 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
+      "record": "R-000326"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
       "record": "R-000326"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
+      "record": "R-000326"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
       "record": "R-000326"
     },
     {
@@ -221,7 +233,7 @@
               "ror": "02tpgw303"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Eric W. Deutsch",
           "openalex": "A5070102563",
           "orcid": "0000-0001-8732-0928",
@@ -656,7 +668,7 @@
               "ror": "02catss52"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Juan Antonio Vizcaíno",
           "openalex": "A5044603792",
           "orcid": "0000-0002-3905-4335",
@@ -727,5 +739,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

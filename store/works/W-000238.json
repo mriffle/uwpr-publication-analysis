@@ -12,7 +12,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000238"
     },
     {
@@ -268,7 +268,7 @@
       "oa": {
         "license": "cc-by",
         "status": "gold",
-        "url": "https://doi.org/10.3390/cancers12061534"
+        "url": "http://dx.doi.org/10.3390/cancers12061534"
       },
       "published": "2020-06-11",
       "retracted": false,
@@ -315,5 +315,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

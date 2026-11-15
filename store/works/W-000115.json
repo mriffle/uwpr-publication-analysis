@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000115"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000115"
     }
   ],
@@ -547,7 +547,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.9628999829292297,
-          "subfield": "Neurology",
+          "subfield": "Clinical Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
@@ -581,5 +581,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

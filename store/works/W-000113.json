@@ -10,15 +10,33 @@
       "record": "R-000113"
     },
     {
+      "channel": "B1",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000113"
+    },
+    {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
+      "record": "R-000113"
+    },
+    {
+      "channel": "C2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
       "record": "R-000113"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
+      "record": "R-000113"
+    },
+    {
+      "channel": "D2",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
       "record": "R-000113"
     }
   ],
@@ -64,6 +82,26 @@
         "name": "PMC",
         "retrieved": "2026-09-20",
         "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4224986/"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-11-15",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-11-15",
+      "record": "R-000113",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works/W2320474879"
       }
     },
     {
@@ -448,7 +486,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.8090999722480774,
-          "subfield": "Neurology",
+          "subfield": "Clinical Neurology",
           "topic": "Parkinson's Disease Mechanisms and Treatments"
         },
         {
@@ -482,5 +520,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

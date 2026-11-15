@@ -12,19 +12,19 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000223"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000223"
     },
     {
       "channel": "E",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000223"
     }
   ],
@@ -260,7 +260,7 @@
               "ror": "00cvxb145"
             },
             {
-              "country": null,
+              "country": "US",
               "name": "Benaroya Research Institute",
               "raw": "Immunology Program, Benaroya Research Institute at Virginia Mason, Seattle, WA, USA",
               "ror": "04j9rp686"
@@ -374,7 +374,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7240801"
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7240801/"
       },
       "published": "2019-11-18",
       "retracted": false,
@@ -421,5 +421,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

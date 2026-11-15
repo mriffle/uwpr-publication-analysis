@@ -45,12 +45,6 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Medicinal Chemistry, University of Washington, Seattle, Washington, United\rStates",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
               "raw": "Department of Medicinal Chemistry, University of Washington , Seattle, Washington, United States",
               "ror": "00cvxb145"
             }
@@ -189,5 +183,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

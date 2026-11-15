@@ -90,6 +90,27 @@
     {
       "criterion": 4,
       "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000787",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.4172%2Fscientificreports.149"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
         "phrase": "Washington's Proteomics Resource",
         "query_date": "2026-10-24"
       },
@@ -116,12 +137,6 @@
       "authors": [
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "Eastern Washington University",
-              "raw": "Department of Chemistry and Biochemistry , Eastern Washington University , 226 Science Building , Cheney , WA 99004 , USA",
-              "ror": "002g57a93"
-            },
             {
               "country": "US",
               "name": "Eastern Washington University",
@@ -171,9 +186,9 @@
         },
         {
           "domain": "Life Sciences",
-          "field": "Agricultural and Biological Sciences",
+          "field": "Pharmacology, Toxicology and Pharmaceutics",
           "score": 0.15629999339580536,
-          "subfield": "Plant Science",
+          "subfield": "Toxicology",
           "topic": "Pesticide Exposure and Toxicity"
         },
         {
@@ -200,5 +215,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

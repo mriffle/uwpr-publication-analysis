@@ -344,17 +344,17 @@
       "title": "APOA2 increases cholesterol efflux capacity to plasma HDL by displacing the C-terminus of resident APOA1",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.9980000257492065,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.0010999999940395355,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         },
         {
@@ -381,5 +381,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

@@ -18,25 +18,25 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000203"
     },
     {
       "channel": "C2",
       "first_seen": "2026-10-10",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000203"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000203"
     },
     {
       "channel": "D2",
       "first_seen": "2026-10-10",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000203"
     }
   ],
@@ -260,7 +260,7 @@
         {
           "affiliations": [
             {
-              "country": null,
+              "country": "CH",
               "name": "Institute for Research in Biomedicine",
               "raw": "Institute for Research in Biomedicine, Faculty of Biomedical Sciences, Università della Svizzera italiana, 6500 Bellinzona, Switzerland",
               "ror": "05gfswd81"
@@ -403,5 +403,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

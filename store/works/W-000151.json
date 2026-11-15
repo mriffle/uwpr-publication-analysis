@@ -12,7 +12,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000151"
     },
     {
@@ -24,7 +24,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000151"
     },
     {
@@ -107,6 +107,27 @@
         "name": "OpenAlex",
         "retrieved": "2026-10-24",
         "url": "https://api.openalex.org/works?filter=fulltext.search:UWPR95794,doi:10.1093%2Fbioinformatics%2Fbtw232"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000151",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1093%2Fbioinformatics%2Fbtw232"
       }
     },
     {
@@ -306,5 +327,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

@@ -67,7 +67,7 @@
           ],
           "corresponding": true,
           "name": "Michael E. Wright",
-          "openalex": null,
+          "openalex": "A5058458319",
           "orcid": "0000-0002-4243-2931",
           "staff": null
         }
@@ -106,17 +106,17 @@
           "topic": "Genomics and Chromatin Dynamics"
         },
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.2865999937057495,
-          "subfield": "Pulmonary and Respiratory Medicine",
+          "subfield": "Cancer Research",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.07450000196695328,
-          "subfield": "Genetics",
+          "subfield": "Endocrinology",
           "topic": "Estrogen and related hormone effects"
         }
       ],
@@ -136,5 +136,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

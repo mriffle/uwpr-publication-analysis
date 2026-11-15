@@ -51,12 +51,6 @@
             {
               "country": "PL",
               "name": "Lodz University of Technology",
-              "raw": "Institute of Molecular and Industrial Biotechnology , Faculty of Biotechnology and Food Sciences , Lodz University of Technology , Stefanowskiego 2/22 , 90-537 Łódź , Poland;",
-              "ror": "00s8fpf52"
-            },
-            {
-              "country": "PL",
-              "name": "Lodz University of Technology",
               "raw": "Institute of Molecular and Industrial Biotechnology, Faculty of Biotechnology and Food Sciences, Lodz University of Technology, Stefanowskiego 2/22, 90-537 Łódź, Poland",
               "ror": "00s8fpf52"
             }
@@ -216,5 +210,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

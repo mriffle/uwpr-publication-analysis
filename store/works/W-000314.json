@@ -14,7 +14,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000314"
     },
     {
@@ -512,7 +512,7 @@
         "pmcid": "PMC12053954",
         "pmid": "40267229"
       },
-      "kind": "article",
+      "kind": "review",
       "oa": {
         "license": "cc-by",
         "status": "hybrid",
@@ -919,5 +919,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

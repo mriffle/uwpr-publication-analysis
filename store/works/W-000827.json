@@ -80,9 +80,9 @@
               "ror": "036jqmy94"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Michael E. Wright",
-          "openalex": null,
+          "openalex": "A5058458319",
           "orcid": "0000-0002-4243-2931",
           "staff": null
         }
@@ -114,10 +114,10 @@
       "title": "Short Linear Motifs as a General Organizing Principle of the Nuclear-Receptor Proximal Interactome",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.9506999850273132,
-          "subfield": "Pulmonary and Respiratory Medicine",
+          "subfield": "Cancer Research",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
@@ -131,7 +131,7 @@
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.002099999925121665,
-          "subfield": "Genetics",
+          "subfield": "Endocrinology",
           "topic": "Estrogen and related hormone effects"
         }
       ],
@@ -151,5 +151,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

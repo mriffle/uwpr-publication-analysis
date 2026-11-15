@@ -51,7 +51,7 @@
           ],
           "corresponding": false,
           "name": "Shimpi Bedi",
-          "openalex": null,
+          "openalex": "A5043507269",
           "orcid": "0000-0003-3277-7845",
           "staff": null
         },
@@ -80,8 +80,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Amy Shah",
-          "openalex": null,
+          "name": "AMY SANGHAVI SHAH",
+          "openalex": "A5047114937",
           "orcid": "0000-0001-7297-139X",
           "staff": null
         },
@@ -155,8 +155,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Tomas Vaisar",
-          "openalex": null,
+          "name": "Tomáš Vaisar",
+          "openalex": "A5085075726",
           "orcid": "0000-0002-7406-6606",
           "staff": null
         },
@@ -170,8 +170,8 @@
             }
           ],
           "corresponding": false,
-          "name": "Karin E. Bornfeldt",
-          "openalex": null,
+          "name": "Karin Bornfeldt",
+          "openalex": "A5011658040",
           "orcid": "0000-0001-9208-6523",
           "staff": null
         },
@@ -186,7 +186,7 @@
           ],
           "corresponding": false,
           "name": "Jere P. Segrest",
-          "openalex": null,
+          "openalex": "A5028220327",
           "orcid": "0000-0002-0676-7996",
           "staff": null
         },
@@ -248,10 +248,10 @@
       "title": "Conformational flexibility of apolipoprotein A-I amino- and carboxy-termini is necessary for lipid binding but not cholesterol efflux",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.9916999936103821,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
@@ -265,7 +265,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.0017999999690800905,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         }
       ],
@@ -285,5 +285,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

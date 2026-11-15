@@ -18,7 +18,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000315"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000315"
     },
     {
@@ -314,7 +314,7 @@
           "field": "Earth and Planetary Sciences",
           "score": 0.2289000004529953,
           "subfield": "Oceanography",
-          "topic": "Marine and coastal ecosystems"
+          "topic": "Marine Plankton and Biogeochemistry"
         },
         {
           "domain": "Physical Sciences",
@@ -340,5 +340,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

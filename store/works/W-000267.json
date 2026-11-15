@@ -24,25 +24,25 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000267"
     },
     {
       "channel": "C2",
       "first_seen": "2026-10-10",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000267"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000267"
     },
     {
       "channel": "D2",
       "first_seen": "2026-10-10",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000267"
     }
   ],
@@ -341,7 +341,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.3012999892234802,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         },
         {
@@ -375,5 +375,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

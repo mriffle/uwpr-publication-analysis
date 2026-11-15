@@ -12,13 +12,13 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000227"
     },
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000227"
     }
   ],
@@ -160,7 +160,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Ilona M. Babenko",
+          "name": "Ilona Babenko",
           "openalex": "A5112384425",
           "orcid": null,
           "staff": null
@@ -264,7 +264,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7085425"
+        "url": "http://europepmc.org/pmc/articles/PMC7085425"
       },
       "published": "2019-11-22",
       "retracted": false,
@@ -274,17 +274,17 @@
       "title": "Postprandial remodeling of high-density lipoprotein following high saturated fat and high carbohydrate meals",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.8734999895095825,
-          "subfield": "Surgery",
+          "subfield": "Biochemistry",
           "topic": "Cholesterol and Lipid Metabolism"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.04309999942779541,
-          "subfield": "Surgery",
+          "subfield": "Cardiology and Cardiovascular Medicine",
           "topic": "Lipoproteins and Cardiovascular Health"
         },
         {
@@ -311,5 +311,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

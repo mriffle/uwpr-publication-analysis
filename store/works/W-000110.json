@@ -12,7 +12,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000110"
     },
     {
@@ -98,12 +98,6 @@
       "authors": [
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "The\rDivision of Gastroenterology, Department of Medicine, University of Washington, 1959 North East Pacific Street, Seattle, Washington 98195, United States",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -350,5 +344,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

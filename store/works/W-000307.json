@@ -18,7 +18,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000307"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000307"
     },
     {
@@ -299,7 +299,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.08640000224113464,
-          "subfield": "Epidemiology",
+          "subfield": "Endocrinology, Diabetes and Metabolism",
           "topic": "Adipokines, Inflammation, and Metabolic Diseases"
         }
       ],
@@ -319,5 +319,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

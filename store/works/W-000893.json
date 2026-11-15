@@ -4,9 +4,27 @@
   "created": "2026-10-24",
   "discovery": [
     {
+      "channel": "B1",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000897"
+    },
+    {
       "channel": "B2",
       "first_seen": "2026-10-24",
       "last_seen": "2026-10-24",
+      "record": "R-000897"
+    },
+    {
+      "channel": "C1",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "record": "R-000897"
+    },
+    {
+      "channel": "D1",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
       "record": "R-000897"
     },
     {
@@ -23,6 +41,26 @@
     }
   ],
   "evidence": [
+    {
+      "criterion": 2,
+      "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-11-15",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-11-15",
+      "record": "R-000897",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works/W7222963189"
+      }
+    },
     {
       "criterion": 2,
       "detail": {
@@ -82,7 +120,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Michael R. Hoopmann",
           "openalex": "A5018903678",
           "orcid": "0000-0001-7029-7792",
@@ -91,10 +129,10 @@
         {
           "affiliations": [
             {
-              "country": null,
-              "name": null,
+              "country": "US",
+              "name": "University of Washington",
               "raw": "University of Washington Proteomics Resource , , ,",
-              "ror": null
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -133,7 +171,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Devin K. Schweppe",
           "openalex": "A5065677258",
           "orcid": "0000-0002-3241-6276",
@@ -151,7 +189,7 @@
         "doi": "10.1021/jasms.6c00300",
         "openalex": "W7222963189",
         "pmcid": null,
-        "pmid": null
+        "pmid": "42980296"
       },
       "kind": "article",
       "oa": {
@@ -169,14 +207,14 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9883000254631042,
+          "score": 0.9887999892234802,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.00860000029206276,
+          "score": 0.008500000461935997,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
@@ -204,5 +242,5 @@
     "included": true,
     "since": "2026-10-24"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

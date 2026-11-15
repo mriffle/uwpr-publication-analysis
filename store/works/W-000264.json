@@ -14,7 +14,7 @@
     {
       "channel": "B1",
       "first_seen": "2026-10-10",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000264"
     },
     {
@@ -26,7 +26,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000264"
     },
     {
@@ -38,7 +38,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000264"
     },
     {
@@ -100,7 +100,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-10-10",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-10-10",
+      "last_seen": "2026-11-15",
       "record": "R-000264",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -108,7 +108,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-10-10",
+        "retrieved": "2026-11-15",
         "url": "https://api.openalex.org/works/W4210661134"
       }
     },
@@ -638,5 +638,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

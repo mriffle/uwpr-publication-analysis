@@ -1360,7 +1360,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7580864"
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7580864/"
       },
       "published": "2019-04-12",
       "retracted": false,
@@ -1373,14 +1373,14 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 1.0,
-          "subfield": "Physiology",
+          "subfield": "Physiology (medical)",
           "topic": "Spaceflight effects on biology"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Physics and Astronomy",
+          "domain": "Social Sciences",
+          "field": "Social Sciences",
           "score": 0.0,
-          "subfield": "Astronomy and Astrophysics",
+          "subfield": "Political Science and International Relations",
           "topic": "Space exploration and regulation"
         },
         {
@@ -1407,5 +1407,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

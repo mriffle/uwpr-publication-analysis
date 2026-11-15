@@ -12,7 +12,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000330"
     }
   ],
@@ -171,9 +171,9 @@
       "topics": [
         {
           "domain": "Life Sciences",
-          "field": "Biochemistry, Genetics and Molecular Biology",
+          "field": "Agricultural and Biological Sciences",
           "score": 0.9994999766349792,
-          "subfield": "Molecular Biology",
+          "subfield": "Food Science",
           "topic": "Protein Hydrolysis and Bioactive Peptides"
         },
         {
@@ -207,5 +207,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

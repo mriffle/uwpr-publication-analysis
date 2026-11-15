@@ -18,7 +18,7 @@
     {
       "channel": "C1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000064"
     },
     {
@@ -30,7 +30,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000064"
     },
     {
@@ -114,6 +114,27 @@
     {
       "criterion": 4,
       "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-11-15"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-15",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-15",
+      "record": "R-000064",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-15",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.1007%2Fs12307-010-0046-3"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
         "phrase": "Washington's Proteomics Resource",
         "query_date": "2026-10-24"
       },
@@ -142,21 +163,21 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "Vanderbilt University",
+              "name": "Vanderbilt University Medical Center",
               "raw": "Department of Cancer Biology, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
-              "ror": "02vm5rt34"
+              "ror": "05dq2gs74"
             },
             {
               "country": "US",
-              "name": "Vanderbilt University",
+              "name": "Vanderbilt University Medical Center",
               "raw": "Department of Neurological Surgery, Vanderbilt University Medical Center, 1161 21st Ave South, T4224 Medical Center North, Nashville, TN, 37232-2380, USA",
-              "ror": "02vm5rt34"
+              "ror": "05dq2gs74"
             },
             {
               "country": "US",
-              "name": "Vanderbilt University",
+              "name": "Vanderbilt-Ingram Cancer Center",
               "raw": "Vanderbilt-Ingram Cancer Center, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
-              "ror": "02vm5rt34"
+              "ror": "02rjj2m04"
             }
           ],
           "corresponding": true,
@@ -250,7 +271,7 @@
             }
           ],
           "corresponding": false,
-          "name": "Anna M. Chytil",
+          "name": "Anna Chytil",
           "openalex": "A5035885878",
           "orcid": null,
           "staff": null
@@ -279,7 +300,7 @@
               "ror": "05dq2gs74"
             },
             {
-              "country": null,
+              "country": "US",
               "name": "Vanderbilt-Ingram Cancer Center",
               "raw": "Vanderbilt-Ingram Cancer Center, Vanderbilt University Medical Center, Nashville, TN, 37232, USA",
               "ror": "02rjj2m04"
@@ -319,10 +340,10 @@
       "title": "Microdialysis Combined with Proteomics for Protein Identification in Breast Tumor Microenvironment In Vivo",
       "topics": [
         {
-          "domain": "Health Sciences",
-          "field": "Medicine",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.7588000297546387,
-          "subfield": "Rheumatology",
+          "subfield": "Biochemistry",
           "topic": "Bone and Dental Protein Studies"
         },
         {
@@ -356,5 +377,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

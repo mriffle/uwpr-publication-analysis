@@ -139,7 +139,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Claire Chunyi Yang",
           "openalex": "A5037873915",
           "orcid": "0000-0002-4750-6258",
@@ -190,7 +190,7 @@
           "domain": "Health Sciences",
           "field": "Medicine",
           "score": 0.0017000000225380063,
-          "subfield": "Epidemiology",
+          "subfield": "Urology",
           "topic": "Urinary Tract Infections Management"
         }
       ],
@@ -210,5 +210,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

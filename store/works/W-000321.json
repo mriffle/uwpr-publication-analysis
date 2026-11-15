@@ -14,7 +14,7 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000321"
     },
     {
@@ -183,13 +183,13 @@
               "ror": null
             },
             {
-              "country": null,
+              "country": "US",
               "name": "Genentech",
               "raw": "Genentech, Inc",
               "ror": "04gndp242"
             },
             {
-              "country": null,
+              "country": "US",
               "name": "Genentech",
               "raw": "Department of Proteomic and Genomic Technologies, Genentech, Inc., South San Francisco, California 94080, United States",
               "ror": "04gndp242"
@@ -439,5 +439,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }

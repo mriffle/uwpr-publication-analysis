@@ -12,13 +12,13 @@
     {
       "channel": "D1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000088"
     },
     {
       "channel": "E",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-09-26",
+      "last_seen": "2026-11-15",
       "record": "R-000088"
     }
   ],
@@ -97,12 +97,6 @@
             {
               "country": "RS",
               "name": "University of Belgrade",
-              "raw": "Department of Chemistry School of Medicine University of Belgrade Belgrade Serbia",
-              "ror": "02qsmb048"
-            },
-            {
-              "country": "RS",
-              "name": "University of Belgrade",
               "raw": "Department of Chemistry, School of Medicine, University of Belgrade, Belgrade, Serbia",
               "ror": "02qsmb048"
             }
@@ -115,12 +109,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Florida",
-              "raw": "Department of Microbiology and Cell Science University of Florida Gainesville FL USA",
-              "ror": "02y3ad647"
-            },
             {
               "country": "US",
               "name": "University of Florida",
@@ -139,12 +127,6 @@
             {
               "country": "US",
               "name": "University of Florida",
-              "raw": "Department of Microbiology and Cell Science University of Florida Gainesville FL USA",
-              "ror": "02y3ad647"
-            },
-            {
-              "country": "US",
-              "name": "University of Florida",
               "raw": "Department of Microbiology and Cell Science, University of Florida, Gainesville, FL, USA",
               "ror": "02y3ad647"
             }
@@ -157,12 +139,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Florida",
-              "raw": "Department of Microbiology and Cell Science University of Florida Gainesville FL USA",
-              "ror": "02y3ad647"
-            },
             {
               "country": "US",
               "name": "University of Florida",
@@ -181,12 +157,6 @@
             {
               "country": "US",
               "name": "Lawrence Berkeley National Laboratory",
-              "raw": "Lawrence Berkeley National Laboratory Berkeley CA USA",
-              "ror": "02jbv0t02"
-            },
-            {
-              "country": "US",
-              "name": "Lawrence Berkeley National Laboratory",
               "raw": "Lawrence Berkeley National Laboratory, Berkeley, CA, USA",
               "ror": "02jbv0t02"
             }
@@ -199,12 +169,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Department of Medicinal Chemistry School of Pharmacy University of Washington Seattle WA USA",
-              "ror": "00cvxb145"
-            },
             {
               "country": "US",
               "name": "University of Washington",
@@ -236,7 +200,7 @@
       "oa": {
         "license": null,
         "status": "green",
-        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3517063"
+        "url": "http://europepmc.org/articles/PMC3517063"
       },
       "published": "2012-05-23",
       "retracted": false,
@@ -253,10 +217,10 @@
           "topic": "Ubiquitin and proteasome pathways"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Materials Science",
+          "domain": "Life Sciences",
+          "field": "Biochemistry, Genetics and Molecular Biology",
           "score": 0.04879999905824661,
-          "subfield": "Materials Chemistry",
+          "subfield": "Structural Biology",
           "topic": "Enzyme Structure and Function"
         },
         {
@@ -283,5 +247,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-10-24"
+  "updated": "2026-11-15"
 }
