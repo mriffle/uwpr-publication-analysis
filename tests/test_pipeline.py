@@ -4,6 +4,7 @@ import datetime as dt
 import json
 import shutil
 import subprocess
+import sys
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
@@ -456,6 +457,41 @@ def test_a_resolved_pmcid_is_kept_and_aliased(client: HttpClient, tmp_path: Path
     store = tmp_path / "store"
     do_run(client, store)
     do_run(client, store, day="2026-09-22")
+    aliases = io.read_json(store / "aliases.json")["aliases"]
+    works = [io.read_json(p) for p in sorted((store / "works").glob("W-*.json"))]
+    pmcids = {r["ids"]["pmcid"] for work in works for r in work["records"] if r["ids"].get("pmcid")}
+    assert pmcids == set(PMCIDS.values())
+    assert all(f"pmcid:{pmcid}" in aliases for pmcid in pmcids)
+
+
+def test_openalex_pmc_urls_without_the_prefix_still_give_a_pmcid(
+    client: HttpClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Since late October 2026 OpenAlex ends `ids.pmcid` in the bare number, not "PMC…".
+
+    Kept as given, it failed the schema on every refreshed work, and the gate refused three weekly
+    runs in a row (2026-10-31 to 2026-11-14). It must also key the same `pmcid:` alias as before.
+    """
+
+    def with_bare_pmc_url(index: int, **kwargs: Any) -> dict[str, Any]:
+        work = original(index, **kwargs)
+        pmid = work["ids"]["pmid"].rsplit("/", 1)[-1]
+        if pmid in PMCIDS:
+            number = PMCIDS[pmid].removeprefix("PMC")
+            work["ids"]["pmcid"] = f"https://www.ncbi.nlm.nih.gov/pmc/articles/{number}"
+        return work
+
+    original = openalex_work
+    monkeypatch.setattr(sys.modules[__name__], "openalex_work", with_bare_pmc_url)
+    store = tmp_path / "store"
+    result = do_run(client, store)
+    assert result.status == "ok", result.errors
+    before = _weekly_data(store)
+
+    later = do_run(client, store, day="2026-09-28")
+
+    assert later.status == "ok", later.errors
+    assert _weekly_data(store) == before
     aliases = io.read_json(store / "aliases.json")["aliases"]
     works = [io.read_json(p) for p in sorted((store / "works").glob("W-*.json"))]
     pmcids = {r["ids"]["pmcid"] for work in works for r in work["records"] if r["ids"].get("pmcid")}

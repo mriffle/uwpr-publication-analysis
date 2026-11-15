@@ -13,6 +13,8 @@ from uwpr_pubs.store.models import Ids, RecordId, WorkId
 
 WORK_ID = re.compile(r"^W-([0-9]{6})$")
 RECORD_ID = re.compile(r"^R-([0-9]{6})$")
+# A PMCID as the store keeps it, read out of a bare number, "PMC123", or a PMC article URL.
+_PMCID = re.compile(r"(?:PMC)?([0-9]+)/?$", re.IGNORECASE)
 _DOI_PREFIXES = ("https://doi.org/", "http://doi.org/", "https://dx.doi.org/", "http://dx.doi.org/", "doi:")
 
 
@@ -40,6 +42,19 @@ def normalise_doi(value: str) -> str:
             doi = doi[len(prefix) :]
             break
     return doi.lower()
+
+
+def normalise_pmcid(value: str) -> str:
+    """Always "PMC" plus the number (docs/02 §4).
+
+    Since late October 2026 OpenAlex ends `ids.pmcid` in the bare number
+    (`.../pmc/articles/3073872`); every PMCID the store held before had the prefix. A bare number
+    fails the schema and misses the store's `pmcid:` aliases, so every source's form is made the
+    same. Anything unrecognised is kept as it is, for the validator to refuse.
+    """
+    text = value.strip()
+    match = _PMCID.search(text)
+    return f"PMC{match.group(1)}" if match else text
 
 
 def external_keys(ids: Ids) -> list[str]:

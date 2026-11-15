@@ -97,6 +97,22 @@ def test_doi_normalisation(raw: str, expected: str) -> None:
     assert ids.normalise_doi(raw) == expected
 
 
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        ("PMC3073872", "PMC3073872"),
+        ("3073872", "PMC3073872"),
+        ("pmc3073872", "PMC3073872"),
+        ("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3073872", "PMC3073872"),
+        ("https://www.ncbi.nlm.nih.gov/pmc/articles/3073872", "PMC3073872"),  # OpenAlex, 2026-10
+        ("https://pmc.ncbi.nlm.nih.gov/articles/PMC3073872/", "PMC3073872"),
+        ("not a pmcid", "not a pmcid"),  # left for the validator to refuse
+    ],
+)
+def test_pmcid_normalisation(raw: str, expected: str) -> None:
+    assert ids.normalise_pmcid(raw) == expected
+
+
 def test_external_keys_cover_every_identifier_type() -> None:
     keys = ids.external_keys(
         {

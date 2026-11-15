@@ -98,7 +98,7 @@ from uwpr_pubs.stages.funding import (
 )
 from uwpr_pubs.status import STATUS_OVERRIDE_ACTIONS, Status, StatusInput, decide
 from uwpr_pubs.store import io
-from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi, retired_key
+from uwpr_pubs.store.ids import Minter, external_keys, mint_order, normalise_doi, normalise_pmcid, retired_key
 from uwpr_pubs.store.models import (
     Candidate,
     CandidateRecord,
@@ -970,7 +970,8 @@ class Pipeline:
                     continue
                 draft, record_id = found
                 record = draft.records[record_id]
-                updated = cast(Record, {**record, "ids": {**record["ids"], "pmcid": str(pmcid)}})
+                ids = {**record["ids"], "pmcid": normalise_pmcid(str(pmcid))}
+                updated = cast(Record, {**record, "ids": ids})
                 draft.records[record_id] = updated
                 for key in external_keys(updated["ids"]):
                     self.aliases[key] = draft.id  # a new identifier is a new alias (invariant 2)

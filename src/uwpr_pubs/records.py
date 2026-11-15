@@ -9,7 +9,7 @@ from collections.abc import Mapping, Sequence
 from typing import Any, cast
 
 from uwpr_pubs.config import Config
-from uwpr_pubs.store.ids import normalise_doi
+from uwpr_pubs.store.ids import normalise_doi, normalise_pmcid
 from uwpr_pubs.store.models import (
     Affiliation,
     Author,
@@ -49,7 +49,7 @@ def ids_from_openalex(work: Mapping[str, Any]) -> Ids:
     ids: Ids = {
         "doi": normalise_doi(doi) if doi else None,
         "pmid": pmid.rsplit("/", 1)[-1] if pmid else None,
-        "pmcid": pmcid.rsplit("/", 1)[-1] if pmcid else None,
+        "pmcid": normalise_pmcid(pmcid) if pmcid else None,
         "openalex": short_openalex_id(work.get("id")),
     }
     return ids

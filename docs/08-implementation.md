@@ -996,6 +996,12 @@ header, "Changes since agreement", unless another place is named):
 - **The run report's funding total, and its drop alert, are the store's lifetime sum**, not the
   site's counted headline (F17). A change to the counting rule moves the headline and leaves the
   report's total where it was.
+- **OpenAlex dropped the `PMC` from `ids.pmcid`** in late October 2026: it now ends
+  `.../pmc/articles/3073872`, where every PMCID the store took from it before had the prefix.
+  Kept as given, the bare number failed the schema on every refreshed work, and the gate refused
+  the weekly runs of 2026-10-31, 11-07 and 11-14, writing nothing. Smoke still passed, because its
+  PMCID check reads the NCBI converter. Every source's PMCID now goes through `normalise_pmcid`
+  (`store/ids.py`), which also keeps the `pmcid:` alias keys matching.
 
 ## 6. The approved implementation plan
 
