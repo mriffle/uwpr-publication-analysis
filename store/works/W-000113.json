@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000113"
     },
     {
@@ -45,14 +45,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:52d862555450",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000113",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -151,13 +151,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Inarian-Neurodiagnostics , 7420 92nd Place SE , , ,",
+              "raw": "Inarian-Neurodiagnostics , 7420 92nd Place SE, Mercer Island, Washington, United States, 98040",
               "ror": null
             },
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635, Seattle, Washington, United States, 98104",
               "ror": "00cvxb145"
             },
             {
@@ -184,7 +184,7 @@
             {
               "country": "US",
               "name": "Institute for Systems Biology",
-              "raw": "Institute for Systems Biology , 401 Terry Avenue North , , ,",
+              "raw": "Institute for Systems Biology , 401 Terry Avenue North, Seattle, Washington, United States, 98109",
               "ror": "02tpgw303"
             },
             {
@@ -205,7 +205,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635, Seattle, Washington, United States, 98104",
               "ror": "00cvxb145"
             },
             {
@@ -226,7 +226,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635, Seattle, Washington, United States, 98104",
               "ror": "00cvxb145"
             },
             {
@@ -247,7 +247,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635, Seattle, Washington, United States, 98104",
               "ror": "00cvxb145"
             },
             {
@@ -268,7 +268,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635, Seattle, Washington, United States, 98104",
               "ror": "00cvxb145"
             },
             {
@@ -289,13 +289,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Mental Illness Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System , 1660 South Columbian Way , , ,",
+              "raw": "Mental Illness Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System , 1660 South Columbian Way, Seattle, Washington, United States, 98108",
               "ror": null
             },
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 1959 NE Pacific Street, Box 356560 , , ,",
+              "raw": "University of Washington School of Medicine , , 1959 NE Pacific Street, Box 356560, Seattle, Washington, United States, 98195",
               "ror": "00cvxb145"
             },
             {
@@ -322,13 +322,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Geriatric Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System , 1660 South Columbian Way , , ,",
+              "raw": "Geriatric Research, Education, and Clinical Center, Veterans Affairs Puget Sound Health Care System , 1660 South Columbian Way, Seattle, Washington, United States, 98108",
               "ror": null
             },
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 1959 NE Pacific Street, Box 356465 , , ,",
+              "raw": "University of Washington School of Medicine , , 1959 NE Pacific Street, Box 356465, Seattle, Washington, United States, 98195",
               "ror": "00cvxb145"
             },
             {
@@ -355,7 +355,7 @@
             {
               "country": null,
               "name": null,
-              "raw": "Oregon Health and Science University , , 3181 SW Sam Jackson Park Road, L226 , , ,",
+              "raw": "Oregon Health and Science University , , 3181 SW Sam Jackson Park Road, L226, Portland, Oregon, United States, 97239",
               "ror": null
             },
             {
@@ -376,7 +376,7 @@
             {
               "country": null,
               "name": null,
-              "raw": "University of California at San Diego , , 9500 Gilman Drive , , ,",
+              "raw": "University of California at San Diego , , 9500 Gilman Drive, La Jolla, California, United States, 92093",
               "ror": null
             },
             {
@@ -397,7 +397,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635, Seattle, Washington, United States, 98104",
               "ror": "00cvxb145"
             },
             {
@@ -418,7 +418,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635, Seattle, Washington, United States, 98104",
               "ror": "00cvxb145"
             },
             {
@@ -439,7 +439,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635 , , ,",
+              "raw": "University of Washington School of Medicine , , 325 9th Avenue, HMC 359635, Seattle, Washington, United States, 98104",
               "ror": "00cvxb145"
             },
             {
@@ -478,7 +478,7 @@
       "published": "2014-05-22",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Targeted Discovery and Validation of Plasma Biomarkers of Parkinson’s Disease",
       "topics": [
@@ -520,5 +520,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

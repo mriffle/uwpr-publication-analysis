@@ -1089,10 +1089,15 @@
 {"checked": "2026-11-15", "found": [], "query": "award:DOD:W911NF222O059", "recheck_after": "2027-02-13", "schema": 1, "source": "usaspending"}
 {"checked": "2026-11-15", "found": [], "query": "award:DOD:W91INF2220059", "recheck_after": "2027-02-13", "schema": 1, "source": "usaspending"}
 {"checked": "2026-11-15", "found": [], "query": "award:DOD:W9I1NF2220059", "recheck_after": "2027-02-13", "schema": 1, "source": "usaspending"}
+{"checked": "2026-11-21", "found": [], "query": "award:DOE:1S10RR23057", "recheck_after": "2027-02-19", "schema": 1, "source": "usaspending"}
+{"checked": "2026-11-21", "found": [], "query": "award:DOE:1S10RR23O57", "recheck_after": "2027-02-19", "schema": 1, "source": "usaspending"}
+{"checked": "2026-11-21", "found": [], "query": "award:DOE:1S1ORR23057", "recheck_after": "2027-02-19", "schema": 1, "source": "usaspending"}
+{"checked": "2026-11-21", "found": [], "query": "award:DOE:1SI0RR23057", "recheck_after": "2027-02-19", "schema": 1, "source": "usaspending"}
 {"checked": "2026-11-15", "found": [], "query": "award:DOE:DESC001O566", "recheck_after": "2027-02-13", "schema": 1, "source": "usaspending"}
 {"checked": "2026-11-15", "found": [], "query": "award:DOE:DESC00I0566", "recheck_after": "2027-02-13", "schema": 1, "source": "usaspending"}
 {"checked": "2026-11-15", "found": [], "query": "award:DOE:DESC0O10566", "recheck_after": "2027-02-13", "schema": 1, "source": "usaspending"}
 {"checked": "2026-11-15", "found": [], "query": "award:DOE:DESCO010566", "recheck_after": "2027-02-13", "schema": 1, "source": "usaspending"}
+{"checked": "2026-11-21", "found": [], "query": "award:DOE:IS10RR23057", "recheck_after": "2027-02-19", "schema": 1, "source": "usaspending"}
 {"checked": "2026-09-27", "found": [], "query": "award:DOE:P41GM1034O3", "recheck_after": "2026-12-26", "schema": 1, "source": "usaspending"}
 {"checked": "2026-09-27", "found": [], "query": "award:DOE:P41GM1O3403", "recheck_after": "2026-12-26", "schema": 1, "source": "usaspending"}
 {"checked": "2026-09-27", "found": [], "query": "award:DOE:P41GMI03403", "recheck_after": "2026-12-26", "schema": 1, "source": "usaspending"}

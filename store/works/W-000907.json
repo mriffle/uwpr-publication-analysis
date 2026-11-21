@@ -261,8 +261,8 @@
       "ids": {
         "doi": "10.64898/2026.10.27.762387",
         "openalex": "W7225200310",
-        "pmcid": null,
-        "pmid": null
+        "pmcid": "PMC13780488",
+        "pmid": "43060267"
       },
       "kind": "preprint",
       "oa": {
@@ -280,14 +280,14 @@
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.9726999998092651,
+          "score": 0.9735999703407288,
           "subfield": "Spectroscopy",
           "topic": "Advanced Proteomics Techniques and Applications"
         },
         {
           "domain": "Physical Sciences",
           "field": "Chemistry",
-          "score": 0.019200000911951065,
+          "score": 0.017899999395012856,
           "subfield": "Spectroscopy",
           "topic": "Mass Spectrometry Techniques and Applications"
         },
@@ -315,5 +315,5 @@
     "included": true,
     "since": "2026-11-15"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

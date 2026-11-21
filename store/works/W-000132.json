@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000132"
     },
     {
@@ -21,14 +21,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:15a817f5d9d5",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000132",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -36,7 +36,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -252,13 +252,7 @@
             {
               "country": "IT",
               "name": "University of Brescia",
-              "raw": "Experimental Sciences, Pediatrics Clinic and Institute for Molecular Medicine A. Nocivelli, University of Brescia, Civil Hospital of Brescia , 25100 Bescia ,",
-              "ror": "02q2d2610"
-            },
-            {
-              "country": "IT",
-              "name": "University of Brescia",
-              "raw": "¶Experimental Sciences, Pediatrics Clinic and Institute for Molecular Medicine A. Nocivelli, University of Brescia, Civil Hospital of Brescia, 25100 Bescia, Italy;",
+              "raw": "Experimental Sciences, Pediatrics Clinic and Institute for Molecular Medicine A. Nocivelli, University of Brescia, Civil Hospital of Brescia , 25100 Bescia, Italy",
               "ror": "02q2d2610"
             }
           ],
@@ -363,10 +357,10 @@
         "status": "bronze",
         "url": "https://doi.org/10.4049/jimmunol.1403238"
       },
-      "published": "2015-05-30",
+      "published": "2015-07-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "The Tec Kinase–Regulated Phosphoproteome Reveals a Mechanism for the Regulation of Inhibitory Signals in Murine Macrophages",
       "topics": [
@@ -408,5 +402,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

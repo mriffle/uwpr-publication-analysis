@@ -6,13 +6,13 @@
     {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000828"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000828"
     }
   ],
@@ -23,7 +23,7 @@
       "excerpt": "University of Washington Proteomics Resource, 850 Republican Street, Seattle, WA 98109, USA",
       "first_seen": "2026-09-20",
       "label": "An author's affiliation is the UW Proteomics Resource",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000828",
       "rule": "R5",
       "rule_version": "2026-09-26.1",
@@ -31,7 +31,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.openalex.org/works/W7197044792"
       }
     }
@@ -94,30 +94,30 @@
       "published": "2026-08-06",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "SYNTAX Reads the Motif and Domain Grammar of the Androgen Receptor Proximal Interactome",
       "topics": [
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.32179999351501465,
+          "score": 0.30320000648498535,
           "subfield": "Molecular Biology",
           "topic": "Genomics and Chromatin Dynamics"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.2865999937057495,
+          "score": 0.29910001158714294,
           "subfield": "Cancer Research",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.07450000196695328,
-          "subfield": "Endocrinology",
-          "topic": "Estrogen and related hormone effects"
+          "score": 0.07649999856948853,
+          "subfield": "Molecular Biology",
+          "topic": "Bioinformatics and Genomic Networks"
         }
       ],
       "venue": {
@@ -136,5 +136,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

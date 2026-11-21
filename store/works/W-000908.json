@@ -231,21 +231,21 @@
         {
           "domain": "Social Sciences",
           "field": "Decision Sciences",
-          "score": 0.9926999807357788,
+          "score": 0.9911999702453613,
           "subfield": "Information Systems and Management",
           "topic": "Scientific Computing and Data Management"
         },
         {
           "domain": "Physical Sciences",
           "field": "Computer Science",
-          "score": 0.002300000051036477,
+          "score": 0.0027000000700354576,
           "subfield": "Information Systems",
           "topic": "Research Data Management Practices"
         },
         {
           "domain": "Physical Sciences",
           "field": "Computer Science",
-          "score": 0.0013000000035390258,
+          "score": 0.001500000013038516,
           "subfield": "Artificial Intelligence",
           "topic": "Artificial Intelligence Applications"
         }
@@ -266,5 +266,5 @@
     "included": true,
     "since": "2026-11-15"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

@@ -6,13 +6,13 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000182"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000182"
     },
     {
@@ -33,14 +33,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:d368c2f8365f",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000182",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -48,7 +48,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -80,7 +80,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000182",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -88,7 +88,7 @@
       "source": {
         "cache": null,
         "name": "Crossref",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.crossref.org/works/10.1080/14789450.2018.1402680"
       }
     },
@@ -166,10 +166,10 @@
         "status": "green",
         "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/5875915"
       },
-      "published": "2017-11-08",
+      "published": "2017-11-13",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Quantifying HDL proteins by mass spectrometry: how many proteins are there and what are their functions?",
       "topics": [
@@ -211,5 +211,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

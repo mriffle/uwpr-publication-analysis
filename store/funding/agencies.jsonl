@@ -24,6 +24,7 @@
 {"code": "EMBO", "country": null, "group": "non_us", "name": "European Molecular Biology Organization", "origin": "config", "parent": null, "schema": 1, "short_name": "EMBO"}
 {"code": "EPSRC", "country": "GB", "group": "non_us", "name": "Engineering and Physical Sciences Research Council", "origin": "config", "parent": "UKRI", "schema": 1, "short_name": "EPSRC"}
 {"code": "EU", "country": null, "group": "non_us", "name": "European Union", "origin": "config", "parent": null, "schema": 1, "short_name": "EU"}
+{"code": "F4320322626", "country": "TR", "group": "non_us", "name": "Türkiye Bilimsel ve Teknolojik Araştırma Kurumu", "origin": "openalex", "parent": null, "schema": 1, "short_name": null}
 {"code": "F4320337454", "country": "US", "group": "us_nonfederal", "name": "Center for Tobacco Control Research and Education, University of California, San Francisco", "origin": "openalex", "parent": null, "schema": 1, "short_name": null}
 {"code": "FAPESP", "country": "BR", "group": "non_us", "name": "Fundação de Amparo à Pesquisa do Estado de São Paulo", "origin": "config", "parent": null, "schema": 1, "short_name": "FAPESP"}
 {"code": "FNR", "country": "LU", "group": "non_us", "name": "Fonds National de la Recherche Luxembourg", "origin": "config", "parent": null, "schema": 1, "short_name": "FNR"}

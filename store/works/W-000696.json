@@ -248,7 +248,7 @@
         "status": "gold",
         "url": "https://doi.org/10.1242/bio.059982"
       },
-      "published": "2023-06-22",
+      "published": "2023-07-05",
       "retracted": false,
       "sources": {
         "openalex": "2026-11-15"
@@ -293,5 +293,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

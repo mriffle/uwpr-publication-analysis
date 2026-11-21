@@ -6,19 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000326"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000326"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000326"
     },
     {
@@ -48,7 +48,7 @@
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000326"
     }
   ],
@@ -57,14 +57,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:2026:faac6aaa0926",
         "page": "2026"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000326",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -72,7 +72,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/"
       }
     },
@@ -144,7 +144,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000326",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -152,7 +152,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.openalex.org/works/W4416059040"
       }
     },
@@ -164,7 +164,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000326",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -172,7 +172,7 @@
       "source": {
         "cache": null,
         "name": "Crossref",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.crossref.org/works/10.1093/nar/gkaf1146"
       }
     },
@@ -223,12 +223,6 @@
             {
               "country": "US",
               "name": "Institute for Systems Biology",
-              "raw": "Institute for Systems Biology , Seattle WA 98109 ,",
-              "ror": "02tpgw303"
-            },
-            {
-              "country": "US",
-              "name": "Institute for Systems Biology",
               "raw": "Institute for Systems Biology, Seattle WA 98109, United States",
               "ror": "02tpgw303"
             }
@@ -244,25 +238,19 @@
             {
               "country": null,
               "name": null,
-              "raw": "Center for Computational Mass Spectrometry, University of California, San Diego (UCSD) , La Jolla, CA 92093 ,",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, University of California, San Diego (UCSD) , La Jolla, CA 92093 ,",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "University of California, San Diego (UCSD) Department of Computer Science and Engineering, , La Jolla, CA 92093 ,",
+              "raw": "Center for Computational Mass Spectrometry, University of California, San Diego (UCSD) , La Jolla, CA 92093, United States",
               "ror": null
             },
             {
               "country": null,
               "name": null,
               "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, University of California, San Diego (UCSD), La Jolla, CA 92093, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego (UCSD) Department of Computer Science and Engineering, , La Jolla, CA 92093, United States",
               "ror": null
             }
           ],
@@ -274,12 +262,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "GB",
-              "name": "European Bioinformatics Institute",
-              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
-              "ror": "02catss52"
-            },
             {
               "country": "GB",
               "name": "European Bioinformatics Institute",
@@ -298,7 +280,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195 ,",
+              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195, United States",
               "ror": "00cvxb145"
             },
             {
@@ -319,25 +301,19 @@
             {
               "country": null,
               "name": null,
-              "raw": "Center for Computational Mass Spectrometry, University of California, San Diego (UCSD) , La Jolla, CA 92093 ,",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, University of California, San Diego (UCSD) , La Jolla, CA 92093 ,",
-              "ror": null
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "University of California, San Diego (UCSD) Department of Computer Science and Engineering, , La Jolla, CA 92093 ,",
+              "raw": "Center for Computational Mass Spectrometry, University of California, San Diego (UCSD) , La Jolla, CA 92093, United States",
               "ror": null
             },
             {
               "country": null,
               "name": null,
               "raw": "Skaggs School of Pharmacy and Pharmaceutical Sciences, University of California, San Diego (UCSD), La Jolla, CA 92093, United States",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "University of California, San Diego (UCSD) Department of Computer Science and Engineering, , La Jolla, CA 92093, United States",
               "ror": null
             }
           ],
@@ -349,12 +325,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "US",
-              "name": "Institute for Systems Biology",
-              "raw": "Institute for Systems Biology , Seattle WA 98109 ,",
-              "ror": "02tpgw303"
-            },
             {
               "country": "US",
               "name": "Institute for Systems Biology",
@@ -373,12 +343,6 @@
             {
               "country": "GB",
               "name": "European Bioinformatics Institute",
-              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
-              "ror": "02catss52"
-            },
-            {
-              "country": "GB",
-              "name": "European Bioinformatics Institute",
               "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus, Hinxton, Cambridge, CB10 1SD, United Kingdom",
               "ror": "02catss52"
             }
@@ -391,12 +355,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "GB",
-              "name": "European Bioinformatics Institute",
-              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
-              "ror": "02catss52"
-            },
             {
               "country": "GB",
               "name": "European Bioinformatics Institute",
@@ -415,12 +373,6 @@
             {
               "country": "GB",
               "name": "European Bioinformatics Institute",
-              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
-              "ror": "02catss52"
-            },
-            {
-              "country": "GB",
-              "name": "European Bioinformatics Institute",
               "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus, Hinxton, Cambridge, CB10 1SD, United Kingdom",
               "ror": "02catss52"
             }
@@ -433,12 +385,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "GB",
-              "name": "European Bioinformatics Institute",
-              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
-              "ror": "02catss52"
-            },
             {
               "country": "GB",
               "name": "European Bioinformatics Institute",
@@ -457,12 +403,6 @@
             {
               "country": "US",
               "name": "Institute for Systems Biology",
-              "raw": "Institute for Systems Biology , Seattle WA 98109 ,",
-              "ror": "02tpgw303"
-            },
-            {
-              "country": "US",
-              "name": "Institute for Systems Biology",
               "raw": "Institute for Systems Biology, Seattle WA 98109, United States",
               "ror": "02tpgw303"
             }
@@ -475,18 +415,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "JP",
-              "name": "Research Organization of Information and Systems",
-              "raw": "Database Center for Life Science, Joint Support-Center for Data Science Research, Research Organization of Information and Systems , Chiba 277-0871 ,",
-              "ror": "04p4e8t29"
-            },
-            {
-              "country": "JP",
-              "name": "Kitasato University",
-              "raw": "School of Frontier Engineering, Kitasato University , Kanagawa 252-0373 ,",
-              "ror": "00f2txz25"
-            },
             {
               "country": "JP",
               "name": "Research Organization of Information and Systems",
@@ -511,12 +439,6 @@
             {
               "country": "JP",
               "name": "Niigata University",
-              "raw": "Niigata University Graduate School of Medical and Dental Sciences , Niigata 951-8510 ,",
-              "ror": "04ww21r56"
-            },
-            {
-              "country": "JP",
-              "name": "Niigata University",
               "raw": "Niigata University Graduate School of Medical and Dental Sciences, Niigata 951-8510, Japan",
               "ror": "04ww21r56"
             }
@@ -532,7 +454,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195 ,",
+              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195, United States",
               "ror": "00cvxb145"
             },
             {
@@ -553,7 +475,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195 ,",
+              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195, United States",
               "ror": "00cvxb145"
             },
             {
@@ -574,7 +496,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195 ,",
+              "raw": "University of Washington Department of Genome Sciences, , Seattle WA 98195, United States",
               "ror": "00cvxb145"
             },
             {
@@ -595,12 +517,6 @@
             {
               "country": "CN",
               "name": "Beijing Proteome Research Center",
-              "raw": "Beijing Proteome Research Center, National Center for Protein Sciences, Beijing Institute of Lifeomics , Beijing 102206 ,",
-              "ror": "05pp5b412"
-            },
-            {
-              "country": "CN",
-              "name": "Beijing Proteome Research Center",
               "raw": "Beijing Proteome Research Center, National Center for Protein Sciences, Beijing Institute of Lifeomics, Beijing 102206, China",
               "ror": "05pp5b412"
             }
@@ -613,12 +529,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "CN",
-              "name": "Beijing Proteome Research Center",
-              "raw": "Beijing Proteome Research Center, National Center for Protein Sciences, Beijing Institute of Lifeomics , Beijing 102206 ,",
-              "ror": "05pp5b412"
-            },
             {
               "country": "CN",
               "name": "Beijing Proteome Research Center",
@@ -637,12 +547,6 @@
             {
               "country": "JP",
               "name": "Kyoto University",
-              "raw": "Graduate School of Pharmaceutical Sciences, Kyoto University , Kyoto 606-8501 ,",
-              "ror": "02kpeqv85"
-            },
-            {
-              "country": "JP",
-              "name": "Kyoto University",
               "raw": "Graduate School of Pharmaceutical Sciences, Kyoto University, Kyoto 606-8501, Japan",
               "ror": "02kpeqv85"
             }
@@ -655,12 +559,6 @@
         },
         {
           "affiliations": [
-            {
-              "country": "GB",
-              "name": "European Bioinformatics Institute",
-              "raw": "European Molecular Biology Laboratory, European Bioinformatics Institute (EMBL-EBI), Wellcome Trust Genome Campus , Hinxton, Cambridge, CB10 1SD ,",
-              "ror": "02catss52"
-            },
             {
               "country": "GB",
               "name": "European Bioinformatics Institute",
@@ -697,7 +595,7 @@
       "published": "2025-11-06",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "The ProteomeXchange consortium in 2026: making proteomics data FAIR",
       "topics": [
@@ -739,5 +637,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

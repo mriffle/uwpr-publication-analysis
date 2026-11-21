@@ -8,7 +8,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000319"
     },
     {
@@ -32,13 +32,13 @@
     {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000319"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000319"
     },
     {
@@ -53,14 +53,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:2025:ba3edfe0d467",
         "page": "2025"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000319",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -68,7 +68,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/2025/"
       }
     },
@@ -87,6 +87,24 @@
         "cache": null,
         "name": "OpenAlex",
         "retrieved": "2026-10-24",
+        "url": "https://api.openalex.org/works/W4411370226"
+      }
+    },
+    {
+      "criterion": 3,
+      "detail": {},
+      "excerpt": "University of Washington Proteomics Resource, Seattle, United States",
+      "first_seen": "2026-11-21",
+      "label": "An author's affiliation is the UW Proteomics Resource",
+      "last_seen": "2026-11-21",
+      "record": "R-000319",
+      "rule": "R5",
+      "rule_version": "2026-09-26.1",
+      "section": "affiliation",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-21",
         "url": "https://api.openalex.org/works/W4411370226"
       }
     },
@@ -119,13 +137,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Genome Sciences",
+              "raw": "Department of Genome Sciences, Seattle, United States",
               "ror": null
             },
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington",
+              "raw": "University of Washington, Seattle, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -140,13 +158,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Genome Sciences",
+              "raw": "Department of Genome Sciences, Seattle, United States",
               "ror": null
             },
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington",
+              "raw": "University of Washington, Seattle, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -161,7 +179,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington Proteomics Resource",
+              "raw": "University of Washington Proteomics Resource, Seattle, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -176,7 +194,7 @@
             {
               "country": null,
               "name": null,
-              "raw": "ThermoFisher Scientific",
+              "raw": "ThermoFisher Scientific, San Jose, United States",
               "ror": null
             }
           ],
@@ -191,7 +209,7 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Biochemistry and Molecular Biotechnology",
+              "raw": "Department of Biochemistry and Molecular Biotechnology, Worcester, United States",
               "ror": null
             }
           ],
@@ -206,7 +224,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington Proteomics Resource",
+              "raw": "University of Washington Proteomics Resource, Seattle, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -221,25 +239,25 @@
             {
               "country": "US",
               "name": "Brotman Baty Institute",
-              "raw": "Brotman Baty Institute for Precision Medicine",
+              "raw": "Brotman Baty Institute for Precision Medicine, Seattle, United States",
               "ror": "03jxvbk42"
             },
             {
               "country": null,
               "name": null,
-              "raw": "Department of Genome Sciences",
+              "raw": "Department of Genome Sciences, Seattle, United States",
               "ror": null
             },
             {
               "country": null,
               "name": null,
-              "raw": "Institute of Stem Cell and Regenerative Medicine",
+              "raw": "Institute of Stem Cell and Regenerative Medicine, Seattle, United States",
               "ror": null
             },
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington",
+              "raw": "University of Washington, Seattle, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -272,7 +290,7 @@
       "published": "2025-06-17",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Comet Fragment-Ion Indexing for Enhanced Peptide Sequencing",
       "topics": [
@@ -511,5 +529,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

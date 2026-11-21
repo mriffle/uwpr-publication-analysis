@@ -285,7 +285,7 @@
         "status": "green",
         "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/2809935"
       },
-      "published": "2009-09-14",
+      "published": "2009-11-01",
       "retracted": false,
       "sources": {
         "openalex": "2026-11-15"
@@ -330,5 +330,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

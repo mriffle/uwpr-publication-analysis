@@ -6,13 +6,19 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
+      "record": "R-000197"
+    },
+    {
+      "channel": "B1",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
       "record": "R-000197"
     },
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000197"
     },
     {
@@ -22,21 +28,33 @@
       "record": "R-000197"
     },
     {
+      "channel": "C2",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "record": "R-000197"
+    },
+    {
       "channel": "D1",
       "first_seen": "2026-09-20",
       "last_seen": "2026-11-15",
       "record": "R-000197"
     },
     {
+      "channel": "D2",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "record": "R-000197"
+    },
+    {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000197"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000197"
     }
   ],
@@ -45,14 +63,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:3d0686c33703",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000197",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -60,7 +78,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -87,12 +105,32 @@
     {
       "criterion": 2,
       "detail": {
+        "field": "awards[].funder_award_id"
+      },
+      "excerpt": "UWPR95794",
+      "first_seen": "2026-11-21",
+      "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
+      "last_seen": "2026-11-21",
+      "record": "R-000197",
+      "rule": "R2",
+      "rule_version": "2026-09-26.1",
+      "section": "metadata",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-21",
+        "url": "https://api.openalex.org/works/W2896023929"
+      }
+    },
+    {
+      "criterion": 2,
+      "detail": {
         "field": "funder[].award[]"
       },
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000197",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -100,7 +138,7 @@
       "source": {
         "cache": null,
         "name": "Crossref",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.crossref.org/works/10.1016/j.cell.2018.09.037"
       }
     },
@@ -128,7 +166,7 @@
       "excerpt": "Proteomics Resource, University of Washington, Seattle, WA 98195, USA",
       "first_seen": "2026-09-20",
       "label": "An author's affiliation is the UW Proteomics Resource",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000197",
       "rule": "R5",
       "rule_version": "2026-09-26.1",
@@ -430,7 +468,7 @@
       "published": "2018-10-18",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Bifunctional Immunity Proteins Protect Bacteria against FtsZ-Targeting ADP-Ribosylating Toxins",
       "topics": [
@@ -472,5 +510,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

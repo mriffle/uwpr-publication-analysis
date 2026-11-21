@@ -44,7 +44,7 @@
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000325"
     },
     {
@@ -59,14 +59,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:2025:f2f13a67935d",
         "page": "2025"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000325",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -74,7 +74,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/2025/"
       }
     },
@@ -147,7 +147,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -168,7 +168,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -189,7 +189,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -210,7 +210,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -231,7 +231,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -252,7 +252,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -273,13 +273,13 @@
             {
               "country": "GB",
               "name": "University of Oxford",
-              "raw": "University of Oxford 2 Division of Structural Biology , , Nuffield Department of Medicine , , Oxford, OX3 7BN ,",
+              "raw": "University of Oxford 2 Division of Structural Biology , , Nuffield Department of Medicine , , Oxford, OX3 7BN, UK",
               "ror": "052gg0110"
             },
             {
               "country": "GB",
               "name": "Centre for Human Genetics",
-              "raw": "Wellcome Centre for Human Genetics 2 Division of Structural Biology , , Nuffield Department of Medicine , , Oxford, OX3 7BN ,",
+              "raw": "Wellcome Centre for Human Genetics 2 Division of Structural Biology , , Nuffield Department of Medicine , , Oxford, OX3 7BN, UK",
               "ror": "01rjnta51"
             },
             {
@@ -300,7 +300,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -321,7 +321,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -342,7 +342,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -363,13 +363,13 @@
             {
               "country": "GB",
               "name": "University of Oxford",
-              "raw": "University of Oxford 2 Division of Structural Biology , , Nuffield Department of Medicine , , Oxford, OX3 7BN ,",
+              "raw": "University of Oxford 2 Division of Structural Biology , , Nuffield Department of Medicine , , Oxford, OX3 7BN, UK",
               "ror": "052gg0110"
             },
             {
               "country": "GB",
               "name": "Centre for Human Genetics",
-              "raw": "Wellcome Centre for Human Genetics 2 Division of Structural Biology , , Nuffield Department of Medicine , , Oxford, OX3 7BN ,",
+              "raw": "Wellcome Centre for Human Genetics 2 Division of Structural Biology , , Nuffield Department of Medicine , , Oxford, OX3 7BN, UK",
               "ror": "01rjnta51"
             },
             {
@@ -390,7 +390,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 3 Department of Genome Sciences , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 3 Department of Genome Sciences , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -411,7 +411,7 @@
             {
               "country": "US",
               "name": "Stanford University",
-              "raw": "Stanford University School of Medicine 4 Department of Biochemistry , , Stanford, CA 94305 ,",
+              "raw": "Stanford University School of Medicine 4 Department of Biochemistry , , Stanford, CA 94305, USA",
               "ror": "00f54p054"
             },
             {
@@ -432,7 +432,7 @@
             {
               "country": "US",
               "name": "McLaughlin Research Institute",
-              "raw": "McLaughlin Research Institute and Touro University College of Osteopathic Medicine 5 , Great Falls, MT 59405 ,",
+              "raw": "McLaughlin Research Institute and Touro University College of Osteopathic Medicine 5 , Great Falls, MT 59405, USA",
               "ror": "05j752d14"
             },
             {
@@ -453,7 +453,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195 ,",
+              "raw": "School of Medicine, University of Washington 1 Department of Biochemistry , , Seattle, WA 98195, USA",
               "ror": "00cvxb145"
             },
             {
@@ -489,31 +489,31 @@
         "status": "hybrid",
         "url": "https://doi.org/10.1242/jcs.264084"
       },
-      "published": "2025-11-03",
+      "published": "2025-12-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "The E3 ubiquitin ligase MGRN1 targets melanocortin receptors MC1R and MC4R via interactions with transmembrane adapters",
       "topics": [
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9711999893188477,
+          "score": 0.9765999913215637,
           "subfield": "Molecular Biology",
           "topic": "Ubiquitin and proteasome pathways"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.006800000090152025,
+          "score": 0.005900000222027302,
           "subfield": "Cell Biology",
           "topic": "melanin and skin pigmentation"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.002400000113993883,
+          "score": 0.0019000000320374966,
           "subfield": "Molecular Biology",
           "topic": "Receptor Mechanisms and Signaling"
         }
@@ -807,5 +807,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

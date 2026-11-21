@@ -8,7 +8,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000314"
     },
     {
@@ -20,19 +20,19 @@
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000314"
     },
     {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000314"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000314"
     },
     {
@@ -47,14 +47,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:2025:31a94b3bfb32",
         "page": "2025"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000314",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -62,7 +62,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/2025/"
       }
     },
@@ -110,13 +110,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Computer Science",
+              "raw": "Department of Computer Science, Antwerpen, Belgium",
               "ror": null
             },
             {
               "country": "BE",
               "name": "University of Antwerp",
-              "raw": "University of Antwerp",
+              "raw": "University of Antwerp, Antwerpen, Belgium",
               "ror": "008x57b05"
             }
           ],
@@ -131,13 +131,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Genome Sciences",
+              "raw": "Department of Genome Sciences, Seattle, United States",
               "ror": null
             },
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington",
+              "raw": "University of Washington, Seattle, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -152,19 +152,19 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Biomolecular Medicine",
+              "raw": "Department of Biomolecular Medicine, Ghent, Belgium",
               "ror": null
             },
             {
               "country": "BE",
               "name": "Ghent University",
-              "raw": "Ghent University",
+              "raw": "Ghent University, Ghent, Belgium",
               "ror": "00cv9y106"
             },
             {
               "country": "BE",
               "name": "VIB-UGent Center for Medical Biotechnology",
-              "raw": "VIB-UGent Center for Medical Biotechnology, VIB",
+              "raw": "VIB-UGent Center for Medical Biotechnology, VIB, Ghent, Belgium",
               "ror": "04hbttm44"
             }
           ],
@@ -179,19 +179,19 @@
             {
               "country": "US",
               "name": "Environmental Molecular Sciences Laboratory",
-              "raw": "Environmental Molecular Sciences Laboratory",
+              "raw": "Environmental Molecular Sciences Laboratory, Richland, United States",
               "ror": "04rc0xn13"
             },
             {
               "country": "US",
               "name": "Pacific Northwest National Laboratory",
-              "raw": "Pacific Northwest National Laboratory",
+              "raw": "Pacific Northwest National Laboratory, Richland, United States",
               "ror": "05h992307"
             },
             {
               "country": null,
               "name": null,
-              "raw": "US Department of Energy Agile BioFoundry",
+              "raw": "US Department of Energy Agile BioFoundry, Emeryville, United States",
               "ror": null
             }
           ],
@@ -221,13 +221,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Albert-Ludwigs University Freiburg",
+              "raw": "Albert-Ludwigs University Freiburg, Freiburg, Germany",
               "ror": null
             },
             {
               "country": null,
               "name": null,
-              "raw": "Bioinformatics Group, Department of Computer Science",
+              "raw": "Bioinformatics Group, Department of Computer Science, Freiburg, Germany",
               "ror": null
             }
           ],
@@ -242,13 +242,13 @@
             {
               "country": "US",
               "name": "National Center for Supercomputing Applications",
-              "raw": "National Center for Supercomputing Applications & Siebel School of Computing and Data Science & School of Information Sciences",
+              "raw": "National Center for Supercomputing Applications & Siebel School of Computing and Data Science & School of Information Sciences, Urbana, United States",
               "ror": "03r10zj06"
             },
             {
               "country": null,
               "name": null,
-              "raw": "University of Illinois Urbana−Champaign",
+              "raw": "University of Illinois Urbana−Champaign, Urbana, United States",
               "ror": null
             }
           ],
@@ -278,13 +278,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Beijing Institute of Life Omics",
+              "raw": "Beijing Institute of Life Omics, Beijing, China",
               "ror": null
             },
             {
               "country": "CN",
               "name": "Beijing Proteome Research Center",
-              "raw": "State Key Laboratory of Proteomics, Beijing Proteome Research Center, National Center for Protein Sciences (Beijing)",
+              "raw": "State Key Laboratory of Proteomics, Beijing Proteome Research Center, National Center for Protein Sciences (Beijing), Beijing, China",
               "ror": "05pp5b412"
             }
           ],
@@ -299,13 +299,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Proteomics Resource",
+              "raw": "Proteomics Resource, Seattle, United States",
               "ror": null
             },
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington",
+              "raw": "University of Washington, Seattle, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -320,19 +320,19 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Biomolecular Medicine",
+              "raw": "Department of Biomolecular Medicine, Ghent, Belgium",
               "ror": null
             },
             {
               "country": "BE",
               "name": "Ghent University",
-              "raw": "Ghent University",
+              "raw": "Ghent University, Ghent, Belgium",
               "ror": "00cv9y106"
             },
             {
               "country": "BE",
               "name": "VIB-UGent Center for Medical Biotechnology",
-              "raw": "VIB-UGent Center for Medical Biotechnology, VIB",
+              "raw": "VIB-UGent Center for Medical Biotechnology, VIB, Ghent, Belgium",
               "ror": "04hbttm44"
             }
           ],
@@ -347,13 +347,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Chemistry",
+              "raw": "Department of Chemistry, Madison, United States",
               "ror": null
             },
             {
               "country": null,
               "name": null,
-              "raw": "University of Wisconsin-Madison",
+              "raw": "University of Wisconsin-Madison, Madison, United States",
               "ror": null
             }
           ],
@@ -368,13 +368,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Institute of Medical Genetics",
+              "raw": "Institute of Medical Genetics, Oldenburg, Germany",
               "ror": null
             },
             {
               "country": null,
               "name": null,
-              "raw": "University Medicine Oldenburg, Carl von Ossietzky University",
+              "raw": "University Medicine Oldenburg, Carl von Ossietzky University, Oldenburg, Germany",
               "ror": null
             }
           ],
@@ -389,13 +389,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Computer Science, Applied Bioinformatics",
+              "raw": "Department of Computer Science, Applied Bioinformatics, Tübingen, Germany",
               "ror": null
             },
             {
               "country": "DE",
               "name": "University of Tübingen",
-              "raw": "University of Tübingen",
+              "raw": "University of Tübingen, Tübingen, Germany",
               "ror": "03a1kwz48"
             }
           ],
@@ -410,7 +410,7 @@
             {
               "country": null,
               "name": null,
-              "raw": "InstaDeep London",
+              "raw": "InstaDeep London, London, U.K",
               "ror": null
             }
           ],
@@ -425,13 +425,13 @@
             {
               "country": "DE",
               "name": "Max Planck Institute of Biochemistry",
-              "raw": "Max Planck Institute of Biochemistry",
+              "raw": "Max Planck Institute of Biochemistry, Martinsried, Germany",
               "ror": "04py35477"
             },
             {
               "country": null,
               "name": null,
-              "raw": "Proteomics and Signal Transduction",
+              "raw": "Proteomics and Signal Transduction, Martinsried, Germany",
               "ror": null
             }
           ],
@@ -446,13 +446,13 @@
             {
               "country": null,
               "name": null,
-              "raw": "Department of Genome Sciences",
+              "raw": "Department of Genome Sciences, Seattle, United States",
               "ror": null
             },
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "University of Washington",
+              "raw": "University of Washington, Seattle, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -467,13 +467,13 @@
             {
               "country": "SE",
               "name": "KTH Royal Institute of Technology",
-              "raw": "KTH Royal Institute of Technology",
+              "raw": "KTH Royal Institute of Technology, Stockholm, Sweden",
               "ror": "026vcq606"
             },
             {
               "country": "SE",
               "name": "Science for Life Laboratory",
-              "raw": "Science for Life Laboratory, School of Engineering Sciences in Chemistry, Biotechnology and Health",
+              "raw": "Science for Life Laboratory, School of Engineering Sciences in Chemistry, Biotechnology and Health, Stockholm, Sweden",
               "ror": "04ev03g22"
             }
           ],
@@ -488,7 +488,7 @@
             {
               "country": null,
               "name": null,
-              "raw": "Talus Bioscience",
+              "raw": "Talus Bioscience, Seattle, United States",
               "ror": null
             }
           ],
@@ -521,7 +521,7 @@
       "published": "2025-04-23",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Open-Source and FAIR Research Software for Proteomics",
       "topics": [
@@ -919,5 +919,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

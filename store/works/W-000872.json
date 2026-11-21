@@ -74,7 +74,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -89,7 +89,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -104,7 +104,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -119,7 +119,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -134,7 +134,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -149,7 +149,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -164,7 +164,7 @@
             {
               "country": "CN",
               "name": "Chinese Academy of Medical Sciences & Peking Union Medical College",
-              "raw": "Department of Laboratory Medicine, Peking Union Medical College Hospital, Chinese Academy of Medical Sciences & Peking Union Medical College , Beijing ,",
+              "raw": "Department of Laboratory Medicine, Peking Union Medical College Hospital, Chinese Academy of Medical Sciences & Peking Union Medical College , Beijing, China",
               "ror": "02drdmm93"
             }
           ],
@@ -179,7 +179,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -194,7 +194,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -209,7 +209,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -224,7 +224,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -239,7 +239,7 @@
             {
               "country": "US",
               "name": "Mayo Clinic",
-              "raw": "Department of Quantitative Health Sciences, Mayo Clinic , Rochester, MN ,",
+              "raw": "Department of Quantitative Health Sciences, Mayo Clinic , Rochester, MN, United States",
               "ror": "02qp3tb03"
             }
           ],
@@ -254,7 +254,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA ,",
+              "raw": "Department of Genome Sciences, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -269,7 +269,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -284,7 +284,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA ,",
+              "raw": "Department of Laboratory Medicine & Pathology, University of Washington , Seattle, WA, United States",
               "ror": "00cvxb145"
             }
           ],
@@ -314,7 +314,7 @@
         "status": "closed",
         "url": null
       },
-      "published": "2026-09-10",
+      "published": "2026-10-07",
       "retracted": false,
       "sources": {
         "openalex": "2026-11-15"
@@ -359,5 +359,5 @@
     "included": true,
     "since": "2026-10-10"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

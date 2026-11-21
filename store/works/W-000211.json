@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000211"
     },
     {
@@ -27,14 +27,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:a312774e20f2",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000211",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -42,7 +42,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -317,28 +317,28 @@
       "published": "2019-05-16",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Albuminuria, the High-Density Lipoprotein Proteome, and Coronary Artery Calcification in Type 1 Diabetes Mellitus: The DCCT/EDIC Study",
       "topics": [
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9574999809265137,
+          "score": 0.9315999746322632,
           "subfield": "Clinical Biochemistry",
           "topic": "Paraoxonase enzyme and polymorphisms"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.0348999984562397,
+          "score": 0.057999998331069946,
           "subfield": "Nephrology",
           "topic": "Chronic Kidney Disease and Diabetes"
         },
         {
           "domain": "Health Sciences",
           "field": "Medicine",
-          "score": 0.002400000113993883,
+          "score": 0.004000000189989805,
           "subfield": "Endocrinology, Diabetes and Metabolism",
           "topic": "Diabetes, Cardiovascular Risks, and Lipoproteins"
         }
@@ -359,5 +359,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

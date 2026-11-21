@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000112"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:0dc3c401f66d",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000112",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -45,31 +45,13 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., C.T., A.S., P.S.M., G.D.D., X.-Q.Z., J.W.H.); Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.); Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.); Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.); and Children’s Hospital Oakland Research Institute, CA (M.N.O.)",
+              "raw": "Department of Medicine, University of Washington, Seattle",
               "ror": "00cvxb145"
             },
             {
               "country": "US",
-              "name": "Florida Atlantic University",
-              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.)",
-              "ror": "05p8w6387"
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Children's Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Cornell University",
-              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.)",
-              "ror": "05bnh6r87"
-            },
-            {
-              "country": "US",
               "name": "University of Washington",
-              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.)",
+              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle",
               "ror": "00cvxb145"
             }
           ],
@@ -84,31 +66,13 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., C.T., A.S., P.S.M., G.D.D., X.-Q.Z., J.W.H.); Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.); Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.); Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.); and Children’s Hospital Oakland Research Institute, CA (M.N.O.)",
+              "raw": "Department of Medicine, University of Washington, Seattle",
               "ror": "00cvxb145"
             },
             {
               "country": "US",
-              "name": "Florida Atlantic University",
-              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.)",
-              "ror": "05p8w6387"
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Children's Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Cornell University",
-              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.)",
-              "ror": "05bnh6r87"
-            },
-            {
-              "country": "US",
               "name": "University of Washington",
-              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.)",
+              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle",
               "ror": "00cvxb145"
             }
           ],
@@ -123,31 +87,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., C.T., A.S., P.S.M., G.D.D., X.-Q.Z., J.W.H.); Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.); Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.); Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.); and Children’s Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "Florida Atlantic University",
-              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.)",
-              "ror": "05p8w6387"
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Children's Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Cornell University",
-              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.)",
-              "ror": "05bnh6r87"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.)",
+              "raw": "Department of Medicine, University of Washington, Seattle",
               "ror": "00cvxb145"
             }
           ],
@@ -162,31 +102,13 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., C.T., A.S., P.S.M., G.D.D., X.-Q.Z., J.W.H.); Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.); Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.); Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.); and Children’s Hospital Oakland Research Institute, CA (M.N.O.)",
+              "raw": "Department of Medicine, University of Washington, Seattle",
               "ror": "00cvxb145"
             },
             {
               "country": "US",
-              "name": "Florida Atlantic University",
-              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.)",
-              "ror": "05p8w6387"
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Children's Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Cornell University",
-              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.)",
-              "ror": "05bnh6r87"
-            },
-            {
-              "country": "US",
               "name": "University of Washington",
-              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.)",
+              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle",
               "ror": "00cvxb145"
             }
           ],
@@ -201,31 +123,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., C.T., A.S., P.S.M., G.D.D., X.-Q.Z., J.W.H.); Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.); Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.); Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.); and Children’s Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "Florida Atlantic University",
-              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.)",
-              "ror": "05p8w6387"
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Children's Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Cornell University",
-              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.)",
-              "ror": "05bnh6r87"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.)",
+              "raw": "Department of Medicine, University of Washington, Seattle",
               "ror": "00cvxb145"
             }
           ],
@@ -239,33 +137,15 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., C.T., A.S., P.S.M., G.D.D., X.-Q.Z., J.W.H.); Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.); Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.); Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.); and Children’s Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "Florida Atlantic University",
-              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.)",
-              "ror": "05p8w6387"
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Children's Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": null
-            },
-            {
-              "country": "US",
               "name": "Cornell University",
-              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.)",
+              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY",
               "ror": "05bnh6r87"
             },
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.)",
-              "ror": "00cvxb145"
+              "name": "Florida Atlantic University",
+              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter",
+              "ror": "05p8w6387"
             }
           ],
           "corresponding": false,
@@ -277,34 +157,10 @@
         {
           "affiliations": [
             {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., C.T., A.S., P.S.M., G.D.D., X.-Q.Z., J.W.H.); Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.); Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.); Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.); and Children’s Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "Florida Atlantic University",
-              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.)",
-              "ror": "05p8w6387"
-            },
-            {
               "country": null,
               "name": null,
-              "raw": "Children's Hospital Oakland Research Institute, CA (M.N.O.)",
+              "raw": "Children’s Hospital Oakland Research Institute, CA",
               "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Cornell University",
-              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.)",
-              "ror": "05bnh6r87"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.)",
-              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -318,31 +174,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., C.T., A.S., P.S.M., G.D.D., X.-Q.Z., J.W.H.); Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.); Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.); Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.); and Children’s Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "Florida Atlantic University",
-              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.)",
-              "ror": "05p8w6387"
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Children's Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Cornell University",
-              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.)",
-              "ror": "05bnh6r87"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.)",
+              "raw": "Department of Medicine, University of Washington, Seattle",
               "ror": "00cvxb145"
             }
           ],
@@ -357,31 +189,13 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Medicine, University of Washington, Seattle (B.S., C.T., A.S., P.S.M., G.D.D., X.-Q.Z., J.W.H.); Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.); Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.); Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.); and Children’s Hospital Oakland Research Institute, CA (M.N.O.)",
+              "raw": "Department of Medicine, University of Washington, Seattle",
               "ror": "00cvxb145"
             },
             {
               "country": "US",
-              "name": "Florida Atlantic University",
-              "raw": "Center for Molecular Biology and Biotechnology, Florida Atlantic University, Jupiter (N.B.)",
-              "ror": "05p8w6387"
-            },
-            {
-              "country": null,
-              "name": null,
-              "raw": "Children's Hospital Oakland Research Institute, CA (M.N.O.)",
-              "ror": null
-            },
-            {
-              "country": "US",
-              "name": "Cornell University",
-              "raw": "Department of Microbiology and Immunology, Weill Medical College of Cornell University, New York, NY (N.B.)",
-              "ror": "05bnh6r87"
-            },
-            {
-              "country": "US",
               "name": "University of Washington",
-              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle (B.S, C.T., P.S.M., J.W.H.)",
+              "raw": "Diabetes and Obesity Center of Excellence, University of Washington, Seattle",
               "ror": "00cvxb145"
             }
           ],
@@ -414,7 +228,7 @@
       "published": "2014-03-20",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Humans With Atherosclerosis Have Impaired ABCA1 Cholesterol Efflux and Enhanced High-Density Lipoprotein Oxidation by Myeloperoxidase",
       "topics": [
@@ -456,5 +270,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

@@ -6,13 +6,13 @@
     {
       "channel": "F",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000827"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000827"
     }
   ],
@@ -23,7 +23,7 @@
       "excerpt": "University of Washington Proteomics Resource, 850 Republican Street, Seattle, WA 98109, USA",
       "first_seen": "2026-09-20",
       "label": "An author's affiliation is the UW Proteomics Resource",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000827",
       "rule": "R5",
       "rule_version": "2026-09-26.1",
@@ -31,7 +31,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.openalex.org/works/W7196960879"
       }
     }
@@ -109,28 +109,28 @@
       "published": "2026-08-06",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Short Linear Motifs as a General Organizing Principle of the Nuclear-Receptor Proximal Interactome",
       "topics": [
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9506999850273132,
+          "score": 0.9599999785423279,
           "subfield": "Cancer Research",
           "topic": "Prostate Cancer Treatment and Research"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.034699998795986176,
+          "score": 0.026799999177455902,
           "subfield": "Cell Biology",
           "topic": "Biotin and Related Studies"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.002099999925121665,
+          "score": 0.0019000000320374966,
           "subfield": "Endocrinology",
           "topic": "Estrogen and related hormone effects"
         }
@@ -151,5 +151,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

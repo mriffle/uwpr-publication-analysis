@@ -8,7 +8,7 @@
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000392"
     },
     {
@@ -32,7 +32,7 @@
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000392"
     },
     {
@@ -50,7 +50,7 @@
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000392"
     },
     {
@@ -89,7 +89,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000392",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -97,7 +97,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.openalex.org/works/W4389669646"
       }
     },
@@ -470,7 +470,7 @@
       "published": "2023-12-01",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Combinatorial immune refocusing within the influenza hemagglutinin RBD improves cross-neutralizing antibody responses",
       "topics": [
@@ -815,5 +815,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

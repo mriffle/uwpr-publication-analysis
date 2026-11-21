@@ -6,13 +6,13 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000136"
     },
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000136"
     }
   ],
@@ -21,14 +21,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:46db179c4301",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000136",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -36,7 +36,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -51,7 +51,7 @@
             {
               "country": "US",
               "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
+              "raw": "Department of Molecular Physiology and Biophysics, Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242",
               "ror": "036jqmy94"
             }
           ],
@@ -66,7 +66,7 @@
             {
               "country": "US",
               "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
+              "raw": "Department of Molecular Physiology and Biophysics, Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242",
               "ror": "036jqmy94"
             }
           ],
@@ -81,7 +81,7 @@
             {
               "country": "US",
               "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
+              "raw": "Department of Molecular Physiology and Biophysics, Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242",
               "ror": "036jqmy94"
             }
           ],
@@ -96,8 +96,14 @@
             {
               "country": "US",
               "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
+              "raw": "Department of Molecular Physiology and Biophysics, Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242",
               "ror": "036jqmy94"
+            },
+            {
+              "country": "US",
+              "name": "University of California, Davis",
+              "raw": "Department of Pharmacology, School of Medicine and Genome Center, University of California, Davis, California 95616",
+              "ror": "05rrcem69"
             }
           ],
           "corresponding": false,
@@ -110,9 +116,9 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
-              "ror": "036jqmy94"
+              "name": "University of California, Davis",
+              "raw": "Department of Pharmacology, School of Medicine and Genome Center, University of California, Davis, California 95616",
+              "ror": "05rrcem69"
             }
           ],
           "corresponding": false,
@@ -125,9 +131,9 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
-              "ror": "036jqmy94"
+              "name": "University of California, Davis",
+              "raw": "Department of Pharmacology, School of Medicine and Genome Center, University of California, Davis, California 95616",
+              "ror": "05rrcem69"
             }
           ],
           "corresponding": false,
@@ -140,9 +146,9 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
-              "ror": "036jqmy94"
+              "name": "University of Michigan",
+              "raw": "Departments of Pathology and Computational Medicine and Bioinformatics, University of Michigan, Ann Arbor, Michigan 48109",
+              "ror": "00jmfr291"
             }
           ],
           "corresponding": false,
@@ -155,9 +161,9 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
-              "ror": "036jqmy94"
+              "name": "University of Washington",
+              "raw": "Department of Genome Sciences, University of Washington, Seattle, Washington 98195",
+              "ror": "00cvxb145"
             }
           ],
           "corresponding": false,
@@ -170,9 +176,9 @@
           "affiliations": [
             {
               "country": "US",
-              "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
-              "ror": "036jqmy94"
+              "name": "University of Michigan",
+              "raw": "Departments of Pathology and Computational Medicine and Bioinformatics, University of Michigan, Ann Arbor, Michigan 48109",
+              "ror": "00jmfr291"
             }
           ],
           "corresponding": false,
@@ -186,11 +192,17 @@
             {
               "country": "US",
               "name": "University of Iowa",
-              "raw": "Department of Molecular Physiology and Biophysics (J.J.H., B.H.N., M.M.S., H.D.M., M.E.W.), Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242; Department of Pharmacology (H.D.M., R.J.J., I.V.H., M.E.W.), School of Medicine and Genome Center, University of California, Davis, California 95616; Departments of Pathology and Computational Medicine and Bioinformatics (D.F., A.I.N.), University of Michigan, Ann Arbor, Michigan 48109; and Department of Genome Sciences (J.K.E.), University of Washington, Seattle, Washington 98195",
+              "raw": "Department of Molecular Physiology and Biophysics, Carver College of Medicine, The University of Iowa, Iowa City, Iowa 52242",
               "ror": "036jqmy94"
+            },
+            {
+              "country": "US",
+              "name": "University of California, Davis",
+              "raw": "Department of Pharmacology, School of Medicine and Genome Center, University of California, Davis, California 95616",
+              "ror": "05rrcem69"
             }
           ],
-          "corresponding": false,
+          "corresponding": true,
           "name": "Michael E. Wright",
           "openalex": "A5058458319",
           "orcid": "0000-0002-4243-2931",
@@ -219,7 +231,7 @@
       "published": "2015-07-16",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Research Resource: Androgen Receptor Activity Is Regulated Through the Mobilization of Cell Surface Receptor Networks",
       "topics": [
@@ -261,5 +273,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

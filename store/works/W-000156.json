@@ -6,7 +6,7 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000156"
     }
   ],
@@ -15,14 +15,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:8a6e77af4af8",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000156",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -30,7 +30,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     }
@@ -336,10 +336,10 @@
         "status": "green",
         "url": "https://kclpure.kcl.ac.uk/portal/en/publications/0657dfe9-9a07-41f5-acfb-cb9ba877ea65"
       },
-      "published": "2016-07-07",
+      "published": "2016-12-02",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Tartrate‐Resistant Acid Phosphatase Deficiency in the Predisposition to Systemic Lupus Erythematosus",
       "topics": [
@@ -381,5 +381,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

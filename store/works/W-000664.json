@@ -40,7 +40,19 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
+              "raw": "Department of Laboratory Medicine, University of Washington School of Medicine, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Diabetes and Obesity Center of Excellence, University of Washington School of Medicine, Seattle",
               "ror": "00cvxb145"
             },
             {
@@ -63,12 +75,6 @@
             },
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
               "name": "University of Oklahoma Health Sciences Center",
               "raw": "the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of Oklahoma Health Sciences Center, Oklahoma, City",
               "ror": "0457zbj98"
@@ -83,10 +89,10 @@
         {
           "affiliations": [
             {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
-              "ror": "00cvxb145"
+              "country": null,
+              "name": null,
+              "raw": "Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes, University of",
+              "ror": null
             },
             {
               "country": "US",
@@ -108,12 +114,6 @@
             },
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
               "name": "University of Oklahoma Health Sciences Center",
               "raw": "the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of Oklahoma Health Sciences Center, Oklahoma, City",
               "ror": "0457zbj98"
@@ -128,10 +128,10 @@
         {
           "affiliations": [
             {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
-              "ror": "00cvxb145"
+              "country": null,
+              "name": null,
+              "raw": "Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes, University of",
+              "ror": null
             },
             {
               "country": "US",
@@ -153,12 +153,6 @@
             },
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
               "name": "University of Oklahoma Health Sciences Center",
               "raw": "the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of Oklahoma Health Sciences Center, Oklahoma, City",
               "ror": "0457zbj98"
@@ -175,7 +169,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
+              "raw": "Department of Laboratory Medicine, University of Washington School of Medicine, Seattle",
               "ror": "00cvxb145"
             },
             {
@@ -202,7 +196,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle",
               "ror": "00cvxb145"
             },
             {
@@ -225,12 +219,6 @@
             },
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
               "name": "University of Oklahoma Health Sciences Center",
               "raw": "the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of Oklahoma Health Sciences Center, Oklahoma, City",
               "ror": "0457zbj98"
@@ -247,7 +235,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle",
               "ror": "00cvxb145"
             },
             {
@@ -270,12 +258,6 @@
             },
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
               "name": "University of Oklahoma Health Sciences Center",
               "raw": "the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of Oklahoma Health Sciences Center, Oklahoma, City",
               "ror": "0457zbj98"
@@ -292,7 +274,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle",
               "ror": "00cvxb145"
             },
             {
@@ -315,12 +297,6 @@
             },
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
               "name": "University of Oklahoma Health Sciences Center",
               "raw": "the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of Oklahoma Health Sciences Center, Oklahoma, City",
               "ror": "0457zbj98"
@@ -337,7 +313,7 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle",
               "ror": "00cvxb145"
             },
             {
@@ -360,12 +336,6 @@
             },
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
               "name": "University of Oklahoma Health Sciences Center",
               "raw": "the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of Oklahoma Health Sciences Center, Oklahoma, City",
               "ror": "0457zbj98"
@@ -380,10 +350,10 @@
         {
           "affiliations": [
             {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
-              "ror": "00cvxb145"
+              "country": null,
+              "name": null,
+              "raw": "Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes, University of",
+              "ror": null
             },
             {
               "country": "US",
@@ -405,12 +375,6 @@
             },
             {
               "country": "US",
-              "name": "University of Washington",
-              "raw": "the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
               "name": "University of Oklahoma Health Sciences Center",
               "raw": "the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of Oklahoma Health Sciences Center, Oklahoma, City",
               "ror": "0457zbj98"
@@ -427,7 +391,13 @@
             {
               "country": "US",
               "name": "University of Washington",
-              "raw": "From the Department of Laboratory Medicine (A.N.H. and J.O.B.), University of Washington School of Medicine, Seattle; the Department of Medicine (A.N.H., E.M.W., J.D.B., S.E.K., R.H.K., and J.W.H.), University of Washington School of Medicine, Seattle; the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle; the Harold Hamm Oklahoma Diabetes Center and Section of Endocrinology and Diabetes (M.W., A.K.G., and T.J.L.), University of",
+              "raw": "Department of Medicine, University of Washington School of Medicine, Seattle",
+              "ror": "00cvxb145"
+            },
+            {
+              "country": "US",
+              "name": "University of Washington",
+              "raw": "Diabetes and Obesity Center of Excellence, University of Washington School of Medicine, Seattle",
               "ror": "00cvxb145"
             },
             {
@@ -446,12 +416,6 @@
               "country": "US",
               "name": "University of Washington",
               "raw": "the Department of Biostatistics (E.M.W.), University of Washington School of Medicine, Seattle",
-              "ror": "00cvxb145"
-            },
-            {
-              "country": "US",
-              "name": "University of Washington",
-              "raw": "the Diabetes and Obesity Center of Excellence (A.N.H. and J.W.H.), University of Washington School of Medicine, Seattle",
               "ror": "00cvxb145"
             },
             {
@@ -532,5 +496,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

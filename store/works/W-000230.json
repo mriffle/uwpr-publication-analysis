@@ -8,13 +8,13 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000230"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000230"
     },
     {
@@ -26,7 +26,7 @@
     {
       "channel": "B2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000230"
     },
     {
@@ -38,7 +38,7 @@
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000230"
     },
     {
@@ -56,7 +56,7 @@
     {
       "channel": "D2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000230"
     },
     {
@@ -68,7 +68,7 @@
     {
       "channel": "G",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000230"
     },
     {
@@ -83,14 +83,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:7c9335929def",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000230",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -98,7 +98,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -130,7 +130,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000230",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -138,7 +138,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.openalex.org/works/W3000364256"
       }
     },
@@ -150,7 +150,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000230",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -158,7 +158,7 @@
       "source": {
         "cache": null,
         "name": "Crossref",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.crossref.org/works/10.1371/journal.pbio.3000599"
       }
     },
@@ -514,30 +514,30 @@
       "published": "2020-01-16",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "A proteomic atlas of senescence-associated secretomes for aging biomarker development",
       "topics": [
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.9901999831199646,
+          "score": 0.9932000041007996,
           "subfield": "Cell Biology",
           "topic": "Telomeres, Telomerase, and Senescence"
         },
         {
           "domain": "Life Sciences",
           "field": "Biochemistry, Genetics and Molecular Biology",
-          "score": 0.008100000210106373,
+          "score": 0.005400000140070915,
           "subfield": "Aging",
           "topic": "Genetics, Aging, and Longevity in Model Organisms"
         },
         {
-          "domain": "Physical Sciences",
-          "field": "Chemistry",
+          "domain": "Social Sciences",
+          "field": "Psychology",
           "score": 9.999999747378752e-05,
-          "subfield": "Spectroscopy",
-          "topic": "Advanced Proteomics Techniques and Applications"
+          "subfield": "Developmental and Educational Psychology",
+          "topic": "Aging and Gerontology Research"
         }
       ],
       "venue": {
@@ -811,5 +811,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }

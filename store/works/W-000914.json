@@ -1,0 +1,224 @@
+{
+  "aliases": [],
+  "canonical": "R-000918",
+  "created": "2026-11-21",
+  "discovery": [
+    {
+      "channel": "D2",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "record": "R-000918"
+    }
+  ],
+  "evidence": [
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington Proteomics Resource",
+        "query_date": "2026-11-21"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-21",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-21",
+      "record": "R-000918",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-21",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%20Proteomics%20Resource%22,doi:10.31083%2Ffbl36257"
+      }
+    },
+    {
+      "criterion": 4,
+      "detail": {
+        "phrase": "Washington's Proteomics Resource",
+        "query_date": "2026-11-21"
+      },
+      "excerpt": null,
+      "first_seen": "2026-11-21",
+      "label": "Phrase found in OpenAlex's full-text index of the paper",
+      "last_seen": "2026-11-21",
+      "record": "R-000918",
+      "rule": "R6",
+      "rule_version": "2026-09-26.1",
+      "section": "full-text index",
+      "source": {
+        "cache": null,
+        "name": "OpenAlex",
+        "retrieved": "2026-11-21",
+        "url": "https://api.openalex.org/works?filter=fulltext.search:%22Washington%27s%20Proteomics%20Resource%22,doi:10.31083%2Ffbl36257"
+      }
+    }
+  ],
+  "id": "W-000914",
+  "records": [
+    {
+      "abstract": null,
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Histology and Embryology, Faculty of Medicine, Mersin University, 33343 Mersin, Turkey",
+              "ror": null
+            },
+            {
+              "country": null,
+              "name": null,
+              "raw": "Laboratory of Psychiatry and Experimental Alzheimer’s Research, Medical University of Innsbruck, 6020 Innsbruck, Austria",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Necat Yılmaz",
+          "openalex": "A5024100841",
+          "orcid": "0000-0003-1759-3052",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Laboratory of Psychiatry and Experimental Alzheimer’s Research, Medical University of Innsbruck, 6020 Innsbruck, Austria",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Katharina Steiner",
+          "openalex": "A5048316474",
+          "orcid": "0009-0003-2449-4885",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Department of Psychiatry and Psychotherapy A, Hall State Hospital, 6060 Hall in Tirol, Austria",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Josef Marksteiner",
+          "openalex": "A5004714044",
+          "orcid": null,
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Protein Core Facility, Institute of Medical Biochemistry, CCB-Biocenter, Medical University of Innsbruck, 6020 Innsbruck, Austria",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Klaus Faserl",
+          "openalex": "A5103143387",
+          "orcid": "0000-0003-1646-3256",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Protein Core Facility, Institute of Medical Biochemistry, CCB-Biocenter, Medical University of Innsbruck, 6020 Innsbruck, Austria",
+              "ror": null
+            }
+          ],
+          "corresponding": false,
+          "name": "Bettina Sarg",
+          "openalex": "A5021352781",
+          "orcid": "0000-0002-4785-8739",
+          "staff": null
+        },
+        {
+          "affiliations": [
+            {
+              "country": null,
+              "name": null,
+              "raw": "Laboratory of Psychiatry and Experimental Alzheimer’s Research, Medical University of Innsbruck, 6020 Innsbruck, Austria",
+              "ror": null
+            }
+          ],
+          "corresponding": true,
+          "name": "Christian Humpel",
+          "openalex": "A5035460205",
+          "orcid": "0000-0001-7641-4240",
+          "staff": null
+        }
+      ],
+      "fulltext": {
+        "cache": null,
+        "checked": "2026-11-21",
+        "recheck_after": "2027-02-19",
+        "status": "unavailable"
+      },
+      "id": "R-000918",
+      "ids": {
+        "doi": "10.31083/fbl36257",
+        "openalex": "W4408923193",
+        "pmcid": null,
+        "pmid": "40152394"
+      },
+      "kind": "article",
+      "oa": {
+        "license": "cc-by",
+        "status": "gold",
+        "url": "https://doi.org/10.31083/fbl36257"
+      },
+      "published": "2025-03-24",
+      "retracted": false,
+      "sources": {
+        "openalex": "2026-11-21"
+      },
+      "title": "Novel Plasma Biomarkers for Alzheimer’s Disease: Insights from Organotypic Brain Slice and Microcontact Printing Techniques",
+      "topics": [
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.9848999977111816,
+          "subfield": "Cellular and Molecular Neuroscience",
+          "topic": "Alzheimer's disease research and treatments"
+        },
+        {
+          "domain": "Health Sciences",
+          "field": "Medicine",
+          "score": 0.009800000116229057,
+          "subfield": "Psychiatry and Mental health",
+          "topic": "Dementia and Cognitive Impairment Research"
+        },
+        {
+          "domain": "Life Sciences",
+          "field": "Neuroscience",
+          "score": 0.00139999995008111,
+          "subfield": "Neurology",
+          "topic": "Neuroinflammation and Neurodegeneration Mechanisms"
+        }
+      ],
+      "venue": {
+        "issn_l": "2768-6698",
+        "name": "Frontiers in Bioscience-Landmark",
+        "publisher": "IMR Press"
+      },
+      "version_link": null,
+      "year": 2025
+    }
+  ],
+  "rule_version": "2026-09-26.1",
+  "schema": 1,
+  "status": {
+    "basis": "rules",
+    "included": true,
+    "since": "2026-11-21"
+  },
+  "updated": "2026-11-21"
+}

@@ -6,13 +6,13 @@
     {
       "channel": "A",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000109"
     },
     {
       "channel": "B1",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000109"
     },
     {
@@ -24,7 +24,7 @@
     {
       "channel": "C2",
       "first_seen": "2026-09-20",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000109"
     },
     {
@@ -45,14 +45,14 @@
       "criterion": 1,
       "detail": {
         "first_seen": "2026-09-20",
-        "last_seen": "2026-10-24",
+        "last_seen": "2026-11-21",
         "list_key": "list:older:9936de6b825a",
         "page": "older"
       },
       "excerpt": null,
       "first_seen": "2026-09-20",
       "label": "Listed on UWPR's publications page",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000109",
       "rule": "R1",
       "rule_version": "2026-09-26.1",
@@ -60,7 +60,7 @@
       "source": {
         "cache": null,
         "name": "UWPR website",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://proteomicsresource.washington.edu/publications/older/"
       }
     },
@@ -92,7 +92,7 @@
       "excerpt": "UWPR95794",
       "first_seen": "2026-09-20",
       "label": "UWPR award code (UWPR95794) in the publication's funding metadata",
-      "last_seen": "2026-10-24",
+      "last_seen": "2026-11-21",
       "record": "R-000109",
       "rule": "R2",
       "rule_version": "2026-09-26.1",
@@ -100,7 +100,7 @@
       "source": {
         "cache": null,
         "name": "OpenAlex",
-        "retrieved": "2026-10-24",
+        "retrieved": "2026-11-21",
         "url": "https://api.openalex.org/works/W2153032135"
       }
     }
@@ -146,7 +146,7 @@
               "ror": "04dqdxm60"
             }
           ],
-          "corresponding": true,
+          "corresponding": false,
           "name": "Jessica F. Faux",
           "openalex": "A5085676273",
           "orcid": null,
@@ -161,7 +161,7 @@
               "ror": "03rmrcq20"
             }
           ],
-          "corresponding": true,
+          "corresponding": false,
           "name": "Anna A. Hippmann",
           "openalex": "A5041020972",
           "orcid": "0000-0002-9495-7414",
@@ -176,7 +176,7 @@
               "ror": "03rmrcq20"
             }
           ],
-          "corresponding": true,
+          "corresponding": false,
           "name": "Maria Teresa Maldonado",
           "openalex": "A5004585508",
           "orcid": "0000-0001-8134-9375",
@@ -191,7 +191,7 @@
               "ror": "04zjtrb98"
             }
           ],
-          "corresponding": true,
+          "corresponding": false,
           "name": "H. Rodger Harvey",
           "openalex": "A5015273553",
           "orcid": "0000-0001-7746-7758",
@@ -206,7 +206,7 @@
               "ror": "00cvxb145"
             }
           ],
-          "corresponding": true,
+          "corresponding": false,
           "name": "David R. Goodlett",
           "openalex": "A5023542709",
           "orcid": "0000-0002-8045-8200",
@@ -221,7 +221,7 @@
               "ror": "01jmxt844"
             }
           ],
-          "corresponding": true,
+          "corresponding": false,
           "name": "Philip W. Boyd",
           "openalex": "A5091179334",
           "orcid": "0000-0001-7850-1911",
@@ -236,7 +236,7 @@
               "ror": "019wvm592"
             }
           ],
-          "corresponding": true,
+          "corresponding": false,
           "name": "Robert F. Strzepek",
           "openalex": "A5087477436",
           "orcid": "0000-0002-6442-7121",
@@ -265,7 +265,7 @@
       "published": "2013-10-16",
       "retracted": false,
       "sources": {
-        "openalex": "2026-10-24"
+        "openalex": "2026-11-21"
       },
       "title": "Diatom Proteomics Reveals Unique Acclimation Strategies to Mitigate Fe Limitation",
       "topics": [
@@ -307,5 +307,5 @@
     "included": true,
     "since": "2026-09-20"
   },
-  "updated": "2026-11-15"
+  "updated": "2026-11-21"
 }
